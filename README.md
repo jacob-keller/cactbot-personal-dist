@@ -1,3 +1,4 @@
 # cactbot-warpstar-dist
 
-Cactbot Distribution for cact.warpstar.org
+Contains a distribution of the cactbot files intended to be hosted on
+cact.warpstar.org.
