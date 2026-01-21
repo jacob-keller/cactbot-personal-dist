@@ -23631,6 +23631,9 @@ class RaidbossConfigurator {
     });
     const baseFakeData = {
       me: '',
+      meId: '10001234',
+      zoneName: '',
+      zoneId: -1,
       job: 'NONE',
       role: 'none',
       party: new PartyTracker(raidboss_options),
@@ -23639,6 +23642,10 @@ class RaidbossConfigurator {
       options: this.base.configOptions,
       inCombat: true,
       triggerSetConfig: {},
+      timeline: {
+        currentTime: () => 0,
+        jumpTo: _label => 0
+      },
       ShortName: x => x ?? '???',
       StopCombat: () => {/* noop */},
       ParseLocaleFloat: parseFloat,

@@ -21339,7 +21339,18 @@ const defaultOptions = {
       PopSoundAlert: false
     }
   },
-  CustomMonsters: {}
+  CustomMonsters: {
+    'Forlorn Maiden': {
+      'id': '',
+      'name': 'Forlorn Maiden',
+      'hp': 69814
+    },
+    'The Forlorn': {
+      'id': '',
+      'name': 'The Forlorn',
+      'hp': 431080
+    }
+  }
 };
 
 // Minimum distance a mob with the same name needs to be away from the old

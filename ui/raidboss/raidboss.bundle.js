@@ -20541,6 +20541,8 @@ class Timeline {
     this.syncEnds = [];
     // Sorted by event occurrence time.
     this.forceJumps = [];
+    // A set of label names to their sync times
+    this.labelToTime = {};
     this.LoadFile(text, triggers, styles);
     this.Stop();
   }
@@ -20552,6 +20554,7 @@ class Timeline {
     this.syncStarts = parsed.syncStarts;
     this.syncEnds = parsed.syncEnds;
     this.forceJumps = parsed.forceJumps;
+    this.labelToTime = parsed.labelToTime;
   }
   Stop() {
     this.timebase = 0;
@@ -20646,6 +20649,11 @@ class Timeline {
         break;
       }
     }
+  }
+  JumpTo(label, currentTime) {
+    const time = this.labelToTime[label];
+    if (time === undefined) return;
+    this.SyncTo(time, currentTime);
   }
   _AdvanceTimeTo(fightNow) {
     // This function advances time to fightNow without processing any events.
@@ -20980,6 +20988,12 @@ class TimelineController {
   IsReady() {
     return this.timelines !== null;
   }
+  CurrentTime() {
+    return this.activeTimeline?.timebase ?? 0;
+  }
+  JumpTo(label, currentTime) {
+    this.activeTimeline?.JumpTo(label, currentTime);
+  }
 }
 class TimelineLoader {
   constructor(timelineController) {
@@ -20994,6 +21008,12 @@ class TimelineLoader {
   }
   StopCombat() {
     this.timelineController.SetInCombat(false);
+  }
+  CurrentTime() {
+    return this.timelineController.CurrentTime();
+  }
+  JumpTo(label, currentTime) {
+    this.timelineController.JumpTo(label, currentTime);
   }
 }
 ;// CONCATENATED MODULE: ./ui/raidboss/html_timeline_ui.ts
@@ -22642,6 +22662,7 @@ class PopupText {
 
   kMaxRowsOfText = 2;
   me = '';
+  meId = '';
   job = 'NONE';
   role = 'none';
   triggerSets = [];
@@ -22993,6 +23014,7 @@ class PopupText {
   }
   OnJobChange(e) {
     this.me = e.detail.name;
+    this.meId = e.detail.id.toString(16).toUpperCase();
     this.job = e.detail.job;
     this.role = util/* default.jobToRole */.Z.jobToRole(this.job);
     this.ReloadTimelines();
@@ -23531,6 +23553,9 @@ class PopupText {
     // make all this style consistent, sorry.
     const data = {
       me: this.me,
+      meId: this.meId,
+      zoneName: this.zoneName,
+      zoneId: this.zoneId,
       job: this.job,
       role: this.role,
       party: this.partyTracker,
@@ -23541,6 +23566,10 @@ class PopupText {
       options: this.options,
       inCombat: this.inCombat,
       triggerSetConfig: this.triggerSetConfig,
+      timeline: {
+        currentTime: () => this.timelineLoader.CurrentTime(),
+        jumpTo: label => this.timelineLoader.JumpTo(label, Date.now())
+      },
       ShortName: name => util/* default.shortName */.Z.shortName(name, this.options.PlayerNicks),
       StopCombat: () => this.SetInCombat(false),
       ParseLocaleFloat: parseFloat,
@@ -24674,6 +24703,9 @@ class RaidbossConfigurator {
     });
     const baseFakeData = {
       me: '',
+      meId: '10001234',
+      zoneName: '',
+      zoneId: -1,
       job: 'NONE',
       role: 'none',
       party: new PartyTracker(raidboss_options),
@@ -24682,6 +24714,10 @@ class RaidbossConfigurator {
       options: this.base.configOptions,
       inCombat: true,
       triggerSetConfig: {},
+      timeline: {
+        currentTime: () => 0,
+        jumpTo: _label => 0
+      },
       ShortName: x => x ?? '???',
       StopCombat: () => {/* noop */},
       ParseLocaleFloat: parseFloat,

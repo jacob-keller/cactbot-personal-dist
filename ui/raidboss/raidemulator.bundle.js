@@ -21872,6 +21872,9 @@ class RaidbossConfigurator {
     });
     const baseFakeData = {
       me: '',
+      meId: '10001234',
+      zoneName: '',
+      zoneId: -1,
       job: 'NONE',
       role: 'none',
       party: new PartyTracker(raidboss_options),
@@ -21880,6 +21883,10 @@ class RaidbossConfigurator {
       options: this.base.configOptions,
       inCombat: true,
       triggerSetConfig: {},
+      timeline: {
+        currentTime: () => 0,
+        jumpTo: _label => 0
+      },
       ShortName: x => x ?? '???',
       StopCombat: () => {/* noop */},
       ParseLocaleFloat: parseFloat,
@@ -27830,6 +27837,13 @@ class Persistor extends $n {
     const id = await this.encounters.add(baseEncounter);
     baseEncounter.id = id;
     summary.id = id;
+    const start = new Date(summary.start).toString();
+    console.debug(`Added new encounter
+Id: ${id}
+Zone: ${summary.zoneName}
+Name: ${summary.name}
+Start: ${start}
+`);
     return this.encounterSummaries.add(summary, id);
   }
   async deleteEncounter(id) {
@@ -28462,6 +28476,7 @@ class PopupText {
 
   kMaxRowsOfText = 2;
   me = '';
+  meId = '';
   job = 'NONE';
   role = 'none';
   triggerSets = [];
@@ -28813,6 +28828,7 @@ class PopupText {
   }
   OnJobChange(e) {
     this.me = e.detail.name;
+    this.meId = e.detail.id.toString(16).toUpperCase();
     this.job = e.detail.job;
     this.role = util/* default.jobToRole */.Z.jobToRole(this.job);
     this.ReloadTimelines();
@@ -29351,6 +29367,9 @@ class PopupText {
     // make all this style consistent, sorry.
     const data = {
       me: this.me,
+      meId: this.meId,
+      zoneName: this.zoneName,
+      zoneId: this.zoneId,
       job: this.job,
       role: this.role,
       party: this.partyTracker,
@@ -29361,6 +29380,10 @@ class PopupText {
       options: this.options,
       inCombat: this.inCombat,
       triggerSetConfig: this.triggerSetConfig,
+      timeline: {
+        currentTime: () => this.timelineLoader.CurrentTime(),
+        jumpTo: label => this.timelineLoader.JumpTo(label, Date.now())
+      },
       ShortName: name => util/* default.shortName */.Z.shortName(name, this.options.PlayerNicks),
       StopCombat: () => this.SetInCombat(false),
       ParseLocaleFloat: parseFloat,
@@ -29559,6 +29582,8 @@ class Timeline {
     this.syncEnds = [];
     // Sorted by event occurrence time.
     this.forceJumps = [];
+    // A set of label names to their sync times
+    this.labelToTime = {};
     this.LoadFile(text, triggers, styles);
     this.Stop();
   }
@@ -29570,6 +29595,7 @@ class Timeline {
     this.syncStarts = parsed.syncStarts;
     this.syncEnds = parsed.syncEnds;
     this.forceJumps = parsed.forceJumps;
+    this.labelToTime = parsed.labelToTime;
   }
   Stop() {
     this.timebase = 0;
@@ -29664,6 +29690,11 @@ class Timeline {
         break;
       }
     }
+  }
+  JumpTo(label, currentTime) {
+    const time = this.labelToTime[label];
+    if (time === undefined) return;
+    this.SyncTo(time, currentTime);
   }
   _AdvanceTimeTo(fightNow) {
     // This function advances time to fightNow without processing any events.
@@ -29998,6 +30029,12 @@ class TimelineController {
   IsReady() {
     return this.timelines !== null;
   }
+  CurrentTime() {
+    return this.activeTimeline?.timebase ?? 0;
+  }
+  JumpTo(label, currentTime) {
+    this.activeTimeline?.JumpTo(label, currentTime);
+  }
 }
 class TimelineLoader {
   constructor(timelineController) {
@@ -30012,6 +30049,12 @@ class TimelineLoader {
   }
   StopCombat() {
     this.timelineController.SetInCombat(false);
+  }
+  CurrentTime() {
+    return this.timelineController.CurrentTime();
+  }
+  JumpTo(label, currentTime) {
+    this.timelineController.JumpTo(label, currentTime);
   }
 }
 ;// CONCATENATED MODULE: ./ui/raidboss/emulator/overrides/RaidEmulatorTimeline.ts
@@ -30051,6 +30094,12 @@ class RaidEmulatorTimeline extends Timeline {
     const lastLogTimestamp = this.emulator?.currentEncounter?.encounter.logLines.slice(-1)[0]?.timestamp;
     if (lastLogTimestamp && currentTime > lastLogTimestamp) currentTime = this.emulator?.currentLogTime ?? currentTime;
     super._OnUpdateTimer(currentTime);
+  }
+  JumpTo(label, currentTime) {
+    // Override JumpTo to use the emulated timestamp, same logic as _OnUpdateTimer
+    const lastLogTimestamp = this.emulator?.currentEncounter?.encounter.logLines.slice(-1)[0]?.timestamp;
+    if (lastLogTimestamp && currentTime > lastLogTimestamp) currentTime = this.emulator?.currentLogTime ?? currentTime;
+    super.JumpTo(label, currentTime);
   }
   _ScheduleUpdate(_fightNow) {
     // Override
@@ -30281,6 +30330,33 @@ class StubbedPopupText extends PopupText {
 
 
 
+const dataPropsToExcludeMap = {
+  job: true,
+  me: true,
+  meId: true,
+  zoneName: true,
+  zoneId: true,
+  role: true,
+  party: true,
+  lang: true,
+  parserLang: true,
+  displayLang: true,
+  currentHP: true,
+  options: true,
+  inCombat: true,
+  triggerSetConfig: true,
+  timeline: true,
+  ShortName: true,
+  StopCombat: true,
+  ParseLocaleFloat: true,
+  CanStun: true,
+  CanSilence: true,
+  CanSleep: true,
+  CanCleanse: true,
+  CanFeint: true,
+  CanAddle: true
+};
+const dataPropsToExclude = Object.keys(dataPropsToExcludeMap);
 class Resolver {
   promiseResolved = false;
   constructor(status) {
@@ -30325,9 +30401,9 @@ class Resolver {
 }
 class PopupTextAnalysis extends StubbedPopupText {
   triggerResolvers = [];
-  constructor(options, timelineLoader, raidbossFileData) {
+  constructor(options, timelineLoader, raidbossFileData, regexCache) {
     super(options, timelineLoader, raidbossFileData);
-    this.regexCache = new Map();
+    this.regexCache = regexCache;
     this.ttsSay = _text => {
       return;
     };
@@ -30362,14 +30438,15 @@ class PopupTextAnalysis extends StubbedPopupText {
         }
         if (r === false) continue;
         const resolver = this.currentResolver = new Resolver({
-          initialData: EmulatorCommon.cloneData(this.data),
+          initialData: EmulatorCommon.cloneData(this.data, dataPropsToExclude),
           suppressed: false,
           executed: false
         });
         this.OnTrigger(trigger, r, logObj.timestamp);
         resolver.setFinal(() => {
           const currentLine = getCurrentLogLine();
-          resolver.status.finalData = EmulatorCommon.cloneData(this.data);
+          const finalData = EmulatorCommon.cloneData(this.data, dataPropsToExclude);
+          if (JSON.stringify(finalData) !== JSON.stringify(resolver.status.initialData)) resolver.status.finalData = finalData;else delete resolver.status.initialData;
           delete resolver.triggerHelper?.resolver;
           if (this.callback) this.callback(currentLine, resolver.triggerHelper, resolver.status, this.data);
         });
@@ -30386,7 +30463,7 @@ class PopupTextAnalysis extends StubbedPopupText {
         }
         if (r !== false) {
           const resolver = this.currentResolver = new Resolver({
-            initialData: EmulatorCommon.cloneData(this.data),
+            initialData: EmulatorCommon.cloneData(this.data, dataPropsToExclude),
             suppressed: false,
             executed: false
           });
@@ -30395,7 +30472,8 @@ class PopupTextAnalysis extends StubbedPopupText {
           this.OnTrigger(trigger, r, logObj.timestamp);
           resolver.setFinal(() => {
             const currentLine = getCurrentLogLine();
-            resolver.status.finalData = EmulatorCommon.cloneData(this.data);
+            const finalData = EmulatorCommon.cloneData(this.data, dataPropsToExclude);
+            if (JSON.stringify(finalData) !== JSON.stringify(resolver.status.initialData)) resolver.status.finalData = finalData;else delete resolver.status.initialData;
             delete resolver.triggerHelper?.resolver;
             if (this.callback) this.callback(currentLine, resolver.triggerHelper, resolver.status, this.data);
           });
@@ -30560,96 +30638,115 @@ class AnalyzedEncounter extends EventBus {
       }
     });
   }
-  async analyze() {
-    // @TODO: Make this run in parallel sometime in the future, since it could be really slow?
-    if (this.encounter.combatantTracker) {
-      for (const id of this.encounter.combatantTracker.partyMembers) await this.analyzeFor(id);
-    }
-
-    // Free up this memory
-    delete this.regexCache;
-    return this.dispatch('analyzed');
-  }
-  async analyzeFor(id) {
-    if (!this.encounter.combatantTracker) return;
-    let currentLogIndex = 0;
-    const partyMember = this.encounter.combatantTracker.combatants[id];
-    const getCurLogLine = () => {
-      const line = this.encounter.logLines[currentLogIndex];
-      if (!line) throw new not_reached/* UnreachableCode */.$();
-      return line;
-    };
-    if (!partyMember) return;
+  checkPartyMember(id) {
+    const partyMember = this.encounter.combatantTracker?.combatants[id];
+    if (!partyMember) return false;
     const initState = partyMember?.nextState(0);
     if (initState.Job === 0) {
       this.perspectives[id] = {
         initialData: {},
         triggers: []
       };
-      return;
+      return false;
     }
+    return true;
+  }
+  async analyze() {
+    const regexCache = new Map();
+    if (this.encounter.combatantTracker) {
+      const partyMembers = this.encounter.combatantTracker.partyMembers;
+      const batchSize = 24;
+      for (let i = 0; i < partyMembers.length; i += batchSize) {
+        const batch = partyMembers.slice(i, i + batchSize);
+        await this.analyzeFor(batch, regexCache);
+      }
+    }
+    return this.dispatch('analyzed');
+  }
+  async analyzeFor(partyMembers, regexCache) {
+    let currentLogIndex = 0;
+    const getCurLogLine = () => {
+      const line = this.encounter.logLines[currentLogIndex];
+      if (!line) throw new not_reached/* UnreachableCode */.$();
+      return line;
+    };
+    const validPartyMembers = partyMembers.filter(id => this.checkPartyMember(id));
     const timelineUI = new RaidEmulatorAnalysisTimelineUI(this.options);
     const timelineController = new RaidEmulatorTimelineController(this.options, timelineUI, raidboss_manifest/* default */.Z);
     timelineController.bindTo(this.emulator);
-    const popupText = new PopupTextAnalysis(this.options, new TimelineLoader(timelineController), raidboss_manifest/* default */.Z);
-    if (this.regexCache) popupText.regexCache = this.regexCache;
-    const generator = new PopupTextGenerator(popupText);
-    timelineUI.SetPopupTextInterface(generator);
-    timelineController.SetPopupTextInterface(generator);
-    this.selectPerspective(id, popupText);
-    if (timelineController.activeTimeline?.ui) {
-      timelineController.activeTimeline.ui.OnTrigger = (trigger, matches) => {
-        const currentLine = this.encounter.logLines[currentLogIndex];
-        if (!currentLine) throw new not_reached/* UnreachableCode */.$();
-        const resolver = popupText.currentResolver = new Resolver({
-          initialData: EmulatorCommon.cloneData(popupText.getData()),
-          suppressed: false,
-          executed: false
-        });
-        resolver.triggerHelper = popupText._onTriggerInternalGetHelper(trigger, matches?.groups ?? {}, currentLine?.timestamp);
-        popupText.triggerResolvers.push(resolver);
-        popupText.OnTrigger(trigger, matches, currentLine.timestamp);
-        resolver.setFinal(() => {
-          // Get the current log line when the callback is executed instead of the line
-          // when the trigger initially fires
-          const resolvedLine = getCurLogLine();
-          resolver.status.finalData = EmulatorCommon.cloneData(popupText.getData());
-          delete resolver.triggerHelper?.resolver;
-          if (popupText.callback) {
-            popupText.callback(resolvedLine, resolver.triggerHelper, resolver.status, popupText.getData());
-          }
+    const partyContext = validPartyMembers.map(id => {
+      const popupText = new PopupTextAnalysis(this.options, new TimelineLoader(timelineController), raidboss_manifest/* default */.Z, regexCache);
+      const generator = new PopupTextGenerator(popupText);
+      timelineUI.SetPopupTextInterface(generator);
+      timelineController.SetPopupTextInterface(generator);
+      if (timelineController.activeTimeline?.ui) {
+        timelineController.activeTimeline.ui.OnTrigger = (trigger, matches) => {
+          const currentLine = this.encounter.logLines[currentLogIndex];
+          if (!currentLine) throw new not_reached/* UnreachableCode */.$();
+          const resolver = popupText.currentResolver = new Resolver({
+            initialData: EmulatorCommon.cloneData(popupText.getData()),
+            suppressed: false,
+            executed: false
+          });
+          resolver.triggerHelper = popupText._onTriggerInternalGetHelper(trigger, matches?.groups ?? {}, currentLine?.timestamp);
+          popupText.triggerResolvers.push(resolver);
+          popupText.OnTrigger(trigger, matches, currentLine.timestamp);
+          resolver.setFinal(() => {
+            // Get the current log line when the callback is executed instead of the line
+            // when the trigger initially fires
+            const resolvedLine = getCurLogLine();
+            resolver.status.finalData = EmulatorCommon.cloneData(popupText.getData());
+            delete resolver.triggerHelper?.resolver;
+            if (popupText.callback) {
+              popupText.callback(resolvedLine, resolver.triggerHelper, resolver.status, popupText.getData());
+            }
+          });
+        };
+      }
+      popupText.callback = (log, triggerHelper, currentTriggerStatus) => {
+        const perspective = this.perspectives[id];
+        if (!perspective || !triggerHelper) throw new not_reached/* UnreachableCode */.$();
+        perspective.triggers.push({
+          triggerHelper: triggerHelper,
+          status: currentTriggerStatus,
+          logLine: log,
+          resolvedOffset: log.timestamp - this.encounter.startTimestamp
         });
       };
+      popupText.triggerResolvers = [];
+      this.selectPerspective(id, popupText);
+      return {
+        popupText: popupText,
+        id: id
+      };
+    });
+    for (const ctx of partyContext) {
+      const popupText = ctx.popupText;
+      const id = ctx.id;
+      this.perspectives[id] = {
+        initialData: EmulatorCommon.cloneData(popupText.getData(), []),
+        triggers: [],
+        finalData: popupText.getData()
+      };
     }
-    popupText.callback = (log, triggerHelper, currentTriggerStatus) => {
-      const perspective = this.perspectives[id];
-      if (!perspective || !triggerHelper) throw new not_reached/* UnreachableCode */.$();
-      perspective.triggers.push({
-        triggerHelper: triggerHelper,
-        status: currentTriggerStatus,
-        logLine: log,
-        resolvedOffset: log.timestamp - this.encounter.startTimestamp
-      });
-    };
-    popupText.triggerResolvers = [];
-    this.perspectives[id] = {
-      initialData: EmulatorCommon.cloneData(popupText.getData(), []),
-      triggers: [],
-      finalData: popupText.getData()
-    };
     for (; currentLogIndex < this.encounter.logLines.length; ++currentLogIndex) {
       const log = this.encounter.logLines[currentLogIndex];
       if (!log) throw new not_reached/* UnreachableCode */.$();
       await this.dispatch('analyzeLine', log);
-      const combatant = this.encounter?.combatantTracker?.combatants[id];
-      if (combatant && combatant.hasState(log.timestamp)) this.updateState(combatant, log.timestamp, popupText);
+      for (const ctx of partyContext) {
+        const popupText = ctx.popupText;
+        const id = ctx.id;
+        const combatant = this.encounter?.combatantTracker?.combatants[id];
+        if (combatant && combatant.hasState(log.timestamp)) {
+          this.updateState(combatant, log.timestamp, popupText);
+        }
+        await popupText.onEmulatorLog([log], getCurLogLine);
+      }
       this.watchCombatantsOverride.tick(log.timestamp);
-      await popupText.onEmulatorLog([log], getCurLogLine);
       timelineController.onEmulatorLogEvent([log]);
     }
     this.watchCombatantsOverride.clear();
     timelineUI.stop();
-    this.regexCache = popupText.regexCache;
   }
 }
 ;// CONCATENATED MODULE: ./ui/raidboss/emulator/data/RaidEmulator.ts
@@ -30680,7 +30777,10 @@ class RaidEmulator extends EventBus {
     this.currentLogTime = undefined;
     this.currentEncounter = new AnalyzedEncounter(this.options, enc, this, watchCombatantsOverride);
     void this.dispatch('preCurrentEncounterChanged', this.currentEncounter);
+    const start = performance.now();
     void this.currentEncounter.analyze().then(() => {
+      const duration = performance.now() - start;
+      console.log(`Analyzing encounter took ${duration.toFixed(2)}ms`);
       void this.dispatch('currentEncounterChanged', this.currentEncounter);
     });
   }
@@ -31141,6 +31241,9 @@ const emulatorButtons = {
     ja: 'DBをクリア',
     cn: '清除数据库',
     tc: '清除資料庫'
+  },
+  '.refreshDBButton': {
+    en: 'Refresh DB'
   }
 };
 const emulatorTitle = {
@@ -32810,6 +32913,9 @@ const raidEmulatorOnLoad = async () => {
       encounterTab.refresh();
       hideModal('.deleteDBModal');
     });
+  });
+  querySelectorSafe(document, '.refreshDBButton').addEventListener('click', () => {
+    encounterTab.refresh();
   });
 
   // Make the emulator state available for debugging
