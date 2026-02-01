@@ -3020,6 +3020,7 @@ const numberToOutputString = function (n) {
   rightEast: {
     en: 'Right/East',
     fr: 'Droite/Est',
+    ja: '右/東へ',
     cn: '右侧',
     ko: '오른쪽/동쪽',
     tc: '東側'
@@ -3036,6 +3037,7 @@ const numberToOutputString = function (n) {
   leftWest: {
     en: 'Left/West',
     fr: 'Gauche/Ouest',
+    ja: '左/西へ',
     cn: '左侧',
     ko: '왼쪽/서쪽',
     tc: '西側'
@@ -5685,6 +5687,7 @@ const Directions = {
   outputStrings8Dir: outputStrings8Dir,
   outputStringsCardinalDir: outputStringsCardinalDir,
   outputStringsIntercardDir: outputStringsIntercardDir,
+  xyTo4DirIntercardNum: xyTo4DirIntercardNum,
   xyTo16DirNum: xyTo16DirNum,
   xyTo8DirNum: xyTo8DirNum,
   xyTo4DirNum: xyTo4DirNum,
