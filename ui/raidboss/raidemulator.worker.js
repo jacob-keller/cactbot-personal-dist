@@ -5402,6 +5402,15 @@ const output8Dir = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', '
 const output16Dir = ['dirN', 'dirNNE', 'dirNE', 'dirENE', 'dirE', 'dirESE', 'dirSE', 'dirSSE', 'dirS', 'dirSSW', 'dirSW', 'dirWSW', 'dirW', 'dirWNW', 'dirNW', 'dirNNW'];
 const outputCardinalDir = ['dirN', 'dirE', 'dirS', 'dirW'];
 const outputIntercardDir = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
+const compareDirectionOutput = (a, b) => {
+  const getIndex = n => {
+    const index = output16Dir.indexOf(n);
+    // Values outside of output16Dir (i.e. 'unknown') sort last
+    if (index < 0) return output16Dir.length;
+    return index;
+  };
+  return getIndex(a) - getIndex(b);
+};
 const outputStrings16Dir = {
   dirN: outputs.dirN,
   dirNNE: outputs.dirNNE,
@@ -5501,6 +5510,7 @@ const Directions = {
   output16Dir: output16Dir,
   outputCardinalDir: outputCardinalDir,
   outputIntercardDir: outputIntercardDir,
+  compareDirectionOutput: compareDirectionOutput,
   outputStrings16Dir: outputStrings16Dir,
   outputStrings8Dir: outputStrings8Dir,
   outputStringsCardinalDir: outputStringsCardinalDir,

@@ -5695,6 +5695,15 @@ const output8Dir = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', '
 const output16Dir = ['dirN', 'dirNNE', 'dirNE', 'dirENE', 'dirE', 'dirESE', 'dirSE', 'dirSSE', 'dirS', 'dirSSW', 'dirSW', 'dirWSW', 'dirW', 'dirWNW', 'dirNW', 'dirNNW'];
 const outputCardinalDir = ['dirN', 'dirE', 'dirS', 'dirW'];
 const outputIntercardDir = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
+const compareDirectionOutput = (a, b) => {
+  const getIndex = n => {
+    const index = output16Dir.indexOf(n);
+    // Values outside of output16Dir (i.e. 'unknown') sort last
+    if (index < 0) return output16Dir.length;
+    return index;
+  };
+  return getIndex(a) - getIndex(b);
+};
 const outputStrings16Dir = {
   dirN: _outputs__WEBPACK_IMPORTED_MODULE_1__/* ["default"].dirN */ .Z.dirN,
   dirNNE: _outputs__WEBPACK_IMPORTED_MODULE_1__/* ["default"].dirNNE */ .Z.dirNNE,
@@ -5794,6 +5803,7 @@ const Directions = {
   output16Dir: output16Dir,
   outputCardinalDir: outputCardinalDir,
   outputIntercardDir: outputIntercardDir,
+  compareDirectionOutput: compareDirectionOutput,
   outputStrings16Dir: outputStrings16Dir,
   outputStrings8Dir: outputStrings8Dir,
   outputStringsCardinalDir: outputStringsCardinalDir,
@@ -18158,7 +18168,8 @@ const data = {
       'de': 'Die Pâtisserie',
       'en': 'The Pâtisserie',
       'fr': 'La Pâtisserie de la Valention',
-      'ja': 'ヴァレンティオンパティスリー'
+      'ja': 'ヴァレンティオンパティスリー',
+      'ko': '발렌티온 제과점'
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -18254,7 +18265,8 @@ const data = {
       'de': 'Zel Tajaal - Doomtrain',
       'en': 'Hell on Rails',
       'fr': 'Le Convoi maléfique',
-      'ja': 'グラシャラボラス討滅戦'
+      'ja': 'グラシャラボラス討滅戦',
+      'ko': '글라시아 라볼라스 토벌전'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -18269,7 +18281,8 @@ const data = {
       'de': 'Gok Tajaal - Doomtrain',
       'en': 'Hell on Rails (Extreme)',
       'fr': 'Le Convoi maléfique (extrême)',
-      'ja': '極グラシャラボラス討滅戦'
+      'ja': '極グラシャラボラス討滅戦',
+      'ko': '극 글라시아 라볼라스 토벌전'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -18300,7 +18313,8 @@ const data = {
       'de': 'Worqor Chirteh (Triumph)',
       'en': 'Worqor Chirteh (Triumph)',
       'fr': 'Worqor Chirteh (manœuvre)',
-      'ja': 'ウォーコー・チーテ (演習戦)'
+      'ja': 'ウォーコー・チーテ (演習戦)',
+      'ko': '워코 치테(연습전)'
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -18315,7 +18329,8 @@ const data = {
       'de': 'Die Nebeltrift',
       'en': 'Mistwake',
       'fr': 'Le Sillage brumeux',
-      'ja': '遺忘行路 ミストウェイク'
+      'ja': '遺忘行路 ミストウェイク',
+      'ko': '안개여로'
     },
     'offsetX': -143,
     'offsetY': -475,
@@ -18330,7 +18345,8 @@ const data = {
       'de': 'Traumprüfung - Tsukuyomi',
       'en': 'Tsukuyomi\'s Pain (Unreal)',
       'fr': 'Castrum Fluminis (irréel)',
-      'ja': '幻ツクヨミ討滅戦'
+      'ja': '幻ツクヨミ討滅戦',
+      'ko': '환 츠쿠요미 토벌전'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -18345,7 +18361,8 @@ const data = {
       'de': 'Arkadion - Superschwergewicht R1',
       'en': 'AAC Heavyweight M1',
       'fr': 'Poids lourds CCA - match 1',
-      'ja': '至天の座アルカディア：ヘビー級1'
+      'ja': '至天の座アルカディア：ヘビー級1',
+      'ko': '아르카디아 선수권: 헤비급 1'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -18360,7 +18377,8 @@ const data = {
       'de': 'Arkadion - Superschwergewicht R1 (episch)',
       'en': 'AAC Heavyweight M1 (Savage)',
       'fr': 'Poids lourds CCA - match 1 (sadique)',
-      'ja': '至天の座アルカディア零式：ヘビー級1'
+      'ja': '至天の座アルカディア零式：ヘビー級1',
+      'ko': '아르카디아 선수권: 헤비급(영웅) 1'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -18375,7 +18393,8 @@ const data = {
       'de': 'Arkadion - Superschwergewicht R2',
       'en': 'AAC Heavyweight M2',
       'fr': 'Poids lourds CCA - match 2',
-      'ja': '至天の座アルカディア：ヘビー級2'
+      'ja': '至天の座アルカディア：ヘビー級2',
+      'ko': '아르카디아 선수권: 헤비급 2'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -18390,7 +18409,8 @@ const data = {
       'de': 'Arkadion - Superschwergewicht R2 (episch)',
       'en': 'AAC Heavyweight M2 (Savage)',
       'fr': 'Poids lourds CCA - match 2 (sadique)',
-      'ja': '至天の座アルカディア零式：ヘビー級2'
+      'ja': '至天の座アルカディア零式：ヘビー級2',
+      'ko': '아르카디아 선수권: 헤비급(영웅) 2'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -18405,7 +18425,8 @@ const data = {
       'de': 'Arkadion - Superschwergewicht R3',
       'en': 'AAC Heavyweight M3',
       'fr': 'Poids lourds CCA - match 3',
-      'ja': '至天の座アルカディア：ヘビー級3'
+      'ja': '至天の座アルカディア：ヘビー級3',
+      'ko': '아르카디아 선수권: 헤비급 3'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -18420,7 +18441,8 @@ const data = {
       'de': 'Arkadion - Superschwergewicht R3 (episch)',
       'en': 'AAC Heavyweight M3 (Savage)',
       'fr': 'Poids lourds CCA - match 3 (sadique)',
-      'ja': '至天の座アルカディア零式：ヘビー級3'
+      'ja': '至天の座アルカディア零式：ヘビー級3',
+      'ko': '아르카디아 선수권: 헤비급(영웅) 3'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -18435,7 +18457,8 @@ const data = {
       'de': 'Arkadion - Superschwergewicht R4',
       'en': 'AAC Heavyweight M4',
       'fr': 'Poids lourds CCA - match 4',
-      'ja': '至天の座アルカディア：ヘビー級4'
+      'ja': '至天の座アルカディア：ヘビー級4',
+      'ko': '아르카디아 선수권: 헤비급 4'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -18450,7 +18473,8 @@ const data = {
       'de': 'Arkadion - Superschwergewicht R4 (episch)',
       'en': 'AAC Heavyweight M4 (Savage)',
       'fr': 'Poids lourds CCA - match 4 (sadique)',
-      'ja': '至天の座アルカディア零式：ヘビー級4'
+      'ja': '至天の座アルカディア零式：ヘビー級4',
+      'ko': '아르카디아 선수권: 헤비급(영웅) 4'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -18465,7 +18489,8 @@ const data = {
       'de': 'Die Hüterin Trenos',
       'en': 'Where We Call Home',
       'fr': 'Solidarité entre voisins',
-      'ja': '隣人と手を取り合いて'
+      'ja': '隣人と手を取り合いて',
+      'ko': '이웃과 손을 맞잡고'
     },
     'offsetX': -264,
     'offsetY': 476,
