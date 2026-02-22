@@ -226757,6 +226757,7 @@ const occult_crescent_south_horn_triggerSet = {
     id: 'deadStarsVengefulDirection',
     name: {
       en: 'Forked Tower: Blood Dead Stars Vengeful Direction Strategy',
+      de: 'Fork-Turm: Blut Astronomischer Trio Rache-Richtungs Strategy',
       cn: '两歧塔力之塔 星头三兄弟 复仇方向策略',
       ko: '포크타워: 별머리 삼인조 복수의 파이가/블리자가/바이오가 방향 전략'
     },
@@ -226766,6 +226767,11 @@ const occult_crescent_south_horn_triggerSet = {
         'Direction: Just call the 8-way direction of the safe spot.': 'direction',
         'Waymark: Call the ABBA/FOE/CAFE Waymark of the safe spot.': 'waymark',
         'Both: Call both direction and waymark of the safe spot.': 'both'
+      },
+      de: {
+        'Richtung: Nennen Sie einfach die 8-Wege-Richtung des sicheren Ortes.': 'direction',
+        'Wegmarkierung: Nennen Sie die ABBA/FOE/CAFE-Wegmarkierung des sicheren Ortes.': 'waymark',
+        'Beides: Nennen Sie sowohl die Richtung als auch die Wegmarkierung des sicheren Ortes.': 'both'
       },
       cn: {
         '方向: 仅提示安全点八方方向。': 'direction',
@@ -229412,21 +229418,25 @@ const occult_crescent_south_horn_triggerSet = {
       unknown: outputs/* default.unknown */.Z.unknown,
       waymarkA: {
         en: 'A',
+        de: 'A',
         cn: 'A 点',
         ko: 'A'
       },
       waymark2and3: {
         en: '2/3',
+        de: '2/3',
         cn: '2 或 3 点',
         ko: '2/3'
       },
       waymarkCandD: {
         en: 'C/D',
+        de: 'C/D',
         cn: 'C 或 D 点',
         ko: 'C/D'
       },
       combined: {
         en: '${waymark} (${dir})',
+        de: '${waymark} (${dir})',
         cn: '${waymark} (${dir})',
         ko: '${waymark} (${dir})'
       }
@@ -238837,7 +238847,7 @@ const r10n_triggerSet = {
     'locale': 'ko',
     'replaceSync': {
       'Deep Blue': '딥 블루',
-      'Red Hot': '열기',
+      'Red Hot': '레드 핫',
       'The Xtremes': '익스트림즈',
       'Xtreme Aether': '익스트림즈 에테르'
     },
@@ -239070,6 +239080,7 @@ const r10s_triggerSet = {
     outputStrings: {
       bait: {
         en: '${order} bait',
+        de: '${order} ködern',
         fr: 'Déposez en ${order}',
         cn: '${order} 引导',
         ko: '${order} 유도'
@@ -239135,12 +239146,14 @@ const r10s_triggerSet = {
         spread: outputs/* default.spread */.Z.spread,
         spreadFinal: {
           en: 'Out + Spread => Stack Near Blue',
+          de: 'Raus + verteilen => Nahe Blau sammeln',
           fr: 'Extérieur + Dispersion => Package près de Blue',
           cn: '远离 + 分散 => 靠近深蓝集合',
           ko: '밖으로 + 산개 => 블루 가까이 모이기'
         },
         spreadFinalBait: {
           en: 'Out + Spread => Bait Blue Knockback Buster',
+          de: 'Raus + verteilen => Köder blauen Rückstoß-Tankbuster',
           fr: 'Extérieur + Dispersion => Déposez le tankbuster de Blue',
           cn: '远离 + 分散 => 引导深蓝坦克击退死刑',
           ko: '밖으로 + 산개 => 블루 넉백 탱버 유도'
@@ -239175,6 +239188,7 @@ const r10s_triggerSet = {
     outputStrings: {
       cleaveTowardsFire: {
         en: 'Bait cleave towards Fire',
+        de: 'Köder Kegel-AoE Richtung Feuer',
         fr: 'Déposez le cleave vers le Feu',
         cn: '向火区引导扇形伤害',
         ko: '화염 구역 쪽으로 부채꼴 유도'
@@ -239223,6 +239237,7 @@ const r10s_triggerSet = {
       stackMarker: outputs/* default.stackMarker */.Z.stackMarker,
       stackFinal: {
         en: '${stack} Near Blue',
+        de: '${stack} Nahe Blau',
         fr: '${stack} près de Blue',
         cn: '${stack} 靠近深蓝',
         ko: '${stack}: 블루 가까이'
@@ -239267,12 +239282,14 @@ const r10s_triggerSet = {
       spread: outputs/* default.spread */.Z.spread,
       waterStack: {
         en: 'Water Stack',
+        de: 'Wasser sammeln',
         fr: 'Package Eau',
         cn: '水分摊',
         ko: '물 쉐어'
       },
       waterStackFireDebuff: {
         en: 'Water Stack',
+        de: 'Wasser sammeln',
         fr: 'Package Eau',
         cn: '水分摊',
         ko: '물 쉐어'
@@ -239280,6 +239297,7 @@ const r10s_triggerSet = {
       waterSpread: outputs/* default.spread */.Z.spread,
       waterSpreadFireDebuff: {
         en: 'Avoid Water Players',
+        de: 'Vermeide Wasser-Spieler',
         fr: 'Évitez les joueurs Eau',
         cn: '远离水组玩家',
         ko: '물 플레이어 피하기'
@@ -239342,6 +239360,7 @@ const r10s_triggerSet = {
       middle: outputs/* default.middle */.Z.middle,
       text: {
         en: 'KB from ${dir1} + away from ${dir2}',
+        de: 'Rückstoß von ${dir1} + weg von ${dir2}',
         fr: 'Poussée depuis ${dir1} + loin de ${dir2}',
         cn: '从${dir1}击退 + 远离${dir2}',
         ko: '${dir1}에서 넉백 + ${dir2}쪽 피하기'
@@ -239377,6 +239396,7 @@ const r10s_triggerSet = {
     outputStrings: {
       text: {
         en: 'Wave ${waveDir}/Cone ${coneDir}',
+        de: 'Welle ${waveDir}/Kegel ${coneDir}',
         fr: 'Vague ${waveDir} / Cône ${coneDir}',
         cn: '${waveDir} 击退/${coneDir} 两侧',
         ko: '파도 ${waveDir}/부채꼴 ${coneDir}'
@@ -239424,24 +239444,28 @@ const r10s_triggerSet = {
       },
       text: {
         en: '${protean} => ${action}',
+        de: '${protean} => ${action}',
         fr: '${protean} => ${action}',
         cn: '${protean} => ${action}',
         ko: '${protean} => ${action}'
       },
       watersnaking: {
         en: '${protean} => ${action}',
+        de: '${protean} => ${action}',
         fr: '${protean} => ${action}',
         cn: '${protean} => ${action}',
         ko: '${protean} => ${action}'
       },
       arenaSplitReverse: {
         en: 'Reverse Alley-oop',
+        de: 'Umgekehrter Alley-Oop',
         fr: 'Alley-oop inversé',
         cn: '要停',
         ko: '대기'
       },
       arenaSplitDoubleDip: {
         en: 'Double-Dip Protean',
+        de: 'Doppel-Alley-Oop',
         fr: 'Double Alley-oop',
         cn: '要动',
         ko: '이동'
@@ -239488,6 +239512,7 @@ const r10s_triggerSet = {
     outputStrings: {
       text: {
         en: 'Go N/S + Big AoE',
+        de: 'Geh N/S + Große AoE',
         fr: 'Allez N/S + Grosse AoE',
         cn: '去上/下 + 高伤害 AOE',
         ko: '남/북쪽으로 + 강한 전체 공격'
@@ -239539,24 +239564,28 @@ const r10s_triggerSet = {
     outputStrings: {
       text1: {
         en: '${water}: ${waterMech}/${fire}: ${fireMech}',
+        de: '${water}: ${waterMech}/${fire}: ${fireMech}',
         fr: '${water}: ${waterMech} / ${fire}: ${fireMech}',
         cn: '${water}: ${waterMech}/${fire}: ${fireMech}',
         ko: '${water}: ${waterMech}/${fire}: ${fireMech}'
       },
       text2: {
         en: '${mech} (${swap})',
+        de: '${mech} (${swap})',
         fr: '${mech} (${swap})',
         cn: '${mech} (${swap})',
         ko: '${mech} (${swap})'
       },
       fire: {
         en: 'Fire',
+        de: 'Feuer',
         fr: 'Feu',
         cn: '火',
         ko: '불'
       },
       water: {
         en: 'Water',
+        de: 'Wasser',
         fr: 'Eau',
         cn: '水',
         ko: '물'
@@ -239566,12 +239595,14 @@ const r10s_triggerSet = {
       // Not using Outputs.tankBuster for brevity
       buster: {
         en: 'Buster',
+        de: 'Tankbuster',
         fr: 'Buster',
         cn: '死刑',
         ko: '탱버'
       },
       swapText: {
         en: '${role} Swap',
+        de: '${role} wechsel',
         fr: 'Échange ${role}',
         cn: '${role} 交换',
         ko: '${role} 교대'
@@ -239580,12 +239611,14 @@ const r10s_triggerSet = {
       healer: outputs/* default.healer */.Z.healer,
       melee: {
         en: 'Melee',
+        de: 'Nahkämpfer',
         fr: 'Mêlée',
         cn: '近战',
         ko: '근딜'
       },
       ranged: {
         en: 'Ranged',
+        de: 'Fernkämpfer',
         fr: 'Distant',
         cn: '远程',
         ko: '원딜'
@@ -239611,12 +239644,14 @@ const r10s_triggerSet = {
     outputStrings: {
       beNearBlue: {
         en: 'Be Near Blue',
+        de: 'Sei nahe Blau',
         fr: 'Près de Blue',
         cn: '靠近深蓝',
         ko: '블루 가까이 있기'
       },
       baitBlueBuster: {
         en: 'Bait Blue Knockback Buster',
+        de: 'Ködere blauen Rückstoß-Tankbuster',
         fr: 'Déposez le tankbuster de Blue (poussée)',
         cn: '引导深蓝坦克击退死刑',
         ko: '블루 넉백 탱버 유도'
@@ -239668,12 +239703,14 @@ const r10s_triggerSet = {
     outputStrings: {
       firesnaking: {
         en: 'Red\'s Target',
+        de: 'Rotes Ziel',
         fr: 'Ciblé par Red',
         cn: '火组',
         ko: '레드'
       },
       watersnaking: {
         en: 'Blue\'s Target',
+        de: 'Blaues Ziel',
         fr: 'Ciblé par Blue',
         cn: '水组',
         ko: '블루'
@@ -239700,18 +239737,21 @@ const r10s_triggerSet = {
       south: outputs/* default.south */.Z.south,
       stack: {
         en: 'Water Stack',
+        de: 'Wasser sammeln',
         fr: 'Package Eau',
         cn: '水分摊',
         ko: '물 쉐어'
       },
       spread: {
         en: 'Water Spread',
+        de: 'Wasser verteilen',
         fr: 'Dispersion Eau',
         cn: '水分散',
         ko: '물 산개'
       },
       text: {
         en: '${dir} + ${mech} + Fire Spread',
+        de: '${dir} + ${mech} + Feuer verteilen',
         fr: '${dir} + ${mech} + Dispersion Feu',
         cn: '${dir} + ${mech} + 火分散',
         ko: '${dir} + ${mech} + 불 산개'
@@ -239732,6 +239772,7 @@ const r10s_triggerSet = {
     outputStrings: {
       baitHotAerial: {
         en: 'Bait Hot Aerial',
+        de: 'Köder Flammensprung',
         fr: 'Déposez Flamme aérienne',
         cn: '引导四连跳',
         ko: '불꽃 공중회전 유도'
@@ -239772,12 +239813,14 @@ const r10s_triggerSet = {
     outputStrings: {
       redTether: {
         en: 'Red Tether on YOU',
+        de: 'Rote Verbindung auf DIR',
         fr: 'Lien Rouge sur VOUS',
         cn: '火线点名',
         ko: '레드 선 대상자'
       },
       blueTether: {
         en: 'Blue Tether on YOU',
+        de: 'Blaue Verbindung auf DIR',
         fr: 'Lien Bleu sur VOUS',
         cn: '水线点名',
         ko: '블루 선 대상자'
@@ -239795,6 +239838,7 @@ const r10s_triggerSet = {
     outputStrings: {
       text: {
         en: 'E/W Groups, Out of Middle',
+        de: 'O/W Grußßen, Raus aus der Mitte',
         fr: 'Groupes E/O, Sortez du milieu',
         cn: '左右分组，远离中间',
         ko: '동/서 그룹, 중앙 피하기'
@@ -239824,12 +239868,14 @@ const r10s_triggerSet = {
     outputStrings: {
       xtremeFiresnaking: {
         en: 'Red Debuff (Fire)',
+        de: 'Roter Debuff (Feuer)',
         fr: 'Debuff Rouge (Feu)',
         cn: '火 Debuff',
         ko: '레드 디버프 (불)'
       },
       xtremeWatersnaking: {
         en: 'Blue Debuff (Water)',
+        de: 'Blauer Debuff (Wasser)',
         fr: 'Debuff Bleu (Eau)',
         cn: '水 Debuff',
         ko: '블루 디버프 (물)'
@@ -239842,6 +239888,133 @@ const r10s_triggerSet = {
       'Reverse Alley-oop/Alley-oop Double-dip': 'Reverse Alley-oop/Double-dip',
       'Awesome Splash/Awesome Slab': 'Awesome Splash/Slab',
       'Blasting Snap/Plunging Snap/Re-entry Blast': 'Blasting/Plunging/Re-entry'
+    }
+  }, {
+    'locale': 'de',
+    'replaceSync': {
+      'Deep Blue': 'Indigowelle',
+      'Red Hot': 'Scharlachflamme',
+      'The Xtremes': 'Team Extrem',
+      'Watery Grave': 'Wasserkerker'
+    },
+    'replaceText': {
+      '--add-targetable--': '--add anvisierbar--',
+      '--add-untargetable--': '--add nicht anvisierbar--',
+      '--blue east/west--': '--blau osten/westen--',
+      '--blue targetable--': '--blau anvisierbar--',
+      '--blue untargetable--': '--blau nicht anvisierbar--',
+      '--hot jump--': '--Flammensprung--',
+      '--intercardinal--': '--interkardinal--',
+      '--red north--': '--rot norden--',
+      '\\(bait\\)': '(Ködern)',
+      '\\(big\\)': '(Groß)',
+      '\\(cone\\)': '(Kegel)',
+      '\\(damage': '(Schaden',
+      '\\(enrage\\)': '(Finalangriff)',
+      '\\(line\\)': '(Linie)',
+      '\\(tower\\)': '(Turm)',
+      'Alley-oop Double-dip': 'Doppel-Alley-Oop',
+      'Alley-oop Inferno': 'Flammen-Alley-Oop',
+      'Awesome Slab': 'Heftiger Hydroplatscher',
+      'Awesome Splash': 'Hydroplatscher',
+      'Bailout': 'Abstieg',
+      'Blasting Snap': 'Flammenruck',
+      'Cutback Blaze': 'Flammen-Rückschnitt',
+      'Deep Varial': 'Hydro-Halbdreher',
+      'Divers\' Dare': 'Brodelnder Kampfgeist',
+      'Epic Brotherhood': 'Brüderbund',
+      '(?<! )Firesnaking': 'Flammen-Schlängeln',
+      'Flame Floater': 'Flammenschweber',
+      'Freaky Pyrotation': 'Abgefahrener Pyro-Dreher',
+      'Hot Aerial': 'Flammensprung',
+      'Hot Impact': 'Flammenklopper',
+      'Insane Air': 'Wahnsinnsritt',
+      'Plunging Snap': 'Hydroruck',
+      '(?<! )Pyrotation': 'Pyrodreher',
+      'Reverse Alley-oop': 'Umgekehrter Alley-Oop',
+      'Scathing Steam': 'Mischexplosion',
+      'Sick Swell': 'Fette Welle',
+      'Sickest Take-off': 'Fetter Absprung',
+      'stun\\)': 'Betäuben)',
+      '(?<! )Watersnaking': 'Hydro-Schlängeln',
+      'Xtreme Firesnaking': 'Extremes Flammen-Schlängeln',
+      'Xtreme Spectacular': 'Ultimatives Extremmanöver',
+      'Xtreme Watersnaking': 'Extremes Hydro-Schlängeln',
+      'Xtreme Wave': 'Extremwelle'
+    }
+  }, {
+    'locale': 'fr',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Deep Blue': 'Deep Blue',
+      'Red Hot': 'Red Hot',
+      'The Xtremes': 'Les Xtrêmes',
+      'Watery Grave': 'prison aquatique'
+    },
+    'replaceText': {
+      'Alley-oop Inferno': 'Alley-oop enflammé',
+      'Awesome Slab': 'Éclaboussement hydrique puissant',
+      'Awesome Splash': 'Éclaboussement hydrique',
+      'Blasting Snap': 'Claquement enflammé',
+      'Cutback Blaze': 'Riposte enflammée',
+      'Deep Aerial': 'Flot aérien',
+      'Deep Impact': 'Impact puissant',
+      'Deep Varial': 'Barrière hydrique',
+      'Divers\' Dare': 'Esprit combatif',
+      'Epic Brotherhood': 'Fraternité',
+      '(?<! )Firesnaking': 'Ondulation enflammée',
+      'Flame Floater': 'Surfeur enflammé',
+      'Freaky Pyrotation': 'Rotation incandescente chaotique',
+      'Hot Aerial': 'Flamme aérienne',
+      'Hot Impact': 'Impact brûlant',
+      'Impact Zone': 'Rupture énorme',
+      'Insane Air': 'Figure démentielle',
+      'Over the Falls': 'Traversée cataclysmique',
+      'Plunging Snap': 'Claquement hydrique',
+      '(?<! )Pyrotation': 'Rotation incandescente',
+      'Scathing Steam': 'Explosion mélangée',
+      'Sick Swell': 'Vague déchaînée',
+      'Sickest Take-off': 'Ascension déchaînée',
+      '(?<! )Watersnaking': 'Ondulation hydrique',
+      'Xtreme Spectacular': 'Spectacle Xtrême',
+      'Xtreme Wave': 'Vague Xtrême'
+    }
+  }, {
+    'locale': 'ja',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Deep Blue': 'ディープブルー',
+      'Red Hot': 'レッドホット',
+      'The Xtremes': 'エクストリームズ',
+      'Watery Grave': '水牢'
+    },
+    'replaceText': {
+      'Alley-oop Inferno': 'フレイムアリウープ',
+      'Awesome Slab': 'ヘビー・ハイドロスプラッシュ',
+      'Awesome Splash': 'ハイドロスプラッシュ',
+      'Blasting Snap': 'フレイムスナップ',
+      'Cutback Blaze': 'フレイムカットバック',
+      'Deep Aerial': 'ハイドロエアリアル',
+      'Deep Impact': 'ディープインパクト',
+      'Deep Varial': 'ハイドロバリエル',
+      'Divers\' Dare': 'ファイティングスピリット',
+      'Epic Brotherhood': 'ブラザーフッド',
+      '(?<! )Firesnaking': 'フレイムスネーキング',
+      'Flame Floater': 'フレイムフローター',
+      'Freaky Pyrotation': 'フリーキー・パイロローテーション',
+      'Hot Aerial': 'フレイムエアリアル',
+      'Hot Impact': 'ホットインパクト',
+      'Impact Zone': '大破裂',
+      'Insane Air': 'インセインエアー',
+      'Over the Falls': 'オーバー・ザ・フォール',
+      'Plunging Snap': 'ハイドロスナップ',
+      '(?<! )Pyrotation': 'パイロローテーション',
+      'Scathing Steam': 'ミックスエクスプロージョン',
+      'Sick Swell': 'シック・スウェル',
+      'Sickest Take-off': 'シック・テイクオフ',
+      '(?<! )Watersnaking': 'ハイドロスネーキング',
+      'Xtreme Spectacular': 'エクストリーム・スペクタクル',
+      'Xtreme Wave': 'エクストリームウェーブ'
     }
   }, {
     'locale': 'cn',
@@ -239903,10 +240076,9 @@ const r10s_triggerSet = {
     }
   }, {
     'locale': 'ko',
-    'missingTranslations': true,
     'replaceSync': {
       'Deep Blue': '딥 블루',
-      'Red Hot': '열기',
+      'Red Hot': '레드 핫',
       'The Xtremes': '익스트림즈',
       'Watery Grave': '수중 감옥'
     },
@@ -239927,11 +240099,11 @@ const r10s_triggerSet = {
       '\\(line\\)': '(직선)',
       'stun\\)': '기절)',
       '\\(tower\\)': '(탑)',
-      // 'Alley-oop Double-dip': 'Alley-oop Double-dip',
+      'Alley-oop Double-dip': '연속 뛰어들기',
       'Alley-oop Inferno': '불꽃 뛰어돌기',
       'Awesome Slab': '물결 뒤덮기',
       'Awesome Splash': '물결 덮기',
-      // 'Bailout': 'Bailout',
+      'Bailout': '자진 이탈',
       'Blasting Snap': '불꽃 급선회',
       'Cutback Blaze': '불꽃 되돌기',
       'Deep Aerial': '물결 공중회전',
@@ -239949,15 +240121,15 @@ const r10s_triggerSet = {
       'Over the Falls': '집어삼키는 파도',
       'Plunging Snap': '물결 급선회',
       '(?<! )Pyrotation': '화염 회전',
-      // 'Re-entry Blast': 'Re-entry Blast',
-      // 'Reverse Alley-oop': 'Reverse Alley-oop',
+      'Re-entry Blast': '불꽃 오르내리기',
+      'Reverse Alley-oop': '반전 뛰어들기',
       'Scathing Steam': '물불 작렬',
       'Sick Swell': '끝내주는 파도',
       'Sickest Take-off': '끝내주는 파도오름',
       '(?<! )Watersnaking': '물결 선점',
-      // 'Xtreme Firesnaking': 'Xtreme Firesnaking',
+      'Xtreme Firesnaking': '극한의 불꽃 선점',
       'Xtreme Spectacular': '익스트림 스펙터클',
-      // 'Xtreme Watersnaking': 'Xtreme Watersnaking',
+      'Xtreme Watersnaking': '극한의 물결 선점',
       'Xtreme Wave': '익스트림 웨이브'
     }
   }]
@@ -240859,6 +241031,51 @@ const ultimateTrophyWeaponsMap = [undefined, undefined, {
 const r11s_triggerSet = {
   id: 'AacHeavyweightM3Savage',
   zoneId: zone_id/* default.AacHeavyweightM3Savage */.Z.AacHeavyweightM3Savage,
+  config: [{
+    id: 'majesticMeteowrathTetherDir',
+    name: {
+      en: 'Majestic Meteowrath Tether Direction',
+      ko: '분노의 챔피언 메테오 선 처리 방향'
+    },
+    comment: {
+      en: 'Direction to stretch tethers during Majestic Meteowrath.',
+      ko: '분노의 챔피언 메테오 선 처리 방향을 설정합니다.'
+    },
+    type: 'select',
+    options: {
+      en: {
+        'Clockwise': 'cw',
+        'Counter Clockwise': 'ccw'
+      },
+      ko: {
+        '시계방향': 'cw',
+        '반시계방향': 'ccw'
+      }
+    },
+    default: 'cw'
+  }, {
+    id: 'twoWayFireballBaitDir',
+    name: {
+      en: 'Two-Way Fireball Bait Direction',
+      ko: '두 갈래 회전화염 유도 위치'
+    },
+    comment: {
+      en: 'Direction to bait the two-way fireball.',
+      ko: '두 갈래 회전화염 유도 방향을 설정합니다.'
+    },
+    type: 'select',
+    options: {
+      en: {
+        'East/West': 'ew',
+        'North/South': 'ns'
+      },
+      ko: {
+        '동/서': 'ew',
+        '북/남': 'ns'
+      }
+    },
+    default: 'ew'
+  }],
   timelineFile: 'r11s.txt',
   initData: () => ({
     phase: 'one',
@@ -240932,6 +241149,7 @@ const r11s_triggerSet = {
     outputStrings: {
       partySpread: {
         en: 'Party Spread',
+        de: 'Party verteilen',
         cn: '人群分散',
         ko: '본대 산개'
       },
@@ -240946,6 +241164,7 @@ const r11s_triggerSet = {
       },
       text: {
         en: '${party}/${tank}',
+        de: '${party}/${tank}',
         cn: '${party}/${tank}',
         ko: '${party}/${tank}'
       }
@@ -240984,6 +241203,7 @@ const r11s_triggerSet = {
       },
       text: {
         en: '${party}/${tank}',
+        de: '${party}/${tank}',
         cn: '${party}/${tank}',
         ko: '${party}/${tank}'
       }
@@ -241028,16 +241248,19 @@ const r11s_triggerSet = {
       move: outputs/* default.moveAway */.Z.moveAway,
       bait: {
         en: 'Bait Gust',
+        de: 'Böe ködern',
         cn: '诱导强风',
         ko: '강풍 유도'
       },
       mechanicThenMove: {
         en: '${mech} => ${move}',
+        de: '${mech} => ${move}',
         cn: '${mech} => ${move}',
         ko: '${mech} => ${move}'
       },
       mechanicThenBait: {
         en: '${mech} => ${bait}',
+        de: '${mech} => ${bait}',
         cn: '${mech} => ${bait}',
         ko: '${mech} => ${bait}'
       }
@@ -241076,6 +241299,7 @@ const r11s_triggerSet = {
       protean: outputs/* default.protean */.Z.protean,
       text: {
         en: '${dir}: ${weapon} (1st later)',
+        de: '${dir}: ${weapon} (erste später)',
         cn: '${dir}: ${weapon} (稍后第一波)',
         ko: '${dir}: ${weapon} (곧 1번째)'
       }
@@ -241136,6 +241360,7 @@ const r11s_triggerSet = {
     outputStrings: {
       text: {
         en: '${weapon1} => ${weapon2} => ${weapon3}',
+        de: '${weapon1} => ${weapon2} => ${weapon3}',
         cn: '${weapon1} => ${weapon2} => ${weapon3}',
         ko: '${weapon1} => ${weapon2} => ${weapon3}'
       },
@@ -241228,11 +241453,13 @@ const r11s_triggerSet = {
     outputStrings: {
       baitPuddlesThenStack: {
         en: 'Bait 3x Puddles => Stack',
+        de: 'Ködere Fläche x3 => Sammeln',
         cn: '诱导3次圈圈 => 分摊',
         ko: '장판 유도 3x => 쉐어'
       },
       baitPuddlesThenSpread: {
         en: 'Bait 3x Puddles => Spread',
+        de: 'Ködere Fläche x3 => Verteilen',
         cn: '诱导3次圈圈 => 分散',
         ko: '장판 유도 3x => 산개'
       }
@@ -241254,6 +241481,7 @@ const r11s_triggerSet = {
     outputStrings: {
       text: {
         en: 'AoE x6 => Big AoE',
+        de: 'AoE x6 => Große AoE',
         cn: '6 次 AOE => 大 AOE',
         ko: '전체 공격 x6 => 강한 전체 공격'
       }
@@ -241300,11 +241528,13 @@ const r11s_triggerSet = {
     outputStrings: {
       northSouth: {
         en: 'N/S Mid / ${dir} Outer + Partner Stacks',
+        de: 'N/S Mitte / ${dir} Außen + mit Partner sammeln',
         cn: '上/下中间 / ${dir} 外侧 + 队友分摊',
         ko: '북/남 중간 / ${dir} 바깥 + 파트너 쉐어'
       },
       eastWest: {
         en: 'E/W Mid / ${dir} Outer + Partner Stacks',
+        de: 'O/W Mitte / ${dir} Außen + mit Partner sammeln',
         cn: '左/右中间 / ${dir} 外侧 + 队友分摊',
         ko: '동/서 중간 / ${dir} 바깥 + 파트너 쉐어'
       },
@@ -241339,6 +241569,7 @@ const r11s_triggerSet = {
     outputStrings: {
       bait: {
         en: 'Bait Gust',
+        de: 'Böe ködern',
         cn: '诱导强风',
         ko: '강풍 유도'
       }
@@ -241413,16 +241644,19 @@ const r11s_triggerSet = {
     outputStrings: {
       wildCharge: {
         en: 'Wild Charge (behind tank)',
+        de: 'Wilde Rage (hinter einen Tank)',
         cn: '挡枪分摊 (坦克后)',
         ko: '직선 쉐어 (탱커 뒤로)'
       },
       wildChargeMeteor: {
         en: 'Wild Charge (behind meteor)',
+        de: 'Wilde Rage (hinter einen Meteor)',
         cn: '挡枪分摊 (陨石后)',
         ko: '직선 쉐어 (돌 뒤로)'
       },
       wildChargeTank: {
         en: 'Wild Charge (be in front)',
+        de: 'Wilde Rage (sei Vorne)',
         cn: '挡枪分摊 (人群前)',
         ko: '직선 쉐어 (앞에 있기)'
       },
@@ -241451,6 +241685,7 @@ const r11s_triggerSet = {
     outputStrings: {
       losMeteor: {
         en: 'LoS behind 3x meteor',
+        de: 'LoS hinter Meteor x3',
         cn: '躲在三连陨石后',
         ko: '돌 뒤에 숨기 3x'
       }
@@ -241467,6 +241702,7 @@ const r11s_triggerSet = {
     outputStrings: {
       flatliner: {
         en: 'Short knockback to sides',
+        de: 'Kurzer Rückstoß zu den Seiten',
         fr: 'Légère poussée vers les côtés',
         cn: '向两侧短距离击飞',
         ko: '양 옆으로 짧은 넉백'
@@ -241552,6 +241788,7 @@ const r11s_triggerSet = {
     outputStrings: {
       fireBreathLater: {
         en: 'Bait Fire Breath (later)',
+        de: 'Köder Feueratem (später)',
         cn: '诱导火焰吐息 (稍后)',
         ko: '화염 숨결 유도 (나중에)'
       }
@@ -241587,11 +241824,13 @@ const r11s_triggerSet = {
       ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir,
       stretchTetherDirLater: {
         en: 'Tether on YOU: Stretch ${dir} (later)',
+        de: 'Verbindung auf DIR: Langziehen ${dir} (später)',
         cn: '连线点名: 向${dir}拉远 (稍后)',
         ko: '선 대상자: ${dir}쪽으로 늘이기 (나중에)'
       },
       stretchTetherLater: {
         en: 'Tether on YOU: Stretch (later)',
+        de: 'Verbindung auf DIR: Langziehen (später)',
         cn: '连线点名: 拉远 (稍后)',
         ko: '선 대상자: 늘이기 (나중에)'
       }
@@ -241659,38 +241898,45 @@ const r11s_triggerSet = {
     outputStrings: {
       knockbackTowers: {
         en: 'Get Knockback Towers',
+        de: 'Nimm Rückstoß-Türme',
         fr: 'Prenez une tour (poussée)',
         cn: '踩击飞塔',
         ko: '넉백탑 들어가기'
       },
       fireBreathTowers: {
         en: '${mech1} => ${mech2}',
+        de: '${mech1} => ${mech2}',
         cn: '${mech1} => ${mech2}',
         ko: '${mech1} => ${mech2}'
       },
       tetherTowers: {
         en: '${mech1} => ${mech2}',
+        de: '${mech1} => ${mech2}',
         cn: '${mech1} => ${mech2}',
         ko: '${mech1} => ${mech2}'
       },
       baitFireBreath: {
         en: 'Bait Near',
+        de: 'Nahe ködern',
         cn: '靠近引导',
         ko: '가까이 유도'
       },
       avoidFireBreath: outputs/* default.outOfHitbox */.Z.outOfHitbox,
       northSouthSafe: {
         en: 'Tower Knockback to Same Platform',
+        de: 'Turm-Rückstoß auf die gleiche Plattform',
         cn: '被塔击飞到同一平台',
         ko: '같은 플랫폼으로 넉백'
       },
       eastSafe: {
         en: 'Tower Knockback Across to East',
+        de: 'Turm-Rückstoß Richtung Osten',
         cn: '被塔击飞到右侧平台',
         ko: '동쪽 플랫폼으로 넉백'
       },
       westSafe: {
         en: 'Tower Knockback Across to West',
+        de: 'Turm-Rückstoß Richtung Westen',
         cn: '被塔击飞到左侧平台',
         ko: '서쪽 플랫폼으로 넉백'
       }
@@ -241756,11 +242002,13 @@ const r11s_triggerSet = {
       },
       back: {
         en: 'Inner Back',
+        de: 'Innen Hinten',
         cn: '内侧后',
         ko: '안쪽 뒤'
       },
       front: {
         en: 'Inner Front',
+        de: 'Innen Vorne',
         cn: '内侧前',
         ko: '안쪽 앞'
       },
@@ -241775,21 +242023,25 @@ const r11s_triggerSet = {
       },
       fireBreathOnYou: {
         en: 'Fire Breath on YOU',
+        de: 'Feueratem auf DIR',
         cn: '火焰吐息点名',
         ko: '화염 숨결 대상자'
       },
       fireBreathMechsPlayerWest: {
         en: '${mech1} + ${mech2} => ${dir}',
+        de: '${mech1} + ${mech2} => ${dir}',
         cn: '${mech1} + ${mech2} => ${dir}',
         ko: '${mech1} + ${mech2} => ${dir}'
       },
       fireBreathMechsPlayerEast: {
         en: '${mech1} + ${mech2} => ${dir}',
+        de: '${mech1} + ${mech2} => ${dir}',
         cn: '${mech1} + ${mech2} => ${dir}',
         ko: '${mech1} + ${mech2} => ${dir}'
       },
       fireBreathMechs: {
         en: '${mech1} + ${mech2} => ${mech3}',
+        de: '${mech1} + ${mech2} => ${mech3}',
         cn: '${mech1} + ${mech2} => ${mech3}',
         ko: '${mech1} + ${mech2} => ${mech3}'
       }
@@ -241863,11 +242115,13 @@ const r11s_triggerSet = {
       },
       back: {
         en: 'Outer Back',
+        de: 'Außen Hinten',
         cn: '外侧后',
         ko: '바깥쪽 뒤'
       },
       front: {
         en: 'Outer Front',
+        de: 'Außen Vorne',
         cn: '外侧前',
         ko: '바깥쪽 앞'
       },
@@ -241882,6 +242136,7 @@ const r11s_triggerSet = {
       },
       baitThenStretchMechs: {
         en: '${mech1} => ${mech2}  + ${mech3}',
+        de: '${mech1} => ${mech2}  + ${mech3}',
         cn: '${mech1} => ${mech2}  + ${mech3}',
         ko: '${mech1} => ${mech2}  + ${mech3}'
       },
@@ -241895,16 +242150,19 @@ const r11s_triggerSet = {
       },
       stretchTetherDir: {
         en: 'Stretch ${dir}',
+        de: 'Langiehen ${dir}',
         cn: '向${dir}拉远',
         ko: '${dir}쪽으로 늘이기'
       },
       tetherMechsPlayerEast: {
         en: '${mech1} => ${mech2} + ${dir}',
+        de: '${mech1} => ${mech2} + ${dir}',
         cn: '${mech1} => ${mech2} + ${dir}',
         ko: '${mech1} => ${mech2} + ${dir}'
       },
       tetherMechsPlayerWest: {
         en: '${mech1} => ${mech2} + ${dir}',
+        de: '${mech1} => ${mech2} + ${dir}',
         cn: '${mech1} => ${mech2} + ${dir}',
         ko: '${mech1} => ${mech2} + ${dir}'
       }
@@ -241959,6 +242217,7 @@ const r11s_triggerSet = {
     outputStrings: {
       westSafe: {
         en: 'Tower Knockback to West',
+        de: 'Turm-Rückstoß zum Westen',
         fr: 'Prenez une tour (poussée vers l\'Ouest)',
         cn: '被塔击飞到左侧平台',
         ko: '탑 넉백 서쪽으로'
@@ -241976,6 +242235,7 @@ const r11s_triggerSet = {
     outputStrings: {
       eastSafe: {
         en: 'Tower Knockback to East',
+        de: 'Turm-Rückstoß zum Osten',
         fr: 'Prenez une tour (poussée vers l\'Est)',
         cn: '被塔击飞到右侧平台',
         ko: '탑 넉백 동쪽으로'
@@ -242052,11 +242312,13 @@ const r11s_triggerSet = {
       se: outputs/* default.dirSE */.Z.dirSE,
       comboDir: {
         en: 'Go ${dir1}/${dir2} => Bait Impacts, Avoid Corners',
+        de: 'Geh ${dir1}/${dir2} => Köder Impakts, Ecken vermeiden',
         cn: '去${dir1}/${dir2} => 引导火圈, 躲避角落',
         ko: '${dir1}/${dir2} 이동 => 장판 유도, 구석 피하기'
       },
       getMiddle: {
         en: 'Proximity AoE; Get Middle => Bait Puddles',
+        de: 'Distanz-AoE; Geh in die Mitte => Flächen ködern',
         cn: '靠近AoE; 去中间 => 引导圈圈',
         ko: '거리감쇠 징; 중앙으로 => 장판 유도'
       }
@@ -242105,8 +242367,7 @@ const r11s_triggerSet = {
       const actor = data.actorPositions[matches.sourceId];
       if (actor === undefined) return;
       const portalDirNum = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(actor.x, actor.y, r11s_center.x, r11s_center.y);
-      // TODO: Make config for options?
-      const stretchDirNum = (portalDirNum + 5) % 8;
+      const stretchDirNum = data.triggerSetConfig.majesticMeteowrathTetherDir === 'ccw' ? (portalDirNum + 3) % 8 : (portalDirNum + 5) % 8;
       const stretchDir = util/* Directions.output8Dir */.N.output8Dir[stretchDirNum] ?? 'unknown';
       return output.stretchTetherDir({
         dir: output[stretchDir]()
@@ -242116,6 +242377,7 @@ const r11s_triggerSet = {
       ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
       stretchTetherDir: {
         en: 'Stretch Tether ${dir}',
+        de: 'Verbindungen langziehen ${dir}',
         cn: '向${dir}拉线',
         ko: '${dir}쪽으로 선 늘이기'
       }
@@ -242129,19 +242391,42 @@ const r11s_triggerSet = {
       capture: false
     },
     alertText: (data, _matches, output) => {
-      if (data.hadEclipticTether) return output.twoWayBehind();
-      return output.twoWayFront();
+      const baitDir = data.triggerSetConfig.twoWayFireballBaitDir === 'ns' ? 'northSouth' : 'eastWest';
+      if (data.hadEclipticTether) return output.twoWayBehind({
+        dir: output[baitDir]()
+      });
+      return output.twoWayFront({
+        dir: output[baitDir]()
+      });
     },
     outputStrings: {
+      eastWest: {
+        en: 'East/West',
+        de: 'Osten/Westen',
+        fr: 'Est/Ouest',
+        cn: '左/右',
+        ko: '동/서',
+        tc: '東/西'
+      },
+      northSouth: {
+        en: 'North/South',
+        de: 'Norden/Süden',
+        fr: 'Nord/Sud',
+        cn: '上/下',
+        ko: '북/남',
+        tc: '北/南'
+      },
       twoWayFront: {
-        en: 'East/West Line Stack, Be in Front',
-        cn: '左/右向直线分摊，站前方',
-        ko: '동/서 직선 쉐어, 앞에 있기'
+        en: '${dir} Line Stack, Be in Front',
+        de: '${dir} in einer Linie Sammeln, sei vorne',
+        cn: '${dir}向直线分摊，站前方',
+        ko: '${dir} 직선 쉐어, 앞에 있기'
       },
       twoWayBehind: {
-        en: 'Move; East/West Line Stack, Get behind',
-        cn: '移动; 左/右向直线分摊，站后方',
-        ko: '이동; 동/서 직선 쉐어, 뒤로 가기'
+        en: 'Move; ${dir} Line Stack, Get behind',
+        de: 'Geh ${dir}, in einer Linie Sammeln, sei hinten',
+        cn: '移动; ${dir}向直线分摊，站后方',
+        ko: '이동; ${dir} 직선 쉐어, 뒤로 가기'
       }
     }
   }, {
@@ -242159,11 +242444,13 @@ const r11s_triggerSet = {
     outputStrings: {
       fourWayFront: {
         en: 'Intercardinal Line Stack, Be in Front',
+        de: 'Interkardinal in einer Linie sammeln, sei vorne',
         cn: '四角分摊, 站前方',
         ko: '대각선 쉐어, 앞에 있기'
       },
       fourWayBehind: {
         en: 'Intercardinal Line Stack, Get behind',
+        de: 'Interkardinal in einer Linie sammeln, sei hinten',
         cn: '四角分摊, 站后方',
         ko: '대각선 쉐어, 뒤로 가기'
       }
@@ -242217,26 +242504,31 @@ const r11s_triggerSet = {
       },
       stack6x: {
         en: 'Stack 6x',
+        de: 'Sammeln 6x',
         cn: '6连分摊',
         ko: '쉐어 6번'
       },
       stack7x: {
         en: 'Stack 7x',
+        de: 'Sammeln 7x',
         cn: '7连分摊',
         ko: '쉐어 7번'
       },
       heartbreaker1: {
         en: '${tower} => ${stack}',
+        de: '${tower} => ${stack}',
         cn: '${tower} => ${stack}',
         ko: '${tower} => ${stack}'
       },
       heartbreaker2: {
         en: '${tower} => ${stack}',
+        de: '${tower} => ${stack}',
         cn: '${tower} => ${stack}',
         ko: '${tower} => ${stack}'
       },
       heartbreaker3: {
         en: '${tower} => ${stack}',
+        de: '${tower} => ${stack}',
         cn: '${tower} => ${stack}',
         ko: '${tower} => ${stack}'
       }
@@ -242246,6 +242538,176 @@ const r11s_triggerSet = {
     'locale': 'en',
     'replaceText': {
       'Majestic Meteowrath/Majestic Meteorain/Fire Breath': 'Fire Breath + Meteor Lines'
+    }
+  }, {
+    'locale': 'de',
+    'replaceSync': {
+      'Comet': 'Komet',
+      'Maelstrom': 'Mahlstrom',
+      'The Tyrant': '(?:der|die|das) Tyrann'
+    },
+    'replaceText': {
+      '\\(Axe\\)': '(Axt)',
+      '\\(Scythe\\)': '(Sense)',
+      '\\(Scythe/Axe\\)': '(Sense/Axt)',
+      '\\(castbar\\)': '(wirken)',
+      '\\(split\\)': '(teilen)',
+      '--Fire Breath Markers--': '--Feueratem Markierungen--',
+      '--Meteor Markers': '--Meteor Markierungen',
+      '--Meteor(?! Markers)': '--Meteor',
+      '--jump ': '--Sprung',
+      'scythe--': 'Sense--',
+      '--tethers--': '--Verbindungen--',
+      'Arcadion Avalanche': 'Arkadionbruch',
+      'Assault Apex': 'Waffenlawine',
+      'Assault Evolved': 'Waffensturm',
+      'Atomic Impact': 'Fusionseinschlag',
+      'Charybdistopia': 'Charybdis des Herrschers',
+      '(?<! )Comet(?!ite)': 'Komet',
+      'Cometite': 'Mini-Komet',
+      'Cosmic Kiss': 'Einschlag',
+      'Crown of Arcadia': 'Wort des Herrschers',
+      'Crushing Comet': 'Super-Komet',
+      'Dance of Domination(?! Trophy)': 'Unangefochtene Überlegenheit',
+      'Dance of Domination Trophy': 'Überlegene Waffenkunst',
+      'Ecliptic Stampede': 'Meteo-Stampede',
+      'Explosion': 'Explosion',
+      'Eye of the Hurricane': 'Hurrikan des Herrschers',
+      'Fearsome Fireball': 'Fürstliches Feuer',
+      '(?<!--)Fire Breath': 'Feueratem',
+      'Fire and Fury': 'Feueratem & Flammenschweif',
+      'Flatliner': 'Herzstopper',
+      'Foregone Fatality': 'Strahl der Verdammnis',
+      'Four-way Fireball': 'Vierfaches Drehfeuer',
+      'Great Wall of Fire': 'Feuerstrom',
+      'Heartbreak Kick': 'Herzensbrecher-Kick',
+      'Heartbreaker': 'Herzensbrecher',
+      'Heavy Hitter': 'Zerteilen',
+      'Immortal Reign': 'Unsterblichkeit des Herrschers',
+      '(?<! )Impact': 'Impakt',
+      'Majestic Meteor(?!ain)': 'Herrscher-Meteo',
+      'Majestic Meteorain': 'Herrscher-Meteorregen',
+      'Majestic Meteowrath': 'Herrscher-Meteo des Zorns',
+      'Mammoth Meteor': 'Giga-Meteo',
+      'Massive Meteor': 'Super-Meteo',
+      '(?<! )Meteorain': 'Meteorregen',
+      'One and Only': 'Alles für einen',
+      'Orbital Omen': 'Orbitalachse',
+      'Powerful Gust': 'Starke Bö',
+      'Raw Steel(?! )': 'Waffenspalter',
+      'Raw Steel Trophy': 'Spaltende Waffenkunst',
+      'Shockwave': 'Schockwelle',
+      'Triple Tyrannhilation': 'Drillingsstern-Tyrannensturz',
+      '(?<! )Trophy Weapons': 'Waffentrophäen',
+      'Two-way Fireball': 'Zweifaches Drehfeuer',
+      'Ultimate Trophy Weapons': 'Unantastbare Waffentrophäen',
+      'Void Stardust': 'Kometenschauer',
+      '(?<! )Weapon(?!s)': 'Waffe',
+      'Weighty Impact': 'Mega-Einschlag'
+    }
+  }, {
+    'locale': 'fr',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Comet': 'comète',
+      'Maelstrom': 'maelström',
+      'The Tyrant': 'The Tyrant'
+    },
+    'replaceText': {
+      'Arcadion Avalanche': 'Écrasement de l\'Arcadion',
+      'Assault Apex': 'Avalanche d\'armes',
+      'Assault Evolved': 'Arsenal d\'assaut',
+      'Atomic Impact': 'Impact de canon dissolvant',
+      'Charybdistopia': 'Maelström',
+      '(?<! )Comet(?!ite)': 'comète',
+      'Cometite': 'Petite comète',
+      'Cosmic Kiss': 'Impact de canon',
+      'Crown of Arcadia': 'Souverain de l\'Arcadion',
+      'Crushing Comet': 'Comète imposante',
+      'Dance of Domination(?! Trophy)': 'Danse de la domination',
+      'Dance of Domination Trophy': 'Génération d\'arme : domination',
+      'Ecliptic Stampede': 'Ruée de météores',
+      'Explosion': 'Explosion',
+      'Eye of the Hurricane': 'Ouragan',
+      'Fearsome Fireball': 'Rayon incandescent',
+      'Fire Breath': 'Souffle enflammé',
+      'Fire and Fury': 'Queue enflammée',
+      'Flatliner': 'Dernière ligne',
+      'Foregone Fatality': 'Pluie fatale',
+      'Great Wall of Fire': 'Courants de feu',
+      'Heartbreak Kick': 'Talon déchirant',
+      'Heartbreaker': 'Ruine-cœur',
+      'Heavy Hitter': 'Lacération lourde',
+      'Immortal Reign': 'Règne immortel',
+      '(?<! )Impact': 'Impact',
+      'Majestic Meteor(?!ain)': 'Météore du champion',
+      'Majestic Meteorain': 'Pluie de météores du champion',
+      'Majestic Meteowrath': 'Fureur météorique du champion',
+      'Mammoth Meteor': 'Météore gigantesque',
+      'Massive Meteor': 'Météore imposant',
+      '(?<! )Meteorain': 'Pluie de météorites',
+      'One and Only': 'Seul et unique',
+      'Orbital Omen': 'Pluie orbitale',
+      'Powerful Gust': 'Ouragan violent',
+      'Raw Steel(?! )': 'Écrasement du tyran',
+      'Raw Steel Trophy': 'Génération d\'arme : écrasement',
+      'Shockwave': 'Onde de choc',
+      '(?<! )Trophy Weapons': 'Armes trophées',
+      'Ultimate Trophy Weapons': 'Armes trophées ultimes',
+      'Void Stardust': 'Pluie de comètes',
+      'Weighty Impact': 'Impact de canon massif'
+    }
+  }, {
+    'locale': 'ja',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Comet': 'コメット',
+      'Maelstrom': 'ミールストーム',
+      'The Tyrant': 'ザ・タイラント'
+    },
+    'replaceText': {
+      'Arcadion Avalanche': 'アルカディア・クラッシュ',
+      'Assault Apex': 'ウェポンアバランチ',
+      'Assault Evolved': 'ウェポンアサルト',
+      'Atomic Impact': '融解着弾',
+      'Charybdistopia': 'ザ・ミールストーム',
+      '(?<! )Comet(?!ite)': 'コメット',
+      'Cometite': 'プチコメット',
+      'Cosmic Kiss': '着弾',
+      'Crown of Arcadia': 'キング・オブ・アルカディア',
+      'Crushing Comet': 'ヘビーコメット',
+      'Dance of Domination(?! Trophy)': 'ダンス・オブ・ドミネーション',
+      'Dance of Domination Trophy': 'ウェポンジェネレート：ドミネーション',
+      'Ecliptic Stampede': 'メテオスタンピード',
+      'Explosion': '爆発',
+      'Eye of the Hurricane': 'ザ・ハリケーン',
+      'Fearsome Fireball': 'ビッグファイア',
+      'Fire Breath': 'ファイアブレス',
+      'Fire and Fury': 'ファイア・アンド・テイル',
+      'Flatliner': 'フラットライナー',
+      'Foregone Fatality': 'フェイタルライン',
+      'Great Wall of Fire': 'ファイアストリーム',
+      'Heartbreak Kick': 'ハートブレイクキック',
+      'Heartbreaker': 'ハートブレイカー',
+      'Heavy Hitter': '重斬撃',
+      'Immortal Reign': 'イモータルレイン',
+      '(?<! )Impact': '衝撃',
+      'Majestic Meteor(?!ain)': 'チャンピオンズ・メテオ',
+      'Majestic Meteorain': 'チャンピオンズ・メテオライン',
+      'Majestic Meteowrath': 'チャンピオンズ・メテオラース',
+      'Mammoth Meteor': 'ヒュージメテオ',
+      'Massive Meteor': 'ヘビーメテオ',
+      '(?<! )Meteorain': 'メテオレイン',
+      'One and Only': 'ワン・アンド・オンリー',
+      'Orbital Omen': 'オービタルライン',
+      'Powerful Gust': '強風',
+      'Raw Steel(?! )': 'ウェポンバスター',
+      'Raw Steel Trophy': 'ウェポンジェネレート：バスター',
+      'Shockwave': '衝撃波',
+      '(?<! )Trophy Weapons': 'トロフィーウェポンズ',
+      'Ultimate Trophy Weapons': 'アルティメット・トロフィーウェポンズ',
+      'Void Stardust': 'コメットレイン',
+      'Weighty Impact': '重着弾'
     }
   }, {
     'locale': 'cn',
@@ -242318,10 +242780,9 @@ const r11s_triggerSet = {
     }
   }, {
     'locale': 'ko',
-    'missingTranslations': true,
     'replaceSync': {
       'Comet': '혜성',
-      'Maelstrom': '대격동',
+      'Maelstrom': '대소용돌이',
       'The Tyrant': '더 타이런트'
     },
     'replaceText': {
@@ -242357,7 +242818,7 @@ const r11s_triggerSet = {
       'Fire Breath': '화염 숨결',
       'Flatliner': '절명격',
       'Foregone Fatality': '필멸선',
-      // 'Four-way Fireball': 'Four-way Fireball',
+      'Four-way Fireball': '네 갈래 회전화염',
       'Great Wall of Fire': '화염 기류',
       'Heartbreak Kick': '심장파열격',
       'Heartbreaker': '심장파괴자',
@@ -242378,9 +242839,9 @@ const r11s_triggerSet = {
       'Raw Steel Trophy Axe': '무기 생성: 맹격 도끼',
       'Raw Steel Trophy Scythe': '무기 생성: 맹격 낫',
       'Shockwave': '충격파',
-      // 'Triple Tyrannhilation': 'Triple Tyrannhilation',
+      'Triple Tyrannhilation': '폭군 강하: 삼형제별',
       '(?<! )Trophy Weapons': '무기 트로피',
-      // 'Two-way Fireball': 'Two-way Fireball',
+      'Two-way Fireball': '두 갈래 회전화염',
       'Ultimate Trophy Weapons': '궁극의 무기 트로피',
       'Void Stardust': '혜성우',
       '(?<! )Weapon(?!s)': '무기',
@@ -242697,14 +243158,14 @@ const r12n_triggerSet = {
         de: 'Weg von größer werdenden Blobs',
         fr: 'Loin des blobs en expansion',
         cn: '远离扩散粘液',
-        ko: '커지는 점액에서 멀어지기'
+        ko: '커지는 살점에서 멀어지기'
       },
       launchAway: {
         en: 'Launch away from expanding blobs',
         de: 'Schub weg von größer werdenden Blobs',
         fr: 'Démarrez loin des blobs en expansion',
         cn: '向扩散粘液外击退',
-        ko: '커지는 점액에서 멀어지는 쪽으로 밀쳐지기'
+        ko: '커지는 살점에서 멀어지는 쪽으로 밀쳐지기'
       }
     }
   }, {
@@ -243367,7 +243828,7 @@ const r1n_triggerSet = {
         ja: 'マーカーの西 => マーカーの東',
         cn: '标记左侧 => 标记右侧',
         ko: '징 기준 서쪽 => 동쪽',
-        tc: '標記左側 => 標記右側'
+        tc: '標記西側 => 標記東側'
       }
     }
   }, {
@@ -243388,7 +243849,7 @@ const r1n_triggerSet = {
         ja: 'マーカーの東 => マーカーの西',
         cn: '标记右侧 => 标记左侧',
         ko: '징 기준 동쪽 => 서쪽',
-        tc: '標記右側 => 標記左側'
+        tc: '標記東側 => 標記西側'
       }
     }
   }, {
@@ -243409,7 +243870,7 @@ const r1n_triggerSet = {
         ja: 'マーカーの西 => マーカーの東',
         cn: '标记左侧 => 标记右侧',
         ko: '징 기준 서쪽 => 동쪽',
-        tc: '標記左側 => 標記右側'
+        tc: '標記西側 => 標記東側'
       }
     }
   }, {
@@ -243430,7 +243891,7 @@ const r1n_triggerSet = {
         ja: 'マーカーの東 => マーカーの西',
         cn: '标记右侧 => 标记左侧',
         ko: '징 기준 동쪽 => 서쪽',
-        tc: '標記右側 => 標記左側'
+        tc: '標記東側 => 標記西側'
       }
     }
   }, {
@@ -243552,32 +244013,31 @@ const r1n_triggerSet = {
     }
   }, {
     'locale': 'tc',
-    'missingTranslations': true,
     'replaceSync': {
-      // 'Black Cat': '', // FIXME '黑猫'
-      // 'Copy Cat': '', // FIXME '模仿猫'
+      'Black Cat': '黑貓',
+      'Copy Cat': '模仿貓'
     },
     'replaceText': {
-      // '(?<! )Black Cat Crossing': '', // FIXME '交叉尖甲'
-      // '(?<! )One-two Paw': '', // FIXME '二连尖甲'
-      // 'Biscuit Maker': '', // FIXME '踩奶'
-      // 'Bloody Scratch': '', // FIXME '血腥抓挠'
-      // 'Clawful': '', // FIXME '重爪爆发'
-      // 'Copycat': '', // FIXME '模仿之猫'
-      // 'Elevate and Eviscerate': '', // FIXME '腾身开膛'
-      // 'Grimalkin Gale': '', // FIXME '猫怪突风'
+      '(?<! )Black Cat Crossing': '交叉尖甲',
+      '(?<! )One-two Paw': '二連尖甲',
+      'Biscuit Maker': '貓踏踏',
+      'Bloody Scratch': '血腥抓撓',
+      'Clawful': '重爪爆發',
+      'Copycat': '模仿之貓',
+      'Elevate and Eviscerate': '騰身開膛',
+      'Grimalkin Gale': '貓怪突風',
       'Impact': '衝擊',
-      // 'Leaping Black Cat Crossing': '', // FIXME '猫跳交叉尖甲'
-      // 'Leaping One-two Paw': '', // FIXME '猫跳二连尖甲'
-      // 'Mouser': '', // FIXME '捕鼠'
-      // 'Overshadow': '', // FIXME '超暗影'
-      // 'Predaceous Pounce': '', // FIXME '迅猫急袭'
-      'Shockwave': '衝擊波'
-      // '\\(cast\\)': '', // FIXME '(咏唱)'
-      // '\\(damage\\)': '', // FIXME '(伤害)'
-      // '\\(hits\\)': '', // FIXME '(命中)'
-      // '\\(jump\\)': '', // FIXME '(跳)'
-      // '\\(telegraphs\\)': '', // FIXME '(预兆)'
+      'Leaping Black Cat Crossing': '貓跳交叉尖甲',
+      'Leaping One-two Paw': '貓跳二連尖甲',
+      'Mouser': '捕鼠',
+      'Overshadow': '超暗影',
+      'Predaceous Pounce': '迅貓急襲',
+      'Shockwave': '衝擊波',
+      '\\(cast\\)': '(詠唱)',
+      '\\(damage\\)': '(傷害)',
+      '\\(hits\\)': '(命中)',
+      '\\(jump\\)': '(跳)',
+      '\\(telegraphs\\)': '(預兆)'
     }
   }, {
     'locale': 'ko',
@@ -244756,28 +245216,27 @@ const r2n_triggerSet = {
     }
   }, {
     'locale': 'tc',
-    'missingTranslations': true,
     'replaceSync': {
-      // 'Honey B. Lovely': '', // FIXME '蜂蜂小甜心'
+      'Honey B. Lovely': '蜂蜂小甜心'
     },
     'replaceText': {
-      // 'Alarm Pheromones': '', // FIXME '告警信息素'
-      // 'Blinding Love': '', // FIXME '盲目的爱'
-      // 'Blow Kiss': '', // FIXME '飞吻'
-      // 'Call Me Honey': '', // FIXME '甜言蜜语'
+      'Alarm Pheromones': '警示費洛蒙',
+      'Blinding Love': '盲目的愛',
+      'Blow Kiss': '飛吻',
+      'Call Me Honey': '甜蜜應援',
       'Drop of Venom': '毒液滴落',
-      'Fracture': '炸裂'
-      // 'Heart-struck': '', // FIXME '心震'
-      // 'Heartsick': '', // FIXME '心病'
-      // 'Heartsore': '', // FIXME '心伤'
-      // 'Honey B. Finale': '', // FIXME '蜂蜂落幕曲'
-      // 'Honey B. Live': '', // FIXME '蜂蜂演唱会'
-      // 'Honey Beeline': '', // FIXME '甜心烈风'
-      // 'Honeyed Breeze': '', // FIXME '甜心突风'
-      // 'Love Me Tender': '', // FIXME '温柔地爱我'
-      // 'Loveseeker': '', // FIXME '求爱'
-      // 'Splash of Venom': '', // FIXME '毒液雨'
-      // 'Tempting Twist': '', // FIXME '甜心旋风'
+      'Fracture': '炸裂',
+      'Heart-struck': '心碎',
+      'Heartsick': '心病',
+      'Heartsore': '心傷',
+      'Honey B. Finale': '蜂蜂落幕曲',
+      'Honey B. Live': '蜂蜂演唱會',
+      'Honey Beeline': '甜心烈風',
+      'Honeyed Breeze': '甜心突風',
+      'Love Me Tender': '溫柔地愛我',
+      'Loveseeker': '求愛',
+      'Splash of Venom': '毒液雨',
+      'Tempting Twist': '甜心旋風'
     }
   }, {
     'locale': 'ko',
@@ -245996,7 +246455,7 @@ const r3n_triggerSet = {
         ja: '東、そして西',
         cn: '右 => 左',
         ko: '동쪽 => 서쪽',
-        tc: '右 => 左'
+        tc: '東 => 西'
       }
     }
   }, {
@@ -246017,7 +246476,7 @@ const r3n_triggerSet = {
         ja: '東にそのまま',
         cn: '右 => 待在同侧',
         ko: '동쪽 => 동쪽 그대로',
-        tc: '右 => 待在同側'
+        tc: '東 => 待在同側'
       }
     }
   }, {
@@ -246038,7 +246497,7 @@ const r3n_triggerSet = {
         ja: '西、そして東',
         cn: '左 => 右',
         ko: '서쪽 => 동쪽',
-        tc: '左 => 右'
+        tc: '西 => 東'
       }
     }
   }, {
@@ -246059,7 +246518,7 @@ const r3n_triggerSet = {
         ja: '西にそのまま',
         cn: '左 => 待在同侧',
         ko: '서쪽 => 서쪽 그대로',
-        tc: '左 => 待在同側'
+        tc: '西 => 待在同側'
       }
     }
   }, {
@@ -246192,30 +246651,29 @@ const r3n_triggerSet = {
     }
   }, {
     'locale': 'tc',
-    'missingTranslations': true,
     'replaceSync': {
-      // 'Brute Bomber': '', // FIXME '野蛮爆弹'
-      // 'Lit Fuse': '', // FIXME '引线爆弹怪'
+      'Brute Bomber': '野蠻炸彈',
+      'Lit Fuse': '引信炸彈'
     },
     'replaceText': {
-      // '\\(cast\\)': '', // FIXME '(咏唱)'
-      // '\\(cones\\)': '', // FIXME '(锥形)'
-      // '\\(damage\\)': '', // FIXME '(伤害)'
-      // '\\(long\\)': '', // FIXME '(长)'
-      // '\\(short\\)': '', // FIXME '(短)'
-      // 'Barbarous Barrage': '', // FIXME '野蛮爆炸'
-      // 'Brutal Burn': '', // FIXME '野蛮灼烧'
+      '\\(cast\\)': '(詠唱)',
+      '\\(cones\\)': '(錐形)',
+      '\\(damage\\)': '(傷害)',
+      '\\(long\\)': '(長)',
+      '\\(short\\)': '(短)',
+      'Barbarous Barrage': '野蠻爆炸',
+      'Brutal Burn': '野蠻灼燒',
       'Brutal Impact': '野蠻碎擊',
-      // 'Brutal Lariat': '', // FIXME '野蛮碎颈臂'
-      // 'Doping Draught': '', // FIXME '打药'
+      'Brutal Lariat': '野蠻金臂鉤',
+      'Doping Draught': '服用禁藥',
       'Explosion': '爆炸',
-      // 'Explosive Rain': '', // FIXME '爆弹雨'
-      // 'Fire Spin': '', // FIXME '野蛮旋火'
-      // 'Fuses of Fury': '', // FIXME '引线爆弹'
-      // 'Infernal Spin': '', // FIXME '超华丽野蛮旋火'
-      // 'Knuckle Sandwich': '', // FIXME '拳面猛击'
-      // 'Lariat Combo': '', // FIXME '碎颈臂连击'
-      // 'Murderous Mist': '', // FIXME '致命毒雾'
+      'Explosive Rain': '炸彈雨',
+      'Fire Spin': '野蠻旋火',
+      'Fuses of Fury': '引信炸彈',
+      'Infernal Spin': '超華麗野蠻旋火',
+      'Knuckle Sandwich': '拳面猛擊',
+      'Lariat Combo': '金臂鉤連擊',
+      'Murderous Mist': '致命毒霧',
       'Self-destruct': '自爆'
     }
   }, {
@@ -247723,7 +248181,7 @@ const r4n_triggerSet = {
         ja: '最東端の床へ',
         cn: '偏右侧安全',
         ko: '동쪽 끝 안전',
-        tc: '偏右側安全'
+        tc: '偏東側安全'
       }
     }
   }, {
@@ -247745,7 +248203,7 @@ const r4n_triggerSet = {
         ja: '最南端の床へ',
         cn: '偏下侧安全',
         ko: '남쪽 끝 안전',
-        tc: '偏下側安全'
+        tc: '偏南側安全'
       }
     }
   }, {
@@ -247767,7 +248225,7 @@ const r4n_triggerSet = {
         ja: '最西端の床へ',
         cn: '偏左侧安全',
         ko: '서쪽 끝 안전',
-        tc: '偏左側安全'
+        tc: '偏西側安全'
       }
     }
   }, {
@@ -247789,7 +248247,7 @@ const r4n_triggerSet = {
         ja: '最北端の床へ',
         cn: '偏上侧安全',
         ko: '북쪽 끝 안전',
-        tc: '偏上側安全'
+        tc: '偏北側安全'
       }
     }
   }, {
@@ -248007,34 +248465,33 @@ const r4n_triggerSet = {
     }
   }, {
     'locale': 'tc',
-    'missingTranslations': true,
     'replaceSync': {
-      // 'Wicked Replica': '', // FIXME '狡雷的幻影'
-      // 'Wicked Thunder': '', // FIXME '狡雷'
+      'Wicked Replica': '狡雷的幻影',
+      'Wicked Thunder': '狡雷'
     },
     'replaceText': {
-      // 'Left Roll': '', // FIXME '左转'
-      // 'Right Roll': '', // FIXME '右转'
-      // 'west--': '', // FIXME '西--'
-      // '--east': '', // FIXME '--东'
-      // '\\(cast\\)': '', // FIXME '(咏唱)'
-      // '\\(clone\\)': '', // FIXME '(幻影)'
-      // '\\(damage\\)': '', // FIXME '(伤害)'
-      // 'Bewitching Flight': '', // FIXME '魔女回翔'
+      'Left Roll': '左轉',
+      'Right Roll': '右轉',
+      'west--': '西--',
+      '--east': '--東',
+      '\\(cast\\)': '(詠唱)',
+      '\\(clone\\)': '(幻影)',
+      '\\(damage\\)': '(傷害)',
+      'Bewitching Flight': '魔女迴翔',
       'Burst': '爆炸',
-      // 'Fivefold Blast': '', // FIXME '五重加农炮'
-      // 'Fourfold Blast': '', // FIXME '四重加农炮'
-      // 'Shadows\' Sabbath': '', // FIXME '黑色安息日'
-      // 'Sidewise Spark': '', // FIXME '侧方电火花'
-      // 'Soaring Soulpress': '', // FIXME '碎魂跃'
-      // 'Stampeding Thunder': '', // FIXME '奔雷炮'
-      // 'Threefold Blast': '', // FIXME '三重加农炮'
-      // 'Thunderslam': '', // FIXME '雷炸'
+      'Fivefold Blast': '五重加農砲',
+      'Fourfold Blast': '四重加農砲',
+      'Shadows\' Sabbath': '黑色安息日',
+      'Sidewise Spark': '側方電火花',
+      'Soaring Soulpress': '碎魂躍',
+      'Stampeding Thunder': '奔雷砲',
+      'Threefold Blast': '三重加農砲',
+      'Thunderslam': '雷炸',
       'Thunderstorm': '雷暴',
-      // 'Wicked Bolt': '', // FIXME '狡诡落雷'
-      // 'Wicked Cannon': '', // FIXME '狡诡加农炮'
-      // 'Wicked Hypercannon': '', // FIXME '狡诡聚能加农炮'
-      // 'Wicked Jolt': '', // FIXME '狡诡摇荡'
+      'Wicked Bolt': '狡詭落雷',
+      'Wicked Cannon': '狡詭加農砲',
+      'Wicked Hypercannon': '狡詭超能加農砲',
+      'Wicked Jolt': '狡詭搖盪',
       'Witch Hunt': '獵殺女巫',
       'Wrath of Zeus': '宙斯之怒'
     }
@@ -259312,6 +259769,7 @@ const r9n_triggerSet = {
       '--Vamp Fatale untargetable--': '--Vamp Fatale anvisierbar--',
       'Aetherletting': 'Ätherquell',
       'Blast Beat': 'Resonanzwelle',
+      'Brutal Rain': 'Schreckensherrschaft',
       'Coffinfiller': 'Sägenstich',
       'Crowd Kill': 'Massenmeuchelei',
       'Dead Wake': 'Sägenmarsch',
@@ -259339,6 +259797,7 @@ const r9n_triggerSet = {
     'replaceText': {
       'Aetherletting': 'Libération d\'éther',
       'Blast Beat': 'Vague de résonance',
+      'Brutal Rain': 'Pluie brutale',
       'Coffinfiller': 'Entaille funèbre',
       'Crowd Kill': 'Fauchage du public',
       'Dead Wake': 'Avancée',
@@ -259366,6 +259825,7 @@ const r9n_triggerSet = {
     'replaceText': {
       'Aetherletting': 'エーテルレッティング',
       'Blast Beat': '共振波',
+      'Brutal Rain': 'ブルータルレイン',
       'Coffinfiller': '突き出る',
       'Crowd Kill': 'クラウドキリング',
       'Dead Wake': '前進',
@@ -259807,6 +260267,7 @@ const r9s_triggerSet = {
       ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir,
       text: {
         en: '${first} => ${second}',
+        de: '${first} => ${second}',
         fr: '${first} => ${second}',
         ja: '${first} => ${second}',
         cn: '${first} => ${second}',
@@ -259814,6 +260275,7 @@ const r9s_triggerSet = {
       },
       combined: {
         en: '${coffin1} + ${dir1} => ${coffin2} + ${dir2}',
+        de: '${coffin1} + ${dir1} => ${coffin2} + ${dir2}',
         fr: '${coffin1} + ${dir1} => ${coffin2} + ${dir2}',
         ja: '${coffin1} + ${dir1} => ${coffin2} + ${dir2}',
         cn: '${coffin1} + ${dir1} => ${coffin2} + ${dir2}',
@@ -259821,6 +260283,7 @@ const r9s_triggerSet = {
       },
       bigHalfmoonCombined: {
         en: '${coffin1} + ${dir1} (big) => ${coffin2} + ${dir2} (big)',
+        de: '${coffin1} + ${dir1} (groß) => ${coffin2} + ${dir2} (groß)',
         fr: '${coffin1} + ${dir1} (big) => ${coffin2} + ${dir2} (gros)',
         ja: '${coffin1} + ${dir1} (大) => ${coffin2} + ${dir2} (大)',
         cn: '${coffin1} + ${dir1} (大) => ${coffin2} + ${dir2} (大)',
@@ -259834,6 +260297,7 @@ const r9s_triggerSet = {
       rightEast: outputs/* default.rightEast */.Z.rightEast,
       inside: {
         en: 'Inside',
+        de: 'Innen',
         fr: 'Intérieur',
         ja: '内側',
         cn: '内侧',
@@ -259841,6 +260305,7 @@ const r9s_triggerSet = {
       },
       outside: {
         en: 'Outside',
+        de: 'Außen',
         fr: 'Extérieur',
         ja: '外側',
         cn: '外侧',
@@ -259848,6 +260313,7 @@ const r9s_triggerSet = {
       },
       outerWest: {
         en: 'Outer West',
+        de: 'Außen Westen',
         fr: 'Extérieur Ouest',
         ja: '左外',
         cn: '左外',
@@ -259855,6 +260321,7 @@ const r9s_triggerSet = {
       },
       innerWest: {
         en: 'Inner West',
+        de: 'Innen Westen',
         fr: 'Intérieur Ouest',
         ja: '左内',
         cn: '左内',
@@ -259862,6 +260329,7 @@ const r9s_triggerSet = {
       },
       innerEast: {
         en: 'Inner East',
+        de: 'Innen Osten',
         fr: 'Intérieur Est',
         ja: '右内',
         cn: '右内',
@@ -259869,6 +260337,7 @@ const r9s_triggerSet = {
       },
       outerEast: {
         en: 'Outer East',
+        de: 'Außen Osten',
         fr: 'Extérieur Est',
         ja: '右外',
         cn: '右外',
@@ -259876,6 +260345,7 @@ const r9s_triggerSet = {
       },
       bigHalfmoonNoCoffin: {
         en: '${dir1} max melee => ${dir2} max melee',
+        de: '${dir1} max Nahkämpfer => ${dir2} max Nahkämpfer',
         fr: '${dir1} max melée => ${dir2} max melée',
         ja: '${dir1} メレー最大距離 => ${dir2} メレー最大距離',
         cn: '${dir1} 最大近战距离 => ${dir2} 最大近战距离',
@@ -260106,7 +260576,6 @@ const r9s_triggerSet = {
     }
   }, {
     'locale': 'de',
-    'missingTranslations': true,
     'replaceSync': {
       'Coffinmaker': 'fatal(?:e|er|es|en) Säge',
       'Fatal Flail': 'fatal(?:e|er|es|en) Stachelbombe',
@@ -260114,14 +260583,16 @@ const r9s_triggerSet = {
       'Vampette Fatale': 'fatal(?:e|er|es|en) Fledermaus'
     },
     'replaceText': {
-      '--coffinmaker--': '--Säge--',
       '--cell': '--Zelle',
+      '--coffinmaker--': '--Säge--',
       '--flail': '--Stachelbombe',
       '--nail--': '--Blitzableiter--',
+      'Aetherletting': 'Ätherquell',
       'Blast Beat': 'Resonanzwelle',
       'Bloody Bondage': 'Blutige Fesseln',
       'Breakdown Drop': 'Gebrochene Melodie',
       'Breakwing Beat': 'Gebrochener Rhythmus',
+      'Brutal Rain': 'Schreckensherrschaft',
       'Coffinfiller': 'Sägenstich',
       'Crowd Kill': 'Massenmeuchelei',
       'Dead Wake': 'Sägenmarsch',
@@ -260134,6 +260605,7 @@ const r9s_triggerSet = {
       'Plummet': 'Abfallen',
       'Pulping Pulse': 'Zermalmender Puls',
       'Sadistic Screech': 'Henkersmahl',
+      'Sanguine Scratch': 'Blutrote Kralle',
       'Ultrasonic Amp': 'Fokusschall',
       'Ultrasonic Spread': 'Streuschall',
       'Undead Deathmatch': 'Fledermaus-Todeskampf',
@@ -260149,6 +260621,7 @@ const r9s_triggerSet = {
       'Vampette Fatale': 'chauve-souris fatale'
     },
     'replaceText': {
+      'Aetherletting': 'Libération d\'éther',
       'Blast Beat': 'Vague de résonance',
       'Bloody Bondage': 'Bondage sanglant',
       'Breakdown Drop': 'Fracas dévastateur',
@@ -260165,6 +260638,7 @@ const r9s_triggerSet = {
       'Plummet': 'Chute',
       'Pulping Pulse': 'Pulsation pulvérisante',
       'Sadistic Screech': 'Crissement sadique',
+      'Sanguine Scratch': 'Griffure sanguine',
       'Ultrasonic Amp': '',
       'Ultrasonic Spread': '',
       'Undead Deathmatch': 'Chiroptère mortel',
@@ -260198,6 +260672,7 @@ const r9s_triggerSet = {
       'Plummet': '落下',
       'Pulping Pulse': 'パルピングパルス',
       'Sadistic Screech': 'サディスティック・スクリーチ',
+      'Sanguine Scratch': 'サングインスクラッチ',
       'Ultrasonic Amp': '',
       'Ultrasonic Spread': '',
       'Undead Deathmatch': 'バット・デスマッチ',
@@ -260245,7 +260720,6 @@ const r9s_triggerSet = {
     }
   }, {
     'locale': 'ko',
-    'missingTranslations': true,
     'replaceSync': {
       'Charnel Cell': '파탈 감옥',
       'Coffinmaker': '파탈 톱',
@@ -260279,8 +260753,8 @@ const r9s_triggerSet = {
       'Pulping Pulse': '분쇄 파동',
       'Sadistic Screech': '가학적인 웃음',
       'Sanguine Scratch': '붉은 생채기',
-      // 'Ultrasonic Amp': 'Ultrasonic Amp',
-      // 'Ultrasonic Spread': 'Ultrasonic Spread',
+      'Ultrasonic Amp': '집약 음파',
+      'Ultrasonic Spread': '확산 음파',
       'Undead Deathmatch': '박쥐 데스매치',
       'Vamp Stomp': '요염한 짓밟기'
     }
@@ -262908,7 +263382,6 @@ const doomtrain_triggerSet = {
   }],
   timelineReplace: [{
     'locale': 'de',
-    'missingTranslations': true,
     'replaceSync': {
       'Aether': 'Äthersphäre',
       'Doomtrain': 'Doomtrain',

@@ -3335,7 +3335,7 @@ const numberToOutputString = function (n) {
     fr: 'Cardinaux',
     ja: '十字回避',
     cn: '去正点',
-    ko: '십자방향으로',
+    ko: '십자방향',
     tc: '去正點'
   },
   intercards: {
@@ -3344,7 +3344,7 @@ const numberToOutputString = function (n) {
     fr: 'Intercardinal',
     ja: '斜めへ',
     cn: '去斜角',
-    ko: '대각선 쪽으로',
+    ko: '대각선 쪽',
     tc: '去斜角'
   },
   north: {
@@ -19690,7 +19690,7 @@ const textKeys = {
   // Match `--1--` style text.
   Number: '--(\\s*\\d+\\s*)--'
 };
-const common_replacement_commonReplacement = {
+const commonReplacement = {
   replaceSync: {
     [syncKeys.seal]: {
       en: '$1 will be sealed off',
@@ -20129,7 +20129,7 @@ const common_replacement_commonReplacement = {
 // translation for it to be complete.  These keys should be exactly the same
 // as the keys from the commonReplacement block above.  These are used for
 // timeline regexes only.
-const common_replacement_partialCommonTimelineReplacementKeys = [
+const partialCommonTimelineReplacementKeys = [
 // Because the zone name needs to be translated here, this is partial.
 syncKeys.seal,
 // Directions
@@ -20138,7 +20138,7 @@ textKeys.E, textKeys.N, textKeys.S, textKeys.W, textKeys.NE, textKeys.NW, textKe
 textKeys.Tank, textKeys.Healer, textKeys.DPS];
 
 // Same as the timeline version above, but only for trigger regexes.
-const common_replacement_partialCommonTriggerReplacementKeys = [
+const partialCommonTriggerReplacementKeys = [
 // Because the zone name needs to be translated here, this is partial.
 syncKeys.seal];
 ;// CONCATENATED MODULE: ./resources/translations.ts
@@ -20323,7 +20323,7 @@ const translateWithReplacements = (text, replaceKey, replaceLang, replacements) 
     const reps = r[replaceKey];
     if (!reps) continue;
     for (const [key, value] of Object.entries(reps)) {
-      const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
+      const regex = isGlobal ? regexes/* default.parseGlobal */.Z.parseGlobal(key) : regexes/* default.parse */.Z.parse(key);
       if (text.match(regex)) wasTranslated = true;
       text = text.replace(regex, value);
     }
@@ -20334,7 +20334,7 @@ const translateWithReplacements = (text, replaceKey, replaceLang, replacements) 
   for (const [key, value] of Object.entries(replacement ?? {})) {
     const repl = value[replaceLang];
     if (repl === undefined) continue;
-    const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
+    const regex = isGlobal ? regexes/* default.parseGlobal */.Z.parseGlobal(key) : regexes/* default.parse */.Z.parse(key);
     const partialKeys = replaceKey === 'replaceSync' ? partialCommonTriggerReplacementKeys : partialCommonTimelineReplacementKeys;
     if (text.match(regex)) {
       // Consider any partial translations as "not found" (e.g. a seal
@@ -20342,7 +20342,7 @@ const translateWithReplacements = (text, replaceKey, replaceLang, replacements) 
       // considered fully translated).
       let isPartial = false;
       for (const partialKey of partialKeys) {
-        if (Regexes.parseGlobal(partialKey).test(key)) {
+        if (regexes/* default.parseGlobal */.Z.parseGlobal(partialKey).test(key)) {
           isPartial = true;
           break;
         }
@@ -22395,21 +22395,31 @@ class DamageTracker {
       this.AddShareTriggers('fail', set.shareFail);
       this.AddSoloTriggers('warn', set.soloWarn);
       this.AddSoloTriggers('fail', set.soloFail);
-      for (const trigger of set.triggers ?? []) this.ProcessTrigger(trigger);
+      for (const trigger of set.triggers ?? []) this.ProcessTrigger(trigger, set);
       this.playerStateTracker.PushTriggerSet(set);
     }
   }
-  ProcessTrigger(trigger) {
+  ProcessTrigger(trigger, set) {
     // This is a bit of a hack, but LooseOopsyTrigger extends OopsyTrigger<OopsyData>
     // but not vice versa.  Because the NetMatches['Ability'] requires a number
     // of fields, Matches cannot be assigned to Matches & NetMatches['Ability'].
     const looseTrigger = trigger;
-    const regex = looseTrigger.netRegex;
+    const netRegex = looseTrigger.netRegex;
     // Some oopsy triggers (e.g. early pull) have only an id.
-    if (!regex) return;
+    if (!netRegex) return;
+    const parserLang = this.options.ParserLanguage;
+    const timelineReplace = set?.timelineReplace;
+    let localRegex;
+    if (Array.isArray(netRegex)) {
+      localRegex = regexes/* default.parse */.Z.parse(regexes/* default.anyOf */.Z.anyOf(netRegex));
+    } else {
+      // RegExp (e.g. from NetRegexes.xxx()), translate the regex string
+      const translated = translateRegex(netRegex, parserLang, timelineReplace);
+      localRegex = regexes/* default.parse */.Z.parse(translated);
+    }
     this.triggers.push({
       ...looseTrigger,
-      localRegex: regexes/* default.parse */.Z.parse(Array.isArray(regex) ? regexes/* default.anyOf */.Z.anyOf(regex) : regex)
+      localRegex
     });
   }
   OnPlayerChange(e) {

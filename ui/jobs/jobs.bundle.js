@@ -3340,7 +3340,7 @@ const numberToOutputString = function (n) {
     fr: 'Cardinaux',
     ja: '十字回避',
     cn: '去正点',
-    ko: '십자방향으로',
+    ko: '십자방향',
     tc: '去正點'
   },
   intercards: {
@@ -3349,7 +3349,7 @@ const numberToOutputString = function (n) {
     fr: 'Intercardinal',
     ja: '斜めへ',
     cn: '去斜角',
-    ko: '대각선 쪽으로',
+    ko: '대각선 쪽',
     tc: '去斜角'
   },
   north: {

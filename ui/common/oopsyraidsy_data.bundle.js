@@ -450,21 +450,6 @@ const test_triggerSet = {
     netRegex: netregexes/* default.gameNameLog */.ZP.gameNameLog({
       line: 'You bow courteously to the striking dummy.*?'
     }),
-    netRegexDe: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: 'Du verbeugst dich hochachtungsvoll vor der Trainingspuppe.*?'
-    }),
-    netRegexFr: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: 'Vous vous inclinez devant le mannequin d\'entraînement.*?'
-    }),
-    netRegexJa: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: '.*は木人にお辞儀した.*?'
-    }),
-    netRegexCn: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: '.*恭敬地对木人行礼.*?'
-    }),
-    netRegexKo: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: '.*나무인형에게 공손하게 인사합니다.*?'
-    }),
     mistake: data => {
       return {
         type: 'pull',
@@ -485,18 +470,6 @@ const test_triggerSet = {
     type: 'GameLog',
     netRegex: netregexes/* default.gameNameLog */.ZP.gameNameLog({
       line: 'You bid farewell to the striking dummy.*?'
-    }),
-    netRegexFr: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: 'Vous faites vos adieux au mannequin d\'entraînement.*?'
-    }),
-    netRegexJa: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: '.*は木人に別れの挨拶をした.*?'
-    }),
-    netRegexCn: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: '.*向木人告别.*?'
-    }),
-    netRegexKo: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: '.*나무인형에게 작별 인사를 합니다.*?'
     }),
     mistake: data => {
       return {
@@ -579,18 +552,6 @@ const test_triggerSet = {
     netRegex: netregexes/* default.gameNameLog */.ZP.gameNameLog({
       line: 'You poke the striking dummy.*?'
     }),
-    netRegexFr: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt.*?'
-    }),
-    netRegexJa: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: '.*は木人をつついた.*?'
-    }),
-    netRegexCn: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: '.*用手指戳向木人.*?'
-    }),
-    netRegexKo: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: '.*나무인형을 쿡쿡 찌릅니다.*?'
-    }),
     run: data => {
       data.pokeCount = (data.pokeCount ?? 0) + 1;
     }
@@ -599,18 +560,6 @@ const test_triggerSet = {
     type: 'GameLog',
     netRegex: netregexes/* default.gameNameLog */.ZP.gameNameLog({
       line: 'You poke the striking dummy.*?'
-    }),
-    netRegexFr: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt.*?'
-    }),
-    netRegexJa: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: '.*は木人をつついた.*?'
-    }),
-    netRegexCn: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: '.*用手指戳向木人.*?'
-    }),
-    netRegexKo: netregexes/* default.gameNameLog */.ZP.gameNameLog({
-      line: '.*나무인형을 쿡쿡 찌릅니다.*?'
     }),
     delaySeconds: 5,
     mistake: data => {
@@ -631,6 +580,49 @@ const test_triggerSet = {
       };
     },
     run: data => delete data.pokeCount
+  }],
+  timelineReplace: [{
+    locale: 'de',
+    replaceSync: {
+      'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
+      'You bow courteously to the striking dummy': 'Du verbeugst dich hochachtungsvoll vor der Trainingspuppe',
+      'You poke the striking dummy': 'Du stupst die Trainingspuppe an'
+    }
+  }, {
+    locale: 'fr',
+    replaceSync: {
+      'You bid farewell to the striking dummy': 'Vous faites vos adieux au mannequin d\'entraînement',
+      'You bow courteously to the striking dummy': 'Vous vous inclinez devant le mannequin d\'entraînement',
+      'You poke the striking dummy': 'Vous touchez légèrement le mannequin d\'entraînement du doigt'
+    }
+  }, {
+    locale: 'ja',
+    replaceSync: {
+      'You bid farewell to the striking dummy': '.*は木人に別れの挨拶をした',
+      'You bow courteously to the striking dummy': '.*は木人にお辞儀した',
+      'You poke the striking dummy': '.*は木人をつついた'
+    }
+  }, {
+    locale: 'cn',
+    replaceSync: {
+      'You bid farewell to the striking dummy': '.*向木人告别',
+      'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',
+      'You poke the striking dummy': '.*用手指戳向木人'
+    }
+  }, {
+    locale: 'ko',
+    replaceSync: {
+      'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
+      'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
+      'You poke the striking dummy': '.*나무인형을 쿡쿡 찌릅니다'
+    }
+  }, {
+    locale: 'tc',
+    replaceSync: {
+      'You bid farewell to the striking dummy': '.*向木人告别',
+      'You bow courteously to the striking dummy': '.*恭敬地對木人行禮',
+      'You poke the striking dummy': '.*用手指戳向木人'
+    }
   }]
 };
 /* harmony default export */ const test = (test_triggerSet);
@@ -4236,31 +4228,6 @@ const o3n_triggerSet = {
       source: 'Halicarnassus',
       capture: false
     }),
-    netRegexDe: netregexes/* default.startsUsing */.ZP.startsUsing({
-      id: '2304',
-      source: 'Halikarnassos',
-      capture: false
-    }),
-    netRegexFr: netregexes/* default.startsUsing */.ZP.startsUsing({
-      id: '2304',
-      source: 'Halicarnasse',
-      capture: false
-    }),
-    netRegexJa: netregexes/* default.startsUsing */.ZP.startsUsing({
-      id: '2304',
-      source: 'ハリカルナッソス',
-      capture: false
-    }),
-    netRegexCn: netregexes/* default.startsUsing */.ZP.startsUsing({
-      id: '2304',
-      source: '哈利卡纳苏斯',
-      capture: false
-    }),
-    netRegexKo: netregexes/* default.startsUsing */.ZP.startsUsing({
-      id: '2304',
-      source: '할리카르나소스',
-      capture: false
-    }),
     run: data => data.phaseNumber = (data.phaseNumber ?? 0) + 1
   }, {
     // There's a lot to track, and in order to make it all clean, it's safest just to
@@ -4270,31 +4237,6 @@ const o3n_triggerSet = {
     netRegex: netregexes/* default.ability */.ZP.ability({
       id: '367',
       source: 'Halicarnassus',
-      capture: false
-    }),
-    netRegexDe: netregexes/* default.ability */.ZP.ability({
-      id: '367',
-      source: 'Halikarnassos',
-      capture: false
-    }),
-    netRegexFr: netregexes/* default.ability */.ZP.ability({
-      id: '367',
-      source: 'Halicarnasse',
-      capture: false
-    }),
-    netRegexJa: netregexes/* default.ability */.ZP.ability({
-      id: '367',
-      source: 'ハリカルナッソス',
-      capture: false
-    }),
-    netRegexCn: netregexes/* default.ability */.ZP.ability({
-      id: '367',
-      source: '哈利卡纳苏斯',
-      capture: false
-    }),
-    netRegexKo: netregexes/* default.ability */.ZP.ability({
-      id: '367',
-      source: '할리카르나소스',
       capture: false
     }),
     condition: data => !data.initialized,
@@ -4347,6 +4289,37 @@ const o3n_triggerSet = {
       };
     },
     run: data => data.gameCount = (data.gameCount ?? 0) + 1
+  }],
+  timelineReplace: [{
+    'locale': 'de',
+    'replaceSync': {
+      'Halicarnassus': 'Halikarnassos'
+    }
+  }, {
+    'locale': 'fr',
+    'replaceSync': {
+      'Halicarnassus': 'Halicarnasse'
+    }
+  }, {
+    'locale': 'ja',
+    'replaceSync': {
+      'Halicarnassus': 'ハリカルナッソス'
+    }
+  }, {
+    'locale': 'cn',
+    'replaceSync': {
+      'Halicarnassus': '哈利卡纳苏斯'
+    }
+  }, {
+    'locale': 'tc',
+    'replaceSync': {
+      'Halicarnassus': '哈利卡納蘇斯'
+    }
+  }, {
+    'locale': 'ko',
+    'replaceSync': {
+      'Halicarnassus': '할리카르나소스'
+    }
   }]
 };
 /* harmony default export */ const o3n = (o3n_triggerSet);
@@ -8435,22 +8408,6 @@ const e10s_triggerSet = {
       source: 'Flameshadow',
       effectId: '82C'
     }),
-    netRegexDe: netregexes/* default.gainsEffect */.ZP.gainsEffect({
-      source: 'Schattenflamme',
-      effectId: '82C'
-    }),
-    netRegexFr: netregexes/* default.gainsEffect */.ZP.gainsEffect({
-      source: 'Flamme ombrale',
-      effectId: '82C'
-    }),
-    netRegexJa: netregexes/* default.gainsEffect */.ZP.gainsEffect({
-      source: 'シャドウフレイム',
-      effectId: '82C'
-    }),
-    netRegexCn: netregexes/* default.gainsEffect */.ZP.gainsEffect({
-      source: '影烈火',
-      effectId: '82C'
-    }),
     mistake: (_data, matches) => {
       return {
         type: 'damage',
@@ -8468,22 +8425,6 @@ const e10s_triggerSet = {
     // Maybe it'd be nice to figure out how to put the damage marker on that?
     netRegex: netregexes/* default.gainsEffect */.ZP.gainsEffect({
       source: 'Shadowkeeper',
-      effectId: '82C'
-    }),
-    netRegexDe: netregexes/* default.gainsEffect */.ZP.gainsEffect({
-      source: 'Schattenkönig',
-      effectId: '82C'
-    }),
-    netRegexFr: netregexes/* default.gainsEffect */.ZP.gainsEffect({
-      source: 'Roi De L\'Ombre',
-      effectId: '82C'
-    }),
-    netRegexJa: netregexes/* default.gainsEffect */.ZP.gainsEffect({
-      source: '影の王',
-      effectId: '82C'
-    }),
-    netRegexCn: netregexes/* default.gainsEffect */.ZP.gainsEffect({
-      source: '影之王',
       effectId: '82C'
     }),
     mistake: (_data, matches) => {
@@ -8511,6 +8452,31 @@ const e10s_triggerSet = {
         reportId: matches.targetId,
         text: matches.ability
       };
+    }
+  }],
+  timelineReplace: [{
+    'locale': 'de',
+    'replaceSync': {
+      'Flameshadow': 'Schattenflamme',
+      'Shadowkeeper': 'Schattenkönig'
+    }
+  }, {
+    'locale': 'fr',
+    'replaceSync': {
+      'Flameshadow': 'Flamme ombrale',
+      'Shadowkeeper': 'Roi De L\'Ombre'
+    }
+  }, {
+    'locale': 'ja',
+    'replaceSync': {
+      'Flameshadow': 'シャドウフレイム',
+      'Shadowkeeper': '影の王'
+    }
+  }, {
+    'locale': 'cn',
+    'replaceSync': {
+      'Flameshadow': '影烈火',
+      'Shadowkeeper': '影之王'
     }
   }]
 };
@@ -9040,22 +9006,6 @@ const e12s_triggerSet = {
       source: 'Beastly Sculpture',
       id: '0011'
     }),
-    netRegexDe: netregexes/* default.tether */.ZP.tether({
-      source: 'Abbild Eines Löwen',
-      id: '0011'
-    }),
-    netRegexFr: netregexes/* default.tether */.ZP.tether({
-      source: 'Création Léonine',
-      id: '0011'
-    }),
-    netRegexJa: netregexes/* default.tether */.ZP.tether({
-      source: '創られた獅子',
-      id: '0011'
-    }),
-    netRegexCn: netregexes/* default.tether */.ZP.tether({
-      source: '被创造的狮子',
-      id: '0011'
-    }),
     run: (data, matches) => {
       data.smallLionIdToOwner ??= {};
       data.smallLionIdToOwner[matches.sourceId.toUpperCase()] = matches.target;
@@ -9067,22 +9017,6 @@ const e12s_triggerSet = {
     type: 'Ability',
     netRegex: netregexes/* default.ability */.ZP.ability({
       source: 'Beastly Sculpture',
-      id: '58B9'
-    }),
-    netRegexDe: netregexes/* default.ability */.ZP.ability({
-      source: 'Abbild Eines Löwen',
-      id: '58B9'
-    }),
-    netRegexFr: netregexes/* default.ability */.ZP.ability({
-      source: 'Création Léonine',
-      id: '58B9'
-    }),
-    netRegexJa: netregexes/* default.ability */.ZP.ability({
-      source: '創られた獅子',
-      id: '58B9'
-    }),
-    netRegexCn: netregexes/* default.ability */.ZP.ability({
-      source: '被创造的狮子',
       id: '58B9'
     }),
     mistake: (data, matches) => {
@@ -9141,22 +9075,6 @@ const e12s_triggerSet = {
     type: 'Ability',
     netRegex: netregexes/* default.ability */.ZP.ability({
       source: 'Regal Sculpture',
-      id: '4F9E'
-    }),
-    netRegexDe: netregexes/* default.ability */.ZP.ability({
-      source: 'Abbild eines großen Löwen',
-      id: '4F9E'
-    }),
-    netRegexFr: netregexes/* default.ability */.ZP.ability({
-      source: 'création léonine royale',
-      id: '4F9E'
-    }),
-    netRegexJa: netregexes/* default.ability */.ZP.ability({
-      source: '創られた獅子王',
-      id: '4F9E'
-    }),
-    netRegexCn: netregexes/* default.ability */.ZP.ability({
-      source: '被创造的狮子王',
       id: '4F9E'
     }),
     mistake: (data, matches) => {
@@ -9255,6 +9173,31 @@ const e12s_triggerSet = {
         reportId: matches.targetId,
         text: matches.ability
       };
+    }
+  }],
+  timelineReplace: [{
+    'locale': 'de',
+    'replaceSync': {
+      'Beastly Sculpture': 'Abbild Eines Löwen',
+      'Regal Sculpture': 'Abbild eines großen Löwen'
+    }
+  }, {
+    'locale': 'fr',
+    'replaceSync': {
+      'Beastly Sculpture': 'Création Léonine',
+      'Regal Sculpture': 'création léonine royale'
+    }
+  }, {
+    'locale': 'ja',
+    'replaceSync': {
+      'Beastly Sculpture': '創られた獅子',
+      'Regal Sculpture': '創られた獅子王'
+    }
+  }, {
+    'locale': 'cn',
+    'replaceSync': {
+      'Beastly Sculpture': '被创造的狮子',
+      'Regal Sculpture': '被创造的狮子王'
     }
   }]
 };
@@ -9513,26 +9456,6 @@ const e4s_triggerSet = {
       id: '411E',
       source: 'Titan'
     }),
-    netRegexDe: netregexes/* default.startsUsing */.ZP.startsUsing({
-      id: '411E',
-      source: 'Titan'
-    }),
-    netRegexFr: netregexes/* default.startsUsing */.ZP.startsUsing({
-      id: '411E',
-      source: 'Titan'
-    }),
-    netRegexJa: netregexes/* default.startsUsing */.ZP.startsUsing({
-      id: '411E',
-      source: 'タイタン'
-    }),
-    netRegexCn: netregexes/* default.startsUsing */.ZP.startsUsing({
-      id: '411E',
-      source: '泰坦'
-    }),
-    netRegexKo: netregexes/* default.startsUsing */.ZP.startsUsing({
-      id: '411E',
-      source: '타이탄'
-    }),
     run: (data, matches) => {
       data.faultLineTarget = matches.target;
     }
@@ -9559,6 +9482,32 @@ const e4s_triggerSet = {
           tc: '被碾了'
         }
       };
+    }
+  }],
+  timelineReplace: [{
+    'locale': 'de',
+    'replaceSync': {
+      'Titan': 'Titan'
+    }
+  }, {
+    'locale': 'fr',
+    'replaceSync': {
+      'Titan': 'Titan'
+    }
+  }, {
+    'locale': 'ja',
+    'replaceSync': {
+      'Titan': 'タイタン'
+    }
+  }, {
+    'locale': 'cn',
+    'replaceSync': {
+      'Titan': '泰坦'
+    }
+  }, {
+    'locale': 'ko',
+    'replaceSync': {
+      'Titan': '타이탄'
     }
   }]
 };
