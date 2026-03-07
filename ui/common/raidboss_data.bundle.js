@@ -1,7 +1,7 @@
 "use strict";
 (self["webpackChunkcactbot"] = self["webpackChunkcactbot"] || []).push([[890],{
 
-/***/ 448:
+/***/ 170:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -633,7 +633,7 @@ const test_triggerSet = {
     // In game: /echo cactbot lang
     netRegex: {
       line: 'cactbot lang.*?',
-      code: util/* default.gameLogCodes.echo */.Z.gameLogCodes.echo,
+      code: util/* default.gameLogCodes.echo */.ZP.gameLogCodes.echo,
       capture: false
     },
     infoText: (data, _matches, output) => output.text({
@@ -655,7 +655,7 @@ const test_triggerSet = {
     type: 'GameLog',
     netRegex: {
       line: 'cactbot test response.*?',
-      code: util/* default.gameLogCodes.echo */.Z.gameLogCodes.echo,
+      code: util/* default.gameLogCodes.echo */.ZP.gameLogCodes.echo,
       capture: false
     },
     response: (_data, _matches, output) => {
@@ -678,10 +678,10 @@ const test_triggerSet = {
     type: 'GameLog',
     netRegex: {
       line: 'cactbot test watch.*?',
-      code: util/* default.gameLogCodes.echo */.Z.gameLogCodes.echo,
+      code: util/* default.gameLogCodes.echo */.ZP.gameLogCodes.echo,
       capture: false
     },
-    promise: data => util/* default.watchCombatant */.Z.watchCombatant({
+    promise: data => util/* default.watchCombatant */.ZP.watchCombatant({
       names: [data.me, strikingDummyNames[data.lang] ?? strikingDummyNames['en']],
       // 50 seconds
       maxDuration: 50000
@@ -719,7 +719,7 @@ const test_triggerSet = {
     type: 'GameLog',
     netRegex: {
       line: 'cactbot test config.*?',
-      code: util/* default.gameLogCodes.echo */.Z.gameLogCodes.echo,
+      code: util/* default.gameLogCodes.echo */.ZP.gameLogCodes.echo,
       capture: false
     },
     alertText: (data, _matches, output) => {
@@ -743,7 +743,7 @@ const test_triggerSet = {
     type: 'GameLog',
     netRegex: {
       line: 'cactbot test combatant cast.*?',
-      code: util/* default.gameLogCodes.echo */.Z.gameLogCodes.echo,
+      code: util/* default.gameLogCodes.echo */.ZP.gameLogCodes.echo,
       capture: false
     },
     run: data => {
@@ -847,7 +847,7 @@ const test_triggerSet = {
     type: 'GameLog',
     netRegex: {
       line: 'cactbot test outputStrings',
-      code: util/* default.gameLogCodes.echo */.Z.gameLogCodes.echo,
+      code: util/* default.gameLogCodes.echo */.ZP.gameLogCodes.echo,
       capture: false
     },
     infoText: (data, _matches, output) => {
@@ -874,7 +874,7 @@ const test_triggerSet = {
     type: 'GameLog',
     netRegex: {
       line: 'cactbot test trigger countdown.*?',
-      code: util/* default.gameLogCodes.echo */.Z.gameLogCodes.echo,
+      code: util/* default.gameLogCodes.echo */.ZP.gameLogCodes.echo,
       capture: false
     },
     delaySeconds: 2,
@@ -5609,7 +5609,7 @@ const t11_triggerSet = {
     },
     condition: data => !data.beganMonitoringHp,
     preRun: data => data.beganMonitoringHp = true,
-    promise: (_data, matches) => util/* default.watchCombatant */.Z.watchCombatant({
+    promise: (_data, matches) => util/* default.watchCombatant */.ZP.watchCombatant({
       ids: [parseInt(matches.sourceId, 16)]
     }, ret => {
       return ret.combatants.some(c => {
@@ -6916,7 +6916,7 @@ const t5_triggerSet = {
     },
     condition: data => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
     preRun: data => data.monitoringHP = true,
-    promise: (data, matches) => util/* default.watchCombatant */.Z.watchCombatant({
+    promise: (data, matches) => util/* default.watchCombatant */.ZP.watchCombatant({
       ids: [parseInt(matches.sourceId, 16)]
     }, ret => {
       const twintaniaBelowGivenHP = ret.combatants.some(c => {
@@ -7332,7 +7332,7 @@ const t6_triggerSet = {
     },
     condition: data => !data.beganMonitoringHp,
     preRun: data => data.beganMonitoringHp = true,
-    promise: (_data, matches) => util/* default.watchCombatant */.Z.watchCombatant({
+    promise: (_data, matches) => util/* default.watchCombatant */.ZP.watchCombatant({
       ids: [parseInt(matches.sourceId, 16)]
     }, ret => {
       return ret.combatants.some(c => {
@@ -7738,7 +7738,7 @@ const t7_triggerSet = {
     },
     condition: data => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
     preRun: data => data.monitoringHP = true,
-    promise: (data, matches) => util/* default.watchCombatant */.Z.watchCombatant({
+    promise: (data, matches) => util/* default.watchCombatant */.ZP.watchCombatant({
       ids: [parseInt(matches.sourceId, 16)]
     }, ret => {
       return ret.combatants.some(c => {
@@ -8585,7 +8585,7 @@ const t9_triggerSet = {
     },
     condition: data => !data.beganMonitoringHp,
     preRun: data => data.beganMonitoringHp = true,
-    promise: (_data, matches) => util/* default.watchCombatant */.Z.watchCombatant({
+    promise: (_data, matches) => util/* default.watchCombatant */.ZP.watchCombatant({
       ids: [parseInt(matches.sourceId, 16)]
     }, ret => {
       return ret.combatants.some(c => {
@@ -9414,7 +9414,7 @@ const levi_ex_triggerSet = {
       id: '875',
       capture: false
     },
-    condition: data => util/* default.isCasterDpsJob */.Z.isCasterDpsJob(data.job) || util/* default.isHealerJob */.Z.isHealerJob(data.job),
+    condition: data => util/* default.isCasterDpsJob */.ZP.isCasterDpsJob(data.job) || util/* default.isHealerJob */.ZP.isHealerJob(data.job),
     suppressSeconds: 9999,
     infoText: (_data, _matches, output) => output.text(),
     outputStrings: {
@@ -9436,7 +9436,7 @@ const levi_ex_triggerSet = {
       id: '874',
       capture: false
     },
-    condition: data => util/* default.isRangedDpsJob */.Z.isRangedDpsJob(data.job),
+    condition: data => util/* default.isRangedDpsJob */.ZP.isRangedDpsJob(data.job),
     suppressSeconds: 9999,
     infoText: (_data, _matches, output) => output.text(),
     outputStrings: {
@@ -31140,8 +31140,8 @@ const thordan_ex_triggerSet = {
       if (data.thrustPositions.length !== 3) return;
       let safeDirs = Object.keys(unsafeMap);
       data.thrustPositions.forEach(knight => {
-        const knightNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(knight.heading));
-        const knightDir = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(knightNum);
+        const knightNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(knight.heading));
+        const knightDir = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(knightNum);
         const pairedDir = unsafeMap[knightDir];
         safeDirs = safeDirs.filter(dir => dir !== knightDir && dir !== pairedDir);
       });
@@ -31167,7 +31167,7 @@ const thordan_ex_triggerSet = {
         ko: '${dir1} / ${dir2} 안전',
         tc: '${dir1} / ${dir2} 安全'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'ThordanEX Sword Of The Heavens',
@@ -31436,8 +31436,8 @@ const thordan_ex_triggerSet = {
     // Shared ability from all knights when they teleport in.
     condition: data => data.phase === 5,
     infoText: (_data, matches, output) => {
-      const knightNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(matches.heading));
-      const knightDir = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(knightNum);
+      const knightNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(matches.heading));
+      const knightDir = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(knightNum);
       const [dir1, dir2] = [knightDir, unsafeMap[knightDir]].sort();
       if (dir1 === undefined || dir2 === undefined) return;
       return output.combined({
@@ -31455,7 +31455,7 @@ const thordan_ex_triggerSet = {
         ko: '${dir1} / ${dir2} 위험',
         tc: '${dir1} / ${dir2} 危險'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'ThordanEX Faith Unmoving Off Center',
@@ -31471,7 +31471,7 @@ const thordan_ex_triggerSet = {
     alertText: (_data, matches, output) => {
       const knightX = parseFloat(matches.x);
       const knightY = parseFloat(matches.y);
-      const knightDir = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(knightX, knightY, 0, 0);
+      const knightDir = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(knightX, knightY, 0, 0);
       return output.knockbackWarn({
         knightDir: output[knightDir]()
       });
@@ -43734,7 +43734,7 @@ const eureka_hydatos_triggerSet = {
     id: 'BA Saved By Remembrance',
     type: 'ActorControlSelfExtra',
     netRegex: {
-      category: util/* default.actorControlType.logMsg */.Z.actorControlType.logMsg,
+      category: util/* default.actorControlType.logMsg */.ZP.actorControlType.logMsg,
       param1: '236D',
       capture: false
     },
@@ -43937,7 +43937,7 @@ const eureka_hydatos_triggerSet = {
     id: 'BA Owain Fire Element',
     type: 'ActorControlExtra',
     netRegex: {
-      category: util/* default.actorControlType.publicContentText */.Z.actorControlType.publicContentText,
+      category: util/* default.actorControlType.publicContentText */.ZP.actorControlType.publicContentText,
       param2: '84A',
       capture: false
     },
@@ -43971,7 +43971,7 @@ const eureka_hydatos_triggerSet = {
     id: 'BA Owain Ice Element',
     type: 'ActorControlExtra',
     netRegex: {
-      category: util/* default.actorControlType.publicContentText */.Z.actorControlType.publicContentText,
+      category: util/* default.actorControlType.publicContentText */.ZP.actorControlType.publicContentText,
       param2: '84B',
       capture: false
     },
@@ -60812,12 +60812,12 @@ const seiryu_ex_triggerSet = {
       // Blue Orochi spawn east or west with heading of either -1.57 or 1.57.
       // Invert their spawn heading to find the safe location.
       // No source because sometimes the name field is stale.
-      const safeDir4Num = (util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(parseFloat(matches.heading)) + 2) % 4;
+      const safeDir4Num = (util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(parseFloat(matches.heading)) + 2) % 4;
       if (safeDir4Num !== 1 && safeDir4Num !== 3) {
         if (data.withForce === undefined) return output.goToUnknownSnakes();
         return output.outOfMiddleUnknownSnakes();
       }
-      const safeDir = util/* Directions.outputFromCardinalNum */.N.outputFromCardinalNum(safeDir4Num);
+      const safeDir = util/* Directions.outputFromCardinalNum */.Ns.outputFromCardinalNum(safeDir4Num);
       if (data.withForce === undefined) return output.goToSnakes({
         dir: output[safeDir]()
       });
@@ -65862,7 +65862,7 @@ const ultima_weapon_ultimate_triggerSet = {
       // 1645 = Suparna
       // 1646 = Chirada
       const sisters = data.combatantData.filter(x => x.BNpcNameID === 1645 || x.BNpcNameID === 1646);
-      const [dir1, dir2] = sisters.map(c => util/* Directions.xyTo4DirNum */.N.xyTo4DirNum(c.PosX, c.PosY, centerX, centerY)).sort();
+      const [dir1, dir2] = sisters.map(c => util/* Directions.xyTo4DirNum */.Ns.xyTo4DirNum(c.PosX, c.PosY, centerX, centerY)).sort();
       if (dir1 === undefined || dir2 === undefined || sisters.length !== 2) return;
       const map = {
         0: output.dirN(),
@@ -66036,7 +66036,7 @@ const ultima_weapon_ultimate_triggerSet = {
         tc: '火神 ${dir}'
       },
       unknown: outputs/* default.unknown */.Z.unknown,
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir
     }
   }, {
     id: 'UWU Ifrit Initial Radiant Plume Collector',
@@ -66089,12 +66089,12 @@ const ultima_weapon_ultimate_triggerSet = {
     suppressSeconds: 5,
     infoText: (data, _matches, output) => {
       if (data.ifritRadiantPlumeLocations.length < 3) return;
-      const safeDir = util/* Directions.outputCardinalDir.filter */.N.outputCardinalDir.filter(dir => !data.ifritRadiantPlumeLocations.includes(dir))[0];
+      const safeDir = util/* Directions.outputCardinalDir.filter */.Ns.outputCardinalDir.filter(dir => !data.ifritRadiantPlumeLocations.includes(dir))[0];
       return output[safeDir ?? 'unknown']();
     },
     outputStrings: {
       unknown: outputs/* default.unknown */.Z.unknown,
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir
     }
   }, {
     id: 'UWU Ifrit Vulcan Burst',
@@ -66128,7 +66128,7 @@ const ultima_weapon_ultimate_triggerSet = {
       // 5 = front left
       // 6 = front right
       const dirs = data.nailAdds.map(m => {
-        return util/* Directions.addedCombatantPosTo8Dir */.N.addedCombatantPosTo8Dir(m, centerX, centerY);
+        return util/* Directions.addedCombatantPosTo8Dir */.Ns.addedCombatantPosTo8Dir(m, centerX, centerY);
       }).sort();
       for (let i = 0; i < dirs.length; ++i) {
         const this8Dir = dirs[i];
@@ -66137,7 +66137,7 @@ const ultima_weapon_ultimate_triggerSet = {
         // The two close nails are 45 degrees apart.
         if (next8Dir - this8Dir === 1 || this8Dir - next8Dir === 7) {
           const between16Dir = this8Dir * 2 + 1;
-          const outputKey = util/* Directions.output16Dir */.N.output16Dir[between16Dir] ?? 'unknown';
+          const outputKey = util/* Directions.output16Dir */.Ns.output16Dir[between16Dir] ?? 'unknown';
           return output.text({
             dir: output[outputKey]()
           });
@@ -66154,7 +66154,7 @@ const ultima_weapon_ultimate_triggerSet = {
         ko: '가까운 기둥: ${dir}',
         tc: '近: ${dir}'
       },
-      ...util/* Directions.outputStrings16Dir */.N.outputStrings16Dir
+      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir
     }
   }, {
     id: 'UWU Ifrit Nail Deaths',
@@ -66185,7 +66185,7 @@ const ultima_weapon_ultimate_triggerSet = {
         // Since dashes go through one direction and its opposite, map to N/NE/E/SE zone.
         // Consider a valid kill order to be sequential in either direction.
         // Most people do Z or reverse Z, but there's many valid orders (e.g. bowtie/fish).
-        const this8Dir = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(x, y, centerX, centerY);
+        const this8Dir = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(x, y, centerX, centerY);
         idToDir[m.sourceId] = this8Dir;
         const thisDir = this8Dir % 4;
         if (lastDir === undefined) {
@@ -66328,8 +66328,8 @@ const ultima_weapon_ultimate_triggerSet = {
       // in the opposite direction they will be rotating to avoid dashes.
       const dir1 = isIntercard ? firstNailDir : (firstNailDir + oppositeRotation) % 8;
       const dir2 = (dir1 + 4) % 8;
-      const dir1Str = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dir1)]();
-      const dir2Str = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dir2)]();
+      const dir1Str = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dir1)]();
+      const dir2Str = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dir2)]();
       return output.intercardSafeSpot({
         dir1: dir1Str,
         dir2: dir2Str
@@ -66345,7 +66345,7 @@ const ultima_weapon_ultimate_triggerSet = {
         ko: '${dir1} / ${dir2}',
         tc: '${dir1} / ${dir2}'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'UWU Ifrit Dash Safe Spot 2 Adjust',
@@ -66478,7 +66478,7 @@ const ultima_weapon_ultimate_triggerSet = {
       const oppositeRotationDir = rotationType === 'cw' ? -1 : 1;
       const rotationDir = rotationType === 'cw' ? 1 : -1;
       const startDir = (firstNailDir + oppositeRotationDir + 8) % 8;
-      const ifritDir = util/* Directions.combatantStatePosTo8Dir */.N.combatantStatePosTo8Dir(combatant, centerX, centerY);
+      const ifritDir = util/* Directions.combatantStatePosTo8Dir */.Ns.combatantStatePosTo8Dir(combatant, centerX, centerY);
       for (let i = 1; i <= 4; ++i) {
         const dashDir = (startDir + i * rotationDir + 8) % 8;
         if (dashDir % 4 !== ifritDir % 4) continue;
@@ -66486,7 +66486,7 @@ const ultima_weapon_ultimate_triggerSet = {
         // If Ifrit is the first or third dash, we rotate 45 degrees, otherwise 90.
         const finalRotation = i === 1 || i === 3 ? rotationDir : rotationDir * 2;
         const finalDir = (startDir + finalRotation + 8) % 8;
-        const finalDirStr = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(finalDir)]();
+        const finalDirStr = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(finalDir)]();
         const rotation = rotationType === 'cw' ? output.clockwise() : output.counterclockwise();
         if (i === 1) return output.awokenDash1({
           rotation: rotation,
@@ -66545,7 +66545,7 @@ const ultima_weapon_ultimate_triggerSet = {
       },
       clockwise: outputs/* default.clockwise */.Z.clockwise,
       counterclockwise: outputs/* default.counterclockwise */.Z.counterclockwise,
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'UWU Ifrit Flaming Crush',
@@ -66634,7 +66634,7 @@ const ultima_weapon_ultimate_triggerSet = {
         tc: '安全區: ${dir}'
       },
       unknown: outputs/* default.unknown */.Z.unknown,
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir
     }
   }, {
     id: 'UWU Titan Bury Direction',
@@ -66807,7 +66807,7 @@ const ultima_weapon_ultimate_triggerSet = {
       npcNameId: '2137',
       capture: false
     },
-    condition: data => util/* default.isCasterDpsJob */.Z.isCasterDpsJob(data.job) && data.beyondLimits.has(data.me) && data.phase === 'intermission',
+    condition: data => util/* default.isCasterDpsJob */.ZP.isCasterDpsJob(data.job) && data.beyondLimits.has(data.me) && data.phase === 'intermission',
     suppressSeconds: 5,
     alertText: (_data, _matches, output) => output.text(),
     outputStrings: {
@@ -66830,7 +66830,7 @@ const ultima_weapon_ultimate_triggerSet = {
       source: 'Lahabrea',
       capture: false
     },
-    condition: data => util/* default.isHealerJob */.Z.isHealerJob(data.job) && data.beyondLimits.has(data.me),
+    condition: data => util/* default.isHealerJob */.ZP.isHealerJob(data.job) && data.beyondLimits.has(data.me),
     suppressSeconds: 5,
     alertText: (_data, _matches, output) => output.text(),
     outputStrings: {
@@ -66853,7 +66853,7 @@ const ultima_weapon_ultimate_triggerSet = {
       source: 'Lahabrea',
       capture: false
     },
-    condition: data => util/* default.isMeleeDpsJob */.Z.isMeleeDpsJob(data.job) && data.beyondLimits.has(data.me),
+    condition: data => util/* default.isMeleeDpsJob */.ZP.isMeleeDpsJob(data.job) && data.beyondLimits.has(data.me),
     alertText: (_data, _matches, output) => output.text(),
     outputStrings: {
       text: {
@@ -66936,7 +66936,7 @@ const ultima_weapon_ultimate_triggerSet = {
       if (garuda === undefined || ifrit === undefined || titan === undefined || ultima === undefined) return;
 
       // Garuda always at +/- 3 from center on an intercardinal.
-      const garudaDir = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(garuda.PosX, garuda.PosY, centerX, centerY);
+      const garudaDir = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(garuda.PosX, garuda.PosY, centerX, centerY);
       if (garudaDir % 2 === 0) return;
 
       // e.g. Garuda is NW (7), the two safe directions are E (2) and S (4).
@@ -66945,12 +66945,12 @@ const ultima_weapon_ultimate_triggerSet = {
       // Titan appears slightly offset from a cardinal. Never run out towards Titan.
       // TODO: Titan is slightly offset and you could theoretically pick a slightly
       // safer cardinal in some cases (I think?) depending on how landslides aim from there.
-      const titanDir = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(titan.PosX, titan.PosY, centerX, centerY);
+      const titanDir = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(titan.PosX, titan.PosY, centerX, centerY);
       safeDir = safeDir.filter(x => x !== titanDir);
 
       // Ultima appears on an intercardinal. If Ultima is adjacent to only one of the safe spots,
       // then pick the other safe spot because it will have more safe directions to run 2nd.
-      const ultimaDir = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(ultima.PosX, ultima.PosY, centerX, centerY);
+      const ultimaDir = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(ultima.PosX, ultima.PosY, centerX, centerY);
       const notAdjacentToUltima = safeDir.filter(x => {
         const isAdjacentToUltima = x === (ultimaDir + 1) % 8 || ultimaDir === (x + 1) % 8;
         return !isAdjacentToUltima;
@@ -66959,7 +66959,7 @@ const ultima_weapon_ultimate_triggerSet = {
       if (notAdjacentToUltima.length !== 0) safeDir = safeDir.filter(x => notAdjacentToUltima.includes(x));
 
       // Ifrit always is on an intercard and dashes through it.
-      const ifritDir = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(ifrit.PosX, ifrit.PosY, centerX, centerY);
+      const ifritDir = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(ifrit.PosX, ifrit.PosY, centerX, centerY);
       const dirStrMap = {
         0: output.dirN(),
         2: output.dirE(),
@@ -68792,13 +68792,13 @@ const unending_coil_ultimate_triggerSet = {
       const y = parseFloat(matches.y);
       // Positions are the 8 cardinals + numerical slop on a radius=24 circle.
       // N = (0, -24), E = (24, 0), S = (0, 24), W = (-24, 0)
-      const dir = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(x, y, unending_coil_ultimate_centerX, unending_coil_ultimate_centerY);
+      const dir = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(x, y, unending_coil_ultimate_centerX, unending_coil_ultimate_centerY);
       data.naelDragons[dir] = 1;
       if (Object.keys(data.seenDragon).length !== 5) return;
       const result = findDragonMarks(data.naelDragons);
       if (!result) return;
       data.naelMarks = result.marks.map(i => {
-        return util/* Directions.output8Dir */.N.output8Dir[i] ?? 'unknown';
+        return util/* Directions.output8Dir */.Ns.output8Dir[i] ?? 'unknown';
       });
       data.wideThirdDive = result.wideThirdDive;
       data.unsafeThirdMark = result.unsafeThirdMark;
@@ -68855,7 +68855,7 @@ const unending_coil_ultimate_triggerSet = {
         ko: '징: ${dive1}, ${dive2}, ${dive3} (넓음)',
         tc: '標記: ${dive1}, ${dive2}, ${dive3} (大)'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'UCU Nael Dragon Dive Marker Me',
@@ -68881,7 +68881,7 @@ const unending_coil_ultimate_triggerSet = {
         ko: '${dir}으로 이동',
         tc: '去 ${dir} 引導俯衝'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'UCU Nael Dragon Dive Marker Others',
@@ -69047,15 +69047,15 @@ const unending_coil_ultimate_triggerSet = {
     alertText: (data, _matches, output) => {
       if (data.lastOctetMarker === undefined) return output.twinOnUnknown({
         unknown: output.unknown(),
-        dir: output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(data.octetTwinDir)]()
+        dir: output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(data.octetTwinDir)]()
       });
       return output.twinOnPlayer({
         player: data.party.member(data.lastOctetMarker),
-        dir: output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(data.octetTwinDir)]()
+        dir: output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(data.octetTwinDir)]()
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       unknown: outputs/* default.unknown */.Z.unknown,
       twinOnPlayer: {
         en: '${player} Bait Twin (${dir})',
@@ -69138,7 +69138,7 @@ const unending_coil_ultimate_triggerSet = {
       // Bahamut will always be on an exact cardinal/intercardinal (w/Nael & Twin on either side)
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      const diveDir = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(x, y, unending_coil_ultimate_centerX, unending_coil_ultimate_centerY);
+      const diveDir = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(x, y, unending_coil_ultimate_centerX, unending_coil_ultimate_centerY);
       return output.dive({
         dir: output[diveDir]()
       });
@@ -69152,7 +69152,7 @@ const unending_coil_ultimate_triggerSet = {
         ko: '${dir} 다이브',
         tc: '${dir} 俯衝'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   },
   // Collect sourceIds for Nael, Twin & Bahamut when they dive during Quickmarch
@@ -69199,7 +69199,7 @@ const unending_coil_ultimate_triggerSet = {
     alertText: (_data, matches, output) => {
       const posX = parseFloat(matches.x);
       const posY = parseFloat(matches.y);
-      const naelDirOutput = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(posX, posY, unending_coil_ultimate_centerX, unending_coil_ultimate_centerY);
+      const naelDirOutput = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(posX, posY, unending_coil_ultimate_centerX, unending_coil_ultimate_centerY);
       return output.naelPosition({
         dir: output[naelDirOutput]()
       });
@@ -69213,7 +69213,7 @@ const unending_coil_ultimate_triggerSet = {
         ko: '넬 ${dir}',
         tc: '奈爾在 ${dir}'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'UCU Megaflare Stack Me',
@@ -69414,11 +69414,11 @@ const unending_coil_ultimate_triggerSet = {
       if (naelAngle === undefined) return;
       const wantedIdx = parseInt(data.triggerSetConfig.heavensfallTowerPosition);
       const towers = data.heavensfallTowerSpots.sort((l, r) => posToAngle(l) - posToAngle(r));
-      const towersMap = towers.map(t => util/* Directions.xyTo16DirNum */.N.xyTo16DirNum(parseFloat(t.x), parseFloat(t.y), unending_coil_ultimate_centerX, unending_coil_ultimate_centerY));
+      const towersMap = towers.map(t => util/* Directions.xyTo16DirNum */.Ns.xyTo16DirNum(parseFloat(t.x), parseFloat(t.y), unending_coil_ultimate_centerX, unending_coil_ultimate_centerY));
       let naelIdx = towers.findIndex(t => posToAngle(t) >= naelAngle);
       if (naelIdx < 0) naelIdx += 8;
       const towerDir = towersMap[(wantedIdx + naelIdx) % 8];
-      const myTowerDir = towerDir !== undefined ? util/* Directions.output16Dir */.N.output16Dir[towerDir] ?? 'unknown' : 'unknown';
+      const myTowerDir = towerDir !== undefined ? util/* Directions.output16Dir */.Ns.output16Dir[towerDir] ?? 'unknown' : 'unknown';
       return output.tower({
         dir: output[myTowerDir]()
       });
@@ -69432,7 +69432,7 @@ const unending_coil_ultimate_triggerSet = {
         ko: '기둥: ${dir}',
         tc: '塔: ${dir}'
       },
-      ...util/* Directions.outputStrings16Dir */.N.outputStrings16Dir
+      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir
     }
   }, {
     id: 'UCU Earthshaker Me',
@@ -69530,7 +69530,7 @@ const unending_coil_ultimate_triggerSet = {
       let bahaDirIdx;
       for (const mob of Object.values(data.combatantData)) {
         const mobId = parseInt(mob.id, 16);
-        const mobDirIdx = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(parseFloat(mob.x), parseFloat(mob.y), unending_coil_ultimate_centerX, unending_coil_ultimate_centerY);
+        const mobDirIdx = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(parseFloat(mob.x), parseFloat(mob.y), unending_coil_ultimate_centerX, unending_coil_ultimate_centerY);
         if (mobId === data.trioSourceIds.nael) naelDirIdx = mobDirIdx;else if (mobId === data.trioSourceIds.bahamut) bahaDirIdx = mobDirIdx;else if (mobId === data.trioSourceIds.twin) data.octetTwinDir = mobDirIdx;
       }
       if (naelDirIdx === undefined || bahaDirIdx === undefined) return;
@@ -69540,8 +69540,8 @@ const unending_coil_ultimate_triggerSet = {
       // http://clees.me/guides/ucob/
       let rotationIdxModifier; // this is used to modify the party starting spot in directions[] if Nael is opposite Bahamut
       let rotationPath;
-      const bahaOutputStr = util/* Directions.output8Dir */.N.output8Dir[bahaDirIdx];
-      const cardinalDirs = util/* Directions.outputCardinalDir */.N.outputCardinalDir;
+      const bahaOutputStr = util/* Directions.output8Dir */.Ns.output8Dir[bahaDirIdx];
+      const cardinalDirs = util/* Directions.outputCardinalDir */.Ns.outputCardinalDir;
       if (bahaOutputStr === undefined) return;
       if (cardinalDirs.includes(bahaOutputStr)) {
         rotationIdxModifier = -1;
@@ -69563,7 +69563,7 @@ const unending_coil_ultimate_triggerSet = {
           partyStartIdx = 0;
         }
       }
-      const partyStartDir = util/* Directions.output8Dir */.N.output8Dir[partyStartIdx] ?? 'unknown';
+      const partyStartDir = util/* Directions.output8Dir */.Ns.output8Dir[partyStartIdx] ?? 'unknown';
       if (partyStartDir === undefined || rotationPath === undefined) return;
       return output.grandOctet({
         startDir: output[partyStartDir](),
@@ -69581,7 +69581,7 @@ const unending_coil_ultimate_triggerSet = {
       },
       clockwise: outputs/* default.clockwise */.Z.clockwise,
       counterclockwise: outputs/* default.counterclockwise */.Z.counterclockwise,
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   },
   // --- Golden Bahamut ---
@@ -69656,25 +69656,25 @@ const unending_coil_ultimate_triggerSet = {
     },
     suppressSeconds: 20,
     infoText: (_data, matches, output) => {
-      const towardsDirNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(matches.heading));
-      const towardsDir = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(towardsDirNum);
-      const startDir = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum((towardsDirNum + 4) % 8);
+      const towardsDirNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(matches.heading));
+      const towardsDir = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(towardsDirNum);
+      const startDir = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum((towardsDirNum + 4) % 8);
       return output.text({
         dir1: output[startDir](),
         dir2: output[towardsDir]()
       });
     },
     tts: (_data, matches, output) => {
-      const towardsDirNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(matches.heading));
-      const towardsDir = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(towardsDirNum);
-      const startDir = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum((towardsDirNum + 4) % 8);
+      const towardsDirNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(matches.heading));
+      const towardsDir = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(towardsDirNum);
+      const startDir = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum((towardsDirNum + 4) % 8);
       return output.tts({
         dir1: output[startDir](),
         dir2: output[towardsDir]()
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       text: {
         en: 'Exaflares ${dir1} -> ${dir2}',
         de: 'Exaflares ${dir1} -> ${dir2}',
@@ -80372,7 +80372,7 @@ const bozjan_southern_front_triggerSet = {
     id: 'Bozja South Castrum Lyon Passage',
     type: 'ActorControlSelfExtra',
     netRegex: {
-      category: util/* default.actorControlType.logMsg */.Z.actorControlType.logMsg,
+      category: util/* default.actorControlType.logMsg */.ZP.actorControlType.logMsg,
       param1: '25AC',
       capture: false
     },
@@ -92681,7 +92681,7 @@ const e10s_triggerSet = {
     run: (data, matches) => {
       data.myClone ??= [];
       const clonesJob = parseInt(matches.job, 16);
-      if (clonesJob === util/* default.jobToJobEnum */.Z.jobToJobEnum(data.job)) data.myClone.push(matches.id.toUpperCase());
+      if (clonesJob === util/* default.jobToJobEnum */.ZP.jobToJobEnum(data.job)) data.myClone.push(matches.id.toUpperCase());
     }
   }, {
     id: 'E10S Shadow Of A Hero Head Marker Map',
@@ -106146,7 +106146,7 @@ const e8s_triggerSet = {
       return data.diamondFrostFreezeTargets.length === 2;
     },
     infoText: (data, _matches, output) => {
-      if (!util/* default.canCleanse */.Z.canCleanse(data.job)) return;
+      if (!util/* default.canCleanse */.ZP.canCleanse(data.job)) return;
       const players = data.diamondFrostFreezeTargets.sort().map(x => data.party.member(x));
       return output.cleanse({
         players: players
@@ -106471,7 +106471,7 @@ const e8s_triggerSet = {
     preRun: data => data.asunderCount++,
     suppressSeconds: 5,
     alertText: (data, _matches, output) => {
-      if (!util/* default.canStun */.Z.canStun(data.job)) return;
+      if (!util/* default.canStun */.ZP.canStun(data.job)) return;
       if (data.asunderCount === 1 || data.asunderCount === 3) return output.text();
     },
     outputStrings: {
@@ -106492,7 +106492,7 @@ const e8s_triggerSet = {
       id: '4D85'
     },
     condition: (data, matches) => {
-      if (!util/* default.canSilence */.Z.canSilence(data.job)) return false;
+      if (!util/* default.canSilence */.ZP.canSilence(data.job)) return false;
       const x = parseFloat(matches.x);
       const side = x > 100 ? 'east' : 'west';
       return side === data.asunderSide;
@@ -106997,7 +106997,7 @@ const e8s_triggerSet = {
       id: '4D7D',
       capture: false
     },
-    condition: data => util/* default.canCleanse */.Z.canCleanse(data.job),
+    condition: data => util/* default.canCleanse */.ZP.canCleanse(data.job),
     suppressSeconds: 1,
     infoText: (data, _matches, output) => {
       if (data.job === 'BLU') return output.bluCleanse();
@@ -113726,7 +113726,7 @@ const levi_un_triggerSet = {
       id: '5CE5',
       capture: false
     },
-    condition: data => util/* default.isCasterDpsJob */.Z.isCasterDpsJob(data.job) || util/* default.isHealerJob */.Z.isHealerJob(data.job),
+    condition: data => util/* default.isCasterDpsJob */.ZP.isCasterDpsJob(data.job) || util/* default.isHealerJob */.ZP.isHealerJob(data.job),
     suppressSeconds: 9999,
     infoText: (_data, _matches, output) => output.text(),
     outputStrings: {
@@ -113748,7 +113748,7 @@ const levi_un_triggerSet = {
       id: '5CE4',
       capture: false
     },
-    condition: data => util/* default.isRangedDpsJob */.Z.isRangedDpsJob(data.job),
+    condition: data => util/* default.isRangedDpsJob */.ZP.isRangedDpsJob(data.job),
     suppressSeconds: 9999,
     infoText: (_data, _matches, output) => output.text(),
     outputStrings: {
@@ -128870,7 +128870,7 @@ const eureka_orthos_floors_51_60_triggerSet = {
     condition: data => !data.calledOctupleSwipes,
     durationSeconds: 18,
     alertText: (data, matches, output) => {
-      const heading = util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(parseFloat(matches.heading));
+      const heading = util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(parseFloat(matches.heading));
       data.octupleSwipes ??= [];
       data.octupleSwipes.push(heading);
       if (data.octupleSwipes.length < 5) return;
@@ -139195,8 +139195,8 @@ const couldStackLooseFunc = (stackJob1, stackJob2, unmarkedJob1, unmarkedJob2, f
   const unmarkedCount = countJob(unmarkedJob1, unmarkedJob2, func);
   return stackCount === 1 && unmarkedCount === 1;
 };
-const isMeleeOrTank = x => util/* default.isMeleeDpsJob */.Z.isMeleeDpsJob(x) || util/* default.isTankJob */.Z.isTankJob(x);
-const isSupport = x => util/* default.isHealerJob */.Z.isHealerJob(x) || util/* default.isTankJob */.Z.isTankJob(x);
+const isMeleeOrTank = x => util/* default.isMeleeDpsJob */.ZP.isMeleeDpsJob(x) || util/* default.isTankJob */.ZP.isTankJob(x);
+const isSupport = x => util/* default.isHealerJob */.ZP.isHealerJob(x) || util/* default.isTankJob */.ZP.isTankJob(x);
 const findStackPartners = (data, stack1, stack2, stackOrderOverride) => {
   const party = data.party;
   if (stack1 === undefined || stack2 === undefined) return 'unknown';
@@ -140132,8 +140132,8 @@ const another_mount_rokkon_savage_triggerSet = {
       // Because of this, no need to check left/right cleave as position and directions tell all.
       const states = data.combatantData.map(combatant => {
         return {
-          dir: util/* Directions.combatantStatePosTo8Dir */.N.combatantStatePosTo8Dir(combatant, centerX, centerY),
-          heading: util/* Directions.combatantStateHdgTo8Dir */.N.combatantStateHdgTo8Dir(combatant)
+          dir: util/* Directions.combatantStatePosTo8Dir */.Ns.combatantStatePosTo8Dir(combatant, centerX, centerY),
+          heading: util/* Directions.combatantStateHdgTo8Dir */.Ns.combatantStateHdgTo8Dir(combatant)
         };
       });
       const outwardStates = states.filter(state => state.dir !== (state.heading + 4) % 8);
@@ -141643,7 +141643,7 @@ const another_mount_rokkon_savage_triggerSet = {
     infoText: (data, _matches, output) => {
       const [combatant] = data.combatantData;
       if (combatant === undefined || data.combatantData.length !== 1) return;
-      const dir = util/* Directions.xyTo4DirNum */.N.xyTo4DirNum(combatant.PosX, combatant.PosY, mokoCenterX, mokoCenterY);
+      const dir = util/* Directions.xyTo4DirNum */.Ns.xyTo4DirNum(combatant.PosX, combatant.PosY, mokoCenterX, mokoCenterY);
       data.oniClaw = dir === 1 || dir === 3 ? 'northSouth' : 'eastWest';
       if (data.oniClaw === 'northSouth') return output.northSouth();
       return output.eastWest();
@@ -142853,8 +142853,8 @@ const another_mount_rokkon_couldStackLooseFunc = (stackJob1, stackJob2, unmarked
   const unmarkedCount = another_mount_rokkon_countJob(unmarkedJob1, unmarkedJob2, func);
   return stackCount === 1 && unmarkedCount === 1;
 };
-const another_mount_rokkon_isMeleeOrTank = x => util/* default.isMeleeDpsJob */.Z.isMeleeDpsJob(x) || util/* default.isTankJob */.Z.isTankJob(x);
-const another_mount_rokkon_isSupport = x => util/* default.isHealerJob */.Z.isHealerJob(x) || util/* default.isTankJob */.Z.isTankJob(x);
+const another_mount_rokkon_isMeleeOrTank = x => util/* default.isMeleeDpsJob */.ZP.isMeleeDpsJob(x) || util/* default.isTankJob */.ZP.isTankJob(x);
+const another_mount_rokkon_isSupport = x => util/* default.isHealerJob */.ZP.isHealerJob(x) || util/* default.isTankJob */.ZP.isTankJob(x);
 const another_mount_rokkon_findStackPartners = (data, stack1, stack2, stackOrderOverride) => {
   const party = data.party;
   if (stack1 === undefined || stack2 === undefined) return 'unknown';
@@ -143790,8 +143790,8 @@ const another_mount_rokkon_triggerSet = {
       // Because of this, no need to check left/right cleave as position and directions tell all.
       const states = data.combatantData.map(combatant => {
         return {
-          dir: util/* Directions.combatantStatePosTo8Dir */.N.combatantStatePosTo8Dir(combatant, centerX, centerY),
-          heading: util/* Directions.combatantStateHdgTo8Dir */.N.combatantStateHdgTo8Dir(combatant)
+          dir: util/* Directions.combatantStatePosTo8Dir */.Ns.combatantStatePosTo8Dir(combatant, centerX, centerY),
+          heading: util/* Directions.combatantStateHdgTo8Dir */.Ns.combatantStateHdgTo8Dir(combatant)
         };
       });
       const outwardStates = states.filter(state => state.dir !== (state.heading + 4) % 8);
@@ -145301,7 +145301,7 @@ const another_mount_rokkon_triggerSet = {
     infoText: (data, _matches, output) => {
       const [combatant] = data.combatantData;
       if (combatant === undefined || data.combatantData.length !== 1) return;
-      const dir = util/* Directions.xyTo4DirNum */.N.xyTo4DirNum(combatant.PosX, combatant.PosY, another_mount_rokkon_mokoCenterX, another_mount_rokkon_mokoCenterY);
+      const dir = util/* Directions.xyTo4DirNum */.Ns.xyTo4DirNum(combatant.PosX, combatant.PosY, another_mount_rokkon_mokoCenterX, another_mount_rokkon_mokoCenterY);
       data.oniClaw = dir === 1 || dir === 3 ? 'northSouth' : 'eastWest';
       if (data.oniClaw === 'northSouth') return output.northSouth();
       return output.eastWest();
@@ -154351,8 +154351,8 @@ const mount_rokkon_triggerSet = {
       // Because of this, no need to check left/right cleave as position and directions tell all.
       const states = data.combatantData.map(combatant => {
         return {
-          dir: util/* Directions.combatantStatePosTo8Dir */.N.combatantStatePosTo8Dir(combatant, centerX, centerY),
-          heading: util/* Directions.combatantStateHdgTo8Dir */.N.combatantStateHdgTo8Dir(combatant)
+          dir: util/* Directions.combatantStatePosTo8Dir */.Ns.combatantStatePosTo8Dir(combatant, centerX, centerY),
+          heading: util/* Directions.combatantStateHdgTo8Dir */.Ns.combatantStateHdgTo8Dir(combatant)
         };
       });
       const outwardStates = states.filter(state => state.dir !== (state.heading + 4) % 8);
@@ -157998,7 +157998,7 @@ const the_lunar_subterrane_triggerSet = {
       // We don't really care about the specific safe coordinates,
       // the important thing is that there's at least one safe in each of row and column.
       if (finalX === undefined || finalY === undefined) return output.unknown();
-      const safeNumber = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(finalX, finalY, elfCenterX, elfCenterY);
+      const safeNumber = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(finalX, finalY, elfCenterX, elfCenterY);
       const outputSelect = dirNumberToOutput[safeNumber];
       if (outputSelect === undefined) return output.unknown();
       return output[outputSelect]();
@@ -158048,7 +158048,7 @@ const the_lunar_subterrane_triggerSet = {
     netRegex: {
       effectId: 'D24'
     },
-    condition: data => util/* default.canCleanse */.Z.canCleanse(data.job),
+    condition: data => util/* default.canCleanse */.ZP.canCleanse(data.job),
     alertText: (data, matches, output) => {
       return output.cleanse({
         player: data.party.member(matches.target)
@@ -170259,7 +170259,7 @@ const p12s_triggerSet = {
     },
     run: data => {
       // Find the intercardinal adds that jumped, and then sort by order.
-      const orderedJumps = data.lcCombatants.filter(combatant => util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(combatant.PosX, combatant.PosY, 100, 100) % 2 === 1).map(combatant => combatant.order).sort((left, right) => (left ?? 0) - (right ?? 0));
+      const orderedJumps = data.lcCombatants.filter(combatant => util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(combatant.PosX, combatant.PosY, 100, 100) % 2 === 1).map(combatant => combatant.order).sort((left, right) => (left ?? 0) - (right ?? 0));
       if (orderedJumps.length !== 4) {
         console.error(`LC Line Bait Collector: Incorrect count of intercardinal adds`, data.lcCombatants);
         return;
@@ -170468,7 +170468,7 @@ const p12s_triggerSet = {
 
       // TODO: technically this is just intercardinals and we don't need all outputs here.
       // Do we need another helper for this?
-      const dirStr = util/* Directions.addedCombatantPosTo8DirOutput */.N.addedCombatantPosTo8DirOutput(destMatches, p12s_centerX, p12s_centerY);
+      const dirStr = util/* Directions.addedCombatantPosTo8DirOutput */.Ns.addedCombatantPosTo8DirOutput(destMatches, p12s_centerX, p12s_centerY);
       const dir = output[dirStr]();
       data.superchain1FirstDest = destMatches;
       if (inOut === superchainNpcBaseIdMap.in) {
@@ -170523,7 +170523,7 @@ const p12s_triggerSet = {
         ko: '밖 + 파트너 (${dir})',
         tc: '遠離 + 雙人分攤 (${dir})'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'P12S Superchain Theory I Second Mechanic',
@@ -170558,8 +170558,8 @@ const p12s_triggerSet = {
       // Extra checks just in case??
       if (dest1Donut < dest1Sphere && dest2Donut > dest2Sphere) donutDest = dest1;else if (dest1Donut > dest1Sphere && dest2Donut < dest2Sphere) donutDest = dest2;
       if (donutDest === undefined) return;
-      const prevDir = util/* Directions.addedCombatantPosTo8Dir */.N.addedCombatantPosTo8Dir(firstMechDest, p12s_centerX, p12s_centerY);
-      const thisDir = util/* Directions.addedCombatantPosTo8Dir */.N.addedCombatantPosTo8Dir(donutDest, p12s_centerX, p12s_centerY);
+      const prevDir = util/* Directions.addedCombatantPosTo8Dir */.Ns.addedCombatantPosTo8Dir(firstMechDest, p12s_centerX, p12s_centerY);
+      const thisDir = util/* Directions.addedCombatantPosTo8Dir */.Ns.addedCombatantPosTo8Dir(donutDest, p12s_centerX, p12s_centerY);
       const engrave = output[data.engravement2MyLabel ?? 'unknown']();
       const rotation = (thisDir - prevDir + 8) % 8;
       if (rotation === 2) return output.leftClockwise({
@@ -172146,7 +172146,7 @@ const p12s_triggerSet = {
       data.darknessClones.forEach(clone => {
         const x = parseFloat(clone.x);
         const y = parseFloat(clone.y);
-        const cloneDir = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(x, y, uavCenterX, uavCenterY);
+        const cloneDir = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(x, y, uavCenterX, uavCenterY);
         const pairedDir = unsafeMap[cloneDir];
         safeDirs = safeDirs.filter(dir => dir !== cloneDir && dir !== pairedDir);
       });
@@ -172167,7 +172167,7 @@ const p12s_triggerSet = {
         ko: '${dir1} / ${dir2} 안전',
         tc: '${dir1} / ${dir2} 安全'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'P12S Ultima Ray 2',
@@ -172195,7 +172195,7 @@ const p12s_triggerSet = {
       };
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      const cloneDir = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(x, y, uavCenterX, uavCenterY);
+      const cloneDir = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(x, y, uavCenterX, uavCenterY);
       const [dir1, dir2] = safeMap[cloneDir];
       if (dir1 === undefined || dir2 === undefined) return;
       return output.combined({
@@ -172212,7 +172212,7 @@ const p12s_triggerSet = {
         ko: '${dir1} / ${dir2} 안전',
         tc: '${dir1} / ${dir2} 安全'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'P12S Gaiaochos',
@@ -187652,7 +187652,7 @@ const p9s_triggerSet = {
     },
     run: (data, matches) => {
       // (0 = N, 1 = NE ... 7 = NW)
-      const orb8Dir = util/* Directions.addedCombatantPosTo8Dir */.N.addedCombatantPosTo8Dir(matches, p9s_centerX, p9s_centerY);
+      const orb8Dir = util/* Directions.addedCombatantPosTo8Dir */.Ns.addedCombatantPosTo8Dir(matches, p9s_centerX, p9s_centerY);
       data.levinOrbs[matches.id] = {
         dir: orb8Dir
       };
@@ -187708,7 +187708,7 @@ const p9s_triggerSet = {
         }
       }
       if (firstOrb8Dir === undefined || secondOrb8Dir === undefined) return;
-      const firstOrb8DirStr = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(firstOrb8Dir);
+      const firstOrb8DirStr = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(firstOrb8Dir);
       if (firstOrb8DirStr === undefined) return;
       const firstOrbDir = output[firstOrb8DirStr]();
       const rotationDir = (secondOrb8Dir - firstOrb8Dir + 8) % 8 === 2 ? output.clockwise() : output.counterclock();
@@ -187730,7 +187730,7 @@ const p9s_triggerSet = {
       },
       clockwise: outputs/* default.clockwise */.Z.clockwise,
       counterclock: outputs/* default.counterclockwise */.Z.counterclockwise,
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'P9S Limit Cut 1 Player Number',
@@ -188817,7 +188817,7 @@ const asura_triggerSet = {
         ko: '(분신 옆)',
         tc: '(分身兩側)'
       },
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir
     }
   }, {
     id: 'Asura Iconic Execution With Jump',
@@ -188827,7 +188827,7 @@ const asura_triggerSet = {
     netRegex: {},
     condition: (data, matches) => data.iconicExecutionCount >= 3 && data.asuraImageId === matches.id && data.storedIconMech !== undefined,
     alertText: (data, matches, output) => {
-      const imageLoc = util/* Directions.xyToCardinalDirOutput */.N.xyToCardinalDirOutput(parseFloat(matches.x), parseFloat(matches.y), asura_centerX, asura_centerY);
+      const imageLoc = util/* Directions.xyToCardinalDirOutput */.Ns.xyToCardinalDirOutput(parseFloat(matches.x), parseFloat(matches.y), asura_centerX, asura_centerY);
       const iconType = data.storedIconMech;
       if (iconType === undefined) return;
       const spotOutput = output[iconType]();
@@ -188889,7 +188889,7 @@ const asura_triggerSet = {
         ko: '(분신 옆)',
         tc: '(分身兩側)'
       },
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir
     }
   },
   // 8C90 - Red E, Blue W
@@ -188962,7 +188962,7 @@ const asura_triggerSet = {
     },
     run: data => {
       if (data.khadgaLC2Combatant === undefined) return;
-      const lc2SideDir = util/* Directions.combatantStatePosTo8DirOutput */.N.combatantStatePosTo8DirOutput(data.khadgaLC2Combatant, asura_centerX, asura_centerY);
+      const lc2SideDir = util/* Directions.combatantStatePosTo8DirOutput */.Ns.combatantStatePosTo8DirOutput(data.khadgaLC2Combatant, asura_centerX, asura_centerY);
       if (lc2SideDir === 'dirW') data.khadgaLC2Loc = 'west';else if (lc2SideDir === 'dirE') data.khadgaLC2Loc = 'east';else console.log('Could not determine Khadga sequence.');
       return;
     }
@@ -190795,7 +190795,7 @@ const getAoEOrbSafeDir = (posX, posY, output, head8Dir) => {
   }[head8Dir];
 };
 const getStarPositionFromHeading = heading => {
-  const dir = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(heading));
+  const dir = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(heading));
   return {
     1: [114, 86],
     //  NE
@@ -191022,7 +191022,7 @@ const endsinger_ex_triggerSet = {
       if (data.combatantData.length !== 1 || head === undefined) return simpleOutput;
 
       // Head should be facing intercardinalish.
-      const rawHead8Dir = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(head.Heading);
+      const rawHead8Dir = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(head.Heading);
       const head8Dir = rawHead8Dir % 2 === 0 ? undefined : rawHead8Dir;
       return getStarText(head8Dir, matches, output);
     },
@@ -191167,7 +191167,7 @@ const endsinger_ex_triggerSet = {
 
       // Snap heading to closest card and add 2 for opposite direction
       // N = 0, E = 1, S = 2, W = 3
-      const cardinal = (util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(headCombatant.state.Heading) + 2) % 4;
+      const cardinal = (util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(headCombatant.state.Heading) + 2) % 4;
       const dirs = {
         0: output.north(),
         1: output.east(),
@@ -191228,7 +191228,7 @@ const endsinger_ex_triggerSet = {
         head.mechanics.push('donut');
       } else {
         // Snap heading to closest card and add 2 for opposite direction
-        const cardinal = (util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(parseFloat(matches.heading)) + 2) % 4;
+        const cardinal = (util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(parseFloat(matches.heading)) + 2) % 4;
         const safeDir = {
           0: 'safeN',
           1: 'safeE',
@@ -193446,7 +193446,7 @@ const golbez_triggerSet = {
         tc: '分身：${dir1}->${dir2}->${dir3}->${dir4}'
       },
       unknown: outputs/* default.unknown */.Z.unknown,
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir
     }
   }, {
     id: 'Golbez Eventide Fall',
@@ -195057,15 +195057,15 @@ const rubicante_ex_triggerSet = {
     alertText: (data, _matches, output) => {
       const [inner, middle, outer] = data.combatantData;
       if (inner === undefined || middle === undefined || outer === undefined) return;
-      const innerDir8 = util/* Directions.combatantStateHdgTo8Dir */.N.combatantStateHdgTo8Dir(inner);
+      const innerDir8 = util/* Directions.combatantStateHdgTo8Dir */.Ns.combatantStateHdgTo8Dir(inner);
       // The "left" leg of the V is north.
       // The middle of the V is innerDir + 1.
       // We want to go opposite, aka + 4.
       const safeDir8 = (innerDir8 + 1 + 4) % 8;
-      return output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(safeDir8)]();
+      return output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(safeDir8)]();
     },
     // The entire quadrant is safe.
-    outputStrings: util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+    outputStrings: util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
   }, {
     id: 'RubicanteEx Ordeal of Purgation 3',
     type: 'StartsUsing',
@@ -195080,7 +195080,7 @@ const rubicante_ex_triggerSet = {
     alertText: (data, _matches, output) => {
       const [inner, middle, outer] = data.combatantData;
       if (inner === undefined || middle === undefined || outer === undefined) return;
-      const innerDir = util/* Directions.combatantStateHdgTo8Dir */.N.combatantStateHdgTo8Dir(inner);
+      const innerDir = util/* Directions.combatantStateHdgTo8Dir */.Ns.combatantStateHdgTo8Dir(inner);
       // The "left" leg of the V is north.
       // Tell people to go max melee to either inside interintercardinal of the V legs.
       // TODO: you could use middle's orientation here to say if the intercard between
@@ -195137,7 +195137,7 @@ const rubicante_ex_triggerSet = {
       const spinny = data.spinnyCollect.find(x => x.location === mapEffectSlots.middle);
       if (data.spinnyCollect.length !== 1 || spinny === undefined) return;
       const isCW = spinny.flags === mapEffectFlags.clockwise;
-      const middleDir8 = util/* Directions.combatantStateHdgTo8Dir */.N.combatantStateHdgTo8Dir(middle);
+      const middleDir8 = util/* Directions.combatantStateHdgTo8Dir */.Ns.combatantStateHdgTo8Dir(middle);
 
       // Ordeal 4 is "use cat ears, follow the arrow".
       // "north" for middle is upside-down cat ears.
@@ -195180,16 +195180,16 @@ const rubicante_ex_triggerSet = {
     alertText: (data, _matches, output) => {
       const [inner, middle, outer] = data.combatantData;
       if (inner === undefined || middle === undefined || outer === undefined) return;
-      const innerDir8 = util/* Directions.combatantStateHdgTo8Dir */.N.combatantStateHdgTo8Dir(inner);
+      const innerDir8 = util/* Directions.combatantStateHdgTo8Dir */.Ns.combatantStateHdgTo8Dir(inner);
       // if the inner line is N, there are a number of safe areas here.
       // S max melee ccw to ESE max melee, along with ENE max melee.
       // but SE (aka dir8 of 3) is the most generous safe spot.
 
       const safeDir8 = (innerDir8 + 3) % 8;
-      return output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(safeDir8)]();
+      return output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(safeDir8)]();
     },
     // The entire quadrant is safe.
-    outputStrings: util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+    outputStrings: util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
   }, {
     id: 'RubicanteEx Ordeal of Purgation 6',
     type: 'StartsUsing',
@@ -195206,7 +195206,7 @@ const rubicante_ex_triggerSet = {
 
       // Inner should always be facing north (V pointing NE)
       // or facing south (V pointing SW).
-      const innerDir8 = util/* Directions.combatantStateHdgTo8Dir */.N.combatantStateHdgTo8Dir(inner);
+      const innerDir8 = util/* Directions.combatantStateHdgTo8Dir */.Ns.combatantStateHdgTo8Dir(inner);
       if (innerDir8 !== 0 && innerDir8 !== 4) return;
 
       // only middle rotating
@@ -198265,8 +198265,8 @@ const thordan_un_triggerSet = {
       if (data.thrustPositions.length !== 3) return;
       let safeDirs = Object.keys(thordan_un_unsafeMap);
       data.thrustPositions.forEach(knight => {
-        const knightNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(knight.heading));
-        const knightDir = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(knightNum);
+        const knightNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(knight.heading));
+        const knightDir = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(knightNum);
         const pairedDir = thordan_un_unsafeMap[knightDir];
         safeDirs = safeDirs.filter(dir => dir !== knightDir && dir !== pairedDir);
       });
@@ -198292,7 +198292,7 @@ const thordan_un_triggerSet = {
         ko: '${dir1} / ${dir2} 안전',
         tc: '${dir1} / ${dir2} 安全'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'ThordanUN Sword Of The Heavens',
@@ -198561,8 +198561,8 @@ const thordan_un_triggerSet = {
     // Shared ability from all knights when they teleport in.
     condition: data => data.phase === 5,
     infoText: (_data, matches, output) => {
-      const knightNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(matches.heading));
-      const knightDir = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(knightNum);
+      const knightNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(matches.heading));
+      const knightDir = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(knightNum);
       const [dir1, dir2] = [knightDir, thordan_un_unsafeMap[knightDir]].sort();
       if (dir1 === undefined || dir2 === undefined) return;
       return output.combined({
@@ -198580,7 +198580,7 @@ const thordan_un_triggerSet = {
         ko: '${dir1} / ${dir2} 위험',
         tc: '${dir1} / ${dir2} 危險'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'ThordanUN Faith Unmoving Off Center',
@@ -198596,7 +198596,7 @@ const thordan_un_triggerSet = {
     alertText: (_data, matches, output) => {
       const knightX = parseFloat(matches.x);
       const knightY = parseFloat(matches.y);
-      const knightDir = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(knightX, knightY, 0, 0);
+      const knightDir = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(knightX, knightY, 0, 0);
       return output.knockbackWarn({
         knightDir: output[knightDir]()
       });
@@ -199590,12 +199590,12 @@ const zeromus_ex_triggerSet = {
       let possibleSafeSpots = [...validSafeSpots];
       for (const blast of data.miasmicBlasts) {
         // special case for center - don't need to find relative dirs, just remove all intercards
-        if (Math.round(blast.PosX) === 100 && Math.round(blast.PosY) === 100) intercard16Dirs.forEach(intercard => possibleSafeSpots = possibleSafeSpots.filter(dir => dir !== util/* Directions.output16Dir */.N.output16Dir[intercard]));else {
-          const blastPos16Dir = util/* Directions.xyTo16DirNum */.N.xyTo16DirNum(blast.PosX, blast.PosY, zeromus_ex_centerX, zeromus_ex_centerY);
+        if (Math.round(blast.PosX) === 100 && Math.round(blast.PosY) === 100) intercard16Dirs.forEach(intercard => possibleSafeSpots = possibleSafeSpots.filter(dir => dir !== util/* Directions.output16Dir */.Ns.output16Dir[intercard]));else {
+          const blastPos16Dir = util/* Directions.xyTo16DirNum */.Ns.xyTo16DirNum(blast.PosX, blast.PosY, zeromus_ex_centerX, zeromus_ex_centerY);
           const relativeUnsafeDirs = cardinal16Dirs.includes(blastPos16Dir) ? unsafe16DirModifiers.cardinal : unsafe16DirModifiers.intercard;
           for (const relativeUnsafeDir of relativeUnsafeDirs) {
             const actualUnsafeDir = (16 + blastPos16Dir + relativeUnsafeDir) % 16;
-            possibleSafeSpots = possibleSafeSpots.filter(dir => dir !== util/* Directions.output16Dir */.N.output16Dir[actualUnsafeDir]);
+            possibleSafeSpots = possibleSafeSpots.filter(dir => dir !== util/* Directions.output16Dir */.Ns.output16Dir[actualUnsafeDir]);
           }
         }
       }
@@ -211785,7 +211785,7 @@ const jeuno_first_walk_triggerSet = {
       capture: true
     },
     run: (data, matches) => {
-      const headingNumber = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(matches.heading));
+      const headingNumber = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(matches.heading));
       data.dragonBreathFacingNumber = headingNumber;
     }
   }, {
@@ -211799,7 +211799,7 @@ const jeuno_first_walk_triggerSet = {
     durationSeconds: 7,
     alertText: (data, _matches, output) => {
       if (data.dragonBreathFacingNumber !== undefined) {
-        const dirOutputIndex = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(data.dragonBreathFacingNumber);
+        const dirOutputIndex = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(data.dragonBreathFacingNumber);
         return output.outAtDirection({
           safeDir: output[dirOutputIndex]()
         });
@@ -213910,7 +213910,7 @@ const pilgrims_traverse_stones_01_10_triggerSet = {
     infoText: (data, matches, output) => {
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      const dirNum = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(x, y, leafmanCenter.x, leafmanCenter.y);
+      const dirNum = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(x, y, leafmanCenter.x, leafmanCenter.y);
       (data.shrubDir ??= []).push(dirNum);
       if (data.shrubDir.length < 3) return;
       let safeDirNum = -1;
@@ -213928,7 +213928,7 @@ const pilgrims_traverse_stones_01_10_triggerSet = {
         safeDirNum = (dir3 + 2) % 8;
       }
       if (safeDirNum === -1) return output.unknownSafe();
-      const safeDir = util/* Directions.output8Dir */.N.output8Dir[safeDirNum];
+      const safeDir = util/* Directions.output8Dir */.Ns.output8Dir[safeDirNum];
       if (safeDir === undefined) return output.unknownSafe();
       return output.safe({
         safe: output[safeDir]()
@@ -213951,7 +213951,7 @@ const pilgrims_traverse_stones_01_10_triggerSet = {
         ko: '밖으로 + 꼬마 꽃인간 폭발 피하기',
         tc: '外 + 避開花小人爆炸'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'PT 01-10 Ornamental Leafman Hedge Mazing Cleanup',
@@ -214079,7 +214079,7 @@ const pilgrims_traverse_stones_11_20_triggerSet = {
       },
       knockback: outputs/* default.knockback */.Z.knockback,
       unknown: outputs/* default.unknown */.Z.unknown,
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'PT 11-20 Forgiven Emulation Touchdown Cleanup',
@@ -215407,7 +215407,7 @@ const pilgrims_traverse_stones_61_70_triggerSet = {
     condition: data => !data.calledOctupleSwipes,
     durationSeconds: 18,
     alertText: (data, matches, output) => {
-      const heading = util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(parseFloat(matches.heading));
+      const heading = util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(parseFloat(matches.heading));
       data.octupleSwipes ??= [];
       data.octupleSwipes.push(heading);
       if (data.octupleSwipes.length < 8) return;
@@ -220319,8 +220319,8 @@ const meso_terminal_triggerSet = {
     infoText: (_data, matches, output) => {
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      const kbNum = util/* Directions.xyTo4DirNum */.N.xyTo4DirNum(x, y, 270, 12);
-      const safeDir = util/* Directions.outputFromCardinalNum */.N.outputFromCardinalNum(kbNum);
+      const kbNum = util/* Directions.xyTo4DirNum */.Ns.xyTo4DirNum(x, y, 270, 12);
+      const safeDir = util/* Directions.outputFromCardinalNum */.Ns.outputFromCardinalNum(kbNum);
       return output.knockbackFrom({
         dir: output[safeDir]()
       });
@@ -220704,7 +220704,7 @@ const meso_terminal_triggerSet = {
       capture: true
     },
     run: (data, matches) => {
-      const headingNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(matches.heading));
+      const headingNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(matches.heading));
       // Odd heading numbers are diagonal.
       if (headingNum % 2 === 1) {
         // Check which diagonal we're working with.
@@ -222341,7 +222341,7 @@ const dungeon_origenics_namespaceObject = "### ORIGENICS\r\n# ZoneId: 1208\r\n\r
 
 // TODO:
 //  - Call safe tile(s) for Firearms - Artillery?
-const bubbleIntercards = [...util/* Directions.outputIntercardDir */.N.outputIntercardDir];
+const bubbleIntercards = [...util/* Directions.outputIntercardDir */.Ns.outputIntercardDir];
 const featherRayCenterY = -160;
 const featherRayCenterX = -105;
 const featherRayWestBubblesCenterX = -113;
@@ -222460,7 +222460,7 @@ const skydeep_cenote_triggerSet = {
       const middleColsX = [-117, -109, -101, -93];
       if (!middleRowsY.includes(y) || !middleColsX.includes(x)) return;
       const relCenterX = x < featherRayCenterX ? featherRayWestBubblesCenterX : featherRayEastBubblesCenterX;
-      const bubbleSpot = util/* Directions.xyToIntercardDirOutput */.N.xyToIntercardDirOutput(x, y, relCenterX, featherRayCenterY);
+      const bubbleSpot = util/* Directions.xyToIntercardDirOutput */.Ns.xyToIntercardDirOutput(x, y, relCenterX, featherRayCenterY);
       if (x < featherRayCenterX) data.westBubbleSetSafe = data.westBubbleSetSafe.filter(dir => dir !== bubbleSpot);else data.eastBubbleSetSafe = data.eastBubbleSetSafe.filter(dir => dir !== bubbleSpot);
     }
   }, {
@@ -222505,7 +222505,7 @@ const skydeep_cenote_triggerSet = {
         ko: '밀려나는 거품 피하기',
         tc: '躲避被擊退的泡泡'
       },
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir
     }
   },
   // ** Firearms ** //
@@ -223950,7 +223950,7 @@ const the_underkeep_triggerSet = {
       if (clone === undefined) {
         return;
       }
-      const dirNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(clone.Heading);
+      const dirNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(clone.Heading);
       //      0
       //    7   1
       //  6       2
@@ -223966,11 +223966,11 @@ const the_underkeep_triggerSet = {
       }
       data.tetherMap = {};
       return output.cleave({
-        dir: output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(safeSpot)]()
+        dir: output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(safeSpot)]()
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       cleave: {
         en: '${dir} half safe',
         de: '${dir} Hälfte sicher',
@@ -224938,7 +224938,7 @@ const coldFeatOutputStrings = {
     tc: '躲避剩餘小怪攻擊'
   },
   or: outputs/* default.or */.Z.or,
-  ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+  ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
 };
 const worqor_zormor_triggerSet = {
   id: 'Worqor Zormor',
@@ -224984,8 +224984,8 @@ const worqor_zormor_triggerSet = {
     run: (data, matches) => {
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      const pos = util/* Directions.xyTo4DirNum */.N.xyTo4DirNum(x, y, ryoqorCenter.x, ryoqorCenter.y);
-      const hdg = util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(parseFloat(matches.heading));
+      const pos = util/* Directions.xyTo4DirNum */.Ns.xyTo4DirNum(x, y, ryoqorCenter.x, ryoqorCenter.y);
+      const hdg = util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(parseFloat(matches.heading));
       const facingDir = getFacingDir(pos, hdg);
       data.ryoqorAddCleaveDir[matches.sourceId] = facingDir;
     }
@@ -225000,7 +225000,7 @@ const worqor_zormor_triggerSet = {
     run: (data, matches) => {
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      const pos = util/* Directions.xyToIntercardDirOutput */.N.xyToIntercardDirOutput(x, y, ryoqorCenter.x, ryoqorCenter.y);
+      const pos = util/* Directions.xyToIntercardDirOutput */.Ns.xyToIntercardDirOutput(x, y, ryoqorCenter.x, ryoqorCenter.y);
       data.ryoqorAddCleaveDir[matches.sourceId] = pos;
     }
   }, {
@@ -225030,8 +225030,8 @@ const worqor_zormor_triggerSet = {
       let secondDirs = [];
       if (data.fluffleUpCount === 1) {
         // 2 intercards will be safe first, then the other 2
-        firstDirs = [...util/* Directions.outputIntercardDir */.N.outputIntercardDir].filter(d => coldDirs.includes(d));
-        secondDirs = [...util/* Directions.outputIntercardDir */.N.outputIntercardDir].filter(d => !coldDirs.includes(d));
+        firstDirs = [...util/* Directions.outputIntercardDir */.Ns.outputIntercardDir].filter(d => coldDirs.includes(d));
+        secondDirs = [...util/* Directions.outputIntercardDir */.Ns.outputIntercardDir].filter(d => !coldDirs.includes(d));
         if (firstDirs.length !== 2 || secondDirs.length !== 2) return output.avoidStart();
         data.ryoqorFollowupSafeDirs = secondDirs;
         const dirStr = firstDirs.map(d => output[d]()).join(output.or());
@@ -225040,7 +225040,7 @@ const worqor_zormor_triggerSet = {
         });
       } else if (data.fluffleUpCount === 2) {
         // the 2 safe intercards will alwayss be either N or S, so we can simplify
-        firstDirs = [...util/* Directions.outputIntercardDir */.N.outputIntercardDir].filter(d => coldDirs.includes(d));
+        firstDirs = [...util/* Directions.outputIntercardDir */.Ns.outputIntercardDir].filter(d => coldDirs.includes(d));
         const north = ['dirNE', 'dirNW'];
         const south = ['dirSE', 'dirSW'];
         if (north.every(d => firstDirs.includes(d))) {
@@ -225066,12 +225066,12 @@ const worqor_zormor_triggerSet = {
         const firstUnsafeDirs = [...new Set(
         // to remove duplicates
         Object.keys(data.ryoqorAddCleaveDir).filter(id => !coldAddsIds.includes(id)).map(id => data.ryoqorAddCleaveDir[id]).filter(dir => dir !== undefined))];
-        const firstSafeDirs = [...util/* Directions.outputIntercardDir */.N.outputIntercardDir].filter(d => !firstUnsafeDirs.includes(d));
+        const firstSafeDirs = [...util/* Directions.outputIntercardDir */.Ns.outputIntercardDir].filter(d => !firstUnsafeDirs.includes(d));
         if (firstSafeDirs.length !== 1) return output.avoidStart();
         const secondUnsafeDirs = [...new Set(
         // to remove duplicates
         Object.keys(data.ryoqorAddCleaveDir).filter(id => coldAddsIds.includes(id)).map(id => data.ryoqorAddCleaveDir[id]).filter(dir => dir !== undefined))];
-        const secondSafeDirs = [...util/* Directions.outputIntercardDir */.N.outputIntercardDir].filter(d => !secondUnsafeDirs.includes(d));
+        const secondSafeDirs = [...util/* Directions.outputIntercardDir */.Ns.outputIntercardDir].filter(d => !secondUnsafeDirs.includes(d));
         if (secondSafeDirs.length === 1) data.ryoqorFollowupSafeDirs = secondSafeDirs;
         return output.start({
           dir: output[firstSafeDirs[0] ?? 'unknown']()
@@ -226298,7 +226298,7 @@ const hinkypunkCenterY = -160.0;
 const hinkypunkFindCloneSpot = matches => {
   const posX = parseFloat(matches.x);
   const posY = parseFloat(matches.y);
-  return util/* Directions.xyToIntercardDirOutput */.N.xyToIntercardDirOutput(posX, posY, hinkypunkCenterX, hinkypunkCenterY);
+  return util/* Directions.xyToIntercardDirOutput */.Ns.xyToIntercardDirOutput(posX, posY, hinkypunkCenterX, hinkypunkCenterY);
 };
 
 // Occult Crescent Forked Tower: Blood Demon Tablet consts
@@ -227169,7 +227169,7 @@ const occult_crescent_south_horn_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir,
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       text: {
         en: 'In at ${dir}'
       }
@@ -227200,7 +227200,7 @@ const occult_crescent_south_horn_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir,
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       text: {
         en: 'Intercards from ${dir}'
       }
@@ -227231,7 +227231,7 @@ const occult_crescent_south_horn_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir,
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       text: {
         en: 'Knockback from ${dir}'
       }
@@ -227415,8 +227415,8 @@ const occult_crescent_south_horn_triggerSet = {
       const intercardSafe = ['dirN', 'dirE', 'dirS', 'dirW'];
       const cardinalSafe = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
       const heading = parseFloat(matches.heading);
-      const dirNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(heading);
-      const dir = util/* Directions.output8Dir */.N.output8Dir[dirNum];
+      const dirNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(heading);
+      const dir = util/* Directions.output8Dir */.Ns.output8Dir[dirNum];
       if (dir === undefined) return output.unknown();
       if (cardinalSafe.includes(dir)) return output.cardinals();
       if (intercardSafe.includes(dir)) return output.intercards();
@@ -227470,8 +227470,8 @@ const occult_crescent_south_horn_triggerSet = {
       const intercardSafe = ['dirN', 'dirE', 'dirS', 'dirW'];
       const cardinalSafe = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
       const heading = parseFloat(matches.heading);
-      const dirNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(heading);
-      const dir = util/* Directions.output8Dir */.N.output8Dir[dirNum];
+      const dirNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(heading);
+      const dir = util/* Directions.output8Dir */.Ns.output8Dir[dirNum];
       if (dir === undefined) {
         data.sisyphusResoundingMemoryWedge = 'unknown';
       } else if (cardinalSafe.includes(dir)) {
@@ -227965,7 +227965,7 @@ const occult_crescent_south_horn_triggerSet = {
         console.error(`Occult Crescent Demon Tablet Rotate Left/Right: Wrong actor count ${actors.length}`);
         return;
       }
-      const bossDirNum = util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(actor.Heading);
+      const bossDirNum = util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(actor.Heading);
       const getSide = y => {
         // First Rotation is always N or S
         // N Platform
@@ -228895,7 +228895,7 @@ const occult_crescent_south_horn_triggerSet = {
       capture: true
     },
     preRun: (data, matches) => {
-      const dirNum = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(parseFloat(matches.x), parseFloat(matches.y), deadStarsCenterX, deadStarsCenterY);
+      const dirNum = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(parseFloat(matches.x), parseFloat(matches.y), deadStarsCenterX, deadStarsCenterY);
       if (matches.id === 'A5DF') data.deadStarsLiquifiedTriton.push(dirNum);
       if (matches.id === 'A5E0') data.deadStarsLiquifiedNereid.push(dirNum);
     },
@@ -228907,7 +228907,7 @@ const occult_crescent_south_horn_triggerSet = {
       if (data.deadStarsOoze === undefined) {
         const dirNums = matches.id === 'A5DF' ? redOoze : blueOoze;
         if (dirNums[0] === undefined || dirNums[1] === undefined || dirNums[2] === undefined || dirNums[3] === undefined) return;
-        const dirs = [output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dirNums[0])](), output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dirNums[1])](), output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dirNums[2])](), output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dirNums[3])]()];
+        const dirs = [output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dirNums[0])](), output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dirNums[1])](), output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dirNums[2])](), output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dirNums[3])]()];
 
         // Output both if failed to get deadStarsOooze matches
         if (matches.id === 'A5DF') return output.red({
@@ -228922,9 +228922,9 @@ const occult_crescent_south_horn_triggerSet = {
       // Determine which slime locations to use for hits
       const dirNums = data.deadStarsOoze.effectId === deadStarsBlueEffectId ? redOoze : blueOoze;
       if (dirNums[0] === undefined || dirNums[1] === undefined || dirNums[2] === undefined || dirNums[3] === undefined || redOoze[1] === undefined || blueOoze[1] === undefined || redOoze[2] === undefined || blueOoze[2] === undefined || redOoze[3] === undefined || blueOoze[3] === undefined) return;
-      const hitSpots = [output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dirNums[0])](), output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dirNums[1])](), output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dirNums[2])]()];
+      const hitSpots = [output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dirNums[0])](), output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dirNums[1])](), output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dirNums[2])]()];
       // Ignoring initial safe spot
-      const safeSpots = [output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(deadStarsFindSafeSpot(blueOoze[1], redOoze[1]))](), output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(deadStarsFindSafeSpot(blueOoze[2], redOoze[2]))](), output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(deadStarsFindSafeSpot(blueOoze[3], redOoze[3]))]()];
+      const safeSpots = [output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(deadStarsFindSafeSpot(blueOoze[1], redOoze[1]))](), output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(deadStarsFindSafeSpot(blueOoze[2], redOoze[2]))](), output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(deadStarsFindSafeSpot(blueOoze[3], redOoze[3]))]()];
       const count = parseInt(data.deadStarsOoze.count, 16);
       if (count === 1) {
         if (data.deadStarsOoze.effectId === deadStarsBlueEffectId) return output.red1({
@@ -228972,7 +228972,7 @@ const occult_crescent_south_horn_triggerSet = {
     tts: null,
     // Trigger happens 1 sec before individual call and would overlap
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       red: {
         en: 'Red: ${dirs}',
         de: 'Rot: ${dirs}',
@@ -229386,8 +229386,8 @@ const occult_crescent_south_horn_triggerSet = {
       if (boss1[0] === undefined || boss1[1] === undefined || boss2[0] === undefined || boss2[1] === undefined) return;
       const x = (boss1[0] + boss2[0]) / 2;
       const y = (boss1[1] + boss2[1]) / 2;
-      const dirNum = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(x, y, deadStarsCenterX, deadStarsCenterY);
-      const dir = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dirNum);
+      const dirNum = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(x, y, deadStarsCenterX, deadStarsCenterY);
+      const dir = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dirNum);
       if (data.triggerSetConfig.deadStarsVengefulDirection === 'direction') return output[dir]();
       let waymark = 'unknown';
 
@@ -229414,7 +229414,7 @@ const occult_crescent_south_horn_triggerSet = {
       }
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       unknown: outputs/* default.unknown */.Z.unknown,
       waymarkA: {
         en: 'A',
@@ -229569,13 +229569,13 @@ const occult_crescent_south_horn_triggerSet = {
         console.error(`Occult Crescent Dead Stars Snowball Tether: Wrong actor count ${actors.length}`);
         return;
       }
-      const dirNum = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(actor.PosX, actor.PosY, deadStarsCenterX, deadStarsCenterY);
+      const dirNum = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(actor.PosX, actor.PosY, deadStarsCenterX, deadStarsCenterY);
       data.deadStarsSnowballTetherDirNum = (dirNum + 4) % 8;
     },
     response: (data, matches, output) => {
       // cactbot-builtin-response
       output.responseOutputStrings = {
-        ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+        ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
         knockbackTetherDir: {
           en: 'Tether: Knockback to ${dir} => Stack at Wall',
           de: 'Verbindung: Rückstoß nach ${dir} => An der Wand sammeln',
@@ -229593,7 +229593,7 @@ const occult_crescent_south_horn_triggerSet = {
       };
       if (data.deadStarsSnowballTetherDirNum !== undefined && data.me === matches.target) {
         // This will trigger for each tether a player has
-        const dir = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(data.deadStarsSnowballTetherDirNum)]();
+        const dir = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(data.deadStarsSnowballTetherDirNum)]();
         return {
           alarmText: output.knockbackTetherDir({
             dir: dir
@@ -230598,7 +230598,7 @@ const occult_crescent_south_horn_triggerSet = {
         return;
       }
       const x = actor.PosX;
-      const facing = util/* Directions.hdgTo16DirNum */.N.hdgTo16DirNum(actor.Heading);
+      const facing = util/* Directions.hdgTo16DirNum */.Ns.hdgTo16DirNum(actor.Heading);
       const getTwisterSide = x => {
         if (x > -363 && x < -361) return 'west';
         if (x > -313 && x < -311) return 'east';
@@ -230808,14 +230808,14 @@ const occult_crescent_south_horn_triggerSet = {
         console.error(`Occult Crescent Marble Dragon Frigid Dive Direction: Wrong actor count ${actors.length}`);
         return;
       }
-      data.marbleDragonDiveDirNum = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(actor.PosX, actor.PosY, marbleDragonCenterX, marbleDragonCenterY);
+      data.marbleDragonDiveDirNum = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(actor.PosX, actor.PosY, marbleDragonCenterX, marbleDragonCenterY);
     },
     alertText: (data, _matches, output) => {
       if (data.marbleDragonDiveDirNum === undefined) {
         return output.bossDiveThenTowers();
       }
-      const dir1 = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(data.marbleDragonDiveDirNum)]();
-      const dir2 = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum((data.marbleDragonDiveDirNum + 4) % 8)]();
+      const dir1 = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(data.marbleDragonDiveDirNum)]();
+      const dir2 = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum((data.marbleDragonDiveDirNum + 4) % 8)]();
       return output.diveDirsThenTowers({
         dir1: dir1,
         dir2: dir2
@@ -230825,7 +230825,7 @@ const occult_crescent_south_horn_triggerSet = {
       data.marbleDragonIsFrigidDive = true;
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       diveDirsThenTowers: {
         en: '${dir1}/${dir2} Dive => Towers',
         de: '${dir1}/${dir2} Sturz => Türme',
@@ -230857,8 +230857,8 @@ const occult_crescent_south_horn_triggerSet = {
       if (data.marbleDragonDiveDirNum === undefined) {
         return output.towersUnknownDir();
       }
-      const dir1 = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(data.marbleDragonDiveDirNum)]();
-      const dir2 = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum((data.marbleDragonDiveDirNum + 4) % 8)]();
+      const dir1 = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(data.marbleDragonDiveDirNum)]();
+      const dir2 = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum((data.marbleDragonDiveDirNum + 4) % 8)]();
       // `marbleDragonDiveDirNum % 2 === 0` = this is aimed at a cardinal, so intercard towers are second
       if (data.marbleDragonDiveDirNum % 2 === 0) return output.towerDirsThenIntercardTowers({
         dir1: dir1,
@@ -230870,7 +230870,7 @@ const occult_crescent_south_horn_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       towersUnknownDir: {
         en: 'Towers => Cardinal/Intercard Towers',
         de: 'Türme => Kardinale/Interkardinale Türme',
@@ -230920,7 +230920,7 @@ const occult_crescent_south_horn_triggerSet = {
       return output.cardinalTowers();
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       unknownTowers: {
         en: 'Cardinal/Intercard Towers',
         de: 'Kardinale/Interkardinale Türme',
@@ -231188,7 +231188,7 @@ const occult_crescent_south_horn_triggerSet = {
         return;
       }
       const x = actor.PosX;
-      const facing = util/* Directions.hdgTo16DirNum */.N.hdgTo16DirNum(actor.Heading);
+      const facing = util/* Directions.hdgTo16DirNum */.Ns.hdgTo16DirNum(actor.Heading);
       const getTwisterSide = x => {
         if (x < marbleDragonCenterX) return 'southwest';
         if (x > marbleDragonCenterX) return 'northeast';
@@ -238398,7 +238398,7 @@ const r10n_triggerSet = {
     run: (data, matches) => {
       const actor = data.actorPositions[matches.targetId];
       if (actor === undefined) return;
-      data.waveDir = util/* Directions.xyToCardinalDirOutput */.N.xyToCardinalDirOutput(actor.x, actor.y, r10n_center.x, r10n_center.y);
+      data.waveDir = util/* Directions.xyToCardinalDirOutput */.Ns.xyToCardinalDirOutput(actor.x, actor.y, r10n_center.x, r10n_center.y);
     }
   }, {
     id: 'R10N Sick Swell',
@@ -238445,7 +238445,7 @@ const r10n_triggerSet = {
         cn: '从${dir1}击退 + 远离${dir2}',
         ko: '${dir1}에서 넉백 + ${dir2}쪽 피하기'
       },
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir
     }
   }, {
     id: 'R10N Deep Varial',
@@ -238457,7 +238457,7 @@ const r10n_triggerSet = {
     infoText: (_data, matches, output) => {
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      const dir = util/* Directions.xyToCardinalDirOutput */.N.xyToCardinalDirOutput(x, y, r10n_center.x, r10n_center.y);
+      const dir = util/* Directions.xyToCardinalDirOutput */.Ns.xyToCardinalDirOutput(x, y, r10n_center.x, r10n_center.y);
       return output[dir]();
     },
     outputStrings: {
@@ -238668,7 +238668,7 @@ const r10n_triggerSet = {
       // Water is N CW => SE, fire is S CW => NW
       let dirNum = data.snakingCount;
       if (elem === 'fire') dirNum += 4;
-      let dir = util/* Directions.output8Dir */.N.output8Dir[dirNum] ?? 'unknown';
+      let dir = util/* Directions.output8Dir */.Ns.output8Dir[dirNum] ?? 'unknown';
       if (elem === data.snakeMid && data.snakingCount === 3) dir = 'middle';
       return output.text({
         elem: output[elem](),
@@ -238683,7 +238683,7 @@ const r10n_triggerSet = {
         cn: '诱导${elem}扇形来自${dir}',
         ko: '${dir}에서 오는 ${elem} 부채꼴 유도'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       water: {
         en: 'Water',
         de: 'Wasser',
@@ -239316,7 +239316,7 @@ const r10s_triggerSet = {
     run: (data, matches) => {
       const actor = data.actorPositions[matches.targetId];
       if (actor === undefined) return;
-      data.waveDir = util/* Directions.xyToCardinalDirOutput */.N.xyToCardinalDirOutput(actor.x, actor.y, r10s_center.x, r10s_center.y);
+      data.waveDir = util/* Directions.xyToCardinalDirOutput */.Ns.xyToCardinalDirOutput(actor.x, actor.y, r10s_center.x, r10s_center.y);
     }
   }, {
     id: 'R10S Sick Swell',
@@ -239365,7 +239365,7 @@ const r10s_triggerSet = {
         cn: '从${dir1}击退 + 远离${dir2}',
         ko: '${dir1}에서 넉백 + ${dir2}쪽 피하기'
       },
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir
     }
   }, {
     id: 'R10S Sick Swell Wave Collector (Snaking)',
@@ -239384,10 +239384,10 @@ const r10s_triggerSet = {
     infoText: (data, matches, output) => {
       const actor = data.actorPositions[matches.targetId];
       if (actor === undefined) return;
-      const waveDir = util/* Directions.xyTo4DirNum */.N.xyTo4DirNum(actor.x, actor.y, r10s_center.x, r10s_center.y);
-      const waveDirOutput = util/* Directions.outputCardinalDir */.N.outputCardinalDir[waveDir];
-      const coneDir = (util/* Directions.xyTo4DirNum */.N.xyTo4DirNum(actor.x, actor.y, r10s_center.x, r10s_center.y) + 2) % 4;
-      const coneDirOutput = util/* Directions.outputCardinalDir */.N.outputCardinalDir[coneDir];
+      const waveDir = util/* Directions.xyTo4DirNum */.Ns.xyTo4DirNum(actor.x, actor.y, r10s_center.x, r10s_center.y);
+      const waveDirOutput = util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[waveDir];
+      const coneDir = (util/* Directions.xyTo4DirNum */.Ns.xyTo4DirNum(actor.x, actor.y, r10s_center.x, r10s_center.y) + 2) % 4;
+      const coneDirOutput = util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[coneDir];
       return output.text({
         waveDir: output[waveDirOutput ?? 'unknown'](),
         coneDir: output[coneDirOutput ?? 'unknown']()
@@ -239401,7 +239401,7 @@ const r10s_triggerSet = {
         cn: '${waveDir} 击退/${coneDir} 两侧',
         ko: '파도 ${waveDir}/부채꼴 ${coneDir}'
       },
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir
     }
   }, {
     id: 'R10S Reverse Alley-oop/Alley-oop Double-dip',
@@ -240136,7 +240136,7 @@ const r10s_triggerSet = {
 };
 /* harmony default export */ const r10s = (r10s_triggerSet);
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/raid/r10s.txt
-const raid_r10s_namespaceObject = "### AAC HEAVYWEIGHT M2 (SAVAGE)\r\n# ZoneId: 1323\r\n\r\n# -ii BDFF BE00 B5BA B57C B5DA B5C3 B5FB B57B\r\n# -it \"Deep Blue\" \"Red Hot\" \"Watery Grave\"\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n0.0 \"--Reset--\" ActorControl { command: \"4000000F\" } window 0,100000 jump 0\r\n\r\n# Red Hot\r\n0.0 \"--sync--\" InCombat { inGameCombat: \"1\" } window 0,1\r\n14.6 \"Hot Impact\" Ability { id: \"B5B6\", source: \"Red Hot\" }\r\n20.7 \"--intercardinal--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n30.3 \"Flame Floater 1\" Ability { id: \"B5BB\", source: \"Red Hot\" }\r\n33.5 \"Flame Floater 2\" Ability { id: \"B5BC\", source: \"Red Hot\" }\r\n36.8 \"Flame Floater 3\" Ability { id: \"B5BD\", source: \"Red Hot\" }\r\n39.9 \"Flame Floater 4\" Ability { id: \"B5BE\", source: \"Red Hot\" }\r\n52.3 \"Alley-oop Inferno\" Ability { id: \"B5C0\", source: \"Red Hot\" }\r\n53.1 \"Alley-oop Inferno\" Ability { id: \"B5C1\", source: \"Red Hot\" }\r\n61.9 \"Cutback Blaze\" Ability { id: \"B5C9\", source: \"Red Hot\" }\r\n62.8 \"Cutback Blaze\" Ability { id: \"B5CA\", source: \"Red Hot\" }\r\n68.4 \"Pyrotation x3\" Ability { id: \"B5C2\", source: \"Red Hot\" } duration 4.9\r\n82.5 \"Divers' Dare\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n86.6 \"--north--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n88.8 \"--untargetable--\"\r\n\r\n# Deep Blue\r\n90.7 \"--targetable--\"\r\n96.9 \"Sick Swell\" Ability { id: \"B5CB\", source: \"Deep Blue\" }\r\n106.0 \"Sickest Take-off\" Ability { id: \"B5CD\", source: \"Deep Blue\" }\r\n106.0 \"--untargetable--\"\r\n115.0 \"Sickest Take-off\" Ability { id: \"B5CE\", source: \"Deep Blue\" }\r\n115.0 \"Sick Swell\" #Ability { id: \"B5CC\", source: \"Deep Blue\" }\r\n117.1 \"--targetable--\"\r\n117.5 \"Awesome Splash/Awesome Slab\" Ability { id: [\"B5CF\", \"B5D0\"], source: \"Deep Blue\" }\r\n125.2 \"--sync--\" Ability { id: [\"B5E0\", \"B5DD\"], source: \"Deep Blue\" }\r\n125.9 \"Reverse Alley-oop/Alley-oop Double-dip\" #Ability { id: [\"B5E1\", \"B5DE\"], source: \"Deep Blue\" }\r\n128.5 \"Reverse Alley-oop/Alley-oop Double-dip\" #Ability { id: [\"B5E2\", \"B5DF\"], source: \"Deep Blue\" }\r\n136.3 \"Deep Impact (bait)\" Ability { id: \"B5B7\", source: \"Deep Blue\" }\r\n136.5 \"Deep Impact (damage)\" #Ability { id: \"ADC6\", source: \"Deep Blue\" }\r\n143.5 \"Divers' Dare\" Ability { id: \"B5B9\", source: \"Deep Blue\" }\r\n149.6 \"--west--\" Ability { id: \"B579\", source: \"Deep Blue\" }\r\n151.6 \"--targetable--\"\r\n160.9 \"Xtreme Spectacular\" Ability { id: \"B5D9\", source: \"Red Hot\" }\r\n\r\n# Transition\r\n161.7 \"--untargetable--\"\r\n168.7 \"Xtreme Spectacular (line)\" Ability { id: \"B5A4\", source: \"The Xtremes\" }\r\n169.7 \"Xtreme Spectacular x6\" duration 3.5 #Ability { id: \"B5DC\", source: \"The Xtremes\" }\r\n173.6 \"Xtreme Spectacular (big)\" Ability { id: \"B7CA\", source: \"The Xtremes\" }\r\n\r\n# Insane Air 1\r\n177.4 \"--targetable--\"\r\n178.8 \"Epic Brotherhood x2\" Ability { id: \"B57A\", source: \"Red Hot\" }\r\n186.0 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n\r\n# Each boss does, in random order (Red Hot/Deep Blue):\r\n# 1 tankbuster (Blasting Snap/Vertical Plunge)\r\n# 1 stack (Re-entry Blast/Re-entry Plunge)\r\n# 2 proteans (Plunging Snap)\r\n# Timeline entries are for Red Hot's ability names, since there's no castbar\r\n194.6 \"Insane Air\" Ability { id: \"B897\", source: \"Red Hot\" }\r\n196.5 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n197.6 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F6\", source: \"Deep Blue\" }\r\n201.9 \"Insane Air\" Ability { id: \"B899\", source: \"Red Hot\" }\r\n203.8 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n204.9 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F6\", source: \"Deep Blue\" }\r\n209.2 \"Insane Air\" Ability { id: \"B899\", source: \"Red Hot\" }\r\n211.1 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n212.2 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F6\", source: \"Deep Blue\" }\r\n216.5 \"Insane Air\" Ability { id: \"B899\", source: \"Red Hot\" }\r\n218.4 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n219.5 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F6\", source: \"Deep Blue\" }\r\n219.9 \"--sync--\" Ability { id: \"B57D\", source: \"Deep Blue\" }\r\n229.1 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n235.3 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n\r\n# Snaking\r\n237.7 \"Epic Brotherhood x2\" Ability { id: \"B57A\", source: \"Red Hot\" }\r\n244.8 \"Firesnaking/Watersnaking\" Ability { id: \"B381\", source: \"Red Hot\" }\r\n250.0 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n256.8 \"Alley-oop Inferno\" Ability { id: \"B5C0\", source: \"Red Hot\" }\r\n257.4 \"--sync--\" Ability { id: [\"B5E0\", \"B5DD\"], source: \"Deep Blue\" }\r\n257.4 \"Alley-oop Inferno\" #Ability { id: \"B5C1\", source: \"Red Hot\" }\r\n258.0 \"Reverse Alley-oop/Alley-oop Double-dip\" Ability { id: [\"B5E1\", \"B5DE\"], source: \"Deep Blue\" }\r\n260.6 \"Reverse Alley-oop/Alley-oop Double-dip\" #Ability { id: [\"B5E2\", \"B5DF\"], source: \"Deep Blue\" }\r\n262.6 \"Sick Swell\" Ability { id: \"B5CB\", source: \"Deep Blue\" }\r\n267.7 \"--sync--\" Ability { id: \"B579\", source: \"Deep Blue\" }\r\n268.8 \"Hot Impact\" Ability { id: \"B580\", source: \"Red Hot\" }\r\n275.2 \"Deep Varial\" Ability { id: \"B891\", source: \"Deep Blue\" }\r\n276.8 \"Deep Varial\" Ability { id: \"B5D3\", source: \"Deep Blue\" }\r\n279.4 \"Alley-oop Inferno\" Ability { id: \"B5C0\", source: \"Red Hot\" }\r\n280.0 \"Awesome Splash/Awesome Slab\" Ability { id: [\"B5D7\", \"B5D8\"], source: \"Deep Blue\" }\r\n280.1 \"Alley-oop Inferno\" Ability { id: \"B5C1\", source: \"Red Hot\" }\r\n281.4 \"--sync--\" #Ability { id: \"B578\", source: \"Red Hot\" }\r\n288.5 \"Hot Aerial\" Ability { id: \"B5C4\", source: \"Red Hot\" }\r\n288.9 \"--hot jump--\" #Ability { id: \"B91D\", source: \"Red Hot\" }\r\n290.0 \"Hot Aerial 1\" #Ability { id: \"B91E\", source: \"Deep Blue\" }\r\n290.9 \"--hot jump--\" #Ability { id: \"B91D\", source: \"Red Hot\" }\r\n292.0 \"Hot Aerial 2\" #Ability { id: \"B91F\", source: \"Red Hot\" }\r\n292.1 \"Sickest Take-off\" Ability { id: \"B5CD\", source: \"Deep Blue\" }\r\n292.1 \"--untargetable--\"\r\n292.9 \"--hot jump--\" #Ability { id: \"B91D\", source: \"Red Hot\" }\r\n294.1 \"Hot Aerial 3\" Ability { id: \"B920\", source: \"Red Hot\" }\r\n295.0 \"--hot jump--\" #Ability { id: \"B91D\", source: \"Red Hot\" }\r\n296.2 \"Hot Aerial 4\" Ability { id: \"B921\", source: \"Red Hot\" }\r\n301.3 \"Sickest Take-off\" Ability { id: \"B5CE\", source: \"Deep Blue\" }\r\n301.3 \"Sick Swell\" #Ability { id: \"B5CC\", source: \"Deep Blue\" }\r\n303.3 \"--targetable--\"\r\n303.7 \"Awesome Splash/Awesome Slab\" Ability { id: [\"B5CF\", \"B5D0\"], source: [\"Red Hot\", \"Deep Blue\"] }\r\n306.3 \"Cutback Blaze\" Ability { id: \"B5C9\", source: \"Red Hot\" }\r\n307.2 \"Cutback Blaze\" #Ability { id: \"B5CA\", source: [\"Red Hot\", \"Deep Blue\"] } # Possible bugged log\r\n313.2 \"Deep Impact (bait)\" Ability { id: \"B5B7\", source: \"Deep Blue\" }\r\n313.5 \"Deep Impact (damage)\" #Ability { id: \"ADC6\", source: \"Deep Blue\" }\r\n320.5 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n326.7 \"Epic Brotherhood x2\" Ability { id: \"B57A\", source: \"Red Hot\" }\r\n328.8 \"Deep Aerial (tower)\" StartsUsing { id: \"B5E3\", source: \"Deep Blue\" } duration 5\r\n334.8 \"Deep Aerial (damage + stun)\" Ability { id: \"B5E4\", source: \"Deep Blue\" } duration 2\r\n335.9 \"--sync--\" Ability { id: \"B57D\", source: \"Deep Blue\" }\r\n\r\n# Bubble/Deep Aerial\r\n# Xtreme Wave has two casts per boss per set\r\n# The lower ID cast of each boss is the actual line snapshot and is the important mechanic to time\r\n# The higher ID cast is the secondary hit on anyone in the path of the line that wasn't the original target\r\n# Drop the higher ID casts. Only keep Red Hot's casts for timeline cleanliness\r\n337.3 \"--add-targetable--\"\r\n337.9 \"--untargetable--\"\r\n337.9 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n345.7 \"Xtreme Wave 1\" Ability { id: \"B5C5\", source: \"Red Hot\" }\r\n347.8 \"Scathing Steam 1\" Ability { id: \"ADC7\", source: \"Watery Grave\" }\r\n354.1 \"Xtreme Wave 2\" Ability { id: \"B5C7\", source: \"Red Hot\" }\r\n356.2 \"Scathing Steam 2\" Ability { id: \"ADC7\", source: \"Watery Grave\" }\r\n362.6 \"Xtreme Wave 3\" Ability { id: \"B5C7\", source: \"Red Hot\" }\r\n364.7 \"Scathing Steam 3\" Ability { id: \"ADC7\", source: \"Watery Grave\" }\r\n371.1 \"Xtreme Wave 4\" Ability { id: \"B5C7\", source: \"Red Hot\" }\r\n373.2 \"Scathing Steam 4\" Ability { id: \"ADC7\", source: \"Watery Grave\" }\r\n379.6 \"Xtreme Wave 5\" Ability { id: \"B5C7\", source: \"Red Hot\" }\r\n381.7 \"Scathing Steam 5\" Ability { id: \"ADC7\", source: \"Watery Grave\" }\r\n388.3 \"Xtreme Wave 6\" Ability { id: \"B5C7\", source: \"Red Hot\" }\r\n390.4 \"Scathing Steam 6\" Ability { id: \"ADC7\", source: \"Watery Grave\" }\r\n390.6 \"--targetable--\"\r\n390.6 \"--sync--\" Ability { id: \"B57D\", source: \"Deep Blue\" }\r\n392.8 \"--add-untargetable--\"\r\n# This is caused by either player in the jail dieing. At the end of adds phase, if the jail hasn't been killed\r\n# both players die to a debuff, which then detonates the jail. This is technically a soft enrage, since it can be\r\n# mitted through with a full send of all party mits or via tank LB, but realistically with most strats now\r\n# putting healers in the jail, this is going to wipe the party regardless due to the followup aoe.\r\n393.0 \"Impact Zone (enrage)\" #Ability { id: \"B5EC\", source: \"Watery Grave\" }\r\n393.2 \"Impact Zone x2 (enrage)\" #Ability { id: \"B5EB\", source: \"Watery Grave\" }\r\n\r\n# Arena Split\r\n398.7 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n404.8 \"Epic Brotherhood x2\" Ability { id: \"B57A\", source: \"Red Hot\" }\r\n406.9 \"--red north--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n409.9 \"Sick Swell\" Ability { id: \"B5CB\", source: \"Deep Blue\" }\r\n414.3 \"Flame Floater\" Ability { id: \"B5BF\", source: \"Red Hot\" }\r\n421.1 \"--blue east/west--\" Ability { id: \"B579\", source: \"Deep Blue\" }\r\n423.6 \"Alley-oop Inferno\" Ability { id: \"B5C1\", source: \"Red Hot\" }\r\n429.2 \"Reverse Alley-oop/Alley-oop Double-dip\"\r\n431.8 \"Reverse Alley-oop/Alley-oop Double-dip\"\r\n435.8 \"Sickest Take-off\" Ability { id: \"B5CD\", source: \"Deep Blue\" }\r\n435.8 \"--blue untargetable--\"\r\n# Actor name on this can vary since it's an invisible re-use actor\r\n436.7 \"Freaky Pyrotation\" #Ability { id: \"B597\", source: \"Deep Blue\" }\r\n444.7 \"Sickest Take-off\" Ability { id: \"B5CE\", source: \"Deep Blue\" }\r\n444.7 \"Sick Swell\" #Ability { id: \"B5CC\", source: \"Deep Blue\" }\r\n446.7 \"--blue targetable--\"\r\n447.1 \"Awesome Slab\" Ability { id: \"B5D0\", source: \"Deep Blue\" }\r\n451.8 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n\r\n# Insane Air 2\r\n457.9 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n460.3 \"Epic Brotherhood x2\" Ability { id: \"B57A\", source: \"Red Hot\" }\r\n467.4 \"Xtreme Firesnaking/Xtreme Watersnaking\" Ability { id: \"B5AE\", source: \"Red Hot\" }\r\n472.6 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n482.3 \"Insane Air\" Ability { id: \"B5E6\", source: \"Red Hot\" }\r\n484.2 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n485.3 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F2\", source: \"Deep Blue\" }\r\n486.9 \"Bailout\" Ability { id: \"B5B0\", source: \"Red Hot\" }\r\n492.8 \"Insane Air\" Ability { id: \"B5E8\", source: \"Red Hot\" }\r\n494.7 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n495.8 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F2\", source: \"Deep Blue\" }\r\n497.4 \"Bailout\" Ability { id: \"B5B0\", source: \"Red Hot\" }\r\n503.2 \"Insane Air\" Ability { id: \"B5E8\", source: \"Red Hot\" }\r\n505.1 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n506.2 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F2\", source: \"Deep Blue\" }\r\n507.9 \"Bailout\" Ability { id: \"B5B1\", source: \"Deep Blue\" }\r\n513.6 \"Insane Air\" Ability { id: \"B5E8\", source: \"Red Hot\" }\r\n515.5 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n516.6 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F2\", source: \"Deep Blue\" }\r\n517.0 \"--sync--\" Ability { id: \"B57D\", source: \"Deep Blue\" }\r\n518.0 \"Bailout\" Ability { id: \"B5B0\", source: \"Red Hot\" }\r\n526.0 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n\r\n# Double Alley-oop\r\n532.2 \"Epic Brotherhood x2\" Ability { id: \"B57A\", source: \"Red Hot\" }\r\n534.3 \"--sync--\" Ability { id: \"B579\", source: \"Deep Blue\" }\r\n542.1 \"Reverse Alley-oop/Alley-oop Double-dip\"\r\n544.3 \"Alley-oop Inferno\" #Ability { id: \"B5C1\", source: \"Red Hot\" }\r\n544.7 \"Reverse Alley-oop/Alley-oop Double-dip\"\r\n552.3 \"Pyrotation x3\" Ability { id: \"B5C2\", source: \"Red Hot\" } duration 4.9\r\n553.2 \"Deep Impact (bait)\" Ability { id: \"B5B7\", source: \"Deep Blue\" }\r\n553.4 \"Deep Impact (damage)\" Ability { id: \"ADC6\", source: \"Deep Blue\" }\r\n\r\n# Soft -> hard enrage\r\n566.5 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n575.6 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n585.3 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n587.4 \"--sync--\" StartsUsing { id: \"B5FC\", source: \"Red Hot\" }\r\n596.4 \"Over the Falls (enrage)\" Ability { id: \"B5FC\", source: \"Red Hot\" }\r\n\r\n\r\n# IGNORED ABILITIES\r\n# B5BA Flame Floater: VFX\r\n# B57C --sync--: Red Hot dismounting from surfboard\r\n# B5DA Xtreme Spectacular: Deep Blue cast, same time as Red Hot\r\n# B5C3 Pyrotation: Actual hits, but covered by duration\r\n# B57B Epic Brotherhood: VFX for Deep Blue sharing health with Red Hot\r\n# B5FB Steam Burst: Water/Fire mechanics overlap, could vary when they occur\r\n# BDFF --sync--: autoattack\r\n# BE00 --sync--: autoattack\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# ADC6 Deep Impact\r\n# ADC7 Scathing Steam\r\n# B381 Firesnaking\r\n# B382 Watersnaking\r\n# B578 --sync--\r\n# B579 --sync--\r\n# B57A Epic Brotherhood\r\n# B57B Epic Brotherhood\r\n# B57C --sync--\r\n# B57D --sync--\r\n# B580 Hot Impact\r\n# B596 Freaky Pyrotation\r\n# B597 Freaky Pyrotation\r\n# B5A4 Xtreme Spectacular\r\n# B5AE Xtreme Firesnaking\r\n# B5AF Xtreme Watersnaking\r\n# B5B0 Bailout\r\n# B5B1 Bailout\r\n# B5B6 Hot Impact\r\n# B5B7 Deep Impact\r\n# B5B8 Divers' Dare\r\n# B5B9 Divers' Dare\r\n# B5BA Flame Floater\r\n# B5BB Flame Floater\r\n# B5BC Flame Floater\r\n# B5BD Flame Floater\r\n# B5BE Flame Floater\r\n# B5BF Flame Floater\r\n# B5C0 Alley-oop Inferno\r\n# B5C1 Alley-oop Inferno\r\n# B5C2 Pyrotation\r\n# B5C3 Pyrotation\r\n# B5C4 Hot Aerial\r\n# B5C5 Xtreme Wave\r\n# B5C6 Xtreme Wave\r\n# B5C7 Xtreme Wave\r\n# B5C8 Xtreme Wave\r\n# B5C9 Cutback Blaze\r\n# B5CA Cutback Blaze\r\n# B5CB Sick Swell\r\n# B5CC Sick Swell\r\n# B5CD Sickest Take-off\r\n# B5CE Sickest Take-off\r\n# B5CF Awesome Splash\r\n# B5D0 Awesome Slab\r\n# B5D1 Xtreme Wave\r\n# B5D2 Xtreme Wave\r\n# B5D3 Deep Varial\r\n# B5D4 Flame Floater\r\n# B5D7 Awesome Splash\r\n# B5D9 Xtreme Spectacular\r\n# B5DA Xtreme Spectacular\r\n# B5DC Xtreme Spectacular\r\n# B5E0 Reverse Alley-oop\r\n# B5E1 Reverse Alley-oop\r\n# B5E2 Reverse Alley-oop\r\n# B5E3 Deep Aerial\r\n# B5E4 Deep Aerial\r\n# B5E6 Insane Air\r\n# B5E7 Insane Air\r\n# B5E8 Insane Air\r\n# B5E9 Insane Air\r\n# B5EA --sync--\r\n# B5EB Impact Zone: Failing to kill Watery Grave, this does ~1.5mil damage\r\n# B5EC Impact Zone: Failing to kill Watery Grave, this goes off twice <0.2s after B5EB, ~130k damage each\r\n# B5EF Blasting Snap\r\n# B5F0 Plunging Snap\r\n# B5F1 Blasting Snap\r\n# B5F2 Plunging Snap\r\n# B5F3 Re-entry Blast\r\n# B5F4 Re-entry Plunge\r\n# B5F5 Re-entry Blast\r\n# B5F6 Re-entry Plunge\r\n# B5F7 Vertical Blast\r\n# B5F8 Vertical Plunge\r\n# B5F9 Vertical Blast\r\n# B5FA Vertical Plunge\r\n# B5FB Steam Burst\r\n# B5FC Over the Falls\r\n# B5FD Over the Falls\r\n# B7CA Xtreme Spectacular\r\n# B891 Deep Varial\r\n# B897 Insane Air\r\n# B898 Insane Air\r\n# B899 Insane Air\r\n# B89A Insane Air\r\n# B91D Hot Aerial\r\n# B91E Hot Aerial\r\n# B91F Hot Aerial\r\n# B920 Hot Aerial\r\n# B921 Hot Aerial\r\n# BDFF --sync--\r\n# BE00 --sync--\r\n";
+const raid_r10s_namespaceObject = "### AAC HEAVYWEIGHT M2 (SAVAGE)\r\n# ZoneId: 1323\r\n\r\n# -ii BDFF BE00 B5BA B57C B5DA B5C3 B5FB B57B\r\n# -it \"Deep Blue\" \"Red Hot\" \"Watery Grave\"\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n0.0 \"--Reset--\" ActorControl { command: \"4000000F\" } window 0,100000 jump 0\r\n\r\n# Red Hot\r\n0.0 \"--sync--\" InCombat { inGameCombat: \"1\" } window 0,1\r\n14.6 \"Hot Impact\" Ability { id: \"B5B6\", source: \"Red Hot\" }\r\n20.7 \"--intercardinal--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n30.3 \"Flame Floater 1\" Ability { id: \"B5BB\", source: \"Red Hot\" }\r\n33.5 \"Flame Floater 2\" Ability { id: \"B5BC\", source: \"Red Hot\" }\r\n36.8 \"Flame Floater 3\" Ability { id: \"B5BD\", source: \"Red Hot\" }\r\n39.9 \"Flame Floater 4\" Ability { id: \"B5BE\", source: \"Red Hot\" }\r\n52.3 \"Alley-oop Inferno\" Ability { id: \"B5C0\", source: \"Red Hot\" }\r\n53.1 \"Alley-oop Inferno\" Ability { id: \"B5C1\", source: \"Red Hot\" }\r\n61.9 \"Cutback Blaze\" Ability { id: \"B5C9\", source: \"Red Hot\" }\r\n62.8 \"Cutback Blaze\" Ability { id: \"B5CA\", source: \"Red Hot\" }\r\n68.4 \"Pyrotation x3\" Ability { id: \"B5C2\", source: \"Red Hot\" } duration 4.9\r\n82.5 \"Divers' Dare\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n86.6 \"--north--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n88.8 \"--untargetable--\"\r\n\r\n# Deep Blue\r\n90.7 \"--targetable--\"\r\n96.9 \"Sick Swell\" Ability { id: \"B5CB\", source: \"Deep Blue\" }\r\n106.0 \"Sickest Take-off\" Ability { id: \"B5CD\", source: \"Deep Blue\" }\r\n106.0 \"--untargetable--\"\r\n115.0 \"Sickest Take-off\" Ability { id: \"B5CE\", source: \"Deep Blue\" }\r\n115.0 \"Sick Swell\" #Ability { id: \"B5CC\", source: \"Deep Blue\" }\r\n117.1 \"--targetable--\"\r\n117.5 \"Awesome Splash/Awesome Slab\" Ability { id: [\"B5CF\", \"B5D0\"], source: \"Deep Blue\" }\r\n125.2 \"--sync--\" Ability { id: [\"B5E0\", \"B5DD\"], source: \"Deep Blue\" }\r\n125.9 \"Reverse Alley-oop/Alley-oop Double-dip\" #Ability { id: [\"B5E1\", \"B5DE\"], source: \"Deep Blue\" }\r\n128.5 \"Reverse Alley-oop/Alley-oop Double-dip\" #Ability { id: [\"B5E2\", \"B5DF\"], source: \"Deep Blue\" }\r\n136.3 \"Deep Impact (bait)\" Ability { id: \"B5B7\", source: \"Deep Blue\" }\r\n136.5 \"Deep Impact (damage)\" #Ability { id: \"ADC6\", source: \"Deep Blue\" }\r\n143.5 \"Divers' Dare\" Ability { id: \"B5B9\", source: \"Deep Blue\" }\r\n149.6 \"--west--\" Ability { id: \"B579\", source: \"Deep Blue\" }\r\n151.6 \"--targetable--\"\r\n160.9 \"Xtreme Spectacular\" Ability { id: \"B5D9\", source: \"Red Hot\" }\r\n\r\n# Transition\r\n161.7 \"--untargetable--\"\r\n168.7 \"Xtreme Spectacular (line)\" Ability { id: \"B5A4\", source: \"The Xtremes\" }\r\n169.7 \"Xtreme Spectacular x6\" duration 3.5 #Ability { id: \"B5DC\", source: \"The Xtremes\" }\r\n173.6 \"Xtreme Spectacular (big)\" Ability { id: \"B7CA\", source: \"The Xtremes\" }\r\n\r\n# Insane Air 1\r\n177.4 \"--targetable--\"\r\n178.8 \"Epic Brotherhood x2\" Ability { id: \"B57A\", source: \"Red Hot\" }\r\n186.0 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n\r\n# Each boss does, in random order (Red Hot/Deep Blue):\r\n# 1 tankbuster (Blasting Snap/Vertical Plunge)\r\n# 1 stack (Re-entry Blast/Re-entry Plunge)\r\n# 2 proteans (Plunging Snap)\r\n# Timeline entries are for Red Hot's ability names, since there's no castbar\r\n194.6 \"Insane Air\" Ability { id: \"B897\", source: \"Red Hot\" }\r\n196.5 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n197.6 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F6\", source: \"Deep Blue\" }\r\n201.9 \"Insane Air\" Ability { id: \"B899\", source: \"Red Hot\" }\r\n203.8 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n204.9 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F6\", source: \"Deep Blue\" }\r\n209.2 \"Insane Air\" Ability { id: \"B899\", source: \"Red Hot\" }\r\n211.1 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n212.2 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F6\", source: \"Deep Blue\" }\r\n216.5 \"Insane Air\" Ability { id: \"B899\", source: \"Red Hot\" }\r\n218.4 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n219.5 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F6\", source: \"Deep Blue\" }\r\n219.9 \"--sync--\" Ability { id: \"B57D\", source: \"Deep Blue\" }\r\n229.1 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n235.3 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n\r\n# Snaking\r\n237.7 \"Epic Brotherhood x2\" Ability { id: \"B57A\", source: \"Red Hot\" }\r\n244.8 \"Firesnaking/Watersnaking\" Ability { id: \"B381\", source: \"Red Hot\" }\r\n250.0 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n256.8 \"Alley-oop Inferno\" Ability { id: \"B5C0\", source: \"Red Hot\" }\r\n257.4 \"--sync--\" Ability { id: [\"B5E0\", \"B5DD\"], source: \"Deep Blue\" }\r\n257.4 \"Alley-oop Inferno\" #Ability { id: \"B5C1\", source: \"Red Hot\" }\r\n258.0 \"Reverse Alley-oop/Alley-oop Double-dip\" Ability { id: [\"B5E1\", \"B5DE\"], source: \"Deep Blue\" }\r\n260.6 \"Reverse Alley-oop/Alley-oop Double-dip\" #Ability { id: [\"B5E2\", \"B5DF\"], source: \"Deep Blue\" }\r\n262.6 \"Sick Swell\" Ability { id: \"B5CB\", source: \"Deep Blue\" }\r\n267.7 \"--sync--\" Ability { id: \"B579\", source: \"Deep Blue\" }\r\n268.8 \"Hot Impact\" Ability { id: \"B580\", source: \"Red Hot\" }\r\n275.2 \"Deep Varial\" Ability { id: \"B891\", source: \"Deep Blue\" }\r\n276.8 \"Deep Varial\" Ability { id: \"B5D3\", source: \"Deep Blue\" }\r\n279.4 \"Alley-oop Inferno\" Ability { id: \"B5C0\", source: \"Red Hot\" }\r\n280.0 \"Awesome Splash/Awesome Slab\" Ability { id: [\"B5D7\", \"B5D8\"], source: \"Deep Blue\" }\r\n280.1 \"Alley-oop Inferno\" Ability { id: \"B5C1\", source: \"Red Hot\" }\r\n281.4 \"--sync--\" #Ability { id: \"B578\", source: \"Red Hot\" }\r\n288.5 \"Hot Aerial\" Ability { id: \"B5C4\", source: \"Red Hot\" }\r\n288.9 \"--hot jump--\" #Ability { id: \"B91D\", source: \"Red Hot\" }\r\n290.0 \"Hot Aerial 1\" #Ability { id: \"B91E\", source: \"Deep Blue\" }\r\n290.9 \"--hot jump--\" #Ability { id: \"B91D\", source: \"Red Hot\" }\r\n292.0 \"Hot Aerial 2\" #Ability { id: \"B91F\", source: \"Red Hot\" }\r\n292.1 \"Sickest Take-off\" Ability { id: \"B5CD\", source: \"Deep Blue\" }\r\n292.1 \"--untargetable--\"\r\n292.9 \"--hot jump--\" #Ability { id: \"B91D\", source: \"Red Hot\" }\r\n294.1 \"Hot Aerial 3\" Ability { id: \"B920\", source: \"Red Hot\" }\r\n295.0 \"--hot jump--\" #Ability { id: \"B91D\", source: \"Red Hot\" }\r\n296.2 \"Hot Aerial 4\" Ability { id: \"B921\", source: \"Red Hot\" }\r\n301.3 \"Sickest Take-off\" Ability { id: \"B5CE\", source: \"Deep Blue\" }\r\n301.3 \"Sick Swell\" #Ability { id: \"B5CC\", source: \"Deep Blue\" }\r\n303.3 \"--targetable--\"\r\n303.7 \"Awesome Splash/Awesome Slab\" Ability { id: [\"B5CF\", \"B5D0\"], source: [\"Red Hot\", \"Deep Blue\"] }\r\n306.3 \"Cutback Blaze\" Ability { id: \"B5C9\", source: \"Red Hot\" }\r\n307.2 \"Cutback Blaze\" #Ability { id: \"B5CA\", source: [\"Red Hot\", \"Deep Blue\"] } # Possible bugged log\r\n313.2 \"Deep Impact (bait)\" Ability { id: \"B5B7\", source: \"Deep Blue\" }\r\n313.5 \"Deep Impact (damage)\" #Ability { id: \"ADC6\", source: \"Deep Blue\" }\r\n320.5 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n326.7 \"Epic Brotherhood x2\" Ability { id: \"B57A\", source: \"Red Hot\" }\r\n328.8 \"Deep Aerial (tower)\" StartsUsing { id: \"B5E3\", source: \"Deep Blue\" } duration 5\r\n334.8 \"Deep Aerial (damage + stun)\" Ability { id: \"B5E4\", source: \"Deep Blue\" } duration 2\r\n335.9 \"--sync--\" Ability { id: \"B57D\", source: \"Deep Blue\" }\r\n\r\n# Bubble/Deep Aerial\r\n# Xtreme Wave has two casts per boss per set\r\n# The lower ID cast of each boss is the actual line snapshot and is the important mechanic to time\r\n# The higher ID cast is the secondary hit on anyone in the path of the line that wasn't the original target\r\n# Drop the higher ID casts. Only keep Red Hot's casts for timeline cleanliness\r\n337.3 \"--add-targetable--\"\r\n337.9 \"--untargetable--\"\r\n337.9 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n345.7 \"Xtreme Wave 1\" Ability { id: \"B5C5\", source: \"Red Hot\" }\r\n347.8 \"Scathing Steam 1\" Ability { id: \"ADC7\", source: \"Watery Grave\" }\r\n354.1 \"Xtreme Wave 2\" Ability { id: \"B5C7\", source: \"Red Hot\" }\r\n356.2 \"Scathing Steam 2\" Ability { id: \"ADC7\", source: \"Watery Grave\" }\r\n362.6 \"Xtreme Wave 3\" Ability { id: \"B5C7\", source: \"Red Hot\" }\r\n364.7 \"Scathing Steam 3\" Ability { id: \"ADC7\", source: \"Watery Grave\" }\r\n371.1 \"Xtreme Wave 4\" Ability { id: \"B5C7\", source: \"Red Hot\" }\r\n373.2 \"Scathing Steam 4\" Ability { id: \"ADC7\", source: \"Watery Grave\" }\r\n379.6 \"Xtreme Wave 5\" Ability { id: \"B5C7\", source: \"Red Hot\" }\r\n381.7 \"Scathing Steam 5\" Ability { id: \"ADC7\", source: \"Watery Grave\" }\r\n388.3 \"Xtreme Wave 6\" Ability { id: \"B5C7\", source: \"Red Hot\" }\r\n390.4 \"Scathing Steam 6\" Ability { id: \"ADC7\", source: \"Watery Grave\" }\r\n390.6 \"--targetable--\"\r\n390.6 \"--sync--\" Ability { id: \"B57D\", source: \"Deep Blue\" }\r\n392.8 \"--add-untargetable--\"\r\n# This is caused by either player in the jail dieing. At the end of adds phase, if the jail hasn't been killed\r\n# both players die to a debuff, which then detonates the jail. This is technically a soft enrage, since it can be\r\n# mitted through with a full send of all party mits or via tank LB, but realistically with most strats now\r\n# putting healers in the jail, this is going to wipe the party regardless due to the followup aoe.\r\n393.0 \"Impact Zone (enrage)\" #Ability { id: \"B5EC\", source: \"Watery Grave\" }\r\n393.2 \"Impact Zone x2 (enrage)\" #Ability { id: \"B5EB\", source: \"Watery Grave\" }\r\n\r\n# Arena Split\r\n398.7 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n404.8 \"Epic Brotherhood x2\" Ability { id: \"B57A\", source: \"Red Hot\" }\r\n406.9 \"--red north--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n409.9 \"Sick Swell\" Ability { id: \"B5CB\", source: \"Deep Blue\" }\r\n414.3 \"Flame Floater\" Ability { id: \"B5BF\", source: \"Red Hot\" }\r\n421.1 \"--blue east/west--\" Ability { id: \"B579\", source: \"Deep Blue\" }\r\n423.6 \"Alley-oop Inferno\" Ability { id: \"B5C1\", source: \"Red Hot\" }\r\n429.2 \"Reverse Alley-oop/Alley-oop Double-dip\"\r\n431.8 \"Reverse Alley-oop/Alley-oop Double-dip\"\r\n435.8 \"Sickest Take-off\" Ability { id: \"B5CD\", source: \"Deep Blue\" }\r\n435.8 \"--blue untargetable--\"\r\n# Actor name on this can vary since it's an invisible re-use actor\r\n436.7 \"Freaky Pyrotation\" #Ability { id: \"B597\", source: \"Deep Blue\" }\r\n444.7 \"Sickest Take-off\" Ability { id: \"B5CE\", source: \"Deep Blue\" }\r\n444.7 \"Sick Swell\" #Ability { id: \"B5CC\", source: \"Deep Blue\" }\r\n446.7 \"--blue targetable--\"\r\n447.1 \"Awesome Slab\" Ability { id: \"B5D0\", source: \"Deep Blue\" }\r\n451.8 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n\r\n# Insane Air 2\r\n457.9 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n460.3 \"Epic Brotherhood x2\" Ability { id: \"B57A\", source: \"Red Hot\" }\r\n467.4 \"Xtreme Firesnaking/Xtreme Watersnaking\" Ability { id: \"B5AE\", source: \"Red Hot\" }\r\n472.6 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n482.3 \"Insane Air\" Ability { id: \"B5E6\", source: \"Red Hot\" }\r\n484.2 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n485.3 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F2\", source: \"Deep Blue\" }\r\n486.9 \"Bailout\" Ability { id: \"B5B0\", source: \"Red Hot\" }\r\n492.8 \"Insane Air\" Ability { id: \"B5E8\", source: \"Red Hot\" }\r\n494.7 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n495.8 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F2\", source: \"Deep Blue\" }\r\n497.4 \"Bailout\" Ability { id: \"B5B0\", source: \"Red Hot\" }\r\n503.2 \"Insane Air\" Ability { id: \"B5E8\", source: \"Red Hot\" }\r\n505.1 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n506.2 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F2\", source: \"Deep Blue\" }\r\n507.9 \"Bailout\" Ability { id: \"B5B1\", source: \"Deep Blue\" }\r\n513.6 \"Insane Air\" Ability { id: \"B5E8\", source: \"Red Hot\" }\r\n515.5 \"Blasting Snap/Plunging Snap/Re-entry Blast (bait)\" #Ability { id: \"B5EF\", source: \"Red Hot\" }\r\n516.6 \"Blasting Snap/Plunging Snap/Re-entry Blast (damage)\" #Ability { id: \"B5F2\", source: \"Deep Blue\" }\r\n517.0 \"--sync--\" Ability { id: \"B57D\", source: \"Deep Blue\" }\r\n518.0 \"Bailout\" Ability { id: \"B5B0\", source: \"Red Hot\" }\r\n526.0 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n\r\n# Double Alley-oop\r\n532.2 \"Epic Brotherhood x2\" Ability { id: \"B57A\", source: \"Red Hot\" }\r\n534.3 \"--sync--\" Ability { id: \"B579\", source: \"Deep Blue\" }\r\n542.1 \"Reverse Alley-oop/Alley-oop Double-dip\"\r\n544.3 \"Alley-oop Inferno\" #Ability { id: \"B5C1\", source: \"Red Hot\" }\r\n544.7 \"Reverse Alley-oop/Alley-oop Double-dip\"\r\n552.3 \"Pyrotation x3\" Ability { id: \"B5C2\", source: \"Red Hot\" } duration 4.9\r\n553.2 \"Deep Impact (bait)\" Ability { id: \"B5B7\", source: \"Deep Blue\" }\r\n553.4 \"Deep Impact (damage)\" Ability { id: \"ADC6\", source: \"Deep Blue\" }\r\n\r\n# Soft -> hard enrage\r\n566.5 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n575.6 \"Divers' Dare x2\" Ability { id: \"B5B8\", source: \"Red Hot\" }\r\n585.3 \"--sync--\" Ability { id: \"B578\", source: \"Red Hot\" }\r\n587.4 \"--sync--\" StartsUsing { id: \"B5FC\", source: \"Red Hot\" }\r\n596.4 \"Over the Falls (enrage)\" Ability { id: \"B5FC\", source: \"Red Hot\" }\r\n\r\n\r\n# IGNORED ABILITIES\r\n# B5BA Flame Floater: VFX\r\n# B57C --sync--: Red Hot dismounting from surfboard\r\n# B5DA Xtreme Spectacular: Deep Blue cast, same time as Red Hot\r\n# B5C3 Pyrotation: Actual hits, but covered by duration\r\n# B57B Epic Brotherhood: VFX for Deep Blue sharing health with Red Hot\r\n# B5FB Steam Burst: Water/Fire mechanics overlap, could vary when they occur\r\n# BDFF --sync--: autoattack\r\n# BE00 --sync--: autoattack\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# ADC6 Deep Impact\r\n# ADC7 Scathing Steam\r\n# B381 Firesnaking\r\n# B382 Watersnaking\r\n# B578 --sync--\r\n# B579 --sync--\r\n# B57A Epic Brotherhood\r\n# B57B Epic Brotherhood\r\n# B57C --sync--\r\n# B57D --sync--\r\n# B580 Hot Impact\r\n# B596 Freaky Pyrotation\r\n# B597 Freaky Pyrotation\r\n# B5A4 Xtreme Spectacular\r\n# B5AE Xtreme Firesnaking\r\n# B5AF Xtreme Watersnaking\r\n# B5B0 Bailout\r\n# B5B1 Bailout\r\n# B5B6 Hot Impact\r\n# B5B7 Deep Impact\r\n# B5B8 Divers' Dare\r\n# B5B9 Divers' Dare\r\n# B5BA Flame Floater\r\n# B5BB Flame Floater\r\n# B5BC Flame Floater\r\n# B5BD Flame Floater\r\n# B5BE Flame Floater\r\n# B5BF Flame Floater\r\n# B5C0 Alley-oop Inferno\r\n# B5C1 Alley-oop Inferno\r\n# B5C2 Pyrotation\r\n# B5C3 Pyrotation\r\n# B5C4 Hot Aerial\r\n# B5C5 Xtreme Wave\r\n# B5C6 Xtreme Wave\r\n# B5C7 Xtreme Wave\r\n# B5C8 Xtreme Wave\r\n# B5C9 Cutback Blaze\r\n# B5CA Cutback Blaze\r\n# B5CB Sick Swell\r\n# B5CC Sick Swell\r\n# B5CD Sickest Take-off\r\n# B5CE Sickest Take-off\r\n# B5CF Awesome Splash\r\n# B5D0 Awesome Slab\r\n# B5D1 Xtreme Wave\r\n# B5D2 Xtreme Wave\r\n# B5D3 Deep Varial\r\n# B5D4 Flame Floater\r\n# B5D7 Awesome Splash\r\n# B5D9 Xtreme Spectacular\r\n# B5DA Xtreme Spectacular\r\n# B5DC Xtreme Spectacular\r\n# B5DD Alley-oop Double-dip\r\n# B5DE Alley-oop Double-dip\r\n# B5DF Alley-oop Double-dip\r\n# B5E0 Reverse Alley-oop\r\n# B5E1 Reverse Alley-oop\r\n# B5E2 Reverse Alley-oop\r\n# B5E3 Deep Aerial\r\n# B5E4 Deep Aerial\r\n# B5E6 Insane Air\r\n# B5E7 Insane Air\r\n# B5E8 Insane Air\r\n# B5E9 Insane Air\r\n# B5EA --sync--\r\n# B5EB Impact Zone: Failing to kill Watery Grave, this does ~1.5mil damage\r\n# B5EC Impact Zone: Failing to kill Watery Grave, this goes off twice <0.2s after B5EB, ~130k damage each\r\n# B5EF Blasting Snap\r\n# B5F0 Plunging Snap\r\n# B5F1 Blasting Snap\r\n# B5F2 Plunging Snap\r\n# B5F3 Re-entry Blast\r\n# B5F4 Re-entry Plunge\r\n# B5F5 Re-entry Blast\r\n# B5F6 Re-entry Plunge\r\n# B5F7 Vertical Blast\r\n# B5F8 Vertical Plunge\r\n# B5F9 Vertical Blast\r\n# B5FA Vertical Plunge\r\n# B5FB Steam Burst\r\n# B5FC Over the Falls\r\n# B5FD Over the Falls\r\n# B7CA Xtreme Spectacular\r\n# B891 Deep Varial\r\n# B897 Insane Air\r\n# B898 Insane Air\r\n# B899 Insane Air\r\n# B89A Insane Air\r\n# B91D Hot Aerial\r\n# B91E Hot Aerial\r\n# B91F Hot Aerial\r\n# B920 Hot Aerial\r\n# B921 Hot Aerial\r\n# BDFF --sync--\r\n# BE00 --sync--\r\n";
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/raid/r11n.ts
 
 
@@ -240346,7 +240346,7 @@ const r11n_triggerSet = {
     run: (data, matches) => {
       // Determine whether the AoE is orthogonal or diagonal
       // Discard diagonal headings, then count orthogonals.
-      const headingDirNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(matches.heading));
+      const headingDirNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(matches.heading));
       if (headingDirNum % 2 === 0) {
         const isVert = headingDirNum % 4 === 0;
         const isHoriz = headingDirNum % 4 === 2;
@@ -240594,7 +240594,7 @@ const r11n_triggerSet = {
       // without waiting on the second.
       const meteorX = parseFloat(matches.x);
       const meteorY = parseFloat(matches.y);
-      const meteorQuad = util/* Directions.xyToIntercardDirOutput */.N.xyToIntercardDirOutput(meteorX, meteorY, 100, 100);
+      const meteorQuad = util/* Directions.xyToIntercardDirOutput */.Ns.xyToIntercardDirOutput(meteorX, meteorY, 100, 100);
       if (meteorQuad === 'dirNE' || meteorQuad === 'dirSW') return output.comboDir({
         dir1: output.nw(),
         dir2: output.se()
@@ -241286,14 +241286,14 @@ const r11s_triggerSet = {
       const actor = data.actorPositions[matches.id];
       if (actor === undefined) return;
       const mechanic = matches.param1 === '11D1' ? 'healerGroups' : matches.param1 === '11D2' ? 'stack' : 'protean';
-      const dir = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(actor.x, actor.y, r11s_center.x, r11s_center.y);
+      const dir = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(actor.x, actor.y, r11s_center.x, r11s_center.y);
       return output.text({
         dir: output[dir](),
         weapon: output[mechanic]()
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       healerGroups: outputs/* default.healerGroups */.Z.healerGroups,
       stack: outputs/* default.stackMiddle */.Z.stackMiddle,
       protean: outputs/* default.protean */.Z.protean,
@@ -241498,7 +241498,7 @@ const r11s_triggerSet = {
     preRun: (data, matches) => {
       // Determine whether the AoE is orthogonal or diagonal
       // Discard diagonal headings, then count orthogonals.
-      const headingDirNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(matches.heading));
+      const headingDirNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(matches.heading));
       if (headingDirNum % 2 !== 0) return;
       const isVert = headingDirNum % 4 === 0;
       let dangerDir = undefined;
@@ -241538,7 +241538,7 @@ const r11s_triggerSet = {
         cn: '左/右中间 / ${dir} 外侧 + 队友分摊',
         ko: '동/서 중간 / ${dir} 바깥 + 파트너 쉐어'
       },
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir
     }
   }, {
     id: 'R11S Charybdistopia',
@@ -241764,7 +241764,7 @@ const r11s_triggerSet = {
         return;
       }
       if (hasTether) {
-        const portalDirNum = util/* Directions.xyTo4DirIntercardNum */.N.xyTo4DirIntercardNum(actor.x, actor.y, r11s_center.x, r11s_center.y);
+        const portalDirNum = util/* Directions.xyTo4DirIntercardNum */.Ns.xyTo4DirIntercardNum(actor.x, actor.y, r11s_center.x, r11s_center.y);
         // While two could be inter inter cards, furthest stretches will be an intercard
         const stretchDirNum = (portalDirNum + 2) % 4;
         data.arenaSplitStretchDirNum = stretchDirNum;
@@ -241812,16 +241812,16 @@ const r11s_triggerSet = {
     infoText: (data, matches, output) => {
       const actor = data.actorPositions[matches.sourceId];
       if (actor === undefined) return output.stretchTetherLater();
-      const portalDirNum = util/* Directions.xyTo4DirIntercardNum */.N.xyTo4DirIntercardNum(actor.x, actor.y, r11s_center.y, r11s_center.x);
+      const portalDirNum = util/* Directions.xyTo4DirIntercardNum */.Ns.xyTo4DirIntercardNum(actor.x, actor.y, r11s_center.y, r11s_center.x);
       // While these are inter inter cards, furthest stretch will be an intercard
       const stretchDirNum = (portalDirNum + 2) % 4;
-      const dir = util/* Directions.outputIntercardDir */.N.outputIntercardDir[stretchDirNum];
+      const dir = util/* Directions.outputIntercardDir */.Ns.outputIntercardDir[stretchDirNum];
       return output.stretchTetherDirLater({
         dir: output[dir ?? 'unknown']()
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir,
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       stretchTetherDirLater: {
         en: 'Tether on YOU: Stretch ${dir} (later)',
         de: 'Verbindung auf DIR: Langziehen ${dir} (später)',
@@ -242078,7 +242078,7 @@ const r11s_triggerSet = {
       const dirNum = data.arenaSplitStretchDirNum;
       const myPlatform = data.myPlatform;
       if (dirNum !== undefined && myPlatform !== undefined) {
-        const dir1 = util/* Directions.outputIntercardDir */.N.outputIntercardDir[dirNum] ?? 'unknown';
+        const dir1 = util/* Directions.outputIntercardDir */.Ns.outputIntercardDir[dirNum] ?? 'unknown';
         if (myPlatform === 'west') {
           const dir2 = isWestIn ? 'front' : 'back';
           return output.tetherMechsPlayerWest({
@@ -242105,7 +242105,7 @@ const r11s_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir,
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       bait3Puddles: {
         en: 'Bait Puddles x3',
         de: 'Flächen ködern x3',
@@ -242292,7 +242292,7 @@ const r11s_triggerSet = {
       // without waiting on the second.
       const meteorX = parseFloat(matches.x);
       const meteorY = parseFloat(matches.y);
-      const meteorQuad = util/* Directions.xyToIntercardDirOutput */.N.xyToIntercardDirOutput(meteorX, meteorY, r11s_center.x, r11s_center.y);
+      const meteorQuad = util/* Directions.xyToIntercardDirOutput */.Ns.xyToIntercardDirOutput(meteorX, meteorY, r11s_center.x, r11s_center.y);
       if (data.hasAtomic) {
         if (meteorQuad === 'dirNE' || meteorQuad === 'dirSW') return output.comboDir({
           dir1: output.nw(),
@@ -242366,15 +242366,15 @@ const r11s_triggerSet = {
     infoText: (data, matches, output) => {
       const actor = data.actorPositions[matches.sourceId];
       if (actor === undefined) return;
-      const portalDirNum = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(actor.x, actor.y, r11s_center.x, r11s_center.y);
+      const portalDirNum = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(actor.x, actor.y, r11s_center.x, r11s_center.y);
       const stretchDirNum = data.triggerSetConfig.majesticMeteowrathTetherDir === 'ccw' ? (portalDirNum + 3) % 8 : (portalDirNum + 5) % 8;
-      const stretchDir = util/* Directions.output8Dir */.N.output8Dir[stretchDirNum] ?? 'unknown';
+      const stretchDir = util/* Directions.output8Dir */.Ns.output8Dir[stretchDirNum] ?? 'unknown';
       return output.stretchTetherDir({
         dir: output[stretchDir]()
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       stretchTetherDir: {
         en: 'Stretch Tether ${dir}',
         de: 'Verbindungen langziehen ${dir}',
@@ -243222,7 +243222,7 @@ const r12n_triggerSet = {
         cn: '逃离 (${dir} 顺时针)',
         ko: '탈출 (${dir} 시계방향)'
       },
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir
     }
   }, {
     id: 'R12N Hemorrhagic Projection',
@@ -243545,6 +243545,1729 @@ const r12n_triggerSet = {
 /* harmony default export */ const r12n = (r12n_triggerSet);
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/raid/r12n.txt
 const raid_r12n_namespaceObject = "### AAC HEAVYWEIGHT (M4)\r\n# ZoneId: 1326\r\n\r\n# -ii B467 B468 B469 B46A B46B B46E B472 B477 B47C B491 B492 B536 B53C B768 B9BD B9C0 BBE0\r\n# -it \"Lindwurm\"\r\n# -p BBD5:998.2\r\n# The phase above won't always work, it depends on what state the boss was in when it died\r\n# (none|left|right|both) arms transformed, each produces a different ability to de-transform\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n# At the end of P1, when the boss drops below 10%, it starts a separate soft enrage\r\n# loop. Scattered through the timeline are extra syncs to catch an out-of-place\r\n# tankbuster cast, which is what denotes the start of the enrage loop.\r\nhideall \"--p1-enrage-sync--\"\r\n\r\n0.0 \"--Reset--\" ActorControl { command: \"4000000F\" } window 0,100000 jump 0\r\n\r\n0.0 \"--sync--\" InCombat { inGameCombat: \"1\" } window 0,1\r\n6.7 \"--sync--\" StartsUsing { id: \"B494\", source: \"Lindwurm\" } window 6.7,10\r\n11.4 \"The Fixer\" Ability { id: \"B494\", source: \"Lindwurm\" }\r\n19.2 \"Bloodshed\" Ability { id: [\"B465\", \"B466\"], source: \"Lindwurm\" }\r\n27.3 \"Serpentine Scourge\" Ability { id: \"B9BB\", source: \"Lindwurm\" }\r\n41.0 \"Ravenous Reach\" Ability { id: \"B46D\", source: \"Lindwurm\" }\r\n50.0 \"Burst\" Ability { id: \"B46F\", source: \"Lindwurm\" }\r\n\r\n# Cruel Coil\r\n58.7 \"Cruel Coil\" Ability { id: [\"B11B\", \"B11C\"], source: \"Lindwurm\" }\r\n64.8 \"Skinsplitter\" Ability { id: \"B473\", source: \"Lindwurm\" }\r\n69.9 \"Skinsplitter\" Ability { id: \"B473\", source: \"Lindwurm\" }\r\n74.9 \"Skinsplitter\" Ability { id: \"B473\", source: \"Lindwurm\" }\r\n80.0 \"Constrictor\" Ability { id: [\"B53D\", \"B53F\", \"BDF3\", \"BDF4\"], source: \"Lindwurm\" }\r\n92.0 \"Visceral Burst\" Ability { id: \"B493\", source: \"Lindwurm\" }\r\n\r\n# Dramatic Lysis\r\n96.6 \"Bloodshed\" Ability { id: [\"B465\", \"B466\"], source: \"Lindwurm\" }\r\n104.7 \"Serpentine Scourge\" Ability { id: \"B9BB\", source: \"Lindwurm\" }\r\n109.8 \"Grotesquerie\" Ability { id: \"B481\", source: \"Lindwurm\" }\r\n124.5 \"Ravenous Reach\" Ability { id: \"B46D\", source: \"Lindwurm\" }\r\n133.5 \"Burst\" Ability { id: \"B46F\", source: \"Lindwurm\" }\r\n138.9 \"Dramatic Lysis\" Ability { id: \"B483\", source: \"Lindwurm\" }\r\n146.5 \"Splattershed\" Ability { id: \"B9C5\", source: \"Lindwurm\" }\r\n148.3 \"--sync--\" Ability { id: \"B7C6\", source: \"Lindwurm\" }\r\n\r\n# Feral Fission\r\n158.6 label \"p1-loop\"\r\n161.3 \"Feral Fission\" Ability { id: \"B478\", source: \"Lindwurm\" }\r\n162.9 \"Grand Entrance x8\" duration 2 #Ability { id: \"B47B\", source: \"Lindwurm\" }\r\n169.6 \"Bring Down the House\" Ability { id: \"B47D\", source: \"Lindwurm\" }\r\n182.8 \"Split Scourge\" Ability { id: \"B47F\", source: \"Lindwurm\" }\r\n187.8 \"--sync--\" Ability { id: \"B479\", source: \"Lindwurm\" }\r\n191.0 \"Venomous Scourge\" Ability { id: \"B480\", source: \"Lindwurm\" }\r\n194.0 \"Grotesquerie\" Ability { id: \"B481\", source: \"Lindwurm\" }\r\n202.1 \"Shockwave\" Ability { id: \"B482\", source: \"Lindwurm\" }\r\n210.7 \"Ravenous Reach\" Ability { id: \"B46D\", source: \"Lindwurm\" }\r\n211.1 \"Fourth-Wall Fusion\" Ability { id: \"B484\", source: \"Lindwurm\" }\r\n219.7 \"Burst\" Ability { id: \"B46F\", source: \"Lindwurm\" }\r\n\r\n226.8 \"Bloodshed\" Ability { id: [\"B465\", \"B466\"], source: \"Lindwurm\" }\r\n# Cone cast here (Hemorrhagic Projection) is an invisible late instant cast\r\n# Does not align with the visual indicator since the visual is a 0x808 status effect on players\r\n# not an actual cast\r\n227.1 \"Hemorrhagic Projection\" Ability { id: \"B485\", source: \"Lindwurm\" }\r\n235.0 \"Serpentine Scourge\" Ability { id: \"B9BB\", source: \"Lindwurm\" }\r\n242.5 \"Splattershed\" Ability { id: \"B9C5\", source: \"Lindwurm\" }\r\n244.2 \"--sync--\" Ability { id: \"B490\", source: \"Lindwurm\" }\r\n253.0 \"--p1-enrage-sync--\" StartsUsing { id: \"B492\" } window 159.0,0 jump \"p1-enrage-loop\"\r\n258.8 \"Visceral Burst\" Ability { id: \"B493\", source: \"Lindwurm\" }\r\n\r\n# Cruel Coil 2\r\n267.9 \"Cruel Coil\" Ability { id: [\"B11B\", \"B11C\"], source: \"Lindwurm\" }\r\n274.0 \"Skinsplitter\" Ability { id: \"B473\", source: \"Lindwurm\" }\r\n279.0 \"Skinsplitter\" Ability { id: \"B473\", source: \"Lindwurm\" }\r\n284.0 \"Constrictor\" Ability { id: [\"B53D\", \"B53F\", \"BDF3\", \"BDF4\"], source: \"Lindwurm\" }\r\n297.0 \"Grotesquerie\" Ability { id: \"B481\", source: \"Lindwurm\" }\r\n305.2 \"Shockwave\" Ability { id: \"B482\", source: \"Lindwurm\" }\r\n306.5 \"Burst\" Ability { id: \"B46F\", source: \"Lindwurm\" }\r\n312.2 \"Dramatic Lysis\" Ability { id: \"B483\", source: \"Lindwurm\" }\r\n313.6 \"Bloodshed\" Ability { id: [\"B465\", \"B466\"], source: \"Lindwurm\" }\r\n321.7 \"Serpentine Scourge\" Ability { id: \"B9BB\", source: \"Lindwurm\" }\r\n324.4 \"Bloodshed\" Ability { id: [\"B465\", \"B466\"], source: \"Lindwurm\" }\r\n332.5 \"Serpentine Scourge\" Ability { id: \"B9BB\", source: \"Lindwurm\" }\r\n334.3 \"Burst\" Ability { id: \"B46F\", source: \"Lindwurm\" }\r\n339.6 \"The Fixer\" Ability { id: \"B494\", source: \"Lindwurm\" }\r\n\r\n348.9 \"--p1-enrage-sync--\" StartsUsing { id: \"B492\" } window 87.5,0 jump \"p1-enrage-loop\"\r\n349.0 \"--sync--\" StartsUsing { id: \"B478\", source: \"Lindwurm\" } forcejump \"p1-loop\"\r\n\r\n500.0 label \"p1-enrage-loop\"\r\n504.7 \"Visceral Burst\" Ability { id: \"B493\", source: \"Lindwurm\" }\r\n517.7 \"The Fixer\" Ability { id: \"B494\", source: \"Lindwurm\" }\r\n529.8 \"The Fixer\" Ability { id: \"B494\", source: \"Lindwurm\" }\r\n540.9 \"Grotesquerie\" Ability { id: \"B481\", source: \"Lindwurm\" }\r\n548.1 \"Shockwave\" Ability { id: \"B482\", source: \"Lindwurm\" }\r\n549.3 \"Burst\" Ability { id: \"B46F\", source: \"Lindwurm\" }\r\n556.0 \"Hemorrhagic Projection\" Ability { id: \"B485\", source: \"Lindwurm\" }\r\n563.3 \"--sync--\" StartsUsing { id: \"B492\" } forcejump \"p1-enrage-loop\"\r\n\r\n# Phase two, this sync is the announcer \"The battle is decided! Victory goes to the champion!\" text\r\n1000.0 \"--sync--\" ActorControl { command: \"80000027\", data0: \"10\", data1: \"02\", data2: \"330A\" } window 1000,0\r\n1020.2 \"--targetable--\"\r\n1026.3 label \"p2-loop\"\r\n1026.3 \"Mindless Flesh x5\" Ability { id: [\"BBD8\", \"BBD9\"], source: \"Lindwurm\" } duration 7.2\r\n1032.5 \"Dramatic Lysis\" Ability { id: \"BCF3\", source: \"Lindwurm\" }\r\n1039.5 \"Mindless Flesh (huge)\" Ability { id: \"BBDF\", source: \"Lindwurm\" }\r\n1050.0 \"Splattershed\" Ability { id: \"BBE1\", source: \"Lindwurm\" }\r\n1061.0 \"--sync--\" Ability { id: [\"BBD8\", \"BBD9\"], source: \"Lindwurm\" } forcejump \"p2-loop\"\r\n\r\n# IGNORED ABILITIES\r\n# B467 Serpentine Scourge: VFX for left/right cleave, not snapshot\r\n# B468 Serpentine Scourge: VFX for left/right cleave, not snapshot\r\n# B469 Ravenous Reach: VFX\r\n# B46A --sync--: VFX\r\n# B46B --sync--: VFX\r\n# B46E --sync--: VFX\r\n# B472 --sync--: Dark circle VFX for Cruel Coil\r\n# B477 Constrictor: Same as Skinsplitter for this Constrictor, the other hits are actual but this one lines up better for movement snapshots\r\n# B47C Bring Down the House: Castbar, not tied to ground AoEs\r\n# B491 --sync--: Autoattack\r\n# B492 Visceral Burst: Cast bar, not actual hit\r\n# B536 Ravenous Reach: VFX\r\n# B53C Skinsplitter: Actual ability that hits. Technically should ignore B53C instead but this is more accurate for moving out of the coil\r\n# B768 Ravenous Reach: VFX\r\n# B9BD Splattershed: VFX\r\n# B9C0 Splattershed: VFX\r\n# BBE0 Splattershed: VFX\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# B11B Cruel Coil\r\n# B11C Cruel Coil\r\n# B465 Bloodshed\r\n# B466 Bloodshed\r\n# B467 Serpentine Scourge\r\n# B468 Serpentine Scourge\r\n# B469 Ravenous Reach\r\n# B46A --sync--\r\n# B46B --sync--\r\n# B46D Ravenous Reach\r\n# B46E --sync--\r\n# B46F Burst\r\n# B472 --sync--\r\n# B473 Skinsplitter\r\n# B477 Constrictor\r\n# B478 Feral Fission\r\n# B479 --sync--\r\n# B47B Grand Entrance\r\n# B47C Bring Down the House\r\n# B47D Bring Down the House\r\n# B47F Split Scourge\r\n# B480 Venomous Scourge\r\n# B481 Grotesquerie\r\n# B482 Shockwave\r\n# B483 Dramatic Lysis\r\n# B484 Fourth-Wall Fusion\r\n# B485 Hemorrhagic Projection\r\n# B490 --sync--\r\n# B491 --sync--\r\n# B492 Visceral Burst\r\n# B493 Visceral Burst\r\n# B494 The Fixer\r\n# B536 Ravenous Reach\r\n# B53C Skinsplitter\r\n# B53D Constrictor\r\n# B53F Constrictor\r\n# B768 Ravenous Reach\r\n# B7C6 --sync--\r\n# B9BB Serpentine Scourge\r\n# B9BD Splattershed\r\n# B9C0 Splattershed\r\n# B9C5 Splattershed\r\n# BBD8 Mindless Flesh\r\n# BBD9 Mindless Flesh\r\n# BBDA Mindless Flesh\r\n# BBDB Mindless Flesh\r\n# BBDC Mindless Flesh\r\n# BBDD Mindless Flesh\r\n# BBDE Mindless Flesh\r\n# BBDF Mindless Flesh\r\n# BBE0 Splattershed\r\n# BBE1 Splattershed\r\n# BCCC --sync--\r\n# BCF3 Dramatic Lysis\r\n# BDF3 Constrictor\r\n# BDF4 Constrictor\r\n";
+;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/raid/r12s.ts
+
+
+
+
+
+
+
+// TODO: Safe spots for Curtain Call's Unbreakable flesh
+// TODO: Safe spots for Slaughtershed Stack/Spreads
+const r12s_headMarkerData = {
+  // Phase 1
+  // VFX: com_share3t
+  'stack': '00A1',
+  // VFX: tank_lockonae_6m_5s_01t
+  'tankbuster': '0158',
+  // VFX: VFX: x6rc_cellchain_01x
+  'cellChain': '0291',
+  // VFX: com_share3_7s0p
+  'slaughterStack': '013D',
+  // VFX: target_ae_s7k1
+  'slaughterSpread': '0177',
+  'cellChainTether': '016E',
+  // Phase 2
+  // VFX: sharelaser2tank5sec_c0k1, used by Double Sobat (B520)
+  'sharedTankbuster': '0256',
+  // Replication 2 Tethers
+  'lockedTether': '0175',
+  // Clone tethers
+  'projectionTether': '016F',
+  // Comes from Lindschrat, B4EA Grotesquerie + B4EB Hemorrhagic Projection cleave based on player facing
+  'manaBurstTether': '0170',
+  // Comes from Lindschrat, B4E7 Mana Burst defamation
+  'heavySlamTether': '0171',
+  // Comes from Lindschrat, B4E8 Heavy Slam stack with projection followup
+  'fireballSplashTether': '0176' // Comes from the boss, B4E4 Fireball Splash baited jump
+};
+
+const r12s_center = {
+  x: 100,
+  y: 100
+};
+const r12s_phaseMap = {
+  'BEC0': 'curtainCall',
+  'B4C6': 'slaughtershed',
+  'B509': 'idyllic'
+};
+const r12s_triggerSet = {
+  id: 'AacHeavyweightM4Savage',
+  zoneId: zone_id/* default.AacHeavyweightM4Savage */.Z.AacHeavyweightM4Savage,
+  config: [{
+    id: 'uptimeKnockbackStrat',
+    name: {
+      en: 'Enable uptime knockback strat',
+      de: 'Aktiviere Uptime Rückstoß Strategie',
+      fr: 'Activer la strat Poussée-Uptime',
+      ja: 'エデン零式共鳴編４層：cactbot「ヘヴンリーストライク (ノックバック)」ギミック',
+      // FIXME
+      cn: '启用击退镜 uptime 策略',
+      ko: '정확한 타이밍 넉백방지 공략 사용',
+      tc: '啟用擊退鏡 uptime 策略'
+    },
+    comment: {
+      en: `If you want cactbot to callout Raptor Knuckles double knockback, enable this option.
+             Callout happens during/after first animation and requires <1.8s reaction time
+             to avoid both Northwest and Northeast knockbacks.
+             NOTE: This will call for each set.`,
+      ko: `cactbot이 맹수의 주먹 이중 넉백 알람을 불러주게 하려면 이 옵션을 활성화하세요.
+             첫 번째 애니메이션 중/후에 알림이 발생하며,
+             북서쪽과 북동쪽 넉백을 모두 피하려면 1.8초 미만의 반응 시간이 필요합니다.
+             참고: 각 세트마다 호출됩니다.`
+    },
+    type: 'checkbox',
+    default: false
+  }],
+  timelineFile: 'r12s.txt',
+  initData: () => ({
+    phase: 'doorboss',
+    // Phase 1
+    mortalSlayerGreenLeft: 0,
+    mortalSlayerGreenRight: 0,
+    inLine: {},
+    blobTowerDirs: [],
+    skinsplitterCount: 0,
+    cellChainCount: 0,
+    hasRot: false
+    // Phase 2
+  }),
+
+  triggers: [{
+    id: 'R12S Phase Tracker',
+    type: 'StartsUsing',
+    netRegex: {
+      id: Object.keys(r12s_phaseMap),
+      source: 'Lindwurm'
+    },
+    suppressSeconds: 1,
+    run: (data, matches) => {
+      const phase = r12s_phaseMap[matches.id];
+      if (phase === undefined) throw new not_reached/* UnreachableCode */.$();
+      data.phase = phase;
+    }
+  }, {
+    id: 'R12S The Fixer',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'B4D7',
+      source: 'Lindwurm',
+      capture: false
+    },
+    durationSeconds: 4.7,
+    response: responses/* Responses.bigAoe */.n3.bigAoe('alert')
+  }, {
+    id: 'R12S Mortal Slayer Collect',
+    // 19200 Purple Orb
+    // 19201 Green Orb
+    type: 'AddedCombatant',
+    netRegex: {
+      name: 'Lindwurm',
+      npcBaseId: ['19200', '19201'],
+      capture: true
+    },
+    run: (data, matches) => {
+      const npcBaseId = matches.npcBaseId;
+      const x = parseFloat(matches.x);
+
+      // 4 Green Orbs on one side = we know where purple will be
+      if (npcBaseId === '19201') {
+        if (x < 100) {
+          data.mortalSlayerGreenLeft = data.mortalSlayerGreenLeft + 1;
+          if (data.mortalSlayerGreenLeft === 4 && data.mortalSlayerPurpleIsLeft === undefined) data.mortalSlayerPurpleIsLeft = false;
+        } else if (x > 100) {
+          data.mortalSlayerGreenRight = data.mortalSlayerGreenRight + 1;
+          if (data.mortalSlayerGreenRight === 4 && data.mortalSlayerPurpleIsLeft === undefined) data.mortalSlayerPurpleIsLeft = true;
+        }
+      } else if (npcBaseId === '19200' && data.mortalSlayerPurpleIsLeft === undefined) data.mortalSlayerPurpleIsLeft = x < 100 ? true : false;
+    }
+  }, {
+    id: 'R12S Mortal Slayer Tank Side',
+    type: 'AddedCombatant',
+    netRegex: {
+      name: 'Lindwurm',
+      npcBaseId: ['19200', '19201'],
+      capture: false
+    },
+    condition: data => {
+      if (data.mortalSlayerPurpleIsLeft !== undefined) return true;
+      return false;
+    },
+    suppressSeconds: 12,
+    // castTime of Mortal Slayer B495
+    response: (data, _matches, output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = {
+        tanksLeft: {
+          en: 'Tanks Left',
+          ko: '탱커 왼쪽'
+        },
+        tanksRight: {
+          en: 'Tanks Right',
+          ko: '탱커 오른쪽'
+        }
+      };
+      const severity = data.role === 'tank' ? 'alertText' : 'infoText';
+      return {
+        [severity]: data.mortalSlayerPurpleIsLeft ? output.tanksLeft() : output.tanksRight()
+      };
+    }
+  }, {
+    id: 'R12S Mortal Slayer Cleanup',
+    // Reset trackers for second Mortal Slayer
+    type: 'Ability',
+    netRegex: {
+      id: 'B495',
+      capture: false
+    },
+    suppressSeconds: 9999,
+    run: data => {
+      data.mortalSlayerGreenLeft = 0;
+      data.mortalSlayerGreenRight = 0;
+      delete data.mortalSlayerPurpleIsLeft;
+    }
+  }, {
+    id: 'R12S Directed Grotesquerie Direction Collect',
+    // Unknown_DE6 spell contains data in its count:
+    // 40C, Front Cone
+    // 40D, Right Cone
+    // 40E, Rear Cone
+    // 40F, Left Cone
+    type: 'GainsEffect',
+    netRegex: {
+      effectId: 'DE6',
+      capture: true
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    run: (data, matches) => {
+      switch (matches.count) {
+        case '40C':
+          data.grotesquerieCleave = 'frontCleave';
+          return;
+        case '40D':
+          data.grotesquerieCleave = 'rightCleave';
+          return;
+        case '40E':
+          data.grotesquerieCleave = 'rearCleave';
+          return;
+        case '40F':
+          data.grotesquerieCleave = 'leftCleave';
+          return;
+      }
+    }
+  }, {
+    id: 'R12S Shared Grotesquerie',
+    type: 'GainsEffect',
+    netRegex: {
+      effectId: '129A',
+      capture: true
+    },
+    delaySeconds: 0.2,
+    durationSeconds: 17,
+    infoText: (data, matches, output) => {
+      const cleave = data.grotesquerieCleave;
+      const target = matches.target;
+      if (target === data.me) {
+        if (cleave === undefined) return output.baitThenStack({
+          stack: output.stackOnYou()
+        });
+        return output.baitThenStackCleave({
+          stack: output.stackOnYou(),
+          cleave: output[cleave]()
+        });
+      }
+      const player = data.party.member(target);
+      const isDPS = data.party.isDPS(target);
+      if (isDPS && data.role === 'dps') {
+        if (cleave === undefined) return output.baitThenStack({
+          stack: output.stackOnPlayer({
+            player: player
+          })
+        });
+        return output.baitThenStackCleave({
+          stack: output.stackOnPlayer({
+            player: player
+          }),
+          cleave: output[cleave]()
+        });
+      }
+      if (!isDPS && data.role !== 'dps') {
+        if (cleave === undefined) return output.baitThenStack({
+          stack: output.stackOnPlayer({
+            player: player
+          })
+        });
+        return output.baitThenStackCleave({
+          stack: output.stackOnPlayer({
+            player: player
+          }),
+          cleave: output[cleave]()
+        });
+      }
+    },
+    outputStrings: {
+      stackOnYou: outputs/* default.stackOnYou */.Z.stackOnYou,
+      stackOnPlayer: outputs/* default.stackOnPlayer */.Z.stackOnPlayer,
+      frontCleave: {
+        en: 'Front Cleave',
+        de: 'Kegel Aoe nach Vorne',
+        fr: 'Cleave Avant',
+        ja: '口からおくび',
+        cn: '前方扇形',
+        ko: '전방 부채꼴',
+        tc: '前方扇形'
+      },
+      rearCleave: {
+        en: 'Rear Cleave',
+        de: 'Kegel Aoe nach Hinten',
+        fr: 'Cleave Arrière',
+        ja: '尻からおなら',
+        cn: '背后扇形',
+        ko: '후방 부채꼴',
+        tc: '背後扇形'
+      },
+      leftCleave: {
+        en: 'Left Cleave',
+        de: 'Linker Cleave',
+        fr: 'Cleave gauche',
+        ja: '左半面へ攻撃',
+        cn: '左刀',
+        ko: '왼쪽 부채꼴',
+        tc: '左刀'
+      },
+      rightCleave: {
+        en: 'Right Cleave',
+        de: 'Rechter Cleave',
+        fr: 'Cleave droit',
+        ja: '右半面へ攻撃',
+        cn: '右刀',
+        ko: '오른쪽 부채꼴',
+        tc: '右刀'
+      },
+      baitThenStack: {
+        en: 'Bait 4x Puddles => ${stack}',
+        ko: '장판 유도 4x => ${stack}'
+      },
+      baitThenStackCleave: {
+        en: 'Bait 4x Puddles => ${stack} + ${cleave}',
+        ko: '장판 유도 4x => ${stack} + ${cleave}'
+      }
+    }
+  }, {
+    id: 'R12S Bursting Grotesquerie',
+    type: 'GainsEffect',
+    netRegex: {
+      effectId: '1299',
+      capture: true
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    delaySeconds: 0.2,
+    durationSeconds: 17,
+    infoText: (data, _matches, output) => {
+      const cleave = data.grotesquerieCleave;
+      if (cleave === undefined) return data.phase === 'doorboss' ? output.baitThenSpread() : output.spreadCurtain();
+      return data.phase === 'doorboss' ? output.baitThenSpreadCleave({
+        cleave: output[cleave]()
+      }) : output.spreadCurtain();
+    },
+    outputStrings: {
+      frontCleave: {
+        en: 'Front Cleave',
+        de: 'Kegel Aoe nach Vorne',
+        fr: 'Cleave Avant',
+        ja: '口からおくび',
+        cn: '前方扇形',
+        ko: '전방 부채꼴',
+        tc: '前方扇形'
+      },
+      rearCleave: {
+        en: 'Rear Cleave',
+        de: 'Kegel Aoe nach Hinten',
+        fr: 'Cleave Arrière',
+        ja: '尻からおなら',
+        cn: '背后扇形',
+        ko: '후방 부채꼴',
+        tc: '背後扇形'
+      },
+      leftCleave: {
+        en: 'Left Cleave',
+        de: 'Linker Cleave',
+        fr: 'Cleave gauche',
+        ja: '左半面へ攻撃',
+        cn: '左刀',
+        ko: '왼쪽 부채꼴',
+        tc: '左刀'
+      },
+      rightCleave: {
+        en: 'Right Cleave',
+        de: 'Rechter Cleave',
+        fr: 'Cleave droit',
+        ja: '右半面へ攻撃',
+        cn: '右刀',
+        ko: '오른쪽 부채꼴',
+        tc: '右刀'
+      },
+      baitThenSpread: {
+        en: 'Bait 4x Puddles => Spread',
+        ko: '장판 유도 4x => 산개'
+      },
+      baitThenSpreadCleave: {
+        en: 'Bait 4x Puddles => Spread + ${cleave}',
+        ko: '장판 유도 4x => 산개 + ${cleave}'
+      },
+      spreadCurtain: {
+        en: 'Spread Debuff on YOU',
+        ko: '산개징 대상자'
+      }
+    }
+  }, {
+    id: 'R12S Ravenous Reach 1 Safe Side',
+    // These two syncs indicate the animation of where the head will go to cleave
+    // B49A => West Safe
+    // B49B => East Safe
+    type: 'Ability',
+    netRegex: {
+      id: ['B49A', 'B49B'],
+      source: 'Lindwurm',
+      capture: true
+    },
+    condition: data => data.phase === 'doorboss',
+    infoText: (_data, matches, output) => {
+      if (matches.id === 'B49A') return output.goWest();
+      return output.goEast();
+    },
+    outputStrings: {
+      goEast: outputs/* default.east */.Z.east,
+      goWest: outputs/* default.west */.Z.west
+    }
+  }, {
+    id: 'R12S Fourth-wall Fusion Stack',
+    type: 'HeadMarker',
+    netRegex: {
+      id: r12s_headMarkerData['stack'],
+      capture: true
+    },
+    condition: data => {
+      if (data.role === 'tank') return false;
+      return true;
+    },
+    durationSeconds: 5.1,
+    response: responses/* Responses.stackMarkerOn */.n3.stackMarkerOn()
+  }, {
+    id: 'R12S Tankbuster',
+    type: 'HeadMarker',
+    netRegex: {
+      id: r12s_headMarkerData['tankbuster'],
+      capture: true
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    durationSeconds: 5.1,
+    response: responses/* Responses.tankBuster */.n3.tankBuster()
+  }, {
+    id: 'R12S In Line Debuff Collector',
+    type: 'GainsEffect',
+    netRegex: {
+      effectId: ['BBC', 'BBD', 'BBE', 'D7B']
+    },
+    run: (data, matches) => {
+      const effectToNum = {
+        BBC: 1,
+        BBD: 2,
+        BBE: 3,
+        D7B: 4
+      };
+      const num = effectToNum[matches.effectId];
+      if (num === undefined) return;
+      data.inLine[matches.target] = num;
+    }
+  }, {
+    id: 'R12S Bonds of Flesh Flesh α/β Collect',
+    // Bonds of Flesh has the following timings:
+    // 1st -  26s
+    // 2nd - 31s
+    // 3rd - 36s
+    // 4rth - 41s
+    type: 'GainsEffect',
+    netRegex: {
+      effectId: ['1290', '1292'],
+      capture: true
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    run: (data, matches) => {
+      data.myFleshBonds = matches.effectId === '1290' ? 'alpha' : 'beta';
+    }
+  }, {
+    id: 'R12S In Line Debuff',
+    type: 'GainsEffect',
+    netRegex: {
+      effectId: ['BBC', 'BBD', 'BBE', 'D7B'],
+      capture: false
+    },
+    delaySeconds: 0.5,
+    durationSeconds: 10,
+    suppressSeconds: 1,
+    infoText: (data, _matches, output) => {
+      const myNum = data.inLine[data.me];
+      if (myNum === undefined) return;
+      const flesh = data.myFleshBonds;
+      if (flesh === undefined) return output.order({
+        num: myNum
+      });
+      if (flesh === 'alpha') {
+        switch (myNum) {
+          case 1:
+            return output.alpha1();
+          case 2:
+            return output.alpha2();
+          case 3:
+            return output.alpha3();
+          case 4:
+            return output.alpha4();
+        }
+      }
+      switch (myNum) {
+        case 1:
+          return output.beta1();
+        case 2:
+          return output.beta2();
+        case 3:
+          return output.beta3();
+        case 4:
+          return output.beta4();
+      }
+    },
+    tts: (data, _matches, output) => {
+      // Greek characters may be the best TTS
+      const myNum = data.inLine[data.me];
+      if (myNum === undefined) return;
+      const flesh = data.myFleshBonds;
+      if (flesh === undefined) return output.order({
+        num: myNum
+      });
+      if (flesh === 'alpha') {
+        switch (myNum) {
+          case 1:
+            return output.alpha1Tts();
+          case 2:
+            return output.alpha2Tts();
+          case 3:
+            return output.alpha3Tts();
+          case 4:
+            return output.alpha4Tts();
+        }
+      }
+      switch (myNum) {
+        case 1:
+          return output.beta1Tts();
+        case 2:
+          return output.beta2Tts();
+        case 3:
+          return output.beta3Tts();
+        case 4:
+          return output.beta4Tts();
+      }
+    },
+    outputStrings: {
+      alpha1: {
+        en: '1α: Wait for Tether 1',
+        ko: '1α: 선 1 기다리기'
+      },
+      alpha2: {
+        en: '2α: Wait for Tether 2',
+        ko: '2α: 선 2 기다리기'
+      },
+      alpha3: {
+        en: '3α: Blob Tower 1',
+        ko: '3α: 살점 탑 1'
+      },
+      alpha4: {
+        en: '4α: Blob Tower 2',
+        ko: '4α: 살점 탑 2'
+      },
+      beta1: {
+        en: '1β: Wait for Tether 1',
+        ko: '1β: 선 1 기다리기'
+      },
+      beta2: {
+        en: '2β: Wait for Tether 2',
+        ko: '2β: 선 2 기다리기'
+      },
+      beta3: {
+        en: '3β: Chain Tower 1',
+        ko: '3β: 설치한 탑 1'
+      },
+      beta4: {
+        en: '4β: Chain Tower 2',
+        ko: '4β: 설치한 탑 2'
+      },
+      alpha1Tts: {
+        en: '1α: Wait for Tether 1',
+        ko: '알파 1: 선 1 기다리기'
+      },
+      alpha2Tts: {
+        en: '2α: Wait for Tether 2',
+        ko: '알파 2: 선 2 기다리기'
+      },
+      alpha3Tts: {
+        en: '3α: Blob Tower 1',
+        ko: '알파 3: 살점 탑 1'
+      },
+      alpha4Tts: {
+        en: '4α: Blob Tower 2',
+        ko: '알파 4: 살점 탑 2'
+      },
+      beta1Tts: {
+        en: '1β: Wait for Tether 1',
+        ko: '베타 1: 선 1 기다리기'
+      },
+      beta2Tts: {
+        en: '2β: Wait for Tether 2',
+        ko: '베타 2: 선 2 기다리기'
+      },
+      beta3Tts: {
+        en: '3β: Chain Tower 1',
+        ko: '베타 3: 설치한 탑 1'
+      },
+      beta4Tts: {
+        en: '4β: Chain Tower 2',
+        ko: '베타 4: 설치한 탑 2'
+      },
+      order: {
+        en: '${num}',
+        de: '${num}',
+        fr: '${num}',
+        ja: '${num}',
+        cn: '${num}',
+        ko: '${num}',
+        tc: '${num}'
+      },
+      unknown: outputs/* default.unknown */.Z.unknown
+    }
+  }, {
+    id: 'R12S Phagocyte Spotlight Blob Tower Location Collect',
+    // StartsUsing can have bad data
+    // Pattern 1
+    // Blob 1: (104, 104) SE Inner
+    // Blob 2: (96, 96) NW Inner
+    // Blob 3: (85, 110) SW Outer
+    // Blob 4: (115, 90) NE Outer
+    // Pattern 2
+    // Blob 1: (104, 96) NE Inner
+    // Blob 2: (96, 104) SW Inner
+    // Blob 3: (85, 90) NW Outer
+    // Blob 4: (115, 110) SE Outer
+    // Pattern 3
+    // Blob 1: (96, 96) NW Inner
+    // Blob 2: (104, 104) SE Inner
+    // Blob 3: (115, 90) NE Outer
+    // Blob 4: (85, 110) SW Outer
+    // Pattern 4
+    // Blob 1: (96, 104) SW Inner
+    // Blob 2: (104, 96) NE Inner
+    // Blob 3: (115, 110) SE Outer
+    // Blob 4: (86, 90) NW Outer
+    type: 'StartsUsingExtra',
+    netRegex: {
+      id: 'B4B6',
+      capture: true
+    },
+    suppressSeconds: 10,
+    run: (data, matches) => {
+      const x = parseFloat(matches.x);
+      const y = parseFloat(matches.y);
+      const dir = util/* Directions.xyToIntercardDirOutput */.Ns.xyToIntercardDirOutput(x, y, r12s_center.x, r12s_center.y);
+      data.blobTowerDirs.push(dir);
+      if (dir === 'dirSE') {
+        data.blobTowerDirs.push('dirNW');
+        data.blobTowerDirs.push('dirSW');
+        data.blobTowerDirs.push('dirNE');
+      } else if (dir === 'dirNE') {
+        data.blobTowerDirs.push('dirSW');
+        data.blobTowerDirs.push('dirNW');
+        data.blobTowerDirs.push('dirSE');
+      } else if (dir === 'dirNW') {
+        data.blobTowerDirs.push('dirSE');
+        data.blobTowerDirs.push('dirNE');
+        data.blobTowerDirs.push('dirSW');
+      } else if (dir === 'dirSW') {
+        data.blobTowerDirs.push('dirNE');
+        data.blobTowerDirs.push('dirSE');
+        data.blobTowerDirs.push('dirNW');
+      }
+    }
+  }, {
+    id: 'R12S Phagocyte Spotlight Blob Tower Location (Early)',
+    // 23.8s until B4B7 Rolling Mass Blob Tower Hit
+    // Only need to know first blob location
+    type: 'StartsUsingExtra',
+    netRegex: {
+      id: 'B4B6',
+      capture: false
+    },
+    condition: data => data.myFleshBonds === 'alpha',
+    delaySeconds: 0.1,
+    durationSeconds: data => {
+      const myNum = data.inLine[data.me];
+      // Timings based on next trigger
+      switch (myNum) {
+        case 1:
+          return 20;
+        case 2:
+          return 25;
+        case 3:
+          return 21;
+        case 4:
+          return 21;
+      }
+    },
+    suppressSeconds: 10,
+    infoText: (data, _matches, output) => {
+      const myNum = data.inLine[data.me];
+      if (myNum === undefined) return;
+      const myNumToDirIndex = {
+        1: 2,
+        2: 3,
+        3: 0,
+        4: 1
+      };
+      const dirIndex = myNumToDirIndex[myNum];
+      if (dirIndex === undefined) return;
+      const towerNum = dirIndex + 1;
+      const dir = data.blobTowerDirs[dirIndex];
+      if (dir === undefined) return;
+      if (myNum > 2) return output.innerBlobTower({
+        num: towerNum,
+        dir: output[dir]()
+      });
+      return output.outerBlobTower({
+        num: towerNum,
+        dir: output[dir]()
+      });
+    },
+    outputStrings: {
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
+      innerBlobTower: {
+        en: 'Blob Tower ${num} Inner ${dir} (later)',
+        ko: '살점 탑 ${num} 안쪽 ${dir} (나중에)'
+      },
+      outerBlobTower: {
+        en: 'Blob Tower ${num} Outer ${dir} (later)',
+        ko: '살점 탑 ${num} 바깥쪽 ${dir} (나중에)'
+      }
+    }
+  }, {
+    id: 'R12S Cursed Coil Bind Draw-in',
+    // Using Phagocyte Spotlight, 1st one happens 7s before bind
+    // Delayed additionally to reduce overlap with alpha tower location calls
+    type: 'Ability',
+    netRegex: {
+      id: 'B4B6',
+      capture: false
+    },
+    delaySeconds: 3,
+    // 5s warning
+    suppressSeconds: 10,
+    response: responses/* Responses.drawIn */.n3.drawIn()
+  }, {
+    id: 'R12S Cursed Coil Initial Direction Collect',
+    // B4B8 Cruel Coil: Starts east, turns counterclock
+    // B4B9 Cruel Coil: Starts west, turns counterclock
+    // B4BA Cruel Coil: Starts north, turns counterclock
+    // B4BB Cruel Coil: Starts south, turns counterclock
+    type: 'StartsUsing',
+    netRegex: {
+      id: ['B4B8', 'B4B9', 'B4BA', 'B4BB'],
+      source: 'Lindwurm',
+      capture: true
+    },
+    run: (data, matches) => {
+      switch (matches.id) {
+        case 'B4B8':
+          data.cursedCoilDirNum = 1;
+          return;
+        case 'B4B9':
+          data.cursedCoilDirNum = 3;
+          return;
+        case 'B4BA':
+          data.cursedCoilDirNum = 0;
+          return;
+        case 'B4BB':
+          data.cursedCoilDirNum = 2;
+      }
+    }
+  }, {
+    id: 'R12S Skinsplitter Counter',
+    // These occur every 5s
+    // Useful for blob tower tracking that happen 2s after
+    // 2: Tether 1
+    // 3: Tether 2 + Blob Tower 1
+    // 4: Tether 3 + Blob Tower 2
+    // 5: Tether 4 + Blob Tower 3
+    // 6: Blob Tower 4
+    // 7: Last time to exit
+    type: 'Ability',
+    netRegex: {
+      id: 'B4BC',
+      capture: false
+    },
+    suppressSeconds: 1,
+    run: data => data.skinsplitterCount = data.skinsplitterCount + 1
+  }, {
+    id: 'R12S Cell Chain Counter',
+    type: 'Tether',
+    netRegex: {
+      id: r12s_headMarkerData['cellChainTether'],
+      capture: false
+    },
+    condition: data => data.phase === 'doorboss',
+    run: data => data.cellChainCount = data.cellChainCount + 1
+  }, {
+    id: 'R12S Cell Chain Tether Number',
+    // Helpful for players to keep track of which chain tower is next
+    // Does not output when it is their turn to break the tether
+    type: 'Tether',
+    netRegex: {
+      id: r12s_headMarkerData['cellChainTether'],
+      capture: false
+    },
+    condition: data => {
+      if (data.phase === 'doorboss' && data.myFleshBonds === 'beta') return true;
+      return false;
+    },
+    infoText: (data, _matches, output) => {
+      const myNum = data.inLine[data.me];
+      const num = data.cellChainCount;
+      if (myNum !== num) {
+        if (myNum === 1 && num === 3) return output.beta1Tower({
+          tether: output.tether({
+            num: num
+          })
+        });
+        if (myNum === 2 && num === 4) return output.beta2Tower({
+          tether: output.tether({
+            num: num
+          })
+        });
+        if (myNum === 3 && num === 1) return output.beta3Tower({
+          tether: output.tether({
+            num: num
+          })
+        });
+        if (myNum === 4 && num === 2) return output.beta4Tower({
+          tether: output.tether({
+            num: num
+          })
+        });
+        return output.tether({
+          num: num
+        });
+      }
+      if (myNum === undefined) return output.tether({
+        num: num
+      });
+    },
+    outputStrings: {
+      tether: {
+        en: 'Tether ${num}',
+        de: 'Verbindung ${num}',
+        fr: 'Lien ${num}',
+        ja: '線 ${num}',
+        cn: '线 ${num}',
+        ko: '선 ${num}',
+        tc: '線 ${num}'
+      },
+      beta1Tower: {
+        en: '${tether} => Chain Tower 3',
+        ko: '${tether} => 설치한 탑 3'
+      },
+      beta2Tower: {
+        en: '${tether} => Chain Tower 4',
+        ko: '${tether} => 설치한 탑 4'
+      },
+      beta3Tower: {
+        en: '${tether} => Chain Tower 1',
+        ko: '${tether} => 설치한 탑 1'
+      },
+      beta4Tower: {
+        en: '${tether} => Chain Tower 2',
+        ko: '${tether} => 설치한 탑 2'
+      }
+    }
+  }, {
+    id: 'R12S Chain Tower Number',
+    // Using B4B4 Dramatic Lysis to detect chain broken
+    type: 'Ability',
+    netRegex: {
+      id: 'B4B4',
+      capture: false
+    },
+    condition: data => {
+      if (data.phase === 'doorboss' && data.myFleshBonds === 'beta') return true;
+      return false;
+    },
+    suppressSeconds: 1,
+    alertText: (data, _matches, output) => {
+      const mechanicNum = data.cellChainCount;
+      const myNum = data.inLine[data.me];
+      if (myNum === undefined) return;
+      const myNumToOrder = {
+        1: 3,
+        2: 4,
+        3: 1,
+        4: 2
+      };
+      const myOrder = myNumToOrder[myNum];
+      if (myOrder === undefined) return;
+      if (myOrder === mechanicNum) return output.tower({
+        num: mechanicNum
+      });
+    },
+    outputStrings: {
+      tower: {
+        en: 'Get Chain Tower ${num}',
+        ko: '설치한 탑 ${num} 밟기'
+      }
+    }
+  }, {
+    id: 'R12S Bonds of Flesh Flesh α First Two Towers',
+    // These are not dependent on player timings and so can be hard coded by duration
+    type: 'GainsEffect',
+    netRegex: {
+      effectId: '1290',
+      capture: true
+    },
+    condition: (data, matches) => {
+      if (matches.target === data.me) {
+        const duration = parseFloat(matches.duration);
+        if (duration < 35) return false;
+        return true;
+      }
+      return false;
+    },
+    delaySeconds: (_data, matches) => {
+      const duration = parseFloat(matches.duration);
+      // The following gives 5s warning to take tower
+      if (duration > 37) return 31; // Alpha4 Time
+      return 26; // Alpha3 Time
+    },
+
+    alertText: (data, matches, output) => {
+      const duration = parseFloat(matches.duration);
+      const dir = data.blobTowerDirs[duration > 40 ? 1 : 0];
+      if (duration > 40) {
+        if (dir !== undefined) return output.alpha4Dir({
+          dir: output[dir]()
+        });
+        return output.alpha4();
+      }
+      if (dir !== undefined) return output.alpha3Dir({
+        dir: output[dir]()
+      });
+      return output.alpha3();
+    },
+    outputStrings: {
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
+      alpha3: {
+        en: 'Get Blob Tower 1',
+        ko: '살점 탑 1 밟기'
+      },
+      alpha4: {
+        en: 'Get Blob Tower 2',
+        ko: '살점 탑 2 밟기'
+      },
+      alpha3Dir: {
+        en: 'Get Blob Tower 1 (Inner ${dir})',
+        ko: '살점 탑 1 (안쪽 ${dir}) 밟기'
+      },
+      alpha4Dir: {
+        en: 'Get Blob Tower 2 (Inner ${dir})',
+        ko: '살점 탑 2 (안쪽 ${dir}) 밟기'
+      }
+    }
+  }, {
+    id: 'R12S Unbreakable Flesh α/β Chains and Last Two Towers',
+    type: 'GainsEffect',
+    netRegex: {
+      effectId: ['1291', '1293'],
+      capture: true
+    },
+    condition: (data, matches) => {
+      if (matches.target === data.me && data.phase === 'doorboss') return true;
+      return false;
+    },
+    alertText: (data, matches, output) => {
+      const myNum = data.inLine[data.me];
+      const flesh = matches.effectId === '1291' ? 'alpha' : 'beta';
+      // As the coil is moving in reverse, the modulo will have negative values
+      // 8 has to be used as that is the next number after 7 (number of spins) that divides evenly by 4
+      const coilDirNum = data.cursedCoilDirNum !== undefined ? (data.cursedCoilDirNum - data.skinsplitterCount + 8) % 4 : undefined;
+      if (flesh === 'alpha') {
+        const exit = util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[coilDirNum ?? 4] ?? 'unknown'; // Return 'unknown' if undefined
+        if (myNum === 1) {
+          const dir = data.blobTowerDirs[2];
+          if (dir !== undefined) return output.alpha1Dir({
+            chains: output.breakChains(),
+            exit: output[exit](),
+            dir: output[dir]()
+          });
+        }
+        if (myNum === 2) {
+          const dir = data.blobTowerDirs[3];
+          if (dir !== undefined) return output.alpha2Dir({
+            chains: output.breakChains(),
+            exit: output[exit](),
+            dir: output[dir]()
+          });
+        }
+
+        // dir undefined or 3rd/4rth in line
+        switch (myNum) {
+          case 1:
+            return output.alpha1({
+              chains: output.breakChains(),
+              exit: output[exit]()
+            });
+          case 2:
+            return output.alpha2({
+              chains: output.breakChains(),
+              exit: output[exit]()
+            });
+          case 3:
+            return output.alpha3({
+              chains: output.breakChains(),
+              exit: output[exit]()
+            });
+          case 4:
+            return output.alpha4({
+              chains: output.breakChains(),
+              exit: output[exit]()
+            });
+        }
+      }
+      const dir = coilDirNum !== undefined ? util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[(coilDirNum + 2) % 4] ?? 'unknown' : 'unknown';
+      switch (myNum) {
+        case 1:
+          return output.beta1({
+            chains: output.breakChains(),
+            dir: output[dir]()
+          });
+        case 2:
+          return output.beta2({
+            chains: output.breakChains(),
+            dir: output[dir]()
+          });
+        case 3:
+          return output.beta3({
+            chains: output.breakChains(),
+            dir: output[dir]()
+          });
+        case 4:
+          return output.beta4({
+            chains: output.breakChains(),
+            dir: output[dir]()
+          });
+      }
+      return output.getTowers();
+    },
+    outputStrings: {
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
+      breakChains: outputs/* default.breakChains */.Z.breakChains,
+      getTowers: outputs/* default.getTowers */.Z.getTowers,
+      alpha1: {
+        en: '${chains} 1 (${exit}) + Blob Tower 3 (Outer)',
+        ko: '${chains} 1 (${exit}) + 살점 탑 3 (바깥쪽)'
+      },
+      alpha1Dir: {
+        en: '${chains} 1 (${exit}) + Blob Tower 3 (Outer ${dir})',
+        ko: '${chains} 1 (${exit}) + 살점 탑 3 (바깥쪽 ${dir})'
+      },
+      alpha1ExitDir: {
+        en: '${chains} 1 (${exit}) + Blob Tower 3 (Outer ${dir})',
+        ko: '${chains} 1 (${exit}) + 살점 탑 3 (바깥쪽 ${dir})'
+      },
+      alpha2: {
+        en: '${chains} 2 (${exit}) + Blob Tower 4 (Outer)',
+        ko: '${chains} 2 (${exit}) + 살점 탑 4 (바깥쪽)'
+      },
+      alpha2Dir: {
+        en: '${chains} 2 (${exit}) + Blob Tower 4 (Outer ${dir})',
+        ko: '${chains} 2 (${exit}) + 살점 탑 4 (바깥쪽 ${dir})'
+      },
+      alpha3: {
+        en: '${chains} 3 (${exit}) + Get Out',
+        ko: '${chains} 3 (${exit}) + 밖으로'
+      },
+      alpha4: {
+        en: '${chains} 4 (${exit}) + Get Out',
+        ko: '${chains} 4 (${exit}) + 밖으로'
+      },
+      beta1: {
+        en: '${chains} 1 (${dir}) => Get Middle',
+        ko: '${chains} 1 (${dir}) => 중앙으로'
+      },
+      beta2: {
+        en: '${chains} 2 (${dir}) => Get Middle',
+        ko: '${chains} 2 (${dir}) => 중앙으로'
+      },
+      beta3: {
+        en: '${chains} 3 (${dir}) => Wait for last pair',
+        ko: '${chains} 3 (${dir}) => 마지막 쌍 기다리기'
+      },
+      beta4: {
+        en: '${chains} 4 (${dir}) => Get Out',
+        ko: '${chains} 4 (${dir}) => 밖으로'
+      }
+    }
+  }, {
+    id: 'R12S Chain Tower Followup',
+    // Using B4B3 Roiling Mass to detect chain tower soak
+    // Beta player leaving early may get hit by alpha's chain break aoe
+    type: 'Ability',
+    netRegex: {
+      id: 'B4B3',
+      capture: true
+    },
+    condition: (data, matches) => {
+      if (data.myFleshBonds === 'beta' && data.me === matches.target) return true;
+      return false;
+    },
+    infoText: (data, _matches, output) => {
+      // Possibly the count could be off if break late (giving damage and damage down)
+      // Ideal towers are soaked:
+      // Beta 1 at 5th Skinsplitter
+      // Beta 2 at 6th Skinsplitter
+      // Beta 3 at 3rd Skinsplitter
+      // Beta 4 at 4rth Skinsplitter
+      const mechanicNum = data.skinsplitterCount;
+      const myNum = data.inLine[data.me];
+      if (myNum === undefined) {
+        // This can be corrected by the player later
+        if (mechanicNum < 5) return output.goIntoMiddle();
+        return output.getOut();
+      }
+      if (mechanicNum < 5) {
+        if (myNum === 1) return output.beta1Middle();
+        if (myNum === 2) return output.beta2Middle();
+        if (myNum === 3) return output.beta3Middle();
+        if (myNum === 4) return output.beta4Middle();
+      }
+      if (myNum === 1) return output.beta1Out();
+      if (myNum === 2) return output.beta2Out();
+      if (myNum === 3) return output.beta3Out();
+      if (myNum === 4) return output.beta4Out();
+    },
+    outputStrings: {
+      getOut: {
+        en: 'Get Out',
+        de: 'Raus da',
+        fr: 'Sortez',
+        ja: '外へ',
+        cn: '远离',
+        ko: '밖으로',
+        tc: '遠離'
+      },
+      goIntoMiddle: outputs/* default.goIntoMiddle */.Z.goIntoMiddle,
+      beta1Middle: outputs/* default.goIntoMiddle */.Z.goIntoMiddle,
+      beta2Middle: outputs/* default.goIntoMiddle */.Z.goIntoMiddle,
+      // Should not happen under ideal situation
+      beta3Middle: outputs/* default.goIntoMiddle */.Z.goIntoMiddle,
+      beta4Middle: outputs/* default.goIntoMiddle */.Z.goIntoMiddle,
+      beta1Out: {
+        // Should not happen under ideal situation
+        en: 'Get Out',
+        de: 'Raus da',
+        fr: 'Sortez',
+        ja: '外へ',
+        cn: '远离',
+        ko: '밖으로',
+        tc: '遠離'
+      },
+      beta2Out: {
+        en: 'Get Out',
+        de: 'Raus da',
+        fr: 'Sortez',
+        ja: '外へ',
+        cn: '远离',
+        ko: '밖으로',
+        tc: '遠離'
+      },
+      beta3Out: {
+        // Should not happen under ideal situation
+        en: 'Get Out',
+        de: 'Raus da',
+        fr: 'Sortez',
+        ja: '外へ',
+        cn: '远离',
+        ko: '밖으로',
+        tc: '遠離'
+      },
+      beta4Out: {
+        // Should not happen under ideal situation
+        en: 'Get Out',
+        de: 'Raus da',
+        fr: 'Sortez',
+        ja: '外へ',
+        cn: '远离',
+        ko: '밖으로',
+        tc: '遠離'
+      }
+    }
+  }, {
+    id: 'R12S Blob Tower Followup',
+    // Using B4B7 Roiling Mass to detect chain tower soak
+    // Alpha 3 and Alpha 4 get the inner towers before their chains
+    type: 'Ability',
+    netRegex: {
+      id: 'B4B7',
+      capture: true
+    },
+    condition: (data, matches) => {
+      if (data.myFleshBonds === 'alpha' && data.me === matches.target) return true;
+      return false;
+    },
+    infoText: (data, _matches, output) => {
+      const mechanicNum = data.skinsplitterCount;
+      const myNum = data.inLine[data.me];
+      if (myNum === undefined) return;
+      if (myNum === mechanicNum) return output.goIntoMiddle();
+    },
+    outputStrings: {
+      goIntoMiddle: outputs/* default.goIntoMiddle */.Z.goIntoMiddle
+    }
+  }, {
+    id: 'R12S Skinsplitter Out of Coil Reminder',
+    type: 'Ability',
+    netRegex: {
+      id: 'B4BC',
+      capture: false
+    },
+    condition: data => data.skinsplitterCount === 7,
+    suppressSeconds: 1,
+    alertText: (_data, _matches, output) => output.outOfCoil(),
+    outputStrings: {
+      outOfCoil: {
+        en: 'Out of Coil',
+        ko: '몸통 밖으로'
+      }
+    }
+  }, {
+    id: 'R12S Splattershed',
+    type: 'StartsUsing',
+    netRegex: {
+      id: ['B9C3', 'B9C4'],
+      source: 'Lindwurm',
+      capture: false
+    },
+    response: responses/* Responses.aoe */.n3.aoe()
+  }, {
+    id: 'R12S Mitotic Phase Direction Collect',
+    // Unknown_DE6 spell contains data in its count
+    type: 'GainsEffect',
+    netRegex: {
+      effectId: 'DE6',
+      capture: true
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    durationSeconds: 10,
+    infoText: (data, matches, output) => {
+      data.myMitoticPhase = matches.count;
+      switch (matches.count) {
+        case '436':
+          return output.frontTower();
+        case '437':
+          return output.rightTower();
+        case '438':
+          return output.rearTower();
+        case '439':
+          return output.leftTower();
+      }
+    },
+    outputStrings: {
+      frontTower: {
+        en: 'Tower (S/SW)',
+        ko: '탑 (남/남서)'
+      },
+      rearTower: {
+        en: 'Tower (N/NE)',
+        ko: '탑 (북/북동)'
+      },
+      leftTower: {
+        en: 'Tower (E/SE)',
+        ko: '탑 (동/남동)'
+      },
+      rightTower: {
+        en: 'Tower (W/NW)',
+        ko: '탑 (서/북서)'
+      }
+    }
+  }, {
+    id: 'R12S Grand Entrance Intercards/Cardinals',
+    // B4A1 is only cast when cardinals are safe
+    // B4A2 is only cast when intercardinals are safe
+    // These casts more than once, so just capture first event
+    type: 'StartsUsing',
+    netRegex: {
+      id: ['B4A1', 'B4A2'],
+      capture: true
+    },
+    suppressSeconds: 5,
+    infoText: (data, matches, output) => {
+      const count = data.myMitoticPhase;
+      if (count === undefined) return;
+      if (matches.id === 'B4A1') {
+        switch (count) {
+          case '436':
+            return output.frontCardinals();
+          case '437':
+            return output.rightCardinals();
+          case '438':
+            return output.rearCardinals();
+          case '439':
+            return output.leftCardinals();
+        }
+      }
+      switch (count) {
+        case '436':
+          return output.frontIntercards();
+        case '437':
+          return output.rightIntercards();
+        case '438':
+          return output.rearIntercards();
+        case '439':
+          return output.leftIntercards();
+      }
+    },
+    outputStrings: {
+      frontIntercards: outputs/* default.southwest */.Z.southwest,
+      rearIntercards: outputs/* default.northeast */.Z.northeast,
+      leftIntercards: outputs/* default.southeast */.Z.southeast,
+      rightIntercards: outputs/* default.northwest */.Z.northwest,
+      frontCardinals: outputs/* default.south */.Z.south,
+      rearCardinals: outputs/* default.north */.Z.north,
+      leftCardinals: outputs/* default.east */.Z.east,
+      rightCardinals: outputs/* default.west */.Z.west
+    }
+  }, {
+    id: 'R12S Rotting Flesh',
+    type: 'GainsEffect',
+    netRegex: {
+      effectId: '129B',
+      capture: true
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    durationSeconds: 10,
+    infoText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Rotting Flesh on YOU',
+        ko: '치사세포 대상자'
+      }
+    }
+  }, {
+    id: 'R12S Rotting Flesh Collect',
+    type: 'GainsEffect',
+    netRegex: {
+      effectId: '129B',
+      capture: true
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    run: data => data.hasRot = true
+  }, {
+    id: 'R12S Ravenous Reach 2',
+    // These two syncs indicate the animation of where the head will go to cleave
+    // B49A => West Safe
+    // B49B => East Safe
+    type: 'Ability',
+    netRegex: {
+      id: ['B49A', 'B49B'],
+      source: 'Lindwurm',
+      capture: true
+    },
+    condition: data => data.phase === 'curtainCall',
+    alertText: (data, matches, output) => {
+      if (matches.id === 'B49A') {
+        return data.hasRot ? output.getHitEast() : output.safeWest();
+      }
+      return data.hasRot ? output.getHitWest() : output.safeEast();
+    },
+    outputStrings: {
+      getHitWest: {
+        en: 'Spread in West Cleave',
+        ko: '서쪽 부채꼴에서 산개'
+      },
+      getHitEast: {
+        en: 'Spread in East Cleave',
+        ko: '동쪽 부채꼴에서 산개'
+      },
+      safeEast: {
+        en: 'Spread East + Avoid Cleave',
+        ko: '동쪽에서 산개 + 부채꼴 피하기'
+      },
+      safeWest: {
+        en: 'Spread West + Avoid Cleave',
+        ko: '서쪽에서 산개 + 부채꼴 피하기'
+      }
+    }
+  }, {
+    id: 'R12S Split Scourge and Venomous Scourge',
+    // B4AB Split Scourge and B4A8 Venomous Scourge are instant casts
+    // Split Scourge happens first:
+    // Each head will target the nearest player with a tankbuster line AoE
+    //
+    // This actor control happens along with boss becoming targetable
+    // Seems there are two different data0 values possible:
+    // 1E01: Coming back from Cardinal platforms
+    // 1E001: Coming back from Intercardinal platforms
+    type: 'ActorControl',
+    netRegex: {
+      command: '8000000D',
+      data0: ['1E01', '1E001'],
+      capture: false
+    },
+    durationSeconds: 9,
+    suppressSeconds: 9999,
+    infoText: (data, _matches, output) => {
+      if (data.role === 'tank') return output.tank();
+      return output.party();
+    },
+    outputStrings: {
+      tank: {
+        en: 'Bait Line AoE from Heads => Get Middle (Avoid Far AoEs)',
+        ko: '머리의 직선 장판 유도 => 중앙으로 (원거리 장판 피하기)'
+      },
+      party: {
+        en: 'Away from Heads (Avoid Tank Lines) => Spread near Heads',
+        ko: '머리에서 멀어지기 (탱커 직선장판 피하기) => 머리 근처에서 산개'
+      }
+    }
+  }, {
+    id: 'R12S Venomous Scourge',
+    // 2.4s after Split Scourge, Venomous Scourge AoEs happen on 3 furthest players from each head
+    type: 'Ability',
+    netRegex: {
+      id: 'B4AB',
+      capture: false
+    },
+    durationSeconds: 2.4,
+    suppressSeconds: 9999,
+    alertText: (data, _matches, output) => {
+      if (data.role === 'tank') return output.tank();
+      return output.party();
+    },
+    outputStrings: {
+      tank: {
+        en: 'Get Middle (Avoid Far AoEs)',
+        ko: '중앙으로 (원거리 장판 피하기)'
+      },
+      party: {
+        en: 'Spread near Heads',
+        ko: '머리 근처에서 산개'
+      }
+    }
+  }, {
+    id: 'R12S Grotesquerie: Curtain Call Spreads',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'BEC0',
+      source: 'Lindwurm',
+      capture: false
+    },
+    infoText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Bait 5x Puddles',
+        ko: '장판 유도 5x'
+      }
+    }
+  }, {
+    id: 'R12S Curtain Call: Unbreakable Flesh α Chains',
+    // All players, including dead, receive α debuffs
+    // TODO: Find safe spots
+    type: 'GainsEffect',
+    netRegex: {
+      effectId: '1291',
+      capture: true
+    },
+    condition: (data, matches) => {
+      if (matches.target === data.me && data.phase === 'curtainCall') return true;
+      return false;
+    },
+    infoText: (_data, _matches, output) => {
+      return output.alphaChains({
+        chains: output.breakChains(),
+        safe: output.safeSpots()
+      });
+    },
+    outputStrings: {
+      breakChains: outputs/* default.breakChains */.Z.breakChains,
+      safeSpots: {
+        en: 'Avoid Blobs',
+        ko: '살점 피하기'
+      },
+      alphaChains: {
+        en: '${chains} => ${safe}',
+        ko: '${chains} => ${safe}'
+      }
+    }
+  }, {
+    id: 'R12S Slaughtershed',
+    type: 'StartsUsing',
+    netRegex: {
+      id: ['B4C6', 'B4C3'],
+      source: 'Lindwurm',
+      capture: false
+    },
+    response: responses/* Responses.bigAoe */.n3.bigAoe('alert')
+  }, {
+    id: 'R12S Slaughtershed Stack',
+    // TODO: Get Safe spot
+    type: 'HeadMarker',
+    netRegex: {
+      id: r12s_headMarkerData['slaughterStack'],
+      capture: true
+    },
+    condition: (data, matches) => {
+      const isDPS = data.party.isDPS(matches.target);
+      if (isDPS && data.role === 'dps') return true;
+      if (!isDPS && data.role !== 'dps') return true;
+      return false;
+    },
+    durationSeconds: 5.1,
+    response: responses/* Responses.stackMarkerOn */.n3.stackMarkerOn()
+  }, {
+    id: 'R12S Slaughtershed Spread',
+    // TODO: Get Safe spot
+    type: 'HeadMarker',
+    netRegex: {
+      id: r12s_headMarkerData['slaughterSpread'],
+      capture: true
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    durationSeconds: 5.1,
+    suppressSeconds: 1,
+    response: responses/* Responses.spread */.n3.spread()
+  }, {
+    id: 'R12S Serpintine Scourge Right Hand First',
+    // Left Hand first, then Right Hand
+    type: 'Ability',
+    netRegex: {
+      id: 'B4CB',
+      source: 'Lindwurm',
+      capture: false
+    },
+    condition: data => data.phase === 'slaughtershed',
+    durationSeconds: 12,
+    infoText: (_data, _matches, output) => output.rightThenLeft(),
+    outputStrings: {
+      rightThenLeft: outputs/* default.rightThenLeft */.Z.rightThenLeft
+    }
+  }, {
+    id: 'R12S Serpintine Scourge Left Hand First',
+    // Right Hand first, then Left Hand
+    type: 'Ability',
+    netRegex: {
+      id: 'B4CD',
+      source: 'Lindwurm',
+      capture: false
+    },
+    condition: data => data.phase === 'slaughtershed',
+    durationSeconds: 12,
+    infoText: (_data, _matches, output) => output.leftThenRight(),
+    outputStrings: {
+      leftThenRight: outputs/* default.leftThenRight */.Z.leftThenRight
+    }
+  }, {
+    id: 'R12S Raptor Knuckles Right Hand First',
+    // Right Hand first, then Left Hand
+    type: 'Ability',
+    netRegex: {
+      id: 'B4CC',
+      source: 'Lindwurm',
+      capture: false
+    },
+    condition: data => data.phase === 'slaughtershed',
+    durationSeconds: 15,
+    infoText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Knockback from Northwest => Knockback from Northeast',
+        ko: '북서에서 넉백 => 북동에서 넉백'
+      }
+    }
+  }, {
+    id: 'R12S Raptor Knuckles Left Hand First',
+    // Left Hand first, then Right Hand
+    type: 'Ability',
+    netRegex: {
+      id: 'B4CE',
+      source: 'Lindwurm',
+      capture: false
+    },
+    condition: data => data.phase === 'slaughtershed',
+    durationSeconds: 15,
+    infoText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Knockback from Northeast => Knockback from Northwest',
+        ko: '북동에서 넉백 => 북서에서 넉백'
+      }
+    }
+  }, {
+    id: 'R12S Raptor Knuckles Uptime Knockback',
+    // First knockback is at ~13.374s
+    // Second knockback is at ~17.964s
+    // Use knockback at ~11.5s to hit both with ~1.8s leniency
+    // ~11.457s before is too late as it comes off the same time as hit
+    // ~11.554s before works (surecast ends ~0.134 after hit)
+    type: 'Ability',
+    netRegex: {
+      id: ['B4CC', 'B4CE'],
+      source: 'Lindwurm',
+      capture: false
+    },
+    condition: data => {
+      if (data.phase === 'slaughtershed' && data.triggerSetConfig.uptimeKnockbackStrat) return true;
+      return false;
+    },
+    delaySeconds: 11.5,
+    durationSeconds: 1.8,
+    response: responses/* Responses.knockback */.n3.knockback()
+  }, {
+    id: 'R12S Refreshing Overkill',
+    // B538 has a 10s castTime that could end with enrage or raidwide
+    // Raidwide cast, B539, happens .2s after but it's not until 5.4s~5.8s later that the damage is applied
+    // Mits applied after "cast" still count towards the damage application
+    type: 'Ability',
+    netRegex: {
+      id: 'B539',
+      source: 'Lindwurm',
+      capture: false
+    },
+    durationSeconds: 5,
+    suppressSeconds: 9999,
+    response: responses/* Responses.bigAoe */.n3.bigAoe('alert')
+  }
+  // Phase 2
+  ],
+
+  timelineReplace: [{
+    'locale': 'en',
+    'replaceText': {
+      'Netherwrath Near/Netherwrath Far': 'Netherwrath Near/Far',
+      'Netherworld Near/Netherwworld Far': 'Netherworld Near/Far'
+    }
+  }, {
+    'locale': 'ko',
+    'replaceSync': {
+      'Blood Vessel': '연환세포',
+      'Lindschrat': '인간형 분열체',
+      'Lindwurm': '린드블룸',
+      'Mana Sphere': '마나 구체',
+      'Understudy': '모방세포'
+    },
+    'replaceText': {
+      '--bind--': '--속박--',
+      '--knockback--': '--넉백--',
+      '--untargetable\\?--': '--타겟 불가능?--',
+      '--clones move': '--분신 이동',
+      '--clones x': '--분신 x',
+      '--locked tethers--': '--선 고정--',
+      '--boss clones': '--보스 분신',
+      '--tether (\\d)--': '--선 $1--',
+      '--tethers--': '--선--',
+      '--black holes--': '--블랙홀--',
+      '--shapes--': '--도형--',
+      '--close shapes eaten--': '--가까운 도형 흡수--',
+      '--far shapes eaten--': '--먼 도형 흡수--',
+      '--soaked shapes eaten--': '--밟은 도형 흡수--',
+      '--Hot-blooded': '--열기',
+      '--Doom': '--죽음의 선고',
+      '--clone takes portal--': '--분신이 포탈로--',
+      '--clones on platform--': '--분신이 플랫폼에--',
+      '\\(boss': '(보스',
+      '\\(clones': '(분신',
+      '\\(cast\\)': '(시전)',
+      '\\(castbar\\)': '(시전바)',
+      'Arcadia Aflame': '아르카디아의 화염',
+      'Arcadian Arcanum': '아르카디아의 신비',
+      'Arcadian Hell': '아르카디아의 지옥',
+      'Black Hole(?!s)': '블랙홀',
+      'Blood Mana': '마나 구체',
+      'Blood Wakening': '마나 구체 각성',
+      'Bloody Burst': '마력 발산',
+      'Bring Down the House': '장내를 흔드는 갈채',
+      '(?<! )Burst': '대폭발',
+      'Cell Shedding': '세포 소실',
+      'Clone( \\d)? Heavy Slam': '분신$1 묵직한 내려찍기',
+      'Clone( \\d)? Mana Burst': '분신$1 마나 폭발',
+      'Constrictor': '옥죄기',
+      'Cosmic Kiss': '착탄',
+      'Cruel Coil': '잔혹한 똬리',
+      'Double Sobat': '연속 후려차기',
+      'Down for the Count': '행동 불가',
+      'Downfall': '운석 추락',
+      'Dramatic Lysis': '세포 폭발',
+      'Esoteric Finisher': '마나 연격',
+      'Feral Fission': '야성적인 분열',
+      'Firefall Splash': '불꽃 하강',
+      'Fourth-wall Fusion': '세포 겹폭발',
+      'Grand Entrance': '화려한 등장',
+      'Grotesquerie(?!:)': '세포 부착',
+      'Grotesquerie: Act 1': '세포 부착: 초기',
+      'Grotesquerie: Act 2': '세포 부착: 중기',
+      'Grotesquerie: Act 3': '세포 부착: 후기',
+      'Grotesquerie: Curtain Call': '세포 부착: 말기',
+      '(?<! )Heavy Slam': '묵직한 내려찍기',
+      'Hemorrhagic Projection': '방향성 충격파',
+      'Idyllic Dream': '아르카디아의 꿈',
+      'Left': '왼쪽',
+      'Lindwurm\'s Dark II': '린드블룸 다라',
+      'Lindwurm\'s Glare': '린드블룸 글레어',
+      'Lindwurm\'s Meteor': '린드블룸 메테오',
+      'Lindwurm\'s Stone III': '린드블룸 스톤가',
+      'Lindwurm\'s Thunder II': '린드블룸 선더라',
+      '(?<! )Mana Burst': '마나 폭발',
+      'Metamitosis': '세포 살포',
+      'Mighty Magic': '만능 마법',
+      'Mortal Slayer': '죽음의 재앙',
+      'Mutating Cells': '변이세포',
+      'Netherworld Near/Netherworld Far': '지하세계: 근거리/원거리',
+      'Netherwrath Near/Netherwrath Far': '지하의 분노: 근거리/원거리',
+      'Northeast': '북동쪽',
+      'Northwest': '북서쪽',
+      'Phagocyte Spotlight': '세포 낙하',
+      'Power Gusher': '강력 분출',
+      'Raptor Knuckles': '맹수의 주먹',
+      'Ravenous Reach': '탐욕스러운 손길',
+      'Reenactment': '재현',
+      'Refreshing Overkill': '과잉치료, 과잉치사',
+      'Replication': '자가 복제',
+      'Right': '오른쪽',
+      'Roiling Mass': '세포 변이',
+      'Scalding Waves': '화염 파도',
+      'Serpentine Scourge': '재앙의 숨결',
+      'Skinsplitter': '뱀껍질 균열',
+      'Slaughtershed': '살육의 허물',
+      'Snaking Kick': '뱀발 후려차기',
+      'Splattershed': '유혈의 허물',
+      'Split Scourge': '분열된 재앙',
+      'Staging': '모방세포',
+      'Temporal Curtain': '공간 절단',
+      'The Fixer': '아르카디아의 배후자',
+      'Timeless Spite': '지하의 분노: 파동',
+      'Top-tier Slam': '정상급 내려찍기',
+      'Twisted Vision': '심상 투영',
+      'Venomous Scourge': '재앙 투하',
+      'Visceral Burst': '내장 파열',
+      'Wailing Wave': '지하세계: 파동',
+      'Winged Scourge': '날개 돋친 재앙'
+    }
+  }]
+};
+/* harmony default export */ const r12s = (r12s_triggerSet);
+;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/raid/r12s.txt
+const raid_r12s_namespaceObject = "### AAC HEAVYWEIGHT M4 (SAVAGE)\r\n# ZoneId: 1327\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n0.0 \"--Reset--\" ActorControl { command: \"4000000F\" } window 0,100000 jump 0\r\n\r\n### Phase 1: Lindwurm\r\n# -ii B4D3 B4B2 B6F9 B4B4 B4B3 B4BD B4BE B4BF B4C0 B53E B4B5 B4B1 BE0A B570 B56F B4AD B76A B469 B769\r\n# -it \"Lindwurm\"\r\n\r\n0.0 \"--sync--\" InCombat { inGameCombat: \"1\" } window 0,1\r\n1.0 \"--sync--\" AddedCombatant { npcNameId: \"14380\", name: \"Lindschrat\", job: \"00\", level: \"64\", ownerId: \"0{4}\", worldId: \"00\" } window 10,3 jump \"r12s-p2-start\" # Sync to P2 immediately through AddCombatant.\r\n10.6 \"--sync--\" StartsUsing { id: \"B4D7\", source: \"Lindwurm\" } window 15,10\r\n15.6 \"The Fixer\" Ability { id: \"B4D7\", source: \"Lindwurm\" }\r\n25.8 \"--sync--\" Ability { id: \"B7C4\", source: \"Lindwurm\" }\r\n40.8 \"--sync--\" Ability { id: \"B495\", source: \"Lindwurm\" }\r\n40.9 \"Mortal Slayer 1\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n43.9 \"Mortal Slayer 2\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n46.9 \"Mortal Slayer 3\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n49.9 \"Mortal Slayer 4\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n52.9 \"--sync--\" Ability { id: \"B7C5\", source: \"Lindwurm\" }\r\n61.0 \"--sync--\" Ability { id: \"B9DB\", source: \"Lindwurm\" }\r\n\r\n70.0 \"Grotesquerie: Act 1\" Ability { id: \"BEBD\", source: \"Lindwurm\" } window 70,5\r\n77.2 \"--sync--\" Ability { id: [\"B49A\", \"B49B\"], source: \"Lindwurm\" }\r\n79.2 \"Phagocyte Spotlight 1\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n81.2 \"Phagocyte Spotlight 2\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n83.2 \"Phagocyte Spotlight 3\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n85.2 \"Phagocyte Spotlight 4\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n87.3 \"--sync--\" #Ability { id: \"B46E\", source: \"Lindwurm\" }\r\n87.7 \"Ravenous Reach\" Ability { id: \"B49D\", source: \"Lindwurm\" }\r\n88.0 \"Hemorrhagic Projection x8\" #Ability { id: \"B4AF\", source: \"Lindwurm\" }\r\n88.0 \"Dramatic Lysis x4\" #Ability { id: \"B4AA\", source: \"Lindwurm\" }\r\n88.0 \"Fourth-wall Fusion\" Ability { id: \"B4AE\", source: \"Lindwurm\" }\r\n96.7 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n97.3 \"Visceral Burst x2\" #Ability { id: \"B4D6\", source: \"Lindwurm\" }\r\n97.3 \"Fourth-wall Fusion\" Ability { id: \"B9B9\", source: \"Lindwurm\" }\r\n107.3 \"The Fixer\" Ability { id: \"B4D7\", source: \"Lindwurm\" }\r\n\r\n119.5 \"Grotesquerie: Act 2\" Ability { id: \"BEBE\", source: \"Lindwurm\" } window 120,5\r\n128.7 \"Phagocyte Spotlight 1\" #Ability { id: \"B4B6\", source: \"Lindwurm\" }\r\n130.7 \"Phagocyte Spotlight 2\" #Ability { id: \"B4B6\", source: \"Lindwurm\" }\r\n132.7 \"Phagocyte Spotlight 3\" #Ability { id: \"B4B6\", source: \"Lindwurm\" }\r\n134.7 \"Cruel Coil\" Ability { id: [\"B4B8\", \"B4B9\", \"B4BA\", \"B4BB\"], source: \"Lindwurm\" }\r\n134.7 \"Phagocyte Spotlight 4\" #Ability { id: \"B4B6\", source: \"Lindwurm\" }\r\n135.7 \"--bind--\" Ability { id: \"B472\", source: \"Lindwurm\" } duration 5\r\n140.7 \"Skinsplitter 1\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n143.7 \"--sync--\" Ability { id: \"B4C1\", source: \"Lindwurm\" }\r\n145.7 \"Skinsplitter 2\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n145.7 \"--tether 1--\"\r\n150.7 \"Skinsplitter 3\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n150.7 \"--tether 2--\"\r\n152.7 \"Roiling Mass 1\" Ability { id: \"B4B7\", source: \"Blood Vessel\" }\r\n155.7 \"Skinsplitter 4\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n155.7 \"--tether 3--\"\r\n157.7 \"Roiling Mass 2\" Ability { id: \"B4B7\", source: \"Blood Vessel\" }\r\n160.7 \"Skinsplitter 5\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n160.7 \"--tether 4--\"\r\n162.7 \"Roiling Mass 3\" Ability { id: \"B4B7\", source: \"Blood Vessel\" }\r\n165.7 \"Skinsplitter 6\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n167.7 \"Roiling Mass 4\" Ability { id: \"B4B7\", source: \"Blood Vessel\" }\r\n170.7 \"Skinsplitter 7\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n176.7 \"Constrictor\" Ability { id: \"B4C2\", source: \"Lindwurm\" }\r\n185.8 \"Splattershed (castbar)\" Ability { id: \"B9C4\", source: \"Lindwurm\" }\r\n188.2 \"Splattershed\" Ability { id: \"B9C6\", source: \"Lindwurm\" }\r\n189.9 \"--sync--\" Ability { id: \"B4CB\", source: \"Lindwurm\" }\r\n\r\n205.9 \"Grotesquerie: Act 3\" Ability { id: \"BEBF\", source: \"Lindwurm\" } window 205,5\r\n209.0 \"--untargetable--\"\r\n211.0 \"Feral Fission\" Ability { id: \"BE09\", source: \"Lindwurm\" }\r\n212.0 \"Grand Entrance\" #Ability { id: [\"B4A1\", \"B4A0\"], source: \"Lindwurm\" } duration 1.2\r\n215.6 \"Bring Down the House\" Ability { id: [\"B4A5\", \"B4A4\"], source: \"Lindwurm\" }\r\n218.0 \"Dramatic Lysis x8\" #Ability { id: \"B4B0\", source: \"Lindwurm\" }\r\n218.2 \"Metamitosis x8\" Ability { id: \"B923\", source: \"Lindwurm\" }\r\n220.6 \"--targetable--\"\r\n226.9 \"Split Scourge (cast)\" Ability { id: \"B4A7\", source: \"Lindwurm\" }\r\n228.0 \"Split Scourge\" Ability { id: \"B4AB\", source: \"Lindwurm\" }\r\n230.4 \"Venomous Scourge\" Ability { id: \"B4A8\", source: \"Lindwurm\" }\r\n231.5 \"--sync--\" Ability { id: \"B479\", source: \"Lindwurm\" }\r\n239.6 \"The Fixer\" Ability { id: \"B4D7\", source: \"Lindwurm\" }\r\n\r\n251.7 \"Grotesquerie: Curtain Call\" Ability { id: \"BEC0\", source: \"Lindwurm\" } window 251,5\r\n255.7 \"Phagocyte Spotlight 1\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n255.8 \"--sync--\" Ability { id: [\"B49A\", \"B49B\"], source: \"Lindwurm\" }\r\n257.6 \"Phagocyte Spotlight 2\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n259.6 \"Phagocyte Spotlight 3\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n261.6 \"Phagocyte Spotlight 4\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n263.6 \"Phagocyte Spotlight 5\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n265.9 \"--sync--\" Ability { id: \"B46E\", source: \"Lindwurm\" }\r\n266.5 \"Ravenous Reach\" Ability { id: \"B49D\", source: \"Lindwurm\" }\r\n266.6 \"Cell Shedding x4\" #Ability { id: \"B4AC\", source: \"Lindwurm\" }\r\n266.8 \"Dramatic Lysis x4\" #Ability { id: \"B4AA\", source: \"Lindwurm\" }\r\n279.4 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n286.1 \"Splattershed (castbar)\" Ability { id: \"B9C3\", source: \"Lindwurm\" }\r\n288.5 \"Splattershed\" Ability { id: \"B9C6\", source: \"Lindwurm\" }\r\n290.2 \"--sync--\" Ability { id: \"B4CC\", source: \"Lindwurm\" }\r\n299.3 \"--sync--\" Ability { id: \"B7C4\", source: \"Lindwurm\" }\r\n314.3 \"--sync--\" Ability { id: \"B495\", source: \"Lindwurm\" }\r\n314.4 \"Mortal Slayer 1\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n317.4 \"Mortal Slayer 2\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n320.4 \"Mortal Slayer 3\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n323.4 \"Mortal Slayer 4\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n326.4 \"--sync--\" Ability { id: \"B7C5\", source: \"Lindwurm\" }\r\n\r\n# Slaughershed 1\r\n338.5 \"Slaughtershed 1 (castbar)\" Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } window 338,5\r\n340.9 \"Slaughtershed 1\" Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n342.6 \"--sync--\" Ability { id: \"B4CB\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-left-1\"\r\n342.6 \"--sync--\" Ability { id: \"B4CD\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-right-1\"\r\n342.6 \"--sync--\" Ability { id: \"B4CE\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-left-1\"\r\n342.6 \"--sync--\" Ability { id: \"B4CC\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-right-1\"\r\n349.6 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n349.6 \"Fourth-wall Fusion\" #Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n350.0 \"Burst\" #Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n355.1 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D1\", \"B4D2\", \"B4CD\", \"B4CE\"], source: \"Lindwurm\" }\r\n356.1 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n359.8 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D2\", \"B4D1\", \"B4CE\", \"B4CD\"], source: \"Lindwurm\" }\r\n360.8 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n367.4 \"Slaughtershed 2 (castbar)\" #Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" }\r\n369.8 \"Slaughtershed 2\" #Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n\r\n# Serpentine Scourge Left First\r\n442.6 label \"r12s-p1-scourge-left-1\"\r\n449.6 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n449.6 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n450.0 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n455.1 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n456.1 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n459.8 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n460.8 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n464.4 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed2\"\r\n\r\n# Serpentine Scourge Right First\r\n540.6 label \"r12s-p1-scourge-right-1\"\r\n547.6 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n547.6 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n548.0 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n553.1 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n554.1 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n557.7 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n558.7 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n562.4 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed2\"\r\n\r\n# Raptor Knuckles Left First\r\n641.1 label \"r12s-p1-raptor-left-1\"\r\n648.1 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n648.1 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n648.5 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n653.6 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n654.4 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n658.3 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n659.1 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n662.9 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed2\"\r\n\r\n# Raptor Knuckles Right First\r\n742.7 label \"r12s-p1-raptor-right-1\"\r\n749.7 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n749.7 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n750.1 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n755.2 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n756.1 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n759.9 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n760.7 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n764.5 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed2\"\r\n\r\n# Slaughtershed 2\r\n864.4 label \"r12s-p1-slaughtershed2\"\r\n867.4 \"Slaughtershed 2 (castbar)\" Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" }\r\n869.8 \"Slaughtershed 2\" Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n\r\n871.5 \"--sync--\" Ability { id: \"B4CB\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-left-2\"\r\n871.5 \"--sync--\" Ability { id: \"B4CD\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-right-2\"\r\n871.5 \"--sync--\" Ability { id: \"B4CE\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-left-2\"\r\n871.5 \"--sync--\" Ability { id: \"B4CC\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-right-2\"\r\n878.5 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n878.5 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n878.9 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n884.0 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D1\", \"B4D2\", \"B4CD\", \"B4CE\"], source: \"Lindwurm\" }\r\n884.8 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n888.6 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D2\", \"B4D1\", \"B4CE\", \"B4CD\"], source: \"Lindwurm\" }\r\n889.4 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n896.3 \"Slaughtershed 3 (castbar)\" #Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" }\r\n898.7 \"Slaughtershed 3\" #Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n\r\n# Serpentine Scourge Left Second\r\n971.6 label \"r12s-p1-scourge-left-2\"\r\n978.6 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n978.6 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n979.0 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n984.1 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n985.1 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n988.7 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n989.7 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n993.3 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed3\"\r\n\r\n# Serpentine Scourge Right Second\r\n1069.9 label \"r12s-p1-scourge-right-2\"\r\n1076.9 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1076.9 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1077.3 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1082.4 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n1083.4 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1087.0 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n1088.0 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1091.7 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed3\"\r\n\r\n# Raptor Knuckles Left Second\r\n1171.5 label \"r12s-p1-raptor-left-2\"\r\n1178.5 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1178.5 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1178.9 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1184.0 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n1184.8 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1188.6 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n1189.4 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1193.3 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed3\"\r\n\r\n# Raptor Knuckles Right Second\r\n1271.5 label \"r12s-p1-raptor-right-2\"\r\n1278.5 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1278.5 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1278.9 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1284.0 \"Raptor Knuckles Right\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n1284.8 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1288.6 \"Raptor Knuckles Left\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n1289.4 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1293.3 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed3\"\r\n\r\n# Slaughtershed 3\r\n1393.3 label \"r12s-p1-slaughtershed3\"\r\n1396.3 \"Slaughtershed 3 (castbar)\" Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" }\r\n1398.7 \"Slaughtershed 3\" Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n\r\n1400.4 \"--sync--\" Ability { id: \"B4CB\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-left-3\"\r\n1400.4 \"--sync--\" Ability { id: \"B4CD\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-right-3\"\r\n1400.4 \"--sync--\" Ability { id: \"B4CE\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-left-3\"\r\n1400.4 \"--sync--\" Ability { id: \"B4CC\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-right-3\"\r\n1407.4 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1407.4 \"Fourth-wall Fusion\" #Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1407.8 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1412.9 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D1\", \"B4D2\", \"B4CD\", \"B4CE\"], source: \"Lindwurm\" }\r\n1413.9 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n1417.6 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D2\", \"B4D1\", \"B4CE\", \"B4CD\"], source: \"Lindwurm\" }\r\n1418.6 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n1431.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1436.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n\r\n# Serpentine Scourge Left Third\r\n1498.8 label \"r12s-p1-scourge-left-3\"\r\n1505.8 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1505.8 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1506.2 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1511.3 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n1512.3 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1515.9 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n1516.9 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1526.5 \"--sync--\" StartsUsing { id: \"B2C7\", source: \"Lindwurm\" } jump \"r12s-p1-enrage-alt\"\r\n1526.5 \"--untargetable?--\"\r\n1531.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1536.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n1536.8 \"--untargetable?--\"\r\n1536.8 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n1546.7 \"--sync--\" StartsUsing { id: \"B538\", source: \"Lindwurm\" } window 20,3 forcejump \"r12s-p1-enrage\"\r\n\r\n# Serpentine Scourge Right Third\r\n1600.4 label \"r12s-p1-scourge-right-3\"\r\n1607.4 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1607.4 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1607.8 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1612.9 \"Serpentine Scourge Left/Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n1613.9 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1617.6 \"Serpentine Scourge Right/Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n1618.6 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1626.5 \"--sync--\" StartsUsing { id: \"B2C7\", source: \"Lindwurm\" } jump \"r12s-p1-enrage-alt\"\r\n1626.5 \"--untargetable?--\"\r\n1631.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1636.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n1636.8 \"--untargetable?--\"\r\n1636.8 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n\r\n1646.7 \"--sync--\" StartsUsing { id: \"B538\", source: \"Lindwurm\" } window 20,3 forcejump \"r12s-p1-enrage\"\r\n\r\n# Raptor Knuckles Left Third\r\n1700.4 label \"r12s-p1-raptor-left-3\"\r\n1707.4 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1707.4 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1707.8 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1712.9 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n1713.7 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1717.5 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n1718.3 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1726.5 \"--sync--\" StartsUsing { id: \"B2C7\", source: \"Lindwurm\" } jump \"r12s-p1-enrage-alt\"\r\n1726.5 \"--untargetable?--\"\r\n1731.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1736.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n1736.8 \"--untargetable?--\"\r\n1736.8 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n1746.7 \"--sync--\" StartsUsing { id: \"B538\", source: \"Lindwurm\" } window 20,3 forcejump \"r12s-p1-enrage\"\r\n\r\n# Raptor Knuckles Right Third\r\n1800.4 label \"r12s-p1-raptor-right-3\"\r\n1807.4 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1807.4 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1807.8 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1812.9 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n1813.7 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1817.5 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n1818.3 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1826.5 \"--sync--\" StartsUsing { id: \"B2C7\", source: \"Lindwurm\" } jump \"r12s-p1-enrage-alt\"\r\n1826.5 \"--untargetable?--\"\r\n1831.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1836.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n1836.8 \"--untargetable?--\"\r\n1836.8 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n1846.7 \"--sync--\" StartsUsing { id: \"B538\", source: \"Lindwurm\" } window 20,3 forcejump \"r12s-p1-enrage\"\r\n\r\n# Enrage sequence (Above 20%?)\r\n1926.5 label \"r12s-p1-enrage-alt\"\r\n1931.5 \"The Fixer (Enrage)\" Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n\r\n# Enrage sequence\r\n2027.7 label \"r12s-p1-enrage\"\r\n2036.7 \"Refreshing Overkill (Enrage)?\" Ability { id: \"B538\", source: \"Lindwurm\" } window 510,5\r\n2036.8 \"--untargetable--\"\r\n2036.8 \"Refreshing Overkill (Enrage)?\" Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n\r\n# Kill/Transition sequence\r\n2036.8 \"Refreshing Overkill\" Ability { id: \"B539\", source: \"Lindwurm\" }\r\n2073.0 \"--sync--\" Ability { id: \"BB9C\", source: \"Lindwurm\" }\r\n2073.5 \"Down for the Count\" duration 42\r\n2075.7 \"--sync--\" Ability { id: \"B53B\", source: \"Lindwurm\" }\r\n2117.7 \"--targetable--\"\r\n\r\n\r\n### Phase 2: Lindwurm II\r\n# -p B528:3015.7\r\n# -ii B51F\r\n# -it \"Lindwurm\"\r\n3000.5 label \"r12s-p2-start\"\r\n3010.7 \"--sync--\" StartsUsing { id: \"B528\", source: \"Lindwurm\" } window 3100,10\r\n3015.7 \"Arcadia Aflame\" Ability { id: \"B528\", source: \"Lindwurm\" }\r\n\r\n# IGNORED ABILITIES\r\n# Phase 1\r\n# B4D3 --sync--: Attack autos\r\n# B4B2 Unmitigated Explosion: Missed blob tower\r\n# B6F9 Unmitigated Explosion: Breaking chain before Bonds of Flesh expires\r\n# B4B4 Dramatic Lysis: Damage from breaking a tether; These can be broken at various times\r\n# B4B5 Dramatic Lysis: 6s to break tether, else this applies every 1s, doing damage and giving a damage down\r\n# B4B3 Roiling Mass: Damage from soaking a tether-created tower; The towers can be created at various times\r\n# B4BD Constrictor: VFX Ending of Cruel Coil B4B8\r\n# B4BE Constrictor: VFX Ending of Cruel Coil B4B9\r\n# B4BF Constrictor: VFX Ending of Cruel Coil B4BA\r\n# B4C0 Constrictor: VFX Ending of Cruel Coil B4BB\r\n# B4B1 Metamitosis: VFX\r\n# B469 Ravenous Reach: VFX\r\n# B769 Ravenous Reach: VFX\r\n# B76A Ravenous Reach: VFX\r\n# B56F --sync--: These happen same time as Bring Down the House BE0A\r\n# B570 --sync--: These happen same time as Bring Down the House BE0A\r\n# BE0A Bring Down the House: VFX\r\n# B4CF Raptor Knuckles: VFX for knockback from NW\r\n# B4D0 Raptor Knuckles: VFX for knockback from NE\r\n# B4AD Cell Death: Failing Cell Shedding by not getting hit by Ravenous Reach\r\n\r\n# Phase 2\r\n# B51F --sync--: Attack autos\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# Phase 1\r\n# ADC9 Slaughtershed\r\n# B2C7 The Fixer: Alternative enrage\r\n# B469 Ravenous Reach: VFX\r\n# B46E --sync--\r\n# B472 --sync-- Animation coinciding with boss jumping to middle and binding the players\r\n# B479 --sync--\r\n# B495 Mortal Slayer: VFX, B496 and B498 have distance and AOE components so this is nearest sync\r\n# B496 Mortal Slayer: Green (DPS/Healer) Orbs\r\n# B498 Mortal Slayer: Purple (Tank) Orbs\r\n# B49A --sync--: Animation for Wyrm moving West (Cleaving East)\r\n# B49B --sync--: Animation for Wyrm moving East (Cleaving West)\r\n# B49D Ravenous Reach\r\n# B49E Phagocyte Spotlight\r\n# B49F Burst\r\n# B4A0 Grand Entrance: Small circle aoe of wyrm going into ground? Does a knockback and gives damage down\r\n# B4A1 Grand Entrance: Only cast when caradinals are safe; Small circle aoe of wyrm coming out of ground? Does a knockback and gives damage down\r\n# B4A2 Grand Entrance: Only cast when intercardinal are safe\r\n# B4A3 Grand Entrance\r\n# B4A4 Bring Down the House\r\n# B4A5 Bring Down the House\r\n# B4A6 Bring Down the House\r\n# B4A7 Split Scourge\r\n# B4A8 Venomous Scourge\r\n# B4AA Dramatic Lysis: Spread AoE damage\r\n# B4AB Split Scourge\r\n# B4AC Cell Shedding\r\n# B4AD Cell Death\r\n# B4AE Fourth-wall Fusion\r\n# B4AF Hemorrhagic Projection\r\n# B4B0 Dramatic Lysis\r\n# B4B1 Metamitosis\r\n# B4B2 Unmitigated Explosion\r\n# B4B3 Roiling Mass: Chain Tower soaks\r\n# B4B4 Dramatic Lysis\r\n# B4B5 Dramatic Lysis\r\n# B4B6 Phagocyte Spotlight\r\n# B4B7 Roiling Mass: Blob Tower Soaks\r\n# B4B8 Cruel Coil: Starts east, turns counterclock\r\n# B4B9 Cruel Coil: Starts west, turns counterclock\r\n# B4BA Cruel Coil: Starts north, turns counterclock\r\n# B4BB Cruel Coil: Starts south, turns counterclock\r\n# B4BC Skinsplitter\r\n# B4BE Constrictor: VFX Ending of Cruel Coil B4B8\r\n# B4BD Constrictor: VFX Ending of Cruel Coil B4B9\r\n# B4BF Constrictor\r\n# B4C1 --sync--\r\n# B4C2 Constrictor: \"soft enrage\" damage for Cruel Coil\r\n# B4C3 Slaughtershed\r\n# B4C6 Slaughtershed\r\n# B4CB --sync--: Animation that indicates B4D1 Serpintine Scourge (Left Hand/E) is first\r\n# B4CC --sync--: Animation that indicates B4CF Raptor Knuckles (Right Hand/NW) is first\r\n# B4CD --sync--: Animation that indicates B4D2 Serpintine Scourge (Right hand/W) is first\r\n# B4CE --sync--: Animation that indicates B4D0 Raptor Knuckles (Left Hand/NE) is first\r\n# B4CF Raptor Knuckles\r\n# B4D0 Raptor Knuckles\r\n# B4D1 Serpentine Scourge\r\n# B4D2 Serpentine Scourge\r\n# B4D3 --sync--\r\n# B4D4 Dramatic Lysis\r\n# B4D5 Fourth-wall Fusion\r\n# B4D6 Visceral Burst\r\n# B4D7 The Fixer\r\n# B4F5 Unmitigated Explosion\r\n# B4F9 Pyretic Wurm\r\n# B538 Refreshing Overkill: Enrage castbar\r\n# B539 Refreshing Overkill: Non-enrage\r\n# B53A Refreshing Overkill: Enrage\r\n# B53E Skinsplitter: Damage from running into snake during Cruel Coil\r\n# B56F --sync--\r\n# B570 --sync--\r\n# B571 --sync--\r\n# B6F9 Unmitigated Explosion\r\n# B769 Ravenous Reach: VFX\r\n# B76A Ravenous Reach: VFX\r\n# B7C4 --sync--\r\n# B7C5 --sync--\r\n# B923 Metamitosis\r\n# B9B9 Fourth-wall Fusion\r\n# B9BC Serpentine Scourge\r\n# B9C3 Splattershed\r\n# B9C4 Splattershed\r\n# B9C6 Splattershed\r\n# B9C7 Raptor Knuckles: Damage\r\n# B9DB --sync--\r\n# BE09 Feral Fission\r\n# BE0A Bring Down the House\r\n# BEBD Grotesquerie: Act 1\r\n# BEBE Grotesquerie: Act 2\r\n# BEBF Grotesquerie: Act 3\r\n# BEC0 Grotesquerie: Curtain Call\r\n\r\n# Phase 2\r\n# B51F --sync--\r\n# B528 Arcadia Aflame\r\n\r\n";
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/raid/r1n.ts
 
 
@@ -243669,7 +245392,7 @@ const r1n_triggerSet = {
     },
     run: data => delete data.mouserMatchedTile,
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       swSeStay: {
         en: '${dir1} ${sep} ${dir2} (Stay)',
         de: '${dir1} ${sep} ${dir2} (bleib Stehen)',
@@ -243727,7 +245450,7 @@ const r1n_triggerSet = {
     suppressSeconds: 5,
     infoText: (_data, matches, output) => {
       const heading = parseFloat(matches.heading);
-      const dir = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(heading);
+      const dir = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(heading);
       if (dir % 2 === 0)
         // `dir % 2 === 0` = this is aimed at a cardinal, so intercards safe first
         return output.intercardsCards();
@@ -244273,7 +245996,7 @@ const r1s_triggerSet = {
     },
     run: data => delete data.mouserMatchedTile,
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       swSeStay: {
         en: '${dir1} ${sep} ${dir2} (Stay)',
         de: '${dir1} ${sep} ${dir2} (Stehen bleiben)',
@@ -246751,7 +248474,7 @@ const getSafeSpotsFromClones = (myClone, otherClone, murderousMistDir) => {
   return [safeSpots, lastSafeSpot];
 };
 const tagTeamOutputStrings = {
-  ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+  ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
   safeDirs: {
     en: 'Safe: ${dirs} => ${last}',
     de: 'Sicher: ${dirs} => ${last}',
@@ -247298,16 +249021,16 @@ const r3s_triggerSet = {
         console.error(`R3S Tag Team Tether: Wrong actor count ${actors.length}`);
         return;
       }
-      data.tagTeamCloneTethered = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(actor.PosX, actor.PosY, 100, 100);
+      data.tagTeamCloneTethered = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(actor.PosX, actor.PosY, 100, 100);
     },
     infoText: (data, _matches, output) => {
-      const dir = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(data.tagTeamCloneTethered ?? -1)]();
+      const dir = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(data.tagTeamCloneTethered ?? -1)]();
       return output.tetheredTo({
         dir: dir
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir,
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir,
       tetheredTo: {
         en: 'Tethered to ${dir} clone',
         de: 'Vrebindung zum ${dir} Klon',
@@ -247338,7 +249061,7 @@ const r3s_triggerSet = {
     condition: (data, matches) => {
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      const cloneDir = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(x, y, 100, 100);
+      const cloneDir = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(x, y, 100, 100);
       // Increment clockwise from our starting position to get the cleave direction.
       // If this is a right cleave, increment by 6 (South + 6 = East)
       // Otherwise, increment 2 positions (South + 2 = West)
@@ -247365,8 +249088,8 @@ const r3s_triggerSet = {
       }
       const [safeSpots, lastSafeSpot] = getSafeSpotsFromClones(myClone, otherClone);
       return output.safeDirs({
-        dirs: safeSpots.map(dir => output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dir)]()).join(output.separator()),
-        last: output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(lastSafeSpot)]()
+        dirs: safeSpots.map(dir => output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dir)]()).join(output.separator()),
+        last: output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(lastSafeSpot)]()
       });
     },
     run: data => {
@@ -247395,11 +249118,11 @@ const r3s_triggerSet = {
         console.error('R3S Tag Team Clone: Missing otherClone', data.tagTeamClones);
         return;
       }
-      const murderousMistDir = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(matches.heading));
+      const murderousMistDir = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(matches.heading));
       const [safeSpots, lastSafeSpot] = getSafeSpotsFromClones(myClone, otherClone, murderousMistDir);
       return output.safeDirs({
-        dirs: safeSpots.map(dir => output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dir)]()).join(output.separator()),
-        last: output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(lastSafeSpot)]()
+        dirs: safeSpots.map(dir => output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dir)]()).join(output.separator()),
+        last: output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(lastSafeSpot)]()
       });
     },
     run: data => {
@@ -247431,7 +249154,7 @@ const r3s_triggerSet = {
     infoText: (_data, matches, output) => {
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      const bossDir = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(x, y, 100, 100);
+      const bossDir = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(x, y, 100, 100);
       const firstCleaveDir = ['9AE8', '9AE9'].includes(matches.id) ? 'right' : 'left';
       const secondCleaveDir = ['9AE8', '9AEB'].includes(matches.id) ? 'right' : 'left';
       let firstSafeSpots = [...Array(8).keys()];
@@ -247462,19 +249185,19 @@ const r3s_triggerSet = {
       }
       if (firstCleaveDir === secondCleaveDir) {
         return output.comboGo({
-          firstDir1: output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(firstDir1)](),
-          firstDir2: output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(firstDir2)](),
-          secondDir: output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(secondDir)]()
+          firstDir1: output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(firstDir1)](),
+          firstDir2: output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(firstDir2)](),
+          secondDir: output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(secondDir)]()
         });
       }
       return output.comboStay({
-        firstDir1: output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(firstDir1)](),
-        firstDir2: output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(firstDir2)](),
-        secondDir: output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(secondDir)]()
+        firstDir1: output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(firstDir1)](),
+        firstDir2: output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(firstDir2)](),
+        secondDir: output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(secondDir)]()
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       comboGo: {
         en: 'Knockback ${firstDir1}/${firstDir2} => Go ${secondDir}',
         de: 'Rückstoß ${firstDir1}/${firstDir2} => Geh nach ${secondDir}',
@@ -247749,7 +249472,7 @@ const effectB9AMap = {
   blueCircleBack: '2D4'
 };
 const directionOutputStrings = {
-  ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+  ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
   unknown: outputs/* default.unknown */.Z.unknown,
   goLeft: outputs/* default.left */.Z.left,
   goRight: outputs/* default.right */.Z.right,
@@ -247814,9 +249537,9 @@ const getCleaveDirs = (actors, storedCleaves) => {
   const dirs = storedCleaves.map(entry => {
     const actor = actors.find(actor => actor.ID === entry.id);
     if (actor === undefined) return 'unknown';
-    const actorFacing = util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(actor.Heading);
+    const actorFacing = util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(actor.Heading);
     const offset = entry.dir === 'left' ? 1 : -1;
-    return util/* Directions.outputFromCardinalNum */.N.outputFromCardinalNum((actorFacing + 4 + offset) % 4);
+    return util/* Directions.outputFromCardinalNum */.Ns.outputFromCardinalNum((actorFacing + 4 + offset) % 4);
   });
   if (dirs.length === 1) return dirs;
 
@@ -248290,7 +250013,7 @@ const r4n_triggerSet = {
       } else {
         if (startingNorth) clockwise = firstCastTargetX < secondCastTargetX;else clockwise = secondCastTargetX < firstCastTargetX;
       }
-      let startingDir = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(firstCastTargetX, firstCastTargetY, 100, 100);
+      let startingDir = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(firstCastTargetX, firstCastTargetY, 100, 100);
       if (clockwise) {
         // example: first hit close nw, second hit close ne
         // dodge is north, out to in
@@ -248302,7 +250025,7 @@ const r4n_triggerSet = {
         // subtract 1 or add 2 from direction to get starting point
         startingDir = (startingDir + (outToIn ? 2 : 7)) % 8;
       }
-      const outputDir = util/* Directions.output8Dir */.N.output8Dir[startingDir] ?? 'unknown';
+      const outputDir = util/* Directions.output8Dir */.Ns.output8Dir[startingDir] ?? 'unknown';
       if (outToIn) {
         return output.outToIn({
           dir: output[outputDir]()
@@ -248332,7 +250055,7 @@ const r4n_triggerSet = {
         tc: '${dir}, 靠近 => 遠離'
       },
       unknown: outputs/* default.unknown */.Z.unknown,
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }],
   timelineReplace: [{
@@ -248595,10 +250318,10 @@ const replicaCleaveUnsafeMap = {
   }
 };
 const isCardinalDir = dir => {
-  return util/* Directions.outputCardinalDir.includes */.N.outputCardinalDir.includes(dir);
+  return util/* Directions.outputCardinalDir.includes */.Ns.outputCardinalDir.includes(dir);
 };
 const isIntercardDir = dir => {
-  return util/* Directions.outputIntercardDir.includes */.N.outputIntercardDir.includes(dir);
+  return util/* Directions.outputIntercardDir.includes */.Ns.outputIntercardDir.includes(dir);
 };
 const getStartingSwords = () => Array(4).fill(0).map(() => [0, 1, 2, 3]);
 const swordQuiverSafeMap = {
@@ -249136,8 +250859,8 @@ const r4s_triggerSet = {
       replicas: {},
       mustardBombTargets: [],
       kindlingCauldronTargets: [],
-      twilightSafeFirst: util/* Directions.outputIntercardDir */.N.outputIntercardDir,
-      twilightSafeSecond: util/* Directions.outputIntercardDir */.N.outputIntercardDir,
+      twilightSafeFirst: util/* Directions.outputIntercardDir */.Ns.outputIntercardDir,
+      twilightSafeSecond: util/* Directions.outputIntercardDir */.Ns.outputIntercardDir,
       replicaCleaveCount: 0,
       sunriseCannons: [],
       seenFirstSunrise: false,
@@ -249689,7 +251412,7 @@ const r4s_triggerSet = {
     run: (data, matches) => {
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      const intercard = util/* Directions.xyToIntercardDirOutput */.N.xyToIntercardDirOutput(x, y, r4s_centerX, p1CenterY);
+      const intercard = util/* Directions.xyToIntercardDirOutput */.Ns.xyToIntercardDirOutput(x, y, r4s_centerX, p1CenterY);
       data.electromines[matches.id] = intercard;
     }
   }, {
@@ -249761,7 +251484,7 @@ const r4s_triggerSet = {
       delete data.starEffect;
     },
     outputStrings: {
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir,
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       partners: outputs/* default.stackPartner */.Z.stackPartner,
       spread: outputs/* default.spread */.Z.spread,
       combo: {
@@ -250229,14 +251952,14 @@ const r4s_triggerSet = {
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
       const hdg = parseFloat(matches.heading);
-      const locDir = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(x, y, r4s_centerX, p2CenterY);
+      const locDir = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(x, y, r4s_centerX, p2CenterY);
       (data.replicas[matches.id] ??= {}).location = locDir;
 
       // Determining the facing for clones on cardinals using 4Dir could get a little messy -
       // e.g., a NW-facing clone could result in a value of N or W depending on pixels/rounding.
       // To be safe, use the full 8-dir compass, and then adjust based on the clone's position
       // Note: We only care about heading for clones on cardinals during Sunrise Sabbath
-      const hdgDir = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(hdg));
+      const hdgDir = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(hdg));
       if (isCardinalDir(locDir)) (data.replicas[matches.id] ??= {}).cardinalFacing = isCardinalDir(hdgDir) ? 'opposite' : 'adjacent';
     }
   }, {
@@ -250479,11 +252202,11 @@ const r4s_triggerSet = {
     run: data => {
       if (data.replicaCleaveCount !== 4) return;
       data.replicaCleaveCount = 0;
-      data.twilightSafeFirst = util/* Directions.outputIntercardDir */.N.outputIntercardDir;
-      data.twilightSafeSecond = util/* Directions.outputIntercardDir */.N.outputIntercardDir;
+      data.twilightSafeFirst = util/* Directions.outputIntercardDir */.Ns.outputIntercardDir;
+      data.twilightSafeSecond = util/* Directions.outputIntercardDir */.Ns.outputIntercardDir;
     },
     outputStrings: {
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir,
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       bait: outputs/* default.baitPuddles */.Z.baitPuddles,
       combo: {
         en: '${bait} => ${dir1} => ${dir2}',
@@ -250516,7 +252239,7 @@ const r4s_triggerSet = {
     },
     run: data => delete data.secondTwilightCleaveSafe,
     outputStrings: {
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir,
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       middle: outputs/* default.middle */.Z.middle,
       sides: outputs/* default.sides */.Z.sides,
       combo: {
@@ -250933,8 +252656,8 @@ const r4s_triggerSet = {
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
       const hdg = parseFloat(matches.heading);
-      const locDir = util/* Directions.xyTo4DirNum */.N.xyTo4DirNum(x, y, r4s_centerX, p2CenterY) % 2; // 0 = N/S, 1 = E/W
-      const hdgDir = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(hdg));
+      const locDir = util/* Directions.xyTo4DirNum */.Ns.xyTo4DirNum(x, y, r4s_centerX, p2CenterY) % 2; // 0 = N/S, 1 = E/W
+      const hdgDir = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(hdg));
       data.sunriseTowerSpots = isCardinalDir(hdgDir) ? locDir === 0 ? 'northSouth' : 'eastWest' // opposite-facing
       : locDir === 0 ? 'eastWest' : 'northSouth'; // adjacent-facing
     }
@@ -251044,7 +252767,7 @@ const r4s_triggerSet = {
       delete data.sunriseTowerSpots;
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       northSouth: {
         en: 'N/S',
         de: 'N/S',
@@ -252200,9 +253923,9 @@ const getSafeDirsForCloneCleave = matches => {
   snappedHeading = snappedHeading % Math.PI;
 
   // Frog's snapped heading and the next one CW or CCW depending on cleave direction are safe
-  const snappedFrogDir = util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(snappedHeading);
+  const snappedFrogDir = util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(snappedHeading);
   const otherSafeDir = (snappedFrogDir + 4 + (isLeftCleave ? 1 : -1)) % 4;
-  return [util/* Directions.outputCardinalDir */.N.outputCardinalDir[snappedFrogDir] ?? 'unknown', util/* Directions.outputCardinalDir */.N.outputCardinalDir[otherSafeDir] ?? 'unknown'];
+  return [util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[snappedFrogDir] ?? 'unknown', util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[otherSafeDir] ?? 'unknown'];
 };
 const r5s_triggerSet = {
   id: 'AacCruiserweightM1Savage',
@@ -252671,7 +254394,7 @@ const r5s_triggerSet = {
     },
     run: data => data.feverSafeDirs = [],
     outputStrings: {
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir,
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir,
       next: outputs/* default.next */.Z.next
     }
   }, {
@@ -252749,7 +254472,7 @@ const r5s_triggerSet = {
       return outputs['unknown']();
     },
     outputStrings: {
-      ...util/* Directions.outputStrings16Dir */.N.outputStrings16Dir
+      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir
     }
   }],
   timelineReplace: [{
@@ -253960,8 +255683,8 @@ const r6s_triggerSet = {
         const x = parseFloat(actorSetPosData.x);
         const y = parseFloat(actorSetPosData.y);
         const mirroredX = (x - 100) * -1 + 100;
-        const actorDir = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(x, y, 100, 100);
-        const mirroredXDir = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(mirroredX, y, 100, 100);
+        const actorDir = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(x, y, 100, 100);
+        const mirroredXDir = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(mirroredX, y, 100, 100);
         const sameDirCorners = dirToSameCorners(actorDir);
         switch (actorType) {
           case 'bomb':
@@ -253990,7 +255713,7 @@ const r6s_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir,
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       text: {
         en: 'Start ${dir1}, launch towards ${dir2}',
         de: 'Start ${dir1}, Rückstoß nach ${dir2}',
@@ -254295,7 +256018,7 @@ const r6s_triggerSet = {
     },
     outputStrings: {
       unknown: outputs/* default.unknown */.Z.unknown,
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       cactus: {
         en: 'Party ${dir}'
       }
@@ -254310,7 +256033,7 @@ const r6s_triggerSet = {
     condition: data => data.cloudId === undefined,
     preRun: (data, matches) => {
       data.cloudId = matches.id;
-      const cloudDir = util/* Directions.output8Dir */.N.output8Dir[util/* Directions.addedCombatantPosTo8Dir */.N.addedCombatantPosTo8Dir(matches, 100, 100)];
+      const cloudDir = util/* Directions.output8Dir */.Ns.output8Dir[util/* Directions.addedCombatantPosTo8Dir */.Ns.addedCombatantPosTo8Dir(matches, 100, 100)];
       switch (cloudDir) {
         case 'dirNE':
         case 'dirNW':
@@ -254332,7 +256055,7 @@ const r6s_triggerSet = {
       dir: output[data.cloudPos ?? 'unknown']()
     }),
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       spawn: {
         en: 'Cloud spawning ${dir}',
         de: 'Wolke erscheint ${dir}',
@@ -254375,7 +256098,7 @@ const r6s_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       cw: outputs/* default.clockwise */.Z.clockwise,
       ccw: outputs/* default.counterclockwise */.Z.counterclockwise,
       text: {
@@ -254836,7 +256559,7 @@ const effect0x808Data = {
   'swordLeft': '38B'
 };
 console.assert(effect0x808Data);
-const isHealerOrRanged = x => util/* default.isHealerJob */.Z.isHealerJob(x) || util/* default.isRangedDpsJob */.Z.isRangedDpsJob(x) || util/* default.isCasterDpsJob */.Z.isCasterDpsJob(x);
+const isHealerOrRanged = x => util/* default.isHealerJob */.ZP.isHealerJob(x) || util/* default.isRangedDpsJob */.ZP.isRangedDpsJob(x) || util/* default.isCasterDpsJob */.ZP.isCasterDpsJob(x);
 const patternMap = {
   // In order, 'outer west', 'outer east', 'inner west', 'inner east'
   'outerNW': ['dirNW', 'dirSE', 'dirSW', 'dirNE'],
@@ -255950,7 +257673,7 @@ const r8n_headMarkerData = {
   'eightHitStack': '013C'
 };
 const moonlightOutputStrings = {
-  ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+  ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
   safeQuad: {
     en: '${quad}',
     de: '${quad}',
@@ -256039,10 +257762,10 @@ const r8n_triggerSet = {
         console.error(`R8N Wolves' Reign Direction: Wrong actor count ${actors.length}`);
         return;
       }
-      data.reignDir = (util/* Directions.hdgTo16DirNum */.N.hdgTo16DirNum(actor.Heading) + 8) % 16;
+      data.reignDir = (util/* Directions.hdgTo16DirNum */.Ns.hdgTo16DirNum(actor.Heading) + 8) % 16;
     },
     infoText: (data, _matches, output) => {
-      const dir = output[util/* Directions.output16Dir */.N.output16Dir[data.reignDir ?? -1] ?? 'unknown']();
+      const dir = output[util/* Directions.output16Dir */.Ns.output16Dir[data.reignDir ?? -1] ?? 'unknown']();
       return output.inDir({
         dir: dir
       });
@@ -256051,7 +257774,7 @@ const r8n_triggerSet = {
       data.reignDir = undefined;
     },
     outputStrings: {
-      ...util/* Directions.outputStrings16Dir */.N.outputStrings16Dir,
+      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       inDir: {
         en: 'In ${dir}',
         de: 'Rein ${dir}',
@@ -256093,7 +257816,7 @@ const r8n_triggerSet = {
         console.error(`R8N Beckon Moonlight Quadrants: Wrong actor count ${actors.length}`);
         return;
       }
-      const dirNum = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(actor.PosX, actor.PosY, r8n_centerX, r8n_centerY);
+      const dirNum = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(actor.PosX, actor.PosY, r8n_centerX, r8n_centerY);
       // Moonbeam's Bite (A97C/A376 Left / A97D/A377 Right) half-room cleaves
       // Defining the cleaved side
       if (matches.id === 'A97E' || matches.id === 'A3DE') {
@@ -256129,7 +257852,7 @@ const r8n_triggerSet = {
           console.error(`R8N Beckon Moonlight Quadrants: Invalid safeQuads1, length of ${safeQuads1.length}.`);
           return;
         }
-        const quad = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(safeQuads1[0] ?? -1)]();
+        const quad = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(safeQuads1[0] ?? -1)]();
         return output.safeQuad({
           quad: quad
         });
@@ -256162,8 +257885,8 @@ const r8n_triggerSet = {
       }
 
       // Store quadrant for move call
-      data.moonlightQuadrant2 = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(safeQuads2[0] ?? -1)]();
-      const quad1 = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(safeQuads1[0] ?? -1)]();
+      data.moonlightQuadrant2 = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(safeQuads2[0] ?? -1)]();
+      const quad1 = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(safeQuads1[0] ?? -1)]();
       return output.safeQuadrants({
         quad1: quad1,
         quad2: data.moonlightQuadrant2
@@ -256638,7 +258361,7 @@ const stoneWindOutputStrings = {
   unknown: outputs/* default.unknown */.Z.unknown
 };
 const r8s_moonlightOutputStrings = {
-  ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+  ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
   safeQuad: {
     en: '${quad}',
     de: '${quad}',
@@ -257083,16 +258806,16 @@ const r8s_triggerSet = {
       switch (matches.id) {
         case eminentReign1:
         case eminentReign2:
-          data.reignDir = (util/* Directions.hdgTo16DirNum */.N.hdgTo16DirNum(actor.Heading) + 8) % 16;
+          data.reignDir = (util/* Directions.hdgTo16DirNum */.Ns.hdgTo16DirNum(actor.Heading) + 8) % 16;
           break;
         case revolutionaryReign1:
         case revolutionaryReign2:
-          data.reignDir = util/* Directions.hdgTo16DirNum */.N.hdgTo16DirNum(actor.Heading);
+          data.reignDir = util/* Directions.hdgTo16DirNum */.Ns.hdgTo16DirNum(actor.Heading);
           break;
       }
     },
     infoText: (data, matches, output) => {
-      const dir = output[util/* Directions.output16Dir */.N.output16Dir[data.reignDir ?? -1] ?? 'unknown']();
+      const dir = output[util/* Directions.output16Dir */.Ns.output16Dir[data.reignDir ?? -1] ?? 'unknown']();
       switch (matches.id) {
         case eminentReign1:
         case eminentReign2:
@@ -257110,7 +258833,7 @@ const r8s_triggerSet = {
       data.reignDir = undefined;
     },
     outputStrings: {
-      ...util/* Directions.outputStrings16Dir */.N.outputStrings16Dir,
+      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       inDir: {
         en: 'In ${dir}',
         de: 'Rein ${dir}',
@@ -257155,7 +258878,7 @@ const r8s_triggerSet = {
       if (data.decayAddCount !== 2) return;
       const addX = parseFloat(matches.x);
       const addY = parseFloat(matches.y);
-      const addDir = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(addX, addY, r8s_centerX, r8s_centerY);
+      const addDir = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(addX, addY, r8s_centerX, r8s_centerY);
       if (addDir === 1 || addDir === 5) return output.clockwise();else if (addDir === 3 || addDir === 7) return output.counterclockwise();
     },
     outputStrings: {
@@ -257213,13 +258936,13 @@ const r8s_triggerSet = {
         console.error(`R8S Prowling Gale Tethers: Wrong actor count ${actors.length}`);
         return;
       }
-      const dirNum = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(actor.PosX, actor.PosY, r8s_centerX, r8s_centerY);
+      const dirNum = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(actor.PosX, actor.PosY, r8s_centerX, r8s_centerY);
       data.galeTetherDirNum = (dirNum + 4) % 8;
     },
     infoText: (data, matches, output) => {
       if (data.galeTetherDirNum !== undefined && data.me === matches.target) {
         // This will trigger for each tether a player has
-        const dir = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(data.galeTetherDirNum)]();
+        const dir = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(data.galeTetherDirNum)]();
         return output.knockbackTetherDir({
           dir: dir
         });
@@ -257227,7 +258950,7 @@ const r8s_triggerSet = {
       if (data.galeTetherDirNum === undefined && data.galeTetherCount === 4) return output.knockbackTowers();
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       knockbackTetherDir: {
         en: 'Tether: Knockback to ${dir}',
         de: 'Verbindung: Rückstoß nach ${dir}',
@@ -257274,7 +258997,7 @@ const r8s_triggerSet = {
       };
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      const hdg = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(matches.heading));
+      const hdg = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(matches.heading));
 
       // towerDirs will be undefined if we receive bad coords
       if (x >= 92 && x <= 94 || x >= 106 && x <= 108) data.towerDirs = 'EW';else if (y >= 92 && y <= 94 || y >= 106 && y <= 108) data.towerDirs = 'NS';
@@ -257288,7 +259011,7 @@ const r8s_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir,
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       dirs: {
         en: '${dir1} or ${dir2}',
         de: '${dir1} oder ${dir2}',
@@ -257338,8 +259061,8 @@ const r8s_triggerSet = {
         console.error(`R8S Terrestrial Titans Safe Spot: Wrong actor count ${actors.length}`);
         return;
       }
-      const hdg1 = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(actors[0].Heading);
-      const hdg2 = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(actors[1].Heading);
+      const hdg1 = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(actors[0].Heading);
+      const hdg2 = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(actors[1].Heading);
 
       // Only trigger on the actor targetting intercards
       const isFang1Plus = hdg1 === 0 || hdg1 === 2 || hdg1 === 4 || hdg1 === 6;
@@ -257365,7 +259088,7 @@ const r8s_triggerSet = {
       if (data.towerfallSafeDir === undefined) return;
       return output[data.towerfallSafeDir]();
     },
-    outputStrings: util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir
+    outputStrings: util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir
   }, {
     id: 'R8S Tracking Tremors',
     type: 'StartsUsing',
@@ -257761,7 +259484,7 @@ const r8s_triggerSet = {
         console.error(`R8S Beckon Moonlight Quadrants: Wrong actor count ${actors.length}`);
         return;
       }
-      const dirNum = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(actor.PosX, actor.PosY, r8s_centerX, r8s_centerY);
+      const dirNum = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(actor.PosX, actor.PosY, r8s_centerX, r8s_centerY);
       // Moonbeam's Bite (A3C2 Left / A3C3 Right) half-room cleaves
       // Defining the cleaved side
       if (matches.id === 'A3E0') {
@@ -257797,7 +259520,7 @@ const r8s_triggerSet = {
           console.error(`R8S Beckon Moonlight Quadrants: Invalid safeQuads1, length of ${safeQuads1.length}.`);
           return;
         }
-        const quad = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(safeQuads1[0] ?? -1)]();
+        const quad = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(safeQuads1[0] ?? -1)]();
         return output.safeQuad({
           quad: quad
         });
@@ -257830,8 +259553,8 @@ const r8s_triggerSet = {
       }
 
       // Store quadrant for move call
-      data.moonlightQuadrant2 = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(safeQuads2[0] ?? -1)]();
-      const quad1 = output[util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(safeQuads1[0] ?? -1)]();
+      data.moonlightQuadrant2 = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(safeQuads2[0] ?? -1)]();
+      const quad1 = output[util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(safeQuads1[0] ?? -1)]();
       return output.safeQuadrants({
         quad1: quad1,
         quad2: data.moonlightQuadrant2
@@ -258081,16 +259804,16 @@ const r8s_triggerSet = {
       }
       switch (matches.id) {
         case 'A45F':
-          data.herosBlowSafeDir = (util/* Directions.hdgTo16DirNum */.N.hdgTo16DirNum(actor.Heading) - 4 + 16) % 16;
+          data.herosBlowSafeDir = (util/* Directions.hdgTo16DirNum */.Ns.hdgTo16DirNum(actor.Heading) - 4 + 16) % 16;
           break;
         case 'A461':
-          data.herosBlowSafeDir = (util/* Directions.hdgTo16DirNum */.N.hdgTo16DirNum(actor.Heading) + 4) % 16;
+          data.herosBlowSafeDir = (util/* Directions.hdgTo16DirNum */.Ns.hdgTo16DirNum(actor.Heading) + 4) % 16;
           break;
       }
     },
     infoText: (data, _matches, output) => {
       const inout = output[data.herosBlowInOut ?? 'unknown']();
-      const dir = output[util/* Directions.output16Dir */.N.output16Dir[data.herosBlowSafeDir ?? -1] ?? 'unknown']();
+      const dir = output[util/* Directions.output16Dir */.Ns.output16Dir[data.herosBlowSafeDir ?? -1] ?? 'unknown']();
       return output.text({
         inout: inout,
         dir: dir
@@ -258100,7 +259823,7 @@ const r8s_triggerSet = {
       data.herosBlowSafeDir = undefined;
     },
     outputStrings: {
-      ...util/* Directions.outputStrings16Dir */.N.outputStrings16Dir,
+      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       in: outputs/* default.in */.Z["in"],
       out: outputs/* default.out */.Z.out,
       left: outputs/* default.left */.Z.left,
@@ -258265,7 +259988,7 @@ const r8s_triggerSet = {
       if (data.twofoldInitialDir === 'dirNW') data.twofoldInitialDir = 'dirSW';
     },
     outputStrings: {
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir,
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       passTetherDir: {
         en: 'Pass Tether to ${dir}',
         de: 'Übergebe Verbindung nach ${dir}',
@@ -258381,7 +260104,7 @@ const r8s_triggerSet = {
       }
     },
     outputStrings: {
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir,
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       passTether: {
         en: 'Pass Tether',
         de: 'Verbindung übergeben',
@@ -259559,7 +261282,7 @@ const r9n_triggerSet = {
       const adjustRads = moveRads[dLen];
       let endAngle = angle + adjustRads * (cw === 'cw' ? -1 : 1);
       if (endAngle < -Math.PI) endAngle += Math.PI * 2;else if (endAngle > Math.PI) endAngle -= Math.PI * 2;
-      data.bats[dLen].push(util/* Directions.output16Dir */.N.output16Dir[util/* Directions.hdgTo16DirNum */.N.hdgTo16DirNum(endAngle)] ?? 'unknown');
+      data.bats[dLen].push(util/* Directions.output16Dir */.Ns.output16Dir[util/* Directions.hdgTo16DirNum */.Ns.hdgTo16DirNum(endAngle)] ?? 'unknown');
     }
   }, {
     id: 'R9N Blast Beat Inner',
@@ -259584,7 +261307,7 @@ const r9n_triggerSet = {
       data.bats.inner = [];
     },
     outputStrings: {
-      ...util/* Directions.outputStrings16Dir */.N.outputStrings16Dir,
+      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       away: {
         en: 'Away from bats ${dir1}/${dir2}',
         de: 'Weg von den Fledermäusen ${dir1}/${dir2}',
@@ -259617,7 +261340,7 @@ const r9n_triggerSet = {
       data.bats.middle = [];
     },
     outputStrings: {
-      ...util/* Directions.outputStrings16Dir */.N.outputStrings16Dir,
+      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       away: {
         en: 'Away from bats ${dir1}/${dir2}/${dir3}',
         de: 'Weg von den Fledermäusen ${dir1}/${dir2}/${dir3}',
@@ -259714,8 +261437,8 @@ const r9n_triggerSet = {
       const flail1Y = parseFloat(flail1Match.y);
       const flail2X = parseFloat(flail2Match.x);
       const flail2Y = parseFloat(flail2Match.y);
-      const flail1Dir = util/* Directions.xyToIntercardDirOutput */.N.xyToIntercardDirOutput(flail1X, flail1Y, r9n_center.x, r9n_center.y);
-      const flail2Dir = util/* Directions.xyToIntercardDirOutput */.N.xyToIntercardDirOutput(flail2X, flail2Y, r9n_center.x, r9n_center.y);
+      const flail1Dir = util/* Directions.xyToIntercardDirOutput */.Ns.xyToIntercardDirOutput(flail1X, flail1Y, r9n_center.x, r9n_center.y);
+      const flail2Dir = util/* Directions.xyToIntercardDirOutput */.Ns.xyToIntercardDirOutput(flail2X, flail2Y, r9n_center.x, r9n_center.y);
       const flail1Dist = Math.abs(flail1Y - r9n_center.y) < 10 ? 'near' : 'far';
       const flail2Dist = Math.abs(flail1Y - r9n_center.y) < 10 ? 'near' : 'far';
       return output.text({
@@ -259751,7 +261474,7 @@ const r9n_triggerSet = {
         cn: '远',
         ko: '멀리'
       },
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir
     }
   }],
   timelineReplace: [{
@@ -260085,7 +261808,7 @@ const r9s_triggerSet = {
       const adjustRads = moveRads[dLen];
       let endAngle = angle + adjustRads * (cw === 'cw' ? -1 : 1);
       if (endAngle < -Math.PI) endAngle += Math.PI * 2;else if (endAngle > Math.PI) endAngle -= Math.PI * 2;
-      data.bats[dLen].push(util/* Directions.output16Dir */.N.output16Dir[util/* Directions.hdgTo16DirNum */.N.hdgTo16DirNum(endAngle)] ?? 'unknown');
+      data.bats[dLen].push(util/* Directions.output16Dir */.Ns.output16Dir[util/* Directions.hdgTo16DirNum */.Ns.hdgTo16DirNum(endAngle)] ?? 'unknown');
     }
   }, {
     id: 'R9S Blast Beat Inner',
@@ -260100,7 +261823,7 @@ const r9s_triggerSet = {
     durationSeconds: 5.5,
     suppressSeconds: 1,
     infoText: (data, _matches, output) => {
-      const [dir1, dir2] = data.bats.inner.sort(util/* Directions.compareDirectionOutput */.N.compareDirectionOutput);
+      const [dir1, dir2] = data.bats.inner.sort(util/* Directions.compareDirectionOutput */.Ns.compareDirectionOutput);
       return output.away({
         dir1: output[dir1 ?? 'unknown'](),
         dir2: output[dir2 ?? 'unknown']()
@@ -260110,7 +261833,7 @@ const r9s_triggerSet = {
       data.bats.inner = [];
     },
     outputStrings: {
-      ...util/* Directions.outputStrings16Dir */.N.outputStrings16Dir,
+      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       away: {
         en: 'Away from bats ${dir1}/${dir2}',
         de: 'Weg von den Fledermäusen ${dir1}/${dir2}',
@@ -260133,7 +261856,7 @@ const r9s_triggerSet = {
     durationSeconds: 3.4,
     suppressSeconds: 1,
     infoText: (data, _matches, output) => {
-      const [dir1, dir2, dir3] = data.bats.middle.sort(util/* Directions.compareDirectionOutput */.N.compareDirectionOutput);
+      const [dir1, dir2, dir3] = data.bats.middle.sort(util/* Directions.compareDirectionOutput */.Ns.compareDirectionOutput);
       return output.away({
         dir1: output[dir1 ?? 'unknown'](),
         dir2: output[dir2 ?? 'unknown'](),
@@ -260144,7 +261867,7 @@ const r9s_triggerSet = {
       data.bats.middle = [];
     },
     outputStrings: {
-      ...util/* Directions.outputStrings16Dir */.N.outputStrings16Dir,
+      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       away: {
         en: 'Away from bats ${dir1}/${dir2}/${dir3}',
         de: 'Weg von den Fledermäusen ${dir1}/${dir2}/${dir3}',
@@ -260210,11 +261933,11 @@ const r9s_triggerSet = {
           dir2: output[matches.id === 'B379' ? 'left' : 'right']()
         });
       }
-      const attackDirNum = util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(parseFloat(matches.heading));
+      const attackDirNum = util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(parseFloat(matches.heading));
       const dirNum1 = (attackDirNum + 2) % 4;
-      const dir1 = util/* Directions.outputFromCardinalNum */.N.outputFromCardinalNum(dirNum1);
+      const dir1 = util/* Directions.outputFromCardinalNum */.Ns.outputFromCardinalNum(dirNum1);
       const dirNum2 = attackDirNum;
-      const dir2 = util/* Directions.outputFromCardinalNum */.N.outputFromCardinalNum(dirNum2);
+      const dir2 = util/* Directions.outputFromCardinalNum */.Ns.outputFromCardinalNum(dirNum2);
       const bigCleave = matches.id === 'B379' || matches.id === 'B37D';
       const insidePositions = ['innerWest', 'innerEast'];
       const outsidePositions = ['outerWest', 'outerEast'];
@@ -260264,7 +261987,7 @@ const r9s_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir,
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir,
       text: {
         en: '${first} => ${second}',
         de: '${first} => ${second}',
@@ -260424,8 +262147,8 @@ const r9s_triggerSet = {
       const flail1Y = parseFloat(flail1Match.y);
       const flail2X = parseFloat(flail2Match.x);
       const flail2Y = parseFloat(flail2Match.y);
-      const flail1Dir = util/* Directions.xyToIntercardDirOutput */.N.xyToIntercardDirOutput(flail1X, flail1Y, r9s_center.x, r9s_center.y);
-      const flail2Dir = util/* Directions.xyToIntercardDirOutput */.N.xyToIntercardDirOutput(flail2X, flail2Y, r9s_center.x, r9s_center.y);
+      const flail1Dir = util/* Directions.xyToIntercardDirOutput */.Ns.xyToIntercardDirOutput(flail1X, flail1Y, r9s_center.x, r9s_center.y);
+      const flail2Dir = util/* Directions.xyToIntercardDirOutput */.Ns.xyToIntercardDirOutput(flail2X, flail2Y, r9s_center.x, r9s_center.y);
       const flail1Dist = Math.abs(flail1Y - r9s_center.y) < 10 ? 'near' : 'far';
       const flail2Dist = Math.abs(flail1Y - r9s_center.y) < 10 ? 'near' : 'far';
       return output.text({
@@ -260466,7 +262189,7 @@ const r9s_triggerSet = {
         ko: '멀리',
         tc: '遠'
       },
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir
     }
   }, {
     id: 'R9S Hell Awaits Gain Debuff Collector',
@@ -260857,16 +262580,16 @@ const arkveld_ex_triggerSet = {
     },
     suppressSeconds: 1,
     alertText: (_data, matches, output) => {
-      const bossDirNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(matches.heading));
+      const bossDirNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(matches.heading));
       // Safe area is 90* clockwise of heading
       const safeDirNum = (bossDirNum + 2) % 8;
-      const safeDir = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(safeDirNum);
+      const safeDir = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(safeDirNum);
       return output.text({
         dir: output[safeDir]()
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       text: {
         en: '${dir} (Right) + Spread'
       }
@@ -260881,16 +262604,16 @@ const arkveld_ex_triggerSet = {
     },
     suppressSeconds: 1,
     alertText: (_data, matches, output) => {
-      const bossDirNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(matches.heading));
+      const bossDirNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(matches.heading));
       // Safe area is 270* clockwise of heading (90* ccw)
       const safeDirNum = (bossDirNum + 6) % 8;
-      const safeDir = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(safeDirNum);
+      const safeDir = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(safeDirNum);
       return output.text({
         dir: output[safeDir]()
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       text: {
         en: '${dir} (Left) + Spread'
       }
@@ -261001,7 +262724,7 @@ const arkveld_ex_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir,
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir,
       text: {
         en: '${dir} (${num})'
       },
@@ -262230,14 +263953,14 @@ const doomtrain_ex_triggerSet = {
       if (addCleaveDir < -Math.PI) {
         addCleaveDir += Math.PI * 2;
       }
-      const dirNum = util/* Directions.hdgTo16DirNum */.N.hdgTo16DirNum(addCleaveDir);
-      data.addTrainDir = dirNum !== undefined ? util/* Directions.output16Dir */.N.output16Dir[dirNum] ?? 'unknown' : 'unknown';
+      const dirNum = util/* Directions.hdgTo16DirNum */.Ns.hdgTo16DirNum(addCleaveDir);
+      data.addTrainDir = dirNum !== undefined ? util/* Directions.output16Dir */.Ns.output16Dir[dirNum] ?? 'unknown' : 'unknown';
       return output.text({
         dir: output[data.addTrainDir]()
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings16Dir */.N.outputStrings16Dir,
+      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       text: {
         en: 'Train cleaves from ${dir}',
         de: 'Zug Cleave ${dir}',
@@ -262272,7 +263995,7 @@ const doomtrain_ex_triggerSet = {
       spread: outputs/* default.spread */.Z.spread,
       cleave: outputs/* default.tankCleaveOnYou */.Z.tankCleaveOnYou,
       unknown: outputs/* default.unknown */.Z.unknown,
-      ...util/* Directions.outputStrings16Dir */.N.outputStrings16Dir,
+      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       text: {
         en: 'Train ${dir}, ${mech}',
         de: 'Zug ${dir}, ${mech}',
@@ -262450,9 +264173,9 @@ const doomtrain_ex_triggerSet = {
     infoText: (data, _matches, output) => {
       // Easy cases first
       // data.hailMoveCount === 4, no-op
-      const oldIdx = util/* Directions.outputCardinalDir.indexOf */.N.outputCardinalDir.indexOf(data.hailLastPos);
+      const oldIdx = util/* Directions.outputCardinalDir.indexOf */.Ns.outputCardinalDir.indexOf(data.hailLastPos);
       if (data.hailMoveCount === 2) {
-        data.hailLastPos = util/* Directions.outputCardinalDir */.N.outputCardinalDir[(oldIdx + 2) % 4] ?? 'unknown';
+        data.hailLastPos = util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[(oldIdx + 2) % 4] ?? 'unknown';
       } else if (data.hailMoveCount === 3) {
         // Now we determine CW or CCW
         const actor = data.actorPositions[data.hailActorId];
@@ -262464,11 +264187,11 @@ const doomtrain_ex_triggerSet = {
         const oldAngle = Math.PI - oldIdx / 4 * (Math.PI * 2);
         const newAngle = Math.atan2(actor.x - arenas[arena].x, actor.y - arenas[arena].y);
         const delta = normalizeDelta(newAngle - oldAngle);
-        if (delta > 0) data.hailLastPos = util/* Directions.outputCardinalDir */.N.outputCardinalDir[(oldIdx + 1) % 4] ?? 'unknown';else data.hailLastPos = util/* Directions.outputCardinalDir */.N.outputCardinalDir[(oldIdx - 1 + 4) % 4] ?? 'unknown';
+        if (delta > 0) data.hailLastPos = util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[(oldIdx + 1) % 4] ?? 'unknown';else data.hailLastPos = util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[(oldIdx - 1 + 4) % 4] ?? 'unknown';
       }
-      const idx = (util/* Directions.outputCardinalDir.indexOf */.N.outputCardinalDir.indexOf(data.hailLastPos) + 2) % 4;
+      const idx = (util/* Directions.outputCardinalDir.indexOf */.Ns.outputCardinalDir.indexOf(data.hailLastPos) + 2) % 4;
       return output.text({
-        dir: output[util/* Directions.outputCardinalDir */.N.outputCardinalDir[idx] ?? 'unknown']()
+        dir: output[util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[idx] ?? 'unknown']()
       });
     },
     outputStrings: {
@@ -263158,14 +264881,14 @@ const doomtrain_triggerSet = {
       if (addCleaveDir < -Math.PI) {
         addCleaveDir += Math.PI * 2;
       }
-      const dirNum = util/* Directions.hdgTo16DirNum */.N.hdgTo16DirNum(addCleaveDir);
-      const addTrainDir = dirNum !== undefined ? util/* Directions.output16Dir */.N.output16Dir[dirNum] ?? 'unknown' : 'unknown';
+      const dirNum = util/* Directions.hdgTo16DirNum */.Ns.hdgTo16DirNum(addCleaveDir);
+      const addTrainDir = dirNum !== undefined ? util/* Directions.output16Dir */.Ns.output16Dir[dirNum] ?? 'unknown' : 'unknown';
       return output.text({
         dir: output[addTrainDir]()
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings16Dir */.N.outputStrings16Dir,
+      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       text: {
         en: 'Tank cleave on YOU from ${dir}',
         de: 'Tank Cleave auf DIR von ${dir}',
@@ -263317,9 +265040,9 @@ const doomtrain_triggerSet = {
     infoText: (data, _matches, output) => {
       // Easy cases first
       // data.hailMoveCount === 4, no-op
-      const oldIdx = util/* Directions.outputCardinalDir.indexOf */.N.outputCardinalDir.indexOf(data.hailLastPos);
+      const oldIdx = util/* Directions.outputCardinalDir.indexOf */.Ns.outputCardinalDir.indexOf(data.hailLastPos);
       if (data.hailMoveCount === 2) {
-        data.hailLastPos = util/* Directions.outputCardinalDir */.N.outputCardinalDir[(oldIdx + 2) % 4] ?? 'unknown';
+        data.hailLastPos = util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[(oldIdx + 2) % 4] ?? 'unknown';
       } else if (data.hailMoveCount === 3) {
         // Now we determine CW or CCW
         const actor = data.actorPositions[data.hailActorId];
@@ -263331,10 +265054,10 @@ const doomtrain_triggerSet = {
         const oldAngle = Math.PI - oldIdx / 4 * (Math.PI * 2);
         const newAngle = Math.atan2(actor.x - doomtrain_arenas[arena].x, actor.y - doomtrain_arenas[arena].y);
         const delta = doomtrain_normalizeDelta(newAngle - oldAngle);
-        if (delta > 0) data.hailLastPos = util/* Directions.outputCardinalDir */.N.outputCardinalDir[(oldIdx + 1) % 4] ?? 'unknown';else data.hailLastPos = util/* Directions.outputCardinalDir */.N.outputCardinalDir[(oldIdx - 1 + 4) % 4] ?? 'unknown';
+        if (delta > 0) data.hailLastPos = util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[(oldIdx + 1) % 4] ?? 'unknown';else data.hailLastPos = util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[(oldIdx - 1 + 4) % 4] ?? 'unknown';
       }
-      const idx = (util/* Directions.outputCardinalDir.indexOf */.N.outputCardinalDir.indexOf(data.hailLastPos) + 2) % 4;
-      return output[util/* Directions.outputCardinalDir */.N.outputCardinalDir[idx] ?? 'unknown']();
+      const idx = (util/* Directions.outputCardinalDir.indexOf */.Ns.outputCardinalDir.indexOf(data.hailLastPos) + 2) % 4;
+      return output[util/* Directions.outputCardinalDir */.Ns.outputCardinalDir[idx] ?? 'unknown']();
     },
     outputStrings: {
       dirN: outputs/* default.front */.Z.front,
@@ -264115,7 +265838,7 @@ const necron_ex_triggerSet = {
         return;
       }
       let safe;
-      if (Math.abs(pos.x - 100) < 1) safe = 'middle';else safe = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(pos.x, pos.y, 100, 100);
+      if (Math.abs(pos.x - 100) < 1) safe = 'middle';else safe = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(pos.x, pos.y, 100, 100);
 
       // First 5 are part of the first set of mechs
       if (data.circleOfLivesCounter <= 5) {
@@ -264160,7 +265883,7 @@ const necron_ex_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       middle: outputs/* default.middle */.Z.middle,
       delay: {
         en: 'Wait for hand => ${dir}',
@@ -264975,10 +266698,10 @@ const queen_eternal_ex_triggerSet = {
         console.error(`Coronation Laser Tether Collector: ${offset ?? 'undefined'}, ${JSON.stringify(pos)}`);
         return output.unknown();
       }
-      const laserDirNum = util/* Directions.xyTo4DirNum */.N.xyTo4DirNum(pos.x, pos.y, 100.0, 100.0);
+      const laserDirNum = util/* Directions.xyTo4DirNum */.Ns.xyTo4DirNum(pos.x, pos.y, 100.0, 100.0);
       const sideDirNum = (4 + laserDirNum + offset) % 4;
-      const laserDir = util/* Directions.outputFromCardinalNum */.N.outputFromCardinalNum(laserDirNum);
-      const sideDir = util/* Directions.outputFromCardinalNum */.N.outputFromCardinalNum(sideDirNum);
+      const laserDir = util/* Directions.outputFromCardinalNum */.Ns.outputFromCardinalNum(laserDirNum);
+      const sideDir = util/* Directions.outputFromCardinalNum */.Ns.outputFromCardinalNum(sideDirNum);
       if (laserDir === 'unknown' || sideDir === 'unknown') {
         console.error(`Coronation Laser Tether Collector: laserDir = ${laserDir}, sideDir = ${sideDir}`);
         return output.unknown();
@@ -264999,7 +266722,7 @@ const queen_eternal_ex_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStringsCardinalDir */.N.outputStringsCardinalDir,
+      ...util/* Directions.outputStringsCardinalDir */.Ns.outputStringsCardinalDir,
       text: {
         en: '${laserDir} laser, ${sideDir} side, w/ ${partner}',
         de: '${laserDir} Laser, ${sideDir} Seite, mit ${partner}',
@@ -266551,12 +268274,12 @@ const seiryu_un_triggerSet = {
       // Blue Orochi spawn east or west with heading of either -1.57 or 1.57.
       // Invert their spawn heading to find the safe location.
       // No source because sometimes the name field is stale.
-      const safeDir4Num = (util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(parseFloat(matches.heading)) + 2) % 4;
+      const safeDir4Num = (util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(parseFloat(matches.heading)) + 2) % 4;
       if (safeDir4Num !== 1 && safeDir4Num !== 3) {
         if (data.withForce === undefined) return output.goToUnknownSnakes();
         return output.outOfMiddleUnknownSnakes();
       }
-      const safeDir = util/* Directions.outputFromCardinalNum */.N.outputFromCardinalNum(safeDir4Num);
+      const safeDir = util/* Directions.outputFromCardinalNum */.Ns.outputFromCardinalNum(safeDir4Num);
       if (data.withForce === undefined) return output.goToSnakes({
         dir: output[safeDir]()
       });
@@ -270334,7 +272057,7 @@ const zelenia_ex_triggerSet = {
     infoText: (_data, matches, output) => {
       // A8B0 = cleaving right
       // A8B1 = cleaving left
-      const isNorth = util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(parseFloat(matches.heading)) === 2;
+      const isNorth = util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(parseFloat(matches.heading)) === 2;
       let cleavingEast = matches.id === 'A8B0';
       // flip cleave dir if north
       if (isNorth) cleavingEast = !cleavingEast;
@@ -270658,7 +272381,7 @@ const zelenia_ex_triggerSet = {
     suppressSeconds: 9999,
     infoText: (data, matches, output) => {
       const neSwSafe = data.tileState.bloomTileOuterNNE === 'grey';
-      const cleaveDir = util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(parseFloat(matches.heading));
+      const cleaveDir = util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(parseFloat(matches.heading));
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
       const isNorth = y < 100;
@@ -270683,7 +272406,7 @@ const zelenia_ex_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       start: {
         en: 'Start ${startDir}',
         de: 'Start ${startDir}',
@@ -270714,7 +272437,7 @@ const zelenia_ex_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       in: outputs/* default.in */.Z["in"],
       out: outputs/* default.out */.Z.out,
       text: {
@@ -270785,7 +272508,7 @@ const zelenia_ex_triggerSet = {
       return output.tower();
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       in: outputs/* default.in */.Z["in"],
       out: outputs/* default.out */.Z.out,
       rose: {
@@ -272733,7 +274456,7 @@ const zoraal_ja_triggerSet = {
     durationSeconds: 7.3,
     suppressSeconds: 4,
     alertText: (_data, matches, output) => {
-      const hdgNum = util/* Directions.hdgTo4DirNum */.N.hdgTo4DirNum(parseFloat(matches.heading));
+      const hdgNum = util/* Directions.hdgTo4DirNum */.Ns.hdgTo4DirNum(parseFloat(matches.heading));
       return hdgNum === 0 ? output.backThenFront() : output.frontThenBack();
     },
     outputStrings: {
@@ -273341,12 +275064,12 @@ const futures_rewritten_phases = {
 const futures_rewritten_centerX = 100;
 const futures_rewritten_centerY = 100;
 const futures_rewritten_isCardinalDir = dir => {
-  return util/* Directions.outputCardinalDir.includes */.N.outputCardinalDir.includes(dir);
+  return util/* Directions.outputCardinalDir.includes */.Ns.outputCardinalDir.includes(dir);
 };
 const getRelativeClockPos = (start, compare) => {
   if (start === 'unknown' || compare === 'unknown') return 'unknown';
-  const startIdx = util/* Directions.output8Dir.indexOf */.N.output8Dir.indexOf(start);
-  const compareIdx = util/* Directions.output8Dir.indexOf */.N.output8Dir.indexOf(compare);
+  const startIdx = util/* Directions.output8Dir.indexOf */.Ns.output8Dir.indexOf(start);
+  const compareIdx = util/* Directions.output8Dir.indexOf */.Ns.output8Dir.indexOf(compare);
   const delta = (compareIdx - startIdx + 8) % 8;
   if (delta === 0) return 'same';else if (delta < 4) return 'clockwise';else if (delta === 4) return 'opposite';
   return 'counterclockwise';
@@ -273674,7 +275397,7 @@ const futures_rewritten_triggerSet = {
     return {
       phase: 'p1',
       actorSetPosTracker: {},
-      p1ConcealSafeDirs: [...util/* Directions.output8Dir */.N.output8Dir],
+      p1ConcealSafeDirs: [...util/* Directions.output8Dir */.Ns.output8Dir],
       p1SeenBurnishedGlory: false,
       p1FallOfFaithTethers: [],
       p2QuadrupleFirstTarget: '',
@@ -273809,9 +275532,9 @@ const futures_rewritten_triggerSet = {
     alertText: (data, matches, output) => {
       const clone = data.actorSetPosTracker[matches.id];
       if (clone === undefined) return;
-      const dir1 = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(parseFloat(clone.heading));
+      const dir1 = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(parseFloat(clone.heading));
       const dir2 = (dir1 + 4) % 8;
-      data.p1ConcealSafeDirs = data.p1ConcealSafeDirs.filter(dir => dir !== util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dir1) && dir !== util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(dir2));
+      data.p1ConcealSafeDirs = data.p1ConcealSafeDirs.filter(dir => dir !== util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dir1) && dir !== util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(dir2));
       if (data.p1ConcealSafeDirs.length !== 2) return;
       const [dir1Out, dir2Out] = data.p1ConcealSafeDirs;
       if (dir1Out === undefined || dir2Out === undefined) return;
@@ -273822,7 +275545,7 @@ const futures_rewritten_triggerSet = {
       });
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       combo: {
         en: '${dir1} / ${dir2} => ${mech}',
         de: '${dir1} / ${dir2} => ${mech}',
@@ -274137,7 +275860,7 @@ const futures_rewritten_triggerSet = {
     run: (data, matches) => {
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      const dir = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(x, y, futures_rewritten_centerX, futures_rewritten_centerY);
+      const dir = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(x, y, futures_rewritten_centerX, futures_rewritten_centerY);
       data.p2IcicleImpactStart.push(dir);
 
       // Once we have both, reorder the array and make sure the two dirs are opposites
@@ -274234,7 +275957,7 @@ const futures_rewritten_triggerSet = {
         tc: '${kb} (${dir1}/${dir2})'
       },
       kb: outputs/* default.knockback */.Z.knockback,
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       unknown: outputs/* default.unknown */.Z.unknown
     }
   }, {
@@ -274248,7 +275971,7 @@ const futures_rewritten_triggerSet = {
     run: (data, matches) => {
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      data.p2KBShivaDir = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(x, y, futures_rewritten_centerX, futures_rewritten_centerY);
+      data.p2KBShivaDir = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(x, y, futures_rewritten_centerX, futures_rewritten_centerY);
     }
   }, {
     id: 'FRU P2 Sinbound Holy Rotation',
@@ -274264,7 +275987,7 @@ const futures_rewritten_triggerSet = {
     infoText: (data, matches, output) => {
       const x = parseFloat(matches.targetX);
       const y = parseFloat(matches.targetY);
-      const playerDir = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(x, y, futures_rewritten_centerX, futures_rewritten_centerY);
+      const playerDir = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(x, y, futures_rewritten_centerX, futures_rewritten_centerY);
       const addDir = data.p2KBShivaDir ?? 'unknown';
       if (playerDir === 'unknown' || addDir === 'unknown') return;
       const relPos = getRelativeClockPos(playerDir, addDir);
@@ -274744,7 +276467,7 @@ const futures_rewritten_triggerSet = {
       if (stoplight === undefined) return;
       const x = parseFloat(stoplight.x);
       const y = parseFloat(stoplight.y);
-      data.p3RelativityYellowDirNums.push(util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(x, y, futures_rewritten_centerX, futures_rewritten_centerY));
+      data.p3RelativityYellowDirNums.push(util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(x, y, futures_rewritten_centerX, futures_rewritten_centerY));
       if (data.p3RelativityYellowDirNums.length !== 3) return;
       const northDirNum = findURNorthDirNum(data.p3RelativityYellowDirNums);
       if (northDirNum === -1 || data.p3RelativityDebuff === undefined) {
@@ -274756,34 +276479,34 @@ const futures_rewritten_triggerSet = {
       if (role === 'dps') {
         if (debuff === 'longFire' || debuff === 'ice') {
           const myDirNum = (northDirNum + 4) % 8; // relative South
-          data.p3RelativityMyDirStr = output[util/* Directions.output8Dir */.N.output8Dir[myDirNum] ?? 'unknown']();
+          data.p3RelativityMyDirStr = output[util/* Directions.output8Dir */.Ns.output8Dir[myDirNum] ?? 'unknown']();
         } else if (debuff === 'mediumFire') {
           const myDirNum = (northDirNum + 2) % 8; // relative East
-          data.p3RelativityMyDirStr = output[util/* Directions.output8Dir */.N.output8Dir[myDirNum] ?? 'unknown']();
+          data.p3RelativityMyDirStr = output[util/* Directions.output8Dir */.Ns.output8Dir[myDirNum] ?? 'unknown']();
         } else if (debuff === 'shortFire') {
           const dirs = [
           // relative SE/SW
-          util/* Directions.output8Dir */.N.output8Dir[(northDirNum + 3) % 8] ?? 'unknown', util/* Directions.output8Dir */.N.output8Dir[(northDirNum + 5) % 8] ?? 'unknown'];
+          util/* Directions.output8Dir */.Ns.output8Dir[(northDirNum + 3) % 8] ?? 'unknown', util/* Directions.output8Dir */.Ns.output8Dir[(northDirNum + 5) % 8] ?? 'unknown'];
           data.p3RelativityMyDirStr = dirs.map(dir => output[dir]()).join(output.or());
         }
       } else {
         // supports
         if (debuff === 'shortFire' || debuff === 'ice') {
           const myDirNum = northDirNum; // relative North
-          data.p3RelativityMyDirStr = output[util/* Directions.output8Dir */.N.output8Dir[myDirNum] ?? 'unknown']();
+          data.p3RelativityMyDirStr = output[util/* Directions.output8Dir */.Ns.output8Dir[myDirNum] ?? 'unknown']();
         } else if (debuff === 'mediumFire') {
           const myDirNum = (northDirNum + 6) % 8; // relative West
-          data.p3RelativityMyDirStr = output[util/* Directions.output8Dir */.N.output8Dir[myDirNum] ?? 'unknown']();
+          data.p3RelativityMyDirStr = output[util/* Directions.output8Dir */.Ns.output8Dir[myDirNum] ?? 'unknown']();
         } else if (debuff === 'longFire') {
           const dirs = [
           // relative NE/NW
-          util/* Directions.output8Dir */.N.output8Dir[(northDirNum + 1) % 8] ?? 'unknown', util/* Directions.output8Dir */.N.output8Dir[(northDirNum + 7) % 8] ?? 'unknown'];
+          util/* Directions.output8Dir */.Ns.output8Dir[(northDirNum + 1) % 8] ?? 'unknown', util/* Directions.output8Dir */.Ns.output8Dir[(northDirNum + 7) % 8] ?? 'unknown'];
           data.p3RelativityMyDirStr = dirs.map(dir => output[dir]()).join(output.or());
         }
       }
     },
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       or: outputs/* default.or */.Z.or,
       unknown: outputs/* default.unknown */.Z.unknown
     }
@@ -275233,9 +276956,9 @@ const futures_rewritten_triggerSet = {
       const y = parseFloat(matches.pairPosY ?? '0');
       const isCenterActor = Math.round(x) === 100 && Math.round(y) === 100;
       const hdg = parseFloat(matches.pairHeading ?? '0');
-      if (data.p3ApocFirstDirNum === undefined && isCenterActor) data.p3ApocFirstDirNum = util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(hdg);else if (data.p3ApocRotationDir === undefined && !isCenterActor) {
-        const pos = util/* Directions.xyTo8DirOutput */.N.xyTo8DirOutput(x, y, futures_rewritten_centerX, futures_rewritten_centerY);
-        const facing = util/* Directions.outputFrom8DirNum */.N.outputFrom8DirNum(util/* Directions.hdgTo8DirNum */.N.hdgTo8DirNum(hdg));
+      if (data.p3ApocFirstDirNum === undefined && isCenterActor) data.p3ApocFirstDirNum = util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(hdg);else if (data.p3ApocRotationDir === undefined && !isCenterActor) {
+        const pos = util/* Directions.xyTo8DirOutput */.Ns.xyTo8DirOutput(x, y, futures_rewritten_centerX, futures_rewritten_centerY);
+        const facing = util/* Directions.outputFrom8DirNum */.Ns.outputFrom8DirNum(util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(hdg));
         const relative = getRelativeClockPos(pos, facing);
         data.p3ApocRotationDir = relative === 'clockwise' ? 1 : relative === 'counterclockwise' ? -1 : undefined;
       }
@@ -275266,7 +276989,7 @@ const futures_rewritten_triggerSet = {
       // Safe spot(s) are 1 behind the starting dir and it's opposite (+4)
       const safe = [(startNum - rotationDir + 8) % 8, (startNum + 4 - rotationDir + 8) % 8];
       safe.sort((a, b) => a - b);
-      const safeStr = safe.map(dir => output[util/* Directions.output8Dir */.N.output8Dir[dir] ?? 'unknown']()).join(output.or());
+      const safeStr = safe.map(dir => output[util/* Directions.output8Dir */.Ns.output8Dir[dir] ?? 'unknown']()).join(output.or());
       return output.safe({
         dir1: safeStr
       });
@@ -275280,7 +277003,7 @@ const futures_rewritten_triggerSet = {
         ko: '(대재앙 안전지대: ${dir1})',
         tc: '${dir1} 稍後安全'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       or: outputs/* default.or */.Z.or
     }
   }, {
@@ -275334,15 +277057,15 @@ const futures_rewritten_triggerSet = {
           dir1: safeStr,
           dir2: towardStr
         });
-        safeStr = output[util/* Directions.output8Dir */.N.output8Dir[safeDir] ?? 'unknown']();
-        towardStr = output[util/* Directions.output8Dir */.N.output8Dir[towardDir] ?? 'unknown']();
+        safeStr = output[util/* Directions.output8Dir */.Ns.output8Dir[safeDir] ?? 'unknown']();
+        towardStr = output[util/* Directions.output8Dir */.Ns.output8Dir[towardDir] ?? 'unknown']();
         return output.safe({
           dir1: safeStr,
           dir2: towardStr
         });
       }
-      safeStr = safe.map(dir => output[util/* Directions.output8Dir */.N.output8Dir[dir] ?? 'unknown']()).join(output.or());
-      towardStr = toward.map(dir => output[util/* Directions.output8Dir */.N.output8Dir[dir] ?? 'unknown']()).join(output.or());
+      safeStr = safe.map(dir => output[util/* Directions.output8Dir */.Ns.output8Dir[dir] ?? 'unknown']()).join(output.or());
+      towardStr = toward.map(dir => output[util/* Directions.output8Dir */.Ns.output8Dir[dir] ?? 'unknown']()).join(output.or());
       return output.safe({
         dir1: safeStr,
         dir2: towardStr
@@ -275356,7 +277079,7 @@ const futures_rewritten_triggerSet = {
         ko: '안전: ${dir1} (${dir2} 쪽으로 한칸)',
         tc: '${dir1} 偏 ${dir2} 安全'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       or: outputs/* default.or */.Z.or
     }
   }, {
@@ -275442,7 +277165,7 @@ const futures_rewritten_triggerSet = {
       // Safe spot(s) are 2 behind the starting dir and it's opposite (+4)
       const baitDirs = [(startNum - rotationDir * 2 + 8) % 8, (startNum + 4 - rotationDir * 2 + 8) % 8];
       baitDirs.sort((a, b) => a - b);
-      const baitStr = baitDirs.map(dir => output[util/* Directions.output8Dir */.N.output8Dir[dir] ?? 'unknown']()).join(output.or());
+      const baitStr = baitDirs.map(dir => output[util/* Directions.output8Dir */.Ns.output8Dir[dir] ?? 'unknown']()).join(output.or());
       return output.bait({
         dirs: baitStr
       });
@@ -275455,7 +277178,7 @@ const futures_rewritten_triggerSet = {
         ko: '${dirs} 점프 유도?',
         tc: '${dirs} 引導超級跳'
       },
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir,
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       or: outputs/* default.or */.Z.or
     }
   }, {
@@ -276093,10 +277816,10 @@ const futures_rewritten_triggerSet = {
       if (stoplight === undefined) return;
       const x = parseFloat(stoplight.x);
       const y = parseFloat(stoplight.y);
-      const spreadDirNum = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(x, y, futures_rewritten_centerX, futures_rewritten_centerY);
+      const spreadDirNum = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(x, y, futures_rewritten_centerX, futures_rewritten_centerY);
       if (spreadDirNum !== 1 && spreadDirNum !== 7) return;
-      const spreadDir = util/* Directions.output8Dir */.N.output8Dir[spreadDirNum] ?? 'unknown';
-      const stackDir = util/* Directions.output8Dir */.N.output8Dir[(spreadDirNum + 4) % 8] ?? 'unknown';
+      const spreadDir = util/* Directions.output8Dir */.Ns.output8Dir[spreadDirNum] ?? 'unknown';
+      const stackDir = util/* Directions.output8Dir */.Ns.output8Dir[(spreadDirNum + 4) % 8] ?? 'unknown';
       const debuff = data.p4CTMyRole;
       const role = data.role;
       if (!debuff) return;
@@ -276131,7 +277854,7 @@ const futures_rewritten_triggerSet = {
           myDirNum = 6;
           // tank + healer, tank flexes east
         else myDirNum = 2;
-        const myDirStr = output[util/* Directions.output8Dir */.N.output8Dir[myDirNum] ?? 'unknown']();
+        const myDirStr = output[util/* Directions.output8Dir */.Ns.output8Dir[myDirNum] ?? 'unknown']();
         // if the redIce player is adjacent to the eruption player, they move north after
         const followupStr = Math.abs(myDirNum - spreadDirNum) === 1 ? output.stackNorth() : output.dodgeSouth();
         return output.redIce({
@@ -276153,7 +277876,7 @@ const futures_rewritten_triggerSet = {
           myDirNum = 5;
           // tank + healer, tank flexes SE
         else myDirNum = 3;
-        return output[util/* Directions.output8Dir */.N.output8Dir[myDirNum] ?? 'unknown']();
+        return output[util/* Directions.output8Dir */.Ns.output8Dir[myDirNum] ?? 'unknown']();
       }
       return output.unknown();
     },
@@ -276197,7 +277920,7 @@ const futures_rewritten_triggerSet = {
       spread: outputs/* default.spread */.Z.spread,
       stack: outputs/* default.getTogether */.Z.getTogether,
       unknown: outputs/* default.unknown */.Z.unknown,
-      ...util/* Directions.outputStrings8Dir */.N.outputStrings8Dir
+      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir
     }
   }, {
     id: 'FRU P4 Crystallize Time Blue Cleanse',
@@ -276243,10 +277966,10 @@ const futures_rewritten_triggerSet = {
         ko: '정화 장판 피하기',
         tc: '避開淨化圈'
       },
-      blueWater: util/* Directions.outputStrings8Dir.dirSE */.N.outputStrings8Dir.dirSE,
-      blueUnholy: util/* Directions.outputStrings8Dir.dirE */.N.outputStrings8Dir.dirE,
-      blueEruption: util/* Directions.outputStrings8Dir.dirW */.N.outputStrings8Dir.dirW,
-      blueIce: util/* Directions.outputStrings8Dir.dirSW */.N.outputStrings8Dir.dirSW
+      blueWater: util/* Directions.outputStrings8Dir.dirSE */.Ns.outputStrings8Dir.dirSE,
+      blueUnholy: util/* Directions.outputStrings8Dir.dirE */.Ns.outputStrings8Dir.dirE,
+      blueEruption: util/* Directions.outputStrings8Dir.dirW */.Ns.outputStrings8Dir.dirW,
+      blueIce: util/* Directions.outputStrings8Dir.dirSW */.Ns.outputStrings8Dir.dirSW
     }
   }, {
     id: 'FRU P4 Crystallize Time Tidal Light Collect',
@@ -276259,7 +277982,7 @@ const futures_rewritten_triggerSet = {
     run: (data, matches) => {
       const x = parseFloat(matches.x);
       const y = parseFloat(matches.y);
-      const dirNum = util/* Directions.xyTo8DirNum */.N.xyTo8DirNum(x, y, futures_rewritten_centerX, futures_rewritten_centerY);
+      const dirNum = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(x, y, futures_rewritten_centerX, futures_rewritten_centerY);
       data.p4CTTidalDirs.push(dirNum);
     }
   }, {
@@ -276281,7 +278004,7 @@ const futures_rewritten_triggerSet = {
       // re-use findURNorthDirNum() to find the intercard between the two starting Tidal spots
       const intersectDirNum = findURNorthDirNum(data.p4CTTidalDirs);
       if (intersectDirNum === -1) return unknownStr;
-      const dir = util/* Directions.output8Dir */.N.output8Dir[intersectDirNum];
+      const dir = util/* Directions.output8Dir */.Ns.output8Dir[intersectDirNum];
       if (dir === undefined) return unknownStr;
       return output.rewind({
         spot: output[dir]()
@@ -276296,7 +278019,7 @@ const futures_rewritten_triggerSet = {
         tc: '放置回返: ${spot}'
       },
       unknown: outputs/* default.unknown */.Z.unknown,
-      ...util/* Directions.outputStringsIntercardDir */.N.outputStringsIntercardDir
+      ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir
     }
   }, {
     id: 'FRU P4 Crystallize Time Spirit Taker',
@@ -277923,7 +279646,9 @@ const ultimate_futures_rewritten_namespaceObject = "### FUTURES REWRITTEN (ULTIM
 
 
 
-/* harmony default export */ const raidboss_manifest = ({'00-misc/general.ts': general,'00-misc/test.ts': test,'00-misc/test.txt': _00_misc_test_namespaceObject,'00-misc/the_masked_carnivale.ts': the_masked_carnivale,'02-arr/alliance/the_world_of_darkness.ts': the_world_of_darkness,'02-arr/dungeon/amdapor_keep.ts': amdapor_keep,'02-arr/dungeon/amdapor_keep_hard.ts': amdapor_keep_hard,'02-arr/dungeon/aurum_vale.ts': aurum_vale,'02-arr/dungeon/aurum_vale73.ts': aurum_vale73,'02-arr/dungeon/brayfloxs_longstop.ts': brayfloxs_longstop,'02-arr/dungeon/cutters_cry.ts': cutters_cry,'02-arr/dungeon/cutters_cry72.ts': cutters_cry72,'02-arr/dungeon/halatali_hard.ts': halatali_hard,'02-arr/dungeon/haukke_manor.ts': haukke_manor,'02-arr/dungeon/haukke_manor_hard.ts': haukke_manor_hard,'02-arr/dungeon/hullbreaker_isle.ts': hullbreaker_isle,'02-arr/dungeon/pharos_sirius.ts': pharos_sirius,'02-arr/dungeon/sastasha_hard.ts': sastasha_hard,'02-arr/dungeon/snowcloak.ts': snowcloak,'02-arr/dungeon/the_lost_city_of_amdapor.ts': the_lost_city_of_amdapor,'02-arr/dungeon/the_stone_vigil.ts': the_stone_vigil,'02-arr/dungeon/the_stone_vigil_hard.ts': the_stone_vigil_hard,'02-arr/dungeon/the_sunken_temple_of_quarn.ts': the_sunken_temple_of_quarn,'02-arr/dungeon/the_sunken_temple_of_quarn71.ts': the_sunken_temple_of_quarn71,'02-arr/dungeon/the_sunken_temple_of_quarn_hard.ts': the_sunken_temple_of_quarn_hard,'02-arr/dungeon/the_tam_tara_depocraft_hard.ts': the_tam_tara_depocraft_hard,'02-arr/dungeon/the_wanderers_palace_hard.ts': the_wanderers_palace_hard,'02-arr/raid/t1.ts': t1,'02-arr/raid/t10.ts': t10,'02-arr/raid/t10.txt': raid_t10_namespaceObject,'02-arr/raid/t11.ts': t11,'02-arr/raid/t11.txt': raid_t11_namespaceObject,'02-arr/raid/t12.ts': t12,'02-arr/raid/t12.txt': raid_t12_namespaceObject,'02-arr/raid/t13.ts': t13,'02-arr/raid/t13.txt': raid_t13_namespaceObject,'02-arr/raid/t2.ts': t2,'02-arr/raid/t4.ts': t4,'02-arr/raid/t4.txt': raid_t4_namespaceObject,'02-arr/raid/t5.ts': t5,'02-arr/raid/t5.txt': raid_t5_namespaceObject,'02-arr/raid/t6.ts': t6,'02-arr/raid/t6.txt': raid_t6_namespaceObject,'02-arr/raid/t7.ts': t7,'02-arr/raid/t7.txt': raid_t7_namespaceObject,'02-arr/raid/t8.ts': t8,'02-arr/raid/t8.txt': raid_t8_namespaceObject,'02-arr/raid/t9.ts': t9,'02-arr/raid/t9.txt': raid_t9_namespaceObject,'02-arr/trial/ifrit-nm.ts': ifrit_nm,'02-arr/trial/ifrit-nm.txt': trial_ifrit_nm_namespaceObject,'02-arr/trial/levi-ex.ts': levi_ex,'02-arr/trial/levi-ex.txt': trial_levi_ex_namespaceObject,'02-arr/trial/shiva-ex.ts': shiva_ex,'02-arr/trial/shiva-ex.txt': trial_shiva_ex_namespaceObject,'02-arr/trial/shiva-hm.ts': shiva_hm,'02-arr/trial/shiva-hm.txt': trial_shiva_hm_namespaceObject,'02-arr/trial/titan-ex.ts': titan_ex,'02-arr/trial/titan-ex.txt': trial_titan_ex_namespaceObject,'02-arr/trial/titan-hm.ts': titan_hm,'02-arr/trial/titan-hm.txt': trial_titan_hm_namespaceObject,'02-arr/trial/titan-nm.ts': titan_nm,'02-arr/trial/titan-nm.txt': trial_titan_nm_namespaceObject,'02-arr/trial/ultima-ex.ts': ultima_ex,'02-arr/trial/ultima-ex.txt': trial_ultima_ex_namespaceObject,'03-hw/alliance/dun_scaith.ts': dun_scaith,'03-hw/alliance/dun_scaith.txt': alliance_dun_scaith_namespaceObject,'03-hw/alliance/weeping_city.ts': weeping_city,'03-hw/alliance/weeping_city.txt': alliance_weeping_city_namespaceObject,'03-hw/deepdungeon/the_palace_of_the_dead_floors_001-010.ts': the_palace_of_the_dead_floors_001_010,'03-hw/deepdungeon/the_palace_of_the_dead_floors_011-020.ts': the_palace_of_the_dead_floors_011_020,'03-hw/deepdungeon/the_palace_of_the_dead_floors_021-030.ts': the_palace_of_the_dead_floors_021_030,'03-hw/deepdungeon/the_palace_of_the_dead_floors_031-040.ts': the_palace_of_the_dead_floors_031_040,'03-hw/deepdungeon/the_palace_of_the_dead_floors_041-050.ts': the_palace_of_the_dead_floors_041_050,'03-hw/deepdungeon/the_palace_of_the_dead_floors_051-060.ts': the_palace_of_the_dead_floors_051_060,'03-hw/deepdungeon/the_palace_of_the_dead_floors_061-070.ts': the_palace_of_the_dead_floors_061_070,'03-hw/deepdungeon/the_palace_of_the_dead_floors_071-080.ts': the_palace_of_the_dead_floors_071_080,'03-hw/deepdungeon/the_palace_of_the_dead_floors_081-090.ts': the_palace_of_the_dead_floors_081_090,'03-hw/deepdungeon/the_palace_of_the_dead_floors_091-100.ts': the_palace_of_the_dead_floors_091_100,'03-hw/deepdungeon/the_palace_of_the_dead_floors_101-110.ts': the_palace_of_the_dead_floors_101_110,'03-hw/deepdungeon/the_palace_of_the_dead_floors_111-120.ts': the_palace_of_the_dead_floors_111_120,'03-hw/deepdungeon/the_palace_of_the_dead_floors_121-130.ts': the_palace_of_the_dead_floors_121_130,'03-hw/deepdungeon/the_palace_of_the_dead_floors_131-140.ts': the_palace_of_the_dead_floors_131_140,'03-hw/deepdungeon/the_palace_of_the_dead_floors_141-150.ts': the_palace_of_the_dead_floors_141_150,'03-hw/deepdungeon/the_palace_of_the_dead_floors_151-160.ts': the_palace_of_the_dead_floors_151_160,'03-hw/deepdungeon/the_palace_of_the_dead_floors_161-170.ts': the_palace_of_the_dead_floors_161_170,'03-hw/deepdungeon/the_palace_of_the_dead_floors_171-180.ts': the_palace_of_the_dead_floors_171_180,'03-hw/deepdungeon/the_palace_of_the_dead_floors_181-190.ts': the_palace_of_the_dead_floors_181_190,'03-hw/deepdungeon/the_palace_of_the_dead_floors_191-200.ts': the_palace_of_the_dead_floors_191_200,'03-hw/deepdungeon/the_palace_of_the_dead_general.ts': the_palace_of_the_dead_general,'03-hw/dungeon/aetherochemical_research_facility.ts': aetherochemical_research_facility,'03-hw/dungeon/aetherochemical_research_facility.txt': dungeon_aetherochemical_research_facility_namespaceObject,'03-hw/dungeon/baelsars_wall.ts': baelsars_wall,'03-hw/dungeon/baelsars_wall.txt': dungeon_baelsars_wall_namespaceObject,'03-hw/dungeon/fractal_continuum.ts': fractal_continuum,'03-hw/dungeon/fractal_continuum.txt': dungeon_fractal_continuum_namespaceObject,'03-hw/dungeon/gubal_library_hard.ts': gubal_library_hard,'03-hw/dungeon/gubal_library_hard.txt': dungeon_gubal_library_hard_namespaceObject,'03-hw/dungeon/sohm_al.ts': sohm_al,'03-hw/dungeon/sohm_al.txt': dungeon_sohm_al_namespaceObject,'03-hw/dungeon/sohm_al_hard.ts': sohm_al_hard,'03-hw/dungeon/sohm_al_hard.txt': dungeon_sohm_al_hard_namespaceObject,'03-hw/dungeon/the_lost_city_of_amdapor_hard.ts': the_lost_city_of_amdapor_hard,'03-hw/dungeon/the_lost_city_of_amdapor_hard.txt': dungeon_the_lost_city_of_amdapor_hard_namespaceObject,'03-hw/dungeon/the_vault.ts': the_vault,'03-hw/dungeon/the_vault.txt': dungeon_the_vault_namespaceObject,'03-hw/dungeon/xelphatol.ts': xelphatol,'03-hw/dungeon/xelphatol.txt': dungeon_xelphatol_namespaceObject,'03-hw/map/the_aquapolis.ts': the_aquapolis,'03-hw/pvp/shatter.ts': shatter,'03-hw/raid/a10n.ts': a10n,'03-hw/raid/a10n.txt': raid_a10n_namespaceObject,'03-hw/raid/a10s.ts': a10s,'03-hw/raid/a10s.txt': raid_a10s_namespaceObject,'03-hw/raid/a11s.ts': a11s,'03-hw/raid/a11s.txt': raid_a11s_namespaceObject,'03-hw/raid/a12n.ts': a12n,'03-hw/raid/a12n.txt': raid_a12n_namespaceObject,'03-hw/raid/a12s.ts': a12s,'03-hw/raid/a12s.txt': raid_a12s_namespaceObject,'03-hw/raid/a1s.ts': a1s,'03-hw/raid/a1s.txt': raid_a1s_namespaceObject,'03-hw/raid/a2s.ts': a2s,'03-hw/raid/a2s.txt': raid_a2s_namespaceObject,'03-hw/raid/a3n.ts': a3n,'03-hw/raid/a3n.txt': raid_a3n_namespaceObject,'03-hw/raid/a3s.ts': a3s,'03-hw/raid/a3s.txt': raid_a3s_namespaceObject,'03-hw/raid/a4s.ts': a4s,'03-hw/raid/a4s.txt': raid_a4s_namespaceObject,'03-hw/raid/a5s.ts': a5s,'03-hw/raid/a5s.txt': raid_a5s_namespaceObject,'03-hw/raid/a6n.ts': a6n,'03-hw/raid/a6n.txt': raid_a6n_namespaceObject,'03-hw/raid/a6s.ts': a6s,'03-hw/raid/a6s.txt': raid_a6s_namespaceObject,'03-hw/raid/a7s.ts': a7s,'03-hw/raid/a7s.txt': raid_a7s_namespaceObject,'03-hw/raid/a8n.ts': a8n,'03-hw/raid/a8n.txt': raid_a8n_namespaceObject,'03-hw/raid/a8s.ts': a8s,'03-hw/raid/a8s.txt': raid_a8s_namespaceObject,'03-hw/raid/a9s.ts': a9s,'03-hw/raid/a9s.txt': raid_a9s_namespaceObject,'03-hw/trial/bismarck-ex.ts': bismarck_ex,'03-hw/trial/ravana-ex.ts': ravana_ex,'03-hw/trial/ravana-ex.txt': trial_ravana_ex_namespaceObject,'03-hw/trial/sephirot-ex.ts': sephirot_ex,'03-hw/trial/sephirot-ex.txt': trial_sephirot_ex_namespaceObject,'03-hw/trial/sephirot.ts': sephirot,'03-hw/trial/sophia-ex.ts': sophia_ex,'03-hw/trial/sophia-ex.txt': trial_sophia_ex_namespaceObject,'03-hw/trial/thordan-ex.ts': thordan_ex,'03-hw/trial/thordan-ex.txt': trial_thordan_ex_namespaceObject,'03-hw/trial/zurvan-ex.ts': zurvan_ex,'03-hw/trial/zurvan-ex.txt': trial_zurvan_ex_namespaceObject,'04-sb/alliance/orbonne_monastery.ts': orbonne_monastery,'04-sb/alliance/orbonne_monastery.txt': alliance_orbonne_monastery_namespaceObject,'04-sb/alliance/ridorana_lighthouse.ts': ridorana_lighthouse,'04-sb/alliance/ridorana_lighthouse.txt': alliance_ridorana_lighthouse_namespaceObject,'04-sb/alliance/royal_city_of_rabanastre.ts': royal_city_of_rabanastre,'04-sb/alliance/royal_city_of_rabanastre.txt': alliance_royal_city_of_rabanastre_namespaceObject,'04-sb/deepdungeon/heaven-on-high_floors_01-10.ts': heaven_on_high_floors_01_10,'04-sb/deepdungeon/heaven-on-high_floors_11-20.ts': heaven_on_high_floors_11_20,'04-sb/deepdungeon/heaven-on-high_floors_21-30.ts': heaven_on_high_floors_21_30,'04-sb/deepdungeon/heaven-on-high_floors_31-40.ts': heaven_on_high_floors_31_40,'04-sb/deepdungeon/heaven-on-high_floors_41-50.ts': heaven_on_high_floors_41_50,'04-sb/deepdungeon/heaven-on-high_floors_51-60.ts': heaven_on_high_floors_51_60,'04-sb/deepdungeon/heaven-on-high_floors_61-70.ts': heaven_on_high_floors_61_70,'04-sb/deepdungeon/heaven-on-high_floors_71-80.ts': heaven_on_high_floors_71_80,'04-sb/deepdungeon/heaven-on-high_floors_81-90.ts': heaven_on_high_floors_81_90,'04-sb/deepdungeon/heaven-on-high_floors_91-100.ts': heaven_on_high_floors_91_100,'04-sb/deepdungeon/heaven-on-high_general.ts': heaven_on_high_general,'04-sb/dungeon/ala_mhigo.ts': ala_mhigo,'04-sb/dungeon/ala_mhigo.txt': dungeon_ala_mhigo_namespaceObject,'04-sb/dungeon/bardams_mettle.ts': bardams_mettle,'04-sb/dungeon/bardams_mettle.txt': dungeon_bardams_mettle_namespaceObject,'04-sb/dungeon/castrum_abania.ts': castrum_abania,'04-sb/dungeon/castrum_abania.txt': dungeon_castrum_abania_namespaceObject,'04-sb/dungeon/doma_castle.ts': doma_castle,'04-sb/dungeon/doma_castle.txt': dungeon_doma_castle_namespaceObject,'04-sb/dungeon/drowned_city_of_skalla.ts': drowned_city_of_skalla,'04-sb/dungeon/drowned_city_of_skalla.txt': dungeon_drowned_city_of_skalla_namespaceObject,'04-sb/dungeon/fractal_continuum_hard.ts': fractal_continuum_hard,'04-sb/dungeon/fractal_continuum_hard.txt': dungeon_fractal_continuum_hard_namespaceObject,'04-sb/dungeon/ghimlyt_dark.ts': ghimlyt_dark,'04-sb/dungeon/ghimlyt_dark.txt': dungeon_ghimlyt_dark_namespaceObject,'04-sb/dungeon/hells_lid.ts': hells_lid,'04-sb/dungeon/hells_lid.txt': dungeon_hells_lid_namespaceObject,'04-sb/dungeon/kugane_castle.ts': kugane_castle,'04-sb/dungeon/kugane_castle.txt': dungeon_kugane_castle_namespaceObject,'04-sb/dungeon/shisui_of_the_violet_tides.ts': shisui_of_the_violet_tides,'04-sb/dungeon/shisui_of_the_violet_tides.txt': dungeon_shisui_of_the_violet_tides_namespaceObject,'04-sb/dungeon/sirensong_sea.ts': sirensong_sea,'04-sb/dungeon/sirensong_sea.txt': dungeon_sirensong_sea_namespaceObject,'04-sb/dungeon/st_mocianne_hard.ts': st_mocianne_hard,'04-sb/dungeon/st_mocianne_hard.txt': dungeon_st_mocianne_hard_namespaceObject,'04-sb/dungeon/swallows_compass.ts': swallows_compass,'04-sb/dungeon/swallows_compass.txt': dungeon_swallows_compass_namespaceObject,'04-sb/dungeon/temple_of_the_fist.ts': temple_of_the_fist,'04-sb/dungeon/temple_of_the_fist.txt': dungeon_temple_of_the_fist_namespaceObject,'04-sb/dungeon/the_burn.ts': the_burn,'04-sb/dungeon/the_burn.txt': dungeon_the_burn_namespaceObject,'04-sb/eureka/eureka_anemos.ts': eureka_anemos,'04-sb/eureka/eureka_hydatos.ts': eureka_hydatos,'04-sb/eureka/eureka_hydatos.txt': eureka_eureka_hydatos_namespaceObject,'04-sb/eureka/eureka_pyros.ts': eureka_pyros,'04-sb/hunts/yanxia.ts': yanxia,'04-sb/map/the_hidden_canals_of_uznair.ts': the_hidden_canals_of_uznair,'04-sb/map/the_lost_canals_of_uznair.ts': the_lost_canals_of_uznair,'04-sb/map/the_shifting_altars_of_uznair.ts': the_shifting_altars_of_uznair,'04-sb/raid/o10n.ts': o10n,'04-sb/raid/o10n.txt': raid_o10n_namespaceObject,'04-sb/raid/o10s.ts': o10s,'04-sb/raid/o10s.txt': raid_o10s_namespaceObject,'04-sb/raid/o11n.ts': o11n,'04-sb/raid/o11n.txt': raid_o11n_namespaceObject,'04-sb/raid/o11s.ts': o11s,'04-sb/raid/o11s.txt': raid_o11s_namespaceObject,'04-sb/raid/o12n.ts': o12n,'04-sb/raid/o12n.txt': raid_o12n_namespaceObject,'04-sb/raid/o12s.ts': o12s,'04-sb/raid/o12s.txt': raid_o12s_namespaceObject,'04-sb/raid/o1n.ts': o1n,'04-sb/raid/o1n.txt': raid_o1n_namespaceObject,'04-sb/raid/o1s.ts': o1s,'04-sb/raid/o1s.txt': raid_o1s_namespaceObject,'04-sb/raid/o2n.ts': o2n,'04-sb/raid/o2n.txt': raid_o2n_namespaceObject,'04-sb/raid/o2s.ts': o2s,'04-sb/raid/o2s.txt': raid_o2s_namespaceObject,'04-sb/raid/o3n.ts': o3n,'04-sb/raid/o3n.txt': raid_o3n_namespaceObject,'04-sb/raid/o3s.ts': o3s,'04-sb/raid/o3s.txt': raid_o3s_namespaceObject,'04-sb/raid/o4n.ts': o4n,'04-sb/raid/o4n.txt': raid_o4n_namespaceObject,'04-sb/raid/o4s.ts': o4s,'04-sb/raid/o4s.txt': raid_o4s_namespaceObject,'04-sb/raid/o5n.ts': o5n,'04-sb/raid/o5n.txt': raid_o5n_namespaceObject,'04-sb/raid/o5s.ts': o5s,'04-sb/raid/o5s.txt': raid_o5s_namespaceObject,'04-sb/raid/o6n.ts': o6n,'04-sb/raid/o6n.txt': raid_o6n_namespaceObject,'04-sb/raid/o6s.ts': o6s,'04-sb/raid/o6s.txt': raid_o6s_namespaceObject,'04-sb/raid/o7n.ts': o7n,'04-sb/raid/o7n.txt': raid_o7n_namespaceObject,'04-sb/raid/o7s.ts': o7s,'04-sb/raid/o7s.txt': raid_o7s_namespaceObject,'04-sb/raid/o8n.ts': o8n,'04-sb/raid/o8n.txt': raid_o8n_namespaceObject,'04-sb/raid/o8s.ts': o8s,'04-sb/raid/o8s.txt': raid_o8s_namespaceObject,'04-sb/raid/o9n.ts': o9n,'04-sb/raid/o9n.txt': raid_o9n_namespaceObject,'04-sb/raid/o9s.ts': o9s,'04-sb/raid/o9s.txt': raid_o9s_namespaceObject,'04-sb/trial/byakko-ex.ts': byakko_ex,'04-sb/trial/byakko-ex.txt': trial_byakko_ex_namespaceObject,'04-sb/trial/byakko.ts': byakko,'04-sb/trial/byakko.txt': trial_byakko_namespaceObject,'04-sb/trial/lakshmi-ex.ts': lakshmi_ex,'04-sb/trial/lakshmi-ex.txt': trial_lakshmi_ex_namespaceObject,'04-sb/trial/lakshmi.ts': lakshmi,'04-sb/trial/lakshmi.txt': trial_lakshmi_namespaceObject,'04-sb/trial/rathalos-ex.ts': rathalos_ex,'04-sb/trial/rathalos.ts': rathalos,'04-sb/trial/seiryu-ex.ts': seiryu_ex,'04-sb/trial/seiryu-ex.txt': trial_seiryu_ex_namespaceObject,'04-sb/trial/seiryu.ts': seiryu,'04-sb/trial/seiryu.txt': trial_seiryu_namespaceObject,'04-sb/trial/shinryu-ex.ts': shinryu_ex,'04-sb/trial/shinryu-ex.txt': trial_shinryu_ex_namespaceObject,'04-sb/trial/shinryu.ts': shinryu,'04-sb/trial/shinryu.txt': trial_shinryu_namespaceObject,'04-sb/trial/susano-ex.ts': susano_ex,'04-sb/trial/susano-ex.txt': trial_susano_ex_namespaceObject,'04-sb/trial/susano.ts': susano,'04-sb/trial/susano.txt': trial_susano_namespaceObject,'04-sb/trial/suzaku-ex.ts': suzaku_ex,'04-sb/trial/suzaku-ex.txt': trial_suzaku_ex_namespaceObject,'04-sb/trial/suzaku.ts': suzaku,'04-sb/trial/suzaku.txt': trial_suzaku_namespaceObject,'04-sb/trial/tsukuyomi-ex.ts': tsukuyomi_ex,'04-sb/trial/tsukuyomi-ex.txt': trial_tsukuyomi_ex_namespaceObject,'04-sb/trial/tsukuyomi.ts': tsukuyomi,'04-sb/trial/tsukuyomi.txt': trial_tsukuyomi_namespaceObject,'04-sb/trial/yojimbo.ts': yojimbo,'04-sb/trial/yojimbo.txt': trial_yojimbo_namespaceObject,'04-sb/ultimate/ultima_weapon_ultimate.ts': ultima_weapon_ultimate,'04-sb/ultimate/ultima_weapon_ultimate.txt': ultimate_ultima_weapon_ultimate_namespaceObject,'04-sb/ultimate/unending_coil_ultimate.ts': unending_coil_ultimate,'04-sb/ultimate/unending_coil_ultimate.txt': ultimate_unending_coil_ultimate_namespaceObject,'05-shb/alliance/the_copied_factory.ts': the_copied_factory,'05-shb/alliance/the_copied_factory.txt': alliance_the_copied_factory_namespaceObject,'05-shb/alliance/the_puppets_bunker.ts': the_puppets_bunker,'05-shb/alliance/the_puppets_bunker.txt': alliance_the_puppets_bunker_namespaceObject,'05-shb/alliance/the_tower_at_paradigms_breach.ts': the_tower_at_paradigms_breach,'05-shb/alliance/the_tower_at_paradigms_breach.txt': alliance_the_tower_at_paradigms_breach_namespaceObject,'05-shb/dungeon/akadaemia_anyder.ts': akadaemia_anyder,'05-shb/dungeon/akadaemia_anyder.txt': dungeon_akadaemia_anyder_namespaceObject,'05-shb/dungeon/amaurot.ts': amaurot,'05-shb/dungeon/amaurot.txt': dungeon_amaurot_namespaceObject,'05-shb/dungeon/anamnesis_anyder.ts': anamnesis_anyder,'05-shb/dungeon/anamnesis_anyder.txt': dungeon_anamnesis_anyder_namespaceObject,'05-shb/dungeon/dohn_mheg.ts': dohn_mheg,'05-shb/dungeon/dohn_mheg.txt': dungeon_dohn_mheg_namespaceObject,'05-shb/dungeon/heroes_gauntlet.ts': heroes_gauntlet,'05-shb/dungeon/heroes_gauntlet.txt': dungeon_heroes_gauntlet_namespaceObject,'05-shb/dungeon/holminster_switch.ts': holminster_switch,'05-shb/dungeon/holminster_switch.txt': dungeon_holminster_switch_namespaceObject,'05-shb/dungeon/malikahs_well.ts': malikahs_well,'05-shb/dungeon/malikahs_well.txt': dungeon_malikahs_well_namespaceObject,'05-shb/dungeon/matoyas_relict.ts': matoyas_relict,'05-shb/dungeon/matoyas_relict.txt': dungeon_matoyas_relict_namespaceObject,'05-shb/dungeon/mt_gulg.ts': mt_gulg,'05-shb/dungeon/mt_gulg.txt': dungeon_mt_gulg_namespaceObject,'05-shb/dungeon/paglthan.ts': paglthan,'05-shb/dungeon/paglthan.txt': dungeon_paglthan_namespaceObject,'05-shb/dungeon/qitana_ravel.ts': qitana_ravel,'05-shb/dungeon/qitana_ravel.txt': dungeon_qitana_ravel_namespaceObject,'05-shb/dungeon/the_grand_cosmos.ts': the_grand_cosmos,'05-shb/dungeon/the_grand_cosmos.txt': dungeon_the_grand_cosmos_namespaceObject,'05-shb/dungeon/twinning.ts': twinning,'05-shb/dungeon/twinning.txt': dungeon_twinning_namespaceObject,'05-shb/etc/the_diadem.ts': the_diadem,'05-shb/eureka/bozjan_southern_front.ts': bozjan_southern_front,'05-shb/eureka/bozjan_southern_front.txt': eureka_bozjan_southern_front_namespaceObject,'05-shb/eureka/delubrum_reginae.ts': delubrum_reginae,'05-shb/eureka/delubrum_reginae.txt': eureka_delubrum_reginae_namespaceObject,'05-shb/eureka/delubrum_reginae_savage.ts': delubrum_reginae_savage,'05-shb/eureka/delubrum_reginae_savage.txt': eureka_delubrum_reginae_savage_namespaceObject,'05-shb/eureka/zadnor.ts': zadnor,'05-shb/eureka/zadnor.txt': eureka_zadnor_namespaceObject,'05-shb/hunts/amh_araeng.ts': amh_araeng,'05-shb/hunts/il_mheg.ts': il_mheg,'05-shb/hunts/kholusia.ts': kholusia,'05-shb/hunts/lakeland.ts': lakeland,'05-shb/hunts/ss_rank.ts': ss_rank,'05-shb/hunts/the_raktika_greatwood.ts': the_raktika_greatwood,'05-shb/hunts/the_tempest.ts': the_tempest,'05-shb/map/the_dungeons_of_lyhe_ghiah.ts': the_dungeons_of_lyhe_ghiah,'05-shb/map/the_shifting_oubliettes_of_lyhe_ghiah.ts': the_shifting_oubliettes_of_lyhe_ghiah,'05-shb/raid/e10n.ts': e10n,'05-shb/raid/e10n.txt': raid_e10n_namespaceObject,'05-shb/raid/e10s.ts': e10s,'05-shb/raid/e10s.txt': raid_e10s_namespaceObject,'05-shb/raid/e11n.ts': e11n,'05-shb/raid/e11n.txt': raid_e11n_namespaceObject,'05-shb/raid/e11s.ts': e11s,'05-shb/raid/e11s.txt': raid_e11s_namespaceObject,'05-shb/raid/e12n.ts': e12n,'05-shb/raid/e12n.txt': raid_e12n_namespaceObject,'05-shb/raid/e12s.ts': e12s,'05-shb/raid/e12s.txt': raid_e12s_namespaceObject,'05-shb/raid/e1n.ts': e1n,'05-shb/raid/e1n.txt': raid_e1n_namespaceObject,'05-shb/raid/e1s.ts': e1s,'05-shb/raid/e1s.txt': raid_e1s_namespaceObject,'05-shb/raid/e2n.ts': e2n,'05-shb/raid/e2n.txt': raid_e2n_namespaceObject,'05-shb/raid/e2s.ts': e2s,'05-shb/raid/e2s.txt': raid_e2s_namespaceObject,'05-shb/raid/e3n.ts': e3n,'05-shb/raid/e3n.txt': raid_e3n_namespaceObject,'05-shb/raid/e3s.ts': e3s,'05-shb/raid/e3s.txt': raid_e3s_namespaceObject,'05-shb/raid/e4n.ts': e4n,'05-shb/raid/e4n.txt': raid_e4n_namespaceObject,'05-shb/raid/e4s.ts': e4s,'05-shb/raid/e4s.txt': raid_e4s_namespaceObject,'05-shb/raid/e5n.ts': e5n,'05-shb/raid/e5n.txt': raid_e5n_namespaceObject,'05-shb/raid/e5s.ts': e5s,'05-shb/raid/e5s.txt': raid_e5s_namespaceObject,'05-shb/raid/e6n.ts': e6n,'05-shb/raid/e6n.txt': raid_e6n_namespaceObject,'05-shb/raid/e6s.ts': e6s,'05-shb/raid/e6s.txt': raid_e6s_namespaceObject,'05-shb/raid/e7n.ts': e7n,'05-shb/raid/e7n.txt': raid_e7n_namespaceObject,'05-shb/raid/e7s.ts': e7s,'05-shb/raid/e7s.txt': raid_e7s_namespaceObject,'05-shb/raid/e8n.ts': e8n,'05-shb/raid/e8n.txt': raid_e8n_namespaceObject,'05-shb/raid/e8s.ts': e8s,'05-shb/raid/e8s.txt': raid_e8s_namespaceObject,'05-shb/raid/e9n.ts': e9n,'05-shb/raid/e9n.txt': raid_e9n_namespaceObject,'05-shb/raid/e9s.ts': e9s,'05-shb/raid/e9s.txt': raid_e9s_namespaceObject,'05-shb/trial/diamond_weapon-ex.ts': diamond_weapon_ex,'05-shb/trial/diamond_weapon-ex.txt': trial_diamond_weapon_ex_namespaceObject,'05-shb/trial/diamond_weapon.ts': diamond_weapon,'05-shb/trial/diamond_weapon.txt': trial_diamond_weapon_namespaceObject,'05-shb/trial/emerald_weapon-ex.ts': emerald_weapon_ex,'05-shb/trial/emerald_weapon-ex.txt': trial_emerald_weapon_ex_namespaceObject,'05-shb/trial/emerald_weapon.ts': emerald_weapon,'05-shb/trial/emerald_weapon.txt': trial_emerald_weapon_namespaceObject,'05-shb/trial/hades-ex.ts': hades_ex,'05-shb/trial/hades-ex.txt': trial_hades_ex_namespaceObject,'05-shb/trial/hades.ts': hades,'05-shb/trial/hades.txt': trial_hades_namespaceObject,'05-shb/trial/innocence-ex.ts': innocence_ex,'05-shb/trial/innocence-ex.txt': trial_innocence_ex_namespaceObject,'05-shb/trial/innocence.ts': innocence,'05-shb/trial/innocence.txt': trial_innocence_namespaceObject,'05-shb/trial/levi-un.ts': levi_un,'05-shb/trial/levi-un.txt': trial_levi_un_namespaceObject,'05-shb/trial/ruby_weapon-ex.ts': ruby_weapon_ex,'05-shb/trial/ruby_weapon-ex.txt': trial_ruby_weapon_ex_namespaceObject,'05-shb/trial/ruby_weapon.ts': ruby_weapon,'05-shb/trial/ruby_weapon.txt': trial_ruby_weapon_namespaceObject,'05-shb/trial/shiva-un.ts': shiva_un,'05-shb/trial/shiva-un.txt': trial_shiva_un_namespaceObject,'05-shb/trial/titan-un.ts': titan_un,'05-shb/trial/titan-un.txt': trial_titan_un_namespaceObject,'05-shb/trial/titania-ex.ts': titania_ex,'05-shb/trial/titania-ex.txt': trial_titania_ex_namespaceObject,'05-shb/trial/titania.ts': titania,'05-shb/trial/titania.txt': trial_titania_namespaceObject,'05-shb/trial/varis-ex.ts': varis_ex,'05-shb/trial/varis-ex.txt': trial_varis_ex_namespaceObject,'05-shb/trial/wol-ex.ts': wol_ex,'05-shb/trial/wol-ex.txt': trial_wol_ex_namespaceObject,'05-shb/trial/wol.ts': wol,'05-shb/trial/wol.txt': trial_wol_namespaceObject,'05-shb/ultimate/the_epic_of_alexander.ts': the_epic_of_alexander,'05-shb/ultimate/the_epic_of_alexander.txt': ultimate_the_epic_of_alexander_namespaceObject,'06-ew/alliance/aglaia.ts': aglaia,'06-ew/alliance/aglaia.txt': alliance_aglaia_namespaceObject,'06-ew/alliance/euphrosyne.ts': euphrosyne,'06-ew/alliance/euphrosyne.txt': alliance_euphrosyne_namespaceObject,'06-ew/alliance/thaleia.ts': thaleia,'06-ew/alliance/thaleia.txt': alliance_thaleia_namespaceObject,'06-ew/deepdungeon/eureka_orthos_floors_01-10.ts': eureka_orthos_floors_01_10,'06-ew/deepdungeon/eureka_orthos_floors_11-20.ts': eureka_orthos_floors_11_20,'06-ew/deepdungeon/eureka_orthos_floors_21-30.ts': eureka_orthos_floors_21_30,'06-ew/deepdungeon/eureka_orthos_floors_31-40.ts': eureka_orthos_floors_31_40,'06-ew/deepdungeon/eureka_orthos_floors_41-50.ts': eureka_orthos_floors_41_50,'06-ew/deepdungeon/eureka_orthos_floors_51-60.ts': eureka_orthos_floors_51_60,'06-ew/deepdungeon/eureka_orthos_floors_61-70.ts': eureka_orthos_floors_61_70,'06-ew/deepdungeon/eureka_orthos_floors_71-80.ts': eureka_orthos_floors_71_80,'06-ew/deepdungeon/eureka_orthos_floors_81-90.ts': eureka_orthos_floors_81_90,'06-ew/deepdungeon/eureka_orthos_floors_91-100.ts': eureka_orthos_floors_91_100,'06-ew/deepdungeon/eureka_orthos_general.ts': eureka_orthos_general,'06-ew/dungeon/aetherfont.ts': aetherfont,'06-ew/dungeon/aetherfont.txt': dungeon_aetherfont_namespaceObject,'06-ew/dungeon/aloalo_island.ts': aloalo_island,'06-ew/dungeon/aloalo_island.txt': dungeon_aloalo_island_namespaceObject,'06-ew/dungeon/alzadaals_legacy.ts': alzadaals_legacy,'06-ew/dungeon/alzadaals_legacy.txt': dungeon_alzadaals_legacy_namespaceObject,'06-ew/dungeon/another_aloalo_island-savage.ts': another_aloalo_island_savage,'06-ew/dungeon/another_aloalo_island-savage.txt': dungeon_another_aloalo_island_savage_namespaceObject,'06-ew/dungeon/another_aloalo_island.ts': another_aloalo_island,'06-ew/dungeon/another_aloalo_island.txt': dungeon_another_aloalo_island_namespaceObject,'06-ew/dungeon/another_mount_rokkon-savage.ts': another_mount_rokkon_savage,'06-ew/dungeon/another_mount_rokkon-savage.txt': dungeon_another_mount_rokkon_savage_namespaceObject,'06-ew/dungeon/another_mount_rokkon.ts': another_mount_rokkon,'06-ew/dungeon/another_mount_rokkon.txt': dungeon_another_mount_rokkon_namespaceObject,'06-ew/dungeon/another_sildihn_subterrane-savage.ts': another_sildihn_subterrane_savage,'06-ew/dungeon/another_sildihn_subterrane-savage.txt': dungeon_another_sildihn_subterrane_savage_namespaceObject,'06-ew/dungeon/another_sildihn_subterrane.ts': another_sildihn_subterrane,'06-ew/dungeon/another_sildihn_subterrane.txt': dungeon_another_sildihn_subterrane_namespaceObject,'06-ew/dungeon/ktisis_hyperboreia.ts': ktisis_hyperboreia,'06-ew/dungeon/ktisis_hyperboreia.txt': dungeon_ktisis_hyperboreia_namespaceObject,'06-ew/dungeon/lapis_manalis.ts': lapis_manalis,'06-ew/dungeon/lapis_manalis.txt': dungeon_lapis_manalis_namespaceObject,'06-ew/dungeon/mount_rokkon.ts': mount_rokkon,'06-ew/dungeon/mount_rokkon.txt': dungeon_mount_rokkon_namespaceObject,'06-ew/dungeon/smileton.ts': smileton,'06-ew/dungeon/smileton.txt': dungeon_smileton_namespaceObject,'06-ew/dungeon/stigma_dreamscape.ts': stigma_dreamscape,'06-ew/dungeon/stigma_dreamscape.txt': dungeon_stigma_dreamscape_namespaceObject,'06-ew/dungeon/the_aitiascope.ts': the_aitiascope,'06-ew/dungeon/the_aitiascope.txt': dungeon_the_aitiascope_namespaceObject,'06-ew/dungeon/the_dead_ends.ts': the_dead_ends,'06-ew/dungeon/the_dead_ends.txt': dungeon_the_dead_ends_namespaceObject,'06-ew/dungeon/the_fell_court_of_troia.ts': the_fell_court_of_troia,'06-ew/dungeon/the_fell_court_of_troia.txt': dungeon_the_fell_court_of_troia_namespaceObject,'06-ew/dungeon/the_lunar_subterrane.ts': the_lunar_subterrane,'06-ew/dungeon/the_lunar_subterrane.txt': dungeon_the_lunar_subterrane_namespaceObject,'06-ew/dungeon/the_sildihn_subterrane.ts': the_sildihn_subterrane,'06-ew/dungeon/the_sildihn_subterrane.txt': dungeon_the_sildihn_subterrane_namespaceObject,'06-ew/dungeon/the_tower_of_babil.ts': the_tower_of_babil,'06-ew/dungeon/the_tower_of_babil.txt': dungeon_the_tower_of_babil_namespaceObject,'06-ew/dungeon/the_tower_of_zot.ts': the_tower_of_zot,'06-ew/dungeon/the_tower_of_zot.txt': dungeon_the_tower_of_zot_namespaceObject,'06-ew/dungeon/vanaspati.ts': vanaspati,'06-ew/dungeon/vanaspati.txt': dungeon_vanaspati_namespaceObject,'06-ew/hunts/elpis.ts': elpis,'06-ew/hunts/garlemald.ts': garlemald,'06-ew/hunts/labyrinthos.ts': labyrinthos,'06-ew/hunts/mare_lamentorum.ts': mare_lamentorum,'06-ew/hunts/ss_rank.ts': hunts_ss_rank,'06-ew/hunts/thavnair.ts': thavnair,'06-ew/hunts/ultima_thule.ts': ultima_thule,'06-ew/map/the_excitatron_6000.ts': the_excitatron_6000,'06-ew/map/the_shifting_gymnasion_agonon.ts': the_shifting_gymnasion_agonon,'06-ew/raid/p10n.ts': p10n,'06-ew/raid/p10n.txt': raid_p10n_namespaceObject,'06-ew/raid/p10s.ts': p10s,'06-ew/raid/p10s.txt': raid_p10s_namespaceObject,'06-ew/raid/p11n.ts': p11n,'06-ew/raid/p11n.txt': raid_p11n_namespaceObject,'06-ew/raid/p11s.ts': p11s,'06-ew/raid/p11s.txt': raid_p11s_namespaceObject,'06-ew/raid/p12n.ts': p12n,'06-ew/raid/p12n.txt': raid_p12n_namespaceObject,'06-ew/raid/p12s.ts': p12s,'06-ew/raid/p12s.txt': raid_p12s_namespaceObject,'06-ew/raid/p1n.ts': p1n,'06-ew/raid/p1n.txt': raid_p1n_namespaceObject,'06-ew/raid/p1s.ts': p1s,'06-ew/raid/p1s.txt': raid_p1s_namespaceObject,'06-ew/raid/p2n.ts': p2n,'06-ew/raid/p2n.txt': raid_p2n_namespaceObject,'06-ew/raid/p2s.ts': p2s,'06-ew/raid/p2s.txt': raid_p2s_namespaceObject,'06-ew/raid/p3n.ts': p3n,'06-ew/raid/p3n.txt': raid_p3n_namespaceObject,'06-ew/raid/p3s.ts': p3s,'06-ew/raid/p3s.txt': raid_p3s_namespaceObject,'06-ew/raid/p4n.ts': p4n,'06-ew/raid/p4n.txt': raid_p4n_namespaceObject,'06-ew/raid/p4s.ts': p4s,'06-ew/raid/p4s.txt': raid_p4s_namespaceObject,'06-ew/raid/p5n.ts': p5n,'06-ew/raid/p5n.txt': raid_p5n_namespaceObject,'06-ew/raid/p5s.ts': p5s,'06-ew/raid/p5s.txt': raid_p5s_namespaceObject,'06-ew/raid/p6n.ts': p6n,'06-ew/raid/p6n.txt': raid_p6n_namespaceObject,'06-ew/raid/p6s.ts': p6s,'06-ew/raid/p6s.txt': raid_p6s_namespaceObject,'06-ew/raid/p7n.ts': p7n,'06-ew/raid/p7n.txt': raid_p7n_namespaceObject,'06-ew/raid/p7s.ts': p7s,'06-ew/raid/p7s.txt': raid_p7s_namespaceObject,'06-ew/raid/p8n.ts': p8n,'06-ew/raid/p8n.txt': raid_p8n_namespaceObject,'06-ew/raid/p8s.ts': p8s,'06-ew/raid/p8s.txt': raid_p8s_namespaceObject,'06-ew/raid/p9n.ts': p9n,'06-ew/raid/p9n.txt': raid_p9n_namespaceObject,'06-ew/raid/p9s.ts': p9s,'06-ew/raid/p9s.txt': raid_p9s_namespaceObject,'06-ew/trial/asura.ts': asura,'06-ew/trial/asura.txt': trial_asura_namespaceObject,'06-ew/trial/barbariccia-ex.ts': barbariccia_ex,'06-ew/trial/barbariccia-ex.txt': trial_barbariccia_ex_namespaceObject,'06-ew/trial/barbariccia.ts': barbariccia,'06-ew/trial/barbariccia.txt': trial_barbariccia_namespaceObject,'06-ew/trial/endsinger-ex.ts': endsinger_ex,'06-ew/trial/endsinger-ex.txt': trial_endsinger_ex_namespaceObject,'06-ew/trial/endsinger.ts': endsinger,'06-ew/trial/endsinger.txt': trial_endsinger_namespaceObject,'06-ew/trial/golbez-ex.ts': golbez_ex,'06-ew/trial/golbez-ex.txt': trial_golbez_ex_namespaceObject,'06-ew/trial/golbez.ts': golbez,'06-ew/trial/golbez.txt': trial_golbez_namespaceObject,'06-ew/trial/hydaelyn-ex.ts': hydaelyn_ex,'06-ew/trial/hydaelyn-ex.txt': trial_hydaelyn_ex_namespaceObject,'06-ew/trial/hydaelyn.ts': hydaelyn,'06-ew/trial/hydaelyn.txt': trial_hydaelyn_namespaceObject,'06-ew/trial/rubicante-ex.ts': rubicante_ex,'06-ew/trial/rubicante-ex.txt': trial_rubicante_ex_namespaceObject,'06-ew/trial/rubicante.ts': rubicante,'06-ew/trial/rubicante.txt': trial_rubicante_namespaceObject,'06-ew/trial/sephirot-un.ts': sephirot_un,'06-ew/trial/sephirot-un.txt': trial_sephirot_un_namespaceObject,'06-ew/trial/sophia-un.ts': sophia_un,'06-ew/trial/sophia-un.txt': trial_sophia_un_namespaceObject,'06-ew/trial/thordan-un.ts': thordan_un,'06-ew/trial/thordan-un.txt': trial_thordan_un_namespaceObject,'06-ew/trial/ultima-un.ts': ultima_un,'06-ew/trial/ultima-un.txt': trial_ultima_un_namespaceObject,'06-ew/trial/zeromus-ex.ts': zeromus_ex,'06-ew/trial/zeromus-ex.txt': trial_zeromus_ex_namespaceObject,'06-ew/trial/zeromus.ts': zeromus,'06-ew/trial/zeromus.txt': trial_zeromus_namespaceObject,'06-ew/trial/zodiark-ex.ts': zodiark_ex,'06-ew/trial/zodiark-ex.txt': trial_zodiark_ex_namespaceObject,'06-ew/trial/zodiark.ts': zodiark,'06-ew/trial/zodiark.txt': trial_zodiark_namespaceObject,'06-ew/trial/zurvan-un.ts': zurvan_un,'06-ew/trial/zurvan-un.txt': trial_zurvan_un_namespaceObject,'06-ew/ultimate/dragonsongs_reprise_ultimate.ts': dragonsongs_reprise_ultimate,'06-ew/ultimate/dragonsongs_reprise_ultimate.txt': ultimate_dragonsongs_reprise_ultimate_namespaceObject,'06-ew/ultimate/the_omega_protocol.ts': the_omega_protocol,'06-ew/ultimate/the_omega_protocol.txt': ultimate_the_omega_protocol_namespaceObject,'07-dt/alliance/cloud_of_darkness_chaotic.ts': cloud_of_darkness_chaotic,'07-dt/alliance/cloud_of_darkness_chaotic.txt': alliance_cloud_of_darkness_chaotic_namespaceObject,'07-dt/alliance/jeuno-first-walk.ts': jeuno_first_walk,'07-dt/alliance/jeuno-first-walk.txt': alliance_jeuno_first_walk_namespaceObject,'07-dt/deepdungeon/pilgrims_traverse_general.ts': pilgrims_traverse_general,'07-dt/deepdungeon/pilgrims_traverse_stones_01-10.ts': pilgrims_traverse_stones_01_10,'07-dt/deepdungeon/pilgrims_traverse_stones_11-20.ts': pilgrims_traverse_stones_11_20,'07-dt/deepdungeon/pilgrims_traverse_stones_21-30.ts': pilgrims_traverse_stones_21_30,'07-dt/deepdungeon/pilgrims_traverse_stones_31-40.ts': pilgrims_traverse_stones_31_40,'07-dt/deepdungeon/pilgrims_traverse_stones_41-50.ts': pilgrims_traverse_stones_41_50,'07-dt/deepdungeon/pilgrims_traverse_stones_51-60.ts': pilgrims_traverse_stones_51_60,'07-dt/deepdungeon/pilgrims_traverse_stones_61-70.ts': pilgrims_traverse_stones_61_70,'07-dt/deepdungeon/pilgrims_traverse_stones_71-80.ts': pilgrims_traverse_stones_71_80,'07-dt/deepdungeon/pilgrims_traverse_stones_81-90.ts': pilgrims_traverse_stones_81_90,'07-dt/deepdungeon/pilgrims_traverse_stones_91-100.ts': pilgrims_traverse_stones_91_100,'07-dt/deepdungeon/pilgrims_traverse_the_final_verse.ts': pilgrims_traverse_the_final_verse,'07-dt/deepdungeon/the_final_verse_quantum.ts': the_final_verse_quantum,'07-dt/deepdungeon/the_final_verse_quantum.txt': deepdungeon_the_final_verse_quantum_namespaceObject,'07-dt/dungeon/alexandria.ts': alexandria,'07-dt/dungeon/alexandria.txt': dungeon_alexandria_namespaceObject,'07-dt/dungeon/ihuykatumu.ts': ihuykatumu,'07-dt/dungeon/ihuykatumu.txt': dungeon_ihuykatumu_namespaceObject,'07-dt/dungeon/meso-terminal.ts': meso_terminal,'07-dt/dungeon/meso-terminal.txt': dungeon_meso_terminal_namespaceObject,'07-dt/dungeon/mistwake.ts': mistwake,'07-dt/dungeon/mistwake.txt': dungeon_mistwake_namespaceObject,'07-dt/dungeon/origenics.ts': origenics,'07-dt/dungeon/origenics.txt': dungeon_origenics_namespaceObject,'07-dt/dungeon/skydeep-cenote.ts': skydeep_cenote,'07-dt/dungeon/skydeep-cenote.txt': dungeon_skydeep_cenote_namespaceObject,'07-dt/dungeon/strayborough-deadwalk.ts': strayborough_deadwalk,'07-dt/dungeon/strayborough-deadwalk.txt': dungeon_strayborough_deadwalk_namespaceObject,'07-dt/dungeon/the_underkeep.ts': the_underkeep,'07-dt/dungeon/the_underkeep.txt': dungeon_the_underkeep_namespaceObject,'07-dt/dungeon/vanguard.ts': vanguard,'07-dt/dungeon/vanguard.txt': dungeon_vanguard_namespaceObject,'07-dt/dungeon/worqor-zormor.ts': worqor_zormor,'07-dt/dungeon/worqor-zormor.txt': dungeon_worqor_zormor_namespaceObject,'07-dt/dungeon/yuweyawata.ts': yuweyawata,'07-dt/dungeon/yuweyawata.txt': dungeon_yuweyawata_namespaceObject,'07-dt/eureka/occult_crescent_south_horn.ts': occult_crescent_south_horn,'07-dt/eureka/occult_crescent_south_horn.txt': eureka_occult_crescent_south_horn_namespaceObject,'07-dt/hunts/heritage_found.ts': heritage_found,'07-dt/hunts/kozamauka.ts': kozamauka,'07-dt/hunts/living_memory.ts': living_memory,'07-dt/hunts/shaaloani.ts': shaaloani,'07-dt/hunts/ss_rank.ts': _07_dt_hunts_ss_rank,'07-dt/hunts/urqopacha.ts': urqopacha,'07-dt/hunts/yaktel.ts': yaktel,'07-dt/map/cenote_ja_ja_gural.ts': cenote_ja_ja_gural,'07-dt/raid/r10n.ts': r10n,'07-dt/raid/r10n.txt': raid_r10n_namespaceObject,'07-dt/raid/r10s.ts': r10s,'07-dt/raid/r10s.txt': raid_r10s_namespaceObject,'07-dt/raid/r11n.ts': r11n,'07-dt/raid/r11n.txt': raid_r11n_namespaceObject,'07-dt/raid/r11s.ts': r11s,'07-dt/raid/r11s.txt': raid_r11s_namespaceObject,'07-dt/raid/r12n.ts': r12n,'07-dt/raid/r12n.txt': raid_r12n_namespaceObject,'07-dt/raid/r1n.ts': r1n,'07-dt/raid/r1n.txt': raid_r1n_namespaceObject,'07-dt/raid/r1s.ts': r1s,'07-dt/raid/r1s.txt': raid_r1s_namespaceObject,'07-dt/raid/r2n.ts': r2n,'07-dt/raid/r2n.txt': raid_r2n_namespaceObject,'07-dt/raid/r2s.ts': r2s,'07-dt/raid/r2s.txt': raid_r2s_namespaceObject,'07-dt/raid/r3n.ts': r3n,'07-dt/raid/r3n.txt': raid_r3n_namespaceObject,'07-dt/raid/r3s.ts': r3s,'07-dt/raid/r3s.txt': raid_r3s_namespaceObject,'07-dt/raid/r4n.ts': r4n,'07-dt/raid/r4n.txt': raid_r4n_namespaceObject,'07-dt/raid/r4s.ts': r4s,'07-dt/raid/r4s.txt': raid_r4s_namespaceObject,'07-dt/raid/r5n.ts': r5n,'07-dt/raid/r5n.txt': raid_r5n_namespaceObject,'07-dt/raid/r5s.ts': r5s,'07-dt/raid/r5s.txt': raid_r5s_namespaceObject,'07-dt/raid/r6n.ts': r6n,'07-dt/raid/r6n.txt': raid_r6n_namespaceObject,'07-dt/raid/r6s.ts': r6s,'07-dt/raid/r6s.txt': raid_r6s_namespaceObject,'07-dt/raid/r7n.ts': r7n,'07-dt/raid/r7n.txt': raid_r7n_namespaceObject,'07-dt/raid/r7s.ts': r7s,'07-dt/raid/r7s.txt': raid_r7s_namespaceObject,'07-dt/raid/r8n.ts': r8n,'07-dt/raid/r8n.txt': raid_r8n_namespaceObject,'07-dt/raid/r8s.ts': r8s,'07-dt/raid/r8s.txt': raid_r8s_namespaceObject,'07-dt/raid/r9n.ts': r9n,'07-dt/raid/r9n.txt': raid_r9n_namespaceObject,'07-dt/raid/r9s.ts': r9s,'07-dt/raid/r9s.txt': raid_r9s_namespaceObject,'07-dt/trial/arkveld-ex.ts': arkveld_ex,'07-dt/trial/arkveld-ex.txt': trial_arkveld_ex_namespaceObject,'07-dt/trial/arkveld.ts': arkveld,'07-dt/trial/arkveld.txt': trial_arkveld_namespaceObject,'07-dt/trial/byakko-un.ts': byakko_un,'07-dt/trial/byakko-un.txt': trial_byakko_un_namespaceObject,'07-dt/trial/doomtrain-ex.ts': doomtrain_ex,'07-dt/trial/doomtrain-ex.txt': trial_doomtrain_ex_namespaceObject,'07-dt/trial/doomtrain.ts': doomtrain,'07-dt/trial/doomtrain.txt': trial_doomtrain_namespaceObject,'07-dt/trial/necron-ex.ts': necron_ex,'07-dt/trial/necron-ex.txt': trial_necron_ex_namespaceObject,'07-dt/trial/queen-eternal-ex.ts': queen_eternal_ex,'07-dt/trial/queen-eternal-ex.txt': trial_queen_eternal_ex_namespaceObject,'07-dt/trial/queen-eternal.ts': queen_eternal,'07-dt/trial/queen-eternal.txt': trial_queen_eternal_namespaceObject,'07-dt/trial/seiryu-un.ts': seiryu_un,'07-dt/trial/seiryu-un.txt': trial_seiryu_un_namespaceObject,'07-dt/trial/suzaku-un.ts': suzaku_un,'07-dt/trial/suzaku-un.txt': trial_suzaku_un_namespaceObject,'07-dt/trial/tsukuyomi-un.ts': tsukuyomi_un,'07-dt/trial/tsukuyomi-un.txt': trial_tsukuyomi_un_namespaceObject,'07-dt/trial/valigarmanda-ex.ts': valigarmanda_ex,'07-dt/trial/valigarmanda-ex.txt': trial_valigarmanda_ex_namespaceObject,'07-dt/trial/valigarmanda.ts': valigarmanda,'07-dt/trial/valigarmanda.txt': trial_valigarmanda_namespaceObject,'07-dt/trial/zelenia-ex.ts': zelenia_ex,'07-dt/trial/zelenia-ex.txt': trial_zelenia_ex_namespaceObject,'07-dt/trial/zelenia.ts': zelenia,'07-dt/trial/zelenia.txt': trial_zelenia_namespaceObject,'07-dt/trial/zoraal-ja-ex.ts': zoraal_ja_ex,'07-dt/trial/zoraal-ja-ex.txt': trial_zoraal_ja_ex_namespaceObject,'07-dt/trial/zoraal-ja.ts': zoraal_ja,'07-dt/trial/zoraal-ja.txt': trial_zoraal_ja_namespaceObject,'07-dt/ultimate/futures_rewritten.ts': futures_rewritten,'07-dt/ultimate/futures_rewritten.txt': ultimate_futures_rewritten_namespaceObject,});
+
+
+/* harmony default export */ const raidboss_manifest = ({'00-misc/general.ts': general,'00-misc/test.ts': test,'00-misc/test.txt': _00_misc_test_namespaceObject,'00-misc/the_masked_carnivale.ts': the_masked_carnivale,'02-arr/alliance/the_world_of_darkness.ts': the_world_of_darkness,'02-arr/dungeon/amdapor_keep.ts': amdapor_keep,'02-arr/dungeon/amdapor_keep_hard.ts': amdapor_keep_hard,'02-arr/dungeon/aurum_vale.ts': aurum_vale,'02-arr/dungeon/aurum_vale73.ts': aurum_vale73,'02-arr/dungeon/brayfloxs_longstop.ts': brayfloxs_longstop,'02-arr/dungeon/cutters_cry.ts': cutters_cry,'02-arr/dungeon/cutters_cry72.ts': cutters_cry72,'02-arr/dungeon/halatali_hard.ts': halatali_hard,'02-arr/dungeon/haukke_manor.ts': haukke_manor,'02-arr/dungeon/haukke_manor_hard.ts': haukke_manor_hard,'02-arr/dungeon/hullbreaker_isle.ts': hullbreaker_isle,'02-arr/dungeon/pharos_sirius.ts': pharos_sirius,'02-arr/dungeon/sastasha_hard.ts': sastasha_hard,'02-arr/dungeon/snowcloak.ts': snowcloak,'02-arr/dungeon/the_lost_city_of_amdapor.ts': the_lost_city_of_amdapor,'02-arr/dungeon/the_stone_vigil.ts': the_stone_vigil,'02-arr/dungeon/the_stone_vigil_hard.ts': the_stone_vigil_hard,'02-arr/dungeon/the_sunken_temple_of_quarn.ts': the_sunken_temple_of_quarn,'02-arr/dungeon/the_sunken_temple_of_quarn71.ts': the_sunken_temple_of_quarn71,'02-arr/dungeon/the_sunken_temple_of_quarn_hard.ts': the_sunken_temple_of_quarn_hard,'02-arr/dungeon/the_tam_tara_depocraft_hard.ts': the_tam_tara_depocraft_hard,'02-arr/dungeon/the_wanderers_palace_hard.ts': the_wanderers_palace_hard,'02-arr/raid/t1.ts': t1,'02-arr/raid/t10.ts': t10,'02-arr/raid/t10.txt': raid_t10_namespaceObject,'02-arr/raid/t11.ts': t11,'02-arr/raid/t11.txt': raid_t11_namespaceObject,'02-arr/raid/t12.ts': t12,'02-arr/raid/t12.txt': raid_t12_namespaceObject,'02-arr/raid/t13.ts': t13,'02-arr/raid/t13.txt': raid_t13_namespaceObject,'02-arr/raid/t2.ts': t2,'02-arr/raid/t4.ts': t4,'02-arr/raid/t4.txt': raid_t4_namespaceObject,'02-arr/raid/t5.ts': t5,'02-arr/raid/t5.txt': raid_t5_namespaceObject,'02-arr/raid/t6.ts': t6,'02-arr/raid/t6.txt': raid_t6_namespaceObject,'02-arr/raid/t7.ts': t7,'02-arr/raid/t7.txt': raid_t7_namespaceObject,'02-arr/raid/t8.ts': t8,'02-arr/raid/t8.txt': raid_t8_namespaceObject,'02-arr/raid/t9.ts': t9,'02-arr/raid/t9.txt': raid_t9_namespaceObject,'02-arr/trial/ifrit-nm.ts': ifrit_nm,'02-arr/trial/ifrit-nm.txt': trial_ifrit_nm_namespaceObject,'02-arr/trial/levi-ex.ts': levi_ex,'02-arr/trial/levi-ex.txt': trial_levi_ex_namespaceObject,'02-arr/trial/shiva-ex.ts': shiva_ex,'02-arr/trial/shiva-ex.txt': trial_shiva_ex_namespaceObject,'02-arr/trial/shiva-hm.ts': shiva_hm,'02-arr/trial/shiva-hm.txt': trial_shiva_hm_namespaceObject,'02-arr/trial/titan-ex.ts': titan_ex,'02-arr/trial/titan-ex.txt': trial_titan_ex_namespaceObject,'02-arr/trial/titan-hm.ts': titan_hm,'02-arr/trial/titan-hm.txt': trial_titan_hm_namespaceObject,'02-arr/trial/titan-nm.ts': titan_nm,'02-arr/trial/titan-nm.txt': trial_titan_nm_namespaceObject,'02-arr/trial/ultima-ex.ts': ultima_ex,'02-arr/trial/ultima-ex.txt': trial_ultima_ex_namespaceObject,'03-hw/alliance/dun_scaith.ts': dun_scaith,'03-hw/alliance/dun_scaith.txt': alliance_dun_scaith_namespaceObject,'03-hw/alliance/weeping_city.ts': weeping_city,'03-hw/alliance/weeping_city.txt': alliance_weeping_city_namespaceObject,'03-hw/deepdungeon/the_palace_of_the_dead_floors_001-010.ts': the_palace_of_the_dead_floors_001_010,'03-hw/deepdungeon/the_palace_of_the_dead_floors_011-020.ts': the_palace_of_the_dead_floors_011_020,'03-hw/deepdungeon/the_palace_of_the_dead_floors_021-030.ts': the_palace_of_the_dead_floors_021_030,'03-hw/deepdungeon/the_palace_of_the_dead_floors_031-040.ts': the_palace_of_the_dead_floors_031_040,'03-hw/deepdungeon/the_palace_of_the_dead_floors_041-050.ts': the_palace_of_the_dead_floors_041_050,'03-hw/deepdungeon/the_palace_of_the_dead_floors_051-060.ts': the_palace_of_the_dead_floors_051_060,'03-hw/deepdungeon/the_palace_of_the_dead_floors_061-070.ts': the_palace_of_the_dead_floors_061_070,'03-hw/deepdungeon/the_palace_of_the_dead_floors_071-080.ts': the_palace_of_the_dead_floors_071_080,'03-hw/deepdungeon/the_palace_of_the_dead_floors_081-090.ts': the_palace_of_the_dead_floors_081_090,'03-hw/deepdungeon/the_palace_of_the_dead_floors_091-100.ts': the_palace_of_the_dead_floors_091_100,'03-hw/deepdungeon/the_palace_of_the_dead_floors_101-110.ts': the_palace_of_the_dead_floors_101_110,'03-hw/deepdungeon/the_palace_of_the_dead_floors_111-120.ts': the_palace_of_the_dead_floors_111_120,'03-hw/deepdungeon/the_palace_of_the_dead_floors_121-130.ts': the_palace_of_the_dead_floors_121_130,'03-hw/deepdungeon/the_palace_of_the_dead_floors_131-140.ts': the_palace_of_the_dead_floors_131_140,'03-hw/deepdungeon/the_palace_of_the_dead_floors_141-150.ts': the_palace_of_the_dead_floors_141_150,'03-hw/deepdungeon/the_palace_of_the_dead_floors_151-160.ts': the_palace_of_the_dead_floors_151_160,'03-hw/deepdungeon/the_palace_of_the_dead_floors_161-170.ts': the_palace_of_the_dead_floors_161_170,'03-hw/deepdungeon/the_palace_of_the_dead_floors_171-180.ts': the_palace_of_the_dead_floors_171_180,'03-hw/deepdungeon/the_palace_of_the_dead_floors_181-190.ts': the_palace_of_the_dead_floors_181_190,'03-hw/deepdungeon/the_palace_of_the_dead_floors_191-200.ts': the_palace_of_the_dead_floors_191_200,'03-hw/deepdungeon/the_palace_of_the_dead_general.ts': the_palace_of_the_dead_general,'03-hw/dungeon/aetherochemical_research_facility.ts': aetherochemical_research_facility,'03-hw/dungeon/aetherochemical_research_facility.txt': dungeon_aetherochemical_research_facility_namespaceObject,'03-hw/dungeon/baelsars_wall.ts': baelsars_wall,'03-hw/dungeon/baelsars_wall.txt': dungeon_baelsars_wall_namespaceObject,'03-hw/dungeon/fractal_continuum.ts': fractal_continuum,'03-hw/dungeon/fractal_continuum.txt': dungeon_fractal_continuum_namespaceObject,'03-hw/dungeon/gubal_library_hard.ts': gubal_library_hard,'03-hw/dungeon/gubal_library_hard.txt': dungeon_gubal_library_hard_namespaceObject,'03-hw/dungeon/sohm_al.ts': sohm_al,'03-hw/dungeon/sohm_al.txt': dungeon_sohm_al_namespaceObject,'03-hw/dungeon/sohm_al_hard.ts': sohm_al_hard,'03-hw/dungeon/sohm_al_hard.txt': dungeon_sohm_al_hard_namespaceObject,'03-hw/dungeon/the_lost_city_of_amdapor_hard.ts': the_lost_city_of_amdapor_hard,'03-hw/dungeon/the_lost_city_of_amdapor_hard.txt': dungeon_the_lost_city_of_amdapor_hard_namespaceObject,'03-hw/dungeon/the_vault.ts': the_vault,'03-hw/dungeon/the_vault.txt': dungeon_the_vault_namespaceObject,'03-hw/dungeon/xelphatol.ts': xelphatol,'03-hw/dungeon/xelphatol.txt': dungeon_xelphatol_namespaceObject,'03-hw/map/the_aquapolis.ts': the_aquapolis,'03-hw/pvp/shatter.ts': shatter,'03-hw/raid/a10n.ts': a10n,'03-hw/raid/a10n.txt': raid_a10n_namespaceObject,'03-hw/raid/a10s.ts': a10s,'03-hw/raid/a10s.txt': raid_a10s_namespaceObject,'03-hw/raid/a11s.ts': a11s,'03-hw/raid/a11s.txt': raid_a11s_namespaceObject,'03-hw/raid/a12n.ts': a12n,'03-hw/raid/a12n.txt': raid_a12n_namespaceObject,'03-hw/raid/a12s.ts': a12s,'03-hw/raid/a12s.txt': raid_a12s_namespaceObject,'03-hw/raid/a1s.ts': a1s,'03-hw/raid/a1s.txt': raid_a1s_namespaceObject,'03-hw/raid/a2s.ts': a2s,'03-hw/raid/a2s.txt': raid_a2s_namespaceObject,'03-hw/raid/a3n.ts': a3n,'03-hw/raid/a3n.txt': raid_a3n_namespaceObject,'03-hw/raid/a3s.ts': a3s,'03-hw/raid/a3s.txt': raid_a3s_namespaceObject,'03-hw/raid/a4s.ts': a4s,'03-hw/raid/a4s.txt': raid_a4s_namespaceObject,'03-hw/raid/a5s.ts': a5s,'03-hw/raid/a5s.txt': raid_a5s_namespaceObject,'03-hw/raid/a6n.ts': a6n,'03-hw/raid/a6n.txt': raid_a6n_namespaceObject,'03-hw/raid/a6s.ts': a6s,'03-hw/raid/a6s.txt': raid_a6s_namespaceObject,'03-hw/raid/a7s.ts': a7s,'03-hw/raid/a7s.txt': raid_a7s_namespaceObject,'03-hw/raid/a8n.ts': a8n,'03-hw/raid/a8n.txt': raid_a8n_namespaceObject,'03-hw/raid/a8s.ts': a8s,'03-hw/raid/a8s.txt': raid_a8s_namespaceObject,'03-hw/raid/a9s.ts': a9s,'03-hw/raid/a9s.txt': raid_a9s_namespaceObject,'03-hw/trial/bismarck-ex.ts': bismarck_ex,'03-hw/trial/ravana-ex.ts': ravana_ex,'03-hw/trial/ravana-ex.txt': trial_ravana_ex_namespaceObject,'03-hw/trial/sephirot-ex.ts': sephirot_ex,'03-hw/trial/sephirot-ex.txt': trial_sephirot_ex_namespaceObject,'03-hw/trial/sephirot.ts': sephirot,'03-hw/trial/sophia-ex.ts': sophia_ex,'03-hw/trial/sophia-ex.txt': trial_sophia_ex_namespaceObject,'03-hw/trial/thordan-ex.ts': thordan_ex,'03-hw/trial/thordan-ex.txt': trial_thordan_ex_namespaceObject,'03-hw/trial/zurvan-ex.ts': zurvan_ex,'03-hw/trial/zurvan-ex.txt': trial_zurvan_ex_namespaceObject,'04-sb/alliance/orbonne_monastery.ts': orbonne_monastery,'04-sb/alliance/orbonne_monastery.txt': alliance_orbonne_monastery_namespaceObject,'04-sb/alliance/ridorana_lighthouse.ts': ridorana_lighthouse,'04-sb/alliance/ridorana_lighthouse.txt': alliance_ridorana_lighthouse_namespaceObject,'04-sb/alliance/royal_city_of_rabanastre.ts': royal_city_of_rabanastre,'04-sb/alliance/royal_city_of_rabanastre.txt': alliance_royal_city_of_rabanastre_namespaceObject,'04-sb/deepdungeon/heaven-on-high_floors_01-10.ts': heaven_on_high_floors_01_10,'04-sb/deepdungeon/heaven-on-high_floors_11-20.ts': heaven_on_high_floors_11_20,'04-sb/deepdungeon/heaven-on-high_floors_21-30.ts': heaven_on_high_floors_21_30,'04-sb/deepdungeon/heaven-on-high_floors_31-40.ts': heaven_on_high_floors_31_40,'04-sb/deepdungeon/heaven-on-high_floors_41-50.ts': heaven_on_high_floors_41_50,'04-sb/deepdungeon/heaven-on-high_floors_51-60.ts': heaven_on_high_floors_51_60,'04-sb/deepdungeon/heaven-on-high_floors_61-70.ts': heaven_on_high_floors_61_70,'04-sb/deepdungeon/heaven-on-high_floors_71-80.ts': heaven_on_high_floors_71_80,'04-sb/deepdungeon/heaven-on-high_floors_81-90.ts': heaven_on_high_floors_81_90,'04-sb/deepdungeon/heaven-on-high_floors_91-100.ts': heaven_on_high_floors_91_100,'04-sb/deepdungeon/heaven-on-high_general.ts': heaven_on_high_general,'04-sb/dungeon/ala_mhigo.ts': ala_mhigo,'04-sb/dungeon/ala_mhigo.txt': dungeon_ala_mhigo_namespaceObject,'04-sb/dungeon/bardams_mettle.ts': bardams_mettle,'04-sb/dungeon/bardams_mettle.txt': dungeon_bardams_mettle_namespaceObject,'04-sb/dungeon/castrum_abania.ts': castrum_abania,'04-sb/dungeon/castrum_abania.txt': dungeon_castrum_abania_namespaceObject,'04-sb/dungeon/doma_castle.ts': doma_castle,'04-sb/dungeon/doma_castle.txt': dungeon_doma_castle_namespaceObject,'04-sb/dungeon/drowned_city_of_skalla.ts': drowned_city_of_skalla,'04-sb/dungeon/drowned_city_of_skalla.txt': dungeon_drowned_city_of_skalla_namespaceObject,'04-sb/dungeon/fractal_continuum_hard.ts': fractal_continuum_hard,'04-sb/dungeon/fractal_continuum_hard.txt': dungeon_fractal_continuum_hard_namespaceObject,'04-sb/dungeon/ghimlyt_dark.ts': ghimlyt_dark,'04-sb/dungeon/ghimlyt_dark.txt': dungeon_ghimlyt_dark_namespaceObject,'04-sb/dungeon/hells_lid.ts': hells_lid,'04-sb/dungeon/hells_lid.txt': dungeon_hells_lid_namespaceObject,'04-sb/dungeon/kugane_castle.ts': kugane_castle,'04-sb/dungeon/kugane_castle.txt': dungeon_kugane_castle_namespaceObject,'04-sb/dungeon/shisui_of_the_violet_tides.ts': shisui_of_the_violet_tides,'04-sb/dungeon/shisui_of_the_violet_tides.txt': dungeon_shisui_of_the_violet_tides_namespaceObject,'04-sb/dungeon/sirensong_sea.ts': sirensong_sea,'04-sb/dungeon/sirensong_sea.txt': dungeon_sirensong_sea_namespaceObject,'04-sb/dungeon/st_mocianne_hard.ts': st_mocianne_hard,'04-sb/dungeon/st_mocianne_hard.txt': dungeon_st_mocianne_hard_namespaceObject,'04-sb/dungeon/swallows_compass.ts': swallows_compass,'04-sb/dungeon/swallows_compass.txt': dungeon_swallows_compass_namespaceObject,'04-sb/dungeon/temple_of_the_fist.ts': temple_of_the_fist,'04-sb/dungeon/temple_of_the_fist.txt': dungeon_temple_of_the_fist_namespaceObject,'04-sb/dungeon/the_burn.ts': the_burn,'04-sb/dungeon/the_burn.txt': dungeon_the_burn_namespaceObject,'04-sb/eureka/eureka_anemos.ts': eureka_anemos,'04-sb/eureka/eureka_hydatos.ts': eureka_hydatos,'04-sb/eureka/eureka_hydatos.txt': eureka_eureka_hydatos_namespaceObject,'04-sb/eureka/eureka_pyros.ts': eureka_pyros,'04-sb/hunts/yanxia.ts': yanxia,'04-sb/map/the_hidden_canals_of_uznair.ts': the_hidden_canals_of_uznair,'04-sb/map/the_lost_canals_of_uznair.ts': the_lost_canals_of_uznair,'04-sb/map/the_shifting_altars_of_uznair.ts': the_shifting_altars_of_uznair,'04-sb/raid/o10n.ts': o10n,'04-sb/raid/o10n.txt': raid_o10n_namespaceObject,'04-sb/raid/o10s.ts': o10s,'04-sb/raid/o10s.txt': raid_o10s_namespaceObject,'04-sb/raid/o11n.ts': o11n,'04-sb/raid/o11n.txt': raid_o11n_namespaceObject,'04-sb/raid/o11s.ts': o11s,'04-sb/raid/o11s.txt': raid_o11s_namespaceObject,'04-sb/raid/o12n.ts': o12n,'04-sb/raid/o12n.txt': raid_o12n_namespaceObject,'04-sb/raid/o12s.ts': o12s,'04-sb/raid/o12s.txt': raid_o12s_namespaceObject,'04-sb/raid/o1n.ts': o1n,'04-sb/raid/o1n.txt': raid_o1n_namespaceObject,'04-sb/raid/o1s.ts': o1s,'04-sb/raid/o1s.txt': raid_o1s_namespaceObject,'04-sb/raid/o2n.ts': o2n,'04-sb/raid/o2n.txt': raid_o2n_namespaceObject,'04-sb/raid/o2s.ts': o2s,'04-sb/raid/o2s.txt': raid_o2s_namespaceObject,'04-sb/raid/o3n.ts': o3n,'04-sb/raid/o3n.txt': raid_o3n_namespaceObject,'04-sb/raid/o3s.ts': o3s,'04-sb/raid/o3s.txt': raid_o3s_namespaceObject,'04-sb/raid/o4n.ts': o4n,'04-sb/raid/o4n.txt': raid_o4n_namespaceObject,'04-sb/raid/o4s.ts': o4s,'04-sb/raid/o4s.txt': raid_o4s_namespaceObject,'04-sb/raid/o5n.ts': o5n,'04-sb/raid/o5n.txt': raid_o5n_namespaceObject,'04-sb/raid/o5s.ts': o5s,'04-sb/raid/o5s.txt': raid_o5s_namespaceObject,'04-sb/raid/o6n.ts': o6n,'04-sb/raid/o6n.txt': raid_o6n_namespaceObject,'04-sb/raid/o6s.ts': o6s,'04-sb/raid/o6s.txt': raid_o6s_namespaceObject,'04-sb/raid/o7n.ts': o7n,'04-sb/raid/o7n.txt': raid_o7n_namespaceObject,'04-sb/raid/o7s.ts': o7s,'04-sb/raid/o7s.txt': raid_o7s_namespaceObject,'04-sb/raid/o8n.ts': o8n,'04-sb/raid/o8n.txt': raid_o8n_namespaceObject,'04-sb/raid/o8s.ts': o8s,'04-sb/raid/o8s.txt': raid_o8s_namespaceObject,'04-sb/raid/o9n.ts': o9n,'04-sb/raid/o9n.txt': raid_o9n_namespaceObject,'04-sb/raid/o9s.ts': o9s,'04-sb/raid/o9s.txt': raid_o9s_namespaceObject,'04-sb/trial/byakko-ex.ts': byakko_ex,'04-sb/trial/byakko-ex.txt': trial_byakko_ex_namespaceObject,'04-sb/trial/byakko.ts': byakko,'04-sb/trial/byakko.txt': trial_byakko_namespaceObject,'04-sb/trial/lakshmi-ex.ts': lakshmi_ex,'04-sb/trial/lakshmi-ex.txt': trial_lakshmi_ex_namespaceObject,'04-sb/trial/lakshmi.ts': lakshmi,'04-sb/trial/lakshmi.txt': trial_lakshmi_namespaceObject,'04-sb/trial/rathalos-ex.ts': rathalos_ex,'04-sb/trial/rathalos.ts': rathalos,'04-sb/trial/seiryu-ex.ts': seiryu_ex,'04-sb/trial/seiryu-ex.txt': trial_seiryu_ex_namespaceObject,'04-sb/trial/seiryu.ts': seiryu,'04-sb/trial/seiryu.txt': trial_seiryu_namespaceObject,'04-sb/trial/shinryu-ex.ts': shinryu_ex,'04-sb/trial/shinryu-ex.txt': trial_shinryu_ex_namespaceObject,'04-sb/trial/shinryu.ts': shinryu,'04-sb/trial/shinryu.txt': trial_shinryu_namespaceObject,'04-sb/trial/susano-ex.ts': susano_ex,'04-sb/trial/susano-ex.txt': trial_susano_ex_namespaceObject,'04-sb/trial/susano.ts': susano,'04-sb/trial/susano.txt': trial_susano_namespaceObject,'04-sb/trial/suzaku-ex.ts': suzaku_ex,'04-sb/trial/suzaku-ex.txt': trial_suzaku_ex_namespaceObject,'04-sb/trial/suzaku.ts': suzaku,'04-sb/trial/suzaku.txt': trial_suzaku_namespaceObject,'04-sb/trial/tsukuyomi-ex.ts': tsukuyomi_ex,'04-sb/trial/tsukuyomi-ex.txt': trial_tsukuyomi_ex_namespaceObject,'04-sb/trial/tsukuyomi.ts': tsukuyomi,'04-sb/trial/tsukuyomi.txt': trial_tsukuyomi_namespaceObject,'04-sb/trial/yojimbo.ts': yojimbo,'04-sb/trial/yojimbo.txt': trial_yojimbo_namespaceObject,'04-sb/ultimate/ultima_weapon_ultimate.ts': ultima_weapon_ultimate,'04-sb/ultimate/ultima_weapon_ultimate.txt': ultimate_ultima_weapon_ultimate_namespaceObject,'04-sb/ultimate/unending_coil_ultimate.ts': unending_coil_ultimate,'04-sb/ultimate/unending_coil_ultimate.txt': ultimate_unending_coil_ultimate_namespaceObject,'05-shb/alliance/the_copied_factory.ts': the_copied_factory,'05-shb/alliance/the_copied_factory.txt': alliance_the_copied_factory_namespaceObject,'05-shb/alliance/the_puppets_bunker.ts': the_puppets_bunker,'05-shb/alliance/the_puppets_bunker.txt': alliance_the_puppets_bunker_namespaceObject,'05-shb/alliance/the_tower_at_paradigms_breach.ts': the_tower_at_paradigms_breach,'05-shb/alliance/the_tower_at_paradigms_breach.txt': alliance_the_tower_at_paradigms_breach_namespaceObject,'05-shb/dungeon/akadaemia_anyder.ts': akadaemia_anyder,'05-shb/dungeon/akadaemia_anyder.txt': dungeon_akadaemia_anyder_namespaceObject,'05-shb/dungeon/amaurot.ts': amaurot,'05-shb/dungeon/amaurot.txt': dungeon_amaurot_namespaceObject,'05-shb/dungeon/anamnesis_anyder.ts': anamnesis_anyder,'05-shb/dungeon/anamnesis_anyder.txt': dungeon_anamnesis_anyder_namespaceObject,'05-shb/dungeon/dohn_mheg.ts': dohn_mheg,'05-shb/dungeon/dohn_mheg.txt': dungeon_dohn_mheg_namespaceObject,'05-shb/dungeon/heroes_gauntlet.ts': heroes_gauntlet,'05-shb/dungeon/heroes_gauntlet.txt': dungeon_heroes_gauntlet_namespaceObject,'05-shb/dungeon/holminster_switch.ts': holminster_switch,'05-shb/dungeon/holminster_switch.txt': dungeon_holminster_switch_namespaceObject,'05-shb/dungeon/malikahs_well.ts': malikahs_well,'05-shb/dungeon/malikahs_well.txt': dungeon_malikahs_well_namespaceObject,'05-shb/dungeon/matoyas_relict.ts': matoyas_relict,'05-shb/dungeon/matoyas_relict.txt': dungeon_matoyas_relict_namespaceObject,'05-shb/dungeon/mt_gulg.ts': mt_gulg,'05-shb/dungeon/mt_gulg.txt': dungeon_mt_gulg_namespaceObject,'05-shb/dungeon/paglthan.ts': paglthan,'05-shb/dungeon/paglthan.txt': dungeon_paglthan_namespaceObject,'05-shb/dungeon/qitana_ravel.ts': qitana_ravel,'05-shb/dungeon/qitana_ravel.txt': dungeon_qitana_ravel_namespaceObject,'05-shb/dungeon/the_grand_cosmos.ts': the_grand_cosmos,'05-shb/dungeon/the_grand_cosmos.txt': dungeon_the_grand_cosmos_namespaceObject,'05-shb/dungeon/twinning.ts': twinning,'05-shb/dungeon/twinning.txt': dungeon_twinning_namespaceObject,'05-shb/etc/the_diadem.ts': the_diadem,'05-shb/eureka/bozjan_southern_front.ts': bozjan_southern_front,'05-shb/eureka/bozjan_southern_front.txt': eureka_bozjan_southern_front_namespaceObject,'05-shb/eureka/delubrum_reginae.ts': delubrum_reginae,'05-shb/eureka/delubrum_reginae.txt': eureka_delubrum_reginae_namespaceObject,'05-shb/eureka/delubrum_reginae_savage.ts': delubrum_reginae_savage,'05-shb/eureka/delubrum_reginae_savage.txt': eureka_delubrum_reginae_savage_namespaceObject,'05-shb/eureka/zadnor.ts': zadnor,'05-shb/eureka/zadnor.txt': eureka_zadnor_namespaceObject,'05-shb/hunts/amh_araeng.ts': amh_araeng,'05-shb/hunts/il_mheg.ts': il_mheg,'05-shb/hunts/kholusia.ts': kholusia,'05-shb/hunts/lakeland.ts': lakeland,'05-shb/hunts/ss_rank.ts': ss_rank,'05-shb/hunts/the_raktika_greatwood.ts': the_raktika_greatwood,'05-shb/hunts/the_tempest.ts': the_tempest,'05-shb/map/the_dungeons_of_lyhe_ghiah.ts': the_dungeons_of_lyhe_ghiah,'05-shb/map/the_shifting_oubliettes_of_lyhe_ghiah.ts': the_shifting_oubliettes_of_lyhe_ghiah,'05-shb/raid/e10n.ts': e10n,'05-shb/raid/e10n.txt': raid_e10n_namespaceObject,'05-shb/raid/e10s.ts': e10s,'05-shb/raid/e10s.txt': raid_e10s_namespaceObject,'05-shb/raid/e11n.ts': e11n,'05-shb/raid/e11n.txt': raid_e11n_namespaceObject,'05-shb/raid/e11s.ts': e11s,'05-shb/raid/e11s.txt': raid_e11s_namespaceObject,'05-shb/raid/e12n.ts': e12n,'05-shb/raid/e12n.txt': raid_e12n_namespaceObject,'05-shb/raid/e12s.ts': e12s,'05-shb/raid/e12s.txt': raid_e12s_namespaceObject,'05-shb/raid/e1n.ts': e1n,'05-shb/raid/e1n.txt': raid_e1n_namespaceObject,'05-shb/raid/e1s.ts': e1s,'05-shb/raid/e1s.txt': raid_e1s_namespaceObject,'05-shb/raid/e2n.ts': e2n,'05-shb/raid/e2n.txt': raid_e2n_namespaceObject,'05-shb/raid/e2s.ts': e2s,'05-shb/raid/e2s.txt': raid_e2s_namespaceObject,'05-shb/raid/e3n.ts': e3n,'05-shb/raid/e3n.txt': raid_e3n_namespaceObject,'05-shb/raid/e3s.ts': e3s,'05-shb/raid/e3s.txt': raid_e3s_namespaceObject,'05-shb/raid/e4n.ts': e4n,'05-shb/raid/e4n.txt': raid_e4n_namespaceObject,'05-shb/raid/e4s.ts': e4s,'05-shb/raid/e4s.txt': raid_e4s_namespaceObject,'05-shb/raid/e5n.ts': e5n,'05-shb/raid/e5n.txt': raid_e5n_namespaceObject,'05-shb/raid/e5s.ts': e5s,'05-shb/raid/e5s.txt': raid_e5s_namespaceObject,'05-shb/raid/e6n.ts': e6n,'05-shb/raid/e6n.txt': raid_e6n_namespaceObject,'05-shb/raid/e6s.ts': e6s,'05-shb/raid/e6s.txt': raid_e6s_namespaceObject,'05-shb/raid/e7n.ts': e7n,'05-shb/raid/e7n.txt': raid_e7n_namespaceObject,'05-shb/raid/e7s.ts': e7s,'05-shb/raid/e7s.txt': raid_e7s_namespaceObject,'05-shb/raid/e8n.ts': e8n,'05-shb/raid/e8n.txt': raid_e8n_namespaceObject,'05-shb/raid/e8s.ts': e8s,'05-shb/raid/e8s.txt': raid_e8s_namespaceObject,'05-shb/raid/e9n.ts': e9n,'05-shb/raid/e9n.txt': raid_e9n_namespaceObject,'05-shb/raid/e9s.ts': e9s,'05-shb/raid/e9s.txt': raid_e9s_namespaceObject,'05-shb/trial/diamond_weapon-ex.ts': diamond_weapon_ex,'05-shb/trial/diamond_weapon-ex.txt': trial_diamond_weapon_ex_namespaceObject,'05-shb/trial/diamond_weapon.ts': diamond_weapon,'05-shb/trial/diamond_weapon.txt': trial_diamond_weapon_namespaceObject,'05-shb/trial/emerald_weapon-ex.ts': emerald_weapon_ex,'05-shb/trial/emerald_weapon-ex.txt': trial_emerald_weapon_ex_namespaceObject,'05-shb/trial/emerald_weapon.ts': emerald_weapon,'05-shb/trial/emerald_weapon.txt': trial_emerald_weapon_namespaceObject,'05-shb/trial/hades-ex.ts': hades_ex,'05-shb/trial/hades-ex.txt': trial_hades_ex_namespaceObject,'05-shb/trial/hades.ts': hades,'05-shb/trial/hades.txt': trial_hades_namespaceObject,'05-shb/trial/innocence-ex.ts': innocence_ex,'05-shb/trial/innocence-ex.txt': trial_innocence_ex_namespaceObject,'05-shb/trial/innocence.ts': innocence,'05-shb/trial/innocence.txt': trial_innocence_namespaceObject,'05-shb/trial/levi-un.ts': levi_un,'05-shb/trial/levi-un.txt': trial_levi_un_namespaceObject,'05-shb/trial/ruby_weapon-ex.ts': ruby_weapon_ex,'05-shb/trial/ruby_weapon-ex.txt': trial_ruby_weapon_ex_namespaceObject,'05-shb/trial/ruby_weapon.ts': ruby_weapon,'05-shb/trial/ruby_weapon.txt': trial_ruby_weapon_namespaceObject,'05-shb/trial/shiva-un.ts': shiva_un,'05-shb/trial/shiva-un.txt': trial_shiva_un_namespaceObject,'05-shb/trial/titan-un.ts': titan_un,'05-shb/trial/titan-un.txt': trial_titan_un_namespaceObject,'05-shb/trial/titania-ex.ts': titania_ex,'05-shb/trial/titania-ex.txt': trial_titania_ex_namespaceObject,'05-shb/trial/titania.ts': titania,'05-shb/trial/titania.txt': trial_titania_namespaceObject,'05-shb/trial/varis-ex.ts': varis_ex,'05-shb/trial/varis-ex.txt': trial_varis_ex_namespaceObject,'05-shb/trial/wol-ex.ts': wol_ex,'05-shb/trial/wol-ex.txt': trial_wol_ex_namespaceObject,'05-shb/trial/wol.ts': wol,'05-shb/trial/wol.txt': trial_wol_namespaceObject,'05-shb/ultimate/the_epic_of_alexander.ts': the_epic_of_alexander,'05-shb/ultimate/the_epic_of_alexander.txt': ultimate_the_epic_of_alexander_namespaceObject,'06-ew/alliance/aglaia.ts': aglaia,'06-ew/alliance/aglaia.txt': alliance_aglaia_namespaceObject,'06-ew/alliance/euphrosyne.ts': euphrosyne,'06-ew/alliance/euphrosyne.txt': alliance_euphrosyne_namespaceObject,'06-ew/alliance/thaleia.ts': thaleia,'06-ew/alliance/thaleia.txt': alliance_thaleia_namespaceObject,'06-ew/deepdungeon/eureka_orthos_floors_01-10.ts': eureka_orthos_floors_01_10,'06-ew/deepdungeon/eureka_orthos_floors_11-20.ts': eureka_orthos_floors_11_20,'06-ew/deepdungeon/eureka_orthos_floors_21-30.ts': eureka_orthos_floors_21_30,'06-ew/deepdungeon/eureka_orthos_floors_31-40.ts': eureka_orthos_floors_31_40,'06-ew/deepdungeon/eureka_orthos_floors_41-50.ts': eureka_orthos_floors_41_50,'06-ew/deepdungeon/eureka_orthos_floors_51-60.ts': eureka_orthos_floors_51_60,'06-ew/deepdungeon/eureka_orthos_floors_61-70.ts': eureka_orthos_floors_61_70,'06-ew/deepdungeon/eureka_orthos_floors_71-80.ts': eureka_orthos_floors_71_80,'06-ew/deepdungeon/eureka_orthos_floors_81-90.ts': eureka_orthos_floors_81_90,'06-ew/deepdungeon/eureka_orthos_floors_91-100.ts': eureka_orthos_floors_91_100,'06-ew/deepdungeon/eureka_orthos_general.ts': eureka_orthos_general,'06-ew/dungeon/aetherfont.ts': aetherfont,'06-ew/dungeon/aetherfont.txt': dungeon_aetherfont_namespaceObject,'06-ew/dungeon/aloalo_island.ts': aloalo_island,'06-ew/dungeon/aloalo_island.txt': dungeon_aloalo_island_namespaceObject,'06-ew/dungeon/alzadaals_legacy.ts': alzadaals_legacy,'06-ew/dungeon/alzadaals_legacy.txt': dungeon_alzadaals_legacy_namespaceObject,'06-ew/dungeon/another_aloalo_island-savage.ts': another_aloalo_island_savage,'06-ew/dungeon/another_aloalo_island-savage.txt': dungeon_another_aloalo_island_savage_namespaceObject,'06-ew/dungeon/another_aloalo_island.ts': another_aloalo_island,'06-ew/dungeon/another_aloalo_island.txt': dungeon_another_aloalo_island_namespaceObject,'06-ew/dungeon/another_mount_rokkon-savage.ts': another_mount_rokkon_savage,'06-ew/dungeon/another_mount_rokkon-savage.txt': dungeon_another_mount_rokkon_savage_namespaceObject,'06-ew/dungeon/another_mount_rokkon.ts': another_mount_rokkon,'06-ew/dungeon/another_mount_rokkon.txt': dungeon_another_mount_rokkon_namespaceObject,'06-ew/dungeon/another_sildihn_subterrane-savage.ts': another_sildihn_subterrane_savage,'06-ew/dungeon/another_sildihn_subterrane-savage.txt': dungeon_another_sildihn_subterrane_savage_namespaceObject,'06-ew/dungeon/another_sildihn_subterrane.ts': another_sildihn_subterrane,'06-ew/dungeon/another_sildihn_subterrane.txt': dungeon_another_sildihn_subterrane_namespaceObject,'06-ew/dungeon/ktisis_hyperboreia.ts': ktisis_hyperboreia,'06-ew/dungeon/ktisis_hyperboreia.txt': dungeon_ktisis_hyperboreia_namespaceObject,'06-ew/dungeon/lapis_manalis.ts': lapis_manalis,'06-ew/dungeon/lapis_manalis.txt': dungeon_lapis_manalis_namespaceObject,'06-ew/dungeon/mount_rokkon.ts': mount_rokkon,'06-ew/dungeon/mount_rokkon.txt': dungeon_mount_rokkon_namespaceObject,'06-ew/dungeon/smileton.ts': smileton,'06-ew/dungeon/smileton.txt': dungeon_smileton_namespaceObject,'06-ew/dungeon/stigma_dreamscape.ts': stigma_dreamscape,'06-ew/dungeon/stigma_dreamscape.txt': dungeon_stigma_dreamscape_namespaceObject,'06-ew/dungeon/the_aitiascope.ts': the_aitiascope,'06-ew/dungeon/the_aitiascope.txt': dungeon_the_aitiascope_namespaceObject,'06-ew/dungeon/the_dead_ends.ts': the_dead_ends,'06-ew/dungeon/the_dead_ends.txt': dungeon_the_dead_ends_namespaceObject,'06-ew/dungeon/the_fell_court_of_troia.ts': the_fell_court_of_troia,'06-ew/dungeon/the_fell_court_of_troia.txt': dungeon_the_fell_court_of_troia_namespaceObject,'06-ew/dungeon/the_lunar_subterrane.ts': the_lunar_subterrane,'06-ew/dungeon/the_lunar_subterrane.txt': dungeon_the_lunar_subterrane_namespaceObject,'06-ew/dungeon/the_sildihn_subterrane.ts': the_sildihn_subterrane,'06-ew/dungeon/the_sildihn_subterrane.txt': dungeon_the_sildihn_subterrane_namespaceObject,'06-ew/dungeon/the_tower_of_babil.ts': the_tower_of_babil,'06-ew/dungeon/the_tower_of_babil.txt': dungeon_the_tower_of_babil_namespaceObject,'06-ew/dungeon/the_tower_of_zot.ts': the_tower_of_zot,'06-ew/dungeon/the_tower_of_zot.txt': dungeon_the_tower_of_zot_namespaceObject,'06-ew/dungeon/vanaspati.ts': vanaspati,'06-ew/dungeon/vanaspati.txt': dungeon_vanaspati_namespaceObject,'06-ew/hunts/elpis.ts': elpis,'06-ew/hunts/garlemald.ts': garlemald,'06-ew/hunts/labyrinthos.ts': labyrinthos,'06-ew/hunts/mare_lamentorum.ts': mare_lamentorum,'06-ew/hunts/ss_rank.ts': hunts_ss_rank,'06-ew/hunts/thavnair.ts': thavnair,'06-ew/hunts/ultima_thule.ts': ultima_thule,'06-ew/map/the_excitatron_6000.ts': the_excitatron_6000,'06-ew/map/the_shifting_gymnasion_agonon.ts': the_shifting_gymnasion_agonon,'06-ew/raid/p10n.ts': p10n,'06-ew/raid/p10n.txt': raid_p10n_namespaceObject,'06-ew/raid/p10s.ts': p10s,'06-ew/raid/p10s.txt': raid_p10s_namespaceObject,'06-ew/raid/p11n.ts': p11n,'06-ew/raid/p11n.txt': raid_p11n_namespaceObject,'06-ew/raid/p11s.ts': p11s,'06-ew/raid/p11s.txt': raid_p11s_namespaceObject,'06-ew/raid/p12n.ts': p12n,'06-ew/raid/p12n.txt': raid_p12n_namespaceObject,'06-ew/raid/p12s.ts': p12s,'06-ew/raid/p12s.txt': raid_p12s_namespaceObject,'06-ew/raid/p1n.ts': p1n,'06-ew/raid/p1n.txt': raid_p1n_namespaceObject,'06-ew/raid/p1s.ts': p1s,'06-ew/raid/p1s.txt': raid_p1s_namespaceObject,'06-ew/raid/p2n.ts': p2n,'06-ew/raid/p2n.txt': raid_p2n_namespaceObject,'06-ew/raid/p2s.ts': p2s,'06-ew/raid/p2s.txt': raid_p2s_namespaceObject,'06-ew/raid/p3n.ts': p3n,'06-ew/raid/p3n.txt': raid_p3n_namespaceObject,'06-ew/raid/p3s.ts': p3s,'06-ew/raid/p3s.txt': raid_p3s_namespaceObject,'06-ew/raid/p4n.ts': p4n,'06-ew/raid/p4n.txt': raid_p4n_namespaceObject,'06-ew/raid/p4s.ts': p4s,'06-ew/raid/p4s.txt': raid_p4s_namespaceObject,'06-ew/raid/p5n.ts': p5n,'06-ew/raid/p5n.txt': raid_p5n_namespaceObject,'06-ew/raid/p5s.ts': p5s,'06-ew/raid/p5s.txt': raid_p5s_namespaceObject,'06-ew/raid/p6n.ts': p6n,'06-ew/raid/p6n.txt': raid_p6n_namespaceObject,'06-ew/raid/p6s.ts': p6s,'06-ew/raid/p6s.txt': raid_p6s_namespaceObject,'06-ew/raid/p7n.ts': p7n,'06-ew/raid/p7n.txt': raid_p7n_namespaceObject,'06-ew/raid/p7s.ts': p7s,'06-ew/raid/p7s.txt': raid_p7s_namespaceObject,'06-ew/raid/p8n.ts': p8n,'06-ew/raid/p8n.txt': raid_p8n_namespaceObject,'06-ew/raid/p8s.ts': p8s,'06-ew/raid/p8s.txt': raid_p8s_namespaceObject,'06-ew/raid/p9n.ts': p9n,'06-ew/raid/p9n.txt': raid_p9n_namespaceObject,'06-ew/raid/p9s.ts': p9s,'06-ew/raid/p9s.txt': raid_p9s_namespaceObject,'06-ew/trial/asura.ts': asura,'06-ew/trial/asura.txt': trial_asura_namespaceObject,'06-ew/trial/barbariccia-ex.ts': barbariccia_ex,'06-ew/trial/barbariccia-ex.txt': trial_barbariccia_ex_namespaceObject,'06-ew/trial/barbariccia.ts': barbariccia,'06-ew/trial/barbariccia.txt': trial_barbariccia_namespaceObject,'06-ew/trial/endsinger-ex.ts': endsinger_ex,'06-ew/trial/endsinger-ex.txt': trial_endsinger_ex_namespaceObject,'06-ew/trial/endsinger.ts': endsinger,'06-ew/trial/endsinger.txt': trial_endsinger_namespaceObject,'06-ew/trial/golbez-ex.ts': golbez_ex,'06-ew/trial/golbez-ex.txt': trial_golbez_ex_namespaceObject,'06-ew/trial/golbez.ts': golbez,'06-ew/trial/golbez.txt': trial_golbez_namespaceObject,'06-ew/trial/hydaelyn-ex.ts': hydaelyn_ex,'06-ew/trial/hydaelyn-ex.txt': trial_hydaelyn_ex_namespaceObject,'06-ew/trial/hydaelyn.ts': hydaelyn,'06-ew/trial/hydaelyn.txt': trial_hydaelyn_namespaceObject,'06-ew/trial/rubicante-ex.ts': rubicante_ex,'06-ew/trial/rubicante-ex.txt': trial_rubicante_ex_namespaceObject,'06-ew/trial/rubicante.ts': rubicante,'06-ew/trial/rubicante.txt': trial_rubicante_namespaceObject,'06-ew/trial/sephirot-un.ts': sephirot_un,'06-ew/trial/sephirot-un.txt': trial_sephirot_un_namespaceObject,'06-ew/trial/sophia-un.ts': sophia_un,'06-ew/trial/sophia-un.txt': trial_sophia_un_namespaceObject,'06-ew/trial/thordan-un.ts': thordan_un,'06-ew/trial/thordan-un.txt': trial_thordan_un_namespaceObject,'06-ew/trial/ultima-un.ts': ultima_un,'06-ew/trial/ultima-un.txt': trial_ultima_un_namespaceObject,'06-ew/trial/zeromus-ex.ts': zeromus_ex,'06-ew/trial/zeromus-ex.txt': trial_zeromus_ex_namespaceObject,'06-ew/trial/zeromus.ts': zeromus,'06-ew/trial/zeromus.txt': trial_zeromus_namespaceObject,'06-ew/trial/zodiark-ex.ts': zodiark_ex,'06-ew/trial/zodiark-ex.txt': trial_zodiark_ex_namespaceObject,'06-ew/trial/zodiark.ts': zodiark,'06-ew/trial/zodiark.txt': trial_zodiark_namespaceObject,'06-ew/trial/zurvan-un.ts': zurvan_un,'06-ew/trial/zurvan-un.txt': trial_zurvan_un_namespaceObject,'06-ew/ultimate/dragonsongs_reprise_ultimate.ts': dragonsongs_reprise_ultimate,'06-ew/ultimate/dragonsongs_reprise_ultimate.txt': ultimate_dragonsongs_reprise_ultimate_namespaceObject,'06-ew/ultimate/the_omega_protocol.ts': the_omega_protocol,'06-ew/ultimate/the_omega_protocol.txt': ultimate_the_omega_protocol_namespaceObject,'07-dt/alliance/cloud_of_darkness_chaotic.ts': cloud_of_darkness_chaotic,'07-dt/alliance/cloud_of_darkness_chaotic.txt': alliance_cloud_of_darkness_chaotic_namespaceObject,'07-dt/alliance/jeuno-first-walk.ts': jeuno_first_walk,'07-dt/alliance/jeuno-first-walk.txt': alliance_jeuno_first_walk_namespaceObject,'07-dt/deepdungeon/pilgrims_traverse_general.ts': pilgrims_traverse_general,'07-dt/deepdungeon/pilgrims_traverse_stones_01-10.ts': pilgrims_traverse_stones_01_10,'07-dt/deepdungeon/pilgrims_traverse_stones_11-20.ts': pilgrims_traverse_stones_11_20,'07-dt/deepdungeon/pilgrims_traverse_stones_21-30.ts': pilgrims_traverse_stones_21_30,'07-dt/deepdungeon/pilgrims_traverse_stones_31-40.ts': pilgrims_traverse_stones_31_40,'07-dt/deepdungeon/pilgrims_traverse_stones_41-50.ts': pilgrims_traverse_stones_41_50,'07-dt/deepdungeon/pilgrims_traverse_stones_51-60.ts': pilgrims_traverse_stones_51_60,'07-dt/deepdungeon/pilgrims_traverse_stones_61-70.ts': pilgrims_traverse_stones_61_70,'07-dt/deepdungeon/pilgrims_traverse_stones_71-80.ts': pilgrims_traverse_stones_71_80,'07-dt/deepdungeon/pilgrims_traverse_stones_81-90.ts': pilgrims_traverse_stones_81_90,'07-dt/deepdungeon/pilgrims_traverse_stones_91-100.ts': pilgrims_traverse_stones_91_100,'07-dt/deepdungeon/pilgrims_traverse_the_final_verse.ts': pilgrims_traverse_the_final_verse,'07-dt/deepdungeon/the_final_verse_quantum.ts': the_final_verse_quantum,'07-dt/deepdungeon/the_final_verse_quantum.txt': deepdungeon_the_final_verse_quantum_namespaceObject,'07-dt/dungeon/alexandria.ts': alexandria,'07-dt/dungeon/alexandria.txt': dungeon_alexandria_namespaceObject,'07-dt/dungeon/ihuykatumu.ts': ihuykatumu,'07-dt/dungeon/ihuykatumu.txt': dungeon_ihuykatumu_namespaceObject,'07-dt/dungeon/meso-terminal.ts': meso_terminal,'07-dt/dungeon/meso-terminal.txt': dungeon_meso_terminal_namespaceObject,'07-dt/dungeon/mistwake.ts': mistwake,'07-dt/dungeon/mistwake.txt': dungeon_mistwake_namespaceObject,'07-dt/dungeon/origenics.ts': origenics,'07-dt/dungeon/origenics.txt': dungeon_origenics_namespaceObject,'07-dt/dungeon/skydeep-cenote.ts': skydeep_cenote,'07-dt/dungeon/skydeep-cenote.txt': dungeon_skydeep_cenote_namespaceObject,'07-dt/dungeon/strayborough-deadwalk.ts': strayborough_deadwalk,'07-dt/dungeon/strayborough-deadwalk.txt': dungeon_strayborough_deadwalk_namespaceObject,'07-dt/dungeon/the_underkeep.ts': the_underkeep,'07-dt/dungeon/the_underkeep.txt': dungeon_the_underkeep_namespaceObject,'07-dt/dungeon/vanguard.ts': vanguard,'07-dt/dungeon/vanguard.txt': dungeon_vanguard_namespaceObject,'07-dt/dungeon/worqor-zormor.ts': worqor_zormor,'07-dt/dungeon/worqor-zormor.txt': dungeon_worqor_zormor_namespaceObject,'07-dt/dungeon/yuweyawata.ts': yuweyawata,'07-dt/dungeon/yuweyawata.txt': dungeon_yuweyawata_namespaceObject,'07-dt/eureka/occult_crescent_south_horn.ts': occult_crescent_south_horn,'07-dt/eureka/occult_crescent_south_horn.txt': eureka_occult_crescent_south_horn_namespaceObject,'07-dt/hunts/heritage_found.ts': heritage_found,'07-dt/hunts/kozamauka.ts': kozamauka,'07-dt/hunts/living_memory.ts': living_memory,'07-dt/hunts/shaaloani.ts': shaaloani,'07-dt/hunts/ss_rank.ts': _07_dt_hunts_ss_rank,'07-dt/hunts/urqopacha.ts': urqopacha,'07-dt/hunts/yaktel.ts': yaktel,'07-dt/map/cenote_ja_ja_gural.ts': cenote_ja_ja_gural,'07-dt/raid/r10n.ts': r10n,'07-dt/raid/r10n.txt': raid_r10n_namespaceObject,'07-dt/raid/r10s.ts': r10s,'07-dt/raid/r10s.txt': raid_r10s_namespaceObject,'07-dt/raid/r11n.ts': r11n,'07-dt/raid/r11n.txt': raid_r11n_namespaceObject,'07-dt/raid/r11s.ts': r11s,'07-dt/raid/r11s.txt': raid_r11s_namespaceObject,'07-dt/raid/r12n.ts': r12n,'07-dt/raid/r12n.txt': raid_r12n_namespaceObject,'07-dt/raid/r12s.ts': r12s,'07-dt/raid/r12s.txt': raid_r12s_namespaceObject,'07-dt/raid/r1n.ts': r1n,'07-dt/raid/r1n.txt': raid_r1n_namespaceObject,'07-dt/raid/r1s.ts': r1s,'07-dt/raid/r1s.txt': raid_r1s_namespaceObject,'07-dt/raid/r2n.ts': r2n,'07-dt/raid/r2n.txt': raid_r2n_namespaceObject,'07-dt/raid/r2s.ts': r2s,'07-dt/raid/r2s.txt': raid_r2s_namespaceObject,'07-dt/raid/r3n.ts': r3n,'07-dt/raid/r3n.txt': raid_r3n_namespaceObject,'07-dt/raid/r3s.ts': r3s,'07-dt/raid/r3s.txt': raid_r3s_namespaceObject,'07-dt/raid/r4n.ts': r4n,'07-dt/raid/r4n.txt': raid_r4n_namespaceObject,'07-dt/raid/r4s.ts': r4s,'07-dt/raid/r4s.txt': raid_r4s_namespaceObject,'07-dt/raid/r5n.ts': r5n,'07-dt/raid/r5n.txt': raid_r5n_namespaceObject,'07-dt/raid/r5s.ts': r5s,'07-dt/raid/r5s.txt': raid_r5s_namespaceObject,'07-dt/raid/r6n.ts': r6n,'07-dt/raid/r6n.txt': raid_r6n_namespaceObject,'07-dt/raid/r6s.ts': r6s,'07-dt/raid/r6s.txt': raid_r6s_namespaceObject,'07-dt/raid/r7n.ts': r7n,'07-dt/raid/r7n.txt': raid_r7n_namespaceObject,'07-dt/raid/r7s.ts': r7s,'07-dt/raid/r7s.txt': raid_r7s_namespaceObject,'07-dt/raid/r8n.ts': r8n,'07-dt/raid/r8n.txt': raid_r8n_namespaceObject,'07-dt/raid/r8s.ts': r8s,'07-dt/raid/r8s.txt': raid_r8s_namespaceObject,'07-dt/raid/r9n.ts': r9n,'07-dt/raid/r9n.txt': raid_r9n_namespaceObject,'07-dt/raid/r9s.ts': r9s,'07-dt/raid/r9s.txt': raid_r9s_namespaceObject,'07-dt/trial/arkveld-ex.ts': arkveld_ex,'07-dt/trial/arkveld-ex.txt': trial_arkveld_ex_namespaceObject,'07-dt/trial/arkveld.ts': arkveld,'07-dt/trial/arkveld.txt': trial_arkveld_namespaceObject,'07-dt/trial/byakko-un.ts': byakko_un,'07-dt/trial/byakko-un.txt': trial_byakko_un_namespaceObject,'07-dt/trial/doomtrain-ex.ts': doomtrain_ex,'07-dt/trial/doomtrain-ex.txt': trial_doomtrain_ex_namespaceObject,'07-dt/trial/doomtrain.ts': doomtrain,'07-dt/trial/doomtrain.txt': trial_doomtrain_namespaceObject,'07-dt/trial/necron-ex.ts': necron_ex,'07-dt/trial/necron-ex.txt': trial_necron_ex_namespaceObject,'07-dt/trial/queen-eternal-ex.ts': queen_eternal_ex,'07-dt/trial/queen-eternal-ex.txt': trial_queen_eternal_ex_namespaceObject,'07-dt/trial/queen-eternal.ts': queen_eternal,'07-dt/trial/queen-eternal.txt': trial_queen_eternal_namespaceObject,'07-dt/trial/seiryu-un.ts': seiryu_un,'07-dt/trial/seiryu-un.txt': trial_seiryu_un_namespaceObject,'07-dt/trial/suzaku-un.ts': suzaku_un,'07-dt/trial/suzaku-un.txt': trial_suzaku_un_namespaceObject,'07-dt/trial/tsukuyomi-un.ts': tsukuyomi_un,'07-dt/trial/tsukuyomi-un.txt': trial_tsukuyomi_un_namespaceObject,'07-dt/trial/valigarmanda-ex.ts': valigarmanda_ex,'07-dt/trial/valigarmanda-ex.txt': trial_valigarmanda_ex_namespaceObject,'07-dt/trial/valigarmanda.ts': valigarmanda,'07-dt/trial/valigarmanda.txt': trial_valigarmanda_namespaceObject,'07-dt/trial/zelenia-ex.ts': zelenia_ex,'07-dt/trial/zelenia-ex.txt': trial_zelenia_ex_namespaceObject,'07-dt/trial/zelenia.ts': zelenia,'07-dt/trial/zelenia.txt': trial_zelenia_namespaceObject,'07-dt/trial/zoraal-ja-ex.ts': zoraal_ja_ex,'07-dt/trial/zoraal-ja-ex.txt': trial_zoraal_ja_ex_namespaceObject,'07-dt/trial/zoraal-ja.ts': zoraal_ja,'07-dt/trial/zoraal-ja.txt': trial_zoraal_ja_namespaceObject,'07-dt/ultimate/futures_rewritten.ts': futures_rewritten,'07-dt/ultimate/futures_rewritten.txt': ultimate_futures_rewritten_namespaceObject,});
 
 /***/ })
 

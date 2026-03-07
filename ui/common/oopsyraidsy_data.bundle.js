@@ -1,7 +1,7 @@
 "use strict";
 (self["webpackChunkcactbot"] = self["webpackChunkcactbot"] || []).push([[727],{
 
-/***/ 962:
+/***/ 449:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -22771,6 +22771,144 @@ const yuweyawata_triggerSet = {
 };
 
 /* harmony default export */ const yuweyawata = (yuweyawata_triggerSet);
+;// CONCATENATED MODULE: ./ui/oopsyraidsy/data/07-dt/raid/r10s.ts
+
+
+
+const r10s_triggerSet = {
+  zoneId: zone_id/* default.AacHeavyweightM2Savage */.Z.AacHeavyweightM2Savage,
+  damageWarn: {
+    'R10S Alley-oop Double-dip Follow-up': 'B5DF',
+    'R10S Reverse Alley-oop Follow-up': 'B5E2',
+    'R10S Sickest Take-off': 'B5CE',
+    'R10S Deep Varial': 'B5D3',
+    'R10S Steam Burst': 'B5FB',
+    // Orb explosion
+    'R10S Flame Floater Split': 'B5BF'
+  },
+  gainsEffectWarn: {
+    'R10S Burns': 'BFA' // standing in the fire, 15s
+  },
+
+  shareWarn: {
+    'R10S Flame Floater 1': 'B5BB',
+    'R10S Flame Floater 2': 'B5BC',
+    'R10S Flame Floater 3': 'B5BD',
+    'R10S Flame Floater 4': 'B5BE',
+    'R10S Alley-oop Inferno': 'B5C1',
+    // Red Hot spread
+    'R10S Awesome Splash 1': 'B5CF',
+    // Deep Blue spread
+    'R10S Awesome Splash 2': 'B5D7',
+    // Deep Blue spread after Fire/Watersnaking
+    'R10S Alley-oop Double-dip First Hit': 'B5DE',
+    'R10S Reverse Alley-oop First Hit': 'B5E1',
+    'R10S Blasting Snap': 'B5F1',
+    // Red Hot spread during Insane Air
+    'R10S Plunging Snap': 'B5F2',
+    // Deep Blue spread during Insane Air
+    'R10S Hot Aerial 1': 'B91E',
+    'R10S Hot Aerial 2': 'B91F',
+    'R10S Hot Aerial 3': 'B920',
+    'R10S Hot Aerial 4': 'B921',
+    'R10S Xtreme Wave Deep Blue': 'B5D2' // Deep Blue's Xtreme Wave
+  },
+
+  shareFail: {
+    'R10S Deep Impact': 'ADC6',
+    // Deep Blue tankbuster
+    'R10S Vertical Blast': 'B5F9',
+    // Red Hot tankbuster during Insane Air
+    'R10S Vertical Plunge': 'B5FA' // Deep Blue tankbuster during Insane Air
+  },
+
+  initData: () => {
+    return {
+      hasWateryGrave: {}
+    };
+  },
+  triggers: [{
+    id: 'R10S Watery Grave Gain',
+    type: 'GainsEffect',
+    netRegex: netregexes/* default.gainsEffect */.ZP.gainsEffect({
+      effectId: '12DD'
+    }),
+    run: (data, matches) => {
+      data.hasWateryGrave[matches.target] = true;
+    }
+  }, {
+    id: 'R10S Watery Grave Lose',
+    type: 'LosesEffect',
+    netRegex: netregexes/* default.losesEffect */.ZP.losesEffect({
+      effectId: '12DD'
+    }),
+    run: (data, matches) => {
+      data.hasWateryGrave[matches.target] = false;
+    }
+  }, {
+    // Share warn for Red Hot's Xtreme Wave, except players affected by Watery Grave.
+    id: 'R10S Xtreme Wave Red Hot',
+    type: 'Ability',
+    netRegex: netregexes/* default.ability */.ZP.ability({
+      id: 'B5D1',
+      ...oopsy_common/* playerDamageFields */.np
+    }),
+    condition: (data, matches) => !data.hasWateryGrave[matches.target],
+    mistake: (data, matches) => {
+      const numTargets = parseInt(matches.targetCount);
+      const numWateryGrave = Object.values(data.hasWateryGrave).filter(Boolean).length;
+      if (isNaN(numTargets) || numTargets <= numWateryGrave + 1) return;
+      return {
+        type: 'warn',
+        blame: matches.target,
+        reportId: matches.targetId,
+        text: (0,oopsy_common/* GetShareMistakeText */.gG)(matches.ability, numTargets - numWateryGrave)
+      };
+    }
+  }, {
+    id: 'R10S Watery Grave Gains Vulnerability Down',
+    type: 'GainsEffect',
+    netRegex: netregexes/* default.gainsEffect */.ZP.gainsEffect({
+      effectId: '3A1',
+      target: 'Watery Grave'
+    }),
+    mistake: (_data, matches) => {
+      return {
+        type: 'warn',
+        blame: matches.target,
+        reportId: matches.targetId,
+        text: matches.effect
+      };
+    }
+  }],
+  timelineReplace: [{
+    locale: 'de',
+    replaceSync: {
+      'Watery Grave': 'Wasserkerker'
+    }
+  }, {
+    locale: 'fr',
+    replaceSync: {
+      'Watery Grave': 'prison aquatique'
+    }
+  }, {
+    locale: 'ja',
+    replaceSync: {
+      'Watery Grave': '水牢'
+    }
+  }, {
+    locale: 'cn',
+    replaceSync: {
+      'Watery Grave': '水牢'
+    }
+  }, {
+    locale: 'ko',
+    replaceSync: {
+      'Watery Grave': '수중 감옥'
+    }
+  }]
+};
+/* harmony default export */ const r10s = (r10s_triggerSet);
 ;// CONCATENATED MODULE: ./ui/oopsyraidsy/data/07-dt/raid/r11n.ts
 
 
@@ -22902,6 +23040,62 @@ const r11n_triggerSet = {
   }]
 };
 /* harmony default export */ const r11n = (r11n_triggerSet);
+;// CONCATENATED MODULE: ./ui/oopsyraidsy/data/07-dt/raid/r11s.ts
+
+const r11s_triggerSet = {
+  zoneId: zone_id/* default.AacHeavyweightM3Savage */.Z.AacHeavyweightM3Savage,
+  damageWarn: {
+    'R11S Assault Evolved Axe Chariot': 'B418',
+    'R11S Assault Evolved Scythe Donut': 'B419',
+    'R11S Assault Evolved Sword Cross AoE': 'B41A',
+    'R11S Cometite': 'B413',
+    'R11S Dance of Domination Explosion': 'B420',
+    // White line AoE
+    'R11S Great Wall of Fire Explosion': 'B42E',
+    // Great Wall of Fire follow-up
+    'R11S Fire and Fury 1': 'B430',
+    'R11S Fire and Fury 2': 'B431',
+    'R11S Orbital Omen': 'B433',
+    'R11S Comet Explosion': 'B438',
+    'R11S Majestic Meteor 1': 'B441',
+    'R11S Majestic Meteor 2': 'B455',
+    // Majestic Meteor during Ecliptic Stampede
+    'R11S Majestic Meteorain': 'B442'
+  },
+  damageFail: {
+    'R11S Shockwave': 'B43D',
+    // Triple Tyrannhilation damage
+    'R11S Arcadion Avalanche 1': 'B44B',
+    'R11S Arcadion Avalanche 2': 'B44D',
+    'R11S Arcadion Avalanche 3': 'B44F',
+    'R11S Arcadion Avalanche 4': 'B451'
+  },
+  shareWarn: {
+    'R11S Impact': 'B40C',
+    // Raw Steel Trophy axe spread
+    'R11S Sweeping Victory': 'B41C',
+    // Assault Evolved scythe protean
+    'R11S Comet': 'B414',
+    'R11S Powerful Gust': 'B427',
+    'R11S Majestic Meteowrath 1': 'B443',
+    'R11S Majestic Meteowrath 2': 'B459',
+    // Majestic Meteowrath during Ecliptic Stampede
+    'R11S Fire Breath': 'B447',
+    'R11S Atomic Impact': 'B454',
+    'R11S Cosmic Kiss': 'B456' // Solo tower during Ecliptic Stampede
+  },
+
+  shareFail: {
+    'R11S Raw Steel Scythe': 'B40F' // Raw Steel scythe tankbuster
+  },
+
+  soloWarn: {
+    'R11S Knockback Tower Explosion': 'B444',
+    'R11S Weighty Impact': 'B457' // Duo tower during Ecliptic Stampede
+  }
+};
+
+/* harmony default export */ const r11s = (r11s_triggerSet);
 ;// CONCATENATED MODULE: ./ui/oopsyraidsy/data/07-dt/raid/r1n.ts
 
 
@@ -23189,6 +23383,64 @@ const r8s_triggerSet = {
   damageWarn: {}
 };
 /* harmony default export */ const r8s = (r8s_triggerSet);
+;// CONCATENATED MODULE: ./ui/oopsyraidsy/data/07-dt/raid/r9s.ts
+
+const r9s_triggerSet = {
+  zoneId: zone_id/* default.AacHeavyweightM1Savage */.Z.AacHeavyweightM1Savage,
+  damageWarn: {
+    'R9S Half Moon 1': 'B377',
+    'R9S Half Moon 2': 'B378',
+    'R9S Half Moon 3': 'B379',
+    'R9S Half Moon 4': 'B37A',
+    'R9S Half Moon 5': 'B37B',
+    'R9S Half Moon 6': 'B37C',
+    'R9S Half Moon 7': 'B37D',
+    'R9S Half Moon 8': 'B37E',
+    'R9S Vamp Stomp': 'B374',
+    'R9S Blast Beat AoE': 'B375',
+    'R9S Coffinfiller 1': 'B368',
+    'R9S Coffinfiller 2': 'B369',
+    'R9S Coffinfiller 3': 'B36A',
+    'R9S Aetherletting Cone 1': 'B38F',
+    'R9S Aetherletting Cone 2': 'B390',
+    'R9S Aetherletting Cone 3': 'B391',
+    'R9S Aetherletting Cross AoE': 'B393',
+    'R9S Pulping Pulse': 'B373',
+    'R9S Sanguine Scratch 1': 'B3A4',
+    'R9S Sanguine Scratch 2': 'B3A5',
+    'R9S Sanguine Scratch 3': 'B3A6',
+    'R9S Sanguine Scratch 4': 'B3A7',
+    'R9S Breakdown Drop 1': 'B3A8',
+    'R9S Breakdown Drop 2': 'B3AA',
+    'R9S Breakwing Beat 1': 'B3A9',
+    'R9S Breakwing Beat 2': 'B3AB'
+  },
+  damageFail: {
+    'R9S Dead Wake': 'B367' // Coffinmaker advance
+  },
+
+  gainsEffectWarn: {
+    'R9S Flesh Wound': 'B7E',
+    // chakrams, saws
+    'R9S Electrocution': 'C02' // Deadly Doornail
+  },
+
+  shareWarn: {
+    'R9S Blast Beat Player': 'B376',
+    'R9S Plummet': 'B38B' // Fatal Flail tower
+  },
+
+  shareFail: {
+    'R9S Hardcore Small': 'B37F',
+    // Tankbuster
+    'R9S Hardcore Big': 'B380',
+    // Tankbuster
+    'R9S Aetherletting Marker': 'B392',
+    'R9S Bloody Bondage': 'B396' // Hell in a Cell tower
+  }
+};
+
+/* harmony default export */ const r9s = (r9s_triggerSet);
 ;// CONCATENATED MODULE: ./ui/oopsyraidsy/data/07-dt/trial/byakko-un.ts
 // This file was autogenerated from running npm run sync-files.
 // DO NOT EDIT THIS FILE DIRECTLY.
@@ -24221,7 +24473,10 @@ const futures_rewritten_triggerSet = {
 
 
 
-/* harmony default export */ const oopsy_manifest = ({'00-misc/general.ts': general,'00-misc/test.ts': test,'02-arr/trial/ifrit-nm.ts': ifrit_nm,'02-arr/trial/levi-ex.ts': levi_ex,'02-arr/trial/shiva-ex.ts': shiva_ex,'02-arr/trial/shiva-hm.ts': shiva_hm,'02-arr/trial/titan-ex.ts': titan_ex,'02-arr/trial/titan-hm.ts': titan_hm,'02-arr/trial/titan-nm.ts': titan_nm,'02-arr/trial/ultima-ex.ts': ultima_ex,'03-hw/alliance/weeping_city.ts': weeping_city,'03-hw/dungeon/aetherochemical_research_facility.ts': aetherochemical_research_facility,'03-hw/dungeon/baelsars_wall.ts': baelsars_wall,'03-hw/dungeon/fractal_continuum.ts': fractal_continuum,'03-hw/dungeon/gubal_library_hard.ts': gubal_library_hard,'03-hw/dungeon/sohm_al_hard.ts': sohm_al_hard,'03-hw/dungeon/the_lost_city_of_amdapor_hard.ts': the_lost_city_of_amdapor_hard,'03-hw/raid/a10n.ts': a10n,'03-hw/raid/a12n.ts': a12n,'03-hw/raid/a3n.ts': a3n,'03-hw/raid/a6n.ts': a6n,'03-hw/trial/sephirot-ex.ts': sephirot_ex,'03-hw/trial/sophia-ex.ts': sophia_ex,'03-hw/trial/thordan-ex.ts': thordan_ex,'03-hw/trial/zurvan-ex.ts': zurvan_ex,'04-sb/alliance/orbonne_monastery.ts': orbonne_monastery,'04-sb/alliance/ridorana_lighthouse.ts': ridorana_lighthouse,'04-sb/alliance/royal_city_of_rabanastre.ts': royal_city_of_rabanastre,'04-sb/dungeon/ala_mhigo.ts': ala_mhigo,'04-sb/dungeon/bardams_mettle.ts': bardams_mettle,'04-sb/dungeon/castrum_abania.ts': castrum_abania,'04-sb/dungeon/doma_castle.ts': doma_castle,'04-sb/dungeon/drowned_city_of_skalla.ts': drowned_city_of_skalla,'04-sb/dungeon/fractal_continuum_hard.ts': fractal_continuum_hard,'04-sb/dungeon/ghimlyt_dark.ts': ghimlyt_dark,'04-sb/dungeon/hells_lid.ts': hells_lid,'04-sb/dungeon/kugane_castle.ts': kugane_castle,'04-sb/dungeon/shisui_of_the_violet_tides.ts': shisui_of_the_violet_tides,'04-sb/dungeon/sirensong_sea.ts': sirensong_sea,'04-sb/dungeon/st_mocianne_hard.ts': st_mocianne_hard,'04-sb/dungeon/swallows_compass.ts': swallows_compass,'04-sb/dungeon/temple_of_the_fist.ts': temple_of_the_fist,'04-sb/dungeon/the_burn.ts': the_burn,'04-sb/raid/o10n.ts': o10n,'04-sb/raid/o10s.ts': o10s,'04-sb/raid/o11n.ts': o11n,'04-sb/raid/o11s.ts': o11s,'04-sb/raid/o12n.ts': o12n,'04-sb/raid/o12s.ts': o12s,'04-sb/raid/o1n.ts': o1n,'04-sb/raid/o1s.ts': o1s,'04-sb/raid/o2n.ts': o2n,'04-sb/raid/o2s.ts': o2s,'04-sb/raid/o3n.ts': o3n,'04-sb/raid/o3s.ts': o3s,'04-sb/raid/o4n.ts': o4n,'04-sb/raid/o4s.ts': o4s,'04-sb/raid/o5n.ts': o5n,'04-sb/raid/o5s.ts': o5s,'04-sb/raid/o6n.ts': o6n,'04-sb/raid/o6s.ts': o6s,'04-sb/raid/o7n.ts': o7n,'04-sb/raid/o7s.ts': o7s,'04-sb/raid/o8n.ts': o8n,'04-sb/raid/o8s.ts': o8s,'04-sb/raid/o9n.ts': o9n,'04-sb/raid/o9s.ts': o9s,'04-sb/trial/byakko-ex.ts': byakko_ex,'04-sb/trial/byakko.ts': byakko,'04-sb/trial/lakshmi-ex.ts': lakshmi_ex,'04-sb/trial/lakshmi.ts': lakshmi,'04-sb/trial/rathalos-ex.ts': rathalos_ex,'04-sb/trial/rathalos.ts': rathalos,'04-sb/trial/seiryu-ex.ts': seiryu_ex,'04-sb/trial/seiryu.ts': seiryu,'04-sb/trial/shinryu-ex.ts': shinryu_ex,'04-sb/trial/shinryu.ts': shinryu,'04-sb/trial/susano-ex.ts': susano_ex,'04-sb/trial/susano.ts': susano,'04-sb/trial/suzaku-ex.ts': suzaku_ex,'04-sb/trial/suzaku.ts': suzaku,'04-sb/trial/tsukuyomi-ex.ts': tsukuyomi_ex,'04-sb/trial/tsukuyomi.ts': tsukuyomi,'04-sb/trial/yojimbo.ts': yojimbo,'04-sb/ultimate/ultima_weapon_ultimate.ts': ultima_weapon_ultimate,'04-sb/ultimate/unending_coil_ultimate.ts': unending_coil_ultimate,'05-shb/alliance/the_copied_factory.ts': the_copied_factory,'05-shb/alliance/the_puppets_bunker.ts': the_puppets_bunker,'05-shb/alliance/the_tower_at_paradigms_breach.ts': the_tower_at_paradigms_breach,'05-shb/dungeon/akadaemia_anyder.ts': akadaemia_anyder,'05-shb/dungeon/amaurot.ts': amaurot,'05-shb/dungeon/anamnesis_anyder.ts': anamnesis_anyder,'05-shb/dungeon/dohn_mheg.ts': dohn_mheg,'05-shb/dungeon/heroes_gauntlet.ts': heroes_gauntlet,'05-shb/dungeon/holminster_switch.ts': holminster_switch,'05-shb/dungeon/malikahs_well.ts': malikahs_well,'05-shb/dungeon/matoyas_relict.ts': matoyas_relict,'05-shb/dungeon/mt_gulg.ts': mt_gulg,'05-shb/dungeon/paglthan.ts': paglthan,'05-shb/dungeon/qitana_ravel.ts': qitana_ravel,'05-shb/dungeon/the_grand_cosmos.ts': the_grand_cosmos,'05-shb/dungeon/twinning.ts': twinning,'05-shb/eureka/delubrum_reginae.ts': delubrum_reginae,'05-shb/eureka/delubrum_reginae_savage.ts': delubrum_reginae_savage,'05-shb/raid/e10n.ts': e10n,'05-shb/raid/e10s.ts': e10s,'05-shb/raid/e11n.ts': e11n,'05-shb/raid/e11s.ts': e11s,'05-shb/raid/e12n.ts': e12n,'05-shb/raid/e12s.ts': e12s,'05-shb/raid/e1n.ts': e1n,'05-shb/raid/e1s.ts': e1s,'05-shb/raid/e2n.ts': e2n,'05-shb/raid/e2s.ts': e2s,'05-shb/raid/e3n.ts': e3n,'05-shb/raid/e3s.ts': e3s,'05-shb/raid/e4n.ts': e4n,'05-shb/raid/e4s.ts': e4s,'05-shb/raid/e5n.ts': e5n,'05-shb/raid/e5s.ts': e5s,'05-shb/raid/e6n.ts': e6n,'05-shb/raid/e6s.ts': e6s,'05-shb/raid/e7n.ts': e7n,'05-shb/raid/e7s.ts': e7s,'05-shb/raid/e8n.ts': e8n,'05-shb/raid/e8s.ts': e8s,'05-shb/raid/e9n.ts': e9n,'05-shb/raid/e9s.ts': e9s,'05-shb/trial/diamond_weapon-ex.ts': diamond_weapon_ex,'05-shb/trial/diamond_weapon.ts': diamond_weapon,'05-shb/trial/emerald_weapon-ex.ts': emerald_weapon_ex,'05-shb/trial/emerald_weapon.ts': emerald_weapon,'05-shb/trial/hades-ex.ts': hades_ex,'05-shb/trial/hades.ts': hades,'05-shb/trial/innocence-ex.ts': innocence_ex,'05-shb/trial/innocence.ts': innocence,'05-shb/trial/levi-un.ts': levi_un,'05-shb/trial/ruby_weapon-ex.ts': ruby_weapon_ex,'05-shb/trial/ruby_weapon.ts': ruby_weapon,'05-shb/trial/shiva-un.ts': shiva_un,'05-shb/trial/titan-un.ts': titan_un,'05-shb/trial/titania-ex.ts': titania_ex,'05-shb/trial/titania.ts': titania,'05-shb/trial/varis-ex.ts': varis_ex,'05-shb/trial/wol-ex.ts': wol_ex,'05-shb/trial/wol.ts': wol,'05-shb/ultimate/the_epic_of_alexander.ts': the_epic_of_alexander,'06-ew/alliance/aglaia.ts': aglaia,'06-ew/alliance/euphrosyne.ts': euphrosyne,'06-ew/alliance/thaleia.ts': thaleia,'06-ew/dungeon/aetherfont.ts': aetherfont,'06-ew/dungeon/aloalo_island.ts': aloalo_island,'06-ew/dungeon/alzadaals_legacy.ts': alzadaals_legacy,'06-ew/dungeon/another_aloalo_island-savage.ts': another_aloalo_island_savage,'06-ew/dungeon/another_aloalo_island.ts': another_aloalo_island,'06-ew/dungeon/another_mount_rokkon-savage.ts': another_mount_rokkon_savage,'06-ew/dungeon/another_mount_rokkon.ts': another_mount_rokkon,'06-ew/dungeon/another_sildihn_subterrane-savage.ts': another_sildihn_subterrane_savage,'06-ew/dungeon/another_sildihn_subterrane.ts': another_sildihn_subterrane,'06-ew/dungeon/ktisis_hyperboreia.ts': ktisis_hyperboreia,'06-ew/dungeon/lapis_manalis.ts': lapis_manalis,'06-ew/dungeon/mount_rokkon.ts': mount_rokkon,'06-ew/dungeon/smileton.ts': smileton,'06-ew/dungeon/stigma_dreamscape.ts': stigma_dreamscape,'06-ew/dungeon/the_aitiascope.ts': the_aitiascope,'06-ew/dungeon/the_dead_ends.ts': the_dead_ends,'06-ew/dungeon/the_fell_court_of_troia.ts': the_fell_court_of_troia,'06-ew/dungeon/the_lunar_subteranne.ts': the_lunar_subteranne,'06-ew/dungeon/the_sildihn_subterrane.ts': the_sildihn_subterrane,'06-ew/dungeon/the_tower_of_babil.ts': the_tower_of_babil,'06-ew/dungeon/the_tower_of_zot.ts': the_tower_of_zot,'06-ew/dungeon/vanaspati.ts': vanaspati,'06-ew/raid/p10n.ts': p10n,'06-ew/raid/p10s.ts': p10s,'06-ew/raid/p11n.ts': p11n,'06-ew/raid/p11s.ts': p11s,'06-ew/raid/p12n.ts': p12n,'06-ew/raid/p12s.ts': p12s,'06-ew/raid/p1n.ts': p1n,'06-ew/raid/p1s.ts': p1s,'06-ew/raid/p2n.ts': p2n,'06-ew/raid/p2s.ts': p2s,'06-ew/raid/p3n.ts': p3n,'06-ew/raid/p3s.ts': p3s,'06-ew/raid/p4n.ts': p4n,'06-ew/raid/p4s.ts': p4s,'06-ew/raid/p5n.ts': p5n,'06-ew/raid/p5s.ts': p5s,'06-ew/raid/p6n.ts': p6n,'06-ew/raid/p6s.ts': p6s,'06-ew/raid/p7n.ts': p7n,'06-ew/raid/p7s.ts': p7s,'06-ew/raid/p8n.ts': p8n,'06-ew/raid/p8s.ts': p8s,'06-ew/raid/p9n.ts': p9n,'06-ew/raid/p9s.ts': p9s,'06-ew/trial/asura.ts': asura,'06-ew/trial/barbariccia-ex.ts': barbariccia_ex,'06-ew/trial/barbariccia.ts': barbariccia,'06-ew/trial/endsinger-ex.ts': endsinger_ex,'06-ew/trial/endsinger.ts': endsinger,'06-ew/trial/golbez-ex.ts': golbez_ex,'06-ew/trial/golbez.ts': golbez,'06-ew/trial/hydaelyn-ex.ts': hydaelyn_ex,'06-ew/trial/hydaelyn.ts': hydaelyn,'06-ew/trial/rubicante-ex.ts': rubicante_ex,'06-ew/trial/rubicante.ts': rubicante,'06-ew/trial/sephirot-un.ts': sephirot_un,'06-ew/trial/sophia-un.ts': sophia_un,'06-ew/trial/thordan-un.ts': thordan_un,'06-ew/trial/ultima-un.ts': ultima_un,'06-ew/trial/zeromus-ex.ts': zeromus_ex,'06-ew/trial/zeromus.ts': zeromus,'06-ew/trial/zodiark-ex.ts': zodiark_ex,'06-ew/trial/zodiark.ts': zodiark,'06-ew/trial/zurvan-un.ts': zurvan_un,'06-ew/ultimate/dragonsongs_reprise_ultimate.ts': dragonsongs_reprise_ultimate,'06-ew/ultimate/the_omega_protocol.ts': the_omega_protocol,'07-dt/alliance/jeuno-first-walk.ts': jeuno_first_walk,'07-dt/dungeon/alexandria.ts': alexandria,'07-dt/dungeon/ihuykatumu.ts': ihuykatumu,'07-dt/dungeon/meso-terminal.ts': meso_terminal,'07-dt/dungeon/origenics.ts': origenics,'07-dt/dungeon/skydeep-cenote.ts': skydeep_cenote,'07-dt/dungeon/strayborough-deadwalk.ts': strayborough_deadwalk,'07-dt/dungeon/the_underkeep.ts': the_underkeep,'07-dt/dungeon/vanguard.ts': vanguard,'07-dt/dungeon/worqor-zormor.ts': worqor_zormor,'07-dt/dungeon/yuweyawata.ts': yuweyawata,'07-dt/raid/r11n.ts': r11n,'07-dt/raid/r1n.ts': r1n,'07-dt/raid/r1s.ts': r1s,'07-dt/raid/r2n.ts': r2n,'07-dt/raid/r2s.ts': r2s,'07-dt/raid/r3n.ts': r3n,'07-dt/raid/r3s.ts': r3s,'07-dt/raid/r4n.ts': r4n,'07-dt/raid/r4s.ts': r4s,'07-dt/raid/r5n.ts': r5n,'07-dt/raid/r5s.ts': r5s,'07-dt/raid/r6n.ts': r6n,'07-dt/raid/r6s.ts': r6s,'07-dt/raid/r7n.ts': r7n,'07-dt/raid/r7s.ts': r7s,'07-dt/raid/r8n.ts': r8n,'07-dt/raid/r8s.ts': r8s,'07-dt/trial/byakko-un.ts': byakko_un,'07-dt/trial/seiryu-un.ts': seiryu_un,'07-dt/trial/suzaku-un.ts': suzaku_un,'07-dt/trial/tsukuyomi-un.ts': tsukuyomi_un,'07-dt/trial/valigarmanda-ex.ts': valigarmanda_ex,'07-dt/trial/valigarmanda.ts': valigarmanda,'07-dt/trial/zelenia-ex.ts': zelenia_ex,'07-dt/trial/zelenia.ts': zelenia,'07-dt/trial/zoraal-ja-ex.ts': zoraal_ja_ex,'07-dt/trial/zoraal-ja.ts': zoraal_ja,'07-dt/ultimate/futures_rewritten.ts': futures_rewritten,});
+
+
+
+/* harmony default export */ const oopsy_manifest = ({'00-misc/general.ts': general,'00-misc/test.ts': test,'02-arr/trial/ifrit-nm.ts': ifrit_nm,'02-arr/trial/levi-ex.ts': levi_ex,'02-arr/trial/shiva-ex.ts': shiva_ex,'02-arr/trial/shiva-hm.ts': shiva_hm,'02-arr/trial/titan-ex.ts': titan_ex,'02-arr/trial/titan-hm.ts': titan_hm,'02-arr/trial/titan-nm.ts': titan_nm,'02-arr/trial/ultima-ex.ts': ultima_ex,'03-hw/alliance/weeping_city.ts': weeping_city,'03-hw/dungeon/aetherochemical_research_facility.ts': aetherochemical_research_facility,'03-hw/dungeon/baelsars_wall.ts': baelsars_wall,'03-hw/dungeon/fractal_continuum.ts': fractal_continuum,'03-hw/dungeon/gubal_library_hard.ts': gubal_library_hard,'03-hw/dungeon/sohm_al_hard.ts': sohm_al_hard,'03-hw/dungeon/the_lost_city_of_amdapor_hard.ts': the_lost_city_of_amdapor_hard,'03-hw/raid/a10n.ts': a10n,'03-hw/raid/a12n.ts': a12n,'03-hw/raid/a3n.ts': a3n,'03-hw/raid/a6n.ts': a6n,'03-hw/trial/sephirot-ex.ts': sephirot_ex,'03-hw/trial/sophia-ex.ts': sophia_ex,'03-hw/trial/thordan-ex.ts': thordan_ex,'03-hw/trial/zurvan-ex.ts': zurvan_ex,'04-sb/alliance/orbonne_monastery.ts': orbonne_monastery,'04-sb/alliance/ridorana_lighthouse.ts': ridorana_lighthouse,'04-sb/alliance/royal_city_of_rabanastre.ts': royal_city_of_rabanastre,'04-sb/dungeon/ala_mhigo.ts': ala_mhigo,'04-sb/dungeon/bardams_mettle.ts': bardams_mettle,'04-sb/dungeon/castrum_abania.ts': castrum_abania,'04-sb/dungeon/doma_castle.ts': doma_castle,'04-sb/dungeon/drowned_city_of_skalla.ts': drowned_city_of_skalla,'04-sb/dungeon/fractal_continuum_hard.ts': fractal_continuum_hard,'04-sb/dungeon/ghimlyt_dark.ts': ghimlyt_dark,'04-sb/dungeon/hells_lid.ts': hells_lid,'04-sb/dungeon/kugane_castle.ts': kugane_castle,'04-sb/dungeon/shisui_of_the_violet_tides.ts': shisui_of_the_violet_tides,'04-sb/dungeon/sirensong_sea.ts': sirensong_sea,'04-sb/dungeon/st_mocianne_hard.ts': st_mocianne_hard,'04-sb/dungeon/swallows_compass.ts': swallows_compass,'04-sb/dungeon/temple_of_the_fist.ts': temple_of_the_fist,'04-sb/dungeon/the_burn.ts': the_burn,'04-sb/raid/o10n.ts': o10n,'04-sb/raid/o10s.ts': o10s,'04-sb/raid/o11n.ts': o11n,'04-sb/raid/o11s.ts': o11s,'04-sb/raid/o12n.ts': o12n,'04-sb/raid/o12s.ts': o12s,'04-sb/raid/o1n.ts': o1n,'04-sb/raid/o1s.ts': o1s,'04-sb/raid/o2n.ts': o2n,'04-sb/raid/o2s.ts': o2s,'04-sb/raid/o3n.ts': o3n,'04-sb/raid/o3s.ts': o3s,'04-sb/raid/o4n.ts': o4n,'04-sb/raid/o4s.ts': o4s,'04-sb/raid/o5n.ts': o5n,'04-sb/raid/o5s.ts': o5s,'04-sb/raid/o6n.ts': o6n,'04-sb/raid/o6s.ts': o6s,'04-sb/raid/o7n.ts': o7n,'04-sb/raid/o7s.ts': o7s,'04-sb/raid/o8n.ts': o8n,'04-sb/raid/o8s.ts': o8s,'04-sb/raid/o9n.ts': o9n,'04-sb/raid/o9s.ts': o9s,'04-sb/trial/byakko-ex.ts': byakko_ex,'04-sb/trial/byakko.ts': byakko,'04-sb/trial/lakshmi-ex.ts': lakshmi_ex,'04-sb/trial/lakshmi.ts': lakshmi,'04-sb/trial/rathalos-ex.ts': rathalos_ex,'04-sb/trial/rathalos.ts': rathalos,'04-sb/trial/seiryu-ex.ts': seiryu_ex,'04-sb/trial/seiryu.ts': seiryu,'04-sb/trial/shinryu-ex.ts': shinryu_ex,'04-sb/trial/shinryu.ts': shinryu,'04-sb/trial/susano-ex.ts': susano_ex,'04-sb/trial/susano.ts': susano,'04-sb/trial/suzaku-ex.ts': suzaku_ex,'04-sb/trial/suzaku.ts': suzaku,'04-sb/trial/tsukuyomi-ex.ts': tsukuyomi_ex,'04-sb/trial/tsukuyomi.ts': tsukuyomi,'04-sb/trial/yojimbo.ts': yojimbo,'04-sb/ultimate/ultima_weapon_ultimate.ts': ultima_weapon_ultimate,'04-sb/ultimate/unending_coil_ultimate.ts': unending_coil_ultimate,'05-shb/alliance/the_copied_factory.ts': the_copied_factory,'05-shb/alliance/the_puppets_bunker.ts': the_puppets_bunker,'05-shb/alliance/the_tower_at_paradigms_breach.ts': the_tower_at_paradigms_breach,'05-shb/dungeon/akadaemia_anyder.ts': akadaemia_anyder,'05-shb/dungeon/amaurot.ts': amaurot,'05-shb/dungeon/anamnesis_anyder.ts': anamnesis_anyder,'05-shb/dungeon/dohn_mheg.ts': dohn_mheg,'05-shb/dungeon/heroes_gauntlet.ts': heroes_gauntlet,'05-shb/dungeon/holminster_switch.ts': holminster_switch,'05-shb/dungeon/malikahs_well.ts': malikahs_well,'05-shb/dungeon/matoyas_relict.ts': matoyas_relict,'05-shb/dungeon/mt_gulg.ts': mt_gulg,'05-shb/dungeon/paglthan.ts': paglthan,'05-shb/dungeon/qitana_ravel.ts': qitana_ravel,'05-shb/dungeon/the_grand_cosmos.ts': the_grand_cosmos,'05-shb/dungeon/twinning.ts': twinning,'05-shb/eureka/delubrum_reginae.ts': delubrum_reginae,'05-shb/eureka/delubrum_reginae_savage.ts': delubrum_reginae_savage,'05-shb/raid/e10n.ts': e10n,'05-shb/raid/e10s.ts': e10s,'05-shb/raid/e11n.ts': e11n,'05-shb/raid/e11s.ts': e11s,'05-shb/raid/e12n.ts': e12n,'05-shb/raid/e12s.ts': e12s,'05-shb/raid/e1n.ts': e1n,'05-shb/raid/e1s.ts': e1s,'05-shb/raid/e2n.ts': e2n,'05-shb/raid/e2s.ts': e2s,'05-shb/raid/e3n.ts': e3n,'05-shb/raid/e3s.ts': e3s,'05-shb/raid/e4n.ts': e4n,'05-shb/raid/e4s.ts': e4s,'05-shb/raid/e5n.ts': e5n,'05-shb/raid/e5s.ts': e5s,'05-shb/raid/e6n.ts': e6n,'05-shb/raid/e6s.ts': e6s,'05-shb/raid/e7n.ts': e7n,'05-shb/raid/e7s.ts': e7s,'05-shb/raid/e8n.ts': e8n,'05-shb/raid/e8s.ts': e8s,'05-shb/raid/e9n.ts': e9n,'05-shb/raid/e9s.ts': e9s,'05-shb/trial/diamond_weapon-ex.ts': diamond_weapon_ex,'05-shb/trial/diamond_weapon.ts': diamond_weapon,'05-shb/trial/emerald_weapon-ex.ts': emerald_weapon_ex,'05-shb/trial/emerald_weapon.ts': emerald_weapon,'05-shb/trial/hades-ex.ts': hades_ex,'05-shb/trial/hades.ts': hades,'05-shb/trial/innocence-ex.ts': innocence_ex,'05-shb/trial/innocence.ts': innocence,'05-shb/trial/levi-un.ts': levi_un,'05-shb/trial/ruby_weapon-ex.ts': ruby_weapon_ex,'05-shb/trial/ruby_weapon.ts': ruby_weapon,'05-shb/trial/shiva-un.ts': shiva_un,'05-shb/trial/titan-un.ts': titan_un,'05-shb/trial/titania-ex.ts': titania_ex,'05-shb/trial/titania.ts': titania,'05-shb/trial/varis-ex.ts': varis_ex,'05-shb/trial/wol-ex.ts': wol_ex,'05-shb/trial/wol.ts': wol,'05-shb/ultimate/the_epic_of_alexander.ts': the_epic_of_alexander,'06-ew/alliance/aglaia.ts': aglaia,'06-ew/alliance/euphrosyne.ts': euphrosyne,'06-ew/alliance/thaleia.ts': thaleia,'06-ew/dungeon/aetherfont.ts': aetherfont,'06-ew/dungeon/aloalo_island.ts': aloalo_island,'06-ew/dungeon/alzadaals_legacy.ts': alzadaals_legacy,'06-ew/dungeon/another_aloalo_island-savage.ts': another_aloalo_island_savage,'06-ew/dungeon/another_aloalo_island.ts': another_aloalo_island,'06-ew/dungeon/another_mount_rokkon-savage.ts': another_mount_rokkon_savage,'06-ew/dungeon/another_mount_rokkon.ts': another_mount_rokkon,'06-ew/dungeon/another_sildihn_subterrane-savage.ts': another_sildihn_subterrane_savage,'06-ew/dungeon/another_sildihn_subterrane.ts': another_sildihn_subterrane,'06-ew/dungeon/ktisis_hyperboreia.ts': ktisis_hyperboreia,'06-ew/dungeon/lapis_manalis.ts': lapis_manalis,'06-ew/dungeon/mount_rokkon.ts': mount_rokkon,'06-ew/dungeon/smileton.ts': smileton,'06-ew/dungeon/stigma_dreamscape.ts': stigma_dreamscape,'06-ew/dungeon/the_aitiascope.ts': the_aitiascope,'06-ew/dungeon/the_dead_ends.ts': the_dead_ends,'06-ew/dungeon/the_fell_court_of_troia.ts': the_fell_court_of_troia,'06-ew/dungeon/the_lunar_subteranne.ts': the_lunar_subteranne,'06-ew/dungeon/the_sildihn_subterrane.ts': the_sildihn_subterrane,'06-ew/dungeon/the_tower_of_babil.ts': the_tower_of_babil,'06-ew/dungeon/the_tower_of_zot.ts': the_tower_of_zot,'06-ew/dungeon/vanaspati.ts': vanaspati,'06-ew/raid/p10n.ts': p10n,'06-ew/raid/p10s.ts': p10s,'06-ew/raid/p11n.ts': p11n,'06-ew/raid/p11s.ts': p11s,'06-ew/raid/p12n.ts': p12n,'06-ew/raid/p12s.ts': p12s,'06-ew/raid/p1n.ts': p1n,'06-ew/raid/p1s.ts': p1s,'06-ew/raid/p2n.ts': p2n,'06-ew/raid/p2s.ts': p2s,'06-ew/raid/p3n.ts': p3n,'06-ew/raid/p3s.ts': p3s,'06-ew/raid/p4n.ts': p4n,'06-ew/raid/p4s.ts': p4s,'06-ew/raid/p5n.ts': p5n,'06-ew/raid/p5s.ts': p5s,'06-ew/raid/p6n.ts': p6n,'06-ew/raid/p6s.ts': p6s,'06-ew/raid/p7n.ts': p7n,'06-ew/raid/p7s.ts': p7s,'06-ew/raid/p8n.ts': p8n,'06-ew/raid/p8s.ts': p8s,'06-ew/raid/p9n.ts': p9n,'06-ew/raid/p9s.ts': p9s,'06-ew/trial/asura.ts': asura,'06-ew/trial/barbariccia-ex.ts': barbariccia_ex,'06-ew/trial/barbariccia.ts': barbariccia,'06-ew/trial/endsinger-ex.ts': endsinger_ex,'06-ew/trial/endsinger.ts': endsinger,'06-ew/trial/golbez-ex.ts': golbez_ex,'06-ew/trial/golbez.ts': golbez,'06-ew/trial/hydaelyn-ex.ts': hydaelyn_ex,'06-ew/trial/hydaelyn.ts': hydaelyn,'06-ew/trial/rubicante-ex.ts': rubicante_ex,'06-ew/trial/rubicante.ts': rubicante,'06-ew/trial/sephirot-un.ts': sephirot_un,'06-ew/trial/sophia-un.ts': sophia_un,'06-ew/trial/thordan-un.ts': thordan_un,'06-ew/trial/ultima-un.ts': ultima_un,'06-ew/trial/zeromus-ex.ts': zeromus_ex,'06-ew/trial/zeromus.ts': zeromus,'06-ew/trial/zodiark-ex.ts': zodiark_ex,'06-ew/trial/zodiark.ts': zodiark,'06-ew/trial/zurvan-un.ts': zurvan_un,'06-ew/ultimate/dragonsongs_reprise_ultimate.ts': dragonsongs_reprise_ultimate,'06-ew/ultimate/the_omega_protocol.ts': the_omega_protocol,'07-dt/alliance/jeuno-first-walk.ts': jeuno_first_walk,'07-dt/dungeon/alexandria.ts': alexandria,'07-dt/dungeon/ihuykatumu.ts': ihuykatumu,'07-dt/dungeon/meso-terminal.ts': meso_terminal,'07-dt/dungeon/origenics.ts': origenics,'07-dt/dungeon/skydeep-cenote.ts': skydeep_cenote,'07-dt/dungeon/strayborough-deadwalk.ts': strayborough_deadwalk,'07-dt/dungeon/the_underkeep.ts': the_underkeep,'07-dt/dungeon/vanguard.ts': vanguard,'07-dt/dungeon/worqor-zormor.ts': worqor_zormor,'07-dt/dungeon/yuweyawata.ts': yuweyawata,'07-dt/raid/r10s.ts': r10s,'07-dt/raid/r11n.ts': r11n,'07-dt/raid/r11s.ts': r11s,'07-dt/raid/r1n.ts': r1n,'07-dt/raid/r1s.ts': r1s,'07-dt/raid/r2n.ts': r2n,'07-dt/raid/r2s.ts': r2s,'07-dt/raid/r3n.ts': r3n,'07-dt/raid/r3s.ts': r3s,'07-dt/raid/r4n.ts': r4n,'07-dt/raid/r4s.ts': r4s,'07-dt/raid/r5n.ts': r5n,'07-dt/raid/r5s.ts': r5s,'07-dt/raid/r6n.ts': r6n,'07-dt/raid/r6s.ts': r6s,'07-dt/raid/r7n.ts': r7n,'07-dt/raid/r7s.ts': r7s,'07-dt/raid/r8n.ts': r8n,'07-dt/raid/r8s.ts': r8s,'07-dt/raid/r9s.ts': r9s,'07-dt/trial/byakko-un.ts': byakko_un,'07-dt/trial/seiryu-un.ts': seiryu_un,'07-dt/trial/suzaku-un.ts': suzaku_un,'07-dt/trial/tsukuyomi-un.ts': tsukuyomi_un,'07-dt/trial/valigarmanda-ex.ts': valigarmanda_ex,'07-dt/trial/valigarmanda.ts': valigarmanda,'07-dt/trial/zelenia-ex.ts': zelenia_ex,'07-dt/trial/zelenia.ts': zelenia,'07-dt/trial/zoraal-ja-ex.ts': zoraal_ja_ex,'07-dt/trial/zoraal-ja.ts': zoraal_ja,'07-dt/ultimate/futures_rewritten.ts': futures_rewritten,});
 
 /***/ })
 

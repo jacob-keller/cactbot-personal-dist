@@ -19611,7 +19611,7 @@ const bozja_encounters_data = {
       'fr': 'Menace spectrale',
       'ja': '怨念の死霊「スパルトイ」',
       'ko': '원념의 사령 \'스파르토이\'',
-      'tc': '怨念死靈——地生人'
+      'tc': '怨念死靈——地浮靈'
     }
   },
   'TheFiresOfWar': {
@@ -20930,7 +20930,7 @@ const pet_names_data = {
   'fr': ['Carbuncle émeraude', 'Carbuncle topaze', 'Eos', 'Selene', 'Auto-tourelle Tour', 'Auto-tourelle Fou', 'Demi-Bahamut', 'Demi-Phénix', 'Séraphin', 'Carbuncle hécatolite', 'Estime', 'Automate Reine', 'Ombre', 'Carbuncle', 'Carbuncle rubis', 'Ifrit-Egi', 'Titan-Egi', 'Garuda-Egi', 'Ifrit rubis', 'Titan topaze', 'Garuda émeraude', 'Carbuncle ambre', 'Carbuncle obsidienne', 'Sol-Bahamut'],
   'ja': ['カーバンクル・エメラルド', 'カーバンクル・トパーズ', 'フェアリー・エオス', 'フェアリー・セレネ', 'オートタレット・ルーク', 'オートタレット・ビショップ', 'デミ・バハムート', 'デミ・フェニックス', 'セラフィム', 'カーバンクル・ムーンストーン', '英雄の影身', 'オートマトン・クイーン', '分身', 'カーバンクル', 'カーバンクル・ルビー', 'イフリート・エギ', 'タイタン・エギ', 'ガルーダ・エギ', 'イフリート・ルビー', 'タイタン・トパーズ', 'ガルーダ・エメラルド', 'カーバンクル・アンバー', 'カーバンクル・オブシダン', 'ソルバハムート'],
   'ko': ['카벙클 에메랄드', '카벙클 토파즈', '요정 에오스', '요정 셀레네', '자동포탑 룩', '자동포탑 비숍', '데미바하무트', '데미피닉스', '세라핌', '카벙클 문스톤', '영웅의 환영', '자동인형 퀸', '분신', '카벙클', '카벙클 루비', '이프리트 에기', '타이탄 에기', '가루다 에기', '이프리트 루비', '타이탄 토파즈', '가루다 에메랄드', '카벙클 앰버', '카벙클 옵시디언', '솔 바하무트'],
-  'tc': ['卡邦庫爾 綠寶石', '卡邦庫爾 黃寶石', '朝日小仙女', '夕月小仙女', '車型浮游砲塔', '象型浮游砲塔', '亞靈神巴哈姆特', '亞靈神鳳凰', '熾天使', '卡邦庫爾 月長石', '英雄的掠影', '后型自走人偶', '分身', '卡邦庫爾', '卡邦庫爾 紅寶石', '伊弗利特 艾基', '泰坦 艾基', '迦樓羅 艾基', '伊弗利特 紅寶石', '泰坦 黃寶石', '迦樓羅 綠寶石', '卡邦庫爾 琥珀石', '卡邦庫爾 黑曜石', '烈日巴哈姆特']
+  'tc': ['卡邦庫爾-綠寶石', '卡邦庫爾-黃寶石', '朝日小仙女', '夕月小仙女', '車型浮游砲塔', '象型浮游砲塔', '亞靈神巴哈姆特', '亞靈神鳳凰', '熾天使', '卡邦庫爾-月長石', '英雄的掠影', '后型自走人偶', '分身', '卡邦庫爾', '卡邦庫爾-紅寶石', '伊弗利特-艾基', '泰坦-艾基', '迦樓羅-艾基', '伊弗利特-紅寶石', '泰坦-黃寶石', '迦樓羅-綠寶石', '卡邦庫爾-琥珀石', '卡邦庫爾-黑曜石', '烈日巴哈姆特']
 };
 /* harmony default export */ const pet_names = (pet_names_data);
 ;// CONCATENATED MODULE: ./resources/south_horn_ce_map.ts
@@ -21467,6 +21467,7 @@ const zone_id_data = {
   'AnnoyTheVoid': 222,
   'AnotherAloaloIsland': 1179,
   'AnotherAloaloIslandSavage': 1180,
+  'AnotherMerchantsTale': 1317,
   'AnotherMountRokkon': 1155,
   'AnotherMountRokkonSavage': 1156,
   'AnotherSildihnSubterrane': 1075,
@@ -21904,6 +21905,8 @@ const zone_id_data = {
   'TheLostCityOfAmdaporHard': 519,
   'TheLunarSubterrane': 1164,
   'TheMaskedCarnivale': 796,
+  'TheMerchantsTale': 1315,
+  'TheMerchantsTaleAdvanced': 1316,
   'TheMesoTerminal': 1292,
   'TheMightiestShield': 1217,
   'TheMinstrelsBalladEndsingersAria': 998,
@@ -26561,7 +26564,7 @@ const zone_info_data = {
       'fr': 'La légende de Musosai : l\'assassin de Limsa Lominsa',
       'ja': '海都を震わす人斬りの宴！',
       'ko': '해양도시를 흔드는 살인자의 연회!',
-      'tc': '海之都路人身首異'
+      'tc': '海都路人身首異'
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -28198,7 +28201,7 @@ const zone_info_data = {
       'fr': 'Amaurote',
       'ja': '終末幻想 アーモロート',
       'ko': '아모로트',
-      'tc': '末日暗影亞馬烏羅提'
+      'tc': '終末幻想亞馬烏羅提'
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -30899,7 +30902,7 @@ const zone_info_data = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
-      'cn': '异闻迷宫 异闻希拉狄哈水道',
+      'cn': '异闻希拉狄哈水道',
       'de': 'Die kuriose Unterstadt von Sil\'dih',
       'en': 'Another Sil\'dihn Subterrane',
       'fr': 'Les canalisations sildiennes annexes - Donjon alternatif',
@@ -30916,7 +30919,7 @@ const zone_info_data = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
-      'cn': '异闻迷宫 零式异闻希拉狄哈水道',
+      'cn': '零式异闻希拉狄哈水道',
       'de': 'Die kuriose Unterstadt von Sil\'dih (episch)',
       'en': 'Another Sil\'dihn Subterrane (Savage)',
       'fr': 'Les canalisations sildiennes annexes - Donjon alternatif (sadique)',
@@ -31949,7 +31952,7 @@ const zone_info_data = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
-      'cn': '异闻迷宫 异闻六根山',
+      'cn': '异闻六根山',
       'de': 'Der kuriose Rokkon',
       'en': 'Another Mount Rokkon',
       'fr': 'Le mont Rokkon annexe - Donjon alternatif',
@@ -31966,7 +31969,7 @@ const zone_info_data = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
-      'cn': '异闻迷宫 零式异闻六根山',
+      'cn': '零式异闻六根山',
       'de': 'Der kuriose Rokkon (episch)',
       'en': 'Another Mount Rokkon (Savage)',
       'fr': 'Le mont Rokkon annexe - Donjon alternatif (sadique)',
@@ -32218,7 +32221,7 @@ const zone_info_data = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
-      'cn': '异闻迷宫 异闻阿罗阿罗岛',
+      'cn': '异闻阿罗阿罗岛',
       'de': 'Kurioses Aloalo',
       'en': 'Another Aloalo Island',
       'fr': 'L\'île d\'Aloalo annexe - Donjon alternatif',
@@ -32235,7 +32238,7 @@ const zone_info_data = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
-      'cn': '异闻迷宫 零式异闻阿罗阿罗岛',
+      'cn': '零式异闻阿罗阿罗岛',
       'de': 'Kurioses Aloalo (episch)',
       'en': 'Another Aloalo Island (Savage)',
       'fr': 'L\'île d\'Aloalo annexe - Donjon alternatif (sadique)',
@@ -32758,7 +32761,8 @@ const zone_info_data = {
       'en': 'AAC Light-heavyweight M1',
       'fr': 'Poids mi-lourds CCA - match 1',
       'ja': '至天の座アルカディア：ライトヘビー級1',
-      'ko': '아르카디아 선수권: 라이트헤비급 1'
+      'ko': '아르카디아 선수권: 라이트헤비급 1',
+      'tc': '阿卡狄亞登天鬥技場 輕量級1'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -32790,7 +32794,8 @@ const zone_info_data = {
       'en': 'AAC Light-heavyweight M2',
       'fr': 'Poids mi-lourds CCA - match 2',
       'ja': '至天の座アルカディア：ライトヘビー級2',
-      'ko': '아르카디아 선수권: 라이트헤비급 2'
+      'ko': '아르카디아 선수권: 라이트헤비급 2',
+      'tc': '阿卡狄亞登天鬥技場 輕量級2'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -32822,7 +32827,8 @@ const zone_info_data = {
       'en': 'AAC Light-heavyweight M3',
       'fr': 'Poids mi-lourds CCA - match 3',
       'ja': '至天の座アルカディア：ライトヘビー級3',
-      'ko': '아르카디아 선수권: 라이트헤비급 3'
+      'ko': '아르카디아 선수권: 라이트헤비급 3',
+      'tc': '阿卡狄亞登天鬥技場 輕量級3'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -32854,7 +32860,8 @@ const zone_info_data = {
       'en': 'AAC Light-heavyweight M4',
       'fr': 'Poids mi-lourds CCA - match 4',
       'ja': '至天の座アルカディア：ライトヘビー級4',
-      'ko': '아르카디아 선수권: 라이트헤비급 4'
+      'ko': '아르카디아 선수권: 라이트헤비급 4',
+      'tc': '阿卡狄亞登天鬥技場 輕量級4'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -33764,6 +33771,51 @@ const zone_info_data = {
     'offsetY': -475,
     'sizeFactor': 200,
     'weatherRate': 37
+  },
+  1315: {
+    'contentType': 30,
+    'exVersion': 5,
+    'name': {
+      'cn': '多变迷宫 商客奇谭',
+      'de': 'Des Händlers Liebesmüh',
+      'en': 'The Merchant\'s Tale',
+      'fr': 'Contes du Camelot - Donjon à embranchements',
+      'ja': 'ヴァリアントダンジョン 商客物語'
+    },
+    'offsetX': 574,
+    'offsetY': -666,
+    'sizeFactor': 200,
+    'weatherRate': 0
+  },
+  1316: {
+    'contentType': 30,
+    'exVersion': 5,
+    'name': {
+      'cn': '深读商客奇谭',
+      'de': 'Des Händlers Liebesmüh (fortgeschritten)',
+      'en': 'The Merchant\'s Tale (Advanced)',
+      'fr': 'Contes du Camelot - Donjon à embranchements (avancé)',
+      'ja': 'アドバンスド・ヴァリアントダンジョン 商客物語'
+    },
+    'offsetX': 580,
+    'offsetY': -750,
+    'sizeFactor': 200,
+    'weatherRate': 0
+  },
+  1317: {
+    'contentType': 30,
+    'exVersion': 5,
+    'name': {
+      'cn': '异闻商客奇谭',
+      'de': 'Des Händlers kuriose Liebesmüh',
+      'en': 'Another Merchant\'s Tale',
+      'fr': 'Contes du Camelot annexes - Donjon alternatif',
+      'ja': 'アナザーダンジョン 異聞商客物語'
+    },
+    'offsetX': -375,
+    'offsetY': -562,
+    'sizeFactor': 200,
+    'weatherRate': 0
   },
   1318: {
     'contentType': 4,

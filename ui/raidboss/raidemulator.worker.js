@@ -134,7 +134,7 @@ const data = {
   'fr': ['Carbuncle émeraude', 'Carbuncle topaze', 'Eos', 'Selene', 'Auto-tourelle Tour', 'Auto-tourelle Fou', 'Demi-Bahamut', 'Demi-Phénix', 'Séraphin', 'Carbuncle hécatolite', 'Estime', 'Automate Reine', 'Ombre', 'Carbuncle', 'Carbuncle rubis', 'Ifrit-Egi', 'Titan-Egi', 'Garuda-Egi', 'Ifrit rubis', 'Titan topaze', 'Garuda émeraude', 'Carbuncle ambre', 'Carbuncle obsidienne', 'Sol-Bahamut'],
   'ja': ['カーバンクル・エメラルド', 'カーバンクル・トパーズ', 'フェアリー・エオス', 'フェアリー・セレネ', 'オートタレット・ルーク', 'オートタレット・ビショップ', 'デミ・バハムート', 'デミ・フェニックス', 'セラフィム', 'カーバンクル・ムーンストーン', '英雄の影身', 'オートマトン・クイーン', '分身', 'カーバンクル', 'カーバンクル・ルビー', 'イフリート・エギ', 'タイタン・エギ', 'ガルーダ・エギ', 'イフリート・ルビー', 'タイタン・トパーズ', 'ガルーダ・エメラルド', 'カーバンクル・アンバー', 'カーバンクル・オブシダン', 'ソルバハムート'],
   'ko': ['카벙클 에메랄드', '카벙클 토파즈', '요정 에오스', '요정 셀레네', '자동포탑 룩', '자동포탑 비숍', '데미바하무트', '데미피닉스', '세라핌', '카벙클 문스톤', '영웅의 환영', '자동인형 퀸', '분신', '카벙클', '카벙클 루비', '이프리트 에기', '타이탄 에기', '가루다 에기', '이프리트 루비', '타이탄 토파즈', '가루다 에메랄드', '카벙클 앰버', '카벙클 옵시디언', '솔 바하무트'],
-  'tc': ['卡邦庫爾 綠寶石', '卡邦庫爾 黃寶石', '朝日小仙女', '夕月小仙女', '車型浮游砲塔', '象型浮游砲塔', '亞靈神巴哈姆特', '亞靈神鳳凰', '熾天使', '卡邦庫爾 月長石', '英雄的掠影', '后型自走人偶', '分身', '卡邦庫爾', '卡邦庫爾 紅寶石', '伊弗利特 艾基', '泰坦 艾基', '迦樓羅 艾基', '伊弗利特 紅寶石', '泰坦 黃寶石', '迦樓羅 綠寶石', '卡邦庫爾 琥珀石', '卡邦庫爾 黑曜石', '烈日巴哈姆特']
+  'tc': ['卡邦庫爾-綠寶石', '卡邦庫爾-黃寶石', '朝日小仙女', '夕月小仙女', '車型浮游砲塔', '象型浮游砲塔', '亞靈神巴哈姆特', '亞靈神鳳凰', '熾天使', '卡邦庫爾-月長石', '英雄的掠影', '后型自走人偶', '分身', '卡邦庫爾', '卡邦庫爾-紅寶石', '伊弗利特-艾基', '泰坦-艾基', '迦樓羅-艾基', '伊弗利特-紅寶石', '泰坦-黃寶石', '迦樓羅-綠寶石', '卡邦庫爾-琥珀石', '卡邦庫爾-黑曜石', '烈日巴哈姆特']
 };
 /* harmony default export */ const pet_names = (data);
 ;// CONCATENATED MODULE: ./resources/netlog_defs.ts
@@ -5332,6 +5332,7 @@ const casterDpsJobs = ['BLU', 'RDM', 'BLM', 'SMN', 'ACN', 'THM', 'PCT'];
 const dpsJobs = [...meleeDpsJobs, ...rangedDpsJobs, ...casterDpsJobs];
 const craftingJobs = ['CRP', 'BSM', 'ARM', 'GSM', 'LTW', 'WVR', 'ALC', 'CUL'];
 const gatheringJobs = ['MIN', 'BTN', 'FSH'];
+const limitedJobs = ['BLU'];
 const stunJobs = ['BLU', ...tankJobs, ...meleeDpsJobs];
 const silenceJobs = ['BLU', ...tankJobs, ...rangedDpsJobs];
 const sleepJobs = [...casterDpsJobs, ...healerJobs];
@@ -5593,6 +5594,7 @@ const Util = {
   isCombatJob: job => {
     return !craftingJobs.includes(job) && !gatheringJobs.includes(job);
   },
+  isLimitedJob: job => limitedJobs.includes(job),
   canStun: job => stunJobs.includes(job),
   canSilence: job => silenceJobs.includes(job),
   canSleep: job => sleepJobs.includes(job),

@@ -5025,8 +5025,8 @@ const Responses = _responses__WEBPACK_IMPORTED_MODULE_7__/* .Responses */ .n3;
 
 const Outputs = _outputs__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z;
 
-const Util = _util__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z;
-const Directions = _util__WEBPACK_IMPORTED_MODULE_9__/* .Directions */ .N;
+const Util = _util__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .ZP;
+const Directions = _util__WEBPACK_IMPORTED_MODULE_9__/* .Directions */ .Ns;
 
 const ZoneId = _zone_id__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z;
 
@@ -5438,9 +5438,10 @@ if (typeof document !== 'undefined') {
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "N": () => (/* binding */ Directions),
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "Ns": () => (/* binding */ Directions),
+/* harmony export */   "ZP": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* unused harmony exports allJobs, tankJobs, healerJobs, meleeDpsJobs, rangedDpsJobs, casterDpsJobs, dpsJobs, craftingJobs, gatheringJobs, limitedJobs */
 /* harmony import */ var _netregexes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(622);
 /* harmony import */ var _outputs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(81);
 /* harmony import */ var _overlay_plugin_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(959);
@@ -5504,6 +5505,7 @@ const casterDpsJobs = ['BLU', 'RDM', 'BLM', 'SMN', 'ACN', 'THM', 'PCT'];
 const dpsJobs = [...meleeDpsJobs, ...rangedDpsJobs, ...casterDpsJobs];
 const craftingJobs = ['CRP', 'BSM', 'ARM', 'GSM', 'LTW', 'WVR', 'ALC', 'CUL'];
 const gatheringJobs = ['MIN', 'BTN', 'FSH'];
+const limitedJobs = ['BLU'];
 const stunJobs = ['BLU', ...tankJobs, ...meleeDpsJobs];
 const silenceJobs = ['BLU', ...tankJobs, ...rangedDpsJobs];
 const sleepJobs = [...casterDpsJobs, ...healerJobs];
@@ -5765,6 +5767,7 @@ const Util = {
   isCombatJob: job => {
     return !craftingJobs.includes(job) && !gatheringJobs.includes(job);
   },
+  isLimitedJob: job => limitedJobs.includes(job),
   canStun: job => stunJobs.includes(job),
   canSilence: job => silenceJobs.includes(job),
   canSleep: job => sleepJobs.includes(job),
@@ -5908,6 +5911,7 @@ const data = {
   'AnnoyTheVoid': 222,
   'AnotherAloaloIsland': 1179,
   'AnotherAloaloIslandSavage': 1180,
+  'AnotherMerchantsTale': 1317,
   'AnotherMountRokkon': 1155,
   'AnotherMountRokkonSavage': 1156,
   'AnotherSildihnSubterrane': 1075,
@@ -6345,6 +6349,8 @@ const data = {
   'TheLostCityOfAmdaporHard': 519,
   'TheLunarSubterrane': 1164,
   'TheMaskedCarnivale': 796,
+  'TheMerchantsTale': 1315,
+  'TheMerchantsTaleAdvanced': 1316,
   'TheMesoTerminal': 1292,
   'TheMightiestShield': 1217,
   'TheMinstrelsBalladEndsingersAria': 998,
@@ -11010,7 +11016,7 @@ const data = {
       'fr': 'La légende de Musosai : l\'assassin de Limsa Lominsa',
       'ja': '海都を震わす人斬りの宴！',
       'ko': '해양도시를 흔드는 살인자의 연회!',
-      'tc': '海之都路人身首異'
+      'tc': '海都路人身首異'
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -12647,7 +12653,7 @@ const data = {
       'fr': 'Amaurote',
       'ja': '終末幻想 アーモロート',
       'ko': '아모로트',
-      'tc': '末日暗影亞馬烏羅提'
+      'tc': '終末幻想亞馬烏羅提'
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -15348,7 +15354,7 @@ const data = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
-      'cn': '异闻迷宫 异闻希拉狄哈水道',
+      'cn': '异闻希拉狄哈水道',
       'de': 'Die kuriose Unterstadt von Sil\'dih',
       'en': 'Another Sil\'dihn Subterrane',
       'fr': 'Les canalisations sildiennes annexes - Donjon alternatif',
@@ -15365,7 +15371,7 @@ const data = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
-      'cn': '异闻迷宫 零式异闻希拉狄哈水道',
+      'cn': '零式异闻希拉狄哈水道',
       'de': 'Die kuriose Unterstadt von Sil\'dih (episch)',
       'en': 'Another Sil\'dihn Subterrane (Savage)',
       'fr': 'Les canalisations sildiennes annexes - Donjon alternatif (sadique)',
@@ -16398,7 +16404,7 @@ const data = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
-      'cn': '异闻迷宫 异闻六根山',
+      'cn': '异闻六根山',
       'de': 'Der kuriose Rokkon',
       'en': 'Another Mount Rokkon',
       'fr': 'Le mont Rokkon annexe - Donjon alternatif',
@@ -16415,7 +16421,7 @@ const data = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
-      'cn': '异闻迷宫 零式异闻六根山',
+      'cn': '零式异闻六根山',
       'de': 'Der kuriose Rokkon (episch)',
       'en': 'Another Mount Rokkon (Savage)',
       'fr': 'Le mont Rokkon annexe - Donjon alternatif (sadique)',
@@ -16667,7 +16673,7 @@ const data = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
-      'cn': '异闻迷宫 异闻阿罗阿罗岛',
+      'cn': '异闻阿罗阿罗岛',
       'de': 'Kurioses Aloalo',
       'en': 'Another Aloalo Island',
       'fr': 'L\'île d\'Aloalo annexe - Donjon alternatif',
@@ -16684,7 +16690,7 @@ const data = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
-      'cn': '异闻迷宫 零式异闻阿罗阿罗岛',
+      'cn': '零式异闻阿罗阿罗岛',
       'de': 'Kurioses Aloalo (episch)',
       'en': 'Another Aloalo Island (Savage)',
       'fr': 'L\'île d\'Aloalo annexe - Donjon alternatif (sadique)',
@@ -17207,7 +17213,8 @@ const data = {
       'en': 'AAC Light-heavyweight M1',
       'fr': 'Poids mi-lourds CCA - match 1',
       'ja': '至天の座アルカディア：ライトヘビー級1',
-      'ko': '아르카디아 선수권: 라이트헤비급 1'
+      'ko': '아르카디아 선수권: 라이트헤비급 1',
+      'tc': '阿卡狄亞登天鬥技場 輕量級1'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -17239,7 +17246,8 @@ const data = {
       'en': 'AAC Light-heavyweight M2',
       'fr': 'Poids mi-lourds CCA - match 2',
       'ja': '至天の座アルカディア：ライトヘビー級2',
-      'ko': '아르카디아 선수권: 라이트헤비급 2'
+      'ko': '아르카디아 선수권: 라이트헤비급 2',
+      'tc': '阿卡狄亞登天鬥技場 輕量級2'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -17271,7 +17279,8 @@ const data = {
       'en': 'AAC Light-heavyweight M3',
       'fr': 'Poids mi-lourds CCA - match 3',
       'ja': '至天の座アルカディア：ライトヘビー級3',
-      'ko': '아르카디아 선수권: 라이트헤비급 3'
+      'ko': '아르카디아 선수권: 라이트헤비급 3',
+      'tc': '阿卡狄亞登天鬥技場 輕量級3'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -17303,7 +17312,8 @@ const data = {
       'en': 'AAC Light-heavyweight M4',
       'fr': 'Poids mi-lourds CCA - match 4',
       'ja': '至天の座アルカディア：ライトヘビー級4',
-      'ko': '아르카디아 선수권: 라이트헤비급 4'
+      'ko': '아르카디아 선수권: 라이트헤비급 4',
+      'tc': '阿卡狄亞登天鬥技場 輕量級4'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -18213,6 +18223,51 @@ const data = {
     'offsetY': -475,
     'sizeFactor': 200,
     'weatherRate': 37
+  },
+  1315: {
+    'contentType': 30,
+    'exVersion': 5,
+    'name': {
+      'cn': '多变迷宫 商客奇谭',
+      'de': 'Des Händlers Liebesmüh',
+      'en': 'The Merchant\'s Tale',
+      'fr': 'Contes du Camelot - Donjon à embranchements',
+      'ja': 'ヴァリアントダンジョン 商客物語'
+    },
+    'offsetX': 574,
+    'offsetY': -666,
+    'sizeFactor': 200,
+    'weatherRate': 0
+  },
+  1316: {
+    'contentType': 30,
+    'exVersion': 5,
+    'name': {
+      'cn': '深读商客奇谭',
+      'de': 'Des Händlers Liebesmüh (fortgeschritten)',
+      'en': 'The Merchant\'s Tale (Advanced)',
+      'fr': 'Contes du Camelot - Donjon à embranchements (avancé)',
+      'ja': 'アドバンスド・ヴァリアントダンジョン 商客物語'
+    },
+    'offsetX': 580,
+    'offsetY': -750,
+    'sizeFactor': 200,
+    'weatherRate': 0
+  },
+  1317: {
+    'contentType': 30,
+    'exVersion': 5,
+    'name': {
+      'cn': '异闻商客奇谭',
+      'de': 'Des Händlers kuriose Liebesmüh',
+      'en': 'Another Merchant\'s Tale',
+      'fr': 'Contes du Camelot annexes - Donjon alternatif',
+      'ja': 'アナザーダンジョン 異聞商客物語'
+    },
+    'offsetX': -375,
+    'offsetY': -562,
+    'sizeFactor': 200,
+    'weatherRate': 0
   },
   1318: {
     'contentType': 4,
