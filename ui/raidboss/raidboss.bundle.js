@@ -11270,7 +11270,7 @@ const data = {
       'fr': 'La bataille des clans',
       'ja': '影隠忍法帖',
       'ko': '그림자 인법첩',
-      'tc': '影隱忍法貼'
+      'tc': '影隱忍法帖'
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -17060,7 +17060,8 @@ const data = {
       'en': 'Cenote Ja Ja Gural',
       'fr': 'Cénote Ja Ja Gural',
       'ja': '宝物庫 セノーテ・ジャジャグラル',
-      'ko': '보물고 세노테 쟈쟈구랄'
+      'ko': '보물고 세노테 쟈쟈구랄',
+      'tc': '加加財富天坑'
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -17246,7 +17247,8 @@ const data = {
       'en': 'AAC Light-heavyweight M1 (Savage)',
       'fr': 'Poids mi-lourds CCA - match 1 (sadique)',
       'ja': '至天の座アルカディア零式：ライトヘビー級1',
-      'ko': '아르카디아 선수권: 라이트헤비급(영웅) 1'
+      'ko': '아르카디아 선수권: 라이트헤비급(영웅) 1',
+      'tc': '阿卡狄亞零式登天鬥技場 輕量級1'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -17279,7 +17281,8 @@ const data = {
       'en': 'AAC Light-heavyweight M2 (Savage)',
       'fr': 'Poids mi-lourds CCA - match 2 (sadique)',
       'ja': '至天の座アルカディア零式：ライトヘビー級2',
-      'ko': '아르카디아 선수권: 라이트헤비급(영웅) 2'
+      'ko': '아르카디아 선수권: 라이트헤비급(영웅) 2',
+      'tc': '阿卡狄亞零式登天鬥技場 輕量級2'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -17312,7 +17315,8 @@ const data = {
       'en': 'AAC Light-heavyweight M3 (Savage)',
       'fr': 'Poids mi-lourds CCA - match 3 (sadique)',
       'ja': '至天の座アルカディア零式：ライトヘビー級3',
-      'ko': '아르카디아 선수권: 라이트헤비급(영웅) 3'
+      'ko': '아르카디아 선수권: 라이트헤비급(영웅) 3',
+      'tc': '阿卡狄亞零式登天鬥技場 輕量級3'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -17345,7 +17349,8 @@ const data = {
       'en': 'AAC Light-heavyweight M4 (Savage)',
       'fr': 'Poids mi-lourds CCA - match 4 (sadique)',
       'ja': '至天の座アルカディア零式：ライトヘビー級4',
-      'ko': '아르카디아 선수권: 라이트헤비급(영웅) 4'
+      'ko': '아르카디아 선수권: 라이트헤비급(영웅) 4',
+      'tc': '阿卡狄亞零式登天鬥技場 輕量級4'
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -18248,7 +18253,8 @@ const data = {
       'de': 'Des Händlers Liebesmüh',
       'en': 'The Merchant\'s Tale',
       'fr': 'Contes du Camelot - Donjon à embranchements',
-      'ja': 'ヴァリアントダンジョン 商客物語'
+      'ja': 'ヴァリアントダンジョン 商客物語',
+      'ko': '변형 던전: 상인 이야기'
     },
     'offsetX': 574,
     'offsetY': -666,
@@ -18263,7 +18269,8 @@ const data = {
       'de': 'Des Händlers Liebesmüh (fortgeschritten)',
       'en': 'The Merchant\'s Tale (Advanced)',
       'fr': 'Contes du Camelot - Donjon à embranchements (avancé)',
-      'ja': 'アドバンスド・ヴァリアントダンジョン 商客物語'
+      'ja': 'アドバンスド・ヴァリアントダンジョン 商客物語',
+      'ko': '상급 변형 던전: 상인 이야기'
     },
     'offsetX': 580,
     'offsetY': -750,
@@ -18278,7 +18285,8 @@ const data = {
       'de': 'Des Händlers kuriose Liebesmüh',
       'en': 'Another Merchant\'s Tale',
       'fr': 'Contes du Camelot annexes - Donjon alternatif',
-      'ja': 'アナザーダンジョン 異聞商客物語'
+      'ja': 'アナザーダンジョン 異聞商客物語',
+      'ko': '파생 던전: 번외 상인 이야기'
     },
     'offsetX': -375,
     'offsetY': -562,
