@@ -22856,21 +22856,22 @@ class PopupText {
     this.triggerSets.push(...this.options.Triggers);
 
     // Eliminate any trigger sets with duplicate ids, allowing later ones to override earlier ones.
-    const uniqueById = new Map();
-    const noIdList = [];
-    for (const triggerSet of this.triggerSets) {
-      if (triggerSet.id === undefined) {
-        noIdList.push(triggerSet);
-        continue;
+    // Filter the list to keep the last instance of each ID while preserving order.
+    const lastVersionOfId = new Map();
+    for (const set of this.triggerSets) {
+      if (set.id !== undefined) {
+        const existing = lastVersionOfId.get(set.id);
+        if (existing !== undefined) {
+          console.log(`Overriding trigger set id '${set.id}' from '${existing.filename}' with '${set.filename}'`);
+        }
+        lastVersionOfId.set(set.id, set);
       }
-      const existing = uniqueById.get(triggerSet.id);
-      if (existing !== undefined) {
-        console.log(`Overriding trigger set id '${triggerSet.id}' from '${existing.filename}' with '${triggerSet.filename}'`);
-      }
-      uniqueById.set(triggerSet.id, triggerSet);
     }
-    this.triggerSets = [...noIdList, ...uniqueById.values()];
-    this.triggerSetsById = Object.fromEntries(uniqueById);
+    this.triggerSets = this.triggerSets.filter(set => {
+      if (set.id === undefined) return true;
+      return lastVersionOfId.get(set.id) === set;
+    });
+    this.triggerSetsById = Object.fromEntries(lastVersionOfId);
   }
   OnChangeZone(e) {
     // Note: this must check zone id and not zone name, as there are some zone name collisions.

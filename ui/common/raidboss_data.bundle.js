@@ -243558,8 +243558,6 @@ const raid_r12n_namespaceObject = "### AAC HEAVYWEIGHT (M4)\r\n# ZoneId: 1326\r\
 
 // TODO: Verify EU/JP strategy configurations and Emergency Meeting (NA) strategy
 // TODO: Replication 4 strategy use for stack/defamation bait locations?
-// TODO: Twisted Vision 5 Tower spots
-// TODO: Twisted Vision 5 Lindwurm\'s Stone III (Earth Tower) locations
 const r12s_headMarkerData = {
   // Phase 1
   // VFX: com_share3t
@@ -243719,11 +243717,12 @@ const r12s_triggerSet = {
       en: {
         'DN Strategy: Boss North, Cones NE/NW, Stacks E/W, Defamations SE/SW, Nothing South': 'dn',
         'Banana Codex Strategy: Boss West, Stacks NW/SW, Cones N/S, Defamations NE/SE, Nothing E': 'banana',
+        'Banana Codex Relative Strategy: Same as Banana Codex, but use relative callouts for mechanics': 'banana-relative',
         'Nukemaru Strategy: Boss East, Stacks NE/SE, Cones N/S, Defamations NW/SW, Nothing W': 'nukemaru',
         'No strategy: Calls the tether you may have and to get a tether.': 'none'
       }
     },
-    default: 'none'
+    default: 'banana-relative'
   }, {
     id: 'replication4Strategy',
     name: {
@@ -243739,7 +243738,7 @@ const r12s_triggerSet = {
         'No strategy: Calls the tether you may have and to get a tether.': 'none'
       }
     },
-    default: 'none'
+    default: 'dn'
   }, {
     id: 'portentStrategy',
     name: {
@@ -243748,13 +243747,13 @@ const r12s_triggerSet = {
     type: 'select',
     options: {
       en: {
-        'DN Strategy: Dark N Hitbox, Wind Middle Hitbox, Earth/Fire N/S Max Melee': 'dn',
+        'DN Strategy: Dark N Hitbox, Wind Middle Hitbox, Earth/Fire Melee N of Platform (Between Dark/Wind), Fire/Earth Range S Edge of Platform': 'dn',
         'Zenith Strategy: Wind N Max Melee, Earth/Dark Middle (Lean North), Fire S Max Melee': 'zenith',
         'Nukemaru Strategy: Near S (corner of numbered marker), Far S on Boss Hitbox, Earth/Fire Melee S Max Melee, Fire/Earth Range N of Platform': 'nukemaru',
         'No strategy: call element and debuff': 'none'
       }
     },
-    default: 'none'
+    default: 'dn'
   }],
   timelineFile: 'r12s.txt',
   initData: () => ({
@@ -243791,6 +243790,7 @@ const r12s_triggerSet = {
     replication4BossCloneDirNumPlayers: {},
     replication4PlayerOrder: [],
     replication4AbilityOrder: [],
+    cosmicKissPattern: [],
     hasLightResistanceDown: false,
     twistedVision4MechCounter: 0,
     doomPlayers: [],
@@ -246418,35 +246418,35 @@ const r12s_triggerSet = {
         switch (parseInt(myDirNum)) {
           case 0:
             return output.getTetherNClone({
-              tether: strat === 'dn' ? output.getBossTether() : strat === 'banana' ? output.getConeTetherCW() : strat === 'nukemaru' ? output.getConeTetherCCW() : output.getTether()
+              tether: strat === 'dn' ? output.getBossTether() : strat === 'banana' || strat === 'banana-relative' ? output.getConeTetherCW() : strat === 'nukemaru' ? output.getConeTetherCCW() : output.getTether()
             });
           case 1:
             return output.getTetherNEClone({
-              tether: strat === 'dn' ? output.getConeTetherCW() : strat === 'banana' ? output.getDefamationTetherCW() : strat === 'nukemaru' ? output.getStackTetherCCW() : output.getTether()
+              tether: strat === 'dn' ? output.getConeTetherCW() : strat === 'banana' || strat === 'banana-relative' ? output.getDefamationTetherCW() : strat === 'nukemaru' ? output.getStackTetherCCW() : output.getTether()
             });
           case 2:
             return output.getTetherEClone({
-              tether: strat === 'dn' ? output.getStackTetherCW() : strat === 'banana' ? output.getNoTether() : strat === 'nukemaru' ? output.getBossTether() : output.getTether()
+              tether: strat === 'dn' ? output.getStackTetherCW() : strat === 'banana' || strat === 'banana-relative' ? output.getNoTether() : strat === 'nukemaru' ? output.getBossTether() : output.getTether()
             });
           case 3:
             return output.getTetherSEClone({
-              tether: strat === 'dn' ? output.getDefamationTetherCW() : strat === 'banana' ? output.getDefamationTetherCCW() : strat === 'nukemaru' ? output.getStackTetherCW() : output.getTether()
+              tether: strat === 'dn' ? output.getDefamationTetherCW() : strat === 'banana' || strat === 'banana-relative' ? output.getDefamationTetherCCW() : strat === 'nukemaru' ? output.getStackTetherCW() : output.getTether()
             });
           case 4:
             return output.getTetherSClone({
-              tether: strat === 'dn' ? output.getNoTether() : strat === 'banana' ? output.getConeTetherCCW() : strat === 'nukemaru' ? output.getConeTetherCW() : output.getTether()
+              tether: strat === 'dn' ? output.getNoTether() : strat === 'banana' || strat === 'banana-relative' ? output.getConeTetherCCW() : strat === 'nukemaru' ? output.getConeTetherCW() : output.getTether()
             });
           case 5:
             return output.getTetherSWClone({
-              tether: strat === 'dn' ? output.getDefamationTetherCCW() : strat === 'banana' ? output.getStackTetherCCW() : strat === 'nukemaru' ? output.getDefamationTetherCW() : output.getTether()
+              tether: strat === 'dn' ? output.getDefamationTetherCCW() : strat === 'banana' || strat === 'banana-relative' ? output.getStackTetherCCW() : strat === 'nukemaru' ? output.getDefamationTetherCW() : output.getTether()
             });
           case 6:
             return output.getTetherWClone({
-              tether: strat === 'dn' ? output.getStackTetherCCW() : strat === 'banana' ? output.getBossTether() : strat === 'nukemaru' ? output.getNoTether() : output.getTether()
+              tether: strat === 'dn' ? output.getStackTetherCCW() : strat === 'banana' || strat === 'banana-relative' ? output.getBossTether() : strat === 'nukemaru' ? output.getNoTether() : output.getTether()
             });
           case 7:
             return output.getTetherNWClone({
-              tether: strat === 'dn' ? output.getConeTetherCCW() : strat === 'banana' ? output.getStackTetherCW() : strat === 'nukemaru' ? output.getDefamationTetherCCW() : output.getTether()
+              tether: strat === 'dn' ? output.getConeTetherCCW() : strat === 'banana' || strat === 'banana-relative' ? output.getStackTetherCW() : strat === 'nukemaru' ? output.getDefamationTetherCCW() : output.getTether()
             });
         }
       }
@@ -246526,7 +246526,11 @@ const r12s_triggerSet = {
           // Not Yet Supported, File a Feature Request or PR
           return 'unknown';
         };
-        data.replication2StrategyDetected = detectStrategy(data.replication2AbilityOrder);
+        const detectedStrat = detectStrategy(data.replication2AbilityOrder);
+
+        // Only use relative callouts if user configured the relative
+        // strategy option.
+        if (detectedStrat === 'banana' && data.triggerSetConfig.replication2Strategy === 'banana-relative') data.replication2StrategyDetected = 'banana-relative';else data.replication2StrategyDetected = detectedStrat;
       }
     }
   }, {
@@ -246550,6 +246554,8 @@ const r12s_triggerSet = {
           strat: output.north()
         }) : strat === 'banana' ? output.baitJumpBananaW({
           strat: output.west()
+        }) : strat === 'banana-relative' ? output.baitJumpBananaW({
+          strat: output.north()
         }) : strat === 'nukemaru' ? output.baitJumpNukemaruE({
           strat: output.east()
         }) : output.baitJump()
@@ -246571,6 +246577,9 @@ const r12s_triggerSet = {
                   mech1: strat === 'banana' ? output.baitProteanBananaN({
                     strat: output['dirWSW']()
                   }) // Southmost protean
+                  : strat === 'banana-relative' ? output.baitProteanBananaN({
+                    strat: output['dirNNW']()
+                  }) // Relative westmost protean
                   : strat === 'nukemaru' ? output.baitProteanNukemaruN({
                     strat: output['dirENE']()
                   }) // Northmost protean
@@ -246590,6 +246599,9 @@ const r12s_triggerSet = {
                   mech1: strat === 'banana' ? output.baitProteanBananaS({
                     strat: output['dirWNW']()
                   }) // Northmost protean
+                  : strat === 'banana-relative' ? output.baitProteanBananaS({
+                    strat: output['dirNNE']()
+                  }) // Relative Eastmost protean
                   : strat === 'nukemaru' ? output.baitProteanNukemaruN({
                     strat: output['dirESE']()
                   }) // Southmost protean
@@ -246609,6 +246621,8 @@ const r12s_triggerSet = {
                 strat: output.north()
               }) : strat === 'banana' ? output.baitProteanBanana({
                 strat: output.west()
+              }) : strat === 'banana-relative' ? output.baitProteanBanana({
+                strat: output.north()
               }) : strat === 'nukemaru' ? output.baitProteanNukemaru({
                 strat: output.east()
               }) : output.baitProtean()
@@ -246621,6 +246635,9 @@ const r12s_triggerSet = {
                   mech1: strat === 'banana' ? output.defamationOnYouBananaNE({
                     strat: output['dirNNE']()
                   }) // North/NNE
+                  : strat === 'banana-relative' ? output.defamationOnYouBananaNE({
+                    strat: output['dirESE']()
+                  }) // Relative East/ESE
                   : output.defamationOnYou()
                 });
               case 3:
@@ -246632,6 +246649,9 @@ const r12s_triggerSet = {
                   : strat === 'banana' ? output.defamationOnYouBananaSE({
                     strat: output['dirSSE']()
                   }) // South/SSE
+                  : strat === 'banana-relative' ? output.defamationOnYouBananaSE({
+                    strat: output['dirWSW']()
+                  }) // Relative West/WSW
                   : output.defamationOnYou()
                 });
               case 5:
@@ -246689,6 +246709,9 @@ const r12s_triggerSet = {
                   mech1: strat === 'banana' ? output.baitProteanBananaSW({
                     strat: output.west()
                   }) // Inner WSW
+                  : strat === 'banana-relative' ? output.baitProteanBananaSW({
+                    strat: output.north()
+                  }) // Relative Inner NNW
                   : output.baitProtean()
                 });
               case 6:
@@ -246705,6 +246728,9 @@ const r12s_triggerSet = {
                   mech1: strat === 'banana' ? output.baitProteanBananaNW({
                     strat: output.west()
                   }) // Inner WNW
+                  : strat === 'banana-relative' ? output.baitProteanBananaNW({
+                    strat: output.north()
+                  }) // Relative Inner NNE
                   : output.baitProtean()
                 });
             }
@@ -246713,6 +246739,8 @@ const r12s_triggerSet = {
                 strat: output.north()
               }) : strat === 'banana' ? output.baitProteanBanana({
                 strat: output.west()
+              }) : strat === 'banana-relative' ? output.baitProteanBanana({
+                strat: output.north()
               }) : output.baitProtean()
             });
         }
@@ -246730,6 +246758,9 @@ const r12s_triggerSet = {
                 mech1: strat === 'banana' ? output.baitProteanBananaN({
                   strat: output['dirWSW']()
                 }) // Southmost protean
+                : strat === 'banana-relative' ? output.baitProteanBananaN({
+                  strat: output['dirNNW']()
+                }) // Relative Westmost protean
                 : strat === 'nukemaru' ? output.baitProteanNukemaruN({
                   strat: output['dirENE']()
                 }) // Northmost protean
@@ -246751,6 +246782,9 @@ const r12s_triggerSet = {
                 mech1: strat === 'banana' ? output.baitProteanBananaS({
                   strat: output['dirWNW']()
                 }) // Northmost protean
+                : strat === 'banana-relative' ? output.baitProteanBananaN({
+                  strat: output['dirNNE']()
+                }) // Relative Eastmost protean
                 : strat === 'nukemaru' ? output.baitProteanNukemaruS({
                   strat: output['dirESE']()
                 }) // Southmost protean
@@ -246772,6 +246806,8 @@ const r12s_triggerSet = {
               strat: output.north()
             }) : strat === 'banana' ? output.baitProteanBanana({
               strat: output.west()
+            }) : strat === 'banana-relative' ? output.baitProteanBanana({
+              strat: output.north()
             }) : strat === 'nukemaru' ? output.baitProteanNukemaru({
               strat: output.east()
             }) : output.baitProtean()
@@ -246785,6 +246821,9 @@ const r12s_triggerSet = {
                 mech1: strat === 'banana' ? output.defamationOnYouBananaNE({
                   strat: output['dirNNE']()
                 }) // North/NNE
+                : strat === 'banana-relative' ? output.defamationOnYouBananaNE({
+                  strat: output['dirESE']()
+                }) // Relative East/ESE
                 : output.defamationOnYou()
               });
             case 3:
@@ -246797,6 +246836,9 @@ const r12s_triggerSet = {
                 : strat === 'banana' ? output.defamationOnYouBananaSE({
                   strat: output['dirSSE']()
                 }) // South/SSE
+                : strat === 'banana-relative' ? output.defamationOnYouBananaSE({
+                  strat: output['dirWSW']()
+                }) // Relative West/WSW
                 : output.defamationOnYou()
               });
             case 5:
@@ -246861,6 +246903,9 @@ const r12s_triggerSet = {
                 mech1: strat === 'banana' ? output.baitProteanBananaSW({
                   strat: output.west()
                 }) // Inner WSW
+                : strat === 'banana-relative' ? output.baitProteanBananaSW({
+                  strat: output.north()
+                }) // Relative Inner NNW
                 : output.baitProtean()
               });
             case 6:
@@ -246879,6 +246924,9 @@ const r12s_triggerSet = {
                 mech1: strat === 'banana' ? output.baitProteanBananaNW({
                   strat: output.west()
                 }) // Inner WNW
+                : strat === 'banana-relative' ? output.baitProteanBananaNW({
+                  strat: output.north()
+                }) // Relative Inner NNE
                 : output.baitProtean()
               });
           }
@@ -246888,6 +246936,8 @@ const r12s_triggerSet = {
               strat: output.north()
             }) : strat === 'banana' ? output.baitProteanBanana({
               strat: output.west()
+            }) : strat === 'banana-relative' ? output.baitProteanBanana({
+              strat: output.north()
             }) : strat === 'nukemaru' ? output.baitProteanBanana({
               strat: output.east()
             }) : output.baitProtean()
@@ -246918,18 +246968,6 @@ const r12s_triggerSet = {
       },
       defamationOnYouNukemaruNW: {
         en: 'Defamation on YOU, Go ${strat}'
-      },
-      baitFarDefamation: {
-        en: 'Bait Far Defamation'
-      },
-      baitFarDefamationDN: {
-        en: 'Bait Far Defamation (Go ${strat})'
-      },
-      baitFarDefamationBanana: {
-        en: 'Bait Far Defamation (Go ${strat})'
-      },
-      baitFarDefamationNukemaru: {
-        en: 'Bait Far Defamation (Go ${strat})'
       },
       baitProtean: {
         en: 'Bait Protean from Boss'
@@ -247039,6 +247077,8 @@ const r12s_triggerSet = {
           strat: output.south()
         }) : strat === 'banana' ? output.baitFarDefamationBanana({
           strat: output.east()
+        }) : strat === 'banana-relative' ? output.baitFarDefamationBanana({
+          strat: output.south()
         }) : strat === 'nukemaru' ? output.baitFarDefamationNukemaru({
           strat: output.west()
         }) : output.baitFarDefamation(),
@@ -247279,7 +247319,7 @@ const r12s_triggerSet = {
       }
 
       // Banana Codex and Nukemaru Strategies
-      if (strat === 'banana' || strat === 'nukemaru') {
+      if (strat === 'banana' || strat === 'banana-relative' || strat === 'nukemaru') {
         // Technically, these strategies do not care about Near/Far, but
         // included as informational
         switch (ability) {
@@ -247291,7 +247331,7 @@ const r12s_triggerSet = {
             });
           case r12s_headMarkerData['manaBurstTether']:
             return output.manaBurstTetherHitbox({
-              mech1: strat === 'banana' ? output.hitboxBanana() : output.hitboxNukemaru(),
+              mech1: strat === 'banana' ? output.hitboxBanana() : strat === 'banana-relative' ? output.hitboxBananaRelative() : output.hitboxNukemaru(),
               spiteBaits: isNear ? output.near() : output.far(),
               mech2: output.stackDir({
                 dir: strat === 'banana' ? output.dirSW() : output.dirNE()
@@ -247305,7 +247345,7 @@ const r12s_triggerSet = {
             });
           case r12s_headMarkerData['fireballSplashTether']:
             return output.fireballSplashTetherHitbox({
-              mech1: strat === 'banana' ? output.hitboxBanana() : output.hitboxNukemaru(),
+              mech1: strat === 'banana' ? output.hitboxBanana() : strat === 'banana-relative' ? output.hitboxBananaRelative() : output.hitboxNukemaru(),
               spiteBaits: isNear ? output.near() : output.far(),
               mech2: output.stackDir({
                 dir: strat === 'banana' ? output.dirSW() : output.dirNE()
@@ -247313,7 +247353,7 @@ const r12s_triggerSet = {
             });
         }
         return output.noTetherHitbox({
-          mech1: strat === 'banana' ? output.hitboxBanana() : output.hitboxNukemaru(),
+          mech1: strat === 'banana' ? output.hitboxBanana() : strat === 'banana-relative' ? output.hitboxBananaRelative() : output.hitboxNukemaru(),
           spiteBaits: isNear ? output.near() : output.far(),
           mech2: output.stackDir({
             dir: strat === 'banana' ? output.dirSW() : output.dirNE()
@@ -247367,6 +247407,9 @@ const r12s_triggerSet = {
       },
       hitboxBanana: {
         en: 'Be West on Boss Hitbox'
+      },
+      hitboxBananaRelative: {
+        en: 'Be North on Boss Hitbox'
       },
       hitboxNukemaru: {
         en: 'Be West on Boss Hitbox'
@@ -248746,6 +248789,49 @@ const r12s_triggerSet = {
       }
     }
   }, {
+    id: 'R12S CombatantMemory Tower Collect',
+    // Towers spawn in these Locations:
+    // (81.7574, 95.7574)  (90.2426, 95.7574)   |   (109.7574, 95.7574)  (118.2426, 95.7574)
+    // (81.7574, 104.2426) (90.2426, 104.2426)  |   (109.7574, 104.2426) (118.2426, 104.2426)
+    // The patterns will be the same on both platforms (not mirrored)
+    // There are only two patterns.
+    // Earth/Wind are North, Fire/Dark are South
+    // Wind/Dark and Fire/Earth are diagonal from each other on each platform
+    // So if we know where one tower is, we know where all are
+    // Wind:  1EBF25
+    // Dark:  1EBF26
+    // Earth: 1EBF27
+    // Fire:  1EBF28
+    type: 'CombatantMemory',
+    netRegex: {
+      change: 'Add',
+      pair: [{
+        key: 'BNpcID',
+        value: ['1EBF25', '1EBF26', '1EBF27', '1EBF28']
+      }],
+      capture: true
+    },
+    suppressSeconds: 9999,
+    run: (data, matches) => {
+      const x = parseFloat(matches.pairPosX ?? '0');
+      const towerMap = {
+        '1EBF25': 'wind',
+        '1EBF26': 'dark',
+        '1EBF27': 'earth',
+        '1EBF28': 'fire',
+        'unknown': 'unknown'
+      };
+      const pattern1 = ['earth', 'wind', 'dark', 'fire'];
+      const pattern2 = ['wind', 'earth', 'fire', 'dark'];
+      const bnpcid = matches.pairBNpcID ?? 'unknown';
+      const kind = towerMap[bnpcid];
+      if (kind === 'earth' || kind === 'dark') {
+        if (x > 81 && x < 83 || x > 109 && x < 111) data.cosmicKissPattern = pattern1;else data.cosmicKissPattern = pattern2;
+      } else if (kind === 'wind' || kind === 'fire') {
+        if (x > 81 && x < 83 || x > 109 && x < 111) data.cosmicKissPattern = pattern2;else data.cosmicKissPattern = pattern1;
+      }
+    }
+  }, {
     id: 'R12S Arcadian Arcanum',
     // Players hit will receive 1044 Light Resistance Down II debuff
     type: 'StartsUsing',
@@ -249085,6 +249171,31 @@ const r12s_triggerSet = {
       }
     }
   }, {
+    id: 'R12S Cosmic Kiss Tower Collect',
+    // Map the Cosmic Kiss player is hit by back to the tower type
+    // Actors will be at the same locations as the towers
+    type: 'Ability',
+    netRegex: {
+      id: 'B4F4',
+      source: 'Lindwurm',
+      capture: true
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    delaySeconds: 0.1,
+    // Need to delay for position data to update
+    run: (data, matches) => {
+      const actor = data.actorPositions[matches.sourceId];
+      const towers = data.cosmicKissPattern;
+      if (actor === undefined || towers.length !== 4) return;
+      const x = actor.x;
+      const y = actor.y;
+      if (x > 81 && x < 83 || x > 109 && x < 111) {
+        data.myCosmicKiss = data.cosmicKissPattern[y < r12s_center.y ? 0 : 2];
+      } else if (x > 89 && x < 91 || x > 117 && x < 119) {
+        data.myCosmicKiss = data.cosmicKissPattern[y < r12s_center.y ? 1 : 3];
+      }
+    }
+  }, {
     id: 'R12S Hot-blooded Collect',
     // Player can still cast, but shouldn't move for 5s duration
     type: 'GainsEffect',
@@ -249107,7 +249218,6 @@ const r12s_triggerSet = {
     response: responses/* Responses.stopMoving */.n3.stopMoving()
   }, {
     id: 'R12S Idyllic Dream Lindwurm\'s Stone III',
-    // TODO: Get their target locations and output avoid
     // 5s castTime
     type: 'StartsUsing',
     netRegex: {
@@ -249118,15 +249228,46 @@ const r12s_triggerSet = {
     condition: data => {
       // Avoid simultaneous trigger for Pyretic player as they wouldn't be at the earth location
       if (data.hasPyretic) return false;
-      // Handle this in Doom clense instead
+      // Handle this in Doom cleanse instead
       if (data.CanCleanse()) return false;
+      return true;
     },
     durationSeconds: (_data, matches) => parseFloat(matches.castTime),
     suppressSeconds: 1,
-    infoText: (_data, _matches, output) => output.avoidEarthTower(),
+    promise: async data => {
+      const combatants = (await (0,overlay_plugin_api/* callOverlayHandler */.ae)({
+        call: 'getCombatants',
+        names: [data.me]
+      })).combatants;
+      const me = combatants[0];
+      if (combatants.length !== 1 || me === undefined) {
+        console.error(`R12S Idyllic Dream Lindwurm's Stone III: Wrong combatants count ${combatants.length}`);
+        return;
+      }
+      const x = me.PosX;
+      if (x < r12s_center.x) data.myPlatform = 'east';else data.myPlatform = 'west';
+    },
+    infoText: (data, _matches, output) => {
+      const pattern = data.cosmicKissPattern;
+      const platform = data.myPlatform;
+      if (pattern.length !== 4 || platform === undefined) return output.avoidEarthTower({
+        dir: output.south()
+      });
+      if (pattern[0] === 'earth' && platform === 'west' || pattern[1] === 'earth' && platform === 'east') return output.avoidEarthTower({
+        dir: output.in()
+      });
+      if (pattern[0] === 'earth' && platform === 'east' || pattern[1] === 'earth' && platform === 'west') return output.avoidEarthTower({
+        dir: output.southIn()
+      });
+    },
     outputStrings: {
+      south: outputs/* default.south */.Z.south,
+      in: outputs/* default.in */.Z["in"],
+      southIn: {
+        en: 'South + In'
+      },
       avoidEarthTower: {
-        en: 'Avoid Earth Tower'
+        en: '${dir} (Avoid Earth Tower)'
       }
     }
   }, {
@@ -249148,30 +249289,73 @@ const r12s_triggerSet = {
     condition: data => data.CanCleanse(),
     delaySeconds: 0.1,
     suppressSeconds: 1,
+    promise: async data => {
+      const combatants = (await (0,overlay_plugin_api/* callOverlayHandler */.ae)({
+        call: 'getCombatants',
+        names: [data.me]
+      })).combatants;
+      const me = combatants[0];
+      if (combatants.length !== 1 || me === undefined) {
+        console.error(`R12S Doom Cleanse: Wrong combatants count ${combatants.length}`);
+        return;
+      }
+      const x = me.PosX;
+      if (x < r12s_center.x) data.myPlatform = 'east';else data.myPlatform = 'west';
+    },
     infoText: (data, _matches, output) => {
+      const pattern = data.cosmicKissPattern;
+      const platform = data.myPlatform;
+      let dir;
+      if (pattern.length !== 4 || platform === undefined) dir = 'south';else if (pattern[0] === 'earth' && platform === 'west' || pattern[1] === 'earth' && platform === 'east') dir = 'in';else if (pattern[0] === 'earth' && platform === 'east' || pattern[1] === 'earth' && platform === 'west') dir = 'southIn';
+      if (dir === undefined) dir = 'south';
       const players = data.doomPlayers;
+      if (players.length > 2) {
+        // Mechanic was messed up, but recoverable
+        // Pyretic player shouldn't move and shouldn't need to avoid earth
+        if (data.hasPyretic) return output.cleanseDooms();
+        return output.mech({
+          cleanse: output.cleanseDooms(),
+          avoid: output.avoidEarthTower({
+            dir: output[dir]()
+          })
+        });
+      }
       if (players.length === 2) {
         const target1 = data.party.member(data.doomPlayers[0]);
         const target2 = data.party.member(data.doomPlayers[1]);
+        if (data.hasPyretic) return output.cleanseDoom2({
+          target1: target1,
+          target2: target2
+        });
         return output.mech({
           cleanse: output.cleanseDoom2({
             target1: target1,
             target2: target2
           }),
-          avoid: output.avoidEarthTower()
+          avoid: output.avoidEarthTower({
+            dir: output[dir]()
+          })
         });
       }
       if (players.length === 1) {
         const target1 = data.party.member(data.doomPlayers[0]);
+        if (data.hasPyretic) return output.cleanseDoom({
+          target: target1
+        });
         return output.mech({
           cleanse: output.cleanseDoom({
             target: target1
           }),
-          avoid: output.avoidEarthTower()
+          avoid: output.avoidEarthTower({
+            dir: output[dir]()
+          })
         });
       }
     },
     outputStrings: {
+      cleanseDooms: {
+        en: 'Cleanse Doom(s)'
+      },
       cleanseDoom: {
         en: 'Cleanse ${target}',
         de: 'Reinige ${target}',
@@ -249183,8 +249367,13 @@ const r12s_triggerSet = {
       cleanseDoom2: {
         en: 'Cleanse ${target1}/${target2}'
       },
+      south: outputs/* default.south */.Z.south,
+      in: outputs/* default.in */.Z["in"],
+      southIn: {
+        en: 'South + In'
+      },
       avoidEarthTower: {
-        en: 'Avoid Earth Tower'
+        en: '${dir}'
       },
       mech: {
         en: '${cleanse} + ${avoid}'
@@ -249203,12 +249392,42 @@ const r12s_triggerSet = {
     delaySeconds: 0.5,
     // Time until after Doom was expected
     suppressSeconds: 9999,
+    promise: async data => {
+      const combatants = (await (0,overlay_plugin_api/* callOverlayHandler */.ae)({
+        call: 'getCombatants',
+        names: [data.me]
+      })).combatants;
+      const me = combatants[0];
+      if (combatants.length !== 1 || me === undefined) {
+        console.error(`R12S Doom Cleanse: Wrong combatants count ${combatants.length}`);
+        return;
+      }
+      const x = me.PosX;
+      if (x < r12s_center.x) data.myPlatform = 'east';else data.myPlatform = 'west';
+    },
     infoText: (data, _matches, output) => {
-      if (data.doomPlayers[0] === undefined) return output.avoidEarthTower();
+      if (data.doomPlayers[0] === undefined) {
+        const pattern = data.cosmicKissPattern;
+        const platform = data.myPlatform;
+        if (pattern.length !== 4 || platform === undefined) return output.avoidEarthTower({
+          dir: output.south()
+        });
+        if (pattern[0] === 'earth' && platform === 'west' || pattern[1] === 'earth' && platform === 'east') return output.avoidEarthTower({
+          dir: output.in()
+        });
+        if (pattern[0] === 'earth' && platform === 'east' || pattern[1] === 'earth' && platform === 'west') return output.avoidEarthTower({
+          dir: output.southIn()
+        });
+      }
     },
     outputStrings: {
+      south: outputs/* default.south */.Z.south,
+      in: outputs/* default.in */.Z["in"],
+      southIn: {
+        en: 'South + In'
+      },
       avoidEarthTower: {
-        en: 'Avoid Earth Tower'
+        en: '${dir} (Avoid Earth Tower)'
       }
     }
   }, {
@@ -249226,7 +249445,7 @@ const r12s_triggerSet = {
     condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
     delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5.3,
     infoText: (data, matches, output) => {
-      if (matches.id === '129E') {
+      if (matches.effectId === '129E') {
         switch (data.triggerSetConfig.portentStrategy) {
           case 'dn':
             return output.farOnYouWindDN();
@@ -249308,7 +249527,7 @@ const r12s_triggerSet = {
     },
     outputStrings: {
       baitFireDN: {
-        en: 'Bait Cone N/S Max Melee'
+        en: 'Bait Cone N Center Below Dark/S Center'
       },
       baitFireZenith: {
         en: 'Bait Cone S, Max Melee'
@@ -249320,7 +249539,7 @@ const r12s_triggerSet = {
         en: 'Fire: Bait Cone'
       },
       baitEarthDN: {
-        en: 'Bait Cone N/S Max Melee'
+        en: 'Bait Cone N Center Below Dark/S Center'
       },
       baitEarthZenith: {
         en: 'Bait Cone Middle, Max Melee (Lean North)'
@@ -249731,7 +249950,7 @@ const r12s_triggerSet = {
 };
 /* harmony default export */ const r12s = (r12s_triggerSet);
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/raid/r12s.txt
-const raid_r12s_namespaceObject = "### AAC HEAVYWEIGHT M4 (SAVAGE)\r\n# ZoneId: 1327\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n0.0 \"--Reset--\" ActorControl { command: \"4000000F\" } window 0,100000 jump 0\r\n\r\n### Phase 1: Lindwurm\r\n# -ii B4D3 B4B2 B6F9 B4B4 B4B3 B4BD B4BE B4BF B4C0 B53E B4B5 B4B1 BE0A B570 B56F B4AD B76A B469 B769\r\n# -it \"Lindwurm\"\r\n\r\n0.0 \"--sync--\" InCombat { inGameCombat: \"1\" } window 0,1\r\n# ActorControl director update corresponds to \"Alas, the battle isn't over yet... But don't despair, Champion!\"\r\n0.0 \"--sync--\" ActorControl { command: '80000027', data0: '15', data1: '02', data2: '330A' } window 0,1 jump \"r12s-p2-start\"\r\n# Additional later sync in case above line happens before in combat\r\n1.0 \"--sync--\" AddedCombatant { npcNameId: \"14380\", name: \"Lindschrat\", job: \"00\", level: \"64\", ownerId: \"0{4}\", worldId: \"00\" } window 10,3 jump \"r12s-p2-start\" # Sync to P2 immediately through AddCombatant.\r\n10.6 \"--sync--\" StartsUsing { id: \"B4D7\", source: \"Lindwurm\" } window 15,10\r\n15.6 \"The Fixer\" Ability { id: \"B4D7\", source: \"Lindwurm\" }\r\n25.8 \"--sync--\" Ability { id: \"B7C4\", source: \"Lindwurm\" }\r\n40.8 \"--sync--\" Ability { id: \"B495\", source: \"Lindwurm\" }\r\n40.9 \"Mortal Slayer 1\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n43.9 \"Mortal Slayer 2\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n46.9 \"Mortal Slayer 3\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n49.9 \"Mortal Slayer 4\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n52.9 \"--sync--\" Ability { id: \"B7C5\", source: \"Lindwurm\" }\r\n61.0 \"--sync--\" Ability { id: \"B9DB\", source: \"Lindwurm\" }\r\n\r\n70.0 \"Grotesquerie: Act 1\" Ability { id: \"BEBD\", source: \"Lindwurm\" } window 70,5\r\n77.2 \"--sync--\" Ability { id: [\"B49A\", \"B49B\"], source: \"Lindwurm\" }\r\n79.2 \"Phagocyte Spotlight 1\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n81.2 \"Phagocyte Spotlight 2\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n83.2 \"Phagocyte Spotlight 3\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n85.2 \"Phagocyte Spotlight 4\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n87.3 \"--sync--\" #Ability { id: \"B46E\", source: \"Lindwurm\" }\r\n87.7 \"Ravenous Reach\" Ability { id: \"B49D\", source: \"Lindwurm\" }\r\n88.0 \"Hemorrhagic Projection x8\" #Ability { id: \"B4AF\", source: \"Lindwurm\" }\r\n88.0 \"Dramatic Lysis x4\" #Ability { id: \"B4AA\", source: \"Lindwurm\" }\r\n88.0 \"Fourth-wall Fusion\" Ability { id: \"B4AE\", source: \"Lindwurm\" }\r\n96.7 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n97.3 \"Visceral Burst x2\" #Ability { id: \"B4D6\", source: \"Lindwurm\" }\r\n97.3 \"Fourth-wall Fusion\" Ability { id: \"B9B9\", source: \"Lindwurm\" }\r\n107.3 \"The Fixer\" Ability { id: \"B4D7\", source: \"Lindwurm\" }\r\n\r\n119.5 \"Grotesquerie: Act 2\" Ability { id: \"BEBE\", source: \"Lindwurm\" } window 120,5\r\n128.7 \"Phagocyte Spotlight 1\" #Ability { id: \"B4B6\", source: \"Lindwurm\" }\r\n130.7 \"Phagocyte Spotlight 2\" #Ability { id: \"B4B6\", source: \"Lindwurm\" }\r\n132.7 \"Phagocyte Spotlight 3\" #Ability { id: \"B4B6\", source: \"Lindwurm\" }\r\n134.7 \"Cruel Coil\" Ability { id: [\"B4B8\", \"B4B9\", \"B4BA\", \"B4BB\"], source: \"Lindwurm\" }\r\n134.7 \"Phagocyte Spotlight 4\" #Ability { id: \"B4B6\", source: \"Lindwurm\" }\r\n135.7 \"--bind--\" Ability { id: \"B472\", source: \"Lindwurm\" } duration 5\r\n140.7 \"Skinsplitter 1\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n143.7 \"--sync--\" Ability { id: \"B4C1\", source: \"Lindwurm\" }\r\n145.7 \"Skinsplitter 2\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n145.7 \"--tether 1--\"\r\n150.7 \"Skinsplitter 3\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n150.7 \"--tether 2--\"\r\n152.7 \"Roiling Mass 1\" Ability { id: \"B4B7\", source: \"Blood Vessel\" }\r\n155.7 \"Skinsplitter 4\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n155.7 \"--tether 3--\"\r\n157.7 \"Roiling Mass 2\" Ability { id: \"B4B7\", source: \"Blood Vessel\" }\r\n160.7 \"Skinsplitter 5\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n160.7 \"--tether 4--\"\r\n162.7 \"Roiling Mass 3\" Ability { id: \"B4B7\", source: \"Blood Vessel\" }\r\n165.7 \"Skinsplitter 6\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n167.7 \"Roiling Mass 4\" Ability { id: \"B4B7\", source: \"Blood Vessel\" }\r\n170.7 \"Skinsplitter 7\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n176.7 \"Constrictor\" Ability { id: \"B4C2\", source: \"Lindwurm\" }\r\n185.8 \"Splattershed (castbar)\" Ability { id: \"B9C4\", source: \"Lindwurm\" }\r\n188.2 \"Splattershed\" Ability { id: \"B9C6\", source: \"Lindwurm\" }\r\n189.9 \"--sync--\" Ability { id: \"B4CB\", source: \"Lindwurm\" }\r\n\r\n205.9 \"Grotesquerie: Act 3\" Ability { id: \"BEBF\", source: \"Lindwurm\" } window 205,5\r\n209.0 \"--untargetable--\"\r\n211.0 \"Feral Fission\" Ability { id: \"BE09\", source: \"Lindwurm\" }\r\n212.0 \"Grand Entrance\" #Ability { id: [\"B4A1\", \"B4A0\"], source: \"Lindwurm\" } duration 1.2\r\n215.6 \"Bring Down the House\" Ability { id: [\"B4A5\", \"B4A4\"], source: \"Lindwurm\" }\r\n218.0 \"Dramatic Lysis x8\" #Ability { id: \"B4B0\", source: \"Lindwurm\" }\r\n218.2 \"Metamitosis x8\" Ability { id: \"B923\", source: \"Lindwurm\" }\r\n220.6 \"--targetable--\"\r\n226.9 \"Split Scourge (cast)\" Ability { id: \"B4A7\", source: \"Lindwurm\" }\r\n228.0 \"Split Scourge\" Ability { id: \"B4AB\", source: \"Lindwurm\" }\r\n230.4 \"Venomous Scourge\" Ability { id: \"B4A8\", source: \"Lindwurm\" }\r\n231.5 \"--sync--\" Ability { id: \"B479\", source: \"Lindwurm\" }\r\n239.6 \"The Fixer\" Ability { id: \"B4D7\", source: \"Lindwurm\" }\r\n\r\n251.7 \"Grotesquerie: Curtain Call\" Ability { id: \"BEC0\", source: \"Lindwurm\" } window 251,5\r\n255.7 \"Phagocyte Spotlight 1\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n255.8 \"--sync--\" Ability { id: [\"B49A\", \"B49B\"], source: \"Lindwurm\" }\r\n257.6 \"Phagocyte Spotlight 2\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n259.6 \"Phagocyte Spotlight 3\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n261.6 \"Phagocyte Spotlight 4\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n263.6 \"Phagocyte Spotlight 5\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n265.9 \"--sync--\" Ability { id: \"B46E\", source: \"Lindwurm\" }\r\n266.5 \"Ravenous Reach\" Ability { id: \"B49D\", source: \"Lindwurm\" }\r\n266.6 \"Cell Shedding x4\" #Ability { id: \"B4AC\", source: \"Lindwurm\" }\r\n266.8 \"Dramatic Lysis x4\" #Ability { id: \"B4AA\", source: \"Lindwurm\" }\r\n279.4 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n286.1 \"Splattershed (castbar)\" Ability { id: \"B9C3\", source: \"Lindwurm\" }\r\n288.5 \"Splattershed\" Ability { id: \"B9C6\", source: \"Lindwurm\" }\r\n290.2 \"--sync--\" Ability { id: \"B4CC\", source: \"Lindwurm\" }\r\n299.3 \"--sync--\" Ability { id: \"B7C4\", source: \"Lindwurm\" }\r\n314.3 \"--sync--\" Ability { id: \"B495\", source: \"Lindwurm\" }\r\n314.4 \"Mortal Slayer 1\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n317.4 \"Mortal Slayer 2\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n320.4 \"Mortal Slayer 3\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n323.4 \"Mortal Slayer 4\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n326.4 \"--sync--\" Ability { id: \"B7C5\", source: \"Lindwurm\" }\r\n\r\n# Slaughershed 1\r\n338.5 \"Slaughtershed 1 (castbar)\" Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } window 338,5\r\n340.9 \"Slaughtershed 1\" Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n342.6 \"--sync--\" Ability { id: \"B4CB\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-left-1\"\r\n342.6 \"--sync--\" Ability { id: \"B4CD\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-right-1\"\r\n342.6 \"--sync--\" Ability { id: \"B4CE\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-left-1\"\r\n342.6 \"--sync--\" Ability { id: \"B4CC\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-right-1\"\r\n349.6 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n349.6 \"Fourth-wall Fusion\" #Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n350.0 \"Burst\" #Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n355.1 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D1\", \"B4D2\", \"B4CD\", \"B4CE\"], source: \"Lindwurm\" }\r\n356.1 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n359.8 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D2\", \"B4D1\", \"B4CE\", \"B4CD\"], source: \"Lindwurm\" }\r\n360.8 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n367.4 \"Slaughtershed 2 (castbar)\" #Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" }\r\n369.8 \"Slaughtershed 2\" #Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n\r\n# Serpentine Scourge Left First\r\n442.6 label \"r12s-p1-scourge-left-1\"\r\n449.6 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n449.6 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n450.0 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n455.1 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n456.1 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n459.8 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n460.8 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n464.4 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed2\"\r\n\r\n# Serpentine Scourge Right First\r\n540.6 label \"r12s-p1-scourge-right-1\"\r\n547.6 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n547.6 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n548.0 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n553.1 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n554.1 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n557.7 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n558.7 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n562.4 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed2\"\r\n\r\n# Raptor Knuckles Left First\r\n641.1 label \"r12s-p1-raptor-left-1\"\r\n648.1 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n648.1 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n648.5 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n653.6 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n654.4 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n658.3 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n659.1 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n662.9 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed2\"\r\n\r\n# Raptor Knuckles Right First\r\n742.7 label \"r12s-p1-raptor-right-1\"\r\n749.7 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n749.7 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n750.1 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n755.2 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n756.1 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n759.9 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n760.7 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n764.5 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed2\"\r\n\r\n# Slaughtershed 2\r\n864.4 label \"r12s-p1-slaughtershed2\"\r\n867.4 \"Slaughtershed 2 (castbar)\" Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" }\r\n869.8 \"Slaughtershed 2\" Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n\r\n871.5 \"--sync--\" Ability { id: \"B4CB\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-left-2\"\r\n871.5 \"--sync--\" Ability { id: \"B4CD\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-right-2\"\r\n871.5 \"--sync--\" Ability { id: \"B4CE\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-left-2\"\r\n871.5 \"--sync--\" Ability { id: \"B4CC\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-right-2\"\r\n878.5 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n878.5 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n878.9 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n884.0 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D1\", \"B4D2\", \"B4CD\", \"B4CE\"], source: \"Lindwurm\" }\r\n884.8 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n888.6 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D2\", \"B4D1\", \"B4CE\", \"B4CD\"], source: \"Lindwurm\" }\r\n889.4 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n896.3 \"Slaughtershed 3 (castbar)\" #Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" }\r\n898.7 \"Slaughtershed 3\" #Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n\r\n# Serpentine Scourge Left Second\r\n971.6 label \"r12s-p1-scourge-left-2\"\r\n978.6 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n978.6 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n979.0 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n984.1 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n985.1 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n988.7 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n989.7 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n993.3 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed3\"\r\n\r\n# Serpentine Scourge Right Second\r\n1069.9 label \"r12s-p1-scourge-right-2\"\r\n1076.9 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1076.9 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1077.3 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1082.4 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n1083.4 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1087.0 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n1088.0 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1091.7 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed3\"\r\n\r\n# Raptor Knuckles Left Second\r\n1171.5 label \"r12s-p1-raptor-left-2\"\r\n1178.5 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1178.5 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1178.9 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1184.0 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n1184.8 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1188.6 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n1189.4 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1193.3 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed3\"\r\n\r\n# Raptor Knuckles Right Second\r\n1271.5 label \"r12s-p1-raptor-right-2\"\r\n1278.5 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1278.5 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1278.9 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1284.0 \"Raptor Knuckles Right\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n1284.8 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1288.6 \"Raptor Knuckles Left\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n1289.4 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1293.3 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed3\"\r\n\r\n# Slaughtershed 3\r\n1393.3 label \"r12s-p1-slaughtershed3\"\r\n1396.3 \"Slaughtershed 3 (castbar)\" Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" }\r\n1398.7 \"Slaughtershed 3\" Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n\r\n1400.4 \"--sync--\" Ability { id: \"B4CB\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-left-3\"\r\n1400.4 \"--sync--\" Ability { id: \"B4CD\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-right-3\"\r\n1400.4 \"--sync--\" Ability { id: \"B4CE\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-left-3\"\r\n1400.4 \"--sync--\" Ability { id: \"B4CC\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-right-3\"\r\n1407.4 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1407.4 \"Fourth-wall Fusion\" #Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1407.8 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1412.9 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D1\", \"B4D2\", \"B4CD\", \"B4CE\"], source: \"Lindwurm\" }\r\n1413.9 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n1417.6 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D2\", \"B4D1\", \"B4CE\", \"B4CD\"], source: \"Lindwurm\" }\r\n1418.6 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n1431.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1436.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n\r\n# Serpentine Scourge Left Third\r\n1498.8 label \"r12s-p1-scourge-left-3\"\r\n1505.8 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1505.8 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1506.2 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1511.3 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n1512.3 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1515.9 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n1516.9 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1526.5 \"--sync--\" StartsUsing { id: \"B2C7\", source: \"Lindwurm\" } jump \"r12s-p1-enrage-alt\"\r\n1526.5 \"--untargetable?--\"\r\n1531.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1536.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n1536.8 \"--untargetable?--\"\r\n1536.8 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n1546.7 \"--sync--\" StartsUsing { id: \"B538\", source: \"Lindwurm\" } window 20,3 forcejump \"r12s-p1-enrage\"\r\n\r\n# Serpentine Scourge Right Third\r\n1600.4 label \"r12s-p1-scourge-right-3\"\r\n1607.4 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1607.4 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1607.8 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1612.9 \"Serpentine Scourge Left/Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n1613.9 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1617.6 \"Serpentine Scourge Right/Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n1618.6 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1626.5 \"--sync--\" StartsUsing { id: \"B2C7\", source: \"Lindwurm\" } jump \"r12s-p1-enrage-alt\"\r\n1626.5 \"--untargetable?--\"\r\n1631.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1636.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n1636.8 \"--untargetable?--\"\r\n1636.8 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n\r\n1646.7 \"--sync--\" StartsUsing { id: \"B538\", source: \"Lindwurm\" } window 20,3 forcejump \"r12s-p1-enrage\"\r\n\r\n# Raptor Knuckles Left Third\r\n1700.4 label \"r12s-p1-raptor-left-3\"\r\n1707.4 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1707.4 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1707.8 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1712.9 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n1713.7 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1717.5 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n1718.3 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1726.5 \"--sync--\" StartsUsing { id: \"B2C7\", source: \"Lindwurm\" } jump \"r12s-p1-enrage-alt\"\r\n1726.5 \"--untargetable?--\"\r\n1731.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1736.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n1736.8 \"--untargetable?--\"\r\n1736.8 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n1746.7 \"--sync--\" StartsUsing { id: \"B538\", source: \"Lindwurm\" } window 20,3 forcejump \"r12s-p1-enrage\"\r\n\r\n# Raptor Knuckles Right Third\r\n1800.4 label \"r12s-p1-raptor-right-3\"\r\n1807.4 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1807.4 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1807.8 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1812.9 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n1813.7 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1817.5 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n1818.3 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1826.5 \"--sync--\" StartsUsing { id: \"B2C7\", source: \"Lindwurm\" } jump \"r12s-p1-enrage-alt\"\r\n1826.5 \"--untargetable?--\"\r\n1831.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1836.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n1836.8 \"--untargetable?--\"\r\n1836.8 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n1846.7 \"--sync--\" StartsUsing { id: \"B538\", source: \"Lindwurm\" } window 20,3 forcejump \"r12s-p1-enrage\"\r\n\r\n# Enrage sequence (Above 20%?)\r\n1926.5 label \"r12s-p1-enrage-alt\"\r\n1931.5 \"The Fixer (Enrage)\" Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n\r\n# Enrage sequence\r\n2027.7 label \"r12s-p1-enrage\"\r\n2036.7 \"Refreshing Overkill (Enrage)?\" Ability { id: \"B538\", source: \"Lindwurm\" } window 510,5\r\n2036.8 \"--untargetable--\"\r\n2036.8 \"Refreshing Overkill (Enrage)?\" Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n\r\n# Kill/Transition sequence\r\n2036.8 \"Refreshing Overkill\" Ability { id: \"B539\", source: \"Lindwurm\" }\r\n2073.0 \"--sync--\" Ability { id: \"BB9C\", source: \"Lindwurm\" }\r\n2073.5 \"Down for the Count\" duration 42\r\n2075.7 \"--sync--\" Ability { id: \"B53B\", source: \"Lindwurm\" }\r\n2117.7 \"--targetable--\"\r\n\r\n\r\n### Phase 2: Lindwurm II\r\n# -p B528:3015.7\r\n# -ii B51F B4DA B4DB B4DD B4DF B4E3 B4E6 B4F0 B4E9 B8E1 B4EA B922 BE5D BBE3 B508 B4F5 B512 B513 B514 B515 B4F9 B51B\r\n# -it \"Lindwurm\"\r\n3000.5 label \"r12s-p2-start\"\r\n3010.7 \"--sync--\" StartsUsing { id: \"B528\", source: \"Lindwurm\" } window 3100,10\r\n3015.7 \"Arcadia Aflame\" Ability { id: \"B528\", source: \"Lindwurm\" }\r\n3022.9 \"--middle--\" Ability { id: \"B4D9\", source: \"Lindwurm\" } window 5,5\r\n3028.0 \"Replication 1\" Ability { id: \"B4D8\", source: \"Lindwurm\" }\r\n3039.7 \"Top-tier Slam x2\" Ability { id: \"B4DE\", source: \"Lindschrat\" }\r\n3040.5 \"Winged Scourge x4\" Ability { id: \"B4DC\", source: \"Lindwurm\" }\r\n3040.7 \"Mighty Magic x4\" #Ability { id: \"B4E0\", source: \"Lindwurm\" }\r\n3045.3 \"Snaking Kick\" Ability { id: \"B527\", source: \"Lindwurm\" }\r\n3053.7 \"--clones move 1--\" #Ability { id: \"B4D9\", source: \"Lindschrat\" }\r\n3054.7 \"--clones move 2--\" #Ability { id: \"B4D9\", source: \"Lindschrat\" }\r\n3061.0 \"Top-tier Slam x2\" Ability { id: \"B4DE\", source: \"Lindschrat\" }\r\n3061.8 \"Winged Scourge x4\" Ability { id: \"B4DC\", source: \"Lindwurm\" }\r\n3062.1 \"Mighty Magic x4\" #Ability { id: \"B4E0\", source: \"Lindwurm\" }\r\n3069.4 \"Double Sobat (castbar)\" Ability { id: \"B520\", source: \"Lindwurm\" }\r\n3070.0 \"Double Sobat 1\" Ability { id: [\"B521\", \"B522\", \"B523\", \"B524\"], source: \"Lindwurm\" }\r\n3074.6 \"Double Sobat 2\" Ability { id: \"B525\", source: \"Lindwurm\" }\r\n3077.0 \"Esoteric Finisher\" Ability { id: \"B526\", source: \"Lindwurm\" }\r\n\r\n3091.2 \"Staging\" Ability { id: \"B4E1\", source: \"Lindwurm\" }\r\n3092.5 \"--clones x2 1--\" #ActorControlExtra { category: \"0197\", param1: \"11D2\" }\r\n3094.0 \"--clones x2 2--\" #ActorControlExtra { category: \"0197\", param1: \"11D2\" }\r\n3095.5 \"--clones x2 3--\" #ActorControlExtra { category: \"0197\", param1: \"11D2\" }\r\n3097.0 \"--clones x2 4--\" #ActorControlExtra { category: \"0197\", param1: \"11D2\" }\r\n3099.1 \"--locked tethers--\" Tether { id: \"0175\", source: \"Understudy\" }\r\n3102.2 \"--sync--\" Ability { id: \"B4E2\", source: \"Lindwurm\" }\r\n3105.4 \"Replication 2\" Ability { id: \"B4D8\", source: \"Lindwurm\" }\r\n3108.6 \"--boss clones x6--\" ActorControlExtra { category: \"0197\", param1: \"11D5\" }\r\n3113.8 \"--tethers--\"  #Tether { id: [\"016F\", \"0170\", \"0171\", \"0176\"] } # These could change hands causing sync issue\r\n3121.8 \"--locked tethers--\" Tether { id: \"0175\", source: [\"Lindschrat\", \"Lindwurm\"] }\r\n3127.8 \"Firefall Splash\" Ability { id: \"B4E4\", source: \"Lindwurm\" }\r\n3128.5 \"Scalding Waves x4\" Ability { id: \"B4E5\", source: \"Lindwurm\" }\r\n3129.9 \"Mana Burst x3\" Ability { id: \"B4E7\", source: \"Lindwurm\" }\r\n3135.5 \"Heavy Slam x2\" Ability { id: \"B4E8\", source: \"Lindschrat\" }\r\n3136.7 \"Grotesquerie x2\" Ability { id: \"B4EA\", source: \"Lindwurm\" }\r\n3137.3 \"Hemorrhagic Projection x2\" Ability { id: \"B4EB\", source: \"Lindwurm\" }\r\n3141.1 \"Snaking Kick\" Ability { id: \"B527\", source: \"Lindwurm\" }\r\n\r\n# Reenactment 1\r\n# NOTE: Order dependent on tethers during and Staging 1 and Replication 2\r\n# Initial VFX spells happen at same time, but damage casts differ:\r\n# +0s B4ED Fireball Splash (Initial VFX abilities also happen here)\r\n# +1.2s BBE3 Mana Burst\r\n# +1.4s BE5D Heavy Slam, B8E1 Scalding Waves\r\n# +1.6s B922 Hemorrhagic Projection\r\n# These Abilities Sync same time:\r\n# B4ED Fireball Splash\r\n# B4EE Mana Burst (VFX)\r\n# B4EF Heavy Slam (VFX)\r\n# B4F1 Grotesquerie (VFX)\r\n3151.3 \"Reenactment 1\" Ability { id: \"B4EC\", source: \"Lindwurm\" }\r\n3159.4 \"--n/s clones--\" duration 1.6\r\n3159.4 \"Netherwrath Near/Netherwrath Far\" Ability { id: [\"B52E\", \"B52F\"], source: \"Lindwurm\" }\r\n3160.6 \"Timeless Spite x2\" Ability { id: \"B530\", source: \"Lindwurm\" }\r\n3163.3 \"--ne/sw clones--\" Ability { id: [\"B4ED\", \"B4EE\", \"B4EF\", \"B4F1\"], source: \"Lindschrat\" } duration 1.6\r\n3167.4 \"--e/w clones--\" Ability { id: [\"B4ED\", \"B4EE\", \"B4EF\", \"B4F1\"], source: \"Lindschrat\" } duration 1.6\r\n3171.4 \"--se/nw clones--\" Ability { id: [\"B4ED\", \"B4EE\", \"B4EF\", \"B4F1\"], source: \"Lindschrat\" } duration 1.6\r\n\r\n3178.6 \"--middle--\" Ability { id: \"B4D9\", source: \"Lindwurm\" } window 5,5\r\n\r\n# Blood Mana / Blood Wakening Phase (Superchain)\r\n3183.8 \"Mutating Cells\" Ability { id: \"B505\", source: \"Lindwurm\" } window 10,10\r\n3185.0 \"--sync--\" Ability { id: \"B506\", source: \"Lindwurm\" }\r\n3190.0 \"Blood Mana\" Ability { id: \"B4FB\", source: \"Lindwurm\" }\r\n3193.3 \"--black holes--\" Ability { id: \"BCB0\", source: \"Mana Sphere\" }\r\n3193.7 \"--shapes--\" Ability { id: \"B4FD\", source: \"Mana Sphere\" }\r\n3200.7 \"Bloody Burst x2\" #Ability { id: \"B4FE\", source: \"Lindwurm\" } # Goes off when soaked by player\r\n3202.2 \"Dramatic Lysis x8\" Ability { id: \"B507\", source: \"Lindwurm\" }\r\n3203.2 \"--close shapes eaten--\" Ability { id: \"B4FF\", source: \"Mana Sphere\" }\r\n3204.1 \"--sync--\" Ability { id: \"BCB0\", source: \"Mana Sphere\" } # Blackhole 1\r\n3206.2 \"--far shapes eaten--\" Ability { id: \"B4FF\", source: \"Mana Sphere\" }\r\n3207.0 \"--sync--\" Ability { id: \"BCB0\", source: \"Mana Sphere\" } # Blackhole 2\r\n3209.2 \"--soaked shapes eaten--\" Ability { id: \"B4FF\", source: \"Mana Sphere\" }\r\n3210.1 \"--sync--\" Ability { id: \"BCB0\", source: \"Mana Sphere\" } # Blackhole 1\r\n\r\n3216.7 \"Blood Wakening\" Ability { id: \"B500\", source: \"Lindwurm\" }\r\n3217.9 \"--sync--\" Ability { id: \"B4FC\", source: \"Mana Sphere\" }\r\n3218.3 \"Black Hole 1\" Ability { id: [\"B501\", \"B502\", \"B503\", \"B504\"], source: \"Lindwurm\" }\r\n3222.9 \"--sync--\" Ability { id: \"B4FC\", source: \"Mana Sphere\" }\r\n3223.3 \"Black Hole 2\" Ability { id: [\"B501\", \"B502\", \"B503\", \"B504\"], source: \"Lindwurm\" }\r\n3227.6 \"Netherworld Near/Netherworld Far\" Ability { id: [\"B52B\", \"B52C\"], source: \"Lindwurm\" }\r\n3228.8 \"Wailing Wave x3\" Ability { id: \"B52D\", source: \"Lindwurm\" }\r\n3231.8 \"Dramatic Lysis x8\" Ability { id: \"B507\", source: \"Lindwurm\" }\r\n3235.8 \"Arcadia Aflame\" Ability { id: \"B528\", source: \"Lindwurm\" }\r\n3245.0 \"Double Sobat (castbar)\" Ability { id: \"B520\", source: \"Lindwurm\" }\r\n3245.6 \"Double Sobat 1\" Ability { id: [\"B521\", \"B522\", \"B523\", \"B524\"], source: \"Lindwurm\" }\r\n3250.2 \"Double Sobat 2\" Ability { id: \"B525\", source: \"Lindwurm\" }\r\n3252.6 \"Esoteric Finisher\" Ability { id: \"B526\", source: \"Lindwurm\" }\r\n3260.7 \"--middle--\" Ability { id: \"B4D9\", source: \"Lindwurm\" } window 5,5\r\n\r\n# Idyllic Dream\r\n3268.8 \"Idyllic Dream\" Ability { id: \"B509\", source: \"Lindwurm\" }\r\n3275.0 \"Staging\" Ability { id: \"B4E1\", source: \"Lindwurm\" }\r\n3276.3 \"--clones x4 1--\" #ActorControlExtra { category: \"0197\", param1: \"11D2\" }\r\n3278.3 \"--clones x4 2--\" #ActorControlExtra { category: \"0197\", param1: \"11D2\" }\r\n3280.4 \"--locked tethers--\" Tether { id: \"0175\", source: \"Understudy\" }\r\n3283.4 \"--sync--\" Ability { id: \"B4E2\", source: \"Lindwurm\" }\r\n3290.1 \"Twisted Vision 1\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3296.2 \"Replication 3\" Ability { id: \"B4D8\", source: \"Lindwurm\" }\r\n3299.4 \"--boss clones x3--\" ActorControlExtra { category: \"0197\", param1: \"11D5\" }\r\n3308.6 \"Twisted Vision 2\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3309.6 \"Power Gusher x2\" #Ability { id: [\"B50F\", \"B510\"], source: \"Lindschrat\" }\r\n3309.6 \"Snaking Kick\" #Ability { id: \"B511\", source: \"Lindschrat\" }\r\n3314.7 \"Replication 4\" Ability { id: \"B4D8\", source: \"Lindwurm\" }\r\n3317.9 \"--boss clones x2 1--\" #ActorControlExtra { category: \"0197\", param1: \"11D5\" }\r\n3318.9 \"--boss clones x2 2--\" #ActorControlExtra { category: \"0197\", param1: \"11D5\" }\r\n3319.9 \"--boss clones x2 3--\" #ActorControlExtra { category: \"0197\", param1: \"11D5\" }\r\n3320.9 \"--boss clones x2 4--\" #ActorControlExtra { category: \"0197\", param1: \"11D5\" }\r\n3326.1 \"--tethers--\" #Tether { id: [\"0170\", \"0171\"], source: \"Lindschrat\" } # These could change hands causing sync issue\r\n3334.1 \"--locked tethers--\" Tether { id: \"0175\", source: \"Lindschrat\" }\r\n\r\n# Twisted Vision 3: Towers Preview\r\n3334.3 \"Twisted Vision 3\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3338.7 \"Snaking Kick\" Ability { id: \"BE95\", source: \"Lindwurm\" }\r\n3338.9 \"Power Gusher x4\" #Ability { id: \"B516\", source: \"Lindwurm\" } # Front/Back are apparently counting as their own casts\r\n3342.8 \"Lindwurm's Meteor\" Ability { id: \"B4F2\", source: \"Lindwurm\" }\r\n3348.9 \"Downfall\" Ability { id: \"B4F3\", source: \"Lindwurm\" }\r\n3355.0 \"Arcadian Arcanum (castbar)\" Ability { id: \"B529\", source: \"Lindwurm\" }\r\n3356.2 \"Arcadian Arcanum\" Ability { id: \"B9D9\", source: \"Lindwurm\" }\r\n\r\n# Twisted Vision 4: First Stacks/Defamations\r\n# Orders could be different, but we can detect B517 abiltiy to know if Mana Burst is coming 1.2s before B518\r\n3363.0 \"Twisted Vision 4\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3369.6 \"Clone 1 Heavy Slam?\" Ability { id: \"B519\", source: \"Lindschrat\" } # Or B517 Mana Burst (Lindschrat) happens here\r\n3370.8 \"Clone 1 Mana Burst?\" Ability { id: \"B518\", source: \"Lindwurm\" }\r\n3374.6 \"Clone 2 Heavy Slam?\" Ability { id: \"B519\", source: \"Lindschrat\" } # Or B517 Mana Burst (Lindschrat) happens here\r\n3375.8 \"Clone 2 Mana Burst?\" Ability { id: \"B518\", source: \"Lindwurm\" }\r\n3379.6 \"Clone 3 Heavy Slam?\" Ability { id: \"B519\", source: \"Lindschrat\" } # Or B517 Mana Burst (Lindschrat) happens here\r\n3380.8 \"Clone 3 Mana Burst?\" Ability { id: \"B518\", source: \"Lindwurm\" }\r\n3384.6 \"Clone 4 Heavy Slam?\" Ability { id: \"B519\", source: \"Lindschrat\" } # Or B517 Mana Burst (Lindschrat) happens here\r\n3385.8 \"Clone 4 Mana Burst?\" Ability { id: \"B518\", source: \"Lindwurm\" }\r\n\r\n# Twisted Vision 5: Towers\r\n3393.6 \"Twisted Vision 5\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3398.0 \"Cosmic Kiss x8\" Ability { id: \"B4F4\", source: \"Lindwurm\" }\r\n3398.6 \"--Hot-blooded x2--\" duration 5\r\n3398.7 \"Lindwurm's Dark II x2\" Ability { id: \"B4F6\", source: \"Lindwurm\" }\r\n3398.7 \"--Doom x2--\" duration 8\r\n3403.7 \"Lindwurm's Stone III x2\" #Ability { id: \"B4F7\", source: \"Lindwurm\" }\r\n3408.7 \"Lindwurm's Thunder II x4\" #Ability { id: \"B4FA\", source: \"Lindwurm\" }\r\n3408.7 \"Lindwurm's Glare x4\" #Ability { id: \"B4F8\", source: \"Lindwurm\" }\r\n3417.1 \"Temporal Curtain\" Ability { id: \"B51C\", source: \"Lindwurm\" }\r\n3420.2 \"--clone takes portal--\" Ability { id: \"B51D\", source: \"Lindschrat\" }\r\n3423.3 \"--clones on platform--\" Ability { id: \"B4D9\", source: \"Lindschrat\" }\r\n\r\n# Twisted Vision 6: Reenactment 2 Part 1\r\n# NOTE: Practical solution seems to be that you have x2 mana burts + x2 heavy slams\r\n# This is because mana burts hits will knockback and heavy slams give Magic Vulns\r\n# In theory you could do somehow get here and survive with:\r\n# 3x Mana Burst + 1 Heavy Slam => 3x Heavy Slam + 1 Mana Burst or\r\n# 3x Heavy Slam + 1 Mana Burst => 3x Mana Burst + 1 Heavy Slam \r\n# But those would probably require lots of mit and tank immune probably on 2/3 of the heavy slams in the 3 set\r\n3429.6 \"Twisted Vision 6\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3430.6 \"Power Gusher\" Ability { id: [\"B50F\", \"B510\"], source: \"Lindschrat\" }\r\n3430.6 \"Snaking Kick\" Ability { id: \"BCAF\", source: \"Lindschrat\" }\r\n3435.7 \"Reenactment 2\" Ability { id: \"B4EC\", source: \"Lindwurm\" }\r\n3439.0 \"Clone Mana Burst x2\" Ability { id: \"BBE3\", source: \"Lindwurm\" }\r\n3439.2 \"Clone Heavy Slam x2\" Ability { id: \"BE5D\", source: \"Lindwurm\" }\r\n\r\n# Twisted Vision 7: Safe Platform + Front/Back or Sides Platform\r\n3444.8 \"Twisted Vision 7\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3449.2 \"Snaking Kick\" Ability { id: \"BE95\", source: \"Lindwurm\" }\r\n3449.4 \"Power Gusher\" Ability { id: \"B516\", source: \"Lindwurm\" }\r\n\r\n# Twisted Vision 8: Reenactment 2 Part 2\r\n3452.3 \"Twisted Vision 8\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3458.6 \"--sync--\" Ability { id: \"B51E\", source: \"Lindschrat\" }\r\n3459.8 \"Clone Mana Burst x2\" Ability { id: \"BBE3\", source: \"Lindwurm\" }\r\n3460.0 \"Clone Heavy Slam x2\" Ability { id: \"BE5D\", source: \"Lindwurm\" }\r\n3464.8 \"Power Gusher\" Ability { id: \"B516\", source: \"Lindwurm\" }\r\n3470.7 \"Idyllic Dream\" Ability { id: \"B509\", source: \"Lindwurm\" }\r\n3478.8 \"Double Sobat (castbar)\" Ability { id: \"B520\", source: \"Lindwurm\" }\r\n3479.6 \"Double Sobat 1\" Ability { id: [\"B521\", \"B522\", \"B523\", \"B524\"], source: \"Lindwurm\" }\r\n3484.2 \"Double Sobat 2\" Ability { id: \"B525\", source: \"Lindwurm\" }\r\n3486.6 \"Esoteric Finisher\" Ability { id: \"B526\", source: \"Lindwurm\" }\r\n\r\n# Enrage Sequence\r\n3499.8 \"Replication 5\" Ability { id: \"B46C\", source: \"Lindwurm\" }\r\n3513.2 \"Arcadian Hell 1 (boss) \" Ability { id: \"B533\", source: \"Lindwurm\" }\r\n3513.2 \"Arcadian Hell 1 x4 (clones)\" #Ability { id: \"B534\", source: \"Lindschrat\" }\r\n3529.4 \"Arcadian Hell 2 (boss)\" Ability { id: \"B533\", source: \"Lindwurm\" }\r\n3529.4 \"Arcadian Hell 2 x8 (clones)\" #Ability { id: \"B535\", source: \"Lindschrat\" }\r\n3542.3 \"--sync--\" StartsUsing { id: \"B537\", source: \"Lindwurm\" }\r\n3552.3 \"Arcadian Hell (Boss Enrage)\" Ability { id: \"B537\", source: \"Lindwurm\" }\r\n3552.3 \"Arcadian Hell x16 (Clones Enrage)\" #Ability { id: \"BEC1\", source: \"Lindschrat\" }\r\n\r\n# IGNORED ABILITIES\r\n# Phase 1\r\n# B4D3 --sync--: Attack autos\r\n# B4B2 Unmitigated Explosion: Missed blob tower\r\n# B6F9 Unmitigated Explosion: Breaking chain before Bonds of Flesh expires\r\n# B4B4 Dramatic Lysis: Damage from breaking a tether; These can be broken at various times\r\n# B4B5 Dramatic Lysis: 6s to break tether, else this applies every 1s, doing damage and giving a damage down\r\n# B4B3 Roiling Mass: Damage from soaking a tether-created tower; The towers can be created at various times\r\n# B4BD Constrictor: VFX Ending of Cruel Coil B4B8\r\n# B4BE Constrictor: VFX Ending of Cruel Coil B4B9\r\n# B4BF Constrictor: VFX Ending of Cruel Coil B4BA\r\n# B4C0 Constrictor: VFX Ending of Cruel Coil B4BB\r\n# B4B1 Metamitosis: VFX\r\n# B469 Ravenous Reach: VFX\r\n# B769 Ravenous Reach: VFX\r\n# B76A Ravenous Reach: VFX\r\n# B56F --sync--: These happen same time as Bring Down the House BE0A\r\n# B570 --sync--: These happen same time as Bring Down the House BE0A\r\n# BE0A Bring Down the House: VFX\r\n# B4CF Raptor Knuckles: VFX for knockback from NW\r\n# B4D0 Raptor Knuckles: VFX for knockback from NE\r\n# B4AD Cell Death: Failing Cell Shedding by not getting hit by Ravenous Reach\r\n\r\n# Phase 2\r\n# B51F --sync--: Attack autos\r\n# B4DA Winged Scourge: VFX E/W clones Facing S, Cleaving Front/Back (North/South)\r\n# B4DB Winged Scourge: VFX N/S clones Facing W, Cleaving Front/Back (East/West)\r\n# B4DD Top-tier Slam: VFX (cast that gives Fire Debuff)\r\n# B4DF Mighty Magic: VFX (cast that gives Dark Debuff)\r\n# B4E3 Firefall Splash: VFX\r\n# B4E6 Mana Burst: VFX\r\n# B4F0 Unmitigated Impact: No one stacked in a Heavy Slam, causes 1035 Sustained Damage DoT\r\n# B4E9 Grotesquerie: VFX\r\n# B8E1 Scalding Waves: Used in Reenactment (Proteans), Ignored due to timing being strategy-based\r\n# B4EA Grotesquerie: Used in Reenactment, Ignored due to timing being strategy-based\r\n# BBE3 Mana Burst: Used in Reenactment (Damage + Knockback), Ignored due to timing being strategy-based\r\n# BE5D Heavy Slam: Used in Reenactment (Stack with Clone, requires at least 1 player), Ignored due to timing being strategy-based\r\n# B922 Hemorrhagic Projection: Used in Reenactment (Damage), Ignored due to timing being strategy-based\r\n# B508 Unmitigated Explosion: Getting hit when you have Mitigation α or failing to get hit with Mitigation β, applies 30s damage down\r\n# B4FF --sync--: VFX Mana Spheres eaten by Black Hole\r\n# BCB0 --sync--: VFX Black Hole light eruption\r\n# B4F5 Unmitigated Explosion: Missing Cosmic Kiss Tower (Twisted Vision 5)\r\n# B512 Power Gusher: VFX during Twisted Vision 2 with B50F and B510\r\n# B513 Power Gusher: VFX during Twisted Vision 3, related to the B50F\r\n# B514 Power Gusher: VFX during Twisted Vision 3, related to the B510\r\n# B515 Snaking Kick: VFX during Twisted Vision 3\r\n# B4F9 Pyretic Wurm: Damage suffered when player moves while under affect of 12A0 Hot-blooded\r\n# B51B Power Gusher: VFX during Twisted Vision 8, related to B516\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# Phase 1\r\n# ADC9 Slaughtershed\r\n# B2C7 The Fixer: Alternative enrage\r\n# B469 Ravenous Reach: VFX\r\n# B46E --sync--\r\n# B472 --sync-- Animation coinciding with boss jumping to middle and binding the players\r\n# B479 --sync--\r\n# B495 Mortal Slayer: VFX, B496 and B498 have distance and AOE components so this is nearest sync\r\n# B496 Mortal Slayer: Green (DPS/Healer) Orbs\r\n# B498 Mortal Slayer: Purple (Tank) Orbs\r\n# B49A --sync--: Animation for Wyrm moving West (Cleaving East)\r\n# B49B --sync--: Animation for Wyrm moving East (Cleaving West)\r\n# B49D Ravenous Reach\r\n# B49E Phagocyte Spotlight\r\n# B49F Burst\r\n# B4A0 Grand Entrance: Small circle aoe of wyrm going into ground? Does a knockback and gives damage down\r\n# B4A1 Grand Entrance: Only cast when caradinals are safe; Small circle aoe of wyrm coming out of ground? Does a knockback and gives damage down\r\n# B4A2 Grand Entrance: Only cast when intercardinal are safe\r\n# B4A3 Grand Entrance\r\n# B4A4 Bring Down the House\r\n# B4A5 Bring Down the House\r\n# B4A6 Bring Down the House\r\n# B4A7 Split Scourge\r\n# B4A8 Venomous Scourge\r\n# B4AA Dramatic Lysis: Spread AoE damage\r\n# B4AB Split Scourge\r\n# B4AC Cell Shedding\r\n# B4AD Cell Death\r\n# B4AE Fourth-wall Fusion\r\n# B4AF Hemorrhagic Projection\r\n# B4B0 Dramatic Lysis\r\n# B4B1 Metamitosis\r\n# B4B2 Unmitigated Explosion\r\n# B4B3 Roiling Mass: Chain Tower soaks\r\n# B4B4 Dramatic Lysis\r\n# B4B5 Dramatic Lysis\r\n# B4B6 Phagocyte Spotlight\r\n# B4B7 Roiling Mass: Blob Tower Soaks\r\n# B4B8 Cruel Coil: Starts east, turns counterclock\r\n# B4B9 Cruel Coil: Starts west, turns counterclock\r\n# B4BA Cruel Coil: Starts north, turns counterclock\r\n# B4BB Cruel Coil: Starts south, turns counterclock\r\n# B4BC Skinsplitter\r\n# B4BD Constrictor: VFX Ending of Cruel Coil B4B8\r\n# B4BE Constrictor: VFX Ending of Cruel Coil B4B9\r\n# B4BF Constrictor: VFX Ending of Cruel Coil B4BA\r\n# B4C0 Constrictor: VFX Ending of Cruel Coil B4BB\r\n# B4C1 --sync--\r\n# B4C2 Constrictor: \"soft enrage\" damage for Cruel Coil\r\n# B4C3 Slaughtershed\r\n# B4C6 Slaughtershed\r\n# B4CB --sync--: Animation that indicates B4D1 Serpintine Scourge (Left Hand/E) is first\r\n# B4CC --sync--: Animation that indicates B4CF Raptor Knuckles (Right Hand/NW) is first\r\n# B4CD --sync--: Animation that indicates B4D2 Serpintine Scourge (Right hand/W) is first\r\n# B4CE --sync--: Animation that indicates B4D0 Raptor Knuckles (Left Hand/NE) is first\r\n# B4CF Raptor Knuckles\r\n# B4D0 Raptor Knuckles\r\n# B4D1 Serpentine Scourge\r\n# B4D2 Serpentine Scourge\r\n# B4D3 --sync--\r\n# B4D4 Dramatic Lysis\r\n# B4D5 Fourth-wall Fusion\r\n# B4D6 Visceral Burst\r\n# B4D7 The Fixer\r\n# B4F5 Unmitigated Explosion\r\n# B4F9 Pyretic Wurm\r\n# B538 Refreshing Overkill: Enrage castbar\r\n# B539 Refreshing Overkill: Non-enrage\r\n# B53A Refreshing Overkill: Enrage\r\n# B53E Skinsplitter: Damage from running into snake during Cruel Coil\r\n# B56F --sync--\r\n# B570 --sync--\r\n# B571 --sync--\r\n# B6F9 Unmitigated Explosion\r\n# B769 Ravenous Reach: VFX\r\n# B76A Ravenous Reach: VFX\r\n# B7C4 --sync--\r\n# B7C5 --sync--\r\n# B923 Metamitosis\r\n# B9B9 Fourth-wall Fusion\r\n# B9BC Serpentine Scourge\r\n# B9C3 Splattershed\r\n# B9C4 Splattershed\r\n# B9C6 Splattershed\r\n# B9C7 Raptor Knuckles: Damage\r\n# B9DB --sync--\r\n# BE09 Feral Fission\r\n# BE0A Bring Down the House\r\n# BEBD Grotesquerie: Act 1\r\n# BEBE Grotesquerie: Act 2\r\n# BEBF Grotesquerie: Act 3\r\n# BEC0 Grotesquerie: Curtain Call\r\n\r\n# Phase 2\r\n# B46C Replication\r\n# B4D8 Replication\r\n# B4D9 --sync--\r\n# B4DA Winged Scourge\r\n# B4DB Winged Scourge\r\n# B4DC Winged Scourge\r\n# B4DD Top-tier Slam\r\n# B4DE Top-tier Slam\r\n# B4DF Mighty Magic\r\n# B4E0 Mighty Magic\r\n# B4E1 Staging\r\n# B4E2 --sync--\r\n# B4E3 Firefall Splash\r\n# B4E4 Firefall Splash\r\n# B4E5 Scalding Waves\r\n# B4E6 Mana Burst\r\n# B4E7 Mana Burst\r\n# B51F --sync--\r\n# B4E8 Heavy Slam: Stack on Player, requires at least 1 additional player\r\n# B4E9 Grotesquerie\r\n# B4EA Grotesquerie: Used in Reenactment\r\n# B4EB Hemorrhagic Projection\r\n# B4EC Reenactment\r\n# B4ED Firefall Splash: Used in Reenactment (Damage)\r\n# B4EE Mana Burst: VFX used in Reenactment\r\n# B4EF Heavy Slam: VFX used in Reenactment\r\n# B4F0 Unmitigated Impact\r\n# B4F1 Grotesquerie: VFX used in Reenactment\r\n# B4F2 Lindwurm's Meteor\r\n# B4F3 Downfall\r\n# B4F4 Cosmic Kiss\r\n# B4F5 Unmitigated Explosion\r\n# B4F6 Lindwurm's Dark II\r\n# B4F7 Lindwurm's Stone III\r\n# B4F8 Lindwurm's Glare\r\n# B4FA Lindwurm's Thunder II\r\n# B4FB Blood Mana\r\n# B4FC --sync--\r\n# B4FD --sync--\r\n# B4FE Bloody Burst\r\n# B4FF --sync--\r\n# B500 Blood Wakening\r\n# B501 Lindwurm's Water III\r\n# B502 Lindwurm's Aero III\r\n# B503 Straightforward Thunder II\r\n# B504 Sideways Fire II\r\n# B505 Mutating Cells\r\n# B506 --sync--\r\n# B507 Dramatic Lysis\r\n# B508 Unmitigated Explosion\r\n# B509 Idyllic Dream\r\n# B50F Power Gusher\r\n# B510 Power Gusher\r\n# B511 Snaking Kick\r\n# B512 Power Gusher\r\n# B513 Power Gusher\r\n# B514 Power Gusher\r\n# B515 Snaking Kick\r\n# B516 Power Gusher: Cast during Twisted Vision 7 and 8\r\n# B517 Mana Burst: VFX during Twisted Vision 4, happens 1.2s before B518, useful for sync branch\r\n# B518 Mana Burst\r\n# B519 Heavy Slam\r\n# B51A Power Gusher\r\n# B51B Power Gusher\r\n# B51C Temporal Curtain\r\n# B51D --sync--\r\n# B51E --sync--\r\n# B51F --sync--: Attack\r\n# B520 Double Sobat: Castbar\r\n# B521 Double Sobat: 0 degree left turn then B525\r\n# B522 Double Sobat: 90 degree left turn then B525\r\n# B523 Double Sobat: 180 degree left turn then B525\r\n# B524 Double Sobat: 270 degree left turn (turns to the right)\r\n# B525 Double Sobat: Followup cleave\r\n# B526 Esoteric Finisher\r\n# B527 Snaking Kick\r\n# B528 Arcadia Aflame\r\n# B529 Arcadian Arcanum\r\n# B52B Netherworld Near\r\n# B52C Netherworld Far\r\n# B52D Wailing Wave\r\n# B52E Netherwrath Near\r\n# B52F Netherwrath Far\r\n# B530 Timeless Spite\r\n# B533 Arcadian Hell\r\n# B534 Arcadian Hell\r\n# B535 Arcadian Hell\r\n# B537 Arcadian Hell\r\n# B8E1 Scalding Waves: Used in Reenactment (Proteans)\r\n# B922 Hemorrhagic Projection: Used in Reenactment (Damage)\r\n# B9D9 Arcadian Arcanum\r\n# BBE2 Twisted Vision\r\n# BBE3 Mana Burst: Used in Reenactment (Damage + Knockback)\r\n# BCAF Snaking Kick\r\n# BCB0 --sync--: Blackhole spawn\r\n# BE5D Heavy Slam: Used in Reenactment (Stack with Clone, requires at least 1 player)\r\n# BE95 Snaking Kick\r\n# BEC1 Arcadian Hell\r\n";
+const raid_r12s_namespaceObject = "### AAC HEAVYWEIGHT M4 (SAVAGE)\r\n# ZoneId: 1327\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n0.0 \"--Reset--\" ActorControl { command: \"4000000F\" } window 0,100000 jump 0\r\n\r\n### Phase 1: Lindwurm\r\n# -ii B4D3 B4B2 B6F9 B4B4 B4B3 B4BD B4BE B4BF B4C0 B53E B4B5 B4B1 BE0A B570 B56F B4AD B76A B469 B769\r\n# -it \"Lindwurm\"\r\n\r\n0.0 \"--sync--\" InCombat { inGameCombat: \"1\" } window 0,1\r\n# P2 ActorControl director update corresponds to \"Alas, the battle isn't over yet... But don't despair, Champion!\"\r\n0.0 \"--sync--\" ActorControl { command: '80000027', data0: '15', data1: '02', data2: '330A' } window 0,1 jump \"r12s-p2-start\"\r\n# P2 Additional later sync in case above line happens before in combat\r\n1.0 \"--sync--\" AddedCombatant { npcNameId: \"14380\", name: \"Lindschrat\", job: \"00\", level: \"64\", ownerId: \"0{4}\", worldId: \"00\" } window 10,3 jump \"r12s-p2-start\" # Sync to P2 immediately through AddCombatant.\r\n10.6 \"--sync--\" StartsUsing { id: \"B4D7\", source: \"Lindwurm\" } window 15,10\r\n15.6 \"The Fixer\" Ability { id: \"B4D7\", source: \"Lindwurm\" }\r\n25.8 \"--sync--\" Ability { id: \"B7C4\", source: \"Lindwurm\" }\r\n40.8 \"--sync--\" Ability { id: \"B495\", source: \"Lindwurm\" }\r\n40.9 \"Mortal Slayer 1\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n43.9 \"Mortal Slayer 2\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n46.9 \"Mortal Slayer 3\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n49.9 \"Mortal Slayer 4\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n52.9 \"--sync--\" Ability { id: \"B7C5\", source: \"Lindwurm\" }\r\n61.0 \"--sync--\" Ability { id: \"B9DB\", source: \"Lindwurm\" }\r\n\r\n70.0 \"Grotesquerie: Act 1\" Ability { id: \"BEBD\", source: \"Lindwurm\" } window 70,5\r\n77.2 \"--sync--\" Ability { id: [\"B49A\", \"B49B\"], source: \"Lindwurm\" }\r\n79.2 \"Phagocyte Spotlight 1\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n81.2 \"Phagocyte Spotlight 2\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n83.2 \"Phagocyte Spotlight 3\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n85.2 \"Phagocyte Spotlight 4\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n87.3 \"--sync--\" #Ability { id: \"B46E\", source: \"Lindwurm\" }\r\n87.7 \"Ravenous Reach\" Ability { id: \"B49D\", source: \"Lindwurm\" }\r\n88.0 \"Hemorrhagic Projection x8\" #Ability { id: \"B4AF\", source: \"Lindwurm\" }\r\n88.0 \"Dramatic Lysis x4\" #Ability { id: \"B4AA\", source: \"Lindwurm\" }\r\n88.0 \"Fourth-wall Fusion\" Ability { id: \"B4AE\", source: \"Lindwurm\" }\r\n96.7 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n97.3 \"Visceral Burst x2\" #Ability { id: \"B4D6\", source: \"Lindwurm\" }\r\n97.3 \"Fourth-wall Fusion\" Ability { id: \"B9B9\", source: \"Lindwurm\" }\r\n107.3 \"The Fixer\" Ability { id: \"B4D7\", source: \"Lindwurm\" }\r\n\r\n119.5 \"Grotesquerie: Act 2\" Ability { id: \"BEBE\", source: \"Lindwurm\" } window 120,5\r\n128.7 \"Phagocyte Spotlight 1\" #Ability { id: \"B4B6\", source: \"Lindwurm\" }\r\n130.7 \"Phagocyte Spotlight 2\" #Ability { id: \"B4B6\", source: \"Lindwurm\" }\r\n132.7 \"Phagocyte Spotlight 3\" #Ability { id: \"B4B6\", source: \"Lindwurm\" }\r\n134.7 \"Cruel Coil\" Ability { id: [\"B4B8\", \"B4B9\", \"B4BA\", \"B4BB\"], source: \"Lindwurm\" }\r\n134.7 \"Phagocyte Spotlight 4\" #Ability { id: \"B4B6\", source: \"Lindwurm\" }\r\n135.7 \"--bind--\" Ability { id: \"B472\", source: \"Lindwurm\" } duration 5\r\n140.7 \"Skinsplitter 1\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n143.7 \"--sync--\" Ability { id: \"B4C1\", source: \"Lindwurm\" }\r\n145.7 \"Skinsplitter 2\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n145.7 \"--tether 1--\"\r\n150.7 \"Skinsplitter 3\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n150.7 \"--tether 2--\"\r\n152.7 \"Roiling Mass 1\" Ability { id: \"B4B7\", source: \"Blood Vessel\" }\r\n155.7 \"Skinsplitter 4\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n155.7 \"--tether 3--\"\r\n157.7 \"Roiling Mass 2\" Ability { id: \"B4B7\", source: \"Blood Vessel\" }\r\n160.7 \"Skinsplitter 5\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n160.7 \"--tether 4--\"\r\n162.7 \"Roiling Mass 3\" Ability { id: \"B4B7\", source: \"Blood Vessel\" }\r\n165.7 \"Skinsplitter 6\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n167.7 \"Roiling Mass 4\" Ability { id: \"B4B7\", source: \"Blood Vessel\" }\r\n170.7 \"Skinsplitter 7\" Ability { id: \"B4BC\", source: \"Lindwurm\" }\r\n176.7 \"Constrictor\" Ability { id: \"B4C2\", source: \"Lindwurm\" }\r\n185.8 \"Splattershed (castbar)\" Ability { id: \"B9C4\", source: \"Lindwurm\" }\r\n188.2 \"Splattershed\" Ability { id: \"B9C6\", source: \"Lindwurm\" }\r\n189.9 \"--sync--\" Ability { id: \"B4CB\", source: \"Lindwurm\" }\r\n\r\n205.9 \"Grotesquerie: Act 3\" Ability { id: \"BEBF\", source: \"Lindwurm\" } window 205,5\r\n209.0 \"--untargetable--\"\r\n211.0 \"Feral Fission\" Ability { id: \"BE09\", source: \"Lindwurm\" }\r\n212.0 \"Grand Entrance\" #Ability { id: [\"B4A1\", \"B4A0\"], source: \"Lindwurm\" } duration 1.2\r\n215.6 \"Bring Down the House\" Ability { id: [\"B4A5\", \"B4A4\"], source: \"Lindwurm\" }\r\n218.0 \"Dramatic Lysis x8\" #Ability { id: \"B4B0\", source: \"Lindwurm\" }\r\n218.2 \"Metamitosis x8\" Ability { id: \"B923\", source: \"Lindwurm\" }\r\n220.6 \"--targetable--\"\r\n226.9 \"Split Scourge (cast)\" Ability { id: \"B4A7\", source: \"Lindwurm\" }\r\n228.0 \"Split Scourge\" Ability { id: \"B4AB\", source: \"Lindwurm\" }\r\n230.4 \"Venomous Scourge\" Ability { id: \"B4A8\", source: \"Lindwurm\" }\r\n231.5 \"--sync--\" Ability { id: \"B479\", source: \"Lindwurm\" }\r\n239.6 \"The Fixer\" Ability { id: \"B4D7\", source: \"Lindwurm\" }\r\n\r\n251.7 \"Grotesquerie: Curtain Call\" Ability { id: \"BEC0\", source: \"Lindwurm\" } window 251,5\r\n255.7 \"Phagocyte Spotlight 1\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n255.8 \"--sync--\" Ability { id: [\"B49A\", \"B49B\"], source: \"Lindwurm\" }\r\n257.6 \"Phagocyte Spotlight 2\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n259.6 \"Phagocyte Spotlight 3\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n261.6 \"Phagocyte Spotlight 4\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n263.6 \"Phagocyte Spotlight 5\" #Ability { id: \"B49E\", source: \"Lindwurm\" }\r\n265.9 \"--sync--\" Ability { id: \"B46E\", source: \"Lindwurm\" }\r\n266.5 \"Ravenous Reach\" Ability { id: \"B49D\", source: \"Lindwurm\" }\r\n266.6 \"Cell Shedding x4\" #Ability { id: \"B4AC\", source: \"Lindwurm\" }\r\n266.8 \"Dramatic Lysis x4\" #Ability { id: \"B4AA\", source: \"Lindwurm\" }\r\n279.4 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n286.1 \"Splattershed (castbar)\" Ability { id: \"B9C3\", source: \"Lindwurm\" }\r\n288.5 \"Splattershed\" Ability { id: \"B9C6\", source: \"Lindwurm\" }\r\n290.2 \"--sync--\" Ability { id: \"B4CC\", source: \"Lindwurm\" }\r\n299.3 \"--sync--\" Ability { id: \"B7C4\", source: \"Lindwurm\" }\r\n314.3 \"--sync--\" Ability { id: \"B495\", source: \"Lindwurm\" }\r\n314.4 \"Mortal Slayer 1\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n317.4 \"Mortal Slayer 2\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n320.4 \"Mortal Slayer 3\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n323.4 \"Mortal Slayer 4\" #Ability { id: [\"B496\", \"B498\"], source: \"Lindwurm\" }\r\n326.4 \"--sync--\" Ability { id: \"B7C5\", source: \"Lindwurm\" }\r\n\r\n# Slaughershed 1\r\n338.5 \"Slaughtershed 1 (castbar)\" Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } window 338,5\r\n340.9 \"Slaughtershed 1\" Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n342.6 \"--sync--\" Ability { id: \"B4CB\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-left-1\"\r\n342.6 \"--sync--\" Ability { id: \"B4CD\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-right-1\"\r\n342.6 \"--sync--\" Ability { id: \"B4CE\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-left-1\"\r\n342.6 \"--sync--\" Ability { id: \"B4CC\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-right-1\"\r\n349.6 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n349.6 \"Fourth-wall Fusion\" #Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n350.0 \"Burst\" #Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n355.1 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D1\", \"B4D2\", \"B4CD\", \"B4CE\"], source: \"Lindwurm\" }\r\n356.1 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n359.8 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D2\", \"B4D1\", \"B4CE\", \"B4CD\"], source: \"Lindwurm\" }\r\n360.8 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n367.4 \"Slaughtershed 2 (castbar)\" #Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" }\r\n369.8 \"Slaughtershed 2\" #Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n\r\n# Serpentine Scourge Left First\r\n442.6 label \"r12s-p1-scourge-left-1\"\r\n449.6 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n449.6 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n450.0 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n455.1 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n456.1 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n459.8 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n460.8 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n464.4 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed2\"\r\n\r\n# Serpentine Scourge Right First\r\n540.6 label \"r12s-p1-scourge-right-1\"\r\n547.6 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n547.6 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n548.0 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n553.1 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n554.1 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n557.7 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n558.7 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n562.4 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed2\"\r\n\r\n# Raptor Knuckles Left First\r\n641.1 label \"r12s-p1-raptor-left-1\"\r\n648.1 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n648.1 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n648.5 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n653.6 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n654.4 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n658.3 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n659.1 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n662.9 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed2\"\r\n\r\n# Raptor Knuckles Right First\r\n742.7 label \"r12s-p1-raptor-right-1\"\r\n749.7 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n749.7 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n750.1 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n755.2 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n756.1 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n759.9 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n760.7 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n764.5 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed2\"\r\n\r\n# Slaughtershed 2\r\n864.4 label \"r12s-p1-slaughtershed2\"\r\n867.4 \"Slaughtershed 2 (castbar)\" Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" }\r\n869.8 \"Slaughtershed 2\" Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n\r\n871.5 \"--sync--\" Ability { id: \"B4CB\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-left-2\"\r\n871.5 \"--sync--\" Ability { id: \"B4CD\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-right-2\"\r\n871.5 \"--sync--\" Ability { id: \"B4CE\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-left-2\"\r\n871.5 \"--sync--\" Ability { id: \"B4CC\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-right-2\"\r\n878.5 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n878.5 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n878.9 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n884.0 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D1\", \"B4D2\", \"B4CD\", \"B4CE\"], source: \"Lindwurm\" }\r\n884.8 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n888.6 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D2\", \"B4D1\", \"B4CE\", \"B4CD\"], source: \"Lindwurm\" }\r\n889.4 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n896.3 \"Slaughtershed 3 (castbar)\" #Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" }\r\n898.7 \"Slaughtershed 3\" #Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n\r\n# Serpentine Scourge Left Second\r\n971.6 label \"r12s-p1-scourge-left-2\"\r\n978.6 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n978.6 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n979.0 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n984.1 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n985.1 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n988.7 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n989.7 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n993.3 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed3\"\r\n\r\n# Serpentine Scourge Right Second\r\n1069.9 label \"r12s-p1-scourge-right-2\"\r\n1076.9 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1076.9 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1077.3 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1082.4 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n1083.4 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1087.0 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n1088.0 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1091.7 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed3\"\r\n\r\n# Raptor Knuckles Left Second\r\n1171.5 label \"r12s-p1-raptor-left-2\"\r\n1178.5 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1178.5 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1178.9 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1184.0 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n1184.8 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1188.6 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n1189.4 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1193.3 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed3\"\r\n\r\n# Raptor Knuckles Right Second\r\n1271.5 label \"r12s-p1-raptor-right-2\"\r\n1278.5 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1278.5 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1278.9 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1284.0 \"Raptor Knuckles Right\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n1284.8 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1288.6 \"Raptor Knuckles Left\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n1289.4 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1293.3 \"--sync--\" StartsUsing { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" } forcejump \"r12s-p1-slaughtershed3\"\r\n\r\n# Slaughtershed 3\r\n1393.3 label \"r12s-p1-slaughtershed3\"\r\n1396.3 \"Slaughtershed 3 (castbar)\" Ability { id: [\"B4C3\", \"B4C6\"], source: \"Lindwurm\" }\r\n1398.7 \"Slaughtershed 3\" Ability { id: \"ADC9\", source: \"Lindwurm\" }\r\n\r\n1400.4 \"--sync--\" Ability { id: \"B4CB\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-left-3\"\r\n1400.4 \"--sync--\" Ability { id: \"B4CD\", source: \"Lindwurm\" } jump \"r12s-p1-scourge-right-3\"\r\n1400.4 \"--sync--\" Ability { id: \"B4CE\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-left-3\"\r\n1400.4 \"--sync--\" Ability { id: \"B4CC\", source: \"Lindwurm\" } jump \"r12s-p1-raptor-right-3\"\r\n1407.4 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1407.4 \"Fourth-wall Fusion\" #Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1407.8 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1412.9 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D1\", \"B4D2\", \"B4CD\", \"B4CE\"], source: \"Lindwurm\" }\r\n1413.9 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n1417.6 \"Serpentine Scourge/Raptor Knuckles?\" #Ability { id: [\"B4D2\", \"B4D1\", \"B4CE\", \"B4CD\"], source: \"Lindwurm\" }\r\n1418.6 \"Serpentine Scourge/--knockback--?\" #Ability { id: [\"B9BC\", \"B9C7\"], source: \"Lindwurm\" }\r\n1431.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1436.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n\r\n# Serpentine Scourge Left Third\r\n1498.8 label \"r12s-p1-scourge-left-3\"\r\n1505.8 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1505.8 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1506.2 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1511.3 \"Serpentine Scourge Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n1512.3 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1515.9 \"Serpentine Scourge Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n1516.9 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1526.5 \"--sync--\" StartsUsing { id: \"B2C7\", source: \"Lindwurm\" } jump \"r12s-p1-enrage-alt\"\r\n1526.5 \"--untargetable?--\"\r\n1531.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1536.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n1536.8 \"--untargetable?--\"\r\n1536.8 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n1546.7 \"--sync--\" StartsUsing { id: \"B538\", source: \"Lindwurm\" } window 20,3 forcejump \"r12s-p1-enrage\"\r\n\r\n# Serpentine Scourge Right Third\r\n1600.4 label \"r12s-p1-scourge-right-3\"\r\n1607.4 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1607.4 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1607.8 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1612.9 \"Serpentine Scourge Left/Right\" Ability { id: \"B4D2\", source: \"Lindwurm\" }\r\n1613.9 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1617.6 \"Serpentine Scourge Right/Left\" Ability { id: \"B4D1\", source: \"Lindwurm\" }\r\n1618.6 \"Serpentine Scourge\" Ability { id: \"B9BC\", source: \"Lindwurm\" }\r\n1626.5 \"--sync--\" StartsUsing { id: \"B2C7\", source: \"Lindwurm\" } jump \"r12s-p1-enrage-alt\"\r\n1626.5 \"--untargetable?--\"\r\n1631.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1636.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n1636.8 \"--untargetable?--\"\r\n1636.8 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n\r\n1646.7 \"--sync--\" StartsUsing { id: \"B538\", source: \"Lindwurm\" } window 20,3 forcejump \"r12s-p1-enrage\"\r\n\r\n# Raptor Knuckles Left Third\r\n1700.4 label \"r12s-p1-raptor-left-3\"\r\n1707.4 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1707.4 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1707.8 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1712.9 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n1713.7 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1717.5 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n1718.3 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1726.5 \"--sync--\" StartsUsing { id: \"B2C7\", source: \"Lindwurm\" } jump \"r12s-p1-enrage-alt\"\r\n1726.5 \"--untargetable?--\"\r\n1731.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1736.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n1736.8 \"--untargetable?--\"\r\n1736.8 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n1746.7 \"--sync--\" StartsUsing { id: \"B538\", source: \"Lindwurm\" } window 20,3 forcejump \"r12s-p1-enrage\"\r\n\r\n# Raptor Knuckles Right Third\r\n1800.4 label \"r12s-p1-raptor-right-3\"\r\n1807.4 \"Dramatic Lysis x4\" #Ability { id: \"B4D4\", source: \"Lindwurm\" }\r\n1807.4 \"Fourth-wall Fusion\" Ability { id: \"B4D5\", source: \"Lindwurm\" }\r\n1807.8 \"Burst\" Ability { id: \"B49F\", source: \"Lindwurm\" }\r\n1812.9 \"Raptor Knuckles Northwest\" Ability { id: \"B4CF\", source: \"Lindwurm\" }\r\n1813.7 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1817.5 \"Raptor Knuckles Northeast\" Ability { id: \"B4D0\", source: \"Lindwurm\" }\r\n1818.3 \"--knockback--\" Ability { id: \"B9C7\", source: \"Lindwurm\" }\r\n1826.5 \"--sync--\" StartsUsing { id: \"B2C7\", source: \"Lindwurm\" } jump \"r12s-p1-enrage-alt\"\r\n1826.5 \"--untargetable?--\"\r\n1831.5 \"The Fixer (Enrage)?\" #Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n1836.7 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B538\", source: \"Lindwurm\" }\r\n1836.8 \"--untargetable?--\"\r\n1836.8 \"Refreshing Overkill (Enrage)?\" #Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n1846.7 \"--sync--\" StartsUsing { id: \"B538\", source: \"Lindwurm\" } window 20,3 forcejump \"r12s-p1-enrage\"\r\n\r\n# Enrage sequence (Above 20%?)\r\n1926.5 label \"r12s-p1-enrage-alt\"\r\n1931.5 \"The Fixer (Enrage)\" Ability { id: \"B2C7\", source: \"Lindwurm\" }\r\n\r\n# Enrage sequence\r\n2027.7 label \"r12s-p1-enrage\"\r\n2036.7 \"Refreshing Overkill (Enrage)?\" Ability { id: \"B538\", source: \"Lindwurm\" } window 510,5\r\n2036.8 \"--untargetable--\"\r\n2036.8 \"Refreshing Overkill (Enrage)?\" Ability { id: \"B53A\", source: \"Lindwurm\" }\r\n\r\n# Kill/Transition sequence\r\n2036.8 \"Refreshing Overkill\" Ability { id: \"B539\", source: \"Lindwurm\" }\r\n2073.0 \"--sync--\" Ability { id: \"BB9C\", source: \"Lindwurm\" }\r\n2073.5 \"Down for the Count\" duration 42\r\n2075.7 \"--sync--\" Ability { id: \"B53B\", source: \"Lindwurm\" }\r\n2117.7 \"--targetable--\"\r\n\r\n\r\n### Phase 2: Lindwurm II\r\n# -p B528:3015.7\r\n# -ii B51F B4DA B4DB B4DD B4DF B4E3 B4E6 B4F0 B4E9 B8E1 B4EA B922 BE5D BBE3 B508 B4F5 B512 B513 B514 B515 B4F9 B51B\r\n# -it \"Lindwurm\"\r\n3000.5 label \"r12s-p2-start\"\r\n3010.7 \"--sync--\" StartsUsing { id: \"B528\", source: \"Lindwurm\" } window 3100,10\r\n3015.7 \"Arcadia Aflame\" Ability { id: \"B528\", source: \"Lindwurm\" }\r\n3022.9 \"--middle--\" Ability { id: \"B4D9\", source: \"Lindwurm\" } window 5,5\r\n3028.0 \"Replication 1\" Ability { id: \"B4D8\", source: \"Lindwurm\" }\r\n3039.7 \"Top-tier Slam x2\" Ability { id: \"B4DE\", source: \"Lindschrat\" }\r\n3040.5 \"Winged Scourge x4\" Ability { id: \"B4DC\", source: \"Lindwurm\" }\r\n3040.7 \"Mighty Magic x4\" #Ability { id: \"B4E0\", source: \"Lindwurm\" }\r\n3045.3 \"Snaking Kick\" Ability { id: \"B527\", source: \"Lindwurm\" }\r\n3053.7 \"--clones move 1--\" #Ability { id: \"B4D9\", source: \"Lindschrat\" }\r\n3054.7 \"--clones move 2--\" #Ability { id: \"B4D9\", source: \"Lindschrat\" }\r\n3061.0 \"Top-tier Slam x2\" Ability { id: \"B4DE\", source: \"Lindschrat\" }\r\n3061.8 \"Winged Scourge x4\" Ability { id: \"B4DC\", source: \"Lindwurm\" }\r\n3062.1 \"Mighty Magic x4\" #Ability { id: \"B4E0\", source: \"Lindwurm\" }\r\n3069.4 \"Double Sobat (castbar)\" Ability { id: \"B520\", source: \"Lindwurm\" }\r\n3070.0 \"Double Sobat 1\" Ability { id: [\"B521\", \"B522\", \"B523\", \"B524\"], source: \"Lindwurm\" }\r\n3074.6 \"Double Sobat 2\" Ability { id: \"B525\", source: \"Lindwurm\" }\r\n3077.0 \"Esoteric Finisher\" Ability { id: \"B526\", source: \"Lindwurm\" }\r\n\r\n3091.2 \"Staging\" Ability { id: \"B4E1\", source: \"Lindwurm\" }\r\n3092.5 \"--clones x2 1--\" #ActorControlExtra { category: \"0197\", param1: \"11D2\" }\r\n3094.0 \"--clones x2 2--\" #ActorControlExtra { category: \"0197\", param1: \"11D2\" }\r\n3095.5 \"--clones x2 3--\" #ActorControlExtra { category: \"0197\", param1: \"11D2\" }\r\n3097.0 \"--clones x2 4--\" #ActorControlExtra { category: \"0197\", param1: \"11D2\" }\r\n3099.1 \"--locked tethers--\" Tether { id: \"0175\", source: \"Understudy\" }\r\n3102.2 \"--sync--\" Ability { id: \"B4E2\", source: \"Lindwurm\" }\r\n3105.4 \"Replication 2\" Ability { id: \"B4D8\", source: \"Lindwurm\" }\r\n3108.6 \"--boss clones x6--\" ActorControlExtra { category: \"0197\", param1: \"11D5\" }\r\n3113.8 \"--tethers--\"  #Tether { id: [\"016F\", \"0170\", \"0171\", \"0176\"] } # These could change hands causing sync issue\r\n3121.8 \"--locked tethers--\" Tether { id: \"0175\", source: [\"Lindschrat\", \"Lindwurm\"] }\r\n3127.8 \"Firefall Splash\" Ability { id: \"B4E4\", source: \"Lindwurm\" }\r\n3128.5 \"Scalding Waves x4\" Ability { id: \"B4E5\", source: \"Lindwurm\" }\r\n3129.9 \"Mana Burst x3\" Ability { id: \"B4E7\", source: \"Lindwurm\" }\r\n3135.5 \"Heavy Slam x2\" Ability { id: \"B4E8\", source: \"Lindschrat\" }\r\n3136.7 \"Grotesquerie x2\" Ability { id: \"B4EA\", source: \"Lindwurm\" }\r\n3137.3 \"Hemorrhagic Projection x2\" Ability { id: \"B4EB\", source: \"Lindwurm\" }\r\n3141.1 \"Snaking Kick\" Ability { id: \"B527\", source: \"Lindwurm\" }\r\n\r\n# Reenactment 1\r\n# NOTE: Order dependent on tethers during and Staging 1 and Replication 2\r\n# Initial VFX spells happen at same time, but damage casts differ:\r\n# +0s B4ED Fireball Splash (Initial VFX abilities also happen here)\r\n# +1.2s BBE3 Mana Burst\r\n# +1.4s BE5D Heavy Slam, B8E1 Scalding Waves\r\n# +1.6s B922 Hemorrhagic Projection\r\n# These Abilities Sync same time:\r\n# B4ED Fireball Splash\r\n# B4EE Mana Burst (VFX)\r\n# B4EF Heavy Slam (VFX)\r\n# B4F1 Grotesquerie (VFX)\r\n3151.3 \"Reenactment 1\" Ability { id: \"B4EC\", source: \"Lindwurm\" }\r\n3159.4 \"--n/s clones--\" duration 1.6\r\n3159.4 \"Netherwrath Near/Netherwrath Far\" Ability { id: [\"B52E\", \"B52F\"], source: \"Lindwurm\" }\r\n3160.6 \"Timeless Spite x2\" Ability { id: \"B530\", source: \"Lindwurm\" }\r\n3163.3 \"--ne/sw clones--\" Ability { id: [\"B4ED\", \"B4EE\", \"B4EF\", \"B4F1\"], source: \"Lindschrat\" } duration 1.6\r\n3167.4 \"--e/w clones--\" Ability { id: [\"B4ED\", \"B4EE\", \"B4EF\", \"B4F1\"], source: \"Lindschrat\" } duration 1.6\r\n3171.4 \"--se/nw clones--\" Ability { id: [\"B4ED\", \"B4EE\", \"B4EF\", \"B4F1\"], source: \"Lindschrat\" } duration 1.6\r\n\r\n3178.6 \"--middle--\" Ability { id: \"B4D9\", source: \"Lindwurm\" } window 5,5\r\n\r\n# Blood Mana / Blood Wakening Phase (Superchain)\r\n3183.8 \"Mutating Cells\" Ability { id: \"B505\", source: \"Lindwurm\" } window 10,10\r\n3185.0 \"--sync--\" Ability { id: \"B506\", source: \"Lindwurm\" }\r\n3190.0 \"Blood Mana\" Ability { id: \"B4FB\", source: \"Lindwurm\" }\r\n3193.3 \"--black holes--\" Ability { id: \"BCB0\", source: \"Mana Sphere\" }\r\n3193.7 \"--shapes--\" Ability { id: \"B4FD\", source: \"Mana Sphere\" }\r\n3200.7 \"Bloody Burst x2\" #Ability { id: \"B4FE\", source: \"Lindwurm\" } # Goes off when soaked by player\r\n3202.2 \"Dramatic Lysis x8\" Ability { id: \"B507\", source: \"Lindwurm\" }\r\n3203.2 \"--close shapes eaten--\" Ability { id: \"B4FF\", source: \"Mana Sphere\" }\r\n3204.1 \"--sync--\" Ability { id: \"BCB0\", source: \"Mana Sphere\" } # Blackhole 1\r\n3206.2 \"--far shapes eaten--\" Ability { id: \"B4FF\", source: \"Mana Sphere\" }\r\n3207.0 \"--sync--\" Ability { id: \"BCB0\", source: \"Mana Sphere\" } # Blackhole 2\r\n3209.2 \"--soaked shapes eaten--\" Ability { id: \"B4FF\", source: \"Mana Sphere\" }\r\n3210.1 \"--sync--\" Ability { id: \"BCB0\", source: \"Mana Sphere\" } # Blackhole 1\r\n\r\n3216.7 \"Blood Wakening\" Ability { id: \"B500\", source: \"Lindwurm\" }\r\n3217.9 \"--sync--\" Ability { id: \"B4FC\", source: \"Mana Sphere\" }\r\n3218.3 \"Black Hole 1\" Ability { id: [\"B501\", \"B502\", \"B503\", \"B504\"], source: \"Lindwurm\" }\r\n3222.9 \"--sync--\" Ability { id: \"B4FC\", source: \"Mana Sphere\" }\r\n3223.3 \"Black Hole 2\" Ability { id: [\"B501\", \"B502\", \"B503\", \"B504\"], source: \"Lindwurm\" }\r\n3227.6 \"Netherworld Near/Netherworld Far\" Ability { id: [\"B52B\", \"B52C\"], source: \"Lindwurm\" }\r\n3228.8 \"Wailing Wave x3\" Ability { id: \"B52D\", source: \"Lindwurm\" }\r\n3231.8 \"Dramatic Lysis x8\" Ability { id: \"B507\", source: \"Lindwurm\" }\r\n3235.8 \"Arcadia Aflame\" Ability { id: \"B528\", source: \"Lindwurm\" }\r\n3245.0 \"Double Sobat (castbar)\" Ability { id: \"B520\", source: \"Lindwurm\" }\r\n3245.6 \"Double Sobat 1\" Ability { id: [\"B521\", \"B522\", \"B523\", \"B524\"], source: \"Lindwurm\" }\r\n3250.2 \"Double Sobat 2\" Ability { id: \"B525\", source: \"Lindwurm\" }\r\n3252.6 \"Esoteric Finisher\" Ability { id: \"B526\", source: \"Lindwurm\" }\r\n3260.7 \"--middle--\" Ability { id: \"B4D9\", source: \"Lindwurm\" } window 5,5\r\n\r\n# Idyllic Dream\r\n3268.8 \"Idyllic Dream\" Ability { id: \"B509\", source: \"Lindwurm\" }\r\n3275.0 \"Staging\" Ability { id: \"B4E1\", source: \"Lindwurm\" }\r\n3276.3 \"--clones x4 1--\" #ActorControlExtra { category: \"0197\", param1: \"11D2\" }\r\n3278.3 \"--clones x4 2--\" #ActorControlExtra { category: \"0197\", param1: \"11D2\" }\r\n3280.4 \"--locked tethers--\" Tether { id: \"0175\", source: \"Understudy\" }\r\n3283.4 \"--sync--\" Ability { id: \"B4E2\", source: \"Lindwurm\" }\r\n3290.1 \"Twisted Vision 1\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3296.2 \"Replication 3\" Ability { id: \"B4D8\", source: \"Lindwurm\" }\r\n3299.4 \"--boss clones x3--\" ActorControlExtra { category: \"0197\", param1: \"11D5\" }\r\n3308.6 \"Twisted Vision 2\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3309.6 \"Power Gusher x2\" #Ability { id: [\"B50F\", \"B510\"], source: \"Lindschrat\" }\r\n3309.6 \"Snaking Kick\" #Ability { id: \"B511\", source: \"Lindschrat\" }\r\n3314.7 \"Replication 4\" Ability { id: \"B4D8\", source: \"Lindwurm\" }\r\n3317.9 \"--boss clones x2 1--\" #ActorControlExtra { category: \"0197\", param1: \"11D5\" }\r\n3318.9 \"--boss clones x2 2--\" #ActorControlExtra { category: \"0197\", param1: \"11D5\" }\r\n3319.9 \"--boss clones x2 3--\" #ActorControlExtra { category: \"0197\", param1: \"11D5\" }\r\n3320.9 \"--boss clones x2 4--\" #ActorControlExtra { category: \"0197\", param1: \"11D5\" }\r\n3326.1 \"--tethers--\" #Tether { id: [\"0170\", \"0171\"], source: \"Lindschrat\" } # These could change hands causing sync issue\r\n3334.1 \"--locked tethers--\" Tether { id: \"0175\", source: \"Lindschrat\" }\r\n\r\n# Twisted Vision 3: Towers Preview\r\n3334.3 \"Twisted Vision 3\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3338.7 \"Snaking Kick\" Ability { id: \"BE95\", source: \"Lindwurm\" }\r\n3338.9 \"Power Gusher x4\" #Ability { id: \"B516\", source: \"Lindwurm\" } # Front/Back are apparently counting as their own casts\r\n3342.8 \"Lindwurm's Meteor\" Ability { id: \"B4F2\", source: \"Lindwurm\" }\r\n3348.9 \"Downfall\" Ability { id: \"B4F3\", source: \"Lindwurm\" }\r\n3355.0 \"Arcadian Arcanum (castbar)\" Ability { id: \"B529\", source: \"Lindwurm\" }\r\n3356.2 \"Arcadian Arcanum\" Ability { id: \"B9D9\", source: \"Lindwurm\" }\r\n\r\n# Twisted Vision 4: First Stacks/Defamations\r\n# Orders could be different, but we can detect B517 abiltiy to know if Mana Burst is coming 1.2s before B518\r\n3363.0 \"Twisted Vision 4\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3369.6 \"Clone 1 Heavy Slam?\" Ability { id: \"B519\", source: \"Lindschrat\" } # Or B517 Mana Burst (Lindschrat) happens here\r\n3370.8 \"Clone 1 Mana Burst?\" Ability { id: \"B518\", source: \"Lindwurm\" }\r\n3374.6 \"Clone 2 Heavy Slam?\" Ability { id: \"B519\", source: \"Lindschrat\" } # Or B517 Mana Burst (Lindschrat) happens here\r\n3375.8 \"Clone 2 Mana Burst?\" Ability { id: \"B518\", source: \"Lindwurm\" }\r\n3379.6 \"Clone 3 Heavy Slam?\" Ability { id: \"B519\", source: \"Lindschrat\" } # Or B517 Mana Burst (Lindschrat) happens here\r\n3380.8 \"Clone 3 Mana Burst?\" Ability { id: \"B518\", source: \"Lindwurm\" }\r\n3384.6 \"Clone 4 Heavy Slam?\" Ability { id: \"B519\", source: \"Lindschrat\" } # Or B517 Mana Burst (Lindschrat) happens here\r\n3385.8 \"Clone 4 Mana Burst?\" Ability { id: \"B518\", source: \"Lindwurm\" }\r\n\r\n# Twisted Vision 5: Towers\r\n3393.6 \"Twisted Vision 5\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3398.0 \"Cosmic Kiss x8\" Ability { id: \"B4F4\", source: \"Lindwurm\" }\r\n3398.6 \"--Hot-blooded x2--\" duration 5\r\n3398.7 \"Lindwurm's Dark II x2\" Ability { id: \"B4F6\", source: \"Lindwurm\" }\r\n3398.7 \"--Doom x2--\" duration 8\r\n3403.7 \"Lindwurm's Stone III x2\" #Ability { id: \"B4F7\", source: \"Lindwurm\" }\r\n3408.7 \"Lindwurm's Thunder II x4\" #Ability { id: \"B4FA\", source: \"Lindwurm\" }\r\n3408.7 \"Lindwurm's Glare x4\" #Ability { id: \"B4F8\", source: \"Lindwurm\" }\r\n3417.1 \"Temporal Curtain\" Ability { id: \"B51C\", source: \"Lindwurm\" }\r\n3420.2 \"--clone takes portal--\" Ability { id: \"B51D\", source: \"Lindschrat\" }\r\n3423.3 \"--clones on platform--\" Ability { id: \"B4D9\", source: \"Lindschrat\" }\r\n\r\n# Twisted Vision 6: Reenactment 2 Part 1\r\n# NOTE: Practical solution seems to be that you have x2 mana burts + x2 heavy slams\r\n# This is because mana burts hits will knockback and heavy slams give Magic Vulns\r\n# In theory you could do somehow get here and survive with:\r\n# 3x Mana Burst + 1 Heavy Slam => 3x Heavy Slam + 1 Mana Burst or\r\n# 3x Heavy Slam + 1 Mana Burst => 3x Mana Burst + 1 Heavy Slam \r\n# But those would probably require lots of mit and tank immune probably on 2/3 of the heavy slams in the 3 set\r\n3429.6 \"Twisted Vision 6\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3430.6 \"Power Gusher\" Ability { id: [\"B50F\", \"B510\"], source: \"Lindschrat\" }\r\n3430.6 \"Snaking Kick\" Ability { id: \"BCAF\", source: \"Lindschrat\" }\r\n3435.7 \"Reenactment 2\" Ability { id: \"B4EC\", source: \"Lindwurm\" }\r\n3439.0 \"Clone Mana Burst x2\" Ability { id: \"BBE3\", source: \"Lindwurm\" }\r\n3439.2 \"Clone Heavy Slam x2\" Ability { id: \"BE5D\", source: \"Lindwurm\" }\r\n\r\n# Twisted Vision 7: Safe Platform + Front/Back or Sides Platform\r\n3444.8 \"Twisted Vision 7\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3449.2 \"Snaking Kick\" Ability { id: \"BE95\", source: \"Lindwurm\" }\r\n3449.4 \"Power Gusher\" Ability { id: \"B516\", source: \"Lindwurm\" }\r\n\r\n# Twisted Vision 8: Reenactment 2 Part 2\r\n3452.3 \"Twisted Vision 8\" Ability { id: \"BBE2\", source: \"Lindwurm\" }\r\n3458.6 \"--sync--\" Ability { id: \"B51E\", source: \"Lindschrat\" }\r\n3459.8 \"Clone Mana Burst x2\" Ability { id: \"BBE3\", source: \"Lindwurm\" }\r\n3460.0 \"Clone Heavy Slam x2\" Ability { id: \"BE5D\", source: \"Lindwurm\" }\r\n3464.8 \"Power Gusher\" Ability { id: \"B516\", source: \"Lindwurm\" }\r\n3470.7 \"Idyllic Dream\" Ability { id: \"B509\", source: \"Lindwurm\" }\r\n3478.8 \"Double Sobat (castbar)\" Ability { id: \"B520\", source: \"Lindwurm\" }\r\n3479.6 \"Double Sobat 1\" Ability { id: [\"B521\", \"B522\", \"B523\", \"B524\"], source: \"Lindwurm\" }\r\n3484.2 \"Double Sobat 2\" Ability { id: \"B525\", source: \"Lindwurm\" }\r\n3486.6 \"Esoteric Finisher\" Ability { id: \"B526\", source: \"Lindwurm\" }\r\n\r\n# Enrage Sequence\r\n3499.8 \"Replication 5\" Ability { id: \"B46C\", source: \"Lindwurm\" }\r\n3513.2 \"Arcadian Hell 1 (boss) \" Ability { id: \"B533\", source: \"Lindwurm\" }\r\n3513.2 \"Arcadian Hell 1 x4 (clones)\" #Ability { id: \"B534\", source: \"Lindschrat\" }\r\n3529.4 \"Arcadian Hell 2 (boss)\" Ability { id: \"B533\", source: \"Lindwurm\" }\r\n3529.4 \"Arcadian Hell 2 x8 (clones)\" #Ability { id: \"B535\", source: \"Lindschrat\" }\r\n3542.3 \"--sync--\" StartsUsing { id: \"B537\", source: \"Lindwurm\" }\r\n3552.3 \"Arcadian Hell (Boss Enrage)\" Ability { id: \"B537\", source: \"Lindwurm\" }\r\n3552.3 \"Arcadian Hell x16 (Clones Enrage)\" #Ability { id: \"BEC1\", source: \"Lindschrat\" }\r\n\r\n# IGNORED ABILITIES\r\n# Phase 1\r\n# B4D3 --sync--: Attack autos\r\n# B4B2 Unmitigated Explosion: Missed blob tower\r\n# B6F9 Unmitigated Explosion: Breaking chain before Bonds of Flesh expires\r\n# B4B4 Dramatic Lysis: Damage from breaking a tether; These can be broken at various times\r\n# B4B5 Dramatic Lysis: 6s to break tether, else this applies every 1s, doing damage and giving a damage down\r\n# B4B3 Roiling Mass: Damage from soaking a tether-created tower; The towers can be created at various times\r\n# B4BD Constrictor: VFX Ending of Cruel Coil B4B8\r\n# B4BE Constrictor: VFX Ending of Cruel Coil B4B9\r\n# B4BF Constrictor: VFX Ending of Cruel Coil B4BA\r\n# B4C0 Constrictor: VFX Ending of Cruel Coil B4BB\r\n# B4B1 Metamitosis: VFX\r\n# B469 Ravenous Reach: VFX\r\n# B769 Ravenous Reach: VFX\r\n# B76A Ravenous Reach: VFX\r\n# B56F --sync--: These happen same time as Bring Down the House BE0A\r\n# B570 --sync--: These happen same time as Bring Down the House BE0A\r\n# BE0A Bring Down the House: VFX\r\n# B4CF Raptor Knuckles: VFX for knockback from NW\r\n# B4D0 Raptor Knuckles: VFX for knockback from NE\r\n# B4AD Cell Death: Failing Cell Shedding by not getting hit by Ravenous Reach\r\n\r\n# Phase 2\r\n# B51F --sync--: Attack autos\r\n# B4DA Winged Scourge: VFX E/W clones Facing S, Cleaving Front/Back (North/South)\r\n# B4DB Winged Scourge: VFX N/S clones Facing W, Cleaving Front/Back (East/West)\r\n# B4DD Top-tier Slam: VFX (cast that gives Fire Debuff)\r\n# B4DF Mighty Magic: VFX (cast that gives Dark Debuff)\r\n# B4E3 Firefall Splash: VFX\r\n# B4E6 Mana Burst: VFX\r\n# B4F0 Unmitigated Impact: No one stacked in a Heavy Slam, causes 1035 Sustained Damage DoT\r\n# B4E9 Grotesquerie: VFX\r\n# B8E1 Scalding Waves: Used in Reenactment (Proteans), Ignored due to timing being strategy-based\r\n# B4EA Grotesquerie: Used in Reenactment, Ignored due to timing being strategy-based\r\n# BBE3 Mana Burst: Used in Reenactment (Damage + Knockback), Ignored due to timing being strategy-based\r\n# BE5D Heavy Slam: Used in Reenactment (Stack with Clone, requires at least 1 player), Ignored due to timing being strategy-based\r\n# B922 Hemorrhagic Projection: Used in Reenactment (Damage), Ignored due to timing being strategy-based\r\n# B508 Unmitigated Explosion: Getting hit when you have Mitigation α or failing to get hit with Mitigation β, applies 30s damage down\r\n# B4FF --sync--: VFX Mana Spheres eaten by Black Hole\r\n# BCB0 --sync--: VFX Black Hole light eruption\r\n# B4F5 Unmitigated Explosion: Missing Cosmic Kiss Tower (Twisted Vision 5)\r\n# B512 Power Gusher: VFX during Twisted Vision 2 with B50F and B510\r\n# B513 Power Gusher: VFX during Twisted Vision 3, related to the B50F\r\n# B514 Power Gusher: VFX during Twisted Vision 3, related to the B510\r\n# B515 Snaking Kick: VFX during Twisted Vision 3\r\n# B4F9 Pyretic Wurm: Damage suffered when player moves while under affect of 12A0 Hot-blooded\r\n# B51B Power Gusher: VFX during Twisted Vision 8, related to B516\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# Phase 1\r\n# ADC9 Slaughtershed\r\n# B2C7 The Fixer: Alternative enrage\r\n# B469 Ravenous Reach: VFX\r\n# B46E --sync--\r\n# B472 --sync-- Animation coinciding with boss jumping to middle and binding the players\r\n# B479 --sync--\r\n# B495 Mortal Slayer: VFX, B496 and B498 have distance and AOE components so this is nearest sync\r\n# B496 Mortal Slayer: Green (DPS/Healer) Orbs\r\n# B498 Mortal Slayer: Purple (Tank) Orbs\r\n# B49A --sync--: Animation for Wyrm moving West (Cleaving East)\r\n# B49B --sync--: Animation for Wyrm moving East (Cleaving West)\r\n# B49D Ravenous Reach\r\n# B49E Phagocyte Spotlight\r\n# B49F Burst\r\n# B4A0 Grand Entrance: Small circle aoe of wyrm going into ground? Does a knockback and gives damage down\r\n# B4A1 Grand Entrance: Only cast when caradinals are safe; Small circle aoe of wyrm coming out of ground? Does a knockback and gives damage down\r\n# B4A2 Grand Entrance: Only cast when intercardinal are safe\r\n# B4A3 Grand Entrance\r\n# B4A4 Bring Down the House\r\n# B4A5 Bring Down the House\r\n# B4A6 Bring Down the House\r\n# B4A7 Split Scourge\r\n# B4A8 Venomous Scourge\r\n# B4AA Dramatic Lysis: Spread AoE damage\r\n# B4AB Split Scourge\r\n# B4AC Cell Shedding\r\n# B4AD Cell Death\r\n# B4AE Fourth-wall Fusion\r\n# B4AF Hemorrhagic Projection\r\n# B4B0 Dramatic Lysis\r\n# B4B1 Metamitosis\r\n# B4B2 Unmitigated Explosion\r\n# B4B3 Roiling Mass: Chain Tower soaks\r\n# B4B4 Dramatic Lysis\r\n# B4B5 Dramatic Lysis\r\n# B4B6 Phagocyte Spotlight\r\n# B4B7 Roiling Mass: Blob Tower Soaks\r\n# B4B8 Cruel Coil: Starts east, turns counterclock\r\n# B4B9 Cruel Coil: Starts west, turns counterclock\r\n# B4BA Cruel Coil: Starts north, turns counterclock\r\n# B4BB Cruel Coil: Starts south, turns counterclock\r\n# B4BC Skinsplitter\r\n# B4BD Constrictor: VFX Ending of Cruel Coil B4B8\r\n# B4BE Constrictor: VFX Ending of Cruel Coil B4B9\r\n# B4BF Constrictor: VFX Ending of Cruel Coil B4BA\r\n# B4C0 Constrictor: VFX Ending of Cruel Coil B4BB\r\n# B4C1 --sync--\r\n# B4C2 Constrictor: \"soft enrage\" damage for Cruel Coil\r\n# B4C3 Slaughtershed\r\n# B4C6 Slaughtershed\r\n# B4CB --sync--: Animation that indicates B4D1 Serpintine Scourge (Left Hand/E) is first\r\n# B4CC --sync--: Animation that indicates B4CF Raptor Knuckles (Right Hand/NW) is first\r\n# B4CD --sync--: Animation that indicates B4D2 Serpintine Scourge (Right hand/W) is first\r\n# B4CE --sync--: Animation that indicates B4D0 Raptor Knuckles (Left Hand/NE) is first\r\n# B4CF Raptor Knuckles\r\n# B4D0 Raptor Knuckles\r\n# B4D1 Serpentine Scourge\r\n# B4D2 Serpentine Scourge\r\n# B4D3 --sync--\r\n# B4D4 Dramatic Lysis\r\n# B4D5 Fourth-wall Fusion\r\n# B4D6 Visceral Burst\r\n# B4D7 The Fixer\r\n# B4F5 Unmitigated Explosion\r\n# B4F9 Pyretic Wurm\r\n# B538 Refreshing Overkill: Enrage castbar\r\n# B539 Refreshing Overkill: Non-enrage\r\n# B53A Refreshing Overkill: Enrage\r\n# B53E Skinsplitter: Damage from running into snake during Cruel Coil\r\n# B56F --sync--\r\n# B570 --sync--\r\n# B571 --sync--\r\n# B6F9 Unmitigated Explosion\r\n# B769 Ravenous Reach: VFX\r\n# B76A Ravenous Reach: VFX\r\n# B7C4 --sync--\r\n# B7C5 --sync--\r\n# B923 Metamitosis\r\n# B9B9 Fourth-wall Fusion\r\n# B9BC Serpentine Scourge\r\n# B9C3 Splattershed\r\n# B9C4 Splattershed\r\n# B9C6 Splattershed\r\n# B9C7 Raptor Knuckles: Damage\r\n# B9DB --sync--\r\n# BE09 Feral Fission\r\n# BE0A Bring Down the House\r\n# BEBD Grotesquerie: Act 1\r\n# BEBE Grotesquerie: Act 2\r\n# BEBF Grotesquerie: Act 3\r\n# BEC0 Grotesquerie: Curtain Call\r\n\r\n# Phase 2\r\n# B46C Replication\r\n# B4D8 Replication\r\n# B4D9 --sync--\r\n# B4DA Winged Scourge\r\n# B4DB Winged Scourge\r\n# B4DC Winged Scourge\r\n# B4DD Top-tier Slam\r\n# B4DE Top-tier Slam\r\n# B4DF Mighty Magic\r\n# B4E0 Mighty Magic\r\n# B4E1 Staging\r\n# B4E2 --sync--\r\n# B4E3 Firefall Splash\r\n# B4E4 Firefall Splash\r\n# B4E5 Scalding Waves\r\n# B4E6 Mana Burst\r\n# B4E7 Mana Burst\r\n# B51F --sync--\r\n# B4E8 Heavy Slam: Stack on Player, requires at least 1 additional player\r\n# B4E9 Grotesquerie\r\n# B4EA Grotesquerie: Used in Reenactment\r\n# B4EB Hemorrhagic Projection\r\n# B4EC Reenactment\r\n# B4ED Firefall Splash: Used in Reenactment (Damage)\r\n# B4EE Mana Burst: VFX used in Reenactment\r\n# B4EF Heavy Slam: VFX used in Reenactment\r\n# B4F0 Unmitigated Impact\r\n# B4F1 Grotesquerie: VFX used in Reenactment\r\n# B4F2 Lindwurm's Meteor\r\n# B4F3 Downfall\r\n# B4F4 Cosmic Kiss\r\n# B4F5 Unmitigated Explosion\r\n# B4F6 Lindwurm's Dark II\r\n# B4F7 Lindwurm's Stone III\r\n# B4F8 Lindwurm's Glare\r\n# B4FA Lindwurm's Thunder II\r\n# B4FB Blood Mana\r\n# B4FC --sync--\r\n# B4FD --sync--\r\n# B4FE Bloody Burst\r\n# B4FF --sync--\r\n# B500 Blood Wakening\r\n# B501 Lindwurm's Water III\r\n# B502 Lindwurm's Aero III\r\n# B503 Straightforward Thunder II\r\n# B504 Sideways Fire II\r\n# B505 Mutating Cells\r\n# B506 --sync--\r\n# B507 Dramatic Lysis\r\n# B508 Unmitigated Explosion\r\n# B509 Idyllic Dream\r\n# B50F Power Gusher\r\n# B510 Power Gusher\r\n# B511 Snaking Kick\r\n# B512 Power Gusher\r\n# B513 Power Gusher\r\n# B514 Power Gusher\r\n# B515 Snaking Kick\r\n# B516 Power Gusher: Cast during Twisted Vision 7 and 8\r\n# B517 Mana Burst: VFX during Twisted Vision 4, happens 1.2s before B518, useful for sync branch\r\n# B518 Mana Burst\r\n# B519 Heavy Slam\r\n# B51A Power Gusher\r\n# B51B Power Gusher\r\n# B51C Temporal Curtain\r\n# B51D --sync--\r\n# B51E --sync--\r\n# B51F --sync--: Attack\r\n# B520 Double Sobat: Castbar\r\n# B521 Double Sobat: 0 degree left turn then B525\r\n# B522 Double Sobat: 90 degree left turn then B525\r\n# B523 Double Sobat: 180 degree left turn then B525\r\n# B524 Double Sobat: 270 degree left turn (turns to the right)\r\n# B525 Double Sobat: Followup cleave\r\n# B526 Esoteric Finisher\r\n# B527 Snaking Kick\r\n# B528 Arcadia Aflame\r\n# B529 Arcadian Arcanum\r\n# B52B Netherworld Near\r\n# B52C Netherworld Far\r\n# B52D Wailing Wave\r\n# B52E Netherwrath Near\r\n# B52F Netherwrath Far\r\n# B530 Timeless Spite\r\n# B533 Arcadian Hell\r\n# B534 Arcadian Hell\r\n# B535 Arcadian Hell\r\n# B537 Arcadian Hell\r\n# B8E1 Scalding Waves: Used in Reenactment (Proteans)\r\n# B922 Hemorrhagic Projection: Used in Reenactment (Damage)\r\n# B9D9 Arcadian Arcanum\r\n# BBE2 Twisted Vision\r\n# BBE3 Mana Burst: Used in Reenactment (Damage + Knockback)\r\n# BCAF Snaking Kick\r\n# BCB0 --sync--: Blackhole spawn\r\n# BE5D Heavy Slam: Used in Reenactment (Stack with Clone, requires at least 1 player)\r\n# BE95 Snaking Kick\r\n# BEC1 Arcadian Hell\r\n";
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/raid/r1n.ts
 
 
