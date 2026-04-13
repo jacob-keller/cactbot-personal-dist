@@ -246360,7 +246360,9 @@ const r12s_triggerSet = {
     infoText: (data, matches, output) => {
       const actor = data.actorPositions[matches.sourceId];
       if (actor === undefined) return output.cloneTether();
-      const dirNum = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(actor.x, actor.y, r12s_center.x, r12s_center.y);
+      let dirNum = util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(actor.x, actor.y, r12s_center.x, r12s_center.y);
+      // Handle relative callout if configured
+      if (data.triggerSetConfig.replication2Strategy === 'banana-relative') dirNum = (dirNum + 2) % 8;
       const dir = util/* Directions.output8Dir */.Ns.output8Dir[dirNum] ?? 'unknown';
       return output.cloneTetherDir({
         dir: output[dir]()
