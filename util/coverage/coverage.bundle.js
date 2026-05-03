@@ -22242,8 +22242,8 @@ const translateRegexBuildParamAnon = (anonParams, replaceLang, replacements) => 
     missingFields
   };
 };
-// EXTERNAL MODULE: ./ui/raidboss/data/raidboss_manifest.txt + 731 modules
-var raidboss_manifest = __webpack_require__(930);
+// EXTERNAL MODULE: ./ui/raidboss/data/raidboss_manifest.txt + 735 modules
+var raidboss_manifest = __webpack_require__(426);
 ;// CONCATENATED MODULE: ./ui/raidboss/raidboss_options.ts
 
 
