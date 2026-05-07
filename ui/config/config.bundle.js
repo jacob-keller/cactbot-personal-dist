@@ -19921,8 +19921,8 @@ const generateBuffTriggerIds = () => {
   buffs.sort((a, b) => a.id.localeCompare(b.id));
   return buffs.map(buff => `Buff ${buff.id}`);
 };
-// EXTERNAL MODULE: ./ui/oopsyraidsy/data/oopsy_manifest.txt + 260 modules
-var oopsy_manifest = __webpack_require__(449);
+// EXTERNAL MODULE: ./ui/oopsyraidsy/data/oopsy_manifest.txt + 261 modules
+var oopsy_manifest = __webpack_require__(552);
 ;// CONCATENATED MODULE: ./ui/oopsyraidsy/oopsyraidsy_config.ts
 
 
@@ -22233,8 +22233,8 @@ const translateRegexBuildParamAnon = (anonParams, replaceLang, replacements) => 
     missingFields
   };
 };
-// EXTERNAL MODULE: ./ui/raidboss/data/raidboss_manifest.txt + 735 modules
-var raidboss_manifest = __webpack_require__(426);
+// EXTERNAL MODULE: ./ui/raidboss/data/raidboss_manifest.txt + 737 modules
+var raidboss_manifest = __webpack_require__(690);
 ;// CONCATENATED MODULE: ./ui/raidboss/raidboss_options.ts
 
 
@@ -25217,6 +25217,7 @@ const kPrefixToCategory = {
   },
   '99-custom': {
     en: 'Custom Developer Triggers',
+    de: 'Benutzerdefinierte Entwickler Trigger',
     cn: '自定义开发者触发器',
     ko: '커스텀 개발자 트리거'
   },

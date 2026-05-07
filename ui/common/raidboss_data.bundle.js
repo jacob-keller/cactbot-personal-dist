@@ -1,7 +1,7 @@
 "use strict";
 (self["webpackChunkcactbot"] = self["webpackChunkcactbot"] || []).push([[890],{
 
-/***/ 426:
+/***/ 690:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -3596,7 +3596,9 @@ const aurum_vale_triggerSet = {
   zoneId: zone_id/* default.TheAurumVale */.Z.TheAurumVale,
   comments: {
     en: 'pre-7.4 rework',
-    cn: '7.4改版前'
+    de: 'Vor der 7.4 Überarbeitung',
+    cn: '7.4改版前',
+    ko: '7.4 개편 전'
   },
   triggers: [{
     id: 'Aurum Vale GoldLungs/Burrs',
@@ -40981,7 +40983,9 @@ const shisui_of_the_violet_tides_triggerSet = {
   zoneId: zone_id/* default.ShisuiOfTheVioletTides */.Z.ShisuiOfTheVioletTides,
   comments: {
     en: 'pre-7.5 rework',
-    cn: '7.5改版前'
+    de: 'Vor der 7.5 Überarbeitung',
+    cn: '7.5改版前',
+    ko: '7.5 개편 전'
   },
   timelineFile: 'shisui_of_the_violet_tides.txt',
   triggers: [{
@@ -61883,23 +61887,14 @@ const trial_seiryu_namespaceObject = "### Seiryu Normal\r\n# -p 37FE:12.7 37C4:9
 
 
 
+
 // Shinryu Extreme
 const shinryu_ex_triggerSet = {
   id: 'TheMinstrelsBalladShinryusDomain',
   zoneId: zone_id/* default.TheMinstrelsBalladShinryusDomain */.Z.TheMinstrelsBalladShinryusDomain,
   timelineFile: 'shinryu-ex.txt',
   triggers: [{
-    id: 'ShinryuEx Heart Cleanup',
-    type: 'RemovedCombatant',
-    netRegex: {
-      name: 'Shinryu',
-      capture: false
-    },
-    run: data => {
-      // Explicitly clear so ugly heart message doesn't appear after wipe.
-      delete data.phase;
-    }
-  }, {
+    // Earthen Fury
     id: 'ShinryuEx Phase 1',
     type: 'StartsUsing',
     netRegex: {
@@ -61909,6 +61904,7 @@ const shinryu_ex_triggerSet = {
     },
     run: data => data.phase = 1
   }, {
+    // Dark Matter
     id: 'ShinryuEx Phase 2',
     type: 'StartsUsing',
     netRegex: {
@@ -61918,6 +61914,7 @@ const shinryu_ex_triggerSet = {
     },
     run: data => data.phase = 2
   }, {
+    // Protostar
     id: 'ShinryuEx Phase 3',
     type: 'StartsUsing',
     netRegex: {
@@ -61927,6 +61924,7 @@ const shinryu_ex_triggerSet = {
     },
     run: data => data.phase = 3
   }, {
+    // Tidal Wave enrage
     id: 'ShinryuEx Phase 4',
     type: 'StartsUsing',
     netRegex: {
@@ -61940,7 +61938,8 @@ const shinryu_ex_triggerSet = {
     type: 'StartsUsing',
     netRegex: {
       id: '25F3',
-      source: 'Shinryu'
+      source: 'Shinryu',
+      capture: true
     },
     alertText: (data, matches, output) => {
       if (matches.target === data.me) return output.akhMornOnYou();else if (data.role === 'tank') return output.akhMornOn({
@@ -61991,13 +61990,10 @@ const shinryu_ex_triggerSet = {
     infoText: (_data, _matches, output) => output.text(),
     outputStrings: {
       text: {
-        en: 'Ice: Stack and Stop',
-        de: 'Eis: Stack und Stehenbleiben',
-        fr: 'Glace : Packez-vous et arrêtez',
-        ja: '氷: スタック 動かない',
-        cn: '冰地面：集合停止移动',
-        ko: '얼음: 집합하고 이동하지 않기',
-        tc: '冰地面：集合停止移動'
+        en: 'Ice: Stack + don\'t move',
+        de: 'Eis: Sammeln + nicht bewegen',
+        cn: '冰: 集合 + 不要动',
+        ko: '얼음: 모이기 + 이동 멈추기'
       }
     }
   }, {
@@ -62058,11 +62054,11 @@ const shinryu_ex_triggerSet = {
     },
     outputStrings: {
       stopToGetFrozen: {
-        en: 'stop to get frozen',
+        en: 'Stop + Get frozen',
         de: 'Stopp! Einfrieren lassen',
         fr: 'Arrêtez, laissez-vous geler',
         ja: '止まれ、凍結',
-        cn: '停止移动吃冻结',
+        cn: '停止移动 + 吃冻结',
         ko: '멈춰서 얼기',
         tc: '停止移動吃凍結'
       },
@@ -62088,7 +62084,7 @@ const shinryu_ex_triggerSet = {
     alertText: (_data, _matches, output) => output.text(),
     outputStrings: {
       text: {
-        en: 'out of water',
+        en: 'Out of water',
         de: 'Raus aus dem Wasser',
         fr: 'Sortez de l\'eau',
         ja: '水から離れ',
@@ -62113,11 +62109,11 @@ const shinryu_ex_triggerSet = {
     },
     outputStrings: {
       baitBoltKeepMoving: {
-        en: 'bait bolt, keep moving',
+        en: 'Bait bolt + keep moving',
         de: 'Blitz ködern, weiterbewegen',
         fr: 'Attirez la foudre, continuez à bouger',
         ja: '稲妻: 動き続ける',
-        cn: '诱导闪电，保持移动',
+        cn: '诱导闪电 + 保持移动',
         ko: '번개 공격 산개, 계속 움직이기',
         tc: '誘導閃電，保持移動'
       },
@@ -62142,24 +62138,14 @@ const shinryu_ex_triggerSet = {
     },
     condition: data => data.phase === 3,
     delaySeconds: 9.5,
-    alarmText: (_data, _matches, output) => output.text(),
-    outputStrings: {
-      text: {
-        en: 'move away',
-        de: 'wegbewegen',
-        fr: 'Éloignez-vous',
-        ja: '移動',
-        cn: '躲开原地',
-        ko: '떨어지기',
-        tc: '躲開原地'
-      }
-    }
+    response: responses/* Responses.moveAway */.n3.moveAway('alarm')
   }, {
     id: 'ShinryuEx Icicle Left',
     type: 'Ability',
     netRegex: {
       id: '25EF',
-      source: 'Icicle'
+      source: 'Icicle',
+      capture: true
     },
     condition: (_data, matches) => {
       return Math.round(parseFloat(matches.x)) === -30 && Math.round(parseFloat(matches.y)) === -15;
@@ -62167,11 +62153,11 @@ const shinryu_ex_triggerSet = {
     alarmText: (_data, _matches, output) => output.text(),
     outputStrings: {
       text: {
-        en: 'icicle, lean west',
+        en: 'Icicle, lean west',
         de: 'Eiszapfen, nach westen',
         fr: 'Stalactite, penchez vers l\'ouest',
         ja: 'アイシクル: 西へ',
-        cn: '冰柱，去左边',
+        cn: '冰柱, 偏左站',
         ko: '고드름, 왼쪽 먼저',
         tc: '冰柱，去西邊'
       }
@@ -62189,11 +62175,11 @@ const shinryu_ex_triggerSet = {
     alarmText: (_data, _matches, output) => output.text(),
     outputStrings: {
       text: {
-        en: 'icicle, lean east',
+        en: 'Icicle, lean east',
         de: 'Eiszapfen, nach Osten',
         fr: 'Stalactite, penchez vers l\'est',
         ja: 'アイシクル: 東へ',
-        cn: '冰柱，去右边',
+        cn: '冰柱, 偏右站',
         ko: '고드름, 오른쪽 먼저',
         tc: '冰柱，去東邊'
       }
@@ -62208,18 +62194,7 @@ const shinryu_ex_triggerSet = {
     },
     delaySeconds: 3,
     durationSeconds: 5,
-    infoText: (_data, _matches, output) => output.text(),
-    outputStrings: {
-      text: {
-        en: 'Knockback, look for water',
-        de: 'Rückstoß, nach Wasser schauen',
-        fr: 'Poussée, cherchez l\'eau',
-        ja: 'ノックバック、水を探せ',
-        cn: '击退，确认水圈位置',
-        ko: '넉백, 물기둥 확인',
-        tc: '擊退，確認水圈位置'
-      }
-    }
+    response: responses/* Responses.knockback */.n3.knockback()
   }, {
     id: 'ShinryuEx Final Tidal Wave',
     type: 'StartsUsing',
@@ -62287,8 +62262,8 @@ const shinryu_ex_triggerSet = {
       }
     }
   }, {
-    // TODO: can't find the id of this, so using all of them.
-    id: 'ShinryuEx Divebomb',
+    // TODO: math out locations and call directions if we get a log containing any of these IDs.
+    id: 'ShinryuEx Gyre Charge',
     type: 'StartsUsing',
     netRegex: {
       id: ['1FA8', '1FF4', '2603'],
@@ -62298,7 +62273,7 @@ const shinryu_ex_triggerSet = {
     alarmText: (_data, _matches, output) => output.text(),
     outputStrings: {
       text: {
-        en: 'avoid divebomb',
+        en: 'Avoid divebomb',
         de: 'Divebomb ausweichen',
         fr: 'Évitez la bombe plongeante',
         ja: 'ダイブボムに避け',
@@ -62360,7 +62335,7 @@ const shinryu_ex_triggerSet = {
       source: 'Shinryu',
       capture: false
     },
-    response: responses/* Responses.getUnder */.n3.getUnder()
+    response: responses/* Responses.getUnder */.n3.getUnder('alert')
   }, {
     id: 'ShinryuEx Breath',
     type: 'StartsUsing',
@@ -62369,18 +62344,7 @@ const shinryu_ex_triggerSet = {
       source: 'Shinryu',
       capture: false
     },
-    alertText: (_data, _matches, output) => output.text(),
-    outputStrings: {
-      text: {
-        en: 'front cleave',
-        de: 'Frontalcleave',
-        fr: 'Cleave devant',
-        ja: '正面から離れ',
-        cn: '离开正面',
-        ko: '범위 밖으로',
-        tc: '離開正面'
-      }
-    }
+    response: responses/* Responses.awayFromFront */.n3.awayFromFront()
   }, {
     id: 'ShinryuEx Final Left Wing',
     type: 'StartsUsing',
@@ -62394,11 +62358,11 @@ const shinryu_ex_triggerSet = {
     run: data => data.finalWing = true,
     outputStrings: {
       text: {
-        en: 'kill left first',
+        en: 'Kill left first',
         de: 'linken Flügel zuerst',
         fr: 'Tuez l\'aile gauche d\'abord',
         ja: 'レフトウィングに攻撃',
-        cn: '击杀左翼',
+        cn: '优先击杀左翼',
         ko: '왼쪽 날개 먼저',
         tc: '擊殺左翼'
       }
@@ -62416,11 +62380,11 @@ const shinryu_ex_triggerSet = {
     run: data => data.finalWing = true,
     outputStrings: {
       text: {
-        en: 'kill right first',
+        en: 'Kill right first',
         de: 'rechten Flügel zuerst',
         fr: 'Tuez l\'aile droite d\'abord',
         ja: 'ライトウィングに攻撃',
-        cn: '击杀右翼',
+        cn: '优先击杀右翼',
         ko: '오른쪽 날개 먼저',
         tc: '擊殺右翼'
       }
@@ -62439,11 +62403,11 @@ const shinryu_ex_triggerSet = {
     },
     outputStrings: {
       breakTethersThenStack: {
-        en: 'break tethers then stack',
+        en: 'Break tethers => stack',
         de: 'Kette zerreissen, dann stack',
         fr: 'Cassez les liens, puis packez-vous',
         ja: '鎖を引き、集合',
-        cn: '拉断连线然后分摊',
+        cn: '拉断连线 => 分摊',
         ko: '선 끊고 모이기',
         tc: '拉斷連線然後分攤'
       },
@@ -62467,7 +62431,7 @@ const shinryu_ex_triggerSet = {
     alarmText: (_data, _matches, output) => output.text(),
     outputStrings: {
       text: {
-        en: 'tail marker on you',
+        en: 'Tail marker on YOU',
         de: 'Schweifmarker auf dir',
         fr: 'Marqueur Queue sur VOUS',
         ja: '自分にテイル',
@@ -62500,19 +62464,11 @@ const shinryu_ex_triggerSet = {
         de: 'Stöße ausweichen',
         fr: 'Évitez les secousses',
         ja: 'アースシェーカーに避け',
-        cn: '远离大地动摇',
+        cn: '躲避大地动摇',
         ko: '어스 피하기',
         tc: '遠離大地動搖'
       },
-      earthshakerOnYou: {
-        en: 'earthshaker on you',
-        de: 'Erdstoss auf dir',
-        fr: 'Secousse sur VOUS',
-        ja: '自分にアースシェーカー',
-        cn: '大地动摇点名',
-        ko: '어스 대상자',
-        tc: '大地動搖點名'
-      }
+      earthshakerOnYou: outputs/* default.earthshakerOnYou */.Z.earthshakerOnYou
     }
   }, {
     id: 'ShinryuEx Cocoon Marker',
@@ -62577,6 +62533,7 @@ const shinryu_ex_triggerSet = {
     }
   }, {
     'locale': 'fr',
+    'missingTranslations': true,
     'replaceSync': {
       'Hakkinryu': 'Hakkinryu',
       'Icicle': 'stalactite',
@@ -62732,6 +62689,7 @@ const shinryu_ex_triggerSet = {
     }
   }, {
     'locale': 'tc',
+    'missingTranslations': true,
     'replaceSync': {
       'Cocoon': '光繭',
       'Icicle': '冰柱',
@@ -62840,7 +62798,7 @@ const shinryu_ex_triggerSet = {
 };
 /* harmony default export */ const shinryu_ex = (shinryu_ex_triggerSet);
 ;// CONCATENATED MODULE: ./ui/raidboss/data/04-sb/trial/shinryu-ex.txt
-const trial_shinryu_ex_namespaceObject = "# Shinryu Ex\r\n# Text Guide: http://clees.me/guides/shinryu-ex/\r\n#\r\n# -p 25DE:21.3 25E7:503 25E4:806 264B:859.5\r\n# -it Shinryu\r\n# -ii 25FD 25DA 25E9 25EB 2611 25FF 2616 1DD1 2614 25DB 25F6 25F4 25F2 25DF 25ED 260E 25DD 260F 2608 2609 260A 260B 25E6 25E3 2618 25DC 1DD3 264D 2612 2725 25E0 25E1 2600 2601\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n# Heart add not listed here. Seems to be on an independent respawn timer.\r\n\r\n### PHASE 1: Elemental carousel\r\n###\r\n0.0 \"--sync--\" InCombat { inGameCombat: \"1\" } window 0,1\r\n11.3 \"--sync--\" StartsUsing { id: \"25FD\", source: \"Shinryu\" } window 20,20\r\n21.3 \"Earthen Fury\" Ability { id: \"25DE\", source: \"Shinryu\" }\r\n36.4 \"--Tethers--\" # Burning Chains (301) effect\r\n44.5 \"Tidal Wave\" Ability { id: \"25F9\", source: \"Shinryu\" }\r\n49.7 \"--Tail Marker (healer)--\" # 007E headmarker\r\n61.7 \"Summon Icicle\" Ability { id: \"25EE\", source: \"Left Wing\" }\r\n62.4 \"Icicle Impact\" Ability { id: \"25EF\", source: \"Icicle\" }\r\n67.0 \"Spikesicle\" Ability { id: \"25F0\", source: \"Icicle\" }\r\n67.9 \"Tail Slap\" Ability { id: \"25E2\", source: \"Tail\" }\r\n79.8 \"Hypernova / Levinbolt\" Ability { id: [\"25E8\", \"25EA\"], source: \"Right Wing\" }\r\n90.9 \"Dragonfist\" Ability { id: \"2610\", source: \"Shinryu\" }\r\n97.8 \"Ice Storm\" Ability { id: \"25F1\", source: \"Left Wing\" } # sometimes 3 seconds earlier?\r\n108.0 \"Akh Morn 1\" Ability { id: \"25F3\", source: \"Shinryu\" } duration 3.2\r\n110.1 \"Akh Rhai\" Ability { id: \"25F5\", source: \"Shinryu\" } duration 5.3\r\n116.3 \"Summon Icicle\" Ability { id: \"25EE\", source: \"Left Wing\" }\r\n116.9 \"Icicle Impact\" Ability { id: \"25EF\", source: \"Icicle\" }\r\n121.4 \"Spikesicle\" Ability { id: \"25F0\", source: \"Icicle\" }\r\n123.3 \"Judgment Bolt / Hellfire\" Ability { id: [\"25FA\", \"25DC\"], source: \"Shinryu\" }\r\n\r\n138.4 \"--Tail Marker (dps)--\"\r\n149.5 \"Levinbolt\" Ability { id: \"25EA\", source: \"Right Wing\" }\r\n156.6 \"Tail Slap\" Ability { id: \"25E2\", source: \"Tail\" }\r\n164.5 \"Ice Storm\" Ability { id: \"25F1\", source: \"Left Wing\" }\r\n171.8 \"--Tethers (T/H)--\"\r\n180.6 \"Earth Breath\" Ability { id: \"25EC\", source: \"Shinryu\" }\r\n188.0 \"Akh Morn 2\" Ability { id: \"25F3\", source: \"Shinryu\" } duration 3.2\r\n190.1 \"Akh Rhai\" Ability { id: \"25F5\", source: \"Shinryu\" } duration 5.3\r\n194.0 \"Ice Storm\" Ability { id: \"25F1\", source: \"Left Wing\" }\r\n206.6 \"--Tethers (healers)--\"\r\n208.2 \"Diamond Dust\" Ability { id: \"25FC\", source: \"Shinryu\" }\r\n224.9 \"--Reiryu Adds--\"\r\n\r\n233.3 \"--Tail Marker (tank)--\"\r\n251.5 \"Tail Slap\" Ability { id: \"260D\", source: \"Tail\" }\r\n268.5 \"Summon Icicle\" Ability { id: \"25EE\", source: \"Left Wing\" }\r\n269.1 \"Icicle Impact\" Ability { id: \"25EF\", source: \"Icicle\" }\r\n272.4 \"Akh Morn 3\" Ability { id: \"25F3\", source: \"Shinryu\" } duration 3.2\r\n273.6 \"Spikesicle\" Ability { id: \"25F0\", source: \"Icicle\" }\r\n274.5 \"Akh Rhai\" Ability { id: \"25F5\", source: \"Shinryu\" } duration 5.3\r\n285.3 \"Super Cyclone 1\" #Ability { id: \"260C\", source: \"Shinryu\" }\r\n287.4 \"Super Cyclone 2\" #Ability { id: \"260C\", source: \"Shinryu\" }\r\n289.5 \"Super Cyclone 3\" #Ability { id: \"260C\", source: \"Shinryu\" }\r\n291.7 \"Aerial Blast\" Ability { id: \"25FE\", source: \"Shinryu\" }\r\n292.7 \"--Tethers (dps)--\"\r\n318.9 \"Earth Breath\" Ability { id: \"25EC\", source: \"Shinryu\" }\r\n321.9 \"Ice Storm\" Ability { id: \"25F1\", source: \"Left Wing\" }\r\n\r\n325.3 \"--untargetable--\"\r\n334.7 \"--sync--\" Ability { id: \"25F7\", source: \"Shinryu\" }\r\n335.9 \"Gyre Charge\" Ability { id: \"2603\", source: \"Shinryu\" }\r\n341.8 \"--targetable--\"\r\n\r\n350.9 \"Hypernova\" Ability { id: \"25E8\", source: \"Right Wing\" }\r\n363.0 \"Akh Morn 4\" Ability { id: \"25F3\", source: \"Shinryu\" } duration 4.3\r\n365.1 \"Akh Rhai\" Ability { id: \"25F5\", source: \"Shinryu\" } duration 5.3\r\n378.3 \"Hypernova / Levinbolt\" Ability { id: [\"25E8\", \"25EA\"], source: \"Right Wing\" }\r\n384.3 \"Tidal Wave\" Ability { id: \"25F9\", source: \"Shinryu\" }\r\n387.4 \"--untargetable--\"\r\n394.8 \"Dark Matter\" #Ability { id: \"25E7\", source: \"Shinryu\" }\r\n\r\n\r\n### PHASE 2: Adds, explosions, dramatic tail climbing\r\n###\r\n500.0 \"--Phase 2--\" StartsUsing { id: \"25E7\", source: \"Shinryu\" } window 500,500\r\n503.0 \"Dark Matter\" Ability { id: \"25E7\", source: \"Shinryu\" }\r\n513.0 \"TAP BUTTON OR ELSE\" duration 5\r\n540.7 \"Touchdown\" Ability { id: \"2613\", source: \"Shinryu\" }\r\n545.2 \"--sync--\" Ability { id: \"25D9\", source: \"Shinryu\" }\r\n552.3 \"Meteor Impact 1\" Ability { id: \"25E5\", source: \"Cocoon\" }\r\n553.9 \"--sync--\" Ability { id: \"2605\", source: \"Cocoon\" }\r\n571.1 \"Meteor Impact 2\" Ability { id: \"25E5\", source: \"Cocoon\" }\r\n572.7 \"--sync--\" Ability { id: \"2605\", source: \"Cocoon\" }\r\n588.0 \"--Cocoon Markers--\"\r\n601.0 \"Meteor Impact 3\" Ability { id: \"25E5\", source: \"Cocoon\" }\r\n602.6 \"--sync--\" Ability { id: \"2605\", source: \"Cocoon\" }\r\n\r\n### PHASE 3: Anticlimax\r\n###\r\n800.0 \"--Phase 3--\" StartsUsing { id: \"25E4\", source: \"Shinryu\" } window 500,500\r\n806.0 \"Protostar\" Ability { id: \"25E4\", source: \"Shinryu\" }\r\n813.1 \"Tail Spit\" Ability { id: \"2615\", source: \"Shinryu\" }\r\n837.4 \"Shatter\" Ability { id: \"2617\", source: \"Shinryu\" } window 50,50\r\n843.4 \"--targetable--\"\r\n\r\n# Loop 1\r\n855.5 \"--sync--\" StartsUsing { id: \"264B\", source: \"Shinryu\" } window 20,20\r\n859.5 \"Tera Slash\" Ability { id: \"264B\", source: \"Shinryu\" }\r\n868.2 \"Atomic Ray\" Ability { id: \"264C\", source: \"Shinryu\" }\r\n885.9 \"Ice Storm\" Ability { id: \"2722\", source: \"Left Wing\" }\r\n889.9 \"Levinbolt / Hypernova\" Ability { id: [\"2720\", \"271F\"], source: \"Right Wing\" }\r\n897.9 \"Wormwail / Benighting Breath\" Ability { id: [\"2648\", \"2649\"], source: \"Shinryu\" }\r\n907.1 \"Tera Slash\" Ability { id: \"264B\", source: \"Shinryu\" }\r\n910.8 \"--Reiryu Adds--\"\r\n\r\n# Loop 2\r\n957.4 \"Tera Slash\" Ability { id: \"264B\", source: \"Shinryu\" } window 20,20\r\n966.1 \"Atomic Ray\" Ability { id: \"264C\", source: \"Shinryu\" }\r\n983.8 \"Ice Storm\" Ability { id: \"2722\", source: \"Left Wing\" }\r\n987.8 \"Levinbolt / Hypernova\" Ability { id: [\"2720\", \"271F\"], source: \"Right Wing\" }\r\n995.9 \"Wormwail / Benighting Breath\" Ability { id: [\"2648\", \"2649\"], source: \"Shinryu\" }\r\n1005.1 \"Tera Slash\" Ability { id: \"264B\", source: \"Shinryu\" }\r\n1009.1 \"--Reiryu Adds--\"\r\n\r\n### PHASE 4: Race to the finish!\r\n###\r\n1046.0 \"--sync--\" StartsUsing { id: \"264E\", source: \"Shinryu\" } window 300,300\r\n1085.0 \"First Wing\" # 35 second cast, starts 4 seconds later, 2718/2719\r\n1090.0 \"Second Wing\" # 35 second cast, starts 9 seconds later, 2719/2718\r\n1116.0 \"Tidal Wave\" Ability { id: \"264E\", source: \"Shinryu\" } # 70 second cast\r\n";
+const trial_shinryu_ex_namespaceObject = "# Shinryu Ex\r\n# Text Guide: http://clees.me/guides/shinryu-ex/\r\n#\r\n# -p 25DE:21.3 25E7:503 25E4:806 264B:859.5\r\n# -it Shinryu\r\n# -ii 25FD 25DA 25E9 25EB 2611 25FF 2616 1DD1 2614 25DB 25F6 25F4 25F2 25DF 25ED 260E 25DD 260F 2608 2609 260A 260B 25E6 25E3 2618 25DC 1DD3 264D 2612 2725 25E0 25E1 2600 2601\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n# Heart add not listed here. Seems to be on an independent respawn timer.\r\n\r\n### PHASE 1: Elemental carousel\r\n###\r\n0.0 \"--sync--\" InCombat { inGameCombat: \"1\" } window 0,1\r\n11.3 \"--sync--\" StartsUsing { id: \"25FD\", source: \"Shinryu\" } window 20,20\r\n21.3 \"Earthen Fury\" Ability { id: \"25DE\", source: \"Shinryu\" }\r\n36.4 \"--Tethers--\" # Burning Chains (301) effect\r\n44.5 \"Tidal Wave\" Ability { id: \"25F9\", source: \"Shinryu\" }\r\n49.7 \"--Tail Marker (healer)--\" # 007E headmarker\r\n61.7 \"Summon Icicle\" Ability { id: \"25EE\", source: \"Left Wing\" }\r\n62.4 \"Icicle Impact\" Ability { id: \"25EF\", source: \"Icicle\" }\r\n67.0 \"Spikesicle\" Ability { id: \"25F0\", source: \"Icicle\" }\r\n67.9 \"Tail Slap\" Ability { id: \"25E2\", source: \"Tail\" }\r\n79.8 \"Hypernova / Levinbolt\" Ability { id: [\"25E8\", \"25EA\"], source: \"Right Wing\" }\r\n90.9 \"Dragonfist\" Ability { id: \"2610\", source: \"Shinryu\" }\r\n94.8 \"Ice Storm\" Ability { id: \"25F1\", source: \"Left Wing\" }\r\n108.0 \"Akh Morn 1\" Ability { id: \"25F3\", source: \"Shinryu\" } duration 3.2\r\n110.1 \"Akh Rhai\" Ability { id: \"25F5\", source: \"Shinryu\" } duration 5.3\r\n116.3 \"Summon Icicle\" Ability { id: \"25EE\", source: \"Left Wing\" }\r\n116.9 \"Icicle Impact\" Ability { id: \"25EF\", source: \"Icicle\" }\r\n121.4 \"Spikesicle\" Ability { id: \"25F0\", source: \"Icicle\" }\r\n123.3 \"Judgment Bolt / Hellfire\" Ability { id: [\"25FA\", \"25DC\"], source: \"Shinryu\" }\r\n\r\n138.4 \"--Tail Marker (dps)--\"\r\n149.5 \"Levinbolt\" Ability { id: \"25EA\", source: \"Right Wing\" }\r\n156.6 \"Tail Slap\" Ability { id: \"25E2\", source: \"Tail\" }\r\n164.5 \"Ice Storm\" Ability { id: \"25F1\", source: \"Left Wing\" }\r\n171.8 \"--Tethers (T/H)--\"\r\n180.6 \"Earth Breath\" Ability { id: \"25EC\", source: \"Shinryu\" }\r\n188.0 \"Akh Morn 2\" Ability { id: \"25F3\", source: \"Shinryu\" } duration 3.2\r\n190.1 \"Akh Rhai\" Ability { id: \"25F5\", source: \"Shinryu\" } duration 5.3\r\n194.0 \"Ice Storm\" Ability { id: \"25F1\", source: \"Left Wing\" }\r\n206.6 \"--Tethers (healers)--\"\r\n208.2 \"Diamond Dust\" Ability { id: \"25FC\", source: \"Shinryu\" }\r\n224.9 \"--Reiryu Adds--\"\r\n\r\n# The timing on the Icicle here appears to be here or 3s later.\r\n# We leave the earlier visual in place to let players anticipate it.\r\n233.3 \"--Tail Marker (tank)--\"\r\n251.5 \"Tail Slap\" Ability { id: \"25E2\", source: \"Tail\" }\r\n268.5 \"Summon Icicle\" #Ability { id: \"25EE\", source: \"Left Wing\" }\r\n269.1 \"Icicle Impact\" #Ability { id: \"25EF\", source: \"Icicle\" }\r\n272.4 \"Akh Morn 3\" Ability { id: \"25F3\", source: \"Shinryu\" } duration 3.2\r\n273.6 \"Spikesicle\" #Ability { id: \"25F0\", source: \"Icicle\" }\r\n274.5 \"Akh Rhai\" Ability { id: \"25F5\", source: \"Shinryu\" } duration 5.3\r\n285.3 \"Super Cyclone 1\" #Ability { id: \"260C\", source: \"Shinryu\" }\r\n287.4 \"Super Cyclone 2\" #Ability { id: \"260C\", source: \"Shinryu\" }\r\n289.5 \"Super Cyclone 3\" #Ability { id: \"260C\", source: \"Shinryu\" }\r\n291.7 \"Aerial Blast\" Ability { id: \"25FE\", source: \"Shinryu\" }\r\n292.7 \"--Tethers (dps)--\"\r\n318.9 \"Earth Breath\" Ability { id: \"25EC\", source: \"Shinryu\" }\r\n321.9 \"Ice Storm\" Ability { id: \"25F1\", source: \"Left Wing\" }\r\n\r\n325.3 \"--untargetable--\"\r\n334.7 \"--sync--\" Ability { id: \"25F7\", source: \"Shinryu\" }\r\n335.9 \"Gyre Charge\" Ability { id: \"2603\", source: \"Shinryu\" }\r\n341.8 \"--targetable--\"\r\n\r\n350.9 \"Hypernova\" Ability { id: \"25E8\", source: \"Right Wing\" }\r\n363.0 \"Akh Morn 4\" Ability { id: \"25F3\", source: \"Shinryu\" } duration 4.3\r\n365.1 \"Akh Rhai\" Ability { id: \"25F5\", source: \"Shinryu\" } duration 5.3\r\n378.3 \"Hypernova / Levinbolt\" Ability { id: [\"25E8\", \"25EA\"], source: \"Right Wing\" }\r\n384.3 \"Tidal Wave\" Ability { id: \"25F9\", source: \"Shinryu\" }\r\n387.4 \"--untargetable--\"\r\n394.8 \"Dark Matter\" #Ability { id: \"25E7\", source: \"Shinryu\" }\r\n\r\n\r\n### PHASE 2: Adds, explosions, dramatic tail climbing\r\n###\r\n500.0 \"--Phase 2--\" StartsUsing { id: \"25E7\", source: \"Shinryu\" } window 500,500\r\n503.0 \"Dark Matter\" Ability { id: \"25E7\", source: \"Shinryu\" }\r\n513.0 \"TAP BUTTON OR ELSE\" duration 5\r\n540.7 \"Touchdown\" Ability { id: \"2613\", source: \"Shinryu\" }\r\n545.2 \"--sync--\" Ability { id: \"25D9\", source: \"Shinryu\" }\r\n552.3 \"Meteor Impact 1\" Ability { id: \"25E5\", source: \"Cocoon\" }\r\n553.9 \"--sync--\" Ability { id: \"2605\", source: \"Cocoon\" }\r\n571.1 \"Meteor Impact 2\" Ability { id: \"25E5\", source: \"Cocoon\" }\r\n572.7 \"--sync--\" Ability { id: \"2605\", source: \"Cocoon\" }\r\n588.0 \"--Cocoon Markers--\"\r\n601.0 \"Meteor Impact 3\" Ability { id: \"25E5\", source: \"Cocoon\" }\r\n602.6 \"--sync--\" Ability { id: \"2605\", source: \"Cocoon\" }\r\n\r\n### PHASE 3: Anticlimax\r\n###\r\n800.0 \"--Phase 3--\" StartsUsing { id: \"25E4\", source: \"Shinryu\" } window 500,500\r\n806.0 \"Protostar\" Ability { id: \"25E4\", source: \"Shinryu\" }\r\n813.1 \"Tail Spit\" Ability { id: \"2615\", source: \"Shinryu\" }\r\n837.4 \"Shatter\" Ability { id: \"2617\", source: \"Shinryu\" } window 50,50\r\n843.4 \"--targetable--\"\r\n\r\n# Loop 1\r\n855.5 \"--sync--\" StartsUsing { id: \"264B\", source: \"Shinryu\" } window 20,20\r\n859.5 \"Tera Slash\" Ability { id: \"264B\", source: \"Shinryu\" }\r\n868.2 \"Atomic Ray\" Ability { id: \"264C\", source: \"Shinryu\" }\r\n885.9 \"Ice Storm\" Ability { id: \"2722\", source: \"Left Wing\" }\r\n889.9 \"Levinbolt / Hypernova\" Ability { id: [\"2720\", \"271F\"], source: \"Right Wing\" }\r\n897.9 \"Wormwail / Benighting Breath\" Ability { id: [\"2648\", \"2649\"], source: \"Shinryu\" }\r\n907.1 \"Tera Slash\" Ability { id: \"264B\", source: \"Shinryu\" }\r\n910.8 \"--Reiryu Adds--\"\r\n\r\n# Loop 2\r\n957.4 \"Tera Slash\" Ability { id: \"264B\", source: \"Shinryu\" } window 20,20\r\n966.1 \"Atomic Ray\" Ability { id: \"264C\", source: \"Shinryu\" }\r\n983.8 \"Ice Storm\" Ability { id: \"2722\", source: \"Left Wing\" }\r\n987.8 \"Levinbolt / Hypernova\" Ability { id: [\"2720\", \"271F\"], source: \"Right Wing\" }\r\n995.9 \"Wormwail / Benighting Breath\" Ability { id: [\"2648\", \"2649\"], source: \"Shinryu\" }\r\n1005.1 \"Tera Slash\" Ability { id: \"264B\", source: \"Shinryu\" }\r\n1009.1 \"--Reiryu Adds--\"\r\n\r\n### PHASE 4: Race to the finish!\r\n###\r\n1046.0 \"--sync--\" StartsUsing { id: \"264E\", source: \"Shinryu\" } window 300,300\r\n1085.0 \"First Wing\" # 35 second cast, starts 4 seconds later, 2718/2719\r\n1090.0 \"Second Wing\" # 35 second cast, starts 9 seconds later, 2719/2718\r\n1116.0 \"Tidal Wave\" Ability { id: \"264E\", source: \"Shinryu\" } # 70 second cast\r\n";
 ;// CONCATENATED MODULE: ./ui/raidboss/data/04-sb/trial/shinryu.ts
 
 
@@ -213719,84 +213677,287 @@ const jeuno_first_walk_triggerSet = {
 };
 /* harmony default export */ const jeuno_first_walk = (jeuno_first_walk_triggerSet);
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/alliance/jeuno-first-walk.txt
-const alliance_jeuno_first_walk_namespaceObject = "### JEUNO: THE FIRST WALK\r\n# ZoneId: 1248\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n0.0 \"--Reset--\" ActorControl { command: \"4000000F\" } window 0,1000000 jump 0\r\n\r\n# .*is no longer sealed\r\n0.0 \"--Reset--\" SystemLogMessage { id: \"7DE\" } window 0,1000000 jump 0\r\n\r\n#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#\r\n# Prishe Of The Distant Chains #\r\n#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#\r\n\r\n# -ii 9FE6 9FF1 9FF3 9FEB 9FEC 9FED A003 9FF5 9FFE 9FFF\r\n\r\n# A number of Prishe's abilities are two-part,\r\n# with a visual snapshot occurring before a damage event.\r\n# The snapshot locks in when the visual element resolves,\r\n# so we display the visual and then ignore the damage event.\r\n\r\n# The grand dais will be sealed off\r\n10000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"141E\" } window 10000,1\r\n10006.7 \"--sync--\" StartsUsing { id: \"9FE7\", source: \"Prishe of the Distant Chains\" } window 10006.7,10\r\n10011.1 \"Banishga\" Ability { id: \"9FE7\", source: \"Prishe of the Distant Chains\" }\r\n10018.3 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n10032.5 \"Knuckle Sandwich\" Ability { id: [\"9FE8\", \"9FE9\", \"9FEA\"], source: \"Prishe of the Distant Chains\" }\r\n10035.1 \"Brittle Impact\" Ability { id: [\"9FEE\", \"9FEF\", \"9FF0\"], source: \"Prishe of the Distant Chains\" }\r\n\r\n# This second Knuckle Sandwich shows up in a few Very Slow logs.\r\n10052.5 \"Knuckle Sandwich?\" Ability { id: [\"9FE8\", \"9FE9\", \"9FEA\"], source: \"Prishe of the Distant Chains\" }\r\n10054.9 \"Brittle Impact\" Ability { id: [\"9FEE\", \"9FEF\", \"9FF0\"], source: \"Prishe of the Distant Chains\" }\r\n10058.5 \"--sync--\" StartsUsing { id: \"9FFD\", source: \"Prishe of the Distant Chains\" } window 55.5,10\r\n10064.7 \"Nullifying Dropkick\" Ability { id: \"9FFD\", source: \"Prishe of the Distant Chains\" }\r\n10073.4 \"Banish Storm\" Ability { id: \"9FF2\", source: \"Prishe of the Distant Chains\" }\r\n10085.3 \"Banish x15\" duration 11.2 #Ability { id: \"9FF3\", source: \"Prishe of the Distant Chains\" }\r\n10093.5 \"Holy\" Ability { id: \"A002\", source: \"Prishe of the Distant Chains\" }\r\n\r\n10101.2 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n10107.5 \"Crystalline Thorns\" Ability { id: \"9FF4\", source: \"Prishe of the Distant Chains\" } window 104.5,10\r\n10122.9 \"Auroral Uppercut\" Ability { id: [\"9FF6\", \"9FF7\", \"9FF8\"], source: \"Prishe of the Distant Chains\" }\r\n10139.5 \"Banishga IV\" Ability { id: \"9FFA\", source: \"Prishe of the Distant Chains\" }\r\n10147.3 \"Explosion 1\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n10151.3 \"Explosion 2\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n10155.3 \"Explosion 3\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n10159.3 \"Explosion 4\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n10159.3 \"Explosion 5\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n10165.6 \"Crystalline Thorns\" Ability { id: \"9FF4\", source: \"Prishe of the Distant Chains\" }\r\n10167.7 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n10181.5 \"Auroral Uppercut\" Ability { id: [\"9FF6\", \"9FF7\", \"9FF8\"], source: \"Prishe of the Distant Chains\" }\r\n10198.8 \"Asuran Fists x8\" Ability { id: \"9FFC\", source: \"Prishe of the Distant Chains\" } duration 9\r\n10207.2 \"--sync--\" Ability { id: \"A000\", source: \"Prishe of the Distant Chains\" } # Asuran Fists final hit\r\n\r\n# From here, Prishe seems to have three different rotation blocks.\r\n# She can use Banishga, Banishga 4, or Banish Storm.\r\n# Each of these blocks closes with Asuran Fists,\r\n# but she doesn't always seem to use the final A000 hit.\r\n# More research is needed.\r\n10217.4 \"Banishga IV?\" StartsUsing { id: \"9FFA\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaIVBlock\"\r\n10218.1 \"Banish Storm?\" StartsUsing { id: \"9FF2\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishStormBlock\"\r\n10226.3 \"Banishga?\" StartsUsing { id: \"9FE7\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaBlock\"\r\n\r\n\r\n# Banishga block\r\n10995.3 label \"banishgaBlock\"\r\n10995.3 \"--sync--\" StartsUsing { id: \"9FE7\", source: \"Prishe of the Distant Chains\" }\r\n\r\n11000.0 \"Banishga\" Ability { id: \"9FE7\", source: \"Prishe of the Distant Chains\" }\r\n11007.2 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n11021.4 \"Knuckle Sandwich\" Ability { id: [\"9FE8\", \"9FE9\", \"9FEA\"], source: \"Prishe of the Distant Chains\" }\r\n11023.8 \"Brittle Impact\" Ability { id: [\"9FEE\", \"9FEF\", \"9FF0\"], source: \"Prishe of the Distant Chains\" }\r\n11033.6 \"Nullifying Dropkick\" Ability { id: \"9FFD\", source: \"Prishe of the Distant Chains\" }\r\n11042.3 \"Banish Storm\" Ability { id: \"9FF2\", source: \"Prishe of the Distant Chains\" } window 15,15\r\n11054.2 \"Banish x15\" duration 11.2 #Ability { id: \"9FF3\", source: \"Prishe of the Distant Chains\" }\r\n11062.4 \"Holy\" Ability { id: \"A002\", source: \"Prishe of the Distant Chains\" }\r\n11070.1 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n11076.3 \"Crystalline Thorns\" Ability { id: \"9FF4\", source: \"Prishe of the Distant Chains\" }\r\n11091.8 \"Auroral Uppercut\" Ability { id: [\"9FF6\", \"9FF7\", \"9FF8\"], source: \"Prishe of the Distant Chains\" }\r\n11108.4 \"Banishga IV\" Ability { id: \"9FFA\", source: \"Prishe of the Distant Chains\" } window 15,15\r\n11116.3 \"Explosion 1\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n11116.3 \"Explosion 2\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n11120.3 \"Explosion 3\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n11124.3 \"Explosion 4\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n11128.3 \"Explosion 5 \" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n11139.2 \"Asuran Fists x8\" Ability { id: \"9FFC\", source: \"Prishe of the Distant Chains\" } duration 9\r\n11147.6 \"--sync--\" Ability { id: \"A000\", source: \"Prishe of the Distant Chains\" } # Asuran Fists final hit\r\n\r\n11157.8 \"Banishga IV?\" StartsUsing { id: \"9FFA\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaIVBlock\"\r\n11158.5 \"Banish Storm?\" StartsUsing { id: \"9FF2\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishStormBlock\"\r\n11166.7 \"Banishga?\" StartsUsing { id: \"9FE7\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaBlock\"\r\n\r\n# Banish Storm block\r\n11997.0 label \"banishStormBlock\"\r\n11997.0 \"--sync--\" StartsUsing { id: \"9FF2\", source: \"Prishe of the Distant Chains\" }\r\n\r\n12000.0 \"Banish Storm\" Ability { id: \"9FF2\", source: \"Prishe of the Distant Chains\" }\r\n12006.1 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n12011.9 \"Banish x15\" duration 11.2 #Ability { id: \"9FF3\", source: \"Prishe of the Distant Chains\" }\r\n12020.3 \"Knuckle Sandwich\" Ability { id: [\"9FE8\", \"9FE9\", \"9FEA\"], source: \"Prishe of the Distant Chains\" }\r\n12022.7 \"Brittle Impact\" Ability { id: [\"9FEE\", \"9FEF\", \"9FF0\"], source: \"Prishe of the Distant Chains\" }\r\n12031.4 \"Nullifying Dropkick\" Ability { id: \"9FFD\", source: \"Prishe of the Distant Chains\" }\r\n# This Banishga IV cast seems to vary significantly on timing. Sync widely and hope for the best\r\n12034.4 \"--sync--\" StartsUsing { id: \"9FFA\", source: \"Prishe of the Distant Chains\" } window 10,10\r\n12039.1 \"Banishga IV\" Ability { id: \"9FFA\", source: \"Prishe of the Distant Chains\" }\r\n12046.2 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n12046.9 \"Explosion 1\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n12046.9 \"Explosion 2\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n12050.9 \"Explosion 3\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n12052.6 \"Crystalline Thorns\" Ability { id: \"9FF4\", source: \"Prishe of the Distant Chains\" }\r\n12054.8 \"Explosion 4\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n12058.8 \"Explosion 5\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n12068.1 \"Auroral Uppercut\" Ability { id: [\"9FF6\", \"9FF7\", \"9FF8\"], source: \"Prishe of the Distant Chains\" }\r\n12081.8 \"Holy\" Ability { id: \"A002\", source: \"Prishe of the Distant Chains\" }\r\n12091.5 \"Asuran Fists x8\" Ability { id: \"9FFC\", source: \"Prishe of the Distant Chains\" } duration 9\r\n12099.9 \"--sync--\" Ability { id: \"A000\", source: \"Prishe of the Distant Chains\" } # Asuran Fists final hit\r\n\r\n12110.2 \"Banishga IV?\" StartsUsing { id: \"9FFA\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaIVBlock\"\r\n12110.8 \"Banish Storm?\" StartsUsing { id: \"9FF2\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishStormBlock\"\r\n12119.0 \"Banishga?\" StartsUsing { id: \"9FE7\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaBlock\"\r\n\r\n\r\n# Banishga 4 block\r\n12995.3 label \"banishgaIVBlock\"\r\n12995.3 \"--sync--\" StartsUsing { id: \"9FFA\", source: \"Prishe of the Distant Chains\" }\r\n\r\n13000.0 \"Banishga IV\" Ability { id: \"9FFA\", source: \"Prishe of the Distant Chains\" }\r\n13002.1 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n13016.2 \"Knuckle Sandwich\" Ability { id: [\"9FE8\", \"9FE9\", \"9FEA\"], source: \"Prishe of the Distant Chains\" }\r\n13016.6 \"Explosion 1\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n13016.6 \"Explosion 2\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n13018.6 \"Brittle Impact\" Ability { id: [\"9FEE\", \"9FEF\", \"9FF0\"], source: \"Prishe of the Distant Chains\" }\r\n13020.6 \"Explosion 3\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n13024.6 \"Explosion 4\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n13028.6 \"Explosion 5\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n13030.7 \"Holy\" Ability { id: \"A002\", source: \"Prishe of the Distant Chains\" }\r\n13040.8 \"Banish Storm\" Ability { id: \"9FF2\", source: \"Prishe of the Distant Chains\" } window 15,15\r\n13042.9 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n13049.2 \"Crystalline Thorns\" Ability { id: \"9FF4\", source: \"Prishe of the Distant Chains\" }\r\n13052.7 \"Banish x15\" duration 11.2 #Ability { id: \"9FF3\", source: \"Prishe of the Distant Chains\" }\r\n13064.7 \"Auroral Uppercut\" Ability { id: [\"9FF6\", \"9FF7\", \"9FF8\"], source: \"Prishe of the Distant Chains\" }\r\n13086.0 \"Nullifying Dropkick\" Ability { id: \"9FFD\", source: \"Prishe of the Distant Chains\" }\r\n13097.1 \"Asuran Fists x8\" Ability { id: \"9FFC\", source: \"Prishe of the Distant Chains\" } duration 9\r\n13105.5 \"--sync--\" Ability { id: \"A000\", source: \"Prishe of the Distant Chains\" } # Asuran Fists final hit\r\n\r\n13115.7 \"Banishga IV?\" StartsUsing { id: \"9FFA\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaIVBlock\"\r\n13116.4 \"Banish Storm?\" StartsUsing { id: \"9FF2\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishStormBlock\"\r\n13124.6 \"Banishga?\" StartsUsing { id: \"9FE7\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaBlock\"\r\n\r\n# IGNORED ABILITIES\r\n# 9FE6 --sync--: auto-attack\r\n# 9FEB Knuckle Sandwich: 1-tick inner circle AoE\r\n# 9FEC Knuckle Sandwich: 2-tick inner circle AoE\r\n# 9FED Knuckle Sandwich: 3-tick inner circle AoE\r\n# 9FF1 Nullifying Dropkick: Shared tank buster, circle stack (simultaneous with 9FFD)\r\n# 9FF3 Banish: Pathing circle AoEs\r\n# 9FF5 Thornbite: Thorns appear\r\n# 9FF9 Auroral Uppercut: Knockback execution\r\n# 9FFE Asuran Fists: Stack marker damage\r\n# 9FFF Asuran Fists: Stack marker damage\r\n# A003 Holy: Spread marker damage\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# 9FE5 --center--\r\n# 9FE6 --sync--: auto-attack\r\n# 9FE7 Banishga: Raidwide\r\n# 9FE8 Knuckle Sandwich: 1-tick visual\r\n# 9FE9 Knuckle Sandwich: 2-tick visual\r\n# 9FEA Knuckle Sandwich: 3-tick visual\r\n# 9FEB Knuckle Sandwich: 1-tick inner circle AoE\r\n# 9FEC Knuckle Sandwich: 2-tick inner circle AoE\r\n# 9FED Knuckle Sandwich: 3-tick inner circle AoE\r\n# 9FEE Brittle Impact: 1-tick outer donut AoE\r\n# 9FEF Brittle Impact: 2-tick outer donut AoE\r\n# 9FF0 Brittle Impact: 3-tick outer donut AoE\r\n# 9FF1 Nullifying Dropkick: Shared tank buster, circle stack (simultaneous with 9FFD)\r\n# 9FF2 Banish Storm: Visuals for pathing Banish circles\r\n# 9FF3 Banish: Pathing circle AoEs\r\n# 9FF4 Crystalline Thorns: Thorn generation cast\r\n# 9FF5 Thornbite: Thorns appear\r\n# 9FF6 Auroral Uppercut: 1-tick knockback visual\r\n# 9FF7 Auroral Uppercut: 2-tick knockback visual\r\n# 9FF8 Auroral Uppercut: 3-tick knockback visual\r\n# 9FF9 Auroral Uppercut: Knockback execution\r\n# 9FFA Banishga IV: Raidwide; summons orbs\r\n# 9FFB Explosion: Orb chariot AoEs\r\n# 9FFC Asuran Fists: Stack marker cast\r\n# 9FFD Nullifying Dropkick: Shared tank buster, circle stack (simultaneous with 9FF1)\r\n# 9FFE Asuran Fists: Stack marker damage\r\n# 9FFF Asuran Fists: Stack marker damage\r\n# A000 Asuran Fists: Stack marker final hit\r\n# A002 Holy: Spread marker cast\r\n# A003 Holy: Spread marker damage\r\n\r\n\r\n#~~~~~~~~~~~~~~~~~~~~~#\r\n# Fafnir The Forgotten#\r\n#~~~~~~~~~~~~~~~~~~~~~#\r\n\r\n# -ii 9BF2 9EB9 9F72 9F73 9F74 9F75 9F76 9F8B 9F8C 9F95 9F98 9F9C A156 A157 A158 A159 9F90 9F8E 9F6F\r\n# -ic \"Biting Wind\" \"Darter\" \"Ravaging Wind\"\r\n\r\n# The Hurricane Wing puddles follow an increasing \"ladder\" of abilities.\r\n# In -> out first round:: 9F7D, 9F7E, 9F7F, 9F80\r\n# In -> out second round: 9F87, 9F88, 9F89, 9F8A\r\n# Out -> in first round:  9F78, 9F79, 9F7A, 9F7B\r\n# Out -> in second round: 9F82, 9F83, 9F84, 9F85\r\n\r\n# Dragon's Aery will be sealed off\r\n20000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"141F\" } window 20000,1\r\n20011.1 \"Dark Matter Blast\" Ability { id: \"9F96\", source: \"Fafnir the Forgotten\" } window 20011.1,10\r\n20024.2 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20025.2 \"Spike Flail\" Ability { id: \"A09A\", source: \"Fafnir the Forgotten\" }\r\n20038.3 \"Offensive Posture?\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20039.5 \"Touchdown?\" Ability { id: \"A09C\", source: \"Fafnir the Forgotten\" }\r\n\r\n20044.5 \"--center--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth window 44.5,10\r\n20056.6 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20057.8 \"Dragon Breath\" duration 4 #Ability { id: \"9F6F\", source: \"Fafnir the Forgotten\" }\r\n20075.1 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20076.3 \"Touchdown\" Ability { id: \"A09C\", source: \"Fafnir the Forgotten\" }\r\n20087.3 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20088.3 \"Spike Flail\" Ability { id: \"A09A\", source: \"Fafnir the Forgotten\" }\r\n20098.7 \"Baleful Breath x5\" Ability { id: \"9F94\", source: \"Fafnir the Forgotten\" } duration 7\r\n20105.5 \"--sync--\" Ability { id: \"9B76\", source: \"Fafnir the Forgotten\" } # Baleful Breath final hit\r\n20112.6 \"Sharp Spike\" Ability { id: \"9F97\", source: \"Fafnir the Forgotten\" }\r\n20114.0 \"--Darters spawn--\"\r\n20123.7 \"--center--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth\r\n20130.8 \"Hurricane Wing x10 (raidwides)\" Ability { id: \"9F71\", source: \"Fafnir the Forgotten\" } duration 11\r\n20143.4 \"--north--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth\r\n20149.0 \"Hurricane Wing 1 (rings)\" Ability { id: [\"9F78\", \"9F7D\"], source: \"Fafnir the Forgotten\" }\r\n20151.0 \"Hurricane Wing 2 (rings)\" Ability { id: [\"9F79\",\"9F7E\"], source: \"Fafnir the Forgotten\" }\r\n20152.9 \"Horrid Roar 1 (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20152.9 \"Hurricane Wing 3 (rings)\" Ability { id: [\"9F7A\", \"9F7F\"], source: \"Fafnir the Forgotten\" }\r\n20154.9 \"Hurricane Wing 4 (rings)\" Ability { id: [\"9F7B\", \"9F80\"], source: \"Fafnir the Forgotten\" }\r\n20157.9 \"Horrid Roar 1 (explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20159.9 \"Horrid Roar 2 (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20159.9 \"Hurricane Wing 1 (rings)\" Ability { id: [\"9F82\", \"9F87\"], source: \"Fafnir the Forgotten\" }\r\n20161.9 \"Hurricane Wing 2 (rings)\" Ability { id: [\"9F83\", \"9F88\"], source: \"Fafnir the Forgotten\" }\r\n20163.9 \"Hurricane Wing 3 (rings)\" Ability { id: [\"9F84\", \"9F89\"], source: \"Fafnir the Forgotten\" }\r\n20164.9 \"Horrid Roar 2 (explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20165.9 \"Hurricane Wing 4 (rings)\" Ability { id: [\"9F85\", \"9F8A\"], source: \"Fafnir the Forgotten\" }\r\n20167.0 \"Horrid Roar 3 (spread)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20171.0 \"Hurricane Wing 1 (rings)\" Ability { id: [\"9F82\", \"9F87\"], source: \"Fafnir the Forgotten\" }\r\n20173.0 \"Hurricane Wing 2 (rings)\" Ability { id: [\"9F83\", \"9F88\"], source: \"Fafnir the Forgotten\" }\r\n20173.1 \"Horrid Roar 3 (spreads explode)\" Ability { id: \"9F93\", source: \"Fafnir the Forgotten\" }\r\n20174.1 \"Horrid Roar 4 (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20175.0 \"Hurricane Wing 3 (rings)\" Ability { id: [\"9F84\", \"9F89\"], source: \"Fafnir the Forgotten\" }\r\n20177.0 \"Hurricane Wing 4 (rings)\" Ability { id: [\"9F85\", \"9F8A\"], source: \"Fafnir the Forgotten\" }\r\n20179.3 \"Horrid Roar 4 (explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20181.3 \"--center--\" Ability { id: \"9F6D\", source: \"Fafnir the Forgotten\" } window 15,15 # Baleful Nail\r\n20193.3 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20194.3 \"Spike Flail\" Ability { id: \"A09A\", source: \"Fafnir the Forgotten\" }\r\n20204.6 \"Baleful Breath x5\" Ability { id: \"9F94\", source: \"Fafnir the Forgotten\" } duration 7\r\n20211.5 \"--sync--\" Ability { id: \"9B76\", source: \"Fafnir the Forgotten\" } # Baleful Breath final hit\r\n20219.7 \"--north--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth\r\n20230.1 \"Absolute Terror/Winged Terror\" Ability { id: [\"9F8D\", \"9F8F\"], source: \"Fafnir the Forgotten\" }\r\n20248.3 \"Winged Terror/Absolute Terror?\" Ability { id: [\"9F8F\", \"9F8D\"], source: \"Fafnir the Forgotten\" } # can be skipped with high DPS\r\n20259.5 \"Dark Matter Blast\" Ability { id: \"9F96\", source: \"Fafnir the Forgotten\" } window 30,30\r\n\r\n20268.7 label \"fafnirLoop\"\r\n20268.7 \"Horrid Roar (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20271.8 \"--center--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth\r\n20273.8 \"Horrid Roar (explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20281.8 \"Horrid Roar\" #Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20284.7 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20285.8 \"Horrid Roar (explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20285.9 \"Dragon Breath\" duration 4 #Ability { id: \"9F6F\", source: \"Fafnir the Forgotten\" }\r\n20301.0 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20302.2 \"Spike Flail/Touchdown\" Ability { id: [\"A09A\", \"A09C\"], source: \"Fafnir the Forgotten\" }\r\n20309.2 \"Sharp Spike\" Ability { id: \"9F97\", source: \"Fafnir the Forgotten\" }\r\n20318.3 \"--center--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth\r\n20325.4 \"Hurricane Wing x10 (raidwides)\" Ability { id: \"9F71\", source: \"Fafnir the Forgotten\" } duration 11\r\n20338.1 \"--north--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth\r\n20343.7 \"Hurricane Wing 1 (rings)\" Ability { id: [\"9F78\", \"9F7D\"], source: \"Fafnir the Forgotten\" }\r\n20345.6 \"Horrid Roar 1 (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20345.7 \"Hurricane Wing 2 (rings)\" Ability { id: [\"9F79\",\"9F7E\"], source: \"Fafnir the Forgotten\" }\r\n20347.7 \"Hurricane Wing 3 (rings)\" Ability { id: [\"9F7A\", \"9F7F\"], source: \"Fafnir the Forgotten\" }\r\n20349.7 \"Hurricane Wing 4 (rings)\" Ability { id: [\"9F7B\", \"9F80\"], source: \"Fafnir the Forgotten\" }\r\n20350.7 \"Horrid Roar 1(explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20352.7 \"Horrid Roar 2 (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20354.7 \"Hurricane Wing 1 (rings)\" Ability { id: [\"9F82\", \"9F87\"], source: \"Fafnir the Forgotten\" }\r\n20356.7 \"Hurricane Wing 2 (rings)\" Ability { id: [\"9F83\", \"9F88\"], source: \"Fafnir the Forgotten\" }\r\n20357.8 \"Horrid Roar 2 (explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20358.7 \"Hurricane Wing 3 (rings)\" Ability { id: [\"9F84\", \"9F89\"], source: \"Fafnir the Forgotten\" }\r\n20359.8 \"Horrid Roar 3 (spread)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20360.7 \"Hurricane Wing 4 (rings)\" Ability { id: [\"9F85\", \"9F8A\"], source: \"Fafnir the Forgotten\" }\r\n20365.7 \"Hurricane Wing 1 (rings)\" Ability { id: [\"9F82\", \"9F87\"], source: \"Fafnir the Forgotten\" }\r\n20365.8 \"Horrid Roar 3 (spreads explode)\" Ability { id: \"9F93\", source: \"Fafnir the Forgotten\" }\r\n20367.7 \"Hurricane Wing 2 (rings)\" Ability { id: [\"9F83\", \"9F88\"], source: \"Fafnir the Forgotten\" }\r\n20369.7 \"Hurricane Wing 3 (rings)\" Ability { id: [\"9F84\", \"9F89\"], source: \"Fafnir the Forgotten\" }\r\n20371.7 \"Hurricane Wing 4 (rings)\" Ability { id: [\"9F85\", \"9F8A\"], source: \"Fafnir the Forgotten\" }\r\n20380.8 \"Absolute Terror/Winged Terror\" Ability { id: [\"9F8D\", \"9F8F\"], source: \"Fafnir the Forgotten\" }\r\n20382.8 \"--Darters spawn--\"\r\n20385.0 \"--center--\" Ability { id: \"9F6D\", source: \"Fafnir the Forgotten\" } # Baleful Nail\r\n20397.0 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20398.0 \"Spike Flail\" Ability { id: \"A09A\", source: \"Fafnir the Forgotten\" }\r\n20408.4 \"Baleful Breath x5\" Ability { id: \"9F94\", source: \"Fafnir the Forgotten\" } duration 7\r\n20416.8 \"--sync--\" Ability { id: \"9B76\", source: \"Fafnir the Forgotten\" } # Baleful Breath final hit\r\n20428.9 \"Dark Matter Blast\" Ability { id: \"9F96\", source: \"Fafnir the Forgotten\" }\r\n20441.0 \"Horrid Roar (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" } window 30,30 forcejump \"fafnirLoop\"\r\n\r\n\r\n# IGNORED ABILITIES\r\n# 9BF2 Baleful Breath: Multi-hit stack marker castbar\r\n# 9EB9 --sync--: Auto-attack\r\n# 9F6F Dragon Breath: Outer ring fire breath\r\n# 9F72 Hurricane Wing: Cyclone raidwide, hit 2\r\n# 9F73 Hurricane Wing: Cyclone raidwide, hit 3\r\n# 9F74 Hurricane Wing: Cyclone raidwide, hit 4\r\n# 9F75 Hurricane Wing: Cyclone raidwide, hit 5\r\n# 9F76 Hurricane Wing: Cyclone raidwide, hit 6\r\n# 9F8B Great Whirlwind: Roving puddle AoEs, Ravaging Wind (big)\r\n# 9F8C Great Whirlwind: Roving puddle AoEs, BIting Wind (small)\r\n# 9F8E Absolute Terror: Hot Tail\r\n# 9F90 Winged Terror: Hot Wing\r\n# 9F95 Baleful Breath: Multi-hit stack marker middle hits\r\n# 9F98 Sharp Spike: Cleaving tank busters\r\n# 9F9C --sync--: Darter auto?\r\n# A156 Hurricane Wing: Cyclone raidwide, hit 7\r\n# A157 Hurricane Wing: Cyclone raidwide, hit 8\r\n# A158 Hurricane Wing: Cyclone raidwide, hit 9\r\n# A159 Hurricane Wing: Cyclone raidwide, hit 10\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# 9B76 Baleful Breath: Multi-hit stack marker, final hit\r\n# 9BC1 Great Whirlwind: Initial puddles, Ravaging Wind (big)\r\n# 9BC2 Great Whirlwind: Initial puddles, Biting Wind (small)\r\n# 9BF2 Baleful Breath: Multi-hit stack marker castbar\r\n# 9EB9 --sync--: Auto-attack\r\n# 9F6B Offensive Posture: Spike Flail windup\r\n# 9F6D Baleful Nail: Reposition\r\n# 9F6E Offensive Posture: Dragon breath windup\r\n# 9F6F Dragon Breath: Outer ring fire breath\r\n# 9F70 Offensive Posture: Touchdown windup\r\n# 9F71 Hurricane Wing: Cyclone raidwide, hit 1\r\n# 9F72 Hurricane Wing: Cyclone raidwide, hit 2\r\n# 9F73 Hurricane Wing: Cyclone raidwide, hit 3\r\n# 9F74 Hurricane Wing: Cyclone raidwide, hit 4\r\n# 9F75 Hurricane Wing: Cyclone raidwide, hit 5\r\n# 9F76 Hurricane Wing: Cyclone raidwide, hit 6\r\n# 9F78 Hurricane Wing: First cyclone ring, out to in, hit 1\r\n# 9F79 Hurricane Wing: First cyclone ring, out to in, hit 2\r\n# 9F7A Hurricane Wing: First cyclone ring, out to in, hit 3\r\n# 9F7B Hurricane Wing: First cyclone ring, out to in, hit 4\r\n# 9F7D Hurricane Wing: First cyclone ring, in to out, hit 1\r\n# 9F7E Hurricane Wing: First cyclone ring, in to out, hit 2\r\n# 9F7F Hurricane Wing: First cyclone ring, in to out, hit 3\r\n# 9F80 Hurricane Wing: First cyclone ring, in to out, hit 4\r\n# 9F82 Hurricane Wing: Second/third cyclone ring, out to in, hit 1\r\n# 9F83 Hurricane Wing: Second/third cyclone ring, out to in, hit 2\r\n# 9F84 Hurricane Wing: Second/third cyclone ring, out to in, hit 3\r\n# 9F85 Hurricane Wing: Second/third cyclone ring, out to in, hit 4\r\n# 9F87 Hurricane Wing: Second/third cyclone ring, in to out, hit 1\r\n# 9F88 Hurricane Wing: Second/third cyclone ring, in to out, hit 2\r\n# 9F89 Hurricane Wing: Second/third cyclone ring, in to out, hit 3\r\n# 9F8A Hurricane Wing: Second/third cyclone ring, in to out, hit 4\r\n# 9F8B Great Whirlwind: Roving puddle AoEs, Ravaging Wind (big)\r\n# 9F8C Great Whirlwind: Roving puddle AoEs, BIting Wind (small)\r\n# 9F8D Absolute Terror: Hot Tail castber\r\n# 9F8E Absolute Terror: Hot Tail\r\n# 9F8F Winged Terror: Hot Wing castbar\r\n# 9F90 Winged Terror: Hot Wing\r\n# 9F91 Horrid Roar: Castbar for puddles and spreads\r\n# 9F92 Horrid Roar: Targeted puddles\r\n# 9F93 Horrid Roar: Spread marker\r\n# 9F94 Baleful: Multi-hit stack marker first hit\r\n# 9F95 Baleful Breath: Multi-hit stack marker middle hits\r\n# 9F96 Dark Matter Blast: Raidwide\r\n# 9F97 Sharp Spike: Tank buster castbar\r\n# 9F98 Sharp Spike: Cleaving tank busters\r\n# 9F99 Shuddering Earth: Reposition\r\n# 9F9B Pestilent Sphere: Buster? Darter add\r\n# 9F9C --sync--: Darter auto?\r\n# A09A Spike Flail: 270-degree rear cone AoE\r\n# A09C Touchdown: Large circle AoE\r\n# A156 Hurricane Wing: Cyclone raidwide, hit 7\r\n# A157 Hurricane Wing: Cyclone raidwide, hit 8\r\n# A158 Hurricane Wing: Cyclone raidwide, hit 9\r\n# A159 Hurricane Wing: Cyclone raidwide, hit 10\r\n\r\n\r\n#~~~~~~~~~~~~#\r\n# Ark Angels #\r\n#~~~~~~~~~~~~#\r\n\r\n# -ii 9EAF A068 806D 806E A06F A073 A075 A077 A088 A090 A091 A092 A093\r\n\r\n# The La'loff Amphitheater will be sealed off\r\n30000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"1420\" } window 30000,1\r\n30004.1 \"--sync--\" Ability { id: [\"A062\", \"A063\", \"A064\"], source: [\"Ark Angel TT\", \"Ark Angel GK\", \"Ark Angel MR\"] } # The Decisive Battle\r\n30013.2 \"Cloudsplitter\" Ability { id: \"A076\", source: \"Ark Angel MR\" }\r\n30022.2 \"Meikyo Shisui\" Ability { id: \"A078\", source: \"Ark Angel GK\" }\r\n30026.2 \"Tachi: Yukikaze\" Ability { id: \"A079\", source: \"Ark Angel GK\" }\r\n30030.2 \"Tachi: Gekko\" Ability { id: \"A07A\", source: \"Ark Angel GK\" }\r\n30030.8 \"Tachi: Yukikaze\" Ability { id: \"A079\", source: \"Ark Angel GK\" }\r\n30035.1 \"Tachi: Kasha\" Ability { id: \"A07B\", source: \"Ark Angel GK\" }\r\n30038.1 \"Concerted Dissolution\" Ability { id: \"A07C\", source: \"Ark Angel GK\" }\r\n30043.7 \"Light's Chain\" Ability { id: \"A07D\", source: \"Ark Angel GK\" }\r\n30043.8 \"--TT jump--\" Ability { id: \"A064\", source: \"Ark Angel TT\" }\r\n30046.4 \"Meteor (castbar)\" StartsUsing { id: 'A08A', source: 'Ark Angel TT'} duration 10.7\r\n30057.1 \"Meteor?\" Ability { id: 'A08A', source: 'Ark Angel TT'}\r\n30058.9 \"--MR center--\" Ability { id: \"A06A\", source: \"Ark Angel MR\" }\r\n30065.1 \"Havoc Spiral\" Ability { id: \"A06B\", source: \"Ark Angel MR\" } duration 8\r\n30076.9 \"Spiral Finish\" Ability { id: \"A06C\", source: \"Ark Angel MR\" }\r\n30092.3 \"Dragonfall (cast)\" Ability { id: \"A07E\", source: \"Ark Angel GK\" }\r\n30092.5 \"Dragonfall 1 (stack)\" #Ability { id: \"A07F\", source: \"Ark Angel GK\" }\r\n30094.8 \"Dragonfall 2 (stack)\" #Ability { id: \"A07F\", source: \"Ark Angel GK\" }\r\n30097.1 \"Dragonfall 3 (stack)\" #Ability { id: \"A07F\", source: \"Ark Angel GK\" }\r\n30097.4 \"--TT jump--\" Ability { id: \"A064\", source: \"Ark Angel TT\" }\r\n30110.2 \"Guillotine\" Ability { id: \"A067\", source: \"Ark Angel TT\" } duration 5\r\n30114.4 \"--sync--\" Ability { id: \"A069\", source: \"Ark Angel TT\" } # Guillotine final hit\r\n30124.6 \"--all untargetable--\"\r\n30128.8 \"--EV + HM targetable--\"\r\n30135.0 \"Utsusemi\" Ability { id: \"A080\", source: \"Ark Angel HM\" }\r\n30137.0 \"Dominion Slash\" Ability { id: \"A085\", source: \"Ark Angel EV\" }\r\n30143.1 \"Mighty Strikes\" Ability { id: \"A081\", source: \"Ark Angel HM\" }\r\n30150.1 \"Critical Strikes\" Ability { id: \"A082\", source: \"Ark Angel HM\" }\r\n30152.5 \"--sync--\" Ability { id: \"A083\", source: \"Ark Angel HM\" } # Cross Reaver indicator\r\n30155.7 \"Divine Dominion\" Ability { id: \"A086\", source: \"Ark Angel EV\" }\r\n30155.9 \"Critical Strikes\" Ability { id: \"A082\", source: \"Ark Angel HM\" }\r\n30159.3 \"Cross Reaver\" Ability { id: \"A084\", source: \"Ark Angel HM\" }\r\n30168.5 \"Holy\" Ability { id: \"A089\", source: \"Ark Angel EV\" }\r\n30174.8 \"--EV + HM center--\" Ability { id: [\"9EA9\", \"A356\"], source: [\"Ark Angel EV\", \"Ark Angel HM\"] }\r\n30176.2 \"--EV untargetable--\"\r\n30176.2 \"Proud Palisade\" Ability { id: \"A448\", source: \"Ark Angel EV\" }\r\n30177.3 \"Mijin Gakure (cast)\" StartsUsing { id: \"A08C\", source: \"Ark Angel HM\" } duration 29.7\r\n30208.3 \"Mijin Gakure\" Ability { id: \"A08C\", source: \"Ark Angel HM\" }\r\n30217.6 \"--sync--\" Ability { id: \"A06A\", source: \"Ark Angel MR\" } window 50,10 # MR jumps to edge\r\n30221.8 \"Rampage x4 (line indicators)\" duration 3 #Ability { id: \"A071\", source: \"Ark Angel MR\" }\r\n30225.8 \"Rampage (circle indicator)\" Ability { id: \"A072\", source: \"Ark Angel MR\" }\r\n30226.7 \"--sync--\" Ability { id: \"A070\", source: \"Ark Angel MR\" } # Rampage castbar\r\n30226.9 \"Rampage x4 (line AoE)\" duration 3 #Ability { id: \"A073\", source: \"Ark Angel MR\" }\r\n30231.3 \"Rampage (circle AoE)\" Ability { id: \"A074\", source: \"Ark Angel MR\" }\r\n30235.5 \"--MR targetable--\"\r\n30235.5 \"--TT jump--\" Ability { id: \"A064\", source: \"Ark Angel TT\" }\r\n30248.3 \"Guillotine\" Ability { id: \"A067\", source: \"Ark Angel TT\" } duration 5\r\n30252.5 \"--sync--\" Ability { id: \"A069\", source: \"Ark Angel TT\" } # Guillotine\r\n30256.7 \"--GK targetable--\"\r\n30260.8 \"Meikyo Shisui\" Ability { id: \"A078\", source: \"Ark Angel GK\" }\r\n30264.8 \"Tachi: Yukikaze 1\" Ability { id: \"A079\", source: \"Ark Angel GK\" }\r\n30268.8 \"Tachi: Gekko\" Ability { id: \"A07A\", source: \"Ark Angel GK\" }\r\n30269.3 \"Tachi: Yukikaze 2\" Ability { id: \"A079\", source: \"Ark Angel GK\" }\r\n30273.6 \"Tachi: Kasha\" Ability { id: \"A07B\", source: \"Ark Angel GK\" }\r\n30276.6 \"Concerted Dissolution\" Ability { id: \"A07C\", source: \"Ark Angel GK\" }\r\n30279.2 \"--sync--\" Ability { id: \"A083\", source: \"Ark Angel HM\" } # Cross Reaver indicator\r\n30281.2 \"--TT jump--\" Ability { id: \"A064\", source: \"Ark Angel TT\" }\r\n30282.2 \"Light's Chain\" Ability { id: \"A07D\", source: \"Ark Angel GK\" }\r\n30283.8 \"Meteor (castbar)\" StartsUsing { id: 'A08A', source: 'Ark Angel TT'} duration 10.7\r\n30286.2 \"Cross Reaver\" Ability { id: \"A084\", source: \"Ark Angel HM\" }\r\n30294.5 \"Meteor?\" Ability { id: 'A08A', source: 'Ark Angel TT'}\r\n30303.6 \"Arrogance Incarnate x5\" Ability { id: \"A087\", source: \"Ark Angel EV\" } duration 5\r\n30314.4 \"Cloudsplitter\" Ability { id: \"A076\", source: \"Ark Angel MR\" }\r\n\r\n30325.7 label \"angelLoop\"\r\n30325.7 \"--MR jump--\" Ability { id: \"A06A\", source: \"Ark Angel MR\" }\r\n30330.1 \"Rampage x4 (line indicators)\" duration 3 #Ability { id: \"A071\", source: \"Ark Angel MR\" }\r\n30334.1 \"Rampage (circle indicator)\" Ability { id: \"A072\", source: \"Ark Angel MR\" }\r\n30335.0 \"--sync--\" Ability { id: \"A070\", source: \"Ark Angel MR\" } # Rampage castbar\r\n30335.2 \"Rampage x4 (line AoE)\" duration 3 #Ability { id: \"A073\", source: \"Ark Angel MR\" }\r\n30338.5 \"--TT jump--\" Ability { id: \"A064\", source: \"Ark Angel TT\" }\r\n30339.6 \"Rampage (circle AoE)\" Ability { id: \"A074\", source: \"Ark Angel MR\" }\r\n30351.1 \"Guillotine\" Ability { id: \"A067\", source: \"Ark Angel TT\" } duration 5\r\n30355.3 \"--sync--\" Ability { id: \"A069\", source: \"Ark Angel TT\" } # Guillotine\r\n30361.0 \"--HM center--\" Ability { id: \"9EA9\", source: \"Ark Angel HM\" }\r\n30367.3 \"Mighty Strikes\" Ability { id: \"A194\", source: \"Ark Angel HM\" }\r\n30369.4 \"Critical Reaver x4 (raidwide)\" duration 4 #Ability { id: \"A195\", source: \"Ark Angel HM\" }\r\n30387.2 \"Critical Reaver (big raidwide)?\" Ability { id: \"A13B\", source: \"Ark Angel HM\" }\r\n30401.3 \"Dominion Slash?\" Ability { id: \"A085\", source: \"Ark Angel EV\" }\r\n30403.3 \"--MR center--\" Ability { id: \"A06A\", source: \"Ark Angel MR\" } window 30,30\r\n30409.5 \"Havoc Spiral\" Ability { id: \"A06B\", source: \"Ark Angel MR\" } duration 8\r\n30419.9 \"Divine Dominion\" Ability { id: \"A086\", source: \"Ark Angel EV\" }\r\n30421.6 \"Spiral Finish\" Ability { id: \"A06C\", source: \"Ark Angel MR\" }\r\n30427.2 \"--TT jump--\" Ability { id: \"A064\", source: \"Ark Angel TT\" }\r\n30429.6 \"Meteor (castbar)\" StartsUsing { id: 'A08A', source: 'Ark Angel TT'} duration 10.7\r\n30440.3 \"Meteor?\" Ability { id: \"A08A\", source: \"Ark Angel TT\" }\r\n30450.6 \"Meikyo Shisui\" Ability { id: \"A078\", source: \"Ark Angel GK\" }\r\n30454.6 \"Tachi: Yukikaze 1 (grid)\" Ability { id: \"A079\", source: \"Ark Angel GK\" }\r\n30458.6 \"Tachi: Gekko (gaze)\" Ability { id: \"A07A\", source: \"Ark Angel GK\" }\r\n30459.2 \"Tachi: Yukikaze 2 (grid)\" Ability { id: \"A079\", source: \"Ark Angel GK\" }\r\n30463.5 \"Tachi: Kasha (circle)\" Ability { id: \"A07B\", source: \"Ark Angel GK\" }\r\n30466.5 \"Concerted Dissolution\" Ability { id: \"A07C\", source: \"Ark Angel GK\" }\r\n30467.4 \"--sync--\" Ability { id: \"A083\", source: \"Ark Angel HM\" } # Cross Reaver indicator\r\n30472.1 \"Light's Chain\" Ability { id: \"A07D\", source: \"Ark Angel GK\" }\r\n30474.4 \"Cross Reaver\" Ability { id: \"A084\", source: \"Ark Angel HM\" }\r\n30482.2 \"Cloudsplitter\" Ability { id: \"A076\", source: \"Ark Angel MR\" }\r\n30495.9 \"Raiton\" Ability { id: \"A095\", source: \"Ark Angel HM\" }\r\n30504.2 \"Dominion Slash\" Ability { id: \"A085\", source: \"Ark Angel EV\" }\r\n30516.2 \"--sync--\" Ability { id: \"A083\", source: \"Ark Angel HM\" } # Cross Reaver indicator\r\n30523.0 \"Divine Dominion\" Ability { id: \"A086\", source: \"Ark Angel EV\" }\r\n30523.2 \"Cross Reaver\" Ability { id: \"A084\", source: \"Ark Angel HM\" }\r\n30533.4 \"Dragonfall (cast)\" Ability { id: \"A07E\", source: \"Ark Angel GK\" }\r\n30533.7 \"Dragonfall 1 (stack)\" #Ability { id: \"A07F\", source: \"Ark Angel GK\" }\r\n30536.1 \"Dragonfall 2 (stack)\" #Ability { id: \"A07F\", source: \"Ark Angel GK\" }\r\n30538.4 \"Dragonfall 3 (stack)\" #Ability { id: \"A07F\", source: \"Ark Angel GK\" }\r\n30558.8 \"Arrogance Incarnate\" Ability { id: \"A087\", source: \"Ark Angel EV\" }\r\n\r\n30577.6 \"--MR jump--\" Ability { id: \"A06A\", source: \"Ark Angel MR\" } forcejump \"angelLoop\"\r\n\r\n\r\n# IGNORED ABILITIES\r\n# 9EAF Attack\r\n# A068 Guillotine: Initial frontal hits, TT\r\n# A06D Spiral Finish: Knockback, MR\r\n# A06F Havoc Spiral: Cone cyclone individual strikes, MR\r\n# A073 Rampage: Rampage line cast, MR\r\n# A075 Rampage: Rampage circle cast, MR\r\n# A077 Cloudsplitter: Tank cleave, MR\r\n# A088 Arrogance Incarnate: Multi-hit stack marker, EV\r\n# A090 Aethersplit: Unknown self-cast, GK\r\n# A091 Aethersplit: Unknown self-cast, GK\r\n# A092 Aethersplit: Unknown self-cast, GK\r\n# A093 Aethersplit: Unknown self-cast, GK\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# 366 attack\r\n# 5B5 attack\r\n# 9EA9 --sync-- : HM reposition\r\n# 9EAF --sync--: EV auto-attack\r\n# A061 the Decisive Battle: Inflicts Epic Hero debuff (Alpha)\r\n# A062 the Decisive Battle: Inflicts Vaunted Hero debuff (Gamma)\r\n# A063 the Decisive Battle: Inflict Fated Hero debuff (Beta)\r\n# A064 --sync--: TT reposition\r\n# A067 Guillotine: 270-degree frontal cone, TT\r\n# A068 Guillotine: Initial frontal hits, TT\r\n# A069 Guillotine: Final frontal hit, TT\r\n# A06A --sync--: MR reposition\r\n# A06B Havoc Spiral: Castbar for cone cyclone\r\n# A06C Spiral Finish: Knockback visuals, MR\r\n# A06D Spiral Finish: Knockback, MR\r\n# A06E Havoc Spiral: Cone cyclone activate, MR\r\n# A06F Havoc Spiral: Cone cyclone individual strikes, MR\r\n# A070 Rampage: Rampage castbar, MR\r\n# A071 --sync--: Rampage line indicator, MR\r\n# A072 --sync--: Rampage circle indicator, MR\r\n# A073 Rampage: Rampage line cast, MR\r\n# A074 Rampage: Reposition for Rampage circle, MR\r\n# A075 Rampage: Rampage circle cast, MR\r\n# A076 Cloudsplitter: Tank cleave cast, MR\r\n# A077 Cloudsplitter: Tank cleave, MR\r\n# A078 Meikyo Shisui: Wind-up for Yukikaze, GK\r\n# A079 Tachi: Yukikaze: Grid AoE, GK\r\n# A07A Tachi: Gekko: Gaze attack, GK\r\n# A07B Tachi: Kasha: Giant circle AoE, GK\r\n# A07C Concerted Dissolution: Pizza slize AoE, GK\r\n# A07D Light's Chain: Donut AoE, GK\r\n# A07E Dragonfall: Party stacks castbar, GK\r\n# A07F Dragonfall: Party stacks, GK\r\n# A080 Utsusemi: Chain castbar, HM\r\n# A081 Mighty Strikes: Small repeated circle AoEs, HM\r\n# A082 Critical Strikes: Mini-buster? HM\r\n# A083 Cross Reaver: Cross AoE indicator, HM\r\n# A084 Cross Reaver: Cross AoE, HM\r\n# A085 Dominion Slash: Raidwide, EV\r\n# A086 Divine Dominion: Chain clones disappear? EV\r\n# A087 Arrogance Incarnate: Multi-hit stack marker cast, EV\r\n# A088 Arrogance Incarnate: Multi-hit stack marker, EV\r\n# A089 Holy: Raidwide, EV\r\n# A08A Meteor: Heavy raidwide castbar, interruptible, TT\r\n# A08B Meteor: Heavy raidwide, TT. (Logs exist with it being used by MR, might be stale data)\r\n# A090 Aethersplit: Unknown self-cast, GK\r\n# A091 Aethersplit: Unknown self-cast, GK\r\n# A092 Aethersplit: Unknown self-cast, GK\r\n# A093 Aethersplit: Unknown self-cast, GK\r\n# A13B Critical Reaver: Heavy raidwide, interruptible, HM\r\n# A194 Mighty Strikes: Critical hit self-buff, HM\r\n# A195 Critical Reaver: Multi-hit raidwide, HM\r\n# A356 --sync--: EV reposition\r\n# A448 Proud Palisade: Summons Ark Shield, EV\r\n\r\n\r\n#~~~~~~~~~~~~~#\r\n# Shadow Lord #\r\n#~~~~~~~~~~~~~#\r\n\r\n# -ii A313 9F3E 9F3F 9F5D 9F61 9F5C 9F5D 9F5E 9F5F 9F60 9F46 9F47 9F48 9F49 A3AC 9F68 A444 A357 A358 A229 A23A A424 A425 A426 A427\r\n\r\n# The Throne Room will be sealed off\r\n40000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"1418\" } window 40000,1\r\n40022.1 \"Giga Slash 1\" Ability { id: [\"9F40\", \"94F2\"], source: \"Shadow Lord\" }\r\n40024.1 \"Giga Slash 2\" Ability { id: [\"9F41\", \"94F3\"], source: \"Shadow Lord\" }\r\n40028.1 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40034.4 \"Umbra Smash\" Ability { id: \"9F5B\", source: \"Shadow Lord\" } duration 12\r\n40055.8 \"Giga Slash 1\" Ability { id: [\"9F40\", \"94F2\"], source: \"Shadow Lord\" }\r\n40057.8 \"Giga Slash 2\" Ability { id: [\"9F41\", \"94F3\"], source: \"Shadow Lord\" }\r\n40066.8 \"Flames of Hatred\" Ability { id: \"9F69\", source: \"Shadow Lord\" }\r\n40077.9 \"Implosion\" Ability { id: [\"9F44\", \"9F45\"], source: \"Shadow Lord\" }\r\n40081.0 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40089.3 \"Cthonic Fury\" Ability { id: \"9F4A\", source: \"Shadow Lord\" } window 89,10\r\n40104.4 \"Burning Moat\" Ability { id: \"9F4D\", source: \"Shadow Lord\" }\r\n40114.4 \"Burning Court\" Ability { id: \"9F4C\", source: \"Shadow Lord\" }\r\n40123.4 \"Dark Nebula (cast)\" Ability { id: \"9F50\", source: \"Shadow Lord\" }\r\n40129.5 \"Dark Nebula (knockback)\" Ability { id: \"A23C\", source: \"Shadow Lord\" }\r\n40141.5 \"Implosion\" Ability { id: [\"9F44\", \"9F45\"], source: \"Shadow Lord\" }\r\n40151.6 \"Burning Court/Burning Moat\" Ability { id: [\"9F4C\", \"9F4D\"], source: \"Shadow Lord\" }\r\n40151.6 \"Burning Keep/Burning Battlements\" Ability { id: [\"9F4E\", \"9F4F\"], source: \"Shadow Lord\" }\r\n40163.6 \"Echoes of Agony x5\" Ability { id: \"A3AB\", source: \"Shadow Lord\" } duration 5\r\n40177.7 \"Cthonic Fury\" Ability { id: \"9F4B\", source: \"Shadow Lord\" }\r\n40180.8 \"--north--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40187.5 \"Nightfall\" Ability { id: \"A0B8\", source: \"Shadow Lord\" }\r\n40221.6 \"Tera Slash\" Ability { id: \"A0B9\", source: \"Shadow Lord\" } window 221,10\r\n40227.7 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40248.7 \"Giga Slash: Nightfall 1\" Ability { id: [\"A42B\", \"A42D\"], source: \"Shadow Lord\" }\r\n40250.7 \"Giga Slash: Nightfall 2\" Ability { id: [\"A42C\", \"A42E\"], source: \"Shadow Lord\" }\r\n40252.7 \"Giga Slash: Nightfall 3\" Ability { id: [\"A428\", \"A429\"], source: \"Shadow Lord\" }\r\n\r\n# ~307s loop.\r\n40256.7 label \"lordLoop\"\r\n40256.7 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40261.0 \"Shadow Spawn\" Ability { id: \"9F52\", source: \"Shadow Lord\" }\r\n40279.1 \"Giga Slash: Nightfall 1\" Ability { id: [\"A42B\", \"A42D\"], source: \"Shadow Lord\" }\r\n40281.1 \"Giga Slash: Nightfall 2\" Ability { id: [\"A42C\", \"A42E\"], source: \"Shadow Lord\" }\r\n40283.1 \"Giga Slash: Nightfall 3\" Ability { id: [\"A428\", \"A429\"], source: \"Shadow Lord\" }\r\n40289.1 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40292.1 \"Giga Slash 1 (add)\" Ability { id: [\"9F40\", \"94F2\"], source: [\"Shadow Lord\"] }\r\n40294.1 \"Giga Slash 2 (add)\" Ability { id: [\"9F41\", \"94F3\"], source: \"Shadow Lord\" }\r\n40298.4 \"Implosion (boss)\" Ability { id: [\"9F44\", \"9F45\"], source: \"Shadow Lord\" }\r\n40303.1 \"Implosion (add)\" Ability { id: [\"9F44\", \"9F45\"], source: \"Lordly Shadow\" }\r\n40311.5 \"Unbridled Rage\" Ability { id: \"9F67\", source: \"Shadow Lord\" }\r\n40318.5 \"Dark Nova\" Ability { id: \"A177\", source: \"Shadow Lord\" } window 318,10\r\n40327.6 \"Echoes of Agony x7\" Ability { id: \"A3AB\", source: \"Shadow Lord\" } duration 7\r\n40341.7 \"--Binding Indicator 1--\" #Ability { id: \"A229\", source: \"Shadow Lord\" }\r\n40344.1 \"--Binding Indicator 2--\" #Ability { id: \"A229\", source: \"Shadow Lord\" }\r\n40346.5 \"--Binding Indicator 3--\" #Ability { id: \"A229\", source: \"Shadow Lord\" }\r\n40349.6 \"Binding Sigil (castbar)\" Ability { id: \"9F55\", source: \"Shadow Lord\" }\r\n40351.7 \"Soul Binding 1\" #Ability { id: \"A22A\", source: \"Shadow Lord\" }\r\n40354.1 \"Soul Binding 2\" #Ability { id: \"A22A\", source: \"Shadow Lord\" }\r\n40356.7 \"Soul Binding 3\" #Ability { id: \"A22A\", source: \"Shadow Lord\" }\r\n40357.7 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40361.1 \"Burst\" Ability { id: \"A23B\", source: \"Shadow Lord\" }\r\n40368.1 \"Damning Strikes (castbar)\" Ability { id: \"9F57\", source: \"Shadow Lord\" }\r\n40370.6 \"Impact 1\" Ability { id: \"9F58\", source: \"Shadow Lord\" }\r\n40373.1 \"Impact 2\" Ability { id: \"A096\", source: \"Shadow Lord\" }\r\n40375.8 \"Impact 3\" Ability { id: \"A097\", source: \"Shadow Lord\" }\r\n40383.5 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40391.8 \"Cthonic Fury\" Ability { id: \"9F4A\", source: \"Shadow Lord\" } window 30,30\r\n40397.9 \"Dark Nebula (castbar)\" Ability { id: \"9F50\", source: \"Shadow Lord\" }\r\n40412.0 \"Dark Nebula 1 (knockback)\" Ability { id: \"9F51\", source: \"Shadow Lord\" }\r\n40414.0 \"--corner--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40415.0 \"Dark Nebula 2 (knockback)\" Ability { id: \"9F51\", source: \"Shadow Lord\" }\r\n40418.0 \"Dark Nebula 3 (knockback)\" Ability { id: \"9F51\", source: \"Shadow Lord\" }\r\n40421.0 \"Dark Nebula 4 (knockback)\" Ability { id: \"9F51\", source: \"Shadow Lord\" }\r\n40431.4 \"Giga Slash: Nightfall 1\" Ability { id: [\"A42B\", \"A42D\"], source: \"Shadow Lord\" }\r\n40433.4 \"Giga Slash: Nightfall 2\" Ability { id: [\"A42C\", \"A42E\"], source: \"Shadow Lord\" }\r\n40435.4 \"Giga Slash: Nightfall 3\" Ability { id: [\"A428\", \"A429\"], source: \"Shadow Lord\" }\r\n40438.4 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40445.4 \"Burning Court/Burning Moat\" Ability { id: [\"9F4C\", \"9F4D\"], source: \"Shadow Lord\" }\r\n40445.4 \"Burning Keep/Burning Battlements\" Ability { id: [\"9F4E\", \"9F4F\"], source: \"Shadow Lord\" }\r\n40456.8 \"Dark Nova\" Ability { id: \"A177\", source: \"Shadow Lord\" }\r\n40465.8 \"Cthonic Fury\" Ability { id: \"9F4B\", source: \"Shadow Lord\" }\r\n40469.0 \"--sync--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40473.3 \"Shadow Spawn\" Ability { id: \"9F52\", source: \"Shadow Lord\" }\r\n40481.4 \"Umbra Smash (single lines)\" Ability { id: \"9F5B\", source: \"Shadow Lord\" } duration 12\r\n40494.9 \"Umbra Smash (exalines)\" Ability { id: \"9F53\", source: \"Lordly Shadow\" } duration 7\r\n40508.9 \"Giga Slash: Nightfall 1\" Ability { id: [\"A42B\", \"A42D\"], source: \"Shadow Lord\" }\r\n40510.9 \"Giga Slash: Nightfall 2\" Ability { id: [\"A42C\", \"A42E\"], source: \"Shadow Lord\" }\r\n40512.9 \"Giga Slash: Nightfall 3\" Ability { id: [\"A428\", \"A429\"], source: \"Shadow Lord\" }\r\n40530.9 \"Doom Arc\" Ability { id: \"9F66\", source: \"Shadow Lord\" }\r\n40556.1 \"Giga Slash: Nightfall 1\" Ability { id: [\"A42B\", \"A42D\"], source: \"Shadow Lord\" }\r\n40558.1 \"Giga Slash: Nightfall 2\" Ability { id: [\"A42C\", \"A42E\"], source: \"Shadow Lord\" }\r\n40560.1 \"Giga Slash: Nightfall 3\" Ability { id: [\"A428\", \"A429\"], source: \"Shadow Lord\" }\r\n\r\n40564.1 \"--sync--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" } forcejump \"lordLoop\"\r\n\r\n# IGNORED ABILITIES\r\n# 9F3E Giga Slash: Giga Slash castbar, left safe first\r\n# 9F3F Giga Slash: Giga Slash castbar, right safe first\r\n# 9F46 Implosion: Chariot AoE, with 9497 left cleave\r\n# 9F47 Implosion: Half-room left cleave\r\n# 9F48 Implosion: Chariot AoE, with 9F49 right cleave\r\n# 9F49 Implosion: Half-room right cleave\r\n# 9F5C Umbra Smash: Turning animation for Smash follow-ups?\r\n# 9F5D Umbra Smash: 4x line AoE, line 1\r\n# 9F5E Umbra Smash: 4x line AoE, line 2\r\n# 9F5F Umbra Smash: 4x line AoE, line 3\r\n# 9F60 Umbra Smash: 4x line AoE, line 4\r\n# 9F61 Umbra Wave: Line AoE\r\n# 9F68 Unbridled Rage: Tank lasers, non-shared\r\n# A229 --sync--: Exatrines indicator\r\n# A23A --sync--: Unknown, maybe related to Binding Sigil targets?\r\n# A313 --sync--: Auto-attack\r\n# A357 --sync--: Damning Strikes repositions 2/3\r\n# A358 --sync--: Damning Strikes reposition 1\r\n# A3AC Echoes of Agony: Multi-hit stack marker\r\n# A424 Giga Slash: Nightfall: Castbar, cleaving left -> right -> front\r\n# A425 Giga Slash: Nightfall: Castbar, cleaving left -> right -> back\r\n# A426 Giga Slash: Nightfall: Castbar, cleaving right -> left -> front\r\n# A427 Giga Slash: Nightfall: Castbar, cleaving right -> left -> back\r\n# A444 Damning Strikes: Tower animations 1/2?\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# 9F3E Giga Slash: Giga Slash castbar, left safe first\r\n# 9F3F Giga Slash: Giga Slash castbar, right safe first\r\n# 9F40 Giga Slash: Right cleave, wide safespot\r\n# 9F41 Giga Slash: Left cleave, narrow safespot\r\n# 9F42 Giga Slash: Left cleave, wide safespot\r\n# 9F43 Giga Slash: Right cleave, narrow safespot\r\n# 9F44 Implosion: Chariot + half-room AoE castbar, right safe\r\n# 9F45 Implosion: Chariot + half-room AoE castbar, left safe\r\n# 9F46 Implosion: Chariot AoE, with 9497 left cleave\r\n# 9F47 Implosion: Half-room left cleave\r\n# 9F48 Implosion: Chariot AoE, with 9F49 right cleave\r\n# 9F49 Implosion: Half-room right cleave\r\n# 9F4A Cthonic Fury: Intermission start raidwide\r\n# 9F4B Cthonic Fury: Intermission end raidwide\r\n# 9F4C Burning Court: Corner circle AoEs, intermission\r\n# 9F4D Burning Moat: Side rectangle AoEs, intermission\r\n# 9F4E Burning Keep: Outer square safe AoE, intermission\r\n# 9F4F Burning Battlements: Inner square safe AoE, intermission\r\n# 9F50 Dark Nebula: Knockback line castbar\r\n# 9F51 Dark Nebula: Knockback line\r\n# 9F52 Shadow Spawn: Summon adds\r\n# 9F53 Umbra Smash: Exalines cast\r\n# 9F54 Umbra Smash: Exalines\r\n# 9F55 Binding Sigil: Exatrine castbar\r\n# 9F57 Damning Strikes: Tower castbar\r\n# 9F58 Impact: Daming Strikes tower 1?\r\n# 9F59 Damning Strikes: Tower animation 3?\r\n# 9F5B Umbra Smash: 4x line AoE castbar\r\n# 9F5C Umbra Smash: Turning animation for Smash follow-ups?\r\n# 9F5D Umbra Smash: 4x line AoE, line 1\r\n# 9F5E Umbra Smash: 4x line AoE, line 2\r\n# 9F5F Umbra Smash: 4x line AoE, line 3\r\n# 9F60 Umbra Smash: 4x line AoE, line 4\r\n# 9F61 Umbra Wave: Line AoE\r\n# 9F66 Doom Arc: Raidwide + bleed\r\n# 9F67 Unbridled Rage: Tank lasers castbar\r\n# 9F68 Unbridled Rage: Tank lasers, non-shared\r\n# 9F69 Flames of Hatred: Raidwide\r\n# 9F6A --sync--: Reposition\r\n# A096 Impact: Daming Strikes tower 2?\r\n# A097 Impact: Daming Strikes tower 3?\r\n# A0B8 Nightfall: Tera Slash pre-cast\r\n# A0B9 Tera Slash: High-damage raidwide\r\n# A177 Dark Nova: Spread circles\r\n# A229 --sync--: Exatrines indicator\r\n# A22A Soul Binding: Exatrines\r\n# A23A --sync--: Unknown, maybe related to Binding Sigil targets?\r\n# A23B Burst: Knock-up attack on targets hit by Binding Sigil\r\n# A23C Dark Nebula: Knockback line\r\n# A313 --sync--: Auto-attack\r\n# A357 --sync--: Damning Strikes repositions 2/3\r\n# A358 --sync--: Damning Strikes reposition 1\r\n# A3AB Echoes of Agony: Multi-hit stack marker castbar\r\n# A3AC Echoes of Agony: Multi-hit stack marker\r\n# A424 Giga Slash: Nightfall: Castbar, cleaving left -> right -> front\r\n# A425 Giga Slash: Nightfall: Castbar, cleaving left -> right -> back\r\n# A426 Giga Slash: Nightfall: Castbar, cleaving right -> left -> front\r\n# A427 Giga Slash: Nightfall: Castbar, cleaving right -> left -> back\r\n# A428 Giga Slash: Nightfall: Front cleave, wide safespot\r\n# A429 Giga Slash: Nightfall: Rear cleave, wide safespot\r\n# A42B Giga Slash: Nightfall: Left cleave, wide safespot\r\n# A42C Giga Slash: Nightfall: Right cleave, narrow safespot\r\n# A42D Giga Slash: Nightfall: Right cleave, wide safespot\r\n# A42E Giga Slash: Nightfall: Left cleave, narrow safespot\r\n# A444 Damning Strikes: Tower animations 1/2?\r\n";
+const alliance_jeuno_first_walk_namespaceObject = "### JEUNO: THE FIRST WALK\r\n# ZoneId: 1248\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#\r\n# Prishe Of The Distant Chains #\r\n#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#\r\n\r\n# -ii 9FE6 9FF1 9FF3 9FEB 9FEC 9FED A003 9FF5 9FFE 9FFF\r\n\r\n# A number of Prishe's abilities are two-part,\r\n# with a visual snapshot occurring before a damage event.\r\n# The snapshot locks in when the visual element resolves,\r\n# so we display the visual and then ignore the damage event.\r\n\r\n# The grand dais will be sealed off\r\n10000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"141E\" } window 10000,1\r\n10006.7 \"--sync--\" StartsUsing { id: \"9FE7\", source: \"Prishe of the Distant Chains\" } window 10006.7,10\r\n10011.1 \"Banishga\" Ability { id: \"9FE7\", source: \"Prishe of the Distant Chains\" }\r\n10018.3 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n10032.5 \"Knuckle Sandwich\" Ability { id: [\"9FE8\", \"9FE9\", \"9FEA\"], source: \"Prishe of the Distant Chains\" }\r\n10035.1 \"Brittle Impact\" Ability { id: [\"9FEE\", \"9FEF\", \"9FF0\"], source: \"Prishe of the Distant Chains\" }\r\n\r\n# This second Knuckle Sandwich shows up in a few Very Slow logs.\r\n10052.5 \"Knuckle Sandwich?\" Ability { id: [\"9FE8\", \"9FE9\", \"9FEA\"], source: \"Prishe of the Distant Chains\" }\r\n10054.9 \"Brittle Impact\" Ability { id: [\"9FEE\", \"9FEF\", \"9FF0\"], source: \"Prishe of the Distant Chains\" }\r\n10058.5 \"--sync--\" StartsUsing { id: \"9FFD\", source: \"Prishe of the Distant Chains\" } window 55.5,10\r\n10064.7 \"Nullifying Dropkick\" Ability { id: \"9FFD\", source: \"Prishe of the Distant Chains\" }\r\n10073.4 \"Banish Storm\" Ability { id: \"9FF2\", source: \"Prishe of the Distant Chains\" }\r\n10085.3 \"Banish x15\" duration 11.2 #Ability { id: \"9FF3\", source: \"Prishe of the Distant Chains\" }\r\n10093.5 \"Holy\" Ability { id: \"A002\", source: \"Prishe of the Distant Chains\" }\r\n\r\n10101.2 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n10107.5 \"Crystalline Thorns\" Ability { id: \"9FF4\", source: \"Prishe of the Distant Chains\" } window 104.5,10\r\n10122.9 \"Auroral Uppercut\" Ability { id: [\"9FF6\", \"9FF7\", \"9FF8\"], source: \"Prishe of the Distant Chains\" }\r\n10139.5 \"Banishga IV\" Ability { id: \"9FFA\", source: \"Prishe of the Distant Chains\" }\r\n10147.3 \"Explosion 1\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n10151.3 \"Explosion 2\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n10155.3 \"Explosion 3\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n10159.3 \"Explosion 4\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n10159.3 \"Explosion 5\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n10165.6 \"Crystalline Thorns\" Ability { id: \"9FF4\", source: \"Prishe of the Distant Chains\" }\r\n10167.7 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n10181.5 \"Auroral Uppercut\" Ability { id: [\"9FF6\", \"9FF7\", \"9FF8\"], source: \"Prishe of the Distant Chains\" }\r\n10198.8 \"Asuran Fists x8\" Ability { id: \"9FFC\", source: \"Prishe of the Distant Chains\" } duration 9\r\n10207.2 \"--sync--\" Ability { id: \"A000\", source: \"Prishe of the Distant Chains\" } # Asuran Fists final hit\r\n\r\n# From here, Prishe seems to have three different rotation blocks.\r\n# She can use Banishga, Banishga 4, or Banish Storm.\r\n# Each of these blocks closes with Asuran Fists,\r\n# but she doesn't always seem to use the final A000 hit.\r\n# More research is needed.\r\n10217.4 \"Banishga IV?\" StartsUsing { id: \"9FFA\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaIVBlock\"\r\n10218.1 \"Banish Storm?\" StartsUsing { id: \"9FF2\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishStormBlock\"\r\n10226.3 \"Banishga?\" StartsUsing { id: \"9FE7\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaBlock\"\r\n\r\n\r\n# Banishga block\r\n10995.3 label \"banishgaBlock\"\r\n10995.3 \"--sync--\" StartsUsing { id: \"9FE7\", source: \"Prishe of the Distant Chains\" }\r\n\r\n11000.0 \"Banishga\" Ability { id: \"9FE7\", source: \"Prishe of the Distant Chains\" }\r\n11007.2 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n11021.4 \"Knuckle Sandwich\" Ability { id: [\"9FE8\", \"9FE9\", \"9FEA\"], source: \"Prishe of the Distant Chains\" }\r\n11023.8 \"Brittle Impact\" Ability { id: [\"9FEE\", \"9FEF\", \"9FF0\"], source: \"Prishe of the Distant Chains\" }\r\n11033.6 \"Nullifying Dropkick\" Ability { id: \"9FFD\", source: \"Prishe of the Distant Chains\" }\r\n11042.3 \"Banish Storm\" Ability { id: \"9FF2\", source: \"Prishe of the Distant Chains\" } window 15,15\r\n11054.2 \"Banish x15\" duration 11.2 #Ability { id: \"9FF3\", source: \"Prishe of the Distant Chains\" }\r\n11062.4 \"Holy\" Ability { id: \"A002\", source: \"Prishe of the Distant Chains\" }\r\n11070.1 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n11076.3 \"Crystalline Thorns\" Ability { id: \"9FF4\", source: \"Prishe of the Distant Chains\" }\r\n11091.8 \"Auroral Uppercut\" Ability { id: [\"9FF6\", \"9FF7\", \"9FF8\"], source: \"Prishe of the Distant Chains\" }\r\n11108.4 \"Banishga IV\" Ability { id: \"9FFA\", source: \"Prishe of the Distant Chains\" } window 15,15\r\n11116.3 \"Explosion 1\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n11116.3 \"Explosion 2\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n11120.3 \"Explosion 3\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n11124.3 \"Explosion 4\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n11128.3 \"Explosion 5 \" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n11139.2 \"Asuran Fists x8\" Ability { id: \"9FFC\", source: \"Prishe of the Distant Chains\" } duration 9\r\n11147.6 \"--sync--\" Ability { id: \"A000\", source: \"Prishe of the Distant Chains\" } # Asuran Fists final hit\r\n\r\n11157.8 \"Banishga IV?\" StartsUsing { id: \"9FFA\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaIVBlock\"\r\n11158.5 \"Banish Storm?\" StartsUsing { id: \"9FF2\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishStormBlock\"\r\n11166.7 \"Banishga?\" StartsUsing { id: \"9FE7\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaBlock\"\r\n\r\n# Banish Storm block\r\n11997.0 label \"banishStormBlock\"\r\n11997.0 \"--sync--\" StartsUsing { id: \"9FF2\", source: \"Prishe of the Distant Chains\" }\r\n\r\n12000.0 \"Banish Storm\" Ability { id: \"9FF2\", source: \"Prishe of the Distant Chains\" }\r\n12006.1 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n12011.9 \"Banish x15\" duration 11.2 #Ability { id: \"9FF3\", source: \"Prishe of the Distant Chains\" }\r\n12020.3 \"Knuckle Sandwich\" Ability { id: [\"9FE8\", \"9FE9\", \"9FEA\"], source: \"Prishe of the Distant Chains\" }\r\n12022.7 \"Brittle Impact\" Ability { id: [\"9FEE\", \"9FEF\", \"9FF0\"], source: \"Prishe of the Distant Chains\" }\r\n12031.4 \"Nullifying Dropkick\" Ability { id: \"9FFD\", source: \"Prishe of the Distant Chains\" }\r\n# This Banishga IV cast seems to vary significantly on timing. Sync widely and hope for the best\r\n12034.4 \"--sync--\" StartsUsing { id: \"9FFA\", source: \"Prishe of the Distant Chains\" } window 10,10\r\n12039.1 \"Banishga IV\" Ability { id: \"9FFA\", source: \"Prishe of the Distant Chains\" }\r\n12046.2 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n12046.9 \"Explosion 1\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n12046.9 \"Explosion 2\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n12050.9 \"Explosion 3\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n12052.6 \"Crystalline Thorns\" Ability { id: \"9FF4\", source: \"Prishe of the Distant Chains\" }\r\n12054.8 \"Explosion 4\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n12058.8 \"Explosion 5\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n12068.1 \"Auroral Uppercut\" Ability { id: [\"9FF6\", \"9FF7\", \"9FF8\"], source: \"Prishe of the Distant Chains\" }\r\n12081.8 \"Holy\" Ability { id: \"A002\", source: \"Prishe of the Distant Chains\" }\r\n12091.5 \"Asuran Fists x8\" Ability { id: \"9FFC\", source: \"Prishe of the Distant Chains\" } duration 9\r\n12099.9 \"--sync--\" Ability { id: \"A000\", source: \"Prishe of the Distant Chains\" } # Asuran Fists final hit\r\n\r\n12110.2 \"Banishga IV?\" StartsUsing { id: \"9FFA\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaIVBlock\"\r\n12110.8 \"Banish Storm?\" StartsUsing { id: \"9FF2\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishStormBlock\"\r\n12119.0 \"Banishga?\" StartsUsing { id: \"9FE7\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaBlock\"\r\n\r\n\r\n# Banishga 4 block\r\n12995.3 label \"banishgaIVBlock\"\r\n12995.3 \"--sync--\" StartsUsing { id: \"9FFA\", source: \"Prishe of the Distant Chains\" }\r\n\r\n13000.0 \"Banishga IV\" Ability { id: \"9FFA\", source: \"Prishe of the Distant Chains\" }\r\n13002.1 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n13016.2 \"Knuckle Sandwich\" Ability { id: [\"9FE8\", \"9FE9\", \"9FEA\"], source: \"Prishe of the Distant Chains\" }\r\n13016.6 \"Explosion 1\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n13016.6 \"Explosion 2\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n13018.6 \"Brittle Impact\" Ability { id: [\"9FEE\", \"9FEF\", \"9FF0\"], source: \"Prishe of the Distant Chains\" }\r\n13020.6 \"Explosion 3\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n13024.6 \"Explosion 4\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n13028.6 \"Explosion 5\" #Ability { id: \"9FFB\", source: \"Luminous Remnant\" }\r\n13030.7 \"Holy\" Ability { id: \"A002\", source: \"Prishe of the Distant Chains\" }\r\n13040.8 \"Banish Storm\" Ability { id: \"9FF2\", source: \"Prishe of the Distant Chains\" } window 15,15\r\n13042.9 \"--center--\" Ability { id: \"9FE5\", source: \"Prishe of the Distant Chains\" }\r\n13049.2 \"Crystalline Thorns\" Ability { id: \"9FF4\", source: \"Prishe of the Distant Chains\" }\r\n13052.7 \"Banish x15\" duration 11.2 #Ability { id: \"9FF3\", source: \"Prishe of the Distant Chains\" }\r\n13064.7 \"Auroral Uppercut\" Ability { id: [\"9FF6\", \"9FF7\", \"9FF8\"], source: \"Prishe of the Distant Chains\" }\r\n13086.0 \"Nullifying Dropkick\" Ability { id: \"9FFD\", source: \"Prishe of the Distant Chains\" }\r\n13097.1 \"Asuran Fists x8\" Ability { id: \"9FFC\", source: \"Prishe of the Distant Chains\" } duration 9\r\n13105.5 \"--sync--\" Ability { id: \"A000\", source: \"Prishe of the Distant Chains\" } # Asuran Fists final hit\r\n\r\n13115.7 \"Banishga IV?\" StartsUsing { id: \"9FFA\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaIVBlock\"\r\n13116.4 \"Banish Storm?\" StartsUsing { id: \"9FF2\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishStormBlock\"\r\n13124.6 \"Banishga?\" StartsUsing { id: \"9FE7\", source: \"Prishe of the Distant Chains\" } window 20,20 jump \"banishgaBlock\"\r\n\r\n# IGNORED ABILITIES\r\n# 9FE6 --sync--: auto-attack\r\n# 9FEB Knuckle Sandwich: 1-tick inner circle AoE\r\n# 9FEC Knuckle Sandwich: 2-tick inner circle AoE\r\n# 9FED Knuckle Sandwich: 3-tick inner circle AoE\r\n# 9FF1 Nullifying Dropkick: Shared tank buster, circle stack (simultaneous with 9FFD)\r\n# 9FF3 Banish: Pathing circle AoEs\r\n# 9FF5 Thornbite: Thorns appear\r\n# 9FF9 Auroral Uppercut: Knockback execution\r\n# 9FFE Asuran Fists: Stack marker damage\r\n# 9FFF Asuran Fists: Stack marker damage\r\n# A003 Holy: Spread marker damage\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# 9FE5 --center--\r\n# 9FE6 --sync--: auto-attack\r\n# 9FE7 Banishga: Raidwide\r\n# 9FE8 Knuckle Sandwich: 1-tick visual\r\n# 9FE9 Knuckle Sandwich: 2-tick visual\r\n# 9FEA Knuckle Sandwich: 3-tick visual\r\n# 9FEB Knuckle Sandwich: 1-tick inner circle AoE\r\n# 9FEC Knuckle Sandwich: 2-tick inner circle AoE\r\n# 9FED Knuckle Sandwich: 3-tick inner circle AoE\r\n# 9FEE Brittle Impact: 1-tick outer donut AoE\r\n# 9FEF Brittle Impact: 2-tick outer donut AoE\r\n# 9FF0 Brittle Impact: 3-tick outer donut AoE\r\n# 9FF1 Nullifying Dropkick: Shared tank buster, circle stack (simultaneous with 9FFD)\r\n# 9FF2 Banish Storm: Visuals for pathing Banish circles\r\n# 9FF3 Banish: Pathing circle AoEs\r\n# 9FF4 Crystalline Thorns: Thorn generation cast\r\n# 9FF5 Thornbite: Thorns appear\r\n# 9FF6 Auroral Uppercut: 1-tick knockback visual\r\n# 9FF7 Auroral Uppercut: 2-tick knockback visual\r\n# 9FF8 Auroral Uppercut: 3-tick knockback visual\r\n# 9FF9 Auroral Uppercut: Knockback execution\r\n# 9FFA Banishga IV: Raidwide; summons orbs\r\n# 9FFB Explosion: Orb chariot AoEs\r\n# 9FFC Asuran Fists: Stack marker cast\r\n# 9FFD Nullifying Dropkick: Shared tank buster, circle stack (simultaneous with 9FF1)\r\n# 9FFE Asuran Fists: Stack marker damage\r\n# 9FFF Asuran Fists: Stack marker damage\r\n# A000 Asuran Fists: Stack marker final hit\r\n# A002 Holy: Spread marker cast\r\n# A003 Holy: Spread marker damage\r\n\r\n\r\n#~~~~~~~~~~~~~~~~~~~~~#\r\n# Fafnir The Forgotten#\r\n#~~~~~~~~~~~~~~~~~~~~~#\r\n\r\n# -ii 9BF2 9EB9 9F72 9F73 9F74 9F75 9F76 9F8B 9F8C 9F95 9F98 9F9C A156 A157 A158 A159 9F90 9F8E 9F6F\r\n# -ic \"Biting Wind\" \"Darter\" \"Ravaging Wind\"\r\n\r\n# The Hurricane Wing puddles follow an increasing \"ladder\" of abilities.\r\n# In -> out first round:: 9F7D, 9F7E, 9F7F, 9F80\r\n# In -> out second round: 9F87, 9F88, 9F89, 9F8A\r\n# Out -> in first round:  9F78, 9F79, 9F7A, 9F7B\r\n# Out -> in second round: 9F82, 9F83, 9F84, 9F85\r\n\r\n# Dragon's Aery will be sealed off\r\n20000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"141F\" } window 20000,1\r\n20011.1 \"Dark Matter Blast\" Ability { id: \"9F96\", source: \"Fafnir the Forgotten\" } window 20011.1,10\r\n20024.2 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20025.2 \"Spike Flail\" Ability { id: \"A09A\", source: \"Fafnir the Forgotten\" }\r\n20038.3 \"Offensive Posture?\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20039.5 \"Touchdown?\" Ability { id: \"A09C\", source: \"Fafnir the Forgotten\" }\r\n\r\n20044.5 \"--center--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth window 44.5,10\r\n20056.6 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20057.8 \"Dragon Breath\" duration 4 #Ability { id: \"9F6F\", source: \"Fafnir the Forgotten\" }\r\n20075.1 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20076.3 \"Touchdown\" Ability { id: \"A09C\", source: \"Fafnir the Forgotten\" }\r\n20087.3 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20088.3 \"Spike Flail\" Ability { id: \"A09A\", source: \"Fafnir the Forgotten\" }\r\n20098.7 \"Baleful Breath x5\" Ability { id: \"9F94\", source: \"Fafnir the Forgotten\" } duration 7\r\n20105.5 \"--sync--\" Ability { id: \"9B76\", source: \"Fafnir the Forgotten\" } # Baleful Breath final hit\r\n20112.6 \"Sharp Spike\" Ability { id: \"9F97\", source: \"Fafnir the Forgotten\" }\r\n20114.0 \"--Darters spawn--\"\r\n20123.7 \"--center--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth\r\n20130.8 \"Hurricane Wing x10 (raidwides)\" Ability { id: \"9F71\", source: \"Fafnir the Forgotten\" } duration 11\r\n20143.4 \"--north--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth\r\n20149.0 \"Hurricane Wing 1 (rings)\" Ability { id: [\"9F78\", \"9F7D\"], source: \"Fafnir the Forgotten\" }\r\n20151.0 \"Hurricane Wing 2 (rings)\" Ability { id: [\"9F79\",\"9F7E\"], source: \"Fafnir the Forgotten\" }\r\n20152.9 \"Horrid Roar 1 (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20152.9 \"Hurricane Wing 3 (rings)\" Ability { id: [\"9F7A\", \"9F7F\"], source: \"Fafnir the Forgotten\" }\r\n20154.9 \"Hurricane Wing 4 (rings)\" Ability { id: [\"9F7B\", \"9F80\"], source: \"Fafnir the Forgotten\" }\r\n20157.9 \"Horrid Roar 1 (explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20159.9 \"Horrid Roar 2 (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20159.9 \"Hurricane Wing 1 (rings)\" Ability { id: [\"9F82\", \"9F87\"], source: \"Fafnir the Forgotten\" }\r\n20161.9 \"Hurricane Wing 2 (rings)\" Ability { id: [\"9F83\", \"9F88\"], source: \"Fafnir the Forgotten\" }\r\n20163.9 \"Hurricane Wing 3 (rings)\" Ability { id: [\"9F84\", \"9F89\"], source: \"Fafnir the Forgotten\" }\r\n20164.9 \"Horrid Roar 2 (explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20165.9 \"Hurricane Wing 4 (rings)\" Ability { id: [\"9F85\", \"9F8A\"], source: \"Fafnir the Forgotten\" }\r\n20167.0 \"Horrid Roar 3 (spread)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20171.0 \"Hurricane Wing 1 (rings)\" Ability { id: [\"9F82\", \"9F87\"], source: \"Fafnir the Forgotten\" }\r\n20173.0 \"Hurricane Wing 2 (rings)\" Ability { id: [\"9F83\", \"9F88\"], source: \"Fafnir the Forgotten\" }\r\n20173.1 \"Horrid Roar 3 (spreads explode)\" Ability { id: \"9F93\", source: \"Fafnir the Forgotten\" }\r\n20174.1 \"Horrid Roar 4 (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20175.0 \"Hurricane Wing 3 (rings)\" Ability { id: [\"9F84\", \"9F89\"], source: \"Fafnir the Forgotten\" }\r\n20177.0 \"Hurricane Wing 4 (rings)\" Ability { id: [\"9F85\", \"9F8A\"], source: \"Fafnir the Forgotten\" }\r\n20179.3 \"Horrid Roar 4 (explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20181.3 \"--center--\" Ability { id: \"9F6D\", source: \"Fafnir the Forgotten\" } window 15,15 # Baleful Nail\r\n20193.3 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20194.3 \"Spike Flail\" Ability { id: \"A09A\", source: \"Fafnir the Forgotten\" }\r\n20204.6 \"Baleful Breath x5\" Ability { id: \"9F94\", source: \"Fafnir the Forgotten\" } duration 7\r\n20211.5 \"--sync--\" Ability { id: \"9B76\", source: \"Fafnir the Forgotten\" } # Baleful Breath final hit\r\n20219.7 \"--north--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth\r\n20230.1 \"Absolute Terror/Winged Terror\" Ability { id: [\"9F8D\", \"9F8F\"], source: \"Fafnir the Forgotten\" }\r\n20248.3 \"Winged Terror/Absolute Terror?\" Ability { id: [\"9F8F\", \"9F8D\"], source: \"Fafnir the Forgotten\" } # can be skipped with high DPS\r\n20259.5 \"Dark Matter Blast\" Ability { id: \"9F96\", source: \"Fafnir the Forgotten\" } window 30,30\r\n\r\n20268.7 label \"fafnirLoop\"\r\n20268.7 \"Horrid Roar (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20271.8 \"--center--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth\r\n20273.8 \"Horrid Roar (explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20281.8 \"Horrid Roar\" #Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20284.7 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20285.8 \"Horrid Roar (explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20285.9 \"Dragon Breath\" duration 4 #Ability { id: \"9F6F\", source: \"Fafnir the Forgotten\" }\r\n20301.0 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20302.2 \"Spike Flail/Touchdown\" Ability { id: [\"A09A\", \"A09C\"], source: \"Fafnir the Forgotten\" }\r\n20309.2 \"Sharp Spike\" Ability { id: \"9F97\", source: \"Fafnir the Forgotten\" }\r\n20318.3 \"--center--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth\r\n20325.4 \"Hurricane Wing x10 (raidwides)\" Ability { id: \"9F71\", source: \"Fafnir the Forgotten\" } duration 11\r\n20338.1 \"--north--\" Ability { id: \"9F99\", source: \"Fafnir the Forgotten\" } # Shuddering Earth\r\n20343.7 \"Hurricane Wing 1 (rings)\" Ability { id: [\"9F78\", \"9F7D\"], source: \"Fafnir the Forgotten\" }\r\n20345.6 \"Horrid Roar 1 (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20345.7 \"Hurricane Wing 2 (rings)\" Ability { id: [\"9F79\",\"9F7E\"], source: \"Fafnir the Forgotten\" }\r\n20347.7 \"Hurricane Wing 3 (rings)\" Ability { id: [\"9F7A\", \"9F7F\"], source: \"Fafnir the Forgotten\" }\r\n20349.7 \"Hurricane Wing 4 (rings)\" Ability { id: [\"9F7B\", \"9F80\"], source: \"Fafnir the Forgotten\" }\r\n20350.7 \"Horrid Roar 1(explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20352.7 \"Horrid Roar 2 (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20354.7 \"Hurricane Wing 1 (rings)\" Ability { id: [\"9F82\", \"9F87\"], source: \"Fafnir the Forgotten\" }\r\n20356.7 \"Hurricane Wing 2 (rings)\" Ability { id: [\"9F83\", \"9F88\"], source: \"Fafnir the Forgotten\" }\r\n20357.8 \"Horrid Roar 2 (explode)\" Ability { id: \"9F92\", source: \"Fafnir the Forgotten\" }\r\n20358.7 \"Hurricane Wing 3 (rings)\" Ability { id: [\"9F84\", \"9F89\"], source: \"Fafnir the Forgotten\" }\r\n20359.8 \"Horrid Roar 3 (spread)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" }\r\n20360.7 \"Hurricane Wing 4 (rings)\" Ability { id: [\"9F85\", \"9F8A\"], source: \"Fafnir the Forgotten\" }\r\n20365.7 \"Hurricane Wing 1 (rings)\" Ability { id: [\"9F82\", \"9F87\"], source: \"Fafnir the Forgotten\" }\r\n20365.8 \"Horrid Roar 3 (spreads explode)\" Ability { id: \"9F93\", source: \"Fafnir the Forgotten\" }\r\n20367.7 \"Hurricane Wing 2 (rings)\" Ability { id: [\"9F83\", \"9F88\"], source: \"Fafnir the Forgotten\" }\r\n20369.7 \"Hurricane Wing 3 (rings)\" Ability { id: [\"9F84\", \"9F89\"], source: \"Fafnir the Forgotten\" }\r\n20371.7 \"Hurricane Wing 4 (rings)\" Ability { id: [\"9F85\", \"9F8A\"], source: \"Fafnir the Forgotten\" }\r\n20380.8 \"Absolute Terror/Winged Terror\" Ability { id: [\"9F8D\", \"9F8F\"], source: \"Fafnir the Forgotten\" }\r\n20382.8 \"--Darters spawn--\"\r\n20385.0 \"--center--\" Ability { id: \"9F6D\", source: \"Fafnir the Forgotten\" } # Baleful Nail\r\n20397.0 \"Offensive Posture\" Ability { id: [\"9F6B\",\"9F6E\", \"9F70\"], source: \"Fafnir the Forgotten\" }\r\n20398.0 \"Spike Flail\" Ability { id: \"A09A\", source: \"Fafnir the Forgotten\" }\r\n20408.4 \"Baleful Breath x5\" Ability { id: \"9F94\", source: \"Fafnir the Forgotten\" } duration 7\r\n20416.8 \"--sync--\" Ability { id: \"9B76\", source: \"Fafnir the Forgotten\" } # Baleful Breath final hit\r\n20428.9 \"Dark Matter Blast\" Ability { id: \"9F96\", source: \"Fafnir the Forgotten\" }\r\n20441.0 \"Horrid Roar (puddles)\" Ability { id: \"9F91\", source: \"Fafnir the Forgotten\" } window 30,30 forcejump \"fafnirLoop\"\r\n\r\n\r\n# IGNORED ABILITIES\r\n# 9BF2 Baleful Breath: Multi-hit stack marker castbar\r\n# 9EB9 --sync--: Auto-attack\r\n# 9F6F Dragon Breath: Outer ring fire breath\r\n# 9F72 Hurricane Wing: Cyclone raidwide, hit 2\r\n# 9F73 Hurricane Wing: Cyclone raidwide, hit 3\r\n# 9F74 Hurricane Wing: Cyclone raidwide, hit 4\r\n# 9F75 Hurricane Wing: Cyclone raidwide, hit 5\r\n# 9F76 Hurricane Wing: Cyclone raidwide, hit 6\r\n# 9F8B Great Whirlwind: Roving puddle AoEs, Ravaging Wind (big)\r\n# 9F8C Great Whirlwind: Roving puddle AoEs, BIting Wind (small)\r\n# 9F8E Absolute Terror: Hot Tail\r\n# 9F90 Winged Terror: Hot Wing\r\n# 9F95 Baleful Breath: Multi-hit stack marker middle hits\r\n# 9F98 Sharp Spike: Cleaving tank busters\r\n# 9F9C --sync--: Darter auto?\r\n# A156 Hurricane Wing: Cyclone raidwide, hit 7\r\n# A157 Hurricane Wing: Cyclone raidwide, hit 8\r\n# A158 Hurricane Wing: Cyclone raidwide, hit 9\r\n# A159 Hurricane Wing: Cyclone raidwide, hit 10\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# 9B76 Baleful Breath: Multi-hit stack marker, final hit\r\n# 9BC1 Great Whirlwind: Initial puddles, Ravaging Wind (big)\r\n# 9BC2 Great Whirlwind: Initial puddles, Biting Wind (small)\r\n# 9BF2 Baleful Breath: Multi-hit stack marker castbar\r\n# 9EB9 --sync--: Auto-attack\r\n# 9F6B Offensive Posture: Spike Flail windup\r\n# 9F6D Baleful Nail: Reposition\r\n# 9F6E Offensive Posture: Dragon breath windup\r\n# 9F6F Dragon Breath: Outer ring fire breath\r\n# 9F70 Offensive Posture: Touchdown windup\r\n# 9F71 Hurricane Wing: Cyclone raidwide, hit 1\r\n# 9F72 Hurricane Wing: Cyclone raidwide, hit 2\r\n# 9F73 Hurricane Wing: Cyclone raidwide, hit 3\r\n# 9F74 Hurricane Wing: Cyclone raidwide, hit 4\r\n# 9F75 Hurricane Wing: Cyclone raidwide, hit 5\r\n# 9F76 Hurricane Wing: Cyclone raidwide, hit 6\r\n# 9F78 Hurricane Wing: First cyclone ring, out to in, hit 1\r\n# 9F79 Hurricane Wing: First cyclone ring, out to in, hit 2\r\n# 9F7A Hurricane Wing: First cyclone ring, out to in, hit 3\r\n# 9F7B Hurricane Wing: First cyclone ring, out to in, hit 4\r\n# 9F7D Hurricane Wing: First cyclone ring, in to out, hit 1\r\n# 9F7E Hurricane Wing: First cyclone ring, in to out, hit 2\r\n# 9F7F Hurricane Wing: First cyclone ring, in to out, hit 3\r\n# 9F80 Hurricane Wing: First cyclone ring, in to out, hit 4\r\n# 9F82 Hurricane Wing: Second/third cyclone ring, out to in, hit 1\r\n# 9F83 Hurricane Wing: Second/third cyclone ring, out to in, hit 2\r\n# 9F84 Hurricane Wing: Second/third cyclone ring, out to in, hit 3\r\n# 9F85 Hurricane Wing: Second/third cyclone ring, out to in, hit 4\r\n# 9F87 Hurricane Wing: Second/third cyclone ring, in to out, hit 1\r\n# 9F88 Hurricane Wing: Second/third cyclone ring, in to out, hit 2\r\n# 9F89 Hurricane Wing: Second/third cyclone ring, in to out, hit 3\r\n# 9F8A Hurricane Wing: Second/third cyclone ring, in to out, hit 4\r\n# 9F8B Great Whirlwind: Roving puddle AoEs, Ravaging Wind (big)\r\n# 9F8C Great Whirlwind: Roving puddle AoEs, BIting Wind (small)\r\n# 9F8D Absolute Terror: Hot Tail castber\r\n# 9F8E Absolute Terror: Hot Tail\r\n# 9F8F Winged Terror: Hot Wing castbar\r\n# 9F90 Winged Terror: Hot Wing\r\n# 9F91 Horrid Roar: Castbar for puddles and spreads\r\n# 9F92 Horrid Roar: Targeted puddles\r\n# 9F93 Horrid Roar: Spread marker\r\n# 9F94 Baleful: Multi-hit stack marker first hit\r\n# 9F95 Baleful Breath: Multi-hit stack marker middle hits\r\n# 9F96 Dark Matter Blast: Raidwide\r\n# 9F97 Sharp Spike: Tank buster castbar\r\n# 9F98 Sharp Spike: Cleaving tank busters\r\n# 9F99 Shuddering Earth: Reposition\r\n# 9F9B Pestilent Sphere: Buster? Darter add\r\n# 9F9C --sync--: Darter auto?\r\n# A09A Spike Flail: 270-degree rear cone AoE\r\n# A09C Touchdown: Large circle AoE\r\n# A156 Hurricane Wing: Cyclone raidwide, hit 7\r\n# A157 Hurricane Wing: Cyclone raidwide, hit 8\r\n# A158 Hurricane Wing: Cyclone raidwide, hit 9\r\n# A159 Hurricane Wing: Cyclone raidwide, hit 10\r\n\r\n\r\n#~~~~~~~~~~~~#\r\n# Ark Angels #\r\n#~~~~~~~~~~~~#\r\n\r\n# -ii 9EAF A068 806D 806E A06F A073 A075 A077 A088 A090 A091 A092 A093\r\n\r\n# The La'loff Amphitheater will be sealed off\r\n30000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"1420\" } window 30000,1\r\n30004.1 \"--sync--\" Ability { id: [\"A062\", \"A063\", \"A064\"], source: [\"Ark Angel TT\", \"Ark Angel GK\", \"Ark Angel MR\"] } # The Decisive Battle\r\n30013.2 \"Cloudsplitter\" Ability { id: \"A076\", source: \"Ark Angel MR\" }\r\n30022.2 \"Meikyo Shisui\" Ability { id: \"A078\", source: \"Ark Angel GK\" }\r\n30026.2 \"Tachi: Yukikaze\" Ability { id: \"A079\", source: \"Ark Angel GK\" }\r\n30030.2 \"Tachi: Gekko\" Ability { id: \"A07A\", source: \"Ark Angel GK\" }\r\n30030.8 \"Tachi: Yukikaze\" Ability { id: \"A079\", source: \"Ark Angel GK\" }\r\n30035.1 \"Tachi: Kasha\" Ability { id: \"A07B\", source: \"Ark Angel GK\" }\r\n30038.1 \"Concerted Dissolution\" Ability { id: \"A07C\", source: \"Ark Angel GK\" }\r\n30043.7 \"Light's Chain\" Ability { id: \"A07D\", source: \"Ark Angel GK\" }\r\n30043.8 \"--TT jump--\" Ability { id: \"A064\", source: \"Ark Angel TT\" }\r\n30046.4 \"Meteor (castbar)\" StartsUsing { id: 'A08A', source: 'Ark Angel TT'} duration 10.7\r\n30057.1 \"Meteor?\" Ability { id: 'A08A', source: 'Ark Angel TT'}\r\n30058.9 \"--MR center--\" Ability { id: \"A06A\", source: \"Ark Angel MR\" }\r\n30065.1 \"Havoc Spiral\" Ability { id: \"A06B\", source: \"Ark Angel MR\" } duration 8\r\n30076.9 \"Spiral Finish\" Ability { id: \"A06C\", source: \"Ark Angel MR\" }\r\n30092.3 \"Dragonfall (cast)\" Ability { id: \"A07E\", source: \"Ark Angel GK\" }\r\n30092.5 \"Dragonfall 1 (stack)\" #Ability { id: \"A07F\", source: \"Ark Angel GK\" }\r\n30094.8 \"Dragonfall 2 (stack)\" #Ability { id: \"A07F\", source: \"Ark Angel GK\" }\r\n30097.1 \"Dragonfall 3 (stack)\" #Ability { id: \"A07F\", source: \"Ark Angel GK\" }\r\n30097.4 \"--TT jump--\" Ability { id: \"A064\", source: \"Ark Angel TT\" }\r\n30110.2 \"Guillotine\" Ability { id: \"A067\", source: \"Ark Angel TT\" } duration 5\r\n30114.4 \"--sync--\" Ability { id: \"A069\", source: \"Ark Angel TT\" } # Guillotine final hit\r\n30124.6 \"--all untargetable--\"\r\n30128.8 \"--EV + HM targetable--\"\r\n30135.0 \"Utsusemi\" Ability { id: \"A080\", source: \"Ark Angel HM\" }\r\n30137.0 \"Dominion Slash\" Ability { id: \"A085\", source: \"Ark Angel EV\" }\r\n30143.1 \"Mighty Strikes\" Ability { id: \"A081\", source: \"Ark Angel HM\" }\r\n30150.1 \"Critical Strikes\" Ability { id: \"A082\", source: \"Ark Angel HM\" }\r\n30152.5 \"--sync--\" Ability { id: \"A083\", source: \"Ark Angel HM\" } # Cross Reaver indicator\r\n30155.7 \"Divine Dominion\" Ability { id: \"A086\", source: \"Ark Angel EV\" }\r\n30155.9 \"Critical Strikes\" Ability { id: \"A082\", source: \"Ark Angel HM\" }\r\n30159.3 \"Cross Reaver\" Ability { id: \"A084\", source: \"Ark Angel HM\" }\r\n30168.5 \"Holy\" Ability { id: \"A089\", source: \"Ark Angel EV\" }\r\n30174.8 \"--EV + HM center--\" Ability { id: [\"9EA9\", \"A356\"], source: [\"Ark Angel EV\", \"Ark Angel HM\"] }\r\n30176.2 \"--EV untargetable--\"\r\n30176.2 \"Proud Palisade\" Ability { id: \"A448\", source: \"Ark Angel EV\" }\r\n30177.3 \"Mijin Gakure (cast)\" StartsUsing { id: \"A08C\", source: \"Ark Angel HM\" } duration 29.7\r\n30208.3 \"Mijin Gakure\" Ability { id: \"A08C\", source: \"Ark Angel HM\" }\r\n30217.6 \"--sync--\" Ability { id: \"A06A\", source: \"Ark Angel MR\" } window 50,10 # MR jumps to edge\r\n30221.8 \"Rampage x4 (line indicators)\" duration 3 #Ability { id: \"A071\", source: \"Ark Angel MR\" }\r\n30225.8 \"Rampage (circle indicator)\" Ability { id: \"A072\", source: \"Ark Angel MR\" }\r\n30226.7 \"--sync--\" Ability { id: \"A070\", source: \"Ark Angel MR\" } # Rampage castbar\r\n30226.9 \"Rampage x4 (line AoE)\" duration 3 #Ability { id: \"A073\", source: \"Ark Angel MR\" }\r\n30231.3 \"Rampage (circle AoE)\" Ability { id: \"A074\", source: \"Ark Angel MR\" }\r\n30235.5 \"--MR targetable--\"\r\n30235.5 \"--TT jump--\" Ability { id: \"A064\", source: \"Ark Angel TT\" }\r\n30248.3 \"Guillotine\" Ability { id: \"A067\", source: \"Ark Angel TT\" } duration 5\r\n30252.5 \"--sync--\" Ability { id: \"A069\", source: \"Ark Angel TT\" } # Guillotine\r\n30256.7 \"--GK targetable--\"\r\n30260.8 \"Meikyo Shisui\" Ability { id: \"A078\", source: \"Ark Angel GK\" }\r\n30264.8 \"Tachi: Yukikaze 1\" Ability { id: \"A079\", source: \"Ark Angel GK\" }\r\n30268.8 \"Tachi: Gekko\" Ability { id: \"A07A\", source: \"Ark Angel GK\" }\r\n30269.3 \"Tachi: Yukikaze 2\" Ability { id: \"A079\", source: \"Ark Angel GK\" }\r\n30273.6 \"Tachi: Kasha\" Ability { id: \"A07B\", source: \"Ark Angel GK\" }\r\n30276.6 \"Concerted Dissolution\" Ability { id: \"A07C\", source: \"Ark Angel GK\" }\r\n30279.2 \"--sync--\" Ability { id: \"A083\", source: \"Ark Angel HM\" } # Cross Reaver indicator\r\n30281.2 \"--TT jump--\" Ability { id: \"A064\", source: \"Ark Angel TT\" }\r\n30282.2 \"Light's Chain\" Ability { id: \"A07D\", source: \"Ark Angel GK\" }\r\n30283.8 \"Meteor (castbar)\" StartsUsing { id: 'A08A', source: 'Ark Angel TT'} duration 10.7\r\n30286.2 \"Cross Reaver\" Ability { id: \"A084\", source: \"Ark Angel HM\" }\r\n30294.5 \"Meteor?\" Ability { id: 'A08A', source: 'Ark Angel TT'}\r\n30303.6 \"Arrogance Incarnate x5\" Ability { id: \"A087\", source: \"Ark Angel EV\" } duration 5\r\n30314.4 \"Cloudsplitter\" Ability { id: \"A076\", source: \"Ark Angel MR\" }\r\n\r\n30325.7 label \"angelLoop\"\r\n30325.7 \"--MR jump--\" Ability { id: \"A06A\", source: \"Ark Angel MR\" }\r\n30330.1 \"Rampage x4 (line indicators)\" duration 3 #Ability { id: \"A071\", source: \"Ark Angel MR\" }\r\n30334.1 \"Rampage (circle indicator)\" Ability { id: \"A072\", source: \"Ark Angel MR\" }\r\n30335.0 \"--sync--\" Ability { id: \"A070\", source: \"Ark Angel MR\" } # Rampage castbar\r\n30335.2 \"Rampage x4 (line AoE)\" duration 3 #Ability { id: \"A073\", source: \"Ark Angel MR\" }\r\n30338.5 \"--TT jump--\" Ability { id: \"A064\", source: \"Ark Angel TT\" }\r\n30339.6 \"Rampage (circle AoE)\" Ability { id: \"A074\", source: \"Ark Angel MR\" }\r\n30351.1 \"Guillotine\" Ability { id: \"A067\", source: \"Ark Angel TT\" } duration 5\r\n30355.3 \"--sync--\" Ability { id: \"A069\", source: \"Ark Angel TT\" } # Guillotine\r\n30361.0 \"--HM center--\" Ability { id: \"9EA9\", source: \"Ark Angel HM\" }\r\n30367.3 \"Mighty Strikes\" Ability { id: \"A194\", source: \"Ark Angel HM\" }\r\n30369.4 \"Critical Reaver x4 (raidwide)\" duration 4 #Ability { id: \"A195\", source: \"Ark Angel HM\" }\r\n30387.2 \"Critical Reaver (big raidwide)?\" Ability { id: \"A13B\", source: \"Ark Angel HM\" }\r\n30401.3 \"Dominion Slash?\" Ability { id: \"A085\", source: \"Ark Angel EV\" }\r\n30403.3 \"--MR center--\" Ability { id: \"A06A\", source: \"Ark Angel MR\" } window 30,30\r\n30409.5 \"Havoc Spiral\" Ability { id: \"A06B\", source: \"Ark Angel MR\" } duration 8\r\n30419.9 \"Divine Dominion\" Ability { id: \"A086\", source: \"Ark Angel EV\" }\r\n30421.6 \"Spiral Finish\" Ability { id: \"A06C\", source: \"Ark Angel MR\" }\r\n30427.2 \"--TT jump--\" Ability { id: \"A064\", source: \"Ark Angel TT\" }\r\n30429.6 \"Meteor (castbar)\" StartsUsing { id: 'A08A', source: 'Ark Angel TT'} duration 10.7\r\n30440.3 \"Meteor?\" Ability { id: \"A08A\", source: \"Ark Angel TT\" }\r\n30450.6 \"Meikyo Shisui\" Ability { id: \"A078\", source: \"Ark Angel GK\" }\r\n30454.6 \"Tachi: Yukikaze 1 (grid)\" Ability { id: \"A079\", source: \"Ark Angel GK\" }\r\n30458.6 \"Tachi: Gekko (gaze)\" Ability { id: \"A07A\", source: \"Ark Angel GK\" }\r\n30459.2 \"Tachi: Yukikaze 2 (grid)\" Ability { id: \"A079\", source: \"Ark Angel GK\" }\r\n30463.5 \"Tachi: Kasha (circle)\" Ability { id: \"A07B\", source: \"Ark Angel GK\" }\r\n30466.5 \"Concerted Dissolution\" Ability { id: \"A07C\", source: \"Ark Angel GK\" }\r\n30467.4 \"--sync--\" Ability { id: \"A083\", source: \"Ark Angel HM\" } # Cross Reaver indicator\r\n30472.1 \"Light's Chain\" Ability { id: \"A07D\", source: \"Ark Angel GK\" }\r\n30474.4 \"Cross Reaver\" Ability { id: \"A084\", source: \"Ark Angel HM\" }\r\n30482.2 \"Cloudsplitter\" Ability { id: \"A076\", source: \"Ark Angel MR\" }\r\n30495.9 \"Raiton\" Ability { id: \"A095\", source: \"Ark Angel HM\" }\r\n30504.2 \"Dominion Slash\" Ability { id: \"A085\", source: \"Ark Angel EV\" }\r\n30516.2 \"--sync--\" Ability { id: \"A083\", source: \"Ark Angel HM\" } # Cross Reaver indicator\r\n30523.0 \"Divine Dominion\" Ability { id: \"A086\", source: \"Ark Angel EV\" }\r\n30523.2 \"Cross Reaver\" Ability { id: \"A084\", source: \"Ark Angel HM\" }\r\n30533.4 \"Dragonfall (cast)\" Ability { id: \"A07E\", source: \"Ark Angel GK\" }\r\n30533.7 \"Dragonfall 1 (stack)\" #Ability { id: \"A07F\", source: \"Ark Angel GK\" }\r\n30536.1 \"Dragonfall 2 (stack)\" #Ability { id: \"A07F\", source: \"Ark Angel GK\" }\r\n30538.4 \"Dragonfall 3 (stack)\" #Ability { id: \"A07F\", source: \"Ark Angel GK\" }\r\n30558.8 \"Arrogance Incarnate\" Ability { id: \"A087\", source: \"Ark Angel EV\" }\r\n\r\n30577.6 \"--MR jump--\" Ability { id: \"A06A\", source: \"Ark Angel MR\" } forcejump \"angelLoop\"\r\n\r\n\r\n# IGNORED ABILITIES\r\n# 9EAF Attack\r\n# A068 Guillotine: Initial frontal hits, TT\r\n# A06D Spiral Finish: Knockback, MR\r\n# A06F Havoc Spiral: Cone cyclone individual strikes, MR\r\n# A073 Rampage: Rampage line cast, MR\r\n# A075 Rampage: Rampage circle cast, MR\r\n# A077 Cloudsplitter: Tank cleave, MR\r\n# A088 Arrogance Incarnate: Multi-hit stack marker, EV\r\n# A090 Aethersplit: Unknown self-cast, GK\r\n# A091 Aethersplit: Unknown self-cast, GK\r\n# A092 Aethersplit: Unknown self-cast, GK\r\n# A093 Aethersplit: Unknown self-cast, GK\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# 366 attack\r\n# 5B5 attack\r\n# 9EA9 --sync-- : HM reposition\r\n# 9EAF --sync--: EV auto-attack\r\n# A061 the Decisive Battle: Inflicts Epic Hero debuff (Alpha)\r\n# A062 the Decisive Battle: Inflicts Vaunted Hero debuff (Gamma)\r\n# A063 the Decisive Battle: Inflict Fated Hero debuff (Beta)\r\n# A064 --sync--: TT reposition\r\n# A067 Guillotine: 270-degree frontal cone, TT\r\n# A068 Guillotine: Initial frontal hits, TT\r\n# A069 Guillotine: Final frontal hit, TT\r\n# A06A --sync--: MR reposition\r\n# A06B Havoc Spiral: Castbar for cone cyclone\r\n# A06C Spiral Finish: Knockback visuals, MR\r\n# A06D Spiral Finish: Knockback, MR\r\n# A06E Havoc Spiral: Cone cyclone activate, MR\r\n# A06F Havoc Spiral: Cone cyclone individual strikes, MR\r\n# A070 Rampage: Rampage castbar, MR\r\n# A071 --sync--: Rampage line indicator, MR\r\n# A072 --sync--: Rampage circle indicator, MR\r\n# A073 Rampage: Rampage line cast, MR\r\n# A074 Rampage: Reposition for Rampage circle, MR\r\n# A075 Rampage: Rampage circle cast, MR\r\n# A076 Cloudsplitter: Tank cleave cast, MR\r\n# A077 Cloudsplitter: Tank cleave, MR\r\n# A078 Meikyo Shisui: Wind-up for Yukikaze, GK\r\n# A079 Tachi: Yukikaze: Grid AoE, GK\r\n# A07A Tachi: Gekko: Gaze attack, GK\r\n# A07B Tachi: Kasha: Giant circle AoE, GK\r\n# A07C Concerted Dissolution: Pizza slize AoE, GK\r\n# A07D Light's Chain: Donut AoE, GK\r\n# A07E Dragonfall: Party stacks castbar, GK\r\n# A07F Dragonfall: Party stacks, GK\r\n# A080 Utsusemi: Chain castbar, HM\r\n# A081 Mighty Strikes: Small repeated circle AoEs, HM\r\n# A082 Critical Strikes: Mini-buster? HM\r\n# A083 Cross Reaver: Cross AoE indicator, HM\r\n# A084 Cross Reaver: Cross AoE, HM\r\n# A085 Dominion Slash: Raidwide, EV\r\n# A086 Divine Dominion: Chain clones disappear? EV\r\n# A087 Arrogance Incarnate: Multi-hit stack marker cast, EV\r\n# A088 Arrogance Incarnate: Multi-hit stack marker, EV\r\n# A089 Holy: Raidwide, EV\r\n# A08A Meteor: Heavy raidwide castbar, interruptible, TT\r\n# A08B Meteor: Heavy raidwide, TT. (Logs exist with it being used by MR, might be stale data)\r\n# A090 Aethersplit: Unknown self-cast, GK\r\n# A091 Aethersplit: Unknown self-cast, GK\r\n# A092 Aethersplit: Unknown self-cast, GK\r\n# A093 Aethersplit: Unknown self-cast, GK\r\n# A13B Critical Reaver: Heavy raidwide, interruptible, HM\r\n# A194 Mighty Strikes: Critical hit self-buff, HM\r\n# A195 Critical Reaver: Multi-hit raidwide, HM\r\n# A356 --sync--: EV reposition\r\n# A448 Proud Palisade: Summons Ark Shield, EV\r\n\r\n\r\n#~~~~~~~~~~~~~#\r\n# Shadow Lord #\r\n#~~~~~~~~~~~~~#\r\n\r\n# -ii A313 9F3E 9F3F 9F5D 9F61 9F5C 9F5D 9F5E 9F5F 9F60 9F46 9F47 9F48 9F49 A3AC 9F68 A444 A357 A358 A229 A23A A424 A425 A426 A427\r\n\r\n# The Throne Room will be sealed off\r\n40000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"1418\" } window 40000,1\r\n40022.1 \"Giga Slash 1\" Ability { id: [\"9F40\", \"94F2\"], source: \"Shadow Lord\" }\r\n40024.1 \"Giga Slash 2\" Ability { id: [\"9F41\", \"94F3\"], source: \"Shadow Lord\" }\r\n40028.1 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40034.4 \"Umbra Smash\" Ability { id: \"9F5B\", source: \"Shadow Lord\" } duration 12\r\n40055.8 \"Giga Slash 1\" Ability { id: [\"9F40\", \"94F2\"], source: \"Shadow Lord\" }\r\n40057.8 \"Giga Slash 2\" Ability { id: [\"9F41\", \"94F3\"], source: \"Shadow Lord\" }\r\n40066.8 \"Flames of Hatred\" Ability { id: \"9F69\", source: \"Shadow Lord\" }\r\n40077.9 \"Implosion\" Ability { id: [\"9F44\", \"9F45\"], source: \"Shadow Lord\" }\r\n40081.0 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40089.3 \"Cthonic Fury\" Ability { id: \"9F4A\", source: \"Shadow Lord\" } window 89,10\r\n40104.4 \"Burning Moat\" Ability { id: \"9F4D\", source: \"Shadow Lord\" }\r\n40114.4 \"Burning Court\" Ability { id: \"9F4C\", source: \"Shadow Lord\" }\r\n40123.4 \"Dark Nebula (cast)\" Ability { id: \"9F50\", source: \"Shadow Lord\" }\r\n40129.5 \"Dark Nebula (knockback)\" Ability { id: \"A23C\", source: \"Shadow Lord\" }\r\n40141.5 \"Implosion\" Ability { id: [\"9F44\", \"9F45\"], source: \"Shadow Lord\" }\r\n40151.6 \"Burning Court/Burning Moat\" Ability { id: [\"9F4C\", \"9F4D\"], source: \"Shadow Lord\" }\r\n40151.6 \"Burning Keep/Burning Battlements\" Ability { id: [\"9F4E\", \"9F4F\"], source: \"Shadow Lord\" }\r\n40163.6 \"Echoes of Agony x5\" Ability { id: \"A3AB\", source: \"Shadow Lord\" } duration 5\r\n40177.7 \"Cthonic Fury\" Ability { id: \"9F4B\", source: \"Shadow Lord\" }\r\n40180.8 \"--north--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40187.5 \"Nightfall\" Ability { id: \"A0B8\", source: \"Shadow Lord\" }\r\n40221.6 \"Tera Slash\" Ability { id: \"A0B9\", source: \"Shadow Lord\" } window 221,10\r\n40227.7 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40248.7 \"Giga Slash: Nightfall 1\" Ability { id: [\"A42B\", \"A42D\"], source: \"Shadow Lord\" }\r\n40250.7 \"Giga Slash: Nightfall 2\" Ability { id: [\"A42C\", \"A42E\"], source: \"Shadow Lord\" }\r\n40252.7 \"Giga Slash: Nightfall 3\" Ability { id: [\"A428\", \"A429\"], source: \"Shadow Lord\" }\r\n\r\n# ~307s loop.\r\n40256.7 label \"lordLoop\"\r\n40256.7 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40261.0 \"Shadow Spawn\" Ability { id: \"9F52\", source: \"Shadow Lord\" }\r\n40279.1 \"Giga Slash: Nightfall 1\" Ability { id: [\"A42B\", \"A42D\"], source: \"Shadow Lord\" }\r\n40281.1 \"Giga Slash: Nightfall 2\" Ability { id: [\"A42C\", \"A42E\"], source: \"Shadow Lord\" }\r\n40283.1 \"Giga Slash: Nightfall 3\" Ability { id: [\"A428\", \"A429\"], source: \"Shadow Lord\" }\r\n40289.1 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40292.1 \"Giga Slash 1 (add)\" Ability { id: [\"9F40\", \"94F2\"], source: [\"Shadow Lord\"] }\r\n40294.1 \"Giga Slash 2 (add)\" Ability { id: [\"9F41\", \"94F3\"], source: \"Shadow Lord\" }\r\n40298.4 \"Implosion (boss)\" Ability { id: [\"9F44\", \"9F45\"], source: \"Shadow Lord\" }\r\n40303.1 \"Implosion (add)\" Ability { id: [\"9F44\", \"9F45\"], source: \"Lordly Shadow\" }\r\n40311.5 \"Unbridled Rage\" Ability { id: \"9F67\", source: \"Shadow Lord\" }\r\n40318.5 \"Dark Nova\" Ability { id: \"A177\", source: \"Shadow Lord\" } window 318,10\r\n40327.6 \"Echoes of Agony x7\" Ability { id: \"A3AB\", source: \"Shadow Lord\" } duration 7\r\n40341.7 \"--Binding Indicator 1--\" #Ability { id: \"A229\", source: \"Shadow Lord\" }\r\n40344.1 \"--Binding Indicator 2--\" #Ability { id: \"A229\", source: \"Shadow Lord\" }\r\n40346.5 \"--Binding Indicator 3--\" #Ability { id: \"A229\", source: \"Shadow Lord\" }\r\n40349.6 \"Binding Sigil (castbar)\" Ability { id: \"9F55\", source: \"Shadow Lord\" }\r\n40351.7 \"Soul Binding 1\" #Ability { id: \"A22A\", source: \"Shadow Lord\" }\r\n40354.1 \"Soul Binding 2\" #Ability { id: \"A22A\", source: \"Shadow Lord\" }\r\n40356.7 \"Soul Binding 3\" #Ability { id: \"A22A\", source: \"Shadow Lord\" }\r\n40357.7 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40361.1 \"Burst\" Ability { id: \"A23B\", source: \"Shadow Lord\" }\r\n40368.1 \"Damning Strikes (castbar)\" Ability { id: \"9F57\", source: \"Shadow Lord\" }\r\n40370.6 \"Impact 1\" Ability { id: \"9F58\", source: \"Shadow Lord\" }\r\n40373.1 \"Impact 2\" Ability { id: \"A096\", source: \"Shadow Lord\" }\r\n40375.8 \"Impact 3\" Ability { id: \"A097\", source: \"Shadow Lord\" }\r\n40383.5 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40391.8 \"Cthonic Fury\" Ability { id: \"9F4A\", source: \"Shadow Lord\" } window 30,30\r\n40397.9 \"Dark Nebula (castbar)\" Ability { id: \"9F50\", source: \"Shadow Lord\" }\r\n40412.0 \"Dark Nebula 1 (knockback)\" Ability { id: \"9F51\", source: \"Shadow Lord\" }\r\n40414.0 \"--corner--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40415.0 \"Dark Nebula 2 (knockback)\" Ability { id: \"9F51\", source: \"Shadow Lord\" }\r\n40418.0 \"Dark Nebula 3 (knockback)\" Ability { id: \"9F51\", source: \"Shadow Lord\" }\r\n40421.0 \"Dark Nebula 4 (knockback)\" Ability { id: \"9F51\", source: \"Shadow Lord\" }\r\n40431.4 \"Giga Slash: Nightfall 1\" Ability { id: [\"A42B\", \"A42D\"], source: \"Shadow Lord\" }\r\n40433.4 \"Giga Slash: Nightfall 2\" Ability { id: [\"A42C\", \"A42E\"], source: \"Shadow Lord\" }\r\n40435.4 \"Giga Slash: Nightfall 3\" Ability { id: [\"A428\", \"A429\"], source: \"Shadow Lord\" }\r\n40438.4 \"--center--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40445.4 \"Burning Court/Burning Moat\" Ability { id: [\"9F4C\", \"9F4D\"], source: \"Shadow Lord\" }\r\n40445.4 \"Burning Keep/Burning Battlements\" Ability { id: [\"9F4E\", \"9F4F\"], source: \"Shadow Lord\" }\r\n40456.8 \"Dark Nova\" Ability { id: \"A177\", source: \"Shadow Lord\" }\r\n40465.8 \"Cthonic Fury\" Ability { id: \"9F4B\", source: \"Shadow Lord\" }\r\n40469.0 \"--sync--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" }\r\n40473.3 \"Shadow Spawn\" Ability { id: \"9F52\", source: \"Shadow Lord\" }\r\n40481.4 \"Umbra Smash (single lines)\" Ability { id: \"9F5B\", source: \"Shadow Lord\" } duration 12\r\n40494.9 \"Umbra Smash (exalines)\" Ability { id: \"9F53\", source: \"Lordly Shadow\" } duration 7\r\n40508.9 \"Giga Slash: Nightfall 1\" Ability { id: [\"A42B\", \"A42D\"], source: \"Shadow Lord\" }\r\n40510.9 \"Giga Slash: Nightfall 2\" Ability { id: [\"A42C\", \"A42E\"], source: \"Shadow Lord\" }\r\n40512.9 \"Giga Slash: Nightfall 3\" Ability { id: [\"A428\", \"A429\"], source: \"Shadow Lord\" }\r\n40530.9 \"Doom Arc\" Ability { id: \"9F66\", source: \"Shadow Lord\" }\r\n40556.1 \"Giga Slash: Nightfall 1\" Ability { id: [\"A42B\", \"A42D\"], source: \"Shadow Lord\" }\r\n40558.1 \"Giga Slash: Nightfall 2\" Ability { id: [\"A42C\", \"A42E\"], source: \"Shadow Lord\" }\r\n40560.1 \"Giga Slash: Nightfall 3\" Ability { id: [\"A428\", \"A429\"], source: \"Shadow Lord\" }\r\n\r\n40564.1 \"--sync--\" Ability { id: \"9F6A\", source: \"Shadow Lord\" } forcejump \"lordLoop\"\r\n\r\n# IGNORED ABILITIES\r\n# 9F3E Giga Slash: Giga Slash castbar, left safe first\r\n# 9F3F Giga Slash: Giga Slash castbar, right safe first\r\n# 9F46 Implosion: Chariot AoE, with 9497 left cleave\r\n# 9F47 Implosion: Half-room left cleave\r\n# 9F48 Implosion: Chariot AoE, with 9F49 right cleave\r\n# 9F49 Implosion: Half-room right cleave\r\n# 9F5C Umbra Smash: Turning animation for Smash follow-ups?\r\n# 9F5D Umbra Smash: 4x line AoE, line 1\r\n# 9F5E Umbra Smash: 4x line AoE, line 2\r\n# 9F5F Umbra Smash: 4x line AoE, line 3\r\n# 9F60 Umbra Smash: 4x line AoE, line 4\r\n# 9F61 Umbra Wave: Line AoE\r\n# 9F68 Unbridled Rage: Tank lasers, non-shared\r\n# A229 --sync--: Exatrines indicator\r\n# A23A --sync--: Unknown, maybe related to Binding Sigil targets?\r\n# A313 --sync--: Auto-attack\r\n# A357 --sync--: Damning Strikes repositions 2/3\r\n# A358 --sync--: Damning Strikes reposition 1\r\n# A3AC Echoes of Agony: Multi-hit stack marker\r\n# A424 Giga Slash: Nightfall: Castbar, cleaving left -> right -> front\r\n# A425 Giga Slash: Nightfall: Castbar, cleaving left -> right -> back\r\n# A426 Giga Slash: Nightfall: Castbar, cleaving right -> left -> front\r\n# A427 Giga Slash: Nightfall: Castbar, cleaving right -> left -> back\r\n# A444 Damning Strikes: Tower animations 1/2?\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# 9F3E Giga Slash: Giga Slash castbar, left safe first\r\n# 9F3F Giga Slash: Giga Slash castbar, right safe first\r\n# 9F40 Giga Slash: Right cleave, wide safespot\r\n# 9F41 Giga Slash: Left cleave, narrow safespot\r\n# 9F42 Giga Slash: Left cleave, wide safespot\r\n# 9F43 Giga Slash: Right cleave, narrow safespot\r\n# 9F44 Implosion: Chariot + half-room AoE castbar, right safe\r\n# 9F45 Implosion: Chariot + half-room AoE castbar, left safe\r\n# 9F46 Implosion: Chariot AoE, with 9497 left cleave\r\n# 9F47 Implosion: Half-room left cleave\r\n# 9F48 Implosion: Chariot AoE, with 9F49 right cleave\r\n# 9F49 Implosion: Half-room right cleave\r\n# 9F4A Cthonic Fury: Intermission start raidwide\r\n# 9F4B Cthonic Fury: Intermission end raidwide\r\n# 9F4C Burning Court: Corner circle AoEs, intermission\r\n# 9F4D Burning Moat: Side rectangle AoEs, intermission\r\n# 9F4E Burning Keep: Outer square safe AoE, intermission\r\n# 9F4F Burning Battlements: Inner square safe AoE, intermission\r\n# 9F50 Dark Nebula: Knockback line castbar\r\n# 9F51 Dark Nebula: Knockback line\r\n# 9F52 Shadow Spawn: Summon adds\r\n# 9F53 Umbra Smash: Exalines cast\r\n# 9F54 Umbra Smash: Exalines\r\n# 9F55 Binding Sigil: Exatrine castbar\r\n# 9F57 Damning Strikes: Tower castbar\r\n# 9F58 Impact: Daming Strikes tower 1?\r\n# 9F59 Damning Strikes: Tower animation 3?\r\n# 9F5B Umbra Smash: 4x line AoE castbar\r\n# 9F5C Umbra Smash: Turning animation for Smash follow-ups?\r\n# 9F5D Umbra Smash: 4x line AoE, line 1\r\n# 9F5E Umbra Smash: 4x line AoE, line 2\r\n# 9F5F Umbra Smash: 4x line AoE, line 3\r\n# 9F60 Umbra Smash: 4x line AoE, line 4\r\n# 9F61 Umbra Wave: Line AoE\r\n# 9F66 Doom Arc: Raidwide + bleed\r\n# 9F67 Unbridled Rage: Tank lasers castbar\r\n# 9F68 Unbridled Rage: Tank lasers, non-shared\r\n# 9F69 Flames of Hatred: Raidwide\r\n# 9F6A --sync--: Reposition\r\n# A096 Impact: Daming Strikes tower 2?\r\n# A097 Impact: Daming Strikes tower 3?\r\n# A0B8 Nightfall: Tera Slash pre-cast\r\n# A0B9 Tera Slash: High-damage raidwide\r\n# A177 Dark Nova: Spread circles\r\n# A229 --sync--: Exatrines indicator\r\n# A22A Soul Binding: Exatrines\r\n# A23A --sync--: Unknown, maybe related to Binding Sigil targets?\r\n# A23B Burst: Knock-up attack on targets hit by Binding Sigil\r\n# A23C Dark Nebula: Knockback line\r\n# A313 --sync--: Auto-attack\r\n# A357 --sync--: Damning Strikes repositions 2/3\r\n# A358 --sync--: Damning Strikes reposition 1\r\n# A3AB Echoes of Agony: Multi-hit stack marker castbar\r\n# A3AC Echoes of Agony: Multi-hit stack marker\r\n# A424 Giga Slash: Nightfall: Castbar, cleaving left -> right -> front\r\n# A425 Giga Slash: Nightfall: Castbar, cleaving left -> right -> back\r\n# A426 Giga Slash: Nightfall: Castbar, cleaving right -> left -> front\r\n# A427 Giga Slash: Nightfall: Castbar, cleaving right -> left -> back\r\n# A428 Giga Slash: Nightfall: Front cleave, wide safespot\r\n# A429 Giga Slash: Nightfall: Rear cleave, wide safespot\r\n# A42B Giga Slash: Nightfall: Left cleave, wide safespot\r\n# A42C Giga Slash: Nightfall: Right cleave, narrow safespot\r\n# A42D Giga Slash: Nightfall: Right cleave, wide safespot\r\n# A42E Giga Slash: Nightfall: Left cleave, narrow safespot\r\n# A444 Damning Strikes: Tower animations 1/2?\r\n";
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/alliance/san-doria-second-walk.ts
-// import Conditions from '../../../../../resources/conditions';
 
 
-// import { Directions } from '../../../../../resources/util';
 
-const effectB9AMap = {
-  element1: '3AC',
-  element2: '3AD',
-  element3: '3AE',
-  element4: '3AF',
-  element5: '3B0',
-  element6: '3B1'
+
+
+
+
+
+// | 'dodge'
+
+const kirinCenter = [-850.00, 780.00];
+const kirinSequenceOutputStrings = {
+  out: outputs/* default.out */.Z.out,
+  under: outputs/* default.getUnder */.Z.getUnder,
+  sides: outputs/* default.sides */.Z.sides,
+  awayBossArms: {
+    en: 'Away from boss & arms'
+  },
+  awayBoss: {
+    en: 'Away from boss'
+  },
+  awayArms: {
+    en: 'Away from Arms (on boss hitbox)'
+  },
+  awayTethered: {
+    en: 'Away from tethered arm (${dir})'
+  },
+  flank: {
+    en: 'Max melee on flank'
+  },
+  // dodge: {
+  //   en: 'Dodge'
+  // },
+  next: outputs/* default.next */.Z.next,
+  east: outputs/* default.east */.Z.east,
+  west: outputs/* default.west */.Z.west
 };
-const isEffectB9AValue = value => {
-  if (value === undefined) return false;
-  return Object.values(effectB9AMap).includes(value);
+const kamlanautElementalOutputStrings = {
+  fire: {
+    en: 'Fire'
+  },
+  water: {
+    en: 'Water'
+  },
+  wind: {
+    en: 'Wind'
+  },
+  earth: {
+    en: 'Earth'
+  },
+  lightning: {
+    en: 'Lightning'
+  },
+  ice: {
+    en: 'Ice'
+  }
 };
-// TODO:
-// Kirin
-// Shijin mechanics
-// Wrought Arms
-// Synchronized Strike??
-//
-// Ultima & Omega
-// ???
-//
-// Kam'lanaut
-// Princely Blow Tank Buster + knockback
-// Sublime Elements full solve
-// Illumed Facet solve
-// Illumed Facet + Shield Bash solve?
-//
-// Eald'narche
-// Spread markers for Empyeal Vortex
-// Spread + Follow ups from Omega Javelin
-// duplicate/visions of paradise solve?
-// Ancient Triad mechanics?
-// Finish Cronos Sling
+const kamSixDirections = ['dirSE', 'dirS', 'dirSW', 'dirNW', 'dirN', 'dirNE'];
+const kamlanautElementBuffIds = {
+  '3AC': 'fire',
+  '3AD': 'earth',
+  '3AE': 'water',
+  '3AF': 'ice',
+  '3B0': 'lightning',
+  '3B1': 'wind'
+};
+const kamlanautSublimeConeCasts = {
+  'AC93': 'fire',
+  'AC94': 'earth',
+  'AC95': 'water',
+  'AC96': 'ice',
+  'AC97': 'lightning',
+  'AC98': 'wind',
+  // ## aoes that expand
+  'AC99': 'fire',
+  'AC9A': 'earth',
+  'AC9B': 'water',
+  'AC9C': 'ice',
+  'AC9D': 'lightning',
+  'AC9E': 'wind'
+};
+const kamlanautSublimeBladeCasts = {
+  'AC9F': 'fire',
+  'ACA0': 'earth',
+  'ACA1': 'water',
+  'ACA2': 'ice',
+  'ACA3': 'lightning',
+  'ACA4': 'wind',
+  // ## aoes that expand
+  'ACA5': 'fire',
+  'ACA6': 'earth',
+  'ACA7': 'water',
+  'ACA8': 'ice',
+  'ACA9': 'lightning',
+  'ACAA': 'wind'
+};
+const kamlanautCrystalNpcIds = {
+  '1EBE84': 'fire',
+  '1EBE85': 'water',
+  '1EBE86': 'wind',
+  '1EBE87': 'earth',
+  '1EBE88': 'ice',
+  '1EBE89': 'lightning'
+};
+const kirinSequenceInfoOutput = (sequence, ability, direction) => {
+  return (data, _matches, output) => {
+    data.kirinSequencedSafeCallouts = {};
+    const items = [];
+    sequence.forEach((step, index) => {
+      const key = ability[index];
+      if (key !== undefined) {
+        const call = step === 'awayTethered' ? output[step]({
+          dir: output[direction]()
+        }) : output[step]();
+        data.kirinSequencedSafeCallouts[key] = call;
+        items.push(call);
+        // console.info(`${index} - ${key} => ${call}`);
+      }
+    });
+
+    data.kirinSequenceCalls = items.length - 1;
+    // console.table(data.kirinSequencedSafeCallouts);
+    const result = items.join(output.next());
+    console.log(result);
+    return result;
+    // return { infoText: result };
+  };
+};
+
+const floatNear = (n1, n2, epsilon = 0.1) => {
+  return Math.abs(n1 - n2) < epsilon;
+};
+const isValidSiXDir = dir => {
+  return kamSixDirections.includes(dir);
+};
+const emptySixDirections = () => {
+  return {
+    dirSE: undefined,
+    dirS: undefined,
+    dirSW: undefined,
+    dirNW: undefined,
+    dirN: undefined,
+    dirNE: undefined
+  };
+};
+const sublimeElementsBladeSafespot = (blades, elements) => {
+  const cols = {
+    [-220]: null,
+    [-200]: null,
+    [-180]: null
+  };
+  const rows = {
+    130: null,
+    150: null,
+    170: null
+  };
+  for (const [ele, pos] of Object.entries(blades)) {
+    const x = Number(pos.x);
+    const y = Number(pos.y);
+    const val = elements.includes(ele) ? 'BAD' : ele;
+    if (floatNear(y, 110, 0.5)) {
+      cols[x] = val;
+    } else {
+      rows[y] = val;
+    }
+  }
+  const validCols = Object.values(cols).filter(v => v !== null && v !== 'BAD');
+  const validRows = Object.values(rows).filter(v => v !== null && v !== 'BAD');
+  if (!(validCols.length >= 1 || validRows.length >= 1)) {
+    throw new Error('Invalid blade configuration');
+  }
+  const result = [];
+  if (validCols.length === 1) {
+    result.push(validCols[0]);
+    if (validRows.length < 3) result.push(validRows[0]);
+  } else if (validRows.length === 1) {
+    result.push(validRows[0]);
+    if (validCols.length < 3) result.push(validCols[0]);
+  }
+  return result;
+};
+const OmegaManaScreenPatterns = {
+  'ceB,nwC,seB': {
+    middle: 'frontRight'
+  },
+  'ceC,nwB,seC': {
+    south: 'backLeft'
+  },
+  'ceC,nwB,swC': {
+    south: 'frontMiddle'
+  },
+  'cwC,neB,seB': {
+    north: 'backMiddle'
+  },
+  'cwC,nwB,seB': {
+    north: 'frontRight',
+    middle: 'frontRight'
+  }
+};
 const san_doria_second_walk_triggerSet = {
   id: 'San d\'Oria: The Second Walk',
   zoneId: zone_id/* default.SanDoriaTheSecondWalk */.Z.SanDoriaTheSecondWalk,
   timelineFile: 'san-doria-second-walk.txt',
-  initData: () => ({
-    expectedElements: 0,
-    storedElements: [],
-    tankbusters: []
-  }),
-  triggers: [{
-    id: 'Sandoria Second Walk Kirin Stonega IV',
+  initData: () => {
+    return {
+      tankbusterTargets: [],
+      combatantData: [],
+      kirinSequencedSafeCallouts: {},
+      kirinSequenceCalls: 0,
+      omegaOrbs: [],
+      omegaManaScreens: [],
+      kamElements: [],
+      kamElementalCones: emptySixDirections(),
+      kamElementalBlades: {},
+      kamEstocHeadings: [],
+      kamCrystalLocations: {},
+      kamCrystalCasts: []
+    };
+  },
+  triggers: [
+  // ----------------------
+  // Faithbound Kirin
+  {
+    id: 'San dOria Second Walk Faithbound Kirin Stonega IV',
     type: 'StartsUsing',
     netRegex: {
-      id: 'AD2B',
+      id: 'ADCA',
       source: 'Faithbound Kirin',
       capture: false
     },
     response: responses/* Responses.aoe */.n3.aoe()
   }, {
-    id: 'Sandoria Second Walk Kirin Crimson Riddle',
+    id: 'San dOria Second Walk Faithbound Kirin Crimson Riddle Front',
     type: 'StartsUsing',
     netRegex: {
-      id: ['AFF4', 'AFF5'],
+      id: ['AFF4'],
       source: 'Faithbound Kirin',
-      capture: true
+      capture: false
     },
-    alertText: (_data, matches, output) => {
-      return output.unknown({
-        id: matches.id
-      });
+    response: responses/* Responses.getBehind */.n3.getBehind()
+  }, {
+    id: 'San dOria Second Walk Faithbound Kirin Crimson Riddle Rear',
+    type: 'StartsUsing',
+    netRegex: {
+      id: ['AFF5'],
+      source: 'Faithbound Kirin',
+      capture: false
+    },
+    response: responses/* Responses.goFront */.n3.goFront()
+  }, {
+    id: 'San dOria Second Walk Faithbound Kirin Punishment',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'ADCB',
+      source: 'Faithbound Kirin'
+    },
+    response: responses/* Responses.tankBuster */.n3.tankBuster()
+  }, {
+    // every tower must be taken, or it is a wipe
+    // arms also cast AF80, ADB6 (slightly different timings for some reason)
+    // ADBF - damage from tower (Bury)
+    id: 'San dOria Second Walk Faithbound Kirin Deadly Hold',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'ADB2',
+      source: 'Faithbound Kirin',
+      capture: false
+    },
+    suppressSeconds: 1,
+    alertText: (data, _matches, output) => {
+      if (data.role === 'tank' || data.job === 'BLU') return output.tankTower();
     },
     outputStrings: {
-      unknown: {
-        en: 'Unknown Crimson Riddle (${id})'
+      tankTower: {
+        en: 'Soak Tank Tower'
       }
     }
   }, {
-    id: 'Sandoria Second Walk Kirin Chiseled Arm Shockwave',
+    id: 'San dOria Second Walk Chiseled Arm Shockwave',
     type: 'StartsUsing',
     netRegex: {
       id: 'ADC0',
@@ -213805,17 +213966,323 @@ const san_doria_second_walk_triggerSet = {
     },
     response: responses/* Responses.aoe */.n3.aoe()
   }, {
-    id: 'Sandoria Second Walk Kirin Deadly Hold',
+    id: 'San dOria Second Walk Faithbound Kirin Striking Right',
     type: 'StartsUsing',
     netRegex: {
-      id: 'ADB2',
+      id: 'AD93',
       source: 'Faithbound Kirin',
       capture: false
     },
-    condition: data => data.role === 'tank',
-    response: responses/* Responses.getTowers */.n3.getTowers()
+    infoText: (_data, _matches, output) => {
+      return output.awayTethered({
+        dir: output.east()
+      });
+    },
+    outputStrings: kirinSequenceOutputStrings
   }, {
-    id: 'Sandoria Second Walk Omega Ion Efflux',
+    id: 'San dOria Second Walk Faithbound Kirin Striking Left',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'ADAF',
+      source: 'Faithbound Kirin',
+      capture: false
+    },
+    infoText: (_data, _matches, output) => {
+      return output.awayTethered({
+        dir: output.west()
+      });
+    },
+    outputStrings: kirinSequenceOutputStrings
+  }, {
+    // AD95 - mechanic cast
+    // AD96 - from boss x2
+    // AD9C, AD9B - from Sculpted Arms
+    id: 'San dOria Second Walk Faithbound Kirin Synchronized Strike',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD95',
+      source: 'Faithbound Kirin',
+      capture: false
+    },
+    infoText: kirinSequenceInfoOutput(['sides', 'awayArms'], ['_', 'AD95']),
+    outputStrings: kirinSequenceOutputStrings
+    //     en: 'dodge => away from Arms (on boss hitbox)',
+  }, {
+    // ADA0 - mech cast
+    // ADB0 - preview line aoes from boss
+    // ADAD - preview out aoe -OR- ADAE (Striking Right)/ADAF (Left)
+    // ADA1 - line aoes from boss (Synchronized Sequence)
+    // AD9C,AD9B - line aoes from arms
+    // ADA2 - out (Wringer) -OR- ADA3 (Striking Right)/ADA4 *probably
+    // ADA8 - under (Dead Wringer) ADA9 -or- (Smiting Right)
+    id: 'San dOria Second Walk Faithbound Kirin Synchronized Sequence',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'ADA0',
+      source: 'Faithbound Kirin',
+      capture: false
+    },
+    durationSeconds: 10,
+    infoText: kirinSequenceInfoOutput(['sides', 'awayBossArms', 'under'], ['_', 'ADA1', 'ADA2']),
+    outputStrings: kirinSequenceOutputStrings
+    //     en: 'Sides => Away from boss & arms => Under boss',
+  }, {
+    // AD9D - mech cast
+    // ADAD - preview out aoe
+    // ADB0 - preview line aoes from boss
+    // AD9D - out aoe (Double Wringer)
+    // ADA6 - line aoes from boss (ADA5 selfcast)
+    // AD97 - under (Dead Wringer)
+    // ADAB,ADAC - line aoes from arms
+    id: 'San dOria Second Walk Faithbound Kirin Double Wringer',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD9D',
+      source: 'Faithbound Kirin',
+      capture: false
+    },
+    durationSeconds: 10,
+    infoText: kirinSequenceInfoOutput(['out', 'flank', 'under'], ['_', 'AD9D', 'ADA6']),
+    outputStrings: kirinSequenceOutputStrings
+    //     en: 'Out => Max melee on flank => Under boss',
+  }, {
+    id: 'San dOria Second Walk Faithbound Kirin Smiting Right Sequence',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD9E',
+      source: 'Faithbound Kirin',
+      capture: false
+    },
+    durationSeconds: 12,
+    infoText: kirinSequenceInfoOutput(['awayTethered', 'awayBoss', 'under'], ['_', 'AD9E', 'ADA2'], 'east'),
+    outputStrings: kirinSequenceOutputStrings
+    //     en: 'Away from tethered arm (East) => away from boss => under',
+  }, {
+    // AD9F - cast
+    // ADAF - left punch preview
+    // ADAD - out preview
+    // AD9F - left punch damage
+    // ADA2 - Wringer damage
+    // AD9A - arm punch (Smiting Left)
+    // ADA7 - under (Dead Wringer)
+    id: 'San dOria Second Walk Faithbound Kirin Smiting Left Sequence',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD9F',
+      source: 'Faithbound Kirin',
+      capture: false
+    },
+    durationSeconds: 12,
+    infoText: kirinSequenceInfoOutput(['awayTethered', 'awayBoss', 'under'], ['_', 'AD9F', 'ADA2'], 'west'),
+    outputStrings: kirinSequenceOutputStrings
+    //     en: 'Away from tethered arm (West) => away from boss => under',
+  }, {
+    // AD92 - cast
+    // AD97, AD98 - from Sculpted Arms
+    id: 'San dOria Second Walk Faithbound Kirin Wringer',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD92',
+      source: 'Faithbound Kirin',
+      capture: false
+    },
+    infoText: kirinSequenceInfoOutput(['out', 'under'], ['_', 'AD92']),
+    outputStrings: kirinSequenceOutputStrings
+  }, {
+    id: 'San dOria Second Walk Faithbound Kirin Sequenced Mechanics',
+    type: 'Ability',
+    netRegex: {
+      id: ['AD9D', 'ADA6', 'AD96', 'AD97', 'ADA1', 'AD9C', 'ADA2', 'AD9E', 'AD9F'],
+      source: 'Faithbound Kirin',
+      capture: true
+    },
+    condition: data => data.kirinSequenceCalls > 0,
+    suppressSeconds: 1,
+    alertText: (data, matches, _output) => {
+      if (!Object.keys(data.kirinSequencedSafeCallouts).includes(matches.id)) {
+        return;
+      }
+      const call = data.kirinSequencedSafeCallouts[matches.id];
+      if (call === undefined) {
+        throw new not_reached/* UnreachableCode */.$();
+      }
+      data.kirinSequenceCalls--;
+      console.info(`SEQMECH - ${matches.ability} ${matches.id} => ${call}`);
+      return call;
+    },
+    outputStrings: {}
+  },
+  // SUMMON: Seiryu
+  {
+    // AD80 - orange/CW
+    // AD81 - blue/CCW
+    id: 'San dOria Second Walk Faithbound Kirin Eastwind Wheel',
+    type: 'StartsUsing',
+    netRegex: {
+      id: ['AD80', 'AD81'],
+      source: 'Dawnbound Seiryu'
+    },
+    // promise: async (data, matches) => {
+    //   data.combatantData = [];
+    //
+    //   data.combatantData = (await callOverlayHandler({
+    //     call: 'getCombatants',
+    //     ids: [parseInt(matches.sourceId, 16)],
+    //   })).combatants;
+    // },
+    infoText: (_data, matches, output) => {
+      // const [combatant] = data.combatantData;
+      // if (combatant === undefined || data.combatantData.length !== 1)
+      //   return; //todo: remove me after verifying not needed
+      // Seiryu only spawns east or south but can spin either way so just +/-1 depending on the rotation.
+      const x = parseFloat(matches.x);
+      const y = parseFloat(matches.y);
+      const rotation = matches.id === 'AD81' ? -1 : 1;
+      // N = 0, E = 1, S = 2, W = 3
+      const card = util/* Directions.xyTo4DirNum */.Ns.xyTo4DirNum(x, y, kirinCenter[0], kirinCenter[1]);
+      const safeHalf = ['north', 'east', 'south', 'west'][(card + rotation) % 4];
+      if (safeHalf !== undefined) return output.dodgeDir({
+        dir: output[safeHalf]()
+      });
+      return output.dodge();
+    },
+    outputStrings: {
+      dodge: {
+        en: 'Avoid rotating AoE'
+      },
+      dodgeDir: {
+        en: '${dir} half safe'
+      },
+      north: outputs/* default.north */.Z.north,
+      east: outputs/* default.east */.Z.east,
+      west: outputs/* default.west */.Z.west,
+      south: outputs/* default.south */.Z.south
+    }
+  }, {
+    // Stonega III is used in both Seiryu (A917) and Suzaku (B07A)
+    id: 'San dOria Second Walk Faithbound Kirin Stonega III',
+    type: 'StartsUsing',
+    netRegex: {
+      id: ['A917', 'B07A'],
+      source: 'Faithbound Kirin'
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    response: responses/* Responses.spread */.n3.spread()
+  },
+  // SUMMON Genbu
+  {
+    // large AOE (dash destination) followed by get under
+    id: 'San dOria Second Walk Faithbound Kirin Midwinter March',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD87',
+      source: 'Moonbound Genbu',
+      capture: false
+    },
+    infoText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Follow Moonbound Genbu => Get under'
+      }
+    }
+  },
+  // {
+  //   id: 'San dOria Second Walk Faithbound Kirin Northern Current',
+  //   type: 'StartsUsing',
+  //   netRegex: { id: 'AD88', source: 'Moonbound Genbu' },
+  //   infoText: (_data, matches, output) => {
+  //     return output.under!({ name: matches.source });
+  //   },
+  //   outputStrings: {
+  //     under: {
+  //       en: 'Get under ${name}',
+  //     },
+  //   },
+  // },
+  {
+    id: 'San dOria Second Walk Faithbound Kirin Shattering Stomp',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD84',
+      source: 'Moonbound Genbu',
+      capture: false
+    },
+    response: responses/* Responses.aoe */.n3.aoe()
+  }, {
+    // floor explosions
+    id: 'San dOria Second Walk Faithbound Kirin Moontide Font',
+    type: 'StartsUsing',
+    netRegex: {
+      id: ['AD85', 'AD86'],
+      source: 'Moonbound Genbu',
+      capture: false
+    },
+    suppressSeconds: 10,
+    infoText: (_data, _matches, output) => {
+      return output.avoid();
+    },
+    outputStrings: {
+      avoid: {
+        en: 'Avoid geyser explosions'
+      }
+    }
+  },
+  // SUMMON Byakko
+  {
+    // dashes to the panel opposite and uses Razor Fang (AD90)
+    id: 'San dOria Second Walk Faithbound Kirin Gloaming Gleam',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD8F',
+      source: 'Duskbound Byakko'
+    },
+    alertText: (_data, matches, output) => {
+      return output.sides({
+        name: matches.source
+      });
+    },
+    outputStrings: {
+      sides: {
+        en: 'Go to sides of ${name} (not in front)'
+      }
+    }
+  }, {
+    // 3 random puddles on the floor
+    id: 'San dOria Second Walk Faithbound Kirin Quake',
+    type: 'StartsUsing',
+    netRegex: {
+      id: ['B07B', 'B07C'],
+      source: 'Faithbound Kirin',
+      capture: false
+    }
+    // response: Responses.aoe(), // todo: probs just remove
+  },
+  // SUMMON Suzaku
+  {
+    // self-target AD8A
+    id: 'San dOria Second Walk Faithbound Kirin Vermilion Flight',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AEFB',
+      source: 'Sunbound Suzaku'
+    },
+    durationSeconds: 7,
+    alertText: (_data, matches, output) => {
+      return output.sides({
+        name: matches.source
+      });
+    },
+    outputStrings: {
+      sides: {
+        en: 'Avoid ${name} dash + dodge ground AoEs'
+      }
+    }
+  },
+  // ----------------------
+  // Ultima & Omega
+
+  {
+    id: 'San dOria Second Walk Omega, the One Ion Efflux',
     type: 'StartsUsing',
     netRegex: {
       id: 'AD2B',
@@ -213824,49 +214291,267 @@ const san_doria_second_walk_triggerSet = {
     },
     response: responses/* Responses.aoe */.n3.aoe()
   }, {
-    id: 'Sandoria Second Walk Ultima Antimatter Collector',
+    id: 'San dOria Second Walk Omega, the One Citadel Buster',
     type: 'StartsUsing',
     netRegex: {
-      id: 'AD11',
-      source: 'Ultima, the Feared',
-      capture: true
-    },
-    run: (data, matches) => data.tankbusters.push(matches.target)
-  }, {
-    id: 'Sandoria Second Walk Ultima Antimatter',
-    type: 'StartsUsing',
-    netRegex: {
-      id: 'AD11',
+      id: 'AD1B',
       source: 'Ultima, the Feared',
       capture: false
     },
-    delaySeconds: 0.3,
-    suppressSeconds: 1,
-    response: (data, _matches, output) => {
-      // cactbot-builtin-response
-      output.responseOutputStrings = {
-        tankCleaveOnYou: outputs/* default.tankCleaveOnYou */.Z.tankCleaveOnYou,
-        tankCleaves: outputs/* default.avoidTankCleaves */.Z.avoidTankCleaves
-      };
-      if (data.tankbusters.includes(data.me)) return {
-        alertText: output.tankCleaveOnYou()
-      };
-      return {
-        infoText: output.tankCleaves()
-      };
-    },
-    run: data => data.tankbusters = []
+    response: responses/* Responses.aoe */.n3.aoe()
   }, {
-    id: 'Sandoria Second Walk Omega Fore-to-aft Fire',
+    // B087 is the cast, but happens way in advance
+    id: 'San dOria Second Walk Omega, the One Anti-personnel Missile',
     type: 'StartsUsing',
     netRegex: {
-      id: 'AD26',
+      id: 'B088',
+      source: 'Omega, the One'
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    response: responses/* Responses.spread */.n3.spread()
+  }, {
+    id: 'San dOria Second Walk Omega, the One Antimatter',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD11',
+      source: 'Ultima, the Feared'
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    alertText: (_data, _matches, output) => {
+      return output.tankBusterOnYou();
+    },
+    outputStrings: {
+      tankBusterOnYou: outputs/* default.tankBusterOnYou */.Z.tankBusterOnYou
+    }
+  }, {
+    id: 'San dOria Second Walk Omega, the One Mana Screen Collect',
+    type: 'CombatantMemory',
+    netRegex: {
+      change: 'Add',
+      pair: [{
+        key: 'BNpcID',
+        value: ['1EBE8B', '1EBE8C']
+      }]
+    },
+    run: (data, matches) => {
+      const x = parseFloat(matches.pairPosX ?? '0');
+      const y = parseFloat(matches.pairPosY ?? '0');
+      // both platforms are in line with each other, so for X we need to check 2 values
+      const col1 = floatNear(x, 725) || floatNear(x, 790);
+      // const col2 = floatNear(x, 745) || floatNear(x, 810);
+      const row1 = floatNear(y, 784);
+      const row2 = floatNear(y, 800);
+      // const row3 = floatNear(y, 816);
+      const direction = matches.pairBNpcID === '1EBE8B' ? 'B' : 'C';
+      const key = `${row1 ? 'n' : row2 ? 'c' : 's'}${col1 ? 'w' : 'e'}${direction}`;
+      data.omegaManaScreens.push(key);
+    }
+  }, {
+    id: 'San dOria Second Walk Omega, the One Energy Orb (cast)',
+    type: 'Ability',
+    netRegex: {
+      id: 'AD08',
+      source: 'Ultima, the Feared',
+      capture: false
+    },
+    delaySeconds: 2,
+    durationSeconds: 7,
+    promise: async data => {
+      const actors = (await (0,overlay_plugin_api/* callOverlayHandler */.ae)({
+        call: 'getCombatants'
+      })).combatants;
+      const orbs = actors.filter(actor => actor.BNpcID === 18714 && actor.ModelStatus === 0);
+      // const visibleOrbs = orbs.filter((orb) => orb.ModelStatus === 0);
+      // const search = (visibleOrbs.length === 0) ? orbs : visibleOrbs;
+      // console.info(JSON.stringify(orbs));
+      // console.info('visible', JSON.stringify(visibleOrbs));
+      orbs.forEach(orb => {
+        const y = Number(orb.PosY);
+        if (floatNear(y, 784)) data.omegaOrbs.push('north');else if (floatNear(y, 800)) data.omegaOrbs.push('middle');else if (floatNear(y, 816)) data.omegaOrbs.push('south');
+      });
+      // console.info(`Omega, the One Energy Orb: ${data.omegaOrbs.join(', ')}`);
+    },
+
+    infoText: (data, _matches, output) => {
+      if (data.omegaOrbs.length === 1 && data.omegaManaScreens.length === 0 && data.omegaOrbs[0])
+        // just one energy orb going off
+        return output.avoidLaserDir({
+          dir: output[data.omegaOrbs[0]]()
+        });else if (data.omegaOrbs.length === 2 && data.omegaManaScreens.length === 0)
+        // 2 orbs is always middle
+        return output.middle();else if (data.omegaOrbs.length === 1 && data.omegaManaScreens.length === 1) {
+        // simple 1 orb/1 screen pattern, just opposite corner really
+        const loc = data.omegaManaScreens[0];
+        if (data.omegaOrbs[0] === 'north' && loc === 'neB') {
+          return output.getLocation({
+            dir: output.backRight()
+          });
+        } else if (data.omegaOrbs[0] === 'south' && loc === 'seC') {
+          return output.getLocation({
+            dir: output.backLeft()
+          });
+        }
+      } else if (data.omegaOrbs.length === 1 && data.omegaManaScreens.length === 3) {
+        // 3 screen pattern
+        const key = data.omegaManaScreens.sort().join(',');
+        const patterns = OmegaManaScreenPatterns[key];
+        if (patterns !== undefined) {
+          const call = patterns[data.omegaOrbs[0]];
+          if (call !== undefined) return output.getLocation({
+            dir: output[call]()
+          });
+        }
+      }
+      console.error(`Second Walk Omega, the One Energy Orb: unknown pattern 
+${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
+      return `UNKNOWN PATTERN ${data.omegaManaScreens.join(',')}`; // TODO: Remove me
+      // return output.avoid!();
+    },
+
+    outputStrings: {
+      avoid: {
+        en: 'Avoid lasers'
+      },
+      avoidLaserDir: {
+        en: 'Avoid ${dir} laser'
+      },
+      getLocation: {
+        en: '${dir}'
+      },
+      getMiddle: {
+        en: 'Get Middle'
+      },
+      frontLeft: {
+        en: 'Front Left',
+        de: 'Vorne Links',
+        fr: 'Avant Gauche',
+        ja: '前左',
+        cn: '左前',
+        ko: '앞 왼쪽'
+      },
+      frontMiddle: {
+        en: 'Front Middle'
+      },
+      frontRight: {
+        en: 'Front Right',
+        de: 'Vorne Rechts',
+        fr: 'Avant Droit',
+        ja: '前右',
+        cn: '右前',
+        ko: '앞 오른쪽'
+      },
+      backLeft: {
+        en: 'Back Left',
+        de: 'Hinten Links',
+        fr: 'Arrière Gauche',
+        ja: '後左',
+        cn: '左后',
+        ko: '뒤 왼쪽'
+      },
+      backMiddle: {
+        en: 'Back Middle'
+      },
+      backRight: {
+        en: 'Back Right',
+        de: 'Hinten Rechts',
+        fr: 'Arrière Droit',
+        ja: '後ろ右',
+        cn: '右后',
+        ko: '뒤 오른쪽'
+      },
+      north: outputs/* default.left */.Z.left,
+      middle: outputs/* default.middle */.Z.middle,
+      south: outputs/* default.right */.Z.right
+    }
+  }, {
+    id: 'San dOria Second Walk Omega, the One Orb/Screen Cleanup',
+    type: 'Ability',
+    netRegex: {
+      id: 'AD32',
+      source: 'Energy Orb',
+      capture: false
+    },
+    run: data => {
+      data.omegaOrbs = [];
+      data.omegaManaScreens = [];
+    }
+  }, {
+    id: 'San dOria Second Walk Omega, the One Hyper Pulse',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD2F',
       source: 'Omega, the One',
       capture: false
     },
-    response: responses/* Responses.getBackThenFront */.n3.getBackThenFront()
+    infoText: (_data, _matches, output) => {
+      return output.outOfMiddle();
+    },
+    outputStrings: {
+      outOfMiddle: {
+        en: 'Out of Middle'
+      }
+    }
   }, {
-    id: 'Sandoria Second Walk Omega Aft-to-fore Fire',
+    // targeted aoe drops in the direction it is moving
+    id: 'San dOria Second Walk Omega, the One Trajectory Projection',
+    type: 'HeadMarker',
+    netRegex: {
+      id: ['0269', '026A', '026B', '026C'],
+      capture: true
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    countdownSeconds: 8.9,
+    infoText: (_data, matches, output) => {
+      switch (matches.id) {
+        case '0269':
+          return output.droppingAoeDir({
+            dir: output.east()
+          });
+        case '026A':
+          return output.droppingAoeDir({
+            dir: output.west()
+          });
+        case '026B':
+          return output.droppingAoeDir({
+            dir: output.south()
+          });
+        case '026C':
+          return output.droppingAoeDir({
+            dir: output.north()
+          });
+      }
+      return outputs/* default.unknown */.Z.unknown;
+    },
+    outputStrings: {
+      droppingAoeDir: {
+        en: 'Dropping aoe to your ${dir}, move opposite in'
+      },
+      north: outputs/* default.north */.Z.north,
+      east: outputs/* default.east */.Z.east,
+      west: outputs/* default.west */.Z.west,
+      south: outputs/* default.south */.Z.south
+    }
+  }, {
+    id: 'San dOria Second Walk Omega, the One Chemical Bomb',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD0E',
+      source: 'Ultima, the Feared',
+      capture: false
+    },
+    infoText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Rotate away from proximity markers',
+        de: 'Weg rotieren von den Distanzmarkierungen',
+        fr: 'Tournez loin des marqueurs de proximité',
+        ja: '距離減衰マーカー 3発目から1発目に避ける',
+        cn: '远离距离衰减 AoE 落点',
+        ko: '회전하면서 거리감쇠 징 피하기'
+      }
+    }
+  }, {
+    id: 'San dOria Second Walk Omega, the One Aft-to-fore Fire',
     type: 'StartsUsing',
     netRegex: {
       id: 'AD27',
@@ -213875,25 +214560,51 @@ const san_doria_second_walk_triggerSet = {
     },
     response: responses/* Responses.getFrontThenBack */.n3.getFrontThenBack()
   }, {
-    id: 'Sandoria Second Walk Ultima Tractor Beam',
+    id: 'San dOria Second Walk Omega, the One Fore-to-aft Fire',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD25',
+      source: 'Omega, the One',
+      capture: false
+    },
+    response: responses/* Responses.getBackThenFront */.n3.getBackThenFront()
+  }, {
+    id: 'San dOria Second Walk Omega, the One Tractor Beam',
     type: 'StartsUsing',
     netRegex: {
       id: 'AD06',
       source: 'Ultima, the Feared',
       capture: false
     },
-    response: responses/* Responses.drawIn */.n3.drawIn()
+    infoText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Go to west edge, avoid ship'
+      }
+    }
   }, {
-    id: 'Sandoria Second Walk Ultima Citadel Buster',
+    // this might be too much, could be good though?
+    id: 'San dOria Second Walk Omega, the One Multi-missile',
     type: 'StartsUsing',
     netRegex: {
-      id: 'AD1B',
-      source: 'Ultima, the Feared',
+      id: 'AFEC',
+      source: 'Omega, the One',
       capture: false
     },
-    response: responses/* Responses.bigAoe */.n3.bigAoe()
-  }, {
-    id: 'Sandoria Second Walk Kamlanaut Enspirited Swordplay',
+    suppressSeconds: 1,
+    countdownSeconds: 3.9,
+    soundVolume: 0,
+    infoText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'ground AoEs go off'
+      }
+    }
+  },
+  // ----------------------
+  // Kam'lanaut
+  {
+    id: 'San dOria Second Walk Kam\'lanaut Enspirited Swordplay',
     type: 'StartsUsing',
     netRegex: {
       id: 'ACBD',
@@ -213902,112 +214613,432 @@ const san_doria_second_walk_triggerSet = {
     },
     response: responses/* Responses.aoe */.n3.aoe()
   }, {
-    id: 'Sandoria Second Walk Kamlanaut Elemental Blade x2',
+    id: 'San dOria Second Walk Kam\'lanaut Shockwave',
     type: 'StartsUsing',
     netRegex: {
-      id: 'AC91',
+      id: 'ACB3',
       source: 'Kam\'lanaut',
       capture: false
     },
-    run: data => {
-      data.storedElements = [];
-      data.expectedElements = 2;
-    }
+    response: responses/* Responses.aoe */.n3.aoe('alert')
   }, {
-    id: 'Sandoria Second Walk Kamlanaut Elemental Blade x3',
-    type: 'StartsUsing',
+    id: 'San dOria Second Walk Kam\'lanaut Empyreal Banish III',
+    type: 'HeadMarker',
     netRegex: {
-      id: 'AC92',
-      source: 'Kam\'lanaut',
-      capture: false
+      id: '0178'
     },
-    run: data => {
-      data.storedElements = [];
-      data.expectedElements = 3;
-    }
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    response: responses/* Responses.spread */.n3.spread()
   }, {
-    id: 'Sandoria Second Walk Kamlanaut Elemental Blade Collector',
-    type: 'GainsEffect',
+    id: 'San dOria Second Walk Kam\'lanaut Princely Blow',
+    type: 'HeadMarker',
     netRegex: {
-      effectId: 'B9A',
-      count: Object.values(effectB9AMap),
+      id: '0265',
       capture: true
     },
-    condition: (data, matches) => {
-      const count = matches.count;
-      if (data.expectedElements === 0) return false;
-      if (!isEffectB9AValue(count)) return false;
-      data.storedElements.push(count);
-      return true;
-    },
-    infoText: (_data, matches, output) => {
-      return output.unknown({
-        id: matches.count
-      });
+    alertText: (data, matches, output) => {
+      // targets the boss itself unfortunately, so need to use data0
+      const target = data.party?.idToName_?.[matches.data0];
+      data.tankbusterTargets.push(target ?? '');
+      if (data.me === target) return output.tankBusterKnockBack();
     },
     outputStrings: {
-      unknown: {
-        en: 'Unknown Element (${id})'
+      tankBusterKnockBack: {
+        en: 'Tank Buster + Knockback'
       }
     }
   }, {
-    id: 'Sandoria Second Walk Kamlanaut Great Wheel',
-    type: 'StartsUsing',
+    id: 'San dOria Second Walk Kam\'lanaut Princely Blow Not You',
+    type: 'HeadMarker',
     netRegex: {
-      id: ['ACAD', 'ACAE', 'ACAF', 'ACB0'],
+      id: '0265',
+      capture: false
+    },
+    delaySeconds: 0.3,
+    suppressSeconds: 5,
+    infoText: (data, _matches, output) => {
+      if (data.tankbusterTargets.length === 0 || data.tankbusterTargets.includes(data.me)) return;
+      if (data.role === 'healer') return output.tankBuster();
+      return output.avoidTankCleaves();
+    },
+    run: (data, _matches) => data.tankbusterTargets = [],
+    outputStrings: {
+      tankBuster: outputs/* default.tankBuster */.Z.tankBuster,
+      avoidTankCleaves: outputs/* default.avoidTankCleaves */.Z.avoidTankCleaves
+    }
+  }, {
+    id: 'San dOria Second Walk Kam\'lanaut Light Blade',
+    type: 'Ability',
+    netRegex: {
+      id: 'ACAB',
       source: 'Kam\'lanaut',
       capture: false
     },
-    infoText: (_data, _matches, output) => output.text(),
+    alertText: (_data, _matches, output) => output.text(),
     outputStrings: {
       text: {
-        en: 'Out of Melee => Get Behind'
+        en: 'Behind a sword'
       }
     }
   }, {
-    id: 'Sandoria Second Walk Kamlanaut Transcendent Union',
+    // ACAF - aoe under boss -> cleave
+    // ACAE - aoe under boss => cleave + stack
+    // ACB1 - cleave
+    // ACC0 - stack Empyreal Banish IV
+    id: 'San dOria Second Walk Kam\'lanaut Great Wheel',
+    type: 'Ability',
+    netRegex: {
+      id: 'ACAF',
+      source: 'Kam\'lanaut',
+      capture: false
+    },
+    suppressSeconds: 1,
+    response: responses/* Responses.getBehind */.n3.getBehind()
+  }, {
+    id: 'San dOria Second Walk Kam\'lanaut Great Wheel Stack',
+    type: 'Ability',
+    netRegex: {
+      id: 'ACAE',
+      source: 'Kam\'lanaut',
+      capture: false
+    },
+    suppressSeconds: 1,
+    alertText: (_data, _matches, output) => output.behindStack(),
+    outputStrings: {
+      behindStack: {
+        en: 'Get behind and Stack'
+      }
+    }
+  }, {
+    id: 'San dOria Second Walk Kam\'lanaut Empyreal Banish IV',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'ACC0',
+      source: 'Kam\'lanaut'
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    infoText: (_data, _matches, output) => output.stackOnYou(),
+    outputStrings: {
+      stackOnYou: outputs/* default.stackOnYou */.Z.stackOnYou
+    }
+  }, {
+    // AD01 Elemental Edge x6 aoe
+    // ACB5 big damage at end
+    id: 'San dOria Second Walk Kam\'lanaut Transcendent Union',
     type: 'StartsUsing',
     netRegex: {
       id: 'ACB4',
       source: 'Kam\'lanaut',
       capture: false
     },
-    durationSeconds: 11.1,
-    alertText: (_data, _matches, output) => output.text(),
+    delaySeconds: 2,
+    durationSeconds: 9,
+    response: responses/* Responses.bigAoe */.n3.bigAoe('alarm')
+  }, {
+    id: 'San dOria Second Walk Kam\'lanaut Illumed Estoc',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'ACBA',
+      source: 'Kam\'lanaut'
+    },
+    infoText: (data, matches, output) => {
+      data.kamEstocHeadings.push(Number(matches.heading));
+      if (data.kamEstocHeadings.length === 3) {
+        data.kamEstocHeadings = [];
+        return output.text();
+      }
+    },
     outputStrings: {
       text: {
-        en: 'AoE x5 => Big AoE'
+        en: 'Dodge clone line AoEs on edge' // FEEDBACK: better wording?
       }
     }
   }, {
-    id: 'Sandoria Second Walk Kamlanaut Shield Bash',
+    id: 'San dOria Second Walk Kam\'lanaut Shield Bash',
     type: 'StartsUsing',
     netRegex: {
       id: 'ACBE',
       source: 'Kam\'lanaut',
       capture: false
     },
-    response: responses/* Responses.knockback */.n3.knockback()
+    alertText: (data, _matches, output) => {
+      if (data.kamEstocHeadings.length === 0) {
+        return output.knockbackAny();
+      } else if (data.kamEstocHeadings.length === 2) {
+        const allDirections = ['dirN', 'dirSW', 'dirSE'];
+        const headingsAsDir = data.kamEstocHeadings.map(h => util/* Directions.output8Dir */.Ns.output8Dir[util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(h)]);
+        const call = allDirections.filter(x => !headingsAsDir.includes(x))[0];
+        data.kamEstocHeadings = [];
+        return output.knockbackDir({
+          dir: output[call]()
+        });
+      }
+    },
+    outputStrings: {
+      knockbackAny: {
+        en: 'Get knocked down long platform'
+      },
+      knockbackDir: {
+        en: 'Get knocked down ${dir} platform'
+      },
+      dirN: outputs/* default.north */.Z.north,
+      dirSW: outputs/* default.southwest */.Z.southwest,
+      dirSE: outputs/* default.southeast */.Z.southeast
+    }
   }, {
-    id: 'Sandoria Second Walk Kamlanaut Empyreal Banish IV',
+    id: 'San dOria Second Walk Kam\'lanaut Elemental Blade Buff Collect',
+    type: 'GainsEffect',
+    netRegex: {
+      effectId: 'B9A'
+    },
+    durationSeconds: 1.5,
+    soundVolume: 0,
+    infoText: (data, matches, output) => {
+      const element = kamlanautElementBuffIds[matches.count];
+      if (element === undefined) throw new not_reached/* UnreachableCode */.$();
+      data.kamElements.push(element);
+      return output[element]();
+    },
+    outputStrings: kamlanautElementalOutputStrings
+  }, {
+    id: 'San dOria Second Walk Kam\'lanaut Elemental Blade Blade Collect',
+    type: 'StartsUsingExtra',
+    netRegex: {
+      id: Object.keys(kamlanautSublimeBladeCasts)
+    },
+    run: (data, matches, _output) => {
+      const element = kamlanautSublimeBladeCasts[matches.id];
+      if (element === undefined) throw new not_reached/* UnreachableCode */.$();
+      data.kamElementalBlades[element] = {
+        x: parseFloat(matches.x),
+        y: parseFloat(matches.y)
+      };
+    }
+  }, {
+    id: 'San dOria Second Walk Kam\'lanaut Elemental Blade Cone Collect',
+    type: 'StartsUsingExtra',
+    netRegex: {
+      id: Object.keys(kamlanautSublimeConeCasts)
+    },
+    run: (data, matches, _output) => {
+      const element = kamlanautSublimeConeCasts[matches.id];
+      if (!element) throw new not_reached/* UnreachableCode */.$();
+      const dir = util/* Directions.output8Dir */.Ns.output8Dir[util/* Directions.hdgTo8DirNum */.Ns.hdgTo8DirNum(Number.parseFloat(matches.heading))];
+      if (isValidSiXDir(dir)) data.kamElementalCones[dir] = element;
+    }
+  }, {
+    // for both pizza slice and cross line aoe elemental mechanics
+    id: 'San dOria Second Walk Kam\'lanaut Sublime Elements',
     type: 'StartsUsing',
     netRegex: {
-      id: 'ACC0',
+      id: 'B00A',
       source: 'Kam\'lanaut',
-      capture: true
+      capture: false
     },
-    response: responses/* Responses.stackMarkerOn */.n3.stackMarkerOn()
+    delaySeconds: 0.5,
+    durationSeconds: 7,
+    alertText: (data, _matches, output) => {
+      // crossing line aoes, of which 2 or 3 expand
+      // console.info('elements:', data.kamElements);
+      // console.info('Blades:', data.kamElementalBlades);
+      // console.info('Cones:', data.kamElementalCones);
+      if (data.kamElementalBlades['fire'] !== undefined) {
+        const result = sublimeElementsBladeSafespot(data.kamElementalBlades, data.kamElements);
+        console.info(result);
+        if (result.length === 2) {
+          return output.nextToCross({
+            ele1: output[result[0]](),
+            ele2: output[result[1]]()
+          });
+        } else if (result.length === 1) {
+          return output.nextToBlade({
+            ele: output[result[0]]()
+          });
+        }
+        console.error('Sublime Blades: unknown pattern');
+        return 'Error';
+      }
+      // cone aoes from the boss, of which 2 or 3 expand
+      // Object.entries(data.kamElementalCones).forEach(([card, element]) => {
+      //   data.kamElementalCones[card as KamConeDirection] = data.kamElements.includes(element as KamElement) ? 'BAD' : element;
+      // });
+      const dirs = Object.keys(data.kamElementalCones);
+      for (let i = 0; i < dirs.length; i++) {
+        const d1 = dirs[i];
+        const d2 = dirs[(i + 1) % dirs.length];
+        const e1 = data.kamElementalCones[d1];
+        const e2 = data.kamElementalCones[d2];
+        // console.info(i, d1, d2);
+        // console.info(i, e1, e2);
+        if (!data.kamElements.includes(e1) && e1 !== null && !data.kamElements.includes(e2) && e2 !== null) {
+          // console.info('>>>', e1, e2);
+          return output.betweenSlice({
+            ele1: output[e1](),
+            ele2: output[e2]()
+          });
+        }
+      }
+    },
+    outputStrings: {
+      betweenSlice: {
+        en: 'Between ${ele1} and ${ele2}'
+      },
+      nextToBlade: {
+        en: 'Next to ${ele}'
+      },
+      nextToCross: {
+        en: 'go to ${ele1} and ${ele2} intersection' // FEEDBACK: wording?
+      },
+
+      ...kamlanautElementalOutputStrings
+    }
   }, {
-    id: 'Sandoria Second Walk Ealdnarche Uranos Cascade Collector',
+    id: 'San dOria Second Walk Kam\'lanaut Sublime Elements Cleanup',
+    type: 'Ability',
+    netRegex: {
+      id: 'B00A',
+      source: 'Kam\'lanaut',
+      capture: false
+    },
+    run: data => {
+      data.kamElements = [];
+      data.kamElementalCones = emptySixDirections();
+      data.kamElementalBlades = {};
+    }
+  }, {
+    id: 'San dOria Second Walk Kam\'lanaut Crystal Spawn Collect',
+    type: 'CombatantMemory',
+    netRegex: {
+      change: 'Add',
+      pair: [{
+        key: 'BNpcID',
+        value: Object.keys(kamlanautCrystalNpcIds)
+      }]
+    },
+    run: (data, matches, _output) => {
+      const element = kamlanautCrystalNpcIds[matches.pairBNpcID ?? ''];
+      const x = Number.parseFloat(matches.pairPosX ?? '0');
+      const y = Number.parseFloat(matches.pairPosY ?? '0');
+      if (!element) throw new not_reached/* UnreachableCode */.$();
+      const dir = util/* Directions.output8Dir */.Ns.output8Dir[util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(x, y, -200.00, 150.0)];
+      if (isValidSiXDir(dir)) data.kamCrystalLocations[dir] = element;
+    }
+  }, {
+    // ACB7 - initial, shorter cast
+    id: 'San dOria Second Walk Kam\'lanaut Elemental Resonance (crystals)',
+    type: 'StartsUsingExtra',
+    netRegex: {
+      id: ['ACB7', 'ACB8']
+    },
+    preRun: (data, matches) => {
+      const x = Number.parseFloat(matches.x);
+      const y = Number.parseFloat(matches.y);
+      const dir = util/* Directions.output8Dir */.Ns.output8Dir[util/* Directions.xyTo8DirNum */.Ns.xyTo8DirNum(x, y, -200.00, 150.0)];
+      if (isValidSiXDir(dir)) {
+        data.kamCrystalCasts.push(dir);
+      }
+    },
+    alertText: (data, _matches, output) => {
+      const crystalCount = Object.keys(data.kamCrystalLocations).length;
+      // console.info('Crystals:', crystalCount);
+      console.info('Casts:', data.kamCrystalCasts);
+      // console.info('Locations:', data.kamCrystalLocations);
+      if (crystalCount === 3 && data.kamCrystalCasts.length === 1) {
+        // SIMPLE 3 CRYSTALS - only call which to avoid
+        const explodingCrystal = data.kamCrystalCasts[0];
+        const explodingEle = data.kamCrystalLocations[explodingCrystal];
+        data.kamCrystalCasts = []; // reset for the next pattern
+        if (explodingEle) {
+          console.info('Exploding:', explodingCrystal);
+          return output.avoid({
+            ele: output[explodingEle]()
+          });
+        }
+      } else if (crystalCount === 6 && data.kamCrystalCasts.length === 2) {
+        // SIX CRYSTAL PATTERN
+        // get the index of two crystals exploding
+        // const temp = Array(100).fill('O');
+        const explodingIndex1 = kamSixDirections.indexOf(data.kamCrystalCasts[0]);
+        const explodingIndex2 = kamSixDirections.indexOf(data.kamCrystalCasts[1]);
+        if (explodingIndex1 === -1 || explodingIndex2 === -1) {
+          console.error('Kam\'lanaut Elemental Resonance (crystals) - invalid crystals');
+          return;
+        }
+        const directDist = Math.abs(explodingIndex1 - explodingIndex2);
+        console.info('Exp index:', explodingIndex1, explodingIndex2, directDist);
+        if (Math.min(directDist, 6 - directDist) === 3) {
+          // TWO SAFE SPOTS - crystals far apart
+          // crystals are farther apart, leaving 2 safe spots farthest from each crystal.
+          // safe spot = area between the crystals 1 and 2 away
+          const lastCrystal = Math.max(explodingIndex1, explodingIndex2);
+          const safe1 = data.kamCrystalLocations[kamSixDirections[(lastCrystal + 1) % 6]];
+          const safe2 = data.kamCrystalLocations[kamSixDirections[(lastCrystal + 2) % 6]];
+          console.info('Exploding 2spot:', lastCrystal, safe1, safe2);
+          console.info('Safe6:', safe1, safe2);
+          data.kamCrystalCasts = []; // reset
+          if (safe1 && safe2) return output.betweenCrystals({
+            ele1: output[safe1](),
+            ele2: output[safe2]()
+          });
+        }
+        // ONE SAFE SPOT - crystal AoEs overlapping
+        // crystals overlap, there is one large safe spot centered on a crystal
+        // safe spot = crystal 2 away
+        let safeIndex = (explodingIndex1 + 2) % 6;
+        if (safeIndex === explodingIndex1 || safeIndex === explodingIndex2) safeIndex = (safeIndex + 2) % 6;
+        console.info('Exploding 1spot:', explodingIndex1, explodingIndex2, '->', safeIndex);
+        const safe = data.kamCrystalLocations[kamSixDirections[safeIndex]];
+        data.kamCrystalCasts = []; // reset
+        if (safe) return output.safeCrystal({
+          ele: output[safe]()
+        });
+      }
+    },
+    outputStrings: {
+      betweenCrystals: {
+        en: 'Between ${ele1} and ${ele2} crystals'
+      },
+      safeCrystal: {
+        en: 'Go to ${ele} crystal'
+      },
+      avoid: {
+        en: 'Away from ${ele} crystal'
+      },
+      ...kamlanautElementalOutputStrings
+    }
+  }, {
+    // cleanup of crystals
+    id: 'San dOria Second Walk Kam\'lanaut Illumed Facet',
+    type: 'Ability',
+    netRegex: {
+      id: 'ACB9',
+      source: 'Kam\'lanaut',
+      capture: false
+    },
+    delaySeconds: 3,
+    run: data => {
+      data.kamCrystalLocations = {};
+      data.kamCrystalCasts = [];
+    }
+  },
+  // ----------------------
+  // Eald'narche
+  {
+    id: 'San dOria Second Walk Eald\'narche Uranos Cascade',
     type: 'StartsUsing',
     netRegex: {
       id: 'AD52',
-      source: 'Eald\'narche',
-      capture: true
+      source: 'Eald\'narche'
     },
-    run: (data, matches) => data.tankbusters.push(matches.target)
+    alertText: (data, matches, output) => {
+      if (matches.target === data.me) return output.tankBusterOnYou();
+    },
+    run: (data, matches) => data.tankbusterTargets.push(matches.target),
+    outputStrings: {
+      tankBusterOnYou: outputs/* default.tankBusterOnYou */.Z.tankBusterOnYou
+    }
   }, {
-    id: 'Sandoria Second Walk Ealdnarche Uranos Cascade',
+    id: 'San dOria Second Walk Eald\'narche Uranos Cascade Not You',
     type: 'StartsUsing',
     netRegex: {
       id: 'AD52',
@@ -214015,41 +215046,73 @@ const san_doria_second_walk_triggerSet = {
       capture: false
     },
     delaySeconds: 0.3,
-    suppressSeconds: 1,
-    response: (data, _matches, output) => {
-      // cactbot-builtin-response
-      output.responseOutputStrings = {
-        tankCleaveOnYou: outputs/* default.tankCleaveOnYou */.Z.tankCleaveOnYou,
-        tankCleaves: outputs/* default.avoidTankCleaves */.Z.avoidTankCleaves
-      };
-      if (data.tankbusters.includes(data.me)) return {
-        alertText: output.tankCleaveOnYou()
-      };
-      return {
-        infoText: output.tankCleaves()
-      };
+    suppressSeconds: 5,
+    infoText: (data, _matches, output) => {
+      if (data.tankbusterTargets.includes(data.me)) return;
+      return output.tankBusters();
     },
-    run: data => data.tankbusters = []
+    run: data => data.tankbusterTargets = [],
+    outputStrings: {
+      tankBusters: outputs/* default.tankBusters */.Z.tankBusters
+    }
   }, {
-    id: 'Sandoria Second Walk Ealdnarche Cronos Sling',
+    id: 'San dOriea Second Walk Eald\'narche Cronos Sling Out + Right',
     type: 'StartsUsing',
     netRegex: {
-      id: ['AD49', 'AD4A', 'AD4B', 'AD4C'],
+      id: 'AD49',
       source: 'Eald\'narche',
-      capture: true
+      capture: false
     },
-    alertText: (_data, matches, output) => {
-      return output.unknown({
-        id: matches.id
-      });
-    },
+    alertText: (_data, _matches, output) => output.text(),
     outputStrings: {
-      unknown: {
-        en: 'Unknown Cronos Sling (${id})'
+      text: {
+        en: 'Out => Right'
       }
     }
   }, {
-    id: 'Sandoria Second Walk Ealdnarche Warp',
+    id: 'San dOria Second Walk Eald\'narche Cronos Sling Out + Left',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD4A',
+      source: 'Eald\'narche',
+      capture: false
+    },
+    alertText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Out => Left'
+      }
+    }
+  }, {
+    id: 'San dOria Second Walk Eald\'narche Cronos Sling In + Right',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD4B',
+      source: 'Eald\'narche',
+      capture: false
+    },
+    alertText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'In => Right'
+      }
+    }
+  }, {
+    id: 'San dOria Second Walk Eald\'narche Cronos Sling In + Left',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AD4C',
+      source: 'Eald\'narche',
+      capture: false
+    },
+    alertText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'In => Left'
+      }
+    }
+  }, {
+    id: 'San dOria Second Walk Eald\'narche Warp',
     type: 'StartsUsing',
     netRegex: {
       id: 'AD56',
@@ -214063,7 +215126,7 @@ const san_doria_second_walk_triggerSet = {
       }
     }
   }, {
-    id: 'Sandoria Second Walk Ealdnarche Empyreal Vortex',
+    id: 'San dOria Second Walk Eald\'narche Empyreal Vortex',
     type: 'StartsUsing',
     netRegex: {
       id: 'AD6D',
@@ -214076,12 +215139,24 @@ const san_doria_second_walk_triggerSet = {
         en: 'AoE x5'
       }
     }
+  },
+  // ----------------------
+  // Adds
+  {
+    id: 'San dOria Second Walk Detector Electroswipe',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'AA27',
+      source: 'Detector'
+    },
+    suppressSeconds: 5,
+    response: responses/* Responses.interruptIfPossible */.n3.interruptIfPossible('info')
   }],
   timelineReplace: []
 };
 /* harmony default export */ const san_doria_second_walk = (san_doria_second_walk_triggerSet);
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/alliance/san-doria-second-walk.txt
-const alliance_san_doria_second_walk_namespaceObject = "### SAN D'ORIA: THE SECOND WALK\r\n# ZoneId: 1304\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n0.0 \"--Reset--\" ActorControl { command: \"4000000F\" } window 0,1000000 jump 0\r\n\r\n# .*is no longer sealed\r\n0.0 \"--Reset--\" SystemLogMessage { id: \"7DE\" } window 0,1000000 jump 0\r\n\r\n#~~~~~~~~~~~~~~~~~~#\r\n# Faithbound Kirin #\r\n#~~~~~~~~~~~~~~~~~~#\r\n\r\n# -ic \"Alxaal\"\r\n# -ii ADCD\r\n\r\n# The Highland Battlefield will be sealed off\r\n10000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"148C\" } window 10000,1\r\n10007.2 \"--sync--\" StartsUsing { id: \"ADCA\", source: \"Faithbound Kirin\" } window 10007.4,10\r\n10012.1 \"Stonega IV\" Ability { id: \"ADCA\", source: \"Faithbound Kirin\" }\r\n\r\n# Wrought Arms 1 (Tutorial)\r\n10022.8 \"Wrought Arms\" Ability { id: \"AD91\", source: \"Faithbound Kirin\" }\r\n10033.7 \"Synchronized Strike\" Ability { id: \"AD95\", source: \"Faithbound Kirin\" }\r\n10034.4 \"--sync--\" Ability { id: \"AD96\", source: \"Faithbound Kirin\" }\r\n10038.8 \"Synchronized Smite\" Ability { id: [\"AD9B\", \"AD9C\"], source: \"Sculpted Arm\" }\r\n10045.8 \"Synchronized Strike\" Ability { id: \"AD95\", source: \"Faithbound Kirin\" }\r\n10046.5 \"--sync--\" Ability { id: \"AD96\", source: \"Faithbound Kirin\" }\r\n10050.9 \"Synchronized Smite\" Ability { id: [\"AD9B\", \"AD9C\"], source: \"Sculpted Arm\" }\r\n10061.7 \"Crimson Riddle\" Ability { id: [\"AFF4\", \"AFF5\"], source: \"Faithbound Kirin\" }\r\n10068.8 \"Crimson Riddle\" Ability { id: [\"AFF4\", \"AFF5\"], source: \"Faithbound Kirin\" }\r\n\r\n# Shijin Summoning\r\n#\r\n# The Combatants get added at the start of the fight, so we can't sync to\r\n# the AddedCombatant line. Additionally, the summons do not appear to \"cast\"\r\n# actions, so we can't sync to the first cast ability they use.\r\n10083.0 \"Summon Shijin\" Ability { id: \"AD7E\", source: \"Faithbound Kirin\" }\r\n10085.0 \"--sync--\" GameLog { code: \"0044\", line: \"O Suzaku, conjure your infernal flames!\" } jump \"kirin-shijin-suzaku\"\r\n10085.0 \"--sync--\" GameLog { code: \"0044\", line: \"O Genbu, entomb in rock and earth!\" } jump \"kirin-shijin-genbu\"\r\n\r\n# Sunbound Suzaku\r\n11000.0 label \"kirin-shijin-suzaku\"\r\n11007.2 \"Sun Powder\" Ability { id: \"AD89\", source: \"Sunbound Suzaku\" }\r\n11015.2 \"Vermilion Flight\" Ability { id: \"AD8A\", source: \"Sunbound Suzaku\" }\r\n11018.3 \"Arm of Purgatory\" #Ability { id: \"AEFC\", source: \"Ball of Fire\" }\r\n11018.3 \"Arm of Purgatory\" #Ability { id: \"AEFC\", source: \"Ball of Fire\" }\r\n11018.7 \"Vermilion Flight\" Ability { id: \"AEFB\", source: \"Sunbound Suzaku\" }\r\n11018.7 \"Arm of Purgatory\" Ability { id: \"AEFA\", source: \"Sunbound Suzaku\" }\r\n11022.6 \"Sun Powder\" Ability { id: \"AD89\", source: \"Sunbound Suzaku\" }\r\n11030.3 \"Stonega III\" Ability { id: \"B079\", source: \"Faithbound Kirin\" }\r\n11030.5 \"Vermilion Flight\" Ability { id: \"AD8A\", source: \"Sunbound Suzaku\" }\r\n11033.6 \"Arm of Purgatory\" Ability { id: \"AEFC\", source: \"Ball of Fire\" }\r\n11033.9 \"Vermilion Flight\" Ability { id: \"AEFB\", source: \"Sunbound Suzaku\" }\r\n11033.9 \"Arm of Purgatory\" Ability { id: \"AEFA\", source: \"Sunbound Suzaku\" }\r\n11038.1 \"Stonega III\" Ability { id: \"B07A\", source: \"Faithbound Kirin\" }\r\n11044.2 \"--sync--\" StartsUsing { id: \"AD91\", source: \"Faithbound Kirin\" } window 10,10 forcejump \"kirin-wrought-arms-2\"\r\n\r\n# Dawnbound Seiryu\r\n12000.0 label \"kirin-shijin-seiryu\"\r\n\r\n# Moonbound Genbu\r\n13000.0 label \"kirin-shijin-genbu\"\r\n13010.2 \"Shattering Stomp\" Ability { id: \"AD84\", source: \"Moonbound Genbu\" }\r\n13020.4 \"Moontide Font\" Ability { id: \"AD86\", source: \"Moonbound Genbu\" }\r\n13025.4 \"Moontide Font\" Ability { id: \"AD86\", source: \"Moonbound Genbu\" }\r\n13030.2 \"Midwinter March\" Ability { id: \"AD87\", source: \"Moonbound Genbu\" }\r\n13031.2 \"--sync--\" Ability { id: \"AD31\", source: \"Moonbound Genbu\" }\r\n13036.3 \"Northern Current\" Ability { id: \"AD88\", source: \"Moonbound Genbu\" }\r\n13041.6 \"Crimson Riddle\" Ability { id: [\"AFF4\", \"AFF5\"], source: \"Faithbound Kirin\" }\r\n\r\n# Duskbound Byakko\r\n14000.0 label \"kirin-shijin-byakko\"\r\n\r\n# Wrought Arms 2\r\n15000.0 label \"kirin-wrought-arms-2\"\r\n15000.0 \"--sync---\" StartsUsing { id: \"AD91\", source: \"Faithbound Kirin\" } window 3950,1\r\n15003.3 \"Wrought Arms\" Ability { id: \"AD91\", source: \"Faithbound Kirin\" }\r\n15011.7 \"Wringer\" Ability { id: \"AD92\", source: \"Faithbound Kirin\" }\r\n15016.7 \"Dead Wringer\" Ability { id: [\"AD97\", \"AD98\"], source: \"Sculpted Arm\" }\r\n15026.3 \"Striking Left/Striking Right\" Ability { id: [\"AD93\", \"AD94\"], source: \"Faithbound Kirin\" }\r\n15031.3 \"Smiting Left/Right\" Ability { id: [\"AD99\", \"AD9A\"], source: \"Sculpted Arm\" }\r\n15036.5 \"Stonega IV\" Ability { id: \"ADCA\", source: \"Faithbound Kirin\" }\r\n\r\n# The boss and hands will do an extremely large number of possible sequences\r\n# which are difficult to split into separate timeline segments, due to the\r\n# sheer number of combinations and overlap between casts. The timeline\r\n# matching doesn't handle this very well. Instead, just show a duration\r\n# line with an estimated length...\r\n15042.3 \"--synchronized sequence--\" duration 20\r\n\r\n# Adds Phase\r\n15500.0 label \"kirin-chiseled-arms\"\r\n15500.0 \"--sync--\" StartsUsing { id: \"ADB1\", source: \"Faithbound Kirin\" } window 500,1\r\n15506.9 \"Mighty Grip\" Ability { id: \"ADB1\", source: \"Faithbound Kirin\" }\r\n15517.7 \"Shockwave\" Ability { id: \"ADC0\", source: \"Chiseled Arm\" }\r\n15526.7 \"Shockwave\" Ability { id: \"ADC0\", source: \"Chiseled Arm\" }\r\n15527.7 \"Deadly Hold\" Ability { id: \"ADB2\", source: \"Faithbound Kirin\" }\r\n15535.9 \"--sync--\" Ability { id: \"ADB4\", source: \"Faithbound Kirin\" }\r\n# Both Chiseled Arms must be destroyed before this cast finishes\r\n15539.1 \"Kirin Captivator\" StartsUsing { id: \"ADB3\", source: \"Faithbound Kirin\" } duration 29.7\r\n15541.1 \"Shockwave\" Ability { id: \"ADC0\", source: \"Chiseled Arm\" }\r\n15550.1 \"Shockwave\" Ability { id: \"ADC0\", source: \"Chiseled Arm\" }\r\n\r\n16000.0 label \"kirin-wrought-arms-3\"\r\n16000.0 \"--sync--\" StartsUsing { id: \"AD91\", source: \"Faithbound Kirin\" } window 395,1\r\n16003.5 \"Wrought Arms\" Ability { id: \"AD91\", source: \"Faithbound Kirin\" }\r\n\r\n# From this point, its extremely unclear from logs what the boss will do. It\r\n# repeats mechanics until you kill it. Wiki says that another Shijin can be\r\n# summoned, but I don't have logs of that. I don't know how to make a\r\n# timeline of this...\r\n16011.5 \"--mechanics repeat...-\" duration 120\r\n16011.5 \"--goodluck!--\" duration 120\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# 366 attack\r\n# AA33 Savage Blade\r\n# AA34 Vorpal Blade\r\n# AA35 Spirits Within\r\n# AC05 --sync--\r\n# AD7E Summon Shijin\r\n# AD89 Sun Powder\r\n# AD8A Vermilion Flight\r\n# AD91 Wrought Arms\r\n# AD92 Wringer\r\n# AD94 Striking Left\r\n# AD95 Synchronized Strike\r\n# AD96 Synchronized Strike\r\n# AD97 Dead Wringer\r\n# AD98 Dead Wringer\r\n# AD9A Smiting Left\r\n# AD9B Synchronized Smite\r\n# AD9C Synchronized Smite\r\n# AD9F Smiting Left Sequence\r\n# ADA0 Synchronized Sequence\r\n# ADA1 Synchronized Sequence\r\n# ADA2 Wringer\r\n# ADA3 Striking Right\r\n# ADA7 Dead Wringer\r\n# ADA8 Dead Wringer\r\n# ADA9 Smiting Right\r\n# ADAD Wringer\r\n# ADAE Striking Right\r\n# ADAF Striking Left\r\n# ADB0 Synchronized Strike\r\n# ADB1 Mighty Grip\r\n# ADB2 Deadly Hold\r\n# ADB4 --sync--\r\n# ADB5 Deadly Hold\r\n# ADB6 Deadly Hold\r\n# ADB7 --sync--\r\n# ADB8 --sync--\r\n# ADB9 --sync--\r\n# ADBA --sync--\r\n# ADBF Bury\r\n# ADC0 Shockwave\r\n# ADCA Stonega IV\r\n# ADCD --sync--\r\n# AEFA Arm of Purgatory\r\n# AEFB Vermilion Flight\r\n# AEFC Arm of Purgatory\r\n# AF80 Deadly Hold\r\n# AFF4 Crimson Riddle\r\n# AFF5 Crimson Riddle\r\n# B079 Stonega III\r\n# B07A Stonega III\r\n# B0FA attack\r\n\r\n#~~~~~~~~~~~~~~~~#\r\n# Ultima & Omega #\r\n#~~~~~~~~~~~~~~~~#\r\n\r\n# -ii AD1D AD2C AD30\r\n# -ic \"Alxaal\"\r\n\r\n# Armada Airship will be sealed off\r\n20000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"14B2\" } window 20000,1\r\n20005.5 \"--sync--\" StartsUsing { id: \"AD2B\", source: \"Omega, the One\" } window 20005.5,10\r\n20011.7 \"Ion Efflux\" Ability { id: \"AD2B\", source: \"Omega, the One\" }\r\n20015.5 \"--sync--\" Ability { id: \"AD10\", source: \"Ultima, the Feared\" }\r\n20016.5 \"Antimatter\" Ability { id: \"AD11\", source: \"Ultima, the Feared\" }\r\n20020.6 \"Energy Orb\" Ability { id: \"AD08\", source: \"Ultima, the Feared\" }\r\n20028.8 \"Energy Ray\" Ability { id: \"AD32\", source: \"Energy Orb\" }\r\n20031.8 \"Aft-to-fore Fire/Fore-to-aft Fire\" Ability { id: [\"AD25\", \"AD27\"], source: \"Omega, the One\" }\r\n20032.4 \"Omega Blaster\" Ability { id: \"AD29\", source: \"Omega, the One\" }\r\n20034.0 \"Foreward Blaster/Aftward Blaster\" Ability { id: [\"AD26\", \"AD28\"], source: \"Omega, the One\" }\r\n20034.8 \"Omega Blaster\" Ability { id: \"AD2A\", source: \"Omega, the One\" }\r\n20048.4 \"Tractor Beam\" Ability { id: \"AD06\", source: \"Ultima, the Feared\" }\r\n20048.6 \"Anti-personnel Missile\" Ability { id: \"B087\", source: \"Omega, the One\" }\r\n20048.8 \"Crash\" Ability { id: \"AD07\", source: \"Ultima, the Feared\" }\r\n20048.8 \"Tractor Beam\" #Ability { id: \"B086\", source: \"Ultima, the Feared\" }\r\n20053.6 \"Anti-personnel Missile\" Ability { id: \"B088\", source: \"Omega, the One\" }\r\n20065.9 \"Surface Missile\" Ability { id: \"B075\", source: \"Omega, the One\" }\r\n20066.9 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20067.9 \"Energy Orb\" Ability { id: \"AD08\", source: \"Ultima, the Feared\" }\r\n20069.0 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20069.0 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20071.0 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20071.0 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20075.0 \"Anti-personnel Missile\" Ability { id: \"B087\", source: \"Omega, the One\" }\r\n20076.0 \"Energy Ray\" Ability { id: \"AD32\", source: \"Energy Orb\" }\r\n20080.0 \"Anti-personnel Missile\" #Ability { id: \"B088\", source: \"Omega, the One\" }\r\n20080.0 \"Anti-personnel Missile\" #Ability { id: \"B088\", source: \"Omega, the One\" }\r\n20083.0 \"Mana Screen\" Ability { id: \"AD09\", source: \"Ultima, the Feared\" }\r\n20088.1 \"Energy Orb\" Ability { id: \"AD08\", source: \"Ultima, the Feared\" }\r\n20096.3 \"Energy Ray\" Ability { id: \"AD32\", source: \"Energy Orb\" }\r\n20097.1 \"Energy Ray\" #Ability { id: \"AD0D\", source: \"Ultima, the Feared\" }\r\n20102.0 \"Trajectory Projection\" Ability { id: \"AD23\", source: \"Omega, the One\" }\r\n20112.7 \"Guided Missile\" #Ability { id: \"AD24\", source: \"Omega, the One\" }\r\n20112.7 \"Guided Missile\" #Ability { id: \"AD24\", source: \"Omega, the One\" }\r\n\r\n# Jump from the airship before it's reduced to ash!\r\n20118.3 \"Tractor Field\" Ability { id: \"AD12\", source: \"Ultima, the Feared\" }\r\n20118.7 \"Tractor Field\" Ability { id: \"AD13\", source: \"Ultima, the Feared\" }\r\n20123.6 \"Multi-missile\" Ability { id: \"AFEB\", source: \"Omega, the One\" }\r\n20123.6 \"Citadel Siege\" Ability { id: \"AD14\", source: \"Ultima, the Feared\" }\r\n20125.4 \"Multi-missile\" Ability { id: \"AFED\", source: \"Omega, the One\" }\r\n20125.5 \"Multi-missile\" Ability { id: \"AFEC\", source: \"Omega, the One\" }\r\n20127.6 \"Citadel Siege\" Ability { id: \"AD15\", source: \"Ultima, the Feared\" }\r\n20127.7 \"Multi-missile\" Ability { id: \"AFEB\", source: \"Omega, the One\" }\r\n20128.6 \"Citadel Siege\" Ability { id: \"AD18\", source: \"Ultima, the Feared\" }\r\n20129.6 \"Multi-missile\" Ability { id: \"AFED\", source: \"Omega, the One\" }\r\n20129.7 \"Multi-missile\" Ability { id: \"AFEC\", source: \"Omega, the One\" }\r\n20131.7 \"Citadel Siege\" Ability { id: \"AD16\", source: \"Ultima, the Feared\" }\r\n20132.0 \"Multi-missile\" Ability { id: \"AFEB\", source: \"Omega, the One\" }\r\n20132.7 \"Citadel Siege\" Ability { id: \"AD18\", source: \"Ultima, the Feared\" }\r\n20133.9 \"Multi-missile\" Ability { id: \"AFED\", source: \"Omega, the One\" }\r\n20134.0 \"Multi-missile\" Ability { id: \"AFEC\", source: \"Omega, the One\" }\r\n20135.7 \"Citadel Siege\" Ability { id: \"AD17\", source: \"Ultima, the Feared\" }\r\n20136.3 \"Multi-missile\" Ability { id: \"AFEB\", source: \"Omega, the One\" }\r\n20136.7 \"Citadel Siege\" Ability { id: \"AD18\", source: \"Ultima, the Feared\" }\r\n20138.1 \"Multi-missile\" Ability { id: \"AFED\", source: \"Omega, the One\" }\r\n20138.2 \"Multi-missile\" #Ability { id: \"AFEC\", source: \"Omega, the One\" }\r\n20138.2 \"Multi-missile\" #Ability { id: \"AFEC\", source: \"Omega, the One\" }\r\n20140.6 \"Citadel Siege\" Ability { id: \"AD18\", source: \"Ultima, the Feared\" }\r\n20152.7 \"Citadel Buster\" Ability { id: \"AD1B\", source: \"Ultima, the Feared\" }\r\n20158.6 \"Hyper Pulse\" Ability { id: \"AD2F\", source: \"Omega, the One\" }\r\n\r\n# Phase 2\r\n20175.8 label \"ultima-omega-p2-loop\"\r\n20175.8 \"Tractor Beam\" Ability { id: \"AD06\", source: \"Ultima, the Feared\" }\r\n20176.2 \"Crash\" Ability { id: \"AD07\", source: \"Ultima, the Feared\" }\r\n20176.2 \"Tractor Beam\" #Ability { id: \"B086\", source: \"Ultima, the Feared\" }\r\n20176.4 \"Trajectory Projection\" Ability { id: \"AD23\", source: \"Omega, the One\" }\r\n20187.0 \"Mana Screen\" Ability { id: \"AD09\", source: \"Ultima, the Feared\" }\r\n20187.1 \"Guided Missile\" #Ability { id: \"AD24\", source: \"Omega, the One\" }\r\n20192.1 \"Energy Orb\" Ability { id: \"AD08\", source: \"Ultima, the Feared\" }\r\n20200.3 \"Energy Ray\" Ability { id: \"AD32\", source: \"Energy Orb\" }\r\n20201.1 \"Energy Ray\" #Ability { id: \"AD0C\", source: \"Ultima, the Feared\" }\r\n20201.4 \"Anti-personnel Missile\" Ability { id: \"B087\", source: \"Omega, the One\" }\r\n20201.6 \"Energy Ray\" Ability { id: \"AD0B\", source: \"Ultima, the Feared\" }\r\n20206.4 \"Anti-personnel Missile\" Ability { id: \"B088\", source: \"Omega, the One\" }\r\n20214.9 \"Chemical Bomb\" Ability { id: \"AD0E\", source: \"Ultima, the Feared\" }\r\n20215.5 \"Chemical Bomb\" Ability { id: \"AD0F\", source: \"Ultima, the Feared\" }\r\n20218.5 \"Chemical Bomb\" Ability { id: \"AD0F\", source: \"Ultima, the Feared\" }\r\n20221.5 \"Chemical Bomb\" Ability { id: \"AD0F\", source: \"Ultima, the Feared\" }\r\n20224.5 \"Chemical Bomb\" Ability { id: \"AD0F\", source: \"Ultima, the Feared\" }\r\n20233.2 \"Surface Missile\" Ability { id: \"B075\", source: \"Omega, the One\" }\r\n20234.2 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20236.2 \"Energy Orb\" Ability { id: \"AD08\", source: \"Ultima, the Feared\" }\r\n20236.2 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20236.2 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20238.2 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20238.2 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20244.0 \"Aft-to-fore Fire/Fore-to-aft Fire\" Ability { id: [\"AD25\", \"AD27\"], source: \"Omega, the One\" }\r\n20244.3 \"Energy Ray\" Ability { id: \"AD32\", source: \"Energy Orb\" }\r\n20244.4 \"Omega Blaster\" Ability { id: \"AD29\", source: \"Omega, the One\" }\r\n20246.1 \"Foreward Blaster/Aftward Blaster\" Ability { id: [\"AD26\", \"AD28\"], source: \"Omega, the One\" }\r\n20246.9 \"Omega Blaster\" Ability { id: \"AD2A\", source: \"Omega, the One\" }\r\n20262.9 \"Ion Efflux\" Ability { id: \"AD2B\", source: \"Omega, the One\" }\r\n20274.6 \"Antimatter\" Ability { id: \"AD10\", source: \"Ultima, the Feared\" }\r\n20275.6 \"Antimatter\" Ability { id: \"AD11\", source: \"Ultima, the Feared\" }\r\n20293.6 \"Tractor Beam\" Ability { id: \"AD06\", source: \"Ultima, the Feared\" } window 30,30 forcejump \"ultima-omega-p2-loop\"\r\n20342.5 \"Chemical Bomb\" Ability { id: \"AD0F\", source: \"Ultima, the Feared\" }\r\n\r\n# IGNORED ABILITIES\r\n# AD1D --sync--\r\n# AD2C --sync--\r\n# AD30 Energizing Equilibrium\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# AD06 Tractor Beam\r\n# AD07 Crash\r\n# AD08 Energy Orb\r\n# AD09 Mana Screen\r\n# AD0B Energy Ray\r\n# AD0C Energy Ray\r\n# AD0D Energy Ray\r\n# AD0E Chemical Bomb\r\n# AD0F Chemical Bomb\r\n# AD10 Antimatter\r\n# AD11 Antimatter\r\n# AD12 Tractor Field\r\n# AD13 Tractor Field\r\n# AD14 Citadel Siege\r\n# AD15 Citadel Siege\r\n# AD16 Citadel Siege\r\n# AD17 Citadel Siege\r\n# AD18 Citadel Siege\r\n# AD1B Citadel Buster\r\n# AD1C Energizing Equilibrium\r\n# AD1D --sync--\r\n# AD23 Trajectory Projection\r\n# AD24 Guided Missile\r\n# AD25 Fore-to-aft Fire\r\n# AD26 Foreward Blaster\r\n# AD27 Aft-to-fore Fire\r\n# AD28 Aftward Blaster\r\n# AD29 Omega Blaster\r\n# AD2A Omega Blaster\r\n# AD2B Ion Efflux\r\n# AD2C --sync--\r\n# AD2F Hyper Pulse\r\n# AD30 Energizing Equilibrium\r\n# AD32 Energy Ray\r\n# AFEB Multi-missile\r\n# AFEC Multi-missile\r\n# AFED Multi-missile\r\n# B075 Surface Missile\r\n# B076 Surface Missile\r\n# B086 Tractor Beam\r\n# B087 Anti-personnel Missile\r\n# B088 Anti-personnel Missile\r\n# B0FC attack\r\n\r\n#~~~~~~~~~~~~~~~~~#\r\n# Stellar Fulcrum #\r\n#~~~~~~~~~~~~~~~~~#\r\n\r\n# The Stellar Fulcrum will be sealed off\r\n30000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"1488\" } window 30000,1\r\n30006.4 \"--sync--\" StartsUsing { id: \"ACBD\", source: \"Kam'lanaut\" } window 30006.4,1\r\n30011.1 \"Enspirited Swordplay\" Ability { id: \"ACBD\", source: \"Kam'lanaut\" }\r\n30014.3 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n30019.4 \"Proving Ground\" Ability { id: \"B009\", source: \"Kam'lanaut\" }\r\n# TODO: Add sync for elemental buffs?\r\n30032.5 \"Elemental Blade\" Ability { id: \"AC91\", source: \"Kam'lanaut\" }\r\n30043.6 \"Sublime Elements\" Ability { id: \"B00A\", source: \"Kam'lanaut\" }\r\n# TODO: condense sublime elements, based on which of these is \"real\"\r\n# TODO: verify if the two variants of Sublime Elements can appear in\r\n# different order\r\n30044.6 \"Sublime Earth\" #Ability { id: \"AC94\", source: \"Kam'lanaut\" }\r\n30044.6 \"Sublime Fire\" #Ability { id: \"AC93\", source: \"Kam'lanaut\" }\r\n30044.6 \"Sublime Ice\" #Ability { id: \"AC9C\", source: \"Kam'lanaut\" }\r\n30044.6 \"Sublime Lightning\" #Ability { id: \"AC97\", source: \"Kam'lanaut\" }\r\n30044.6 \"Sublime Water\" #Ability { id: \"AC9B\", source: \"Kam'lanaut\" }\r\n30044.6 \"Sublime Wind\" #Ability { id: \"AC98\", source: \"Kam'lanaut\" }\r\n30054.7 \"Elemental Blade\" Ability { id: \"AC91\", source: \"Kam'lanaut\" }\r\n30065.8 \"Sublime Elements\" Ability { id: \"B00A\", source: \"Kam'lanaut\" }\r\n30066.8 \"Earth Blade\" #Ability { id: \"ACA0\", source: \"Kam'lanaut\" }\r\n30066.8 \"Fire Blade\" #Ability { id: \"AC9F\", source: \"Kam'lanaut\" }\r\n30066.8 \"Ice Blade\" #Ability { id: \"ACA8\", source: \"Kam'lanaut\" }\r\n30066.8 \"Lightning Blade\" #Ability { id: \"ACA9\", source: \"Kam'lanaut\" }\r\n30066.8 \"Water Blade\" #Ability { id: \"ACA1\", source: \"Kam'lanaut\" }\r\n30066.8 \"Wind Blade\" #Ability { id: \"ACA4\", source: \"Kam'lanaut\" }\r\n# TODO: Check which ablity hurts?\r\n30076.1 \"--sync--\" Ability { id: \"ACBB\", source: \"Kam'lanaut\" }\r\n30077.1 \"Princely Blow\" Ability { id: \"ACBC\", source: \"Kam'lanaut\" }\r\n30082.2 \"Light Blade\" Ability { id: \"ACAB\", source: \"Kam'lanaut\" }\r\n30088.2 \"Sublime Estoc\" #Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30088.2 \"Sublime Estoc\" #Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30091.3 \"Great Wheel\" Ability { id: [\"ACAF\", \"ACB0\"], source: \"Kam'lanaut\" }\r\n30097.2 \"Great Wheel\" Ability { id: \"ACB1\", source: \"Kam'lanaut\" }\r\n30104.4 \"Enspirited Swordplay\" Ability { id: \"ACBD\", source: \"Kam'lanaut\" }\r\n30111.5 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n\r\n# Phase Transition\r\n# TODO: Add --untargettable--?? and maybe a duration?\r\n30124.8 \"Esoteric Scrivening\" Ability { id: \"ACB2\", source: \"Kam'lanaut\" }\r\n30129.9 \"--sync--\" Ability { id: \"AD79\", source: \"Kam'lanaut\" }\r\n30143.0 \"--sync--\" Ability { id: \"AD7A\", source: \"Kam'lanaut\" }\r\n30148.2 \"Shockwave\" Ability { id: \"ACB3\", source: \"Kam'lanaut\" }\r\n30148.2 \"--sync--\" Ability { id: \"A2FF\", source: \"Kam'lanaut\" }\r\n30156.8 \"Transcendent Union\" Ability { id: \"ACB4\", source: \"Kam'lanaut\" }\r\n30157.8 \"Elemental Edge\" #Ability { id: \"AD01\", source: \"Kam'lanaut\" }\r\n30158.1 \"Elemental Edge\" #Ability { id: \"AD01\", source: \"Kam'lanaut\" }\r\n30158.4 \"Elemental Edge\" #Ability { id: \"AD01\", source: \"Kam'lanaut\" }\r\n30158.8 \"Elemental Edge\" #Ability { id: \"AD01\", source: \"Kam'lanaut\" }\r\n30159.2 \"Elemental Edge\" #Ability { id: \"AD01\", source: \"Kam'lanaut\" }\r\n30159.9 \"Elemental Edge\" #Ability { id: \"AD01\", source: \"Kam'lanaut\" }\r\n30163.2 \"Transcendent Union\" Ability { id: \"ACB5\", source: \"Kam'lanaut\" }\r\n30174.0 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n\r\n# Phase 2\r\n30179.2 \"Esoteric Palisade\" Ability { id: \"ACB6\", source: \"Kam'lanaut\" }\r\n30185.3 \"Crystalline Resonance\" Ability { id: \"ACB7\", source: \"Kam'lanaut\" }\r\n30193.2 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30200.2 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30207.2 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30207.4 \"Illumed Facet\" Ability { id: \"ACB9\", source: \"Kam'lanaut\" }\r\n30207.4 \"Empyreal Banish III\" #Ability { id: \"ACBF\", source: \"Kam'lanaut\" }\r\n30218.4 \"Illumed Estoc\" Ability { id: \"ACBA\", source: \"Kam'lanaut\" }\r\n30225.7 \"Shield Bash\" Ability { id: \"ACBE\", source: \"Kam'lanaut\" }\r\n# TODO: check which of these matters\r\n30234.8 \"Empyreal Banish IV\" Ability { id: \"AF6B\", source: \"Kam'lanaut\" }\r\n30235.8 \"Empyreal Banish IV\" Ability { id: \"ACC0\", source: \"Kam'lanaut\" }\r\n30245.1 \"--sync--\" Ability { id: \"ACBB\", source: \"Kam'lanaut\" }\r\n30246.1 \"Princely Blow\" Ability { id: \"ACBC\", source: \"Kam'lanaut\" }\r\n30255.2 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n30260.3 \"Proving Ground\" Ability { id: \"B009\", source: \"Kam'lanaut\" }\r\n30274.4 \"Elemental Blade\" Ability { id: \"AC92\", source: \"Kam'lanaut\" }\r\n30285.5 \"Sublime Elements\" Ability { id: \"B00A\", source: \"Kam'lanaut\" }\r\n30286.5 \"Sublime Earth\" #Ability { id: \"AC94\", source: \"Kam'lanaut\" }\r\n30286.5 \"Sublime Fire\" #Ability { id: \"AC99\", source: \"Kam'lanaut\" }\r\n30286.5 \"Sublime Ice\" #Ability { id: \"AC9C\", source: \"Kam'lanaut\" }\r\n30286.5 \"Sublime Lightning\" #Ability { id: \"AC9D\", source: \"Kam'lanaut\" }\r\n30286.5 \"Sublime Water\" #Ability { id: \"AC95\", source: \"Kam'lanaut\" }\r\n30286.5 \"Sublime Wind\" #Ability { id: \"AC98\", source: \"Kam'lanaut\" }\r\n30292.6 \"Light Blade\" Ability { id: \"ACAB\", source: \"Kam'lanaut\" }\r\n30298.6 \"Sublime Estoc\" #Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30298.6 \"Sublime Estoc\" #Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30298.6 \"Empyreal Banish III\" Ability { id: \"ACBF\", source: \"Kam'lanaut\" }\r\n30301.7 \"Great Wheel\" Ability { id: [\"ACAD\", \"ACAE\", \"ACAF\", \"ACB0\"], source: \"Kam'lanaut\" }\r\n30307.6 \"Great Wheel\" Ability { id: \"ACB1\", source: \"Kam'lanaut\" }\r\n30307.7 \"Empyreal Banish IV\" Ability { id: \"ACC0\", source: \"Kam'lanaut\" }\r\n30314.8 \"Enspirited Swordplay\" Ability { id: \"ACBD\", source: \"Kam'lanaut\" }\r\n30322.0 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n\r\n# Phase 2 Loop Start\r\n30327.2 label \"kamlanaut-loop\"\r\n30327.2 \"Esoteric Palisade\" Ability { id: \"ACB6\", source: \"Kam'lanaut\" }\r\n30333.3 \"Crystalline Resonance\" Ability { id: \"ACB7\", source: \"Kam'lanaut\" }\r\n30341.2 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30348.2 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30355.2 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30358.4 \"Light Blade\" Ability { id: \"ACAB\", source: \"Kam'lanaut\" }\r\n30364.4 \"Sublime Estoc\" #Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30364.4 \"Sublime Estoc\" #Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30364.4 \"Empyreal Banish III\" Ability { id: \"ACBF\", source: \"Kam'lanaut\" }\r\n30371.2 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30372.8 \"Illumed Facet\" Ability { id: \"ACB9\", source: \"Kam'lanaut\" }\r\n30382.9 \"Shield Bash\" Ability { id: \"ACBE\", source: \"Kam'lanaut\" }\r\n30383.7 \"Illumed Estoc\" Ability { id: \"ACBA\", source: \"Kam'lanaut\" }\r\n30392.1 \"Empyreal Banish IV\" Ability { id: \"AF6B\", source: \"Kam'lanaut\" }\r\n30393.1 \"Empyreal Banish IV\" Ability { id: \"ACC0\", source: \"Kam'lanaut\" }\r\n30398.2 \"Proving Ground\" Ability { id: \"B009\", source: \"Kam'lanaut\" }\r\n30412.3 \"Elemental Blade\" Ability { id: \"AC92\", source: \"Kam'lanaut\" }\r\n30423.4 \"Sublime Elements\" Ability { id: \"B00A\", source: \"Kam'lanaut\" }\r\n30424.4 \"Earth Blade\" #Ability { id: \"ACA6\", source: \"Kam'lanaut\" }\r\n30424.4 \"Fire Blade\" #Ability { id: \"ACA5\", source: \"Kam'lanaut\" }\r\n30424.4 \"Ice Blade\" #Ability { id: \"ACA2\", source: \"Kam'lanaut\" }\r\n30424.4 \"Lightning Blade\" #Ability { id: \"ACA3\", source: \"Kam'lanaut\" }\r\n30424.4 \"Water Blade\" #Ability { id: \"ACA1\", source: \"Kam'lanaut\" }\r\n30424.4 \"Wind Blade\" #Ability { id: \"ACAA\", source: \"Kam'lanaut\" }\r\n30431.5 \"Enspirited Swordplay\" Ability { id: \"ACBD\", source: \"Kam'lanaut\" }\r\n30441.8 \"--sync--\" Ability { id: \"ACBB\", source: \"Kam'lanaut\" }\r\n30442.8 \"Princely Blow\" Ability { id: \"ACBC\", source: \"Kam'lanaut\" }\r\n30452.0 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n30457.1 \"Proving Ground\" Ability { id: \"B009\", source: \"Kam'lanaut\" }\r\n30471.2 \"Elemental Blade\" Ability { id: \"AC92\", source: \"Kam'lanaut\" }\r\n30482.3 \"Sublime Elements\" Ability { id: \"B00A\", source: \"Kam'lanaut\" }\r\n30483.3 \"Sublime Earth\" #Ability { id: \"AC94\", source: \"Kam'lanaut\" }\r\n30483.3 \"Sublime Fire\" #Ability { id: \"AC99\", source: \"Kam'lanaut\" }\r\n30483.3 \"Sublime Ice\" #Ability { id: \"AC9C\", source: \"Kam'lanaut\" }\r\n30483.3 \"Sublime Lightning\" #Ability { id: \"AC9D\", source: \"Kam'lanaut\" }\r\n30483.3 \"Sublime Water\" #Ability { id: \"AC95\", source: \"Kam'lanaut\" }\r\n30483.3 \"Sublime Wind\" #Ability { id: \"AC98\", source: \"Kam'lanaut\" }\r\n30489.4 \"Light Blade\" Ability { id: \"ACAB\", source: \"Kam'lanaut\" }\r\n30495.4 \"Sublime Estoc\" Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30495.4 \"Empyreal Banish III\" Ability { id: \"ACBF\", source: \"Kam'lanaut\" }\r\n30498.5 \"Great Wheel\" Ability { id: [\"ACAD\", \"ACAE\", \"ACAF\", \"ACB0\"], source: \"Kam'lanaut\" }\r\n30504.4 \"Great Wheel\" Ability { id: \"ACB1\", source: \"Kam'lanaut\" }\r\n30504.5 \"Empyreal Banish IV\" Ability { id: \"ACC0\", source: \"Kam'lanaut\" }\r\n30511.6 \"Enspirited Swordplay\" Ability { id: \"ACBD\", source: \"Kam'lanaut\" }\r\n30518.8 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n30524.0 \"Esoteric Palisade\" Ability { id: \"ACB6\", source: \"Kam'lanaut\" } window 30,30 forcejump \"kamlanaut-loop\"\r\n\r\n# IGNORED ABILITIES\r\n# AF4C --sync--\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# A2FF --sync--\r\n# AC91 Elemental Blade\r\n# AC92 Elemental Blade\r\n# AC93 Sublime Fire\r\n# AC94 Sublime Earth\r\n# AC95 Sublime Water\r\n# AC97 Sublime Lightning\r\n# AC98 Sublime Wind\r\n# AC99 Sublime Fire\r\n# AC9B Sublime Water\r\n# AC9C Sublime Ice\r\n# AC9D Sublime Lightning\r\n# AC9F Fire Blade\r\n# ACA0 Earth Blade\r\n# ACA1 Water Blade\r\n# ACA2 Ice Blade\r\n# ACA3 Lightning Blade\r\n# ACA4 Wind Blade\r\n# ACA5 Fire Blade\r\n# ACA6 Earth Blade\r\n# ACA8 Ice Blade\r\n# ACA9 Lightning Blade\r\n# ACAA Wind Blade\r\n# ACAB Light Blade\r\n# ACAC Sublime Estoc\r\n# ACAE Great Wheel\r\n# ACAF Great Wheel\r\n# ACB0 Great Wheel\r\n# ACB1 Great Wheel\r\n# ACB2 Esoteric Scrivening\r\n# ACB3 Shockwave\r\n# ACB4 Transcendent Union\r\n# ACB5 Transcendent Union\r\n# ACB6 Esoteric Palisade\r\n# ACB7 Crystalline Resonance\r\n# ACB8 Elemental Resonance\r\n# ACB9 Illumed Facet\r\n# ACBA Illumed Estoc\r\n# ACBB Princely Blow\r\n# ACBC Princely Blow\r\n# ACBD Enspirited Swordplay\r\n# ACBE Shield Bash\r\n# ACBF Empyreal Banish III\r\n# ACC0 Empyreal Banish IV\r\n# ACC1 --sync--\r\n# AD01 Elemental Edge\r\n# AD79 --sync--\r\n# AD7A --sync--\r\n# AF4C --sync--\r\n# AF6B Empyreal Banish IV\r\n# B009 Proving Ground\r\n# B00A Sublime Elements\r\n\r\n#~~~~~~~~~~~~~~~~~#\r\n# Celestial Nexus #\r\n#~~~~~~~~~~~~~~~~~#\r\n\r\n# -ii AD47\r\n\r\n# Phase 1\r\n40000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"148A\" } window 40000,1\r\n40006.4 \"--sync--\" StartsUsing { id: \"AD51\", source: \"Eald'narche\" } window 40006.4,1\r\n40010.1 \"--sync--\" Ability { id: \"AD51\", source: \"Eald'narche\" }\r\n40011.1 \"Uranos Cascade\" Ability { id: \"AD52\", source: \"Eald'narche\" }\r\n40023.2 \"Cronos Sling\" Ability { id: [\"AD49\", \"AD4A\", \"AD4B\", \"AD4C\"], source: \"Eald'narche\" }\r\n40023.6 \"--sync--\" Ability { id: [\"AD4D\", \"AD4E\"], source: \"Eald'narche\" }\r\n40029.5 \"Cronos Sling\" Ability { id: [\"AD4F\", \"AD50\"], source: \"Eald'narche\" }\r\n40039.8 \"Empyreal Vortex\" Ability { id: \"AD6D\", source: \"Eald'narche\" } duration 5.8\r\n40045.6 \"--sync--\" Ability { id: \"AD70\", source: \"Eald'narche\" }\r\n40056.9 \"Cronos Sling\" Ability { id: [\"AD49\", \"AD4A\", \"AD4B\", \"AD4C\"], source: \"Eald'narche\" }\r\n40057.3 \"--sync--\" Ability { id: [\"AD4D\", \"AD4E\"], source: \"Eald'narche\" }\r\n40063.1 \"Cronos Sling\" Ability { id: [\"AD4F\", \"AD50\"], source: \"Eald'narche\" }\r\n40070.4 \"Warp\" Ability { id: \"AD56\", source: \"Eald'narche\" }\r\n40071.1 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40077.0 \"Sleepga\" Ability { id: \"AD58\", source: \"Eald'narche\" }\r\n40079.1 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40084.4 \"Gaea Stream\" Ability { id: \"AD53\", source: \"Eald'narche\" } duration 11.1\r\n40090.7 \"--sync--\" StartsUsing { id: \"AD5C\", source: \"Eald'narche\" } window 5,5\r\n40094.4 \"Omega Javelin\" Ability { id: \"AD5C\", source: \"Eald'narche\" }\r\n40095.5 \"--sync--\" Ability { id: \"AD5D\", source: \"Eald'narche\" }\r\n40099.9 \"Omega Javelin\" Ability { id: \"AD5E\", source: \"Eald'narche\" }\r\n40105.6 \"Duplicate\" Ability { id: \"AD77\", source: \"Eald'narche\" } duration 26.2\r\n40116.7 \"--sync--\" Ability { id: \"AD78\", source: \"Eald'narche\" }\r\n40120.7 \"--sync--\" Ability { id: \"AD77\", source: \"Eald'narche\" }\r\n40131.8 \"--sync--\" Ability { id: \"AD78\", source: \"Eald'narche\" }\r\n40140.8 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40150.1 \"Excelsior\" Ability { id: \"B040\", source: \"Eald'narche\" }\r\n40150.5 \"--sync--\" Ability { id: \"AF17\", source: \"Eald'narche\" }\r\n40155.2 \"Phase Shift\" Ability { id: \"AD59\", source: \"Eald'narche\" } duration 22.2\r\n40155.4 \"--sync--\" Ability { id: \"AD2E\", source: \"Eald'narche\" }\r\n40156.1 \"--sync--\" Ability { id: \"AD5B\", source: \"Eald'narche\" }\r\n40177.4 \"--sync--\" Ability { id: \"AD5A\", source: \"Eald'narche\" } window 23.1,5\r\n\r\n# Phase 2 Begins\r\n40189.6 \"Duplicate\" Ability { id: \"AD77\", source: \"Eald'narche\" } duration 13.1\r\n40198.7 \"Visions of Paradise\" Ability { id: \"AD75\", source: \"Eald'narche\" }\r\n40207.7 \"Stellar Burst\" Ability { id: \"AD72\", source: \"Eald'narche\" }\r\n40207.7 \"--sync--\" Ability { id: \"AD7D\", source: \"Eald'narche\" }\r\n40208.7 \"Stellar Burst\" Ability { id: \"AD73\", source: \"Eald'narche\" }\r\n40215.4 \"Stellar Burst\" Ability { id: \"AD74\", source: \"Eald'narche\" }\r\n40224.0 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n# TODO: There are many variations of Ancient Triad which are not really\r\n# worth creating branching timelines for. Just use a duration to indicate\r\n# that mechanics are ongoing. Note that this duration likely isn't accurate\r\n# for every variation, however the mechanics should mostly be done resolving\r\n# by this time.\r\n40232.3 \"Ancient Triad\" Ability { id: \"AD5F\", source: \"Eald'narche\" } duration 10.7\r\n40248.0 \"Gaea Stream\" Ability { id: \"AD53\", source: \"Eald'narche\" } duration 17\r\n40263.1 \"--sync--\" StartsUsing { id: \"AD51\", source: \"Eald'narche\" } window 15,5\r\n40266.8 \"--sync--\" Ability { id: \"AD51\", source: \"Eald'narche\" }\r\n40267.8 \"Uranos Cascade\" Ability { id: \"AD52\", source: \"Eald'narche\" }\r\n40273.9 \"Duplicate\" Ability { id: \"AD77\", source: \"Eald'narche\" } duration 13.1\r\n40283.0 \"Visions of Paradise\" Ability { id: \"AD75\", source: \"Eald'narche\" }\r\n\r\n# Phase 2 Loop\r\n40292.0 label \"ealdnarche-phase-2-loop\"\r\n40292.0 \"Omega Javelin\" Ability { id: \"AD5C\", source: \"Eald'narche\" }\r\n40293.1 \"--sync--\" Ability { id: \"AD5D\", source: \"Eald'narche\" }\r\n40295.1 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40297.5 \"Omega Javelin\" Ability { id: \"AD5E\", source: \"Eald'narche\" }\r\n40300.5 \"Gaea Stream\" Ability { id: \"AD53\", source: \"Eald'narche\" } duration 17\r\n40313.5 \"Cronos Sling\" Ability { id: [\"AD49\", \"AD4A\", \"AD4B\", \"AD4C\"], source: \"Eald'narche\" }\r\n40313.9 \"--sync--\" Ability { id: [\"AD4D\", \"AD4E\"], source: \"Eald'narche\" }\r\n40319.6 \"Cronos Sling\" Ability { id: [\"AD4F\", \"AD50\"], source: \"Eald'narche\" }\r\n40327.5 \"Stellar Burst\" Ability { id: \"AD72\", source: \"Eald'narche\" }\r\n40327.5 \"--sync--\" Ability { id: \"AD7D\", source: \"Eald'narche\" }\r\n40328.5 \"Stellar Burst\" Ability { id: \"AD73\", source: \"Eald'narche\" }\r\n40335.2 \"Stellar Burst\" Ability { id: \"AD74\", source: \"Eald'narche\" }\r\n40342.9 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40351.0 \"Ancient Triad\" Ability { id: \"AD5F\", source: \"Eald'narche\" } duration 10.7\r\n40359.7 \"Duplicate\" Ability { id: \"AD77\", source: \"Eald'narche\" } duration 13.1\r\n40368.9 \"Visions of Paradise\" Ability { id: \"AD75\", source: \"Eald'narche\" }\r\n40373.0 \"--sync--\" Ability { id: \"AD76\", source: \"Eald'narche\" }\r\n40377.0 \"Empyreal Vortex\" Ability { id: \"AD6D\", source: \"Eald'narche\" } duration 5.8\r\n40382.8 \"--sync--\" Ability { id: \"AD70\", source: \"Eald'narche\" }\r\n40386.6 \"Warp\" Ability { id: \"AD56\", source: \"Eald'narche\" }\r\n40387.3 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40393.2 \"Sleepga\" Ability { id: \"AD58\", source: \"Eald'narche\" }\r\n40395.3 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40401.6 \"Omega Javelin\" Ability { id: \"AD5C\", source: \"Eald'narche\" }\r\n40402.7 \"--sync--\" Ability { id: \"AD5D\", source: \"Eald'narche\" }\r\n40407.1 \"Omega Javelin\" Ability { id: \"AD5E\", source: \"Eald'narche\" }\r\n40411.7 \"Cronos Sling\" Ability { id: [\"AD49\", \"AD4A\", \"AD4B\", \"AD4C\"], source: \"Eald'narche\" }\r\n40412.1 \"--sync--\" Ability { id: [\"AD4D\", \"AD4E\"], source: \"Eald'narche\" }\r\n40417.9 \"Cronos Sling\" Ability { id: [\"AD4F\", \"AD50\"], source: \"Eald'narche\" }\r\n40429.2 \"--sync--\" Ability { id: \"AD51\", source: \"Eald'narche\" }\r\n40430.2 \"Uranos Cascade\" Ability { id: \"AD52\", source: \"Eald'narche\" }\r\n40444.3 \"Duplicate\" Ability { id: \"AD77\", source: \"Eald'narche\" } duration 13.1\r\n40453.4 \"Visions of Paradise\" Ability { id: \"AD75\", source: \"Eald'narche\" }\r\n40457.5 \"--sync--\" Ability { id: \"AD76\", source: \"Eald'narche\" }\r\n40462.5 \"Omega Javelin\" Ability { id: \"AD5C\", source: \"Eald'narche\" } forcejump \"ealdnarche-phase-2-loop\"\r\n\r\n# IGNORED ABILITIES\r\n# AD47 --sync--\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# AD2E Phase Shift\r\n# AD35 Tornado\r\n# AD47 --sync--\r\n# AD48 --sync--\r\n# AD49 Cronos Sling\r\n# AD4B Cronos Sling\r\n# AD4C Cronos Sling\r\n# AD4D Cronos Sling\r\n# AD4E Cronos Sling\r\n# AD4F Cronos Sling\r\n# AD50 Cronos Sling\r\n# AD51 Uranos Cascade\r\n# AD52 Uranos Cascade\r\n# AD53 Gaea Stream\r\n# AD54 Gaea Stream\r\n# AD55 Gaea Stream\r\n# AD56 Warp\r\n# AD57 --sync--\r\n# AD58 Sleepga\r\n# AD59 Phase Shift\r\n# AD5A Phase Shift\r\n# AD5B --sync--\r\n# AD5C Omega Javelin\r\n# AD5D Omega Javelin\r\n# AD5E Omega Javelin\r\n# AD5F Ancient Triad\r\n# AD60 Flare\r\n# AD61 Flare\r\n# AD64 Quake\r\n# AD65 Freeze\r\n# AD66 Flood\r\n# AD67 Flood\r\n# AD68 Flood\r\n# AD69 Flood\r\n# AD6A Flood\r\n# AD6B Tornado\r\n# AD6C Tornado\r\n# AD6D Empyreal Vortex\r\n# AD6E Empyreal Vortex\r\n# AD6F Empyreal Vortex\r\n# AD70 Empyreal Vortex\r\n# AD71 Empyreal Vortex\r\n# AD72 Stellar Burst\r\n# AD73 Stellar Burst\r\n# AD74 Stellar Burst\r\n# AD75 Visions of Paradise\r\n# AD76 Duplicate\r\n# AD77 Duplicate\r\n# AD78 Duplicate\r\n# AD7D --sync--\r\n# AF17 --sync--\r\n# B040 Excelsior\r\n";
+const alliance_san_doria_second_walk_namespaceObject = "### SAN D'ORIA: THE SECOND WALK\r\n# ZoneId: 1304\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n0.0 \"--Reset--\" ActorControl { command: \"4000000F\" } window 0,1000000 jump 0\r\n\r\n# .*is no longer sealed\r\n0.0 \"--Reset--\" SystemLogMessage { id: \"7DE\" } window 0,1000000 jump 0\r\n\r\n#~~~~~~~~~~~~~~~~~~#\r\n# Faithbound Kirin #\r\n#~~~~~~~~~~~~~~~~~~#\r\n\r\n# -ic \"Alxaal\"\r\n# -ii ADCD\r\n\r\n# The Highland Battlefield will be sealed off\r\n10000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"148C\" } window 10000,1\r\n10007.2 \"--sync--\" StartsUsing { id: \"ADCA\", source: \"Faithbound Kirin\" } window 10007.4,10\r\n10012.1 \"Stonega IV\" Ability { id: \"ADCA\", source: \"Faithbound Kirin\" }\r\n\r\n# Wrought Arms 1 (Tutorial)\r\n10022.8 \"Wrought Arms\" Ability { id: \"AD91\", source: \"Faithbound Kirin\" }\r\n10033.7 \"Synchronized Strike\" Ability { id: \"AD95\", source: \"Faithbound Kirin\" }\r\n10034.4 \"--sync--\" Ability { id: \"AD96\", source: \"Faithbound Kirin\" }\r\n10038.8 \"Synchronized Smite\" Ability { id: [\"AD9B\", \"AD9C\"], source: \"Sculpted Arm\" }\r\n10045.8 \"Synchronized Strike\" Ability { id: \"AD95\", source: \"Faithbound Kirin\" }\r\n10046.5 \"--sync--\" Ability { id: \"AD96\", source: \"Faithbound Kirin\" }\r\n10050.9 \"Synchronized Smite\" Ability { id: [\"AD9B\", \"AD9C\"], source: \"Sculpted Arm\" }\r\n10061.7 \"Crimson Riddle\" Ability { id: [\"AFF4\", \"AFF5\"], source: \"Faithbound Kirin\" }\r\n10068.8 \"Crimson Riddle\" Ability { id: [\"AFF4\", \"AFF5\"], source: \"Faithbound Kirin\" }\r\n\r\n# Shijin Summoning\r\n#\r\n# The Combatants get added at the start of the fight, so we can't sync to\r\n# the AddedCombatant line. Additionally, the summons do not appear to \"cast\"\r\n# actions, so we can't sync to the first cast ability they use.\r\n10083.0 \"Summon Shijin\" Ability { id: \"AD7E\", source: \"Faithbound Kirin\" }\r\n10085.0 \"--sync--\" GameLog { code: \"0044\", line: \"O Suzaku, conjure your infernal flames!\" } jump \"kirin-shijin-suzaku\"\r\n10085.0 \"--sync--\" GameLog { code: \"0044\", line: \"O Genbu, entomb in rock and earth!\" } jump \"kirin-shijin-genbu\"\r\n\r\n# Sunbound Suzaku\r\n11000.0 label \"kirin-shijin-suzaku\"\r\n11007.2 \"Sun Powder\" Ability { id: \"AD89\", source: \"Sunbound Suzaku\" }\r\n11015.2 \"Vermilion Flight\" Ability { id: \"AD8A\", source: \"Sunbound Suzaku\" }\r\n11018.3 \"Arm of Purgatory\" #Ability { id: \"AEFC\", source: \"Ball of Fire\" }\r\n11018.3 \"Arm of Purgatory\" #Ability { id: \"AEFC\", source: \"Ball of Fire\" }\r\n11018.7 \"Vermilion Flight\" Ability { id: \"AEFB\", source: \"Sunbound Suzaku\" }\r\n11018.7 \"Arm of Purgatory\" Ability { id: \"AEFA\", source: \"Sunbound Suzaku\" }\r\n11022.6 \"Sun Powder\" Ability { id: \"AD89\", source: \"Sunbound Suzaku\" }\r\n11030.3 \"Stonega III\" Ability { id: \"B079\", source: \"Faithbound Kirin\" }\r\n11030.5 \"Vermilion Flight\" Ability { id: \"AD8A\", source: \"Sunbound Suzaku\" }\r\n11033.6 \"Arm of Purgatory\" Ability { id: \"AEFC\", source: \"Ball of Fire\" }\r\n11033.9 \"Vermilion Flight\" Ability { id: \"AEFB\", source: \"Sunbound Suzaku\" }\r\n11033.9 \"Arm of Purgatory\" Ability { id: \"AEFA\", source: \"Sunbound Suzaku\" }\r\n11038.1 \"Stonega III\" Ability { id: \"B07A\", source: \"Faithbound Kirin\" }\r\n11044.2 \"--sync--\" StartsUsing { id: \"AD91\", source: \"Faithbound Kirin\" } window 10,10 forcejump \"kirin-wrought-arms-2\"\r\n\r\n# Dawnbound Seiryu\r\n12000.0 label \"kirin-shijin-seiryu\"\r\n\r\n# Moonbound Genbu\r\n13000.0 label \"kirin-shijin-genbu\"\r\n13010.2 \"Shattering Stomp\" Ability { id: \"AD84\", source: \"Moonbound Genbu\" }\r\n13020.4 \"Moontide Font\" Ability { id: \"AD86\", source: \"Moonbound Genbu\" }\r\n13025.4 \"Moontide Font\" Ability { id: \"AD86\", source: \"Moonbound Genbu\" }\r\n13030.2 \"Midwinter March\" Ability { id: \"AD87\", source: \"Moonbound Genbu\" }\r\n13031.2 \"--sync--\" Ability { id: \"AD31\", source: \"Moonbound Genbu\" }\r\n13036.3 \"Northern Current\" Ability { id: \"AD88\", source: \"Moonbound Genbu\" }\r\n13041.6 \"Crimson Riddle\" Ability { id: [\"AFF4\", \"AFF5\"], source: \"Faithbound Kirin\" }\r\n13049.0 \"--sync--\" StartsUsing { id: \"AD91\", source: \"Faithbound Kirin\" } window 10,10 forcejump \"kirin-wrought-arms-2\"\r\n\r\n# Duskbound Byakko\r\n14000.0 label \"kirin-shijin-byakko\"\r\n\r\n# Wrought Arms 2\r\n15000.0 label \"kirin-wrought-arms-2\"\r\n15000.0 \"--sync---\" StartsUsing { id: \"AD91\", source: \"Faithbound Kirin\" } window 3950,1\r\n15003.3 \"Wrought Arms\" Ability { id: \"AD91\", source: \"Faithbound Kirin\" }\r\n15011.7 \"Wringer\" Ability { id: \"AD92\", source: \"Faithbound Kirin\" }\r\n15016.7 \"Dead Wringer\" Ability { id: [\"AD97\", \"AD98\"], source: \"Sculpted Arm\" }\r\n15026.3 \"Striking Left/Striking Right\" Ability { id: [\"AD93\", \"AD94\"], source: \"Faithbound Kirin\" }\r\n15031.3 \"Smiting Left/Right\" Ability { id: [\"AD99\", \"AD9A\"], source: \"Sculpted Arm\" }\r\n15036.5 \"Stonega IV\" Ability { id: \"ADCA\", source: \"Faithbound Kirin\" }\r\n\r\n# The boss and hands will do an extremely large number of possible sequences\r\n# which are difficult to split into separate timeline segments, due to the\r\n# sheer number of combinations and overlap between casts. The timeline\r\n# matching doesn't handle this very well. Instead, just show a duration\r\n# line with an estimated length...\r\n15042.3 \"--synchronized sequence--\" duration 20\r\n\r\n# Adds Phase\r\n15500.0 label \"kirin-chiseled-arms\"\r\n15500.0 \"--sync--\" StartsUsing { id: \"ADB1\", source: \"Faithbound Kirin\" } window 500,1\r\n15506.9 \"Mighty Grip\" Ability { id: \"ADB1\", source: \"Faithbound Kirin\" }\r\n15517.7 \"Shockwave\" Ability { id: \"ADC0\", source: \"Chiseled Arm\" }\r\n15526.7 \"Shockwave\" Ability { id: \"ADC0\", source: \"Chiseled Arm\" }\r\n15527.7 \"Deadly Hold\" Ability { id: \"ADB2\", source: \"Faithbound Kirin\" }\r\n15535.9 \"--sync--\" Ability { id: \"ADB4\", source: \"Faithbound Kirin\" }\r\n# Both Chiseled Arms must be destroyed before this cast finishes\r\n15539.1 \"Kirin Captivator\" StartsUsing { id: \"ADB3\", source: \"Faithbound Kirin\" } duration 29.7\r\n15541.1 \"Shockwave\" Ability { id: \"ADC0\", source: \"Chiseled Arm\" }\r\n15550.1 \"Shockwave\" Ability { id: \"ADC0\", source: \"Chiseled Arm\" }\r\n\r\n# TODO:\r\n# Can we sync to the enrage canceling or adds dying?\r\n16000.0 label \"kirin-wrought-arms-3\"\r\n16000.0 \"--sync--\" StartsUsing { id: \"AD91\", source: \"Faithbound Kirin\" } window 395,1\r\n16003.5 \"Wrought Arms\" Ability { id: \"AD91\", source: \"Faithbound Kirin\" }\r\n\r\n# From this point, its extremely unclear from logs what the boss will do. It\r\n# repeats mechanics until you kill it. Wiki says that another Shijin can be\r\n# summoned, but I don't have logs of that. I don't know how to make a\r\n# timeline of this...\r\n16011.5 \"--mechanics repeat...-\" duration 120\r\n16011.5 \"--goodluck!--\" duration 120\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# 366 attack\r\n# AA33 Savage Blade\r\n# AA34 Vorpal Blade\r\n# AA35 Spirits Within\r\n# AC05 --sync--\r\n# AD7E Summon Shijin\r\n# AD89 Sun Powder\r\n# AD8A Vermilion Flight\r\n# AD91 Wrought Arms\r\n# AD92 Wringer\r\n# AD94 Striking Left\r\n# AD95 Synchronized Strike\r\n# AD96 Synchronized Strike\r\n# AD97 Dead Wringer\r\n# AD98 Dead Wringer\r\n# AD9A Smiting Left\r\n# AD9B Synchronized Smite\r\n# AD9C Synchronized Smite\r\n# AD9F Smiting Left Sequence\r\n# ADA0 Synchronized Sequence\r\n# ADA1 Synchronized Sequence\r\n# ADA2 Wringer\r\n# ADA3 Striking Right\r\n# ADA7 Dead Wringer\r\n# ADA8 Dead Wringer\r\n# ADA9 Smiting Right\r\n# ADAD Wringer\r\n# ADAE Striking Right\r\n# ADAF Striking Left\r\n# ADB0 Synchronized Strike\r\n# ADB1 Mighty Grip\r\n# ADB2 Deadly Hold\r\n# ADB4 --sync--\r\n# ADB5 Deadly Hold\r\n# ADB6 Deadly Hold\r\n# ADB7 --sync--\r\n# ADB8 --sync--\r\n# ADB9 --sync--\r\n# ADBA --sync--\r\n# ADBF Bury\r\n# ADC0 Shockwave\r\n# ADCA Stonega IV\r\n# ADCD --sync--\r\n# AEFA Arm of Purgatory\r\n# AEFB Vermilion Flight\r\n# AEFC Arm of Purgatory\r\n# AF80 Deadly Hold\r\n# AFF4 Crimson Riddle\r\n# AFF5 Crimson Riddle\r\n# B079 Stonega III\r\n# B07A Stonega III\r\n# B0FA attack\r\n\r\n#~~~~~~~~~~~~~~~~#\r\n# Ultima & Omega #\r\n#~~~~~~~~~~~~~~~~#\r\n\r\n# -ii AD1D AD2C AD30\r\n# -ic \"Alxaal\"\r\n\r\n# Armada Airship will be sealed off\r\n20000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"14B2\" } window 20000,1\r\n20005.2 \"--sync--\" StartsUsing { id: \"AD2B\", source: \"Omega, the One\" } window 20005.2,10\r\n20011.7 \"Ion Efflux\" Ability { id: \"AD2B\", source: \"Omega, the One\" }\r\n20015.5 \"--sync--\" Ability { id: \"AD10\", source: \"Ultima, the Feared\" }\r\n20016.5 \"Antimatter\" Ability { id: \"AD11\", source: \"Ultima, the Feared\" }\r\n20020.6 \"Energy Orb\" Ability { id: \"AD08\", source: \"Ultima, the Feared\" }\r\n20028.8 \"Energy Ray\" Ability { id: \"AD32\", source: \"Energy Orb\" }\r\n20031.8 \"Aft-to-fore Fire/Fore-to-aft Fire\" Ability { id: [\"AD25\", \"AD27\"], source: \"Omega, the One\" }\r\n20032.3 \"Omega Blaster\" Ability { id: \"AD29\", source: \"Omega, the One\" }\r\n20033.9 \"Foreward Blaster/Aftward Blaster\" Ability { id: [\"AD26\", \"AD28\"], source: \"Omega, the One\" }\r\n20034.7 \"Omega Blaster\" Ability { id: \"AD2A\", source: \"Omega, the One\" }\r\n20048.3 \"Tractor Beam\" Ability { id: \"AD06\", source: \"Ultima, the Feared\" }\r\n20048.6 \"Anti-personnel Missile\" Ability { id: \"B087\", source: \"Omega, the One\" }\r\n20048.8 \"Crash\" Ability { id: \"AD07\", source: \"Ultima, the Feared\" }\r\n20048.8 \"Tractor Beam\" #Ability { id: \"B086\", source: \"Ultima, the Feared\" }\r\n20053.6 \"Anti-personnel Missile\" Ability { id: \"B088\", source: \"Omega, the One\" }\r\n20065.9 \"Surface Missile\" Ability { id: \"B075\", source: \"Omega, the One\" }\r\n20066.9 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20067.9 \"Energy Orb\" Ability { id: \"AD08\", source: \"Ultima, the Feared\" }\r\n20069.0 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20071.0 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20075.2 \"Anti-personnel Missile\" Ability { id: \"B087\", source: \"Omega, the One\" }\r\n20076.2 \"Energy Ray\" Ability { id: \"AD32\", source: \"Energy Orb\" }\r\n20080.2 \"Anti-personnel Missile\" #Ability { id: \"B088\", source: \"Omega, the One\" }\r\n20080.2 \"Anti-personnel Missile\" #Ability { id: \"B088\", source: \"Omega, the One\" }\r\n20083.3 \"Mana Screen\" Ability { id: \"AD09\", source: \"Ultima, the Feared\" }\r\n20088.4 \"Energy Orb\" Ability { id: \"AD08\", source: \"Ultima, the Feared\" }\r\n20096.6 \"Energy Ray\" Ability { id: \"AD32\", source: \"Energy Orb\" }\r\n20097.4 \"Energy Ray\" #Ability { id: \"AD0D\", source: \"Ultima, the Feared\" }\r\n20102.1 \"Trajectory Projection\" Ability { id: \"AD23\", source: \"Omega, the One\" }\r\n20112.8 \"Guided Missile\" Ability { id: \"AD24\", source: \"Omega, the One\" }\r\n20118.3 \"--untargetable--\" Ability { id: \"AD12\", source: \"Ultima, the Feared\" }\r\n20118.4 \"--jump--\" Ability { id: \"AD2C\", source: \"Omega, the One\" }\r\n\r\n# Jump from the airship before it's reduced to ash!\r\n20118.4 \"Tractor Field\" Ability { id: \"AD12\", source: \"Ultima, the Feared\" }\r\n20118.8 \"Tractor Field\" Ability { id: \"AD13\", source: \"Ultima, the Feared\" }\r\n20123.7 \"Multi-missile\" Ability { id: \"AFEB\", source: \"Omega, the One\" }\r\n20123.7 \"Citadel Siege\" Ability { id: \"AD14\", source: \"Ultima, the Feared\" }\r\n20125.5 \"Multi-missile\" Ability { id: \"AFED\", source: \"Omega, the One\" }\r\n20125.6 \"Multi-missile\" Ability { id: \"AFEC\", source: \"Omega, the One\" }\r\n20127.7 \"Citadel Siege\" Ability { id: \"AD15\", source: \"Ultima, the Feared\" }\r\n20127.8 \"Multi-missile\" Ability { id: \"AFEB\", source: \"Omega, the One\" }\r\n20128.6 \"Citadel Siege\" Ability { id: \"AD18\", source: \"Ultima, the Feared\" }\r\n20129.6 \"Multi-missile\" Ability { id: \"AFED\", source: \"Omega, the One\" }\r\n20129.7 \"Multi-missile\" Ability { id: \"AFEC\", source: \"Omega, the One\" }\r\n20131.7 \"Citadel Siege\" Ability { id: \"AD16\", source: \"Ultima, the Feared\" }\r\n20132.0 \"Multi-missile\" Ability { id: \"AFEB\", source: \"Omega, the One\" }\r\n20132.7 \"Citadel Siege\" Ability { id: \"AD18\", source: \"Ultima, the Feared\" }\r\n20133.9 \"Multi-missile\" Ability { id: \"AFED\", source: \"Omega, the One\" }\r\n20134.0 \"Multi-missile\" Ability { id: \"AFEC\", source: \"Omega, the One\" }\r\n20135.7 \"Citadel Siege\" Ability { id: \"AD17\", source: \"Ultima, the Feared\" }\r\n20136.3 \"Multi-missile\" Ability { id: \"AFEB\", source: \"Omega, the One\" }\r\n20136.7 \"Citadel Siege\" Ability { id: \"AD18\", source: \"Ultima, the Feared\" }\r\n20138.1 \"Multi-missile\" Ability { id: \"AFED\", source: \"Omega, the One\" }\r\n20138.2 \"Multi-missile\" #Ability { id: \"AFEC\", source: \"Omega, the One\" }\r\n20138.2 \"Multi-missile\" #Ability { id: \"AFEC\", source: \"Omega, the One\" }\r\n20140.6 \"Citadel Siege\" Ability { id: \"AD18\", source: \"Ultima, the Feared\" }\r\n20145.8 \"--ultima targetable--\"\r\n20152.7 \"Citadel Buster\" Ability { id: \"AD1B\", source: \"Ultima, the Feared\" }\r\n20158.6 \"Hyper Pulse\" Ability { id: \"AD2F\", source: \"Omega, the One\" }\r\n20160.8 \"--omega targetable--\"\r\n20171.2 \"--jump--\" Ability { id: \"AD2C\", source: \"Omega, the One\" }\r\n\r\n# Phase 2\r\n20175.8 label \"ultima-omega-p2-loop\"\r\n20175.8 \"Tractor Beam\" Ability { id: \"AD06\", source: \"Ultima, the Feared\" }\r\n20176.2 \"Crash\" Ability { id: \"AD07\", source: \"Ultima, the Feared\" }\r\n20176.2 \"Tractor Beam\" #Ability { id: \"B086\", source: \"Ultima, the Feared\" }\r\n20176.4 \"Trajectory Projection\" Ability { id: \"AD23\", source: \"Omega, the One\" }\r\n20187.0 \"Mana Screen\" Ability { id: \"AD09\", source: \"Ultima, the Feared\" }\r\n20187.1 \"Guided Missile\" #Ability { id: \"AD24\", source: \"Omega, the One\" }\r\n20192.1 \"Energy Orb\" Ability { id: \"AD08\", source: \"Ultima, the Feared\" }\r\n20200.3 \"Energy Ray\" Ability { id: \"AD32\", source: \"Energy Orb\" }\r\n20201.1 \"Energy Ray\" #Ability { id: \"AD0C\", source: \"Ultima, the Feared\" }\r\n20201.4 \"Anti-personnel Missile\" Ability { id: \"B087\", source: \"Omega, the One\" }\r\n20201.6 \"Energy Ray\" Ability { id: \"AD0B\", source: \"Ultima, the Feared\" }\r\n20206.4 \"Anti-personnel Missile\" Ability { id: \"B088\", source: \"Omega, the One\" }\r\n20215.5 \"Chemical Bomb\" Ability { id: \"AD0F\", source: \"Ultima, the Feared\" }\r\n20218.5 \"Chemical Bomb\" Ability { id: \"AD0F\", source: \"Ultima, the Feared\" }\r\n20221.5 \"Chemical Bomb\" Ability { id: \"AD0F\", source: \"Ultima, the Feared\" }\r\n20224.5 \"Chemical Bomb\" Ability { id: \"AD0F\", source: \"Ultima, the Feared\" }\r\n20233.1 \"Surface Missile\" Ability { id: \"B075\", source: \"Omega, the One\" }\r\n20234.1 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20236.3 \"Energy Orb\" Ability { id: \"AD08\", source: \"Ultima, the Feared\" }\r\n20236.3 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20238.3 \"Surface Missile\" #Ability { id: \"B076\", source: \"Omega, the One\" }\r\n20244.1 \"Aft-to-fore Fire/Fore-to-aft Fire\" Ability { id: [\"AD25\", \"AD27\"], source: \"Omega, the One\" }\r\n20244.5 \"Energy Ray\" Ability { id: \"AD32\", source: \"Energy Orb\" }\r\n20244.6 \"Omega Blaster\" Ability { id: \"AD29\", source: \"Omega, the One\" }\r\n20246.3 \"Foreward Blaster/Aftward Blaster\" Ability { id: [\"AD26\", \"AD28\"], source: \"Omega, the One\" }\r\n20247.1 \"Omega Blaster\" Ability { id: \"AD2A\", source: \"Omega, the One\" }\r\n20263.1 \"Ion Efflux\" Ability { id: \"AD2B\", source: \"Omega, the One\" }\r\n20274.8 \"Antimatter\" Ability { id: \"AD10\", source: \"Ultima, the Feared\" }\r\n20275.8 \"Antimatter\" Ability { id: \"AD11\", source: \"Ultima, the Feared\" }\r\n20293.8 \"Tractor Beam\" Ability { id: \"AD06\", source: \"Ultima, the Feared\" } window 30,30 forcejump \"ultima-omega-p2-loop\"\r\n20342.7 \"Chemical Bomb\" Ability { id: \"AD0F\", source: \"Ultima, the Feared\" }\r\n\r\n# IGNORED ABILITIES\r\n# AD1D --sync--\r\n# AD2C --sync--\r\n# AD30 Energizing Equilibrium\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# AD06 Tractor Beam\r\n# AD07 Crash\r\n# AD08 Energy Orb\r\n# AD09 Mana Screen\r\n# AD0B Energy Ray\r\n# AD0C Energy Ray\r\n# AD0D Energy Ray\r\n# AD0E Chemical Bomb\r\n# AD0F Chemical Bomb\r\n# AD10 Antimatter\r\n# AD11 Antimatter\r\n# AD12 Tractor Field\r\n# AD13 Tractor Field\r\n# AD14 Citadel Siege\r\n# AD15 Citadel Siege\r\n# AD16 Citadel Siege\r\n# AD17 Citadel Siege\r\n# AD18 Citadel Siege\r\n# AD1B Citadel Buster\r\n# AD1C Energizing Equilibrium\r\n# AD1D --sync--\r\n# AD23 Trajectory Projection\r\n# AD24 Guided Missile\r\n# AD25 Fore-to-aft Fire\r\n# AD26 Foreward Blaster\r\n# AD27 Aft-to-fore Fire\r\n# AD28 Aftward Blaster\r\n# AD29 Omega Blaster\r\n# AD2A Omega Blaster\r\n# AD2B Ion Efflux\r\n# AD2C --sync--\r\n# AD2F Hyper Pulse\r\n# AD30 Energizing Equilibrium\r\n# AD32 Energy Ray\r\n# AFEB Multi-missile\r\n# AFEC Multi-missile\r\n# AFED Multi-missile\r\n# B075 Surface Missile\r\n# B076 Surface Missile\r\n# B086 Tractor Beam\r\n# B087 Anti-personnel Missile\r\n# B088 Anti-personnel Missile\r\n# B0FC attack\r\n\r\n#~~~~~~~~~~~~~~~~~#\r\n# Stellar Fulcrum #\r\n#~~~~~~~~~~~~~~~~~#\r\n\r\n# The Stellar Fulcrum will be sealed off\r\n30000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"1488\" } window 30000,1\r\n30006.0 \"--sync--\" StartsUsing { id: \"ACBD\", source: \"Kam'lanaut\" } window 30006,1\r\n30011.1 \"Enspirited Swordplay\" Ability { id: \"ACBD\", source: \"Kam'lanaut\" }\r\n30014.3 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n30019.5 \"Proving Ground\" Ability { id: \"B009\", source: \"Kam'lanaut\" }\r\n30024.7 \"Elemental Blade\" StartsUsing { id: \"AC91\", source: \"Kam'lanaut\" } duration 7.7\r\n30026.6 \"--first charge--\" GainsEffect { effectId: \"B9A\", target: \"Kam'lanaut\" }\r\n30030.1 \"--second charge--\" GainsEffect { effectId: \"B9A\", target: \"Kam'lanaut\" }\r\n30032.6 \"--sync--\" Ability { id: \"AC91\", source: \"Kam'lanaut\" }\r\n30043.7 \"Sublime Elements\" Ability { id: \"B00A\", source: \"Kam'lanaut\" }\r\n30046.9 \"Elemental Blade\" StartsUsing { id: \"AC91\", source: \"Kam'lanaut\" } duration 7.7\r\n30048.8 \"--first charge--\" GainsEffect { effectId: \"B9A\", target: \"Kam'lanaut\" }\r\n30052.3 \"--second charge--\" GainsEffect { effectId: \"B9A\", target: \"Kam'lanaut\" }\r\n30054.8 \"--sync--\" Ability { id: \"AC91\", source: \"Kam'lanaut\" }\r\n30065.9 \"Sublime Elements\" Ability { id: \"B00A\", source: \"Kam'lanaut\" }\r\n# TODO: Check which ablity hurts?\r\n30076.2 \"--sync--\" Ability { id: \"ACBB\", source: \"Kam'lanaut\" }\r\n30077.2 \"Princely Blow\" Ability { id: \"ACBC\", source: \"Kam'lanaut\" }\r\n30082.3 \"Light Blade\" Ability { id: \"ACAB\", source: \"Kam'lanaut\" }\r\n30088.3 \"Sublime Estoc\" #Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30088.3 \"Sublime Estoc\" #Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30091.4 \"Great Wheel\" Ability { id: [\"ACAF\", \"ACB0\"], source: \"Kam'lanaut\" }\r\n30097.3 \"Great Wheel\" Ability { id: \"ACB1\", source: \"Kam'lanaut\" }\r\n30104.5 \"Enspirited Swordplay\" Ability { id: \"ACBD\", source: \"Kam'lanaut\" }\r\n30111.6 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n\r\n# Phase Transition\r\n# TODO: Add --untargettable--?? and maybe a duration?\r\n30124.9 \"Esoteric Scrivening\" Ability { id: \"ACB2\", source: \"Kam'lanaut\" }\r\n30130.0 \"--sync--\" Ability { id: \"AD79\", source: \"Kam'lanaut\" }\r\n30143.1 \"--sync--\" Ability { id: \"AD7A\", source: \"Kam'lanaut\" }\r\n30148.3 \"Shockwave\" Ability { id: \"ACB3\", source: \"Kam'lanaut\" }\r\n30148.3 \"--sync--\" Ability { id: \"A2FF\", source: \"Kam'lanaut\" }\r\n30156.9 \"Transcendent Union\" Ability { id: \"ACB4\", source: \"Kam'lanaut\" }\r\n30157.9 \"Elemental Edge\" #Ability { id: \"AD01\", source: \"Kam'lanaut\" }\r\n30158.2 \"Elemental Edge\" #Ability { id: \"AD01\", source: \"Kam'lanaut\" }\r\n30158.5 \"Elemental Edge\" #Ability { id: \"AD01\", source: \"Kam'lanaut\" }\r\n30158.9 \"Elemental Edge\" #Ability { id: \"AD01\", source: \"Kam'lanaut\" }\r\n30159.3 \"Elemental Edge\" #Ability { id: \"AD01\", source: \"Kam'lanaut\" }\r\n30160.0 \"Elemental Edge\" #Ability { id: \"AD01\", source: \"Kam'lanaut\" }\r\n30163.4 \"Transcendent Union\" Ability { id: \"ACB5\", source: \"Kam'lanaut\" }\r\n30174.2 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n\r\n# Phase 2\r\n30179.4 \"Esoteric Palisade\" Ability { id: \"ACB6\", source: \"Kam'lanaut\" }\r\n30185.5 \"Crystalline Resonance\" Ability { id: \"ACB7\", source: \"Kam'lanaut\" }\r\n30193.4 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30200.4 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30207.4 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30207.6 \"Illumed Facet\" Ability { id: \"ACB9\", source: \"Kam'lanaut\" }\r\n30207.6 \"Empyreal Banish III\" #Ability { id: \"ACBF\", source: \"Kam'lanaut\" }\r\n30218.5 \"Illumed Estoc\" Ability { id: \"ACBA\", source: \"Kam'lanaut\" }\r\n30225.8 \"Shield Bash\" Ability { id: \"ACBE\", source: \"Kam'lanaut\" }\r\n# TODO: check which of these matters\r\n30234.9 \"Empyreal Banish IV\" Ability { id: \"AF6B\", source: \"Kam'lanaut\" }\r\n30235.9 \"Empyreal Banish IV\" Ability { id: \"ACC0\", source: \"Kam'lanaut\" }\r\n30245.2 \"--sync--\" Ability { id: \"ACBB\", source: \"Kam'lanaut\" }\r\n30246.2 \"Princely Blow\" Ability { id: \"ACBC\", source: \"Kam'lanaut\" }\r\n30255.4 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n30260.5 \"Proving Ground\" Ability { id: \"B009\", source: \"Kam'lanaut\" }\r\n30263.7 \"Elemental Blade\" StartsUsing { id: \"AC92\", source: \"Kam'lanaut\" } duration 10.7\r\n30265.6 \"--first charge--\" GainsEffect { effectId: \"B9A\", target: \"Kam'lanaut\" }\r\n30269.1 \"--second charge--\" GainsEffect { effectId: \"B9A\", target: \"Kam'lanaut\" }\r\n30272.6 \"--third charge--\" GainsEffect { effectId: \"B9A\", target: \"Kam'lanaut\" }\r\n30274.7 \"--sync--\" Ability { id: \"AC92\", source: \"Kam'lanaut\" }\r\n30285.8 \"Sublime Elements\" Ability { id: \"B00A\", source: \"Kam'lanaut\" }\r\n30292.9 \"Light Blade\" Ability { id: \"ACAB\", source: \"Kam'lanaut\" }\r\n30298.9 \"Sublime Estoc\" #Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30298.9 \"Sublime Estoc\" #Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30298.9 \"Empyreal Banish III\" Ability { id: \"ACBF\", source: \"Kam'lanaut\" }\r\n30302.0 \"Great Wheel\" Ability { id: [\"ACAD\", \"ACAE\", \"ACAF\", \"ACB0\"], source: \"Kam'lanaut\" }\r\n30307.9 \"Great Wheel\" Ability { id: \"ACB1\", source: \"Kam'lanaut\" }\r\n30308.0 \"Empyreal Banish IV\" Ability { id: \"ACC0\", source: \"Kam'lanaut\" }\r\n30315.1 \"Enspirited Swordplay\" Ability { id: \"ACBD\", source: \"Kam'lanaut\" }\r\n30322.3 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n\r\n# Phase 2 Loop Start\r\n30327.5 label \"kamlanaut-loop\"\r\n30327.5 \"Esoteric Palisade\" Ability { id: \"ACB6\", source: \"Kam'lanaut\" }\r\n30333.6 \"Crystalline Resonance\" Ability { id: \"ACB7\", source: \"Kam'lanaut\" }\r\n30341.5 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30348.5 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30355.5 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30358.7 \"Light Blade\" Ability { id: \"ACAB\", source: \"Kam'lanaut\" }\r\n30364.7 \"Sublime Estoc\" #Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30364.7 \"Sublime Estoc\" #Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30364.7 \"Empyreal Banish III\" Ability { id: \"ACBF\", source: \"Kam'lanaut\" }\r\n30371.5 \"Elemental Resonance\" Ability { id: \"ACB8\", source: \"Kam'lanaut\" }\r\n30373.1 \"Illumed Facet\" Ability { id: \"ACB9\", source: \"Kam'lanaut\" }\r\n30383.2 \"Shield Bash\" Ability { id: \"ACBE\", source: \"Kam'lanaut\" }\r\n30384.0 \"Illumed Estoc\" Ability { id: \"ACBA\", source: \"Kam'lanaut\" }\r\n30392.4 \"Empyreal Banish IV\" Ability { id: \"AF6B\", source: \"Kam'lanaut\" }\r\n30393.4 \"Empyreal Banish IV\" Ability { id: \"ACC0\", source: \"Kam'lanaut\" }\r\n30398.5 \"Proving Ground\" Ability { id: \"B009\", source: \"Kam'lanaut\" }\r\n30401.7 \"Elemental Blade\" StartsUsing { id: \"AC92\", source: \"Kam'lanaut\" } duration 10.7\r\n30403.6 \"--first charge--\" GainsEffect { effectId: \"B9A\", target: \"Kam'lanaut\" }\r\n30407.1 \"--second charge--\" GainsEffect { effectId: \"B9A\", target: \"Kam'lanaut\" }\r\n30410.6 \"--third charge--\" GainsEffect { effectId: \"B9A\", target: \"Kam'lanaut\" }\r\n30412.7 \"--sync--\" Ability { id: \"AC92\", source: \"Kam'lanaut\" }\r\n30423.8 \"Sublime Elements\" Ability { id: \"B00A\", source: \"Kam'lanaut\" }\r\n30431.9 \"Enspirited Swordplay\" Ability { id: \"ACBD\", source: \"Kam'lanaut\" }\r\n30442.2 \"--sync--\" Ability { id: \"ACBB\", source: \"Kam'lanaut\" }\r\n30443.2 \"Princely Blow\" Ability { id: \"ACBC\", source: \"Kam'lanaut\" }\r\n30452.4 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n30457.5 \"Proving Ground\" Ability { id: \"B009\", source: \"Kam'lanaut\" }\r\n30460.9 \"Elemental Blade\" StartsUsing { id: \"AC92\", source: \"Kam'lanaut\" } duration 10.7\r\n30462.6 \"--first charge--\" GainsEffect { effectId: \"B9A\", target: \"Kam'lanaut\" }\r\n30466.1 \"--second charge--\" GainsEffect { effectId: \"B9A\", target: \"Kam'lanaut\" }\r\n30469.6 \"--third charge--\" GainsEffect { effectId: \"B9A\", target: \"Kam'lanaut\" }\r\n30471.6 \"--sync--\" Ability { id: \"AC92\", source: \"Kam'lanaut\" }\r\n30482.7 \"Sublime Elements\" Ability { id: \"B00A\", source: \"Kam'lanaut\" }\r\n30489.8 \"Light Blade\" Ability { id: \"ACAB\", source: \"Kam'lanaut\" }\r\n30495.8 \"Sublime Estoc\" Ability { id: \"ACAC\", source: \"Sublime Estoc\" }\r\n30495.8 \"Empyreal Banish III\" Ability { id: \"ACBF\", source: \"Kam'lanaut\" }\r\n30498.9 \"Great Wheel\" Ability { id: [\"ACAD\", \"ACAE\", \"ACAF\", \"ACB0\"], source: \"Kam'lanaut\" }\r\n30504.8 \"Great Wheel\" Ability { id: \"ACB1\", source: \"Kam'lanaut\" }\r\n30504.9 \"Empyreal Banish IV\" Ability { id: \"ACC0\", source: \"Kam'lanaut\" }\r\n30512.0 \"Enspirited Swordplay\" Ability { id: \"ACBD\", source: \"Kam'lanaut\" }\r\n30519.2 \"--sync--\" Ability { id: \"ACC1\", source: \"Kam'lanaut\" }\r\n30524.4 \"Esoteric Palisade\" Ability { id: \"ACB6\", source: \"Kam'lanaut\" } window 30,30 forcejump \"kamlanaut-loop\"\r\n\r\n# IGNORED ABILITIES\r\n# AF4C --sync--\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# A2FF --sync--\r\n# AC91 Elemental Blade\r\n# AC92 Elemental Blade\r\n# AC93 Sublime Fire\r\n# AC94 Sublime Earth\r\n# AC95 Sublime Water\r\n# AC97 Sublime Lightning\r\n# AC98 Sublime Wind\r\n# AC99 Sublime Fire\r\n# AC9B Sublime Water\r\n# AC9C Sublime Ice\r\n# AC9D Sublime Lightning\r\n# AC9F Fire Blade\r\n# ACA0 Earth Blade\r\n# ACA1 Water Blade\r\n# ACA2 Ice Blade\r\n# ACA3 Lightning Blade\r\n# ACA4 Wind Blade\r\n# ACA5 Fire Blade\r\n# ACA6 Earth Blade\r\n# ACA8 Ice Blade\r\n# ACA9 Lightning Blade\r\n# ACAA Wind Blade\r\n# ACAB Light Blade\r\n# ACAC Sublime Estoc\r\n# ACAE Great Wheel\r\n# ACAF Great Wheel\r\n# ACB0 Great Wheel\r\n# ACB1 Great Wheel\r\n# ACB2 Esoteric Scrivening\r\n# ACB3 Shockwave\r\n# ACB4 Transcendent Union\r\n# ACB5 Transcendent Union\r\n# ACB6 Esoteric Palisade\r\n# ACB7 Crystalline Resonance\r\n# ACB8 Elemental Resonance\r\n# ACB9 Illumed Facet\r\n# ACBA Illumed Estoc\r\n# ACBB Princely Blow\r\n# ACBC Princely Blow\r\n# ACBD Enspirited Swordplay\r\n# ACBE Shield Bash\r\n# ACBF Empyreal Banish III\r\n# ACC0 Empyreal Banish IV\r\n# ACC1 --sync--\r\n# AD01 Elemental Edge\r\n# AD79 --sync--\r\n# AD7A --sync--\r\n# AF4C --sync--\r\n# AF6B Empyreal Banish IV\r\n# B009 Proving Ground\r\n# B00A Sublime Elements\r\n\r\n#~~~~~~~~~~~~~~~~~#\r\n# Celestial Nexus #\r\n#~~~~~~~~~~~~~~~~~#\r\n\r\n# -ii AD47\r\n\r\n# Phase 1\r\n40000.0 \"--sync--\" SystemLogMessage { id: \"7DC\", param1: \"148A\" } window 40000,1\r\n40006.2 \"--sync--\" StartsUsing { id: \"AD51\", source: \"Eald'narche\" } window 40006.2,1\r\n40010.1 \"--sync--\" Ability { id: \"AD51\", source: \"Eald'narche\" }\r\n40011.1 \"Uranos Cascade\" Ability { id: \"AD52\", source: \"Eald'narche\" }\r\n40023.2 \"Cronos Sling\" Ability { id: [\"AD49\", \"AD4A\", \"AD4B\", \"AD4C\"], source: \"Eald'narche\" }\r\n40023.6 \"--sync--\" Ability { id: [\"AD4D\", \"AD4E\"], source: \"Eald'narche\" }\r\n40029.4 \"Cronos Sling\" Ability { id: [\"AD4F\", \"AD50\"], source: \"Eald'narche\" }\r\n40039.7 \"Empyreal Vortex\" Ability { id: \"AD6D\", source: \"Eald'narche\" } duration 5.8\r\n40045.6 \"--sync--\" Ability { id: \"AD70\", source: \"Eald'narche\" }\r\n40056.9 \"Cronos Sling\" Ability { id: [\"AD49\", \"AD4A\", \"AD4B\", \"AD4C\"], source: \"Eald'narche\" }\r\n40057.3 \"--sync--\" Ability { id: [\"AD4D\", \"AD4E\"], source: \"Eald'narche\" }\r\n40063.1 \"Cronos Sling\" Ability { id: [\"AD4F\", \"AD50\"], source: \"Eald'narche\" }\r\n40070.4 \"Warp\" Ability { id: \"AD56\", source: \"Eald'narche\" }\r\n40071.1 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40077.0 \"Sleepga\" Ability { id: \"AD58\", source: \"Eald'narche\" }\r\n40079.1 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40084.4 \"Gaea Stream\" Ability { id: \"AD53\", source: \"Eald'narche\" } duration 11.1\r\n40090.6 \"--sync--\" StartsUsing { id: \"AD5C\", source: \"Eald'narche\" } window 5,5\r\n40094.5 \"Omega Javelin\" Ability { id: \"AD5C\", source: \"Eald'narche\" }\r\n40095.6 \"--sync--\" Ability { id: \"AD5D\", source: \"Eald'narche\" }\r\n40100.0 \"Omega Javelin\" Ability { id: \"AD5E\", source: \"Eald'narche\" }\r\n40105.6 \"Duplicate\" Ability { id: \"AD77\", source: \"Eald'narche\" } duration 11.1\r\n40116.7 \"--sync--\" Ability { id: \"AD78\", source: \"Eald'narche\" }\r\n40120.7 \"Duplicate\" Ability { id: \"AD77\", source: \"Eald'narche\" } duration 11.1\r\n40131.8 \"--sync--\" Ability { id: \"AD78\", source: \"Eald'narche\" }\r\n40140.8 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40150.1 \"Excelsior\" Ability { id: \"B040\", source: \"Eald'narche\" }\r\n40150.5 \"--sync--\" Ability { id: \"AF17\", source: \"Eald'narche\" }\r\n40155.2 \"Phase Shift\" Ability { id: \"AD59\", source: \"Eald'narche\" } duration 22.2\r\n40155.4 \"--sync--\" Ability { id: \"AD2E\", source: \"Eald'narche\" }\r\n40156.1 \"--sync--\" Ability { id: \"AD5B\", source: \"Eald'narche\" }\r\n40177.4 \"--sync--\" Ability { id: \"AD5A\", source: \"Eald'narche\" } window 23.1,5\r\n\r\n# Phase 2 Begins\r\n40189.6 \"Duplicate\" Ability { id: \"AD77\", source: \"Eald'narche\" } duration 13.1\r\n40198.7 \"Visions of Paradise\" Ability { id: \"AD75\", source: \"Eald'narche\" }\r\n40207.8 \"Stellar Burst\" Ability { id: \"AD72\", source: \"Eald'narche\" }\r\n40207.8 \"--sync--\" Ability { id: \"AD7D\", source: \"Eald'narche\" }\r\n40208.8 \"Stellar Burst\" Ability { id: \"AD73\", source: \"Eald'narche\" }\r\n40215.5 \"Stellar Burst\" Ability { id: \"AD74\", source: \"Eald'narche\" }\r\n40224.1 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n# TODO: There are many variations of Ancient Triad which are not really\r\n# worth creating branching timelines for. Just use a duration to indicate\r\n# that mechanics are ongoing. Note that this duration likely isn't accurate\r\n# for every variation, however the mechanics should mostly be done resolving\r\n# by this time.\r\n40232.4 \"Ancient Triad\" Ability { id: \"AD5F\", source: \"Eald'narche\" } duration 10.7\r\n40248.1 \"Gaea Stream\" Ability { id: \"AD53\", source: \"Eald'narche\" } duration 17\r\n40263.2 \"--sync--\" StartsUsing { id: \"AD51\", source: \"Eald'narche\" } window 15,5\r\n40266.9 \"--sync--\" Ability { id: \"AD51\", source: \"Eald'narche\" }\r\n40267.9 \"Uranos Cascade\" Ability { id: \"AD52\", source: \"Eald'narche\" }\r\n40274.0 \"Duplicate\" Ability { id: \"AD77\", source: \"Eald'narche\" } duration 13.1\r\n40283.1 \"Visions of Paradise\" Ability { id: \"AD75\", source: \"Eald'narche\" }\r\n\r\n# Phase 2 Loop\r\n40292.2 label \"ealdnarche-phase-2-loop\"\r\n40292.2 \"Omega Javelin\" Ability { id: \"AD5C\", source: \"Eald'narche\" }\r\n40293.3 \"--sync--\" Ability { id: \"AD5D\", source: \"Eald'narche\" }\r\n40295.3 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40297.7 \"Omega Javelin\" Ability { id: \"AD5E\", source: \"Eald'narche\" }\r\n40300.6 \"Gaea Stream\" Ability { id: \"AD53\", source: \"Eald'narche\" } duration 17\r\n40313.7 \"Cronos Sling\" Ability { id: [\"AD49\", \"AD4A\", \"AD4B\", \"AD4C\"], source: \"Eald'narche\" }\r\n40314.1 \"--sync--\" Ability { id: [\"AD4D\", \"AD4E\"], source: \"Eald'narche\" }\r\n40319.8 \"Cronos Sling\" Ability { id: [\"AD4F\", \"AD50\"], source: \"Eald'narche\" }\r\n40327.7 \"Stellar Burst\" Ability { id: \"AD72\", source: \"Eald'narche\" }\r\n40327.7 \"--sync--\" Ability { id: \"AD7D\", source: \"Eald'narche\" }\r\n40328.7 \"Stellar Burst\" Ability { id: \"AD73\", source: \"Eald'narche\" }\r\n40335.4 \"Stellar Burst\" Ability { id: \"AD74\", source: \"Eald'narche\" }\r\n40343.1 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40351.2 \"Ancient Triad\" Ability { id: \"AD5F\", source: \"Eald'narche\" } duration 10.7\r\n40359.9 \"Duplicate\" Ability { id: \"AD77\", source: \"Eald'narche\" } duration 13.1\r\n40369.1 \"Visions of Paradise\" Ability { id: \"AD75\", source: \"Eald'narche\" }\r\n40373.2 \"--sync--\" Ability { id: \"AD76\", source: \"Eald'narche\" }\r\n40377.2 \"Empyreal Vortex\" Ability { id: \"AD6D\", source: \"Eald'narche\" } duration 5.8\r\n40383.1 \"--sync--\" Ability { id: \"AD70\", source: \"Eald'narche\" }\r\n40386.9 \"Warp\" Ability { id: \"AD56\", source: \"Eald'narche\" }\r\n40387.6 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40393.5 \"Sleepga\" Ability { id: \"AD58\", source: \"Eald'narche\" }\r\n40395.6 \"--sync--\" Ability { id: \"AD48\", source: \"Eald'narche\" }\r\n40401.9 \"Omega Javelin\" Ability { id: \"AD5C\", source: \"Eald'narche\" }\r\n40403.0 \"--sync--\" Ability { id: \"AD5D\", source: \"Eald'narche\" }\r\n40407.4 \"Omega Javelin\" Ability { id: \"AD5E\", source: \"Eald'narche\" }\r\n40412.0 \"Cronos Sling\" Ability { id: [\"AD49\", \"AD4A\", \"AD4B\", \"AD4C\"], source: \"Eald'narche\" }\r\n40412.4 \"--sync--\" Ability { id: [\"AD4D\", \"AD4E\"], source: \"Eald'narche\" }\r\n40418.2 \"Cronos Sling\" Ability { id: [\"AD4F\", \"AD50\"], source: \"Eald'narche\" }\r\n40429.5 \"--sync--\" Ability { id: \"AD51\", source: \"Eald'narche\" }\r\n40430.5 \"Uranos Cascade\" Ability { id: \"AD52\", source: \"Eald'narche\" }\r\n40444.6 \"Duplicate\" Ability { id: \"AD77\", source: \"Eald'narche\" } duration 13.1\r\n40453.7 \"Visions of Paradise\" Ability { id: \"AD75\", source: \"Eald'narche\" }\r\n40457.8 \"--sync--\" Ability { id: \"AD76\", source: \"Eald'narche\" }\r\n40462.8 \"Omega Javelin\" Ability { id: \"AD5C\", source: \"Eald'narche\" } forcejump \"ealdnarche-phase-2-loop\"\r\n\r\n# IGNORED ABILITIES\r\n# AD47 --sync--\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# AD2E Phase Shift\r\n# AD35 Tornado\r\n# AD47 --sync--\r\n# AD48 --sync--\r\n# AD49 Cronos Sling\r\n# AD4B Cronos Sling\r\n# AD4C Cronos Sling\r\n# AD4D Cronos Sling\r\n# AD4E Cronos Sling\r\n# AD4F Cronos Sling\r\n# AD50 Cronos Sling\r\n# AD51 Uranos Cascade\r\n# AD52 Uranos Cascade\r\n# AD53 Gaea Stream\r\n# AD54 Gaea Stream\r\n# AD55 Gaea Stream\r\n# AD56 Warp\r\n# AD57 --sync--\r\n# AD58 Sleepga\r\n# AD59 Phase Shift\r\n# AD5A Phase Shift\r\n# AD5B --sync--\r\n# AD5C Omega Javelin\r\n# AD5D Omega Javelin\r\n# AD5E Omega Javelin\r\n# AD5F Ancient Triad\r\n# AD60 Flare\r\n# AD61 Flare\r\n# AD64 Quake\r\n# AD65 Freeze\r\n# AD66 Flood\r\n# AD67 Flood\r\n# AD68 Flood\r\n# AD69 Flood\r\n# AD6A Flood\r\n# AD6B Tornado\r\n# AD6C Tornado\r\n# AD6D Empyreal Vortex\r\n# AD6E Empyreal Vortex\r\n# AD6F Empyreal Vortex\r\n# AD70 Empyreal Vortex\r\n# AD71 Empyreal Vortex\r\n# AD72 Stellar Burst\r\n# AD73 Stellar Burst\r\n# AD74 Stellar Burst\r\n# AD75 Visions of Paradise\r\n# AD76 Duplicate\r\n# AD77 Duplicate\r\n# AD78 Duplicate\r\n# AD7D --sync--\r\n# AF17 --sync--\r\n# B040 Excelsior\r\n";
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/deepdungeon/pilgrims_traverse_general.ts
 
 
@@ -241669,11 +242744,13 @@ const r11s_triggerSet = {
     id: 'majesticMeteowrathTetherDir',
     name: {
       en: 'Majestic Meteowrath Tether Direction',
+      de: 'Herrscher-Meteo des Zorns Verbindungsrichtungen',
       cn: '王者陨石震拉线方向',
       ko: '분노의 챔피언 메테오 선 처리 방향'
     },
     comment: {
       en: 'Direction to stretch tethers during Majestic Meteowrath.',
+      de: 'Richtungen um Verbindungen langzuziehen für Herrscher-Meteo des Zorns.',
       cn: '王者陨石震期间的拉线方向。',
       ko: '분노의 챔피언 메테오 선 처리 방향을 설정합니다.'
     },
@@ -241682,6 +242759,10 @@ const r11s_triggerSet = {
       en: {
         'Clockwise': 'cw',
         'Counter Clockwise': 'ccw'
+      },
+      de: {
+        'Im Uhrzeigersinn': 'cw',
+        'Gegen den Uhrzeigersinn': 'ccw'
       },
       cn: {
         '顺时针': 'cw',
@@ -241697,11 +242778,13 @@ const r11s_triggerSet = {
     id: 'twoWayFireballBaitDir',
     name: {
       en: 'Two-Way Fireball Bait Direction',
+      de: 'Zweifaches Drehfeuer Köder Richtungen',
       cn: '双向回旋火诱导方向',
       ko: '두 갈래 회전화염 유도 위치'
     },
     comment: {
       en: 'Direction to bait the two-way fireball.',
+      de: 'Richtungen um Zweifaches Drehfeuer zu ködern.',
       cn: '诱导双向回旋火的方向',
       ko: '두 갈래 회전화염 유도 방향을 설정합니다.'
     },
@@ -241710,6 +242793,10 @@ const r11s_triggerSet = {
       en: {
         'East/West': 'ew',
         'North/South': 'ns'
+      },
+      de: {
+        'Ost/West': 'ew',
+        'Nord/Süd': 'ns'
       },
       cn: {
         '东/西': 'ew',
@@ -243193,15 +244280,14 @@ const r11s_triggerSet = {
       'The Tyrant': '(?:der|die|das) Tyrann'
     },
     'replaceText': {
-      '\\(Axe\\)': '(Axt)',
-      '\\(Scythe\\)': '(Sense)',
-      '\\(Scythe/Axe\\)': '(Sense/Axt)',
+      'Axe': 'Axt',
+      'Scythe': 'Sense',
       '\\(castbar\\)': '(wirken)',
       '\\(split\\)': '(teilen)',
       '--Fire Breath Markers--': '--Feueratem Markierungen--',
       '--Meteor Markers': '--Meteor Markierungen',
       '--Meteor(?! Markers)': '--Meteor',
-      '--jump ': '--Sprung',
+      '--jump': '--Sprung',
       'scythe--': 'Sense--',
       '--tethers--': '--Verbindungen--',
       'Arcadion Avalanche': 'Arkadionbruch',
@@ -243240,7 +244326,7 @@ const r11s_triggerSet = {
       'One and Only': 'Alles für einen',
       'Orbital Omen': 'Orbitalachse',
       'Powerful Gust': 'Starke Bö',
-      'Raw Steel(?! )': 'Waffenspalter',
+      'Raw Steel(?! Trophy)': 'Waffenspalter',
       'Raw Steel Trophy': 'Spaltende Waffenkunst',
       'Shockwave': 'Schockwelle',
       'Triple Tyrannhilation': 'Drillingsstern-Tyrannensturz',
@@ -244233,86 +245319,103 @@ const r12s_headMarkerData = {
 const replication2OutputStrings = {
   getTether: {
     en: 'Get Tether',
+    de: 'Nimm Verbindung',
     cn: '接线',
     ko: '선 가져가기'
   },
   getBossTether: {
     en: 'Get Boss Tether',
+    de: 'Nimm Boss-Verbindung',
     cn: '接 BOSS 线',
     ko: '보스 선 가져가기'
   },
   getConeTetherCW: {
     en: 'Get Clockwise Cone Tether',
+    de: 'Nimm Kegel-Verbindung im Uhrzeigersinn',
     cn: '顺时针接扇形线',
     ko: '시계방향 부채꼴 선 가져가기'
   },
   getConeTetherCCW: {
     en: 'Get Counterclock Cone Tether',
+    de: 'Nimm Kegel-Verbindung gegen den Uhrzeigersinn',
     cn: '逆时针接扇形线',
     ko: '반시계방향 부채꼴 선 가져가기'
   },
   getStackTetherCW: {
     en: 'Get Clockwise Stack Tether',
+    de: 'Nimm Sammel-Verbindung im Uhrzeigersinn',
     cn: '顺时针接分摊线',
     ko: '시계방향 쉐어징 선 가져가기'
   },
   getStackTetherCCW: {
     en: 'Get Counterclock Stack Tether',
+    de: 'Nimm Sammel-Verbindung gegen den Uhrzeigersinn',
     cn: '逆时针接分摊线',
     ko: '반시계방향 쉐어징 선 가져가기'
   },
   getDefamationTetherCW: {
     en: 'Get Clockwise Defamation Tether',
+    de: 'Nimm Ehrenstrafe-Verbindung im Uhrzeigersinn',
     cn: '顺时针接大圈线',
     ko: '시계방향 광역징 선 가져가기'
   },
   getDefamationTetherCCW: {
     en: 'Get Counterclock Defamation Tether',
+    de: 'Nimm Ehrenstrafe-Verbindung gegen den Uhrzeigersinn',
     cn: '逆时针接大圈线',
     ko: '반시계방향 광역징 선 가져가기'
   },
   getNoTether: {
     en: 'Get Nothing',
+    de: 'Nichts nehmen',
     cn: '不接线',
     ko: '아무것도 가져가지 않기'
   },
   getTetherNClone: {
     en: '${tether}',
+    de: '${tether}',
     cn: '${tether}',
     ko: '${tether}'
   },
   getTetherNEClone: {
     en: '${tether}',
+    de: '${tether}',
     cn: '${tether}',
     ko: '${tether}'
   },
   getTetherEClone: {
     en: '${tether}',
+    de: '${tether}',
     cn: '${tether}',
     ko: '${tether}'
   },
   getTetherSEClone: {
     en: '${tether}',
+    de: '${tether}',
     cn: '${tether}',
     ko: '${tether}'
   },
   getTetherSClone: {
     en: '${tether}',
+    de: '${tether}',
     cn: '${tether}',
     ko: '${tether}'
   },
   getTetherSWClone: {
     en: '${tether}',
+    de: '${tether}',
     cn: '${tether}',
     ko: '${tether}'
   },
   getTetherWClone: {
     en: '${tether}',
+    de: '${tether}',
     cn: '${tether}',
     ko: '${tether}'
   },
   getTetherNWClone: {
     en: '${tether}',
+    de: '${tether}',
     cn: '${tether}',
     ko: '${tether}'
   }
@@ -244347,6 +245450,7 @@ const r12s_triggerSet = {
     id: 'curtainCallStrat',
     name: {
       en: 'Curtain Call Strategy',
+      de: 'Telophase Strategie',
       cn: '门神末期策略',
       ko: '세포 부착: 말기 전략'
     },
@@ -244355,6 +245459,10 @@ const r12s_triggerSet = {
       en: {
         'North/Side Relative Strategy: North players go Northeast/Northwest, South players go relative to side.': 'ns',
         'No strategy: Calls both safe spots.': 'none'
+      },
+      de: {
+        'Nord-/Seiten Relative Strategie: Nordspieler gehen nach Nordosten/Nordwesten, Südspieler gehen relativ zur Seite.': 'ns',
+        'Keine Strategie: Ruft beide sicheren Stellen aus.': 'none'
       },
       cn: {
         '北/侧边相对策略: 北边玩家去东北/西北, 南边玩家以侧边为基准相对移动。': 'ns',
@@ -244383,6 +245491,10 @@ const r12s_triggerSet = {
              Callout happens during/after first animation and requires <1.8s reaction time
              to avoid both Northwest and Northeast knockbacks.
              NOTE: This will call for each set.`,
+      de: `Wenn Sie möchten, dass Cactbot Berstender Knöchel Doppel Rückstoß ansagt, aktivieren Sie diese Option.
+             Die Ansage erfolgt während/nach der ersten Animation und erfordert eine Reaktionszeit von <1,8 Sekunden,
+             um sowohl Nordwesten- als auch Nordosten-Rückstoß zu vermeiden.
+             HINWEIS: Dies wird für jeden Satz aufgerufen.`,
       cn: `如需 cactbot 播报追猎重击双击退, 请启用此选项。
              播报时机为第一次动画期间/之后, 需要<1.8秒反应时间
              才能同时躲避西北和东北两次击退。
@@ -244398,6 +245510,7 @@ const r12s_triggerSet = {
     id: 'replication2Strategy',
     name: {
       en: 'Replication 2 Strategy',
+      de: 'Zellteilung 2 Strategie',
       cn: '本体二运策略',
       ko: '자가 복제 2 전략'
     },
@@ -244409,6 +245522,12 @@ const r12s_triggerSet = {
         'Banana Codex Relative Strategy: Same as Banana Codex, but use relative callouts for mechanics': 'banana-relative',
         'Nukemaru Strategy: Boss East, Stacks NE/SE, Cones N/S, Defamations NW/SW, Nothing W': 'nukemaru',
         'No strategy: Calls the tether you may have and to get a tether.': 'none'
+      },
+      de: {
+        'DN-Strategie: Boss Nord, Kegel NO/NW, Sammeln O/W, Ehrenstrafe SO/SW, nichts Süd': 'dn',
+        'Banana Codex-Strategie: Boss West, Sammeln NW/SW, Kegel N/S, Ehrenstrafe NO/SO, nichts O': 'banana',
+        'Nukemaru-Strategie: Boss Ost, Sammeln NO/SO, Kegel N/S, Ehrenstrafe NW/SW, nichts W': 'nukemaru',
+        'Keine Strategie: Ruft den Tether, den Sie möglicherweise haben, und fordert, einen Tether zu holen.': 'none'
       },
       cn: {
         'DN 策略: Boss北侧, 扇形东北/西北, 分摊东/西, 大圈东南/西南, 无点名南侧': 'dn',
@@ -244428,6 +245547,7 @@ const r12s_triggerSet = {
     id: 'replication4Strategy',
     name: {
       en: 'Replication 4 (Idyllic Dream) Strategy',
+      de: 'Zellteilung 4 (Arkadischer Traum) Strategie',
       cn: '本体四运 (境中奇梦) 策略',
       ko: '자가 복제 4 (아르카디아의 꿈) 전략'
     },
@@ -244460,6 +245580,7 @@ const r12s_triggerSet = {
     id: 'portentStrategy',
     name: {
       en: 'Phase 2 Tower Portent Resolution Strategy',
+      de: 'Phase 2 Turm Omenschlag Lösungs Strategy',
       cn: '本体预兆塔解决策略',
       ko: '2페이즈 탑 디버프 해결 전략'
     },
@@ -244470,6 +245591,11 @@ const r12s_triggerSet = {
         'Zenith Strategy: Wind N Max Melee, Earth/Dark Middle (Lean North), Fire S Max Melee': 'zenith',
         'Nukemaru Strategy: Near S (corner of numbered marker), Far S on Boss Hitbox, Earth/Fire Melee S Max Melee, Fire/Earth Range N of Platform': 'nukemaru',
         'No strategy: call element and debuff': 'none'
+      },
+      de: {
+        'DN-Strategie: Dunkelheit N Hitbox, Wind Mitte Hitbox, Erde/Feuer N/S Max Nahkampf': 'dn',
+        'Zenith-Strategie: Wind N Max Nahkampf, Erde/Dunkelheit Mitte (Lehnen nach Norden), Feuer S Max Nahkampf': 'zenith',
+        'Keine Strategie: Element und Debuff ausrufen': 'none'
       },
       cn: {
         'DN 策略: 暗北判定点, 风中间判定点, 土/火平台北侧近战位(暗与风之间), 火/土平台南侧边缘远程位': 'dn',
@@ -244695,11 +245821,13 @@ const r12s_triggerSet = {
       output.responseOutputStrings = {
         tanksLeft: {
           en: 'Tanks Left',
+          de: 'Tanks Links',
           cn: 'T 左',
           ko: '탱커 왼쪽'
         },
         tanksRight: {
           en: 'Tanks Right',
+          de: 'Tanks Rechts',
           cn: 'T 右',
           ko: '탱커 오른쪽'
         }
@@ -244908,11 +246036,13 @@ const r12s_triggerSet = {
       },
       baitThenStack: {
         en: 'Bait 4x Puddles => ${stack}',
+        de: 'Ködere Fläche x4 => ${stack}',
         cn: '诱导4轮黄圈 => ${stack}',
         ko: '장판 유도 4x => ${stack}'
       },
       baitThenStackCleave: {
         en: 'Bait 4x Puddles => ${stack} + ${cleave}',
+        de: 'Ködere Fläche x4 => ${stack} + ${cleave}',
         cn: '诱导4轮黄圈 + ${stack} + ${cleave}',
         ko: '장판 유도 4x => ${stack} + ${cleave}'
       }
@@ -244973,16 +246103,19 @@ const r12s_triggerSet = {
       },
       baitThenSpread: {
         en: 'Bait 4x Puddles => Spread',
+        de: 'Ködere Fläche x4 => Verteilen',
         cn: '诱导4轮黄圈 => 分散',
         ko: '장판 유도 4x => 산개'
       },
       baitThenSpreadCleave: {
         en: 'Bait 4x Puddles => Spread + ${cleave}',
+        de: 'Ködere Fläche x4 => Verteilen + ${cleave}',
         cn: '诱导4轮黄圈 => 分散 + ${cleave}',
         ko: '장판 유도 4x => 산개 + ${cleave}'
       },
       spreadCurtain: {
         en: 'Spread Debuff on YOU',
+        de: 'Verteilen Debuff auf DIR',
         cn: '分散 Debuff 点名',
         ko: '산개징 대상자'
       }
@@ -245081,11 +246214,13 @@ const r12s_triggerSet = {
       northwest: outputs/* default.northwest */.Z.northwest,
       safeSpot: {
         en: '${safe} (later)',
+        de: '${safe} (später)',
         cn: '${safe} (稍后)',
         ko: '${safe} (나중에)'
       },
       safeDirs: {
         en: '${dir1}/${dir2}',
+        de: '${dir1}/${dir2}',
         cn: '${dir1}/${dir2}',
         ko: '${dir1}/${dir2}'
       }
@@ -245161,11 +246296,13 @@ const r12s_triggerSet = {
       stackOnTarget: outputs/* default.stackOnPlayer */.Z.stackOnPlayer,
       stackSafe: {
         en: '${stack} ${safe}',
+        de: '${stack} ${safe}',
         cn: '${stack} ${safe}',
         ko: '${stack} ${safe}'
       },
       stackDirs: {
         en: '${dir1}/${dir2}',
+        de: '${dir1}/${dir2}',
         cn: '${dir1}/${dir2}',
         ko: '${dir1}/${dir2}'
       }
@@ -245211,11 +246348,13 @@ const r12s_triggerSet = {
       busterOnYou: outputs/* default.tankBusterOnYou */.Z.tankBusterOnYou,
       busterSafe: {
         en: '${buster} + ${safe}',
+        de: '${buster} + ${safe}',
         cn: '${buster} + ${safe}',
         ko: '${buster} + ${safe}'
       },
       busterDirs: {
         en: '${dir1}/${dir2}',
+        de: '${dir1}/${dir2}',
         cn: '${dir1}/${dir2}',
         ko: '${dir1}/${dir2}'
       }
@@ -245327,81 +246466,97 @@ const r12s_triggerSet = {
     outputStrings: {
       alpha1: {
         en: '1α: Wait for Tether 1',
+        de: '1α: Warte auf Verbindung 1',
         cn: '1α: 拉 1 线',
         ko: '1α: 선 1 기다리기'
       },
       alpha2: {
         en: '2α: Wait for Tether 2',
+        de: '2α: Warte auf Verbindung 2',
         cn: '2α: 拉 2 线',
         ko: '2α: 선 2 기다리기'
       },
       alpha3: {
         en: '3α: Blob Tower 1',
+        de: '3α: Blob Turm 1',
         cn: '3α: 踩场地 1 塔',
         ko: '3α: 살점 탑 1'
       },
       alpha4: {
         en: '4α: Blob Tower 2',
+        de: '4α: Blob Turm 2',
         cn: '4α: 踩场地 2 塔',
         ko: '4α: 살점 탑 2'
       },
       beta1: {
         en: '1β: Wait for Tether 1',
+        de: '1β: Warte auf Verbindung 1',
         cn: '1β: 反拉 1 线',
         ko: '1β: 선 1 기다리기'
       },
       beta2: {
         en: '2β: Wait for Tether 2',
+        de: '2β: Warte auf Verbindung 2',
         cn: '2β: 反拉 2 线',
         ko: '2β: 선 2 기다리기'
       },
       beta3: {
         en: '3β: Chain Tower 1',
+        de: '3β: Ketten Turm 1',
         cn: '3β: 踩玩家 1 塔',
         ko: '3β: 설치한 탑 1'
       },
       beta4: {
         en: '4β: Chain Tower 2',
+        de: '4β: Ketten Turm 2',
         cn: '4β: 踩玩家 2 塔',
         ko: '4β: 설치한 탑 2'
       },
       alpha1Tts: {
         en: '1α: Wait for Tether 1',
+        de: '1α: WWarte auf Verbindung 1',
         cn: '1α: 拉 1 线',
         ko: '알파 1: 선 1 기다리기'
       },
       alpha2Tts: {
         en: '2α: Wait for Tether 2',
+        de: '2α: Warte auf Verbindung 2',
         cn: '2α: 拉 2 线',
         ko: '알파 2: 선 2 기다리기'
       },
       alpha3Tts: {
         en: '3α: Blob Tower 1',
+        de: '3α: Blob Turm 1',
         cn: '3α: 踩场地 1 塔',
         ko: '알파 3: 살점 탑 1'
       },
       alpha4Tts: {
         en: '4α: Blob Tower 2',
+        de: '4α: Blob Turm 2',
         cn: '4α: 踩场地 2 塔',
         ko: '알파 4: 살점 탑 2'
       },
       beta1Tts: {
         en: '1β: Wait for Tether 1',
+        de: '1β: Warte auf Verbindung 1',
         cn: '1β: 反拉 1 线',
         ko: '베타 1: 선 1 기다리기'
       },
       beta2Tts: {
         en: '2β: Wait for Tether 2',
+        de: '2β: Warte auf Verbindung 2',
         cn: '2β: 反拉 2 线',
         ko: '베타 2: 선 2 기다리기'
       },
       beta3Tts: {
         en: '3β: Chain Tower 1',
+        de: '3β: Ketten Turm 1',
         cn: '3β: 踩玩家 1 塔',
         ko: '베타 3: 설치한 탑 1'
       },
       beta4Tts: {
         en: '4β: Chain Tower 2',
+        de: '4β: Ketten Turm 2',
         cn: '4β: 踩玩家 2 塔',
         ko: '베타 4: 설치한 탑 2'
       },
@@ -245521,11 +246676,13 @@ const r12s_triggerSet = {
       ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       innerBlobTower: {
         en: 'Blob Tower ${num} Inner ${dir} (later)',
+        de: 'Blob Turm ${num} Innen ${dir} (später)',
         cn: '踩场内${dir}玩家${num}塔 (稍后)',
         ko: '살점 탑 ${num} 안쪽 ${dir} (나중에)'
       },
       outerBlobTower: {
         en: 'Blob Tower ${num} Outer ${dir} (later)',
+        de: 'Blob Turm ${num} Außen ${dir} (später)',
         cn: '踩场外${dir}场地${num}塔 (稍后)',
         ko: '살점 탑 ${num} 바깥쪽 ${dir} (나중에)'
       }
@@ -245653,21 +246810,25 @@ const r12s_triggerSet = {
       },
       beta1Tower: {
         en: '${tether} => Chain Tower 3',
+        de: '${tether} => Ketten Turm 3',
         cn: '${tether} => 玩家3塔',
         ko: '${tether} => 설치한 탑 3'
       },
       beta2Tower: {
         en: '${tether} => Chain Tower 4',
+        de: '${tether} => Ketten Turm 4',
         cn: '${tether} => 玩家4塔',
         ko: '${tether} => 설치한 탑 4'
       },
       beta3Tower: {
         en: '${tether} => Chain Tower 1',
+        de: '${tether} => Ketten Turm 1',
         cn: '${tether} => 玩家1塔',
         ko: '${tether} => 설치한 탑 1'
       },
       beta4Tower: {
         en: '${tether} => Chain Tower 2',
+        de: '${tether} => Ketten Turm 2',
         cn: '${tether} => 玩家2塔',
         ko: '${tether} => 설치한 탑 2'
       }
@@ -245704,6 +246865,7 @@ const r12s_triggerSet = {
     outputStrings: {
       tower: {
         en: 'Get Chain Tower ${num}',
+        de: 'Nimm Ketten Turm ${num}',
         cn: '踩玩家${num}塔',
         ko: '설치한 탑 ${num} 밟기'
       }
@@ -245749,21 +246911,25 @@ const r12s_triggerSet = {
       ...util/* Directions.outputStringsIntercardDir */.Ns.outputStringsIntercardDir,
       alpha3: {
         en: 'Get Blob Tower 1',
+        de: 'Nimm Blob Turm 1',
         cn: '踩场地1塔',
         ko: '살점 탑 1 밟기'
       },
       alpha4: {
         en: 'Get Blob Tower 2',
+        de: 'Nimm Blob Turm 2',
         cn: '踩场地2塔',
         ko: '살점 탑 2 밟기'
       },
       alpha3Dir: {
         en: 'Get Blob Tower 1 (Inner ${dir})',
+        de: 'Nimm Blob Turm 1 (Innen ${dir})',
         cn: '踩场地1塔 (内${dir})',
         ko: '살점 탑 1 (안쪽 ${dir}) 밟기'
       },
       alpha4Dir: {
         en: 'Get Blob Tower 2 (Inner ${dir})',
+        de: 'Nimm Blob Turm 2 (Innen ${dir})',
         cn: '踩场地2塔 (内${dir})',
         ko: '살점 탑 2 (안쪽 ${dir}) 밟기'
       }
@@ -245859,56 +247025,67 @@ const r12s_triggerSet = {
       getTowers: outputs/* default.getTowers */.Z.getTowers,
       alpha1: {
         en: '${chains} 1 (${exit}) + Blob Tower 3 (Outer)',
+        de: '${chains} 1 (${exit}) + Blob Turm 3 (Außen)',
         cn: '${chains} 1 (${exit}) + 场地3塔 (场外)',
         ko: '${chains} 1 (${exit}) + 살점 탑 3 (바깥쪽)'
       },
       alpha1Dir: {
         en: '${chains} 1 (${exit}) + Blob Tower 3 (Outer ${dir})',
+        de: '${chains} 1 (${exit}) + Blob Turm 3 (Außen ${dir})',
         cn: '${chains} 1 (${exit}) + 场地3塔 (场外 ${dir})',
         ko: '${chains} 1 (${exit}) + 살점 탑 3 (바깥쪽 ${dir})'
       },
       alpha1ExitDir: {
         en: '${chains} 1 (${exit}) + Blob Tower 3 (Outer ${dir})',
+        de: '${chains} 1 (${exit}) + Blob Turm 3 (Außen ${dir})',
         cn: '${chains} 1 (${exit}) + 场地3塔 (场外 ${dir})',
         ko: '${chains} 1 (${exit}) + 살점 탑 3 (바깥쪽 ${dir})'
       },
       alpha2: {
         en: '${chains} 2 (${exit}) + Blob Tower 4 (Outer)',
+        de: '${chains} 2 (${exit}) + Blob Turm 4 (Außen)',
         cn: '${chains} 2 (${exit}) + 场地4塔 (场外)',
         ko: '${chains} 2 (${exit}) + 살점 탑 4 (바깥쪽)'
       },
       alpha2Dir: {
         en: '${chains} 2 (${exit}) + Blob Tower 4 (Outer ${dir})',
+        de: '${chains} 2 (${exit}) + Blob Turm 4 (Außen ${dir})',
         cn: '${chains} 2 (${exit}) + 场地4塔 (场外 ${dir})',
         ko: '${chains} 2 (${exit}) + 살점 탑 4 (바깥쪽 ${dir})'
       },
       alpha3: {
         en: '${chains} 3 (${exit}) + Get Out',
+        de: '${chains} 3 (${exit}) + Geh Raus',
         cn: '${chains} 3 (${exit}) + 出去',
         ko: '${chains} 3 (${exit}) + 밖으로'
       },
       alpha4: {
         en: '${chains} 4 (${exit}) + Get Out',
+        de: '${chains} 4 (${exit}) + Geh Raus',
         cn: '${chains} 4 (${exit}) + 出去',
         ko: '${chains} 4 (${exit}) + 밖으로'
       },
       beta1: {
         en: '${chains} 1 (${dir}) => Get Middle',
+        de: '${chains} 1 (${dir}) => Geh Mitte',
         cn: '${chains} 1 (${dir}) => 中间',
         ko: '${chains} 1 (${dir}) => 중앙으로'
       },
       beta2: {
         en: '${chains} 2 (${dir}) => Get Middle',
+        de: '${chains} 2 (${dir}) => Geh Mitte',
         cn: '${chains} 2 (${dir}) => 中间',
         ko: '${chains} 2 (${dir}) => 중앙으로'
       },
       beta3: {
         en: '${chains} 3 (${dir}) => Wait for last pair',
+        de: '${chains} 3 (${dir}) => Warte fürs letzte Paar',
         cn: '${chains} 3 (${dir}) => 等待最后一组',
         ko: '${chains} 3 (${dir}) => 마지막 쌍 기다리기'
       },
       beta4: {
         en: '${chains} 4 (${dir}) => Get Out',
+        de: '${chains} 4 (${dir}) => Geh Raus',
         cn: '${chains} 4 (${dir}) => 出去',
         ko: '${chains} 4 (${dir}) => 밖으로'
       }
@@ -246042,6 +247219,7 @@ const r12s_triggerSet = {
     outputStrings: {
       outOfCoil: {
         en: 'Out of Coil',
+        de: 'Raus aus dem Kreis',
         cn: '出圈',
         ko: '몸통 밖으로'
       }
@@ -246081,21 +247259,25 @@ const r12s_triggerSet = {
     outputStrings: {
       frontTower: {
         en: 'Tower (S/SW)',
+        de: 'Turm (S/SW)',
         cn: '塔 (下/左下)',
         ko: '탑 (남/남서)'
       },
       rearTower: {
         en: 'Tower (N/NE)',
+        de: 'Turm (N/NO)',
         cn: '塔 (上/右上)',
         ko: '탑 (북/북동)'
       },
       leftTower: {
         en: 'Tower (E/SE)',
+        de: 'Turm (O/SO)',
         cn: '塔 (右/右下)',
         ko: '탑 (동/남동)'
       },
       rightTower: {
         en: 'Tower (W/NW)',
+        de: 'Turm (W/NW)',
         cn: '塔 (左/左上)',
         ko: '탑 (서/북서)'
       }
@@ -246160,6 +247342,7 @@ const r12s_triggerSet = {
     outputStrings: {
       text: {
         en: 'Rotting Flesh on YOU',
+        de: 'Todeszellen auf DIR',
         cn: '致死细胞点名',
         ko: '치사세포 대상자'
       }
@@ -246194,21 +247377,25 @@ const r12s_triggerSet = {
     outputStrings: {
       getHitWest: {
         en: 'Spread in West Cleave',
+        de: 'Verteilen im Westen Cleave',
         cn: '左侧扇形内分散',
         ko: '서쪽 부채꼴에서 산개'
       },
       getHitEast: {
         en: 'Spread in East Cleave',
+        de: 'Verteilen im Osten Cleave',
         cn: '右侧扇形内分散',
         ko: '동쪽 부채꼴에서 산개'
       },
       safeEast: {
         en: 'Spread East + Avoid Cleave',
+        de: 'Verteilen im Osten + vermeide Cleave',
         cn: '右侧分散 + 避开扇形',
         ko: '동쪽에서 산개 + 부채꼴 피하기'
       },
       safeWest: {
         en: 'Spread West + Avoid Cleave',
+        de: 'Verteilen im Westen + vermeide Cleave',
         cn: '左侧分散 + 避开扇形',
         ko: '서쪽에서 산개 + 부채꼴 피하기'
       }
@@ -246238,11 +247425,13 @@ const r12s_triggerSet = {
     outputStrings: {
       tank: {
         en: 'Bait Line AoE from Heads => Get Middle (Avoid Far AoEs)',
+        de: 'Köder Linien-AoE von den Köpfen => Geh Mitte (vermeide entfernte AoEs)',
         cn: '诱导龙头直线AoE => 去中间 (避开远AoE)',
         ko: '머리의 직선 장판 유도 => 중앙으로 (원거리 장판 피하기)'
       },
       party: {
         en: 'Away from Heads (Avoid Tank Lines) => Spread near Heads',
+        de: 'Weg von den Köpfen (Vermeide Tank-Linien) => Verteilen nahe der Köpfe',
         cn: '远离头 (避开坦克直线) => 龙头附近分散',
         ko: '머리에서 멀어지기 (탱커 직선장판 피하기) => 머리 근처에서 산개'
       }
@@ -246264,11 +247453,13 @@ const r12s_triggerSet = {
     outputStrings: {
       tank: {
         en: 'Get Middle (Avoid Far AoEs)',
+        de: 'Geh Mittig (Vermeide entfernte AoEs)',
         cn: '去中间 (避开远AoE)',
         ko: '중앙으로 (원거리 장판 피하기)'
       },
       party: {
         en: 'Spread near Heads',
+        de: 'Nahe der Köpfe verteilen',
         cn: '龙头附近分散',
         ko: '머리 근처에서 산개'
       }
@@ -246285,6 +247476,7 @@ const r12s_triggerSet = {
     outputStrings: {
       text: {
         en: 'Bait 5x Puddles',
+        de: 'Köder Flächen x5 ',
         cn: '诱导5轮黄圈',
         ko: '장판 유도 5x'
       }
@@ -246327,16 +247519,19 @@ const r12s_triggerSet = {
       breakChains: outputs/* default.breakChains */.Z.breakChains,
       safeSpots: {
         en: '${dir1}/${dir2}',
+        de: '${dir1}/${dir2}',
         cn: '${dir1}/${dir2}',
         ko: '${dir1}/${dir2}'
       },
       avoidBlobs: {
         en: 'Avoid Blobs',
+        de: 'Vermeide Blobs',
         cn: '避开危险区域',
         ko: '살점 피하기'
       },
       alphaChains: {
         en: '${chains} => ${safe}',
+        de: '${chains} => ${safe}',
         cn: '${chains} => ${safe}',
         ko: '${chains} => ${safe}'
       }
@@ -246397,11 +247592,13 @@ const r12s_triggerSet = {
       northwest: outputs/* default.northwest */.Z.northwest,
       avoidBlobs: {
         en: 'Avoid Blobs',
+        de: 'Vermeide Blobs',
         cn: '避开危险区域',
         ko: '살점 피하기'
       },
       safeSpots: {
         en: '${dir1}/${dir2}',
+        de: '${dir1}/${dir2}',
         cn: '${dir1}/${dir2}',
         ko: '${dir1}/${dir2}'
       }
@@ -246433,11 +247630,13 @@ const r12s_triggerSet = {
     outputStrings: {
       northeast: {
         en: 'Stack NE/Spread NW (later)',
+        de: 'Sammel NO/Verteilen NW (Später)',
         cn: '右上分摊/左上分散 (稍后)',
         ko: '쉐어 북동쪽/산개 북서쪽 (나중에)'
       },
       northwest: {
         en: 'Spread NE/Stack NW (later)',
+        de: 'Verteilen NO/Sammel NW (Später)',
         cn: '右上分散/左上分摊 (稍后)',
         ko: '산개 북동쪽/쉐어 북서쪽 (나중에)'
       }
@@ -246543,11 +247742,13 @@ const r12s_triggerSet = {
       right: outputs/* default.right */.Z.right,
       northeastKnockback: {
         en: 'Knockback from Northeast',
+        de: 'Rückstoß von Nordosten',
         cn: '从右上击退',
         ko: '북동쪽에서 넉백'
       },
       northwestKnockback: {
         en: 'Knockback from Northwest',
+        de: 'Rückstoß von Nordwesten',
         cn: '从左上击退',
         ko: '북서쪽에서 넉백'
       },
@@ -246557,11 +247758,13 @@ const r12s_triggerSet = {
       stackOnPlayer: outputs/* default.stackOnPlayer */.Z.stackOnPlayer,
       stackDir: {
         en: '${stack} ${dir}',
+        de: '${stack} ${dir}',
         cn: '${stack} ${dir}',
         ko: '${stack} ${dir}'
       },
       stackThenDodge: {
         en: '${stack} => ${dodge}',
+        de: '${stack} => ${dodge}',
         cn: '${stack} => ${dodge}',
         ko: '${stack} => ${dodge}'
       }
@@ -246604,11 +247807,13 @@ const r12s_triggerSet = {
       right: outputs/* default.right */.Z.right,
       northeastKnockback: {
         en: 'Knockback from Northeast',
+        de: 'Rückstoß von Nordosten',
         cn: '从右上击退',
         ko: '북동쪽에서 넉백'
       },
       northwestKnockback: {
         en: 'Knockback from Northwest',
+        de: 'Rückstoß von Nordwesten',
         cn: '从左上击退',
         ko: '북서쪽에서 넉백'
       },
@@ -246617,11 +247822,13 @@ const r12s_triggerSet = {
       spread: outputs/* default.spread */.Z.spread,
       spreadDir: {
         en: 'Spread ${dir}',
+        de: 'Verteilen ${dir}',
         cn: '${dir}分散',
         ko: '산개 ${dir}'
       },
       spreadThenDodge: {
         en: '${spread} => ${dodge}',
+        de: '${spread} => ${dodge}',
         cn: '${spread} => ${dodge}',
         ko: '${spread} => ${dodge}'
       }
@@ -246655,11 +247862,13 @@ const r12s_triggerSet = {
       left: outputs/* default.leftThenRight */.Z.leftThenRight,
       northwestKnockback: {
         en: 'Knockback from Northwest => Knockback from Northeast',
+        de: 'Rückstoß von Nordwesten => Rückstoß von Nordosten',
         cn: '从左上击退 => 从右上击退',
         ko: '북서에서 넉백 => 북동에서 넉백'
       },
       northeastKnockback: {
         en: 'Knockback from Northeast => Knockback from Northwest',
+        de: 'Rückstoß von Nordosten => Rückstoß von Nordwesten',
         cn: '从右上击退 => 从左上击退',
         ko: '북동에서 넉백 => 북서에서 넉백'
       }
@@ -246728,6 +247937,7 @@ const r12s_triggerSet = {
     outputStrings: {
       northwestKnockback: {
         en: 'Knockback from Northwest',
+        de: 'Rückstoß von Nordwesten',
         cn: '从左上击退',
         ko: '북서쪽에서 넉백'
       }
@@ -246750,6 +247960,7 @@ const r12s_triggerSet = {
     outputStrings: {
       northeastKnockback: {
         en: 'Knockback from Northeast',
+        de: 'Rückstoß von Nordosten',
         cn: '从右上击退',
         ko: '북동쪽에서 넉백'
       }
@@ -246822,31 +248033,37 @@ const r12s_triggerSet = {
     outputStrings: {
       nSCleavingNorthSouth: {
         en: 'N/S Cleaving North/South',
+        de: 'N/S Cleaven Norden/Süden',
         cn: '上/下扇形 上/下',
         ko: '북/남 부채꼴 북쪽/남쪽'
       },
       eWCleavingNorthSouth: {
         en: 'E/W Cleaving North/South',
+        de: 'O/W Cleaven Norden/Süden',
         cn: '左/右扇形 上/下',
         ko: '동/서 부채꼴 북쪽/남쪽'
       },
       nSCleavingEastWest: {
         en: 'N/S Cleaving East/West',
+        de: 'N/S Cleaven Osten/Westen',
         cn: '上/下扇形 左/右',
         ko: '북/남 부채꼴 동쪽/서쪽'
       },
       eWCleavingEastWest: {
         en: 'E/W Cleaving East/West',
+        de: 'O/W Cleaven Osten/Westen',
         cn: '左/右扇形 左/右',
         ko: '동/서 부채꼴 동쪽/서쪽'
       },
       northSouthCleaves2: {
         en: 'North/South Cleaves',
+        de: 'Nord/Süd Cleaves',
         cn: '上/下扇形',
         ko: '북/남 부채꼴'
       },
       eastWestCleaves2: {
         en: 'East/West Cleaves',
+        de: 'Ost/West Cleaves',
         cn: '左/右扇形',
         ko: '동/서 부채꼴'
       }
@@ -246886,11 +248103,13 @@ const r12s_triggerSet = {
     outputStrings: {
       fire: {
         en: 'Fire Debuff: Spread near Dark (later)',
+        de: 'Feuer Debuff: Nahe Dunkel verteilen (später)',
         cn: '火 Debuff: 暗附近分散 (稍后)',
         ko: '불 디버프: 어둠 근처 산개 (나중에)'
       },
       dark: {
         en: 'Dark Debuff: Stack near Fire (later)',
+        de: 'Dunkel Debuff: Nahe Feuer sammeln (später)',
         cn: '暗 Debuff: 火附近分摊 (稍后)',
         ko: '어둠 디버프: 불 근처 쉐어 (나중에)'
       }
@@ -246918,11 +248137,13 @@ const r12s_triggerSet = {
     outputStrings: {
       noDebuff: {
         en: 'No Debuff: Spread near Dark (later)',
+        de: 'Kein Debuff: Nahe Dunkel verteilen (später)',
         cn: '无 Debuff: 暗附近分散 (稍后)',
         ko: '디버프 없음: 어둠 근처 산개 (나중에)'
       },
       noDebuffFail: {
         en: 'Debuffs Messed Up, Check Partner',
+        de: 'Debuffs durcheinander, Partner überprüfen',
         cn: 'Debuff 获取故障, 检查搭档状态',
         ko: '디버프 꼬임, 파트너 확인'
       }
@@ -246955,6 +248176,7 @@ const r12s_triggerSet = {
       getBehind: outputs/* default.getBehind */.Z.getBehind,
       getBehindDir: {
         en: '${dir}: ${mech}',
+        de: '${dir}: ${mech}',
         cn: '${dir}: ${mech}',
         ko: '${dir}: ${mech}'
       }
@@ -247073,16 +248295,19 @@ const r12s_triggerSet = {
       // Cardinals should result in '???'
       fire: {
         en: 'Bait Fire In ${dir1}/Out ${dir2} (Partners)',
+        de: 'Köder Feuer im ${dir1}/Außen ${dir2} (Partner)',
         cn: '内${dir1}/外${dir2}诱导火 (和搭档一起)',
         ko: '불 안쪽 ${dir1}/바깥쪽 ${dir2} 유도 (파트너)'
       },
       dark: {
         en: 'Bait Dark In ${dir1}/Out ${dir2} (Solo)',
+        de: 'Köder Dunkel in ${dir1}/Außen ${dir2} (Solo)',
         cn: '内${dir1}/外${dir2}诱导暗 (单独)',
         ko: '어둠 안쪽 ${dir1}/바깥쪽 ${dir2} 유도 (혼자)'
       },
       darkDebuffFail: {
         en: 'Check Partner, Dark is In ${dir1}/Out ${dir2}',
+        de: 'Partner überprüfen, Dunkel ist ${dir1}/Außen ${dir2}',
         cn: '检查搭档状态, 暗在内${dir1}/外${dir2}',
         ko: '파트너 확인, 어둠 안쪽 ${dir1}/바깥쪽 ${dir2}'
       }
@@ -247145,6 +248370,7 @@ const r12s_triggerSet = {
       getBehind: outputs/* default.getBehind */.Z.getBehind,
       getBehindDir: {
         en: '${dir}: ${mech}',
+        de: '${dir}: ${mech}',
         cn: '${dir}: ${mech}',
         ko: '${dir}: ${mech}'
       }
@@ -247218,11 +248444,13 @@ const r12s_triggerSet = {
       ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       cloneTether: {
         en: 'Tethered to Clone',
+        de: 'Verbunden zum Klon',
         cn: '分身连线',
         ko: '분신과 연결됨'
       },
       cloneTetherDir: {
         en: 'Tethered to ${dir} Clone',
+        de: 'Verbunden zum ${dir} Klon',
         cn: '与${dir}分身连线',
         ko: '${dir} 분신과 연결됨'
       }
@@ -247805,169 +249033,202 @@ const r12s_triggerSet = {
       defamationOnYou: outputs/* default.defamationOnYou */.Z.defamationOnYou,
       defamationOnYouDNSE: {
         en: 'Defamation on YOU, Go ${strat}',
+        de: 'Ehrenstrafe auf DIR, Geh ${strat}',
         cn: '大圈点名, 去${strat}',
         ko: '광역징 대상자, ${strat}'
       },
       defamationOnYouDNSW: {
         en: 'Defamation on YOU, Go ${strat}',
+        de: 'Ehrenstrafe auf DIR, Geh ${strat}',
         cn: '大圈点名, 去${strat}',
         ko: '광역징 대상자, ${strat}'
       },
       defamationOnYouBananaNE: {
         en: 'Defamation on YOU, Go ${strat}',
+        de: 'Ehrenstrafe auf DIR, Geh ${strat}',
         cn: '大圈点名, 去${strat}',
         ko: '광역징 대상자, ${strat}'
       },
       defamationOnYouBananaSE: {
         en: 'Defamation on YOU, Go ${strat}',
+        de: 'Ehrenstrafe auf DIR, Geh ${strat}',
         cn: '大圈点名, 去${strat}',
         ko: '광역징 대상자, ${strat}'
       },
       defamationOnYouNukemaruSW: {
         en: 'Defamation on YOU, Go ${strat}',
+        de: 'Ehrenstrafe auf DIR, Geh ${strat}',
         cn: '大圈点名, 去${strat}',
         ko: '광역징 대상자, ${strat}'
       },
       defamationOnYouNukemaruNW: {
         en: 'Defamation on YOU, Go ${strat}',
+        de: 'Ehrenstrafe auf DIR, Geh ${strat}',
         cn: '大圈点名, 去${strat}',
         ko: '광역징 대상자, ${strat}'
       },
       baitProtean: {
         en: 'Bait Protean from Boss',
+        de: 'Köder Kegel-AoE vom Boss',
         cn: '从 Boss 诱导扇形',
         ko: '보스의 부채꼴 유도'
       },
       baitProteanDN: {
         // If clone tether num missing
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanDNNE: {
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanDNE: {
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanDNW: {
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanDNNW: {
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanBanana: {
         // If clone tether num missing
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanBananaN: {
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanBananaS: {
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanBananaSW: {
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanBananaNW: {
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanNukemaru: {
         // If clone tether num missing
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanNukemaruN: {
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanNukemaruS: {
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanNukemaruNE: {
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitProteanNukemaruSE: {
         en: 'Bait Protean from Boss (${strat})',
+        de: 'Köder Kegel-AoE vom Boss (${strat})',
         cn: '从 Boss 诱导扇形 (${strat})',
         ko: '보스의 부채꼴 유도 (${strat})'
       },
       baitJump: {
         en: 'Bait Jump',
+        de: 'Köder Sprung',
         cn: '诱导跳跃',
         ko: '점프 유도'
       },
       baitJumpDNN: {
         en: 'Bait Jump ${strat}',
+        de: 'Köder Sprung ${strat}',
         cn: '诱导跳跃 ${strat}',
         ko: '점프 유도 ${strat}'
       },
       baitJumpBananaW: {
         en: 'Bait Jump ${strat}',
+        de: 'Köder Sprung ${strat}',
         cn: '诱导跳跃 ${strat}',
         ko: '점프 유도 ${strat}'
       },
       baitJumpNukemaruE: {
         en: 'Bait Jump ${strat}',
+        de: 'Köder Sprung ${strat}',
         cn: '诱导跳跃 ${strat}',
         ko: '점프 유도 ${strat}'
       },
       projectionTetherDir: {
         en: '${dir} Cone Tether: ${mech1}',
+        de: '${dir} Kegel-Verbindung: ${mech1}',
         cn: '${dir} 扇形连线: ${mech1}',
         ko: '${dir} 부채꼴 선: ${mech1}'
       },
       projectionTether: {
         en: 'Cone Tether: ${mech1}',
+        de: 'Kegel-Verbindung: ${mech1}',
         cn: '扇形连线: ${mech1}',
         ko: '부채꼴 선: ${mech1}'
       },
       manaBurstTetherDir: {
         en: '${dir} Defamation Tether: ${mech1}',
+        de: '${dir} Ehrenstrafe-Verbindung: ${mech1}',
         cn: '${dir} 大圈连线: ${mech1}',
         ko: '${dir} 광역징 선: ${mech1}'
       },
       manaBurstTether: {
         en: 'Defamation Tether: ${mech1}',
+        de: 'Ehrenstrafe-Verbindung: ${mech1}',
         cn: '大圈连线: ${mech1}',
         ko: '광역징 선: ${mech1}'
       },
       heavySlamTetherDir: {
         en: '${dir} Stack Tether: ${mech1}',
+        de: '${dir} Sammel-Verbindung: ${mech1}',
         cn: '${dir} 分摊连线: ${mech1}',
         ko: '${dir} 쉐어징 선: ${mech1}'
       },
       heavySlamTether: {
         en: 'Stack Tether: ${mech1}',
+        de: 'Sammel-Verbindung: ${mech1}',
         cn: '分摊连线: ${mech1}',
         ko: '쉐어징 선: ${mech1}'
       },
       fireballSplashTether: {
         en: 'Boss Tether: ${mech1}',
+        de: 'Boss-Verbindung: ${mech1}',
         cn: 'Boss 连线: ${mech1}',
         ko: '보스 선: ${mech1}'
       }
@@ -248009,21 +249270,25 @@ const r12s_triggerSet = {
       west: outputs/* default.west */.Z.west,
       baitFarDefamation: {
         en: 'Bait Far Defamation',
+        de: 'Köder Entfernte Ehrenstrafe',
         cn: '诱导远大圈',
         ko: '멀리 광역징 유도'
       },
       baitFarDefamationDN: {
         en: 'Bait Far Defamation (Go ${strat})',
+        de: 'Köder Entfernte Ehrenstrafe (Geh ${strat})',
         cn: '诱导远大圈 (去 ${strat})',
         ko: '멀리 광역징 유도 (${strat})'
       },
       baitFarDefamationBanana: {
         en: 'Bait Far Defamation (Go ${strat})',
+        de: 'Köder Entfernte Ehrenstrafe (Geh ${strat})',
         cn: '诱导远大圈 (去 ${strat})',
         ko: '멀리 광역징 유도 (${strat})'
       },
       baitFarDefamationNukemaru: {
         en: 'Bait Far Defamation (Go ${strat})',
+        de: 'Köder Entfernte Ehrenstrafe (Geh ${strat})',
         cn: '诱导远大圈 (去 ${strat})',
         ko: '멀리 광역징 유도 (${strat})'
       },
@@ -248038,6 +249303,7 @@ const r12s_triggerSet = {
       },
       noTether: {
         en: 'No Tether: ${mech1} => ${mech2}',
+        de: 'Keine Verbindung: ${mech1} => ${mech2}',
         cn: '无连线: ${mech1} => ${mech2}',
         ko: '선 없음: ${mech1} => ${mech2}'
       }
@@ -248091,6 +249357,7 @@ const r12s_triggerSet = {
       lookAway: outputs/* default.lookAway */.Z.lookAway,
       projection: {
         en: 'Cones',
+        de: 'Klone',
         cn: '扇形',
         ko: '부채꼴'
       },
@@ -248106,26 +249373,31 @@ const r12s_triggerSet = {
       stackOnYou: outputs/* default.stackOnYou */.Z.stackOnYou,
       projectionTether: {
         en: '${mech1} + ${mech2} => ${mech3}',
+        de: '${mech1} + ${mech2} => ${mech3}',
         cn: '${mech1} + ${mech2} => ${mech3}',
         ko: '${mech1} + ${mech2} => ${mech3}'
       },
       manaBurstTether: {
         en: '${mech1} => ${mech2} => ${mech3}',
+        de: '${mech1} => ${mech2} => ${mech3}',
         cn: '${mech1} => ${mech2} => ${mech3}',
         ko: '${mech1} => ${mech2} => ${mech3}'
       },
       heavySlamTether: {
         en: '${mech1} => ${mech2} => ${mech3}',
+        de: '${mech1} => ${mech2} => ${mech3}',
         cn: '${mech1} => ${mech2} => ${mech3}',
         ko: '${mech1} => ${mech2} => ${mech3}'
       },
       fireballSplashTether: {
         en: '${mech1} => ${mech2} => ${mech3}',
+        de: '${mech1} => ${mech2} => ${mech3}',
         cn: '${mech1} => ${mech2} => ${mech3}',
         ko: '${mech1} => ${mech2} => ${mech3}'
       },
       noTether: {
         en: '${mech1} => ${mech2} => ${mech3}',
+        de: '${mech1} => ${mech2} => ${mech3}',
         cn: '${mech1} => ${mech2} => ${mech3}',
         ko: '${mech1} => ${mech2} => ${mech3}'
       }
@@ -248161,6 +249433,7 @@ const r12s_triggerSet = {
       getBehind: outputs/* default.getBehind */.Z.getBehind,
       getBehindDir: {
         en: '${dir}: ${mech}',
+        de: '${dir}: ${mech}',
         cn: '${dir}: ${mech}',
         ko: '${dir}: ${mech}'
       }
@@ -248337,26 +249610,31 @@ const r12s_triggerSet = {
       stacks: outputs/* default.stacks */.Z.stacks,
       stackDir: {
         en: 'Stack ${dir}',
+        de: 'Sammeln ${dir}',
         cn: '${dir} 分摊',
         ko: '쉐어 ${dir}'
       },
       proteans: {
         en: 'Proteans',
+        de: 'Kegel-AoEs',
         cn: '扇形',
         ko: '부채꼴'
       },
       beNear: {
         en: 'Be Near',
+        de: 'Sei Nahe',
         cn: '站近',
         ko: '가까이 있기'
       },
       beFar: {
         en: 'Be Far',
+        de: 'Sei Fern',
         cn: '站远',
         ko: '멀리 있기'
       },
       hitboxBanana: {
         en: 'Be West on Boss Hitbox',
+        de: 'Sei westlich der Hitbox vom Boss',
         cn: '去左边, Boss判定圈上',
         ko: '보스 히트박스 서쪽에 있기'
       },
@@ -248365,6 +249643,7 @@ const r12s_triggerSet = {
       },
       hitboxNukemaru: {
         en: 'Be West on Boss Hitbox',
+        de: 'Sei westlich auf der Hitbox vom Boss',
         cn: '去左边, Boss判定圈下',
         ko: '보스 히트박스 서쪽에 있기'
       },
@@ -248384,93 +249663,111 @@ const r12s_triggerSet = {
       },
       projectionTetherFar: {
         en: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})',
+        de: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})',
         cn: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})',
         ko: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})'
       },
       manaBurstTetherFar: {
         en: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
+        de: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
         cn: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
         ko: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})'
       },
       heavySlamTetherFar: {
         en: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})',
+        de: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})',
         cn: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})',
         ko: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})'
       },
       fireballSplashTetherFar: {
         en: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
+        de: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
         cn: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
         ko: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})'
       },
       noTetherFar: {
         en: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
+        de: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
         cn: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
         ko: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})'
       },
       projectionTetherNear: {
         en: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})',
+        de: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})',
         cn: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})',
         ko: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})'
       },
       manaBurstTetherNear: {
         en: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
+        de: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
         cn: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
         ko: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})'
       },
       heavySlamTetherNear: {
         en: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})',
+        de: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})',
         cn: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})',
         ko: '${proteanBaits} + ${mech1} (${mech2} ${spiteBaits})'
       },
       fireballSplashTetherNear: {
         en: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
+        de: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
         cn: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
         ko: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})'
       },
       noTetherNear: {
         en: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
+        de: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
         cn: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})',
         ko: '${spiteBaits} + ${mech1} (${mech2} ${proteanBaits})'
       },
       projectionTetherBait: {
         en: '${mech1} (${spiteBaits} Baits) => ${mech2}',
+        de: '${mech1} (${spiteBaits} Ködern) => ${mech2}',
         cn: '${mech1} (${spiteBaits} Baits) => ${mech2}',
         ko: '${mech1} (${spiteBaits} 유도) => ${mech2}'
       },
       manaBurstTetherHitbox: {
         en: '${mech1} + Avoid ${spiteBaits} Baits => ${mech2}',
+        de: '${mech1} + Vermeide ${spiteBaits} Ködern => ${mech2}',
         cn: '${mech1} + 躲避 ${spiteBaits} 诱导 => ${mech2}',
         ko: '${mech1} + ${spiteBaits} 유도 피하기 => ${mech2}'
       },
       heavySlamTetherBait: {
         en: '${mech1} (${spiteBaits} Baits) => ${mech2}',
+        de: '${mech1} (${spiteBaits} Ködern) => ${mech2}',
         cn: '${mech1} (${spiteBaits} 诱导) => ${mech2}',
         ko: '${mech1} (${spiteBaits} 유도) => ${mech2}'
       },
       fireballSplashTetherHitbox: {
         en: '${mech1} + Avoid ${spiteBaits} Baits => ${mech2}',
+        de: '${mech1} + Vermeide ${spiteBaits} Ködern => ${mech2}',
         cn: '${mech1} + 躲避 ${spiteBaits} 诱导 => ${mech2}',
         ko: '${mech1} + ${spiteBaits} 유도 피하기 => ${mech2}'
       },
       noTetherHitbox: {
         en: '${mech1} + Avoid ${spiteBaits} Baits => ${mech2}',
+        de: '${mech1} + Vermeide ${spiteBaits} Ködern => ${mech2}',
         cn: '${mech1} + 躲避 ${spiteBaits} 诱导 => ${mech2}',
         ko: '${mech1} + ${spiteBaits} 유도 피하기 => ${mech2}'
       },
       stack: outputs/* default.stackMarker */.Z.stackMarker,
       projection: {
         en: 'Cones',
+        de: 'Klone',
         cn: '扇形',
         ko: '부채꼴'
       },
       defamation: {
         en: 'Defamation',
+        de: 'Ehrenstrafe',
         cn: '大圈',
         ko: '광역징'
       },
       unknown: outputs/* default.unknown */.Z.unknown,
       netherwrathMechThenMech: {
         en: '${spiteBaits} Baits + ${mech1} N + ${mech2} S => ${mech3} NE + ${mech4} SW',
+        de: '${spiteBaits} Ködern + ${mech1} N + ${mech2} S => ${mech3} NO + ${mech4} SW',
         cn: '${spiteBaits} 诱导 + ${mech1} 上 + ${mech2} 下 => ${mech3} 右上 + ${mech4} 左下',
         ko: '${spiteBaits} 유도 + ${mech1} 북 + ${mech2} 남 => ${mech3} 북동 + ${mech4} 남서'
       }
@@ -248514,31 +249811,37 @@ const r12s_triggerSet = {
       output.responseOutputStrings = {
         stackThenStackBanana: {
           en: 'Stack on SW Clone => Stack on NW Clone',
+          de: 'Auf SW Klon sammeln => Auf NW Klon sammeln',
           cn: '左下分身分摊 => 左上分身分摊',
           ko: '남서 분신에서 쉐어 => 북서 분신에서 쉐어'
         },
         avoidStackThenProteanBanana: {
           en: 'Avoid SW Stack => Bait Protean West',
+          de: 'Vermeide SW sammeln => Köder Kegel-AoE West',
           cn: '避开左下分摊 => 左侧诱导扇形',
           ko: '남서 분신 쉐어 피하기 => 서쪽에서 부채꼴 유도'
         },
         stackThenProteansBanana: {
           en: 'SW Clone Stack => West Proteans',
+          de: 'SW Klon sammeln => West Kegel-Aoe',
           cn: '左下分身分摊 => 左侧扇形',
           ko: '남서 분신 쉐어 => 서쪽 부채꼴'
         },
         stackThenStackNukemaru: {
           en: 'Stack on NE Clone => Stack on SE Clone',
+          de: 'Auf NO Klon sammeln => Auf SO Klon sammeln',
           cn: '右上分身分摊 => 右下分身分摊',
           ko: '북동 분신에서 쉐어 => 남동 분신에서 쉐어'
         },
         avoidStackThenProteanNukemaru: {
           en: 'Avoid NE Stack => Bait Protean East',
+          de: 'Vermeide NO sammeln => Köder Kegel-AoE Ost',
           cn: '避开右上分摊 => 右侧诱导扇形',
           ko: '북동 분신 쉐어 피하기 => 동쪽에서 부채꼴 유도'
         },
         stackThenProteansNukemaru: {
           en: 'NE Clone Stack => East Proteans',
+          de: 'NO Klon sammeln => Ost Kegel-Aoe',
           cn: '右上分身分摊 => 右侧扇形',
           ko: '북동 분신 쉐어 => 동쪽 부채꼴'
         }
@@ -248590,6 +249893,7 @@ const r12s_triggerSet = {
     outputStrings: {
       text: {
         en: 'East/West Clone Stacks',
+        de: 'Ost/West Klon sammeln',
         cn: '左/右分身分摊',
         ko: '동/서 분신 쉐어'
       }
@@ -248617,31 +249921,37 @@ const r12s_triggerSet = {
       output.responseOutputStrings = {
         proteanBanana: {
           en: 'Bait Protean West + Avoid Clone AoE',
+          de: 'Kegel AoE ködern West + Vermeide Klon AoE',
           cn: '左侧诱导扇形 + 避开分身AoE',
           ko: '서쪽 부채꼴 유도 + 분신 장판 피하기'
         },
         avoidThenStackBanana: {
           en: 'Avoid West Clone/East Defamation + Stack on NW Clone',
+          de: 'Vermeide West Klon/Ost Ehrenstrafe + Sammeln auf NW Klon',
           cn: '避开左分身/右大圈 + 左上分身分摊',
           ko: '서쪽 분신/동쪽 광역징 피하기 + 북서 분신에서 쉐어'
         },
         proteansThenStackBanana: {
           en: 'West Proteans => NW Clone Stack',
+          de: 'West Kegel AoEs => NW Klon sammeln',
           cn: '左侧扇形 => 左上分身分摊',
           ko: '서쪽 부채꼴 => 북서 분신 쉐어'
         },
         proteanNukemaru: {
           en: 'Bait Protean East + Avoid Clone AoE',
+          de: 'Kegel AoE ködern Ost + Vermeide Klon AoE',
           cn: '右侧诱导扇形 + 避开分身AoE',
           ko: '동쪽 부채꼴 유도 + 분신 장판 피하기'
         },
         avoidThenStackNukemaru: {
           en: 'Avoid East Clone/West Defamation + Stack on SE Clone',
+          de: 'Vermeide Ost Klon/West Ehrenstrafe + Sammeln auf SO Klon',
           cn: '避开右分身/左大圈 + 右上分身分摊',
           ko: '동쪽 분신/서쪽 광역징 피하기 + 남동 분신에서 쉐어'
         },
         proteansThenStackNukemaru: {
           en: 'East Proteans => SE Clone Stack',
+          de: 'Ost Kegel AoEs => SO Klon sammeln',
           cn: '右侧扇形 => 右上分身分摊',
           ko: '동쪽 부채꼴 => 남동 분신 쉐어'
         }
@@ -248716,31 +250026,37 @@ const r12s_triggerSet = {
       output.responseOutputStrings = {
         stackBanana: {
           en: 'Stack on NW Clone',
+          de: 'Auf NW Klon sammeln',
           cn: '左上分身分摊',
           ko: '북서 분신에서 쉐어'
         },
         avoidStackBanana: {
           en: 'Avoid NE Stack',
+          de: 'Vermeide NO sammeln',
           cn: '避开右上分摊',
           ko: '북동 쉐어 피하기'
         },
         stackAndDefamationBanana: {
           en: 'NW Clone Stack + SE Defamation',
+          de: 'NW Klon sammeln + SO Ehrenstrafe',
           cn: '左上分身分摊 + 右下大圈',
           ko: '북서 분신 쉐어 + 남동 광역징'
         },
         stackNukemaru: {
           en: 'Stack on SE Clone',
+          de: 'Auf SO Klon sammeln',
           cn: '右下分身分摊',
           ko: '남동 분신에서 쉐어'
         },
         avoidStackNukemaru: {
           en: 'Avoid SE Stack',
+          de: 'Vermeide SO sammeln',
           cn: '避开右下分摊',
           ko: '남동 쉐어 피하기'
         },
         stackAndDefamationNukemaru: {
           en: 'SE Clone Stack + NW Defamation',
+          de: 'SO Klon sammeln + NW Ehrenstrafe',
           cn: '右下分身分摊 + 左上大圈',
           ko: '남동 분신 쉐어 + 북서 광역징'
         }
@@ -248836,21 +250152,25 @@ const r12s_triggerSet = {
     outputStrings: {
       alpha: {
         en: 'Mutation α on YOU',
+        de: 'Mutation α auf DIR',
         cn: '变异细胞α点名',
         ko: '변이세포 α 대상자'
       },
       beta: {
         en: 'Mutation β on YOU',
+        de: 'Mutation β auf DIR',
         cn: '变异细胞β点名',
         ko: '변이세포 β 대상자'
       },
       alphaTts: {
         en: 'Mutation α on YOU',
+        de: 'Mutation α auf DIR',
         cn: '变异细胞α点名',
         ko: '변이세포 알파 대상자'
       },
       betaTts: {
         en: 'Mutation β on YOU',
+        de: 'Mutation β auf DIR',
         cn: '变异细胞β点名',
         ko: '변이세포 베타 대상자'
       }
@@ -248969,41 +250289,49 @@ const r12s_triggerSet = {
       },
       water: {
         en: 'Orb',
+        de: 'Orb',
         cn: '钢铁碎片',
         ko: '구슬'
       },
       lightning: {
         en: 'Lightning',
+        de: 'Blitz',
         cn: '上下扇形碎片',
         ko: '번개'
       },
       fire: {
         en: 'Fire',
+        de: 'Feuer',
         cn: '左右扇形碎片',
         ko: '불'
       },
       wind: {
         en: 'Donut',
+        de: 'Donut',
         cn: '月环碎片',
         ko: '도넛'
       },
       alpha: {
         en: 'Avoid Shape AoEs, Wait by Black Hole',
+        de: 'Vermeide Form-Aoe, Warte beim Schwarzen Loch',
         cn: '避开碎片 AOE, 等待黑洞',
         ko: '도형 장판 피하기, 블랙홀 옆에서 대기'
       },
       beta: {
         en: 'Shared Shape Soak => Get by Black Hole',
+        de: 'Form-AoE zusammen nehmen => Geh zum Schwarzen Loch',
         cn: '分摊撞碎片 => 靠近黑洞',
         ko: '도형 쉐어 처리 => 블랙홀 옆으로 이동'
       },
       alphaDir: {
         en: 'Avoid ${dir1} ${shape1}/${shape2} => ${dir2} Black Hole + ${northSouth}',
+        de: 'Vermeide ${dir1} ${shape1}/${shape2} Form-AoEs => ${dir2} Schwarzes Loch + ${northSouth}',
         cn: '避开 ${dir1} ${shape1}/${shape2} => ${dir2} 黑洞 + ${northSouth}',
         ko: '${dir1} ${shape1}/${shape2} 도형 장판 피하기 => ${dir2} 블랙홀 + ${northSouth}'
       },
       betaDir: {
         en: 'Share ${dir1} ${shape1}/${shape2} => ${dir2} Black Hole + ${northSouth}',
+        de: 'Teile ${dir1} ${shape1}/${shape2} => ${dir2} Schwarzes Loch + ${northSouth}',
         cn: '分摊 ${dir1} ${shape1}/${shape2} => ${dir2} 黑洞 + ${northSouth}',
         ko: '${dir1} ${shape1}/${shape2} 쉐어 => ${dir2} 블랙홀 + ${northSouth}'
       }
@@ -249045,21 +250373,25 @@ const r12s_triggerSet = {
       },
       alpha: {
         en: 'Get by Black Hole',
+        de: 'Geh zum Schwarzen Loch',
         cn: '靠近黑洞',
         ko: '블랙홀 옆으로 이동'
       },
       beta: {
         en: 'Get by Black Hole',
+        de: 'Geh zum Schwarzen Loch',
         cn: '靠近黑洞',
         ko: '블랙홀 옆으로 이동'
       },
       alphaDir: {
         en: '${dir2} Black Hole + ${northSouth}',
+        de: '${dir2} Schwarzes Loch + ${northSouth}',
         cn: '${dir2} 黑洞 + ${northSouth}',
         ko: '${dir2} 블랙홀 + ${northSouth}'
       },
       betaDir: {
         en: '${dir2} Black Hole + ${northSouth}',
+        de: '${dir2} Schwarzes Loch + ${northSouth}',
         cn: '${dir2} 黑洞 + ${northSouth}',
         ko: '${dir2} 블랙홀 + ${northSouth}'
       }
@@ -249101,11 +250433,13 @@ const r12s_triggerSet = {
       },
       move: {
         en: 'Move to other Black Hole',
+        de: 'Geh zum anderen Schwarzen Loch',
         cn: '去另一个黑洞',
         ko: '다른 블랙홀로 이동'
       },
       moveDir: {
         en: '${dir} Black Hole + ${northSouth}',
+        de: '${dir} Schwarzen Loch + ${northSouth}',
         cn: '${dir} 黑洞 + ${northSouth}',
         ko: '${dir} 블랙홀 + ${northSouth}'
       }
@@ -249146,36 +250480,43 @@ const r12s_triggerSet = {
       getUnder: outputs/* default.getUnder */.Z.getUnder,
       maxMelee: {
         en: 'Max Melee',
+        de: 'Max Nahkampf',
         cn: '最大近战距离',
         ko: '칼끝딜'
       },
       alphaNear: {
         en: '${mech} (Avoid Near Stack)',
+        de: '${mech} (Vermeide Nah-Sammeln)',
         cn: '${mech} (避开近分摊)',
         ko: '${mech} (근거리 쉐어 피하기)'
       },
       alphaFar: {
         en: '${mech} (Avoid Far Stack)',
+        de: '${mech} (Vermeide Fern-Sammeln)',
         cn: '${mech} (避开远分摊)',
         ko: '${mech} (원거리 쉐어 피하기)'
       },
       betaNear: {
         en: 'Near β Stack: ${mech}',
+        de: 'Nah β Sammeln: ${mech}',
         cn: '近 β 分摊: ${mech}',
         ko: '근거리 β 쉐어: ${mech}'
       },
       betaFar: {
         en: 'Far β Stack: ${mech}',
+        de: 'Fern β Sammeln: ${mech}',
         cn: '远 β 分摊: ${mech}',
         ko: '원거리 β 쉐어: ${mech}'
       },
       betaNearTts: {
         en: 'Near β Stack: ${mech}',
+        de: 'Nah β Sammeln: ${mech}',
         cn: '近 β 分摊: ${mech}',
         ko: '근거리 베타 쉐어: ${mech}'
       },
       betaFarTts: {
         en: 'Far β Stack: ${mech}',
+        de: 'Fern β Sammeln: ${mech}',
         cn: '远 β 分摊: ${mech}',
         ko: '원거리 베타 쉐어: ${mech}'
       }
@@ -249237,6 +250578,7 @@ const r12s_triggerSet = {
       intercards: outputs/* default.intercards */.Z.intercards,
       firstClone: {
         en: 'First Clone: ${cards}',
+        de: 'Erste Klone: ${cards}',
         cn: '第一个分身: ${cards}',
         ko: '첫 번째 분신: ${cards}'
       }
@@ -249284,11 +250626,13 @@ const r12s_triggerSet = {
       ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       cloneTether: {
         en: 'Tethered to Clone',
+        de: 'Verbunden zum Klon',
         cn: '分身连线',
         ko: '분신과 선 연결'
       },
       cloneTetherDir: {
         en: 'Tethered to ${dir} Clone',
+        de: 'Verbunden zum ${dir} Klon',
         cn: '被 ${dir} 分身连线',
         ko: '${dir} 분신과 선 연결'
       }
@@ -249348,6 +250692,7 @@ const r12s_triggerSet = {
       sides: outputs/* default.sides */.Z.sides,
       text: {
         en: '${dir} + ${sides} (later)',
+        de: '${dir} + ${sides} (später)',
         cn: '${dir} + ${sides} (稍后)',
         ko: '${dir} + ${sides} (나중에)'
       }
@@ -249553,11 +250898,13 @@ const r12s_triggerSet = {
       ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       getTether: {
         en: 'Get Tether',
+        de: 'Nimm Verbindung',
         cn: '接线',
         ko: '선 가져가기'
       },
       mechLater: {
         en: '${mech} First (later)',
+        de: '${mech} Zuerst (später)',
         cn: '${mech} 先 (稍后)',
         ko: '${mech} 먼저 (나중에)'
       },
@@ -249573,286 +250920,343 @@ const r12s_triggerSet = {
       stacks: outputs/* default.stacks */.Z.stacks,
       mechLaterTether: {
         en: '${later}; ${tether}',
+        de: '${later}; ${tether}',
         cn: '${later}; ${tether}',
         ko: '${later}; ${tether}'
       },
       mechLaterNClone: {
         en: '${later}; ${tether}',
+        de: '${later}; ${tether}',
         cn: '${later}; ${tether}',
         ko: '${later}; ${tether}'
       },
       mechLaterNEClone: {
         en: '${later}; ${tether}',
+        de: '${later}; ${tether}',
         cn: '${later}; ${tether}',
         ko: '${later}; ${tether}'
       },
       mechLaterEClone: {
         en: '${later}; ${tether}',
+        de: '${later}; ${tether}',
         cn: '${later}; ${tether}',
         ko: '${later}; ${tether}'
       },
       mechLaterSEClone: {
         en: '${later}; ${tether}',
+        de: '${later}; ${tether}',
         cn: '${later}; ${tether}',
         ko: '${later}; ${tether}'
       },
       mechLaterSClone: {
         en: '${later}; ${tether}',
+        de: '${later}; ${tether}',
         cn: '${later}; ${tether}',
         ko: '${later}; ${tether}'
       },
       mechLaterSWClone: {
         en: '${later}; ${tether}',
+        de: '${later}; ${tether}',
         cn: '${later}; ${tether}',
         ko: '${later}; ${tether}'
       },
       mechLaterWClone: {
         en: '${later}; ${tether}',
+        de: '${later}; ${tether}',
         cn: '${later}; ${tether}',
         ko: '${later}; ${tether}'
       },
       mechLaterNWClone: {
         en: '${later}; ${tether}',
+        de: '${later}; ${tether}',
         cn: '${later}; ${tether}',
         ko: '${later}; ${tether}'
       },
       getStackEastGroupQuad1DN: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackEastGroupQuad2DN: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackWestGroupQuad3DN: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackWestGroupQuad4DN: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getDefamationEastGroupQuad1DN: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationEastGroupQuad2DN: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationWestGroupQuad3DN: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationWestGroupQuad4DN: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getStackWestGroup1EM: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackWestGroup2EM: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackWestGroup12EM: {
         en: 'Get ${dir1}/${dir2} Stack Tether',
+        de: 'Nimm ${dir1}/${dir2} Sammel-Verbindung',
         cn: '接${dir1}/${dir2}分摊线',
         ko: '${dir1}/${dir2} 쉐어 선 가져가기'
       },
       getStackEastGroup1EM: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackEastGroup2EM: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackEastGroup12EM: {
         en: 'Get ${dir1}/${dir2} Stack Tether',
+        de: 'Nimm ${dir1}/${dir2} Sammel-Verbindung',
         cn: '接${dir1}/${dir2}分摊线',
         ko: '${dir1}/${dir2} 쉐어 선 가져가기'
       },
       getStackEastGroup3EM: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackEastGroup4EM: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackEastGroup34EM: {
         en: 'Get ${dir1}/${dir2} Stack Tether',
+        de: 'Nimm ${dir1}/${dir2} Sammel-Verbindung',
         cn: '接${dir1}/${dir2}分摊线',
         ko: '${dir1}/${dir2} 쉐어 선 가져가기'
       },
       getDefamationEastGroup3EM: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationEastGroup4EM: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationEastGroup34EM: {
         en: 'Get ${dir1}/${dir2} Defamation Tether',
+        de: 'Nimm ${dir1}/${dir2} Ehrenstrafe-Verbindung',
         cn: '接${dir1}/${dir2}大圈线',
         ko: '${dir1}/${dir2} 광역징 선 가져가기'
       },
       getDefamationEastGroup1EM: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationEastGroup2EM: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationEastGroup12EM: {
         en: 'Get ${dir1}/${dir2} Defamation Tether',
+        de: 'Nimm ${dir1}/${dir2} Ehrenstrafe-Verbindung',
         cn: '接${dir1}/${dir2}大圈线',
         ko: '${dir1}/${dir2} 광역징 선 가져가기'
       },
       getDefamationWestGroup1EM: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationWestGroup2EM: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationWestGroup12EM: {
         en: 'Get ${dir1}/${dir2} Defamation Tether',
+        de: 'Nimm ${dir1}/${dir2} Ehrenstrafe-Verbindung',
         cn: '接${dir1}/${dir2}大圈线',
         ko: '${dir1}/${dir2} 광역징 선 가져가기'
       },
       getDefamationWestGroup3EM: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationWestGroup4EM: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationWestGroup34EM: {
         en: 'Get ${dir1}/${dir2} Defamation Tether',
+        de: 'Nimm ${dir1}/${dir2} Ehrenstrafe-Verbindung',
         cn: '接${dir1}/${dir2}大圈线',
         ko: '${dir1}/${dir2} 광역징 선 가져가기'
       },
       getStackWestGroup3EM: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackWestGroup4EM: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackWestGroup34EM: {
         en: 'Get ${dir1}/${dir2} Stack Tether',
+        de: 'Nimm ${dir1}/${dir2} Sammel-Verbindung',
         cn: '接${dir1}/${dir2}分摊线',
         ko: '${dir1}/${dir2} 쉐어 선 가져가기'
       },
       getDefamationEastGroupQuad1Caro: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getStackEastGroupQuad2Caro: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackEastGroupQuad3Caro: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getDefamationEastGroupQuad4Caro: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationWestGroupQuad1Caro: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getStackWestGroupQuad2Caro: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackWestGroupQuad3Caro: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getDefamationWestGroupQuad4Caro: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getStackEastGroupQuad1Nukemaru: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getDefamationEastGroupQuad1Nukemaru: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationWestGroupQuad4Nukemaru: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationEastGroupQuad2Nukemaru: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getDefamationWestGroupQuad3Nukemaru: {
         en: 'Get ${dir} Defamation Tether',
+        de: 'Nimm ${dir} Ehrenstrafe-Verbindung',
         cn: '接${dir}大圈线',
         ko: '${dir} 광역징 선 가져가기'
       },
       getStackWestGroupQuad3Nukemaru: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackWestGroupQuad4Nukemaru: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       },
       getStackEastGroupQuad2Nukemaru: {
         en: 'Get ${dir} Stack Tether',
+        de: 'Nimm ${dir} Sammel-Verbindung',
         cn: '接${dir}分摊线',
         ko: '${dir} 쉐어 선 가져가기'
       }
@@ -249977,31 +251381,37 @@ const r12s_triggerSet = {
       healerGroups: outputs/* default.healerGroups */.Z.healerGroups,
       meteorAoe: {
         en: '${bigAoe} + ${groups}',
+        de: '${bigAoe} + ${groups}',
         cn: '${bigAoe} + ${groups}',
         ko: '${bigAoe} + ${groups}'
       },
       dodgeCleaves: {
         en: '${dir} + ${sides}',
+        de: '${dir} + ${sides}',
         cn: '${dir} + ${sides}',
         ko: '${dir} + ${sides}'
       },
       manaBurstTetherDir: {
-        en: '${dodgeCleaves} (${dir} Defamation Tether)  => ${meteorAoe}',
+        en: '${dodgeCleaves} (${dir} Defamation Tether) => ${meteorAoe}',
+        de: '${dodgeCleaves} (${dir} Ehrenstrafe-Verbindung) => ${meteorAoe}',
         cn: '${dodgeCleaves} (${dir}大圈线) => ${meteorAoe}',
-        ko: '${dodgeCleaves} (${dir} 광역징 선)  => ${meteorAoe}'
+        ko: '${dodgeCleaves} (${dir} 광역징 선) => ${meteorAoe}'
       },
       manaBurstTether: {
         en: ' N/S Clone (Defamation Tether) => ${meteorAoe}',
+        de: ' N/S Klon (Ehrenstrafe-Verbindung) => ${meteorAoe}',
         cn: ' 南/北分身 (大圈线) => ${meteorAoe}',
         ko: ' 북/남 분신 (광역징 선) => ${meteorAoe}'
       },
       heavySlamTetherDir: {
-        en: '${dodgeCleaves} (${dir} Stack Tether)  => ${meteorAoe}',
+        en: '${dodgeCleaves} (${dir} Stack Tether) => ${meteorAoe}',
+        de: '${dodgeCleaves} (${dir} Sammel-Verbindung) => ${meteorAoe}',
         cn: '${dodgeCleaves} (${dir}分摊线) => ${meteorAoe}',
-        ko: '${dodgeCleaves} (${dir} 쉐어징 선)  => ${meteorAoe}'
+        ko: '${dodgeCleaves} (${dir} 쉐어징 선) => ${meteorAoe}'
       },
       heavySlamTether: {
         en: ' N/S Clone (Stack Tether) => ${meteorAoe}',
+        de: ' N/S Klon (Sammel-Verbindung) => ${meteorAoe}',
         cn: ' 南/北分身 (分摊线) => ${meteorAoe}',
         ko: ' 북/남 분신 (쉐어징 선) => ${meteorAoe}'
       }
@@ -250084,6 +251494,7 @@ const r12s_triggerSet = {
     outputStrings: {
       text: {
         en: 'Soak Fire/Earth Meteor (later)',
+        de: 'Nimm Feuer/Erde Meteor (später)',
         cn: '踩火/土陨石塔 (稍后)',
         ko: '불/땅 메테오 밟기 (나중에)'
       }
@@ -250104,6 +251515,7 @@ const r12s_triggerSet = {
     outputStrings: {
       text: {
         en: 'Soak a White/Star Meteor (later)',
+        de: 'Nimm Weißen/Stern Meteor (später)',
         cn: '踩光/彩色陨石塔 (稍后)',
         ko: '바람/어둠 메테오 밟기 (나중에)'
       }
@@ -250125,37 +251537,44 @@ const r12s_triggerSet = {
         stackOnYou: outputs/* default.stackOnYou */.Z.stackOnYou,
         defamations: {
           en: 'Avoid Defamations',
+          de: 'Vermeide Ehrenstrafe',
           cn: '远离大圈',
           ko: '광역징 피하기'
         },
         defamationOnYou: outputs/* default.defamationOnYou */.Z.defamationOnYou,
         stacksThenDefamations: {
           en: '${mech1} => ${mech2}',
+          de: '${mech1} => ${mech2}',
           cn: '${mech1} => ${mech2}',
           ko: '${mech1} => ${mech2}'
         },
         defamationsThenStacks: {
           en: '${mech1} => ${mech2}',
+          de: '${mech1} => ${mech2}',
           cn: '${mech1} => ${mech2}',
           ko: '${mech1} => ${mech2}'
         },
         stacksThenDefamationOnYou: {
           en: '${mech1} => ${mech2}',
+          de: '${mech1} => ${mech2}',
           cn: '${mech1} => ${mech2}',
           ko: '${mech1} => ${mech2}'
         },
         defamationsThenStackOnYou: {
           en: '${mech1} => ${mech2}',
+          de: '${mech1} => ${mech2}',
           cn: '${mech1} => ${mech2}',
           ko: '${mech1} => ${mech2}'
         },
         stackOnYouThenDefamations: {
           en: '${mech1} => ${mech2}',
+          de: '${mech1} => ${mech2}',
           cn: '${mech1} => ${mech2}',
           ko: '${mech1} => ${mech2}'
         },
         defamationOnYouThenStack: {
           en: '${mech1} => ${mech2}',
+          de: '${mech1} => ${mech2}',
           cn: '${mech1} => ${mech2}',
           ko: '${mech1} => ${mech2}'
         }
@@ -250243,37 +251662,44 @@ const r12s_triggerSet = {
         stackOnYou: outputs/* default.stackOnYou */.Z.stackOnYou,
         defamations: {
           en: 'Avoid Defamations',
+          de: 'Vermeide Ehrenstrafe',
           cn: '远离大圈',
           ko: '광역징 피하기'
         },
         defamationOnYou: outputs/* default.defamationOnYou */.Z.defamationOnYou,
         stacksThenDefamations: {
           en: '${mech1} => ${mech2}',
+          de: '${mech1} => ${mech2}',
           cn: '${mech1} => ${mech2}',
           ko: '${mech1} => ${mech2}'
         },
         defamationsThenStacks: {
           en: '${mech1} => ${mech2}',
+          de: '${mech1} => ${mech2}',
           cn: '${mech1} => ${mech2}',
           ko: '${mech1} => ${mech2}'
         },
         stacksThenDefamationOnYou: {
           en: '${mech1} => ${mech2}',
+          de: '${mech1} => ${mech2}',
           cn: '${mech1} => ${mech2}',
           ko: '${mech1} => ${mech2}'
         },
         defamationsThenStackOnYou: {
           en: '${mech1} => ${mech2}',
+          de: '${mech1} => ${mech2}',
           cn: '${mech1} => ${mech2}',
           ko: '${mech1} => ${mech2}'
         },
         stackOnYouThenDefamations: {
           en: '${mech1} => ${mech2}',
+          de: '${mech1} => ${mech2}',
           cn: '${mech1} => ${mech2}',
           ko: '${mech1} => ${mech2}'
         },
         defamationOnYouThenStack: {
           en: '${mech1} => ${mech2}',
+          de: '${mech1} => ${mech2}',
           cn: '${mech1} => ${mech2}',
           ko: '${mech1} => ${mech2}'
         },
@@ -250415,11 +251841,13 @@ const r12s_triggerSet = {
     outputStrings: {
       fireEarthTower: {
         en: 'Soak Fire/Earth Meteor',
+        de: 'Nimm Feuer/Erd Meteor',
         cn: '踩火/土陨石塔',
         ko: '불/땅 메테오 밟기'
       },
       holyTower: {
         en: 'Soak a White/Star Meteor',
+        de: 'Nimm Weißen/Stern Meteor',
         cn: '踩光/彩色陨石塔',
         ko: '바람/어둠 메테오 밟기'
       }
@@ -250519,11 +251947,13 @@ const r12s_triggerSet = {
       in: outputs/* default.in */.Z["in"],
       southIn: {
         en: 'South + In',
+        de: 'Süden + Rein',
         cn: '下+内',
         ko: '남쪽 + 안으로'
       },
       avoidEarthTower: {
         en: '${dir} (Avoid Earth Tower)',
+        de: '${dir} (Vermeide Erd-Turm)',
         cn: '${dir} (避开土塔)',
         ko: '${dir} (땅 탑 피하기)'
       }
@@ -250613,6 +252043,7 @@ const r12s_triggerSet = {
     outputStrings: {
       cleanseDooms: {
         en: 'Cleanse Doom(s)',
+        de: 'Verhängnis Reinigen',
         cn: '康复死宣',
         ko: '죽음의 선고 에스나'
       },
@@ -250626,6 +252057,7 @@ const r12s_triggerSet = {
       },
       cleanseDoom2: {
         en: 'Cleanse ${target1}/${target2}',
+        de: 'Reinige ${target1}/${target2}',
         cn: '康复 ${target1}/${target2}',
         ko: '${target1}/${target2} 에스나'
       },
@@ -250633,16 +252065,19 @@ const r12s_triggerSet = {
       in: outputs/* default.in */.Z["in"],
       southIn: {
         en: 'South + In',
+        de: 'Süden + Rein',
         cn: '下+内',
         ko: '남쪽 + 안으로'
       },
       avoidEarthTower: {
         en: '${dir}',
+        de: '${dir}',
         cn: '${dir}',
         ko: '${dir}'
       },
       mech: {
         en: '${cleanse} + ${avoid}',
+        de: '${cleanse} + ${avoid}',
         cn: '${cleanse} + ${avoid}',
         ko: '${cleanse} + ${avoid}'
       }
@@ -250693,11 +252128,13 @@ const r12s_triggerSet = {
       in: outputs/* default.in */.Z["in"],
       southIn: {
         en: 'South + In',
+        de: 'Süden + Rein',
         cn: '下+内',
         ko: '남쪽 + 안으로'
       },
       avoidEarthTower: {
         en: '${dir} (Avoid Earth Tower)',
+        de: '${dir} (Vermeide Erd-Turm)',
         cn: '${dir} (避开土塔)',
         ko: '${dir} (땅 탑 피하기)'
       }
@@ -250741,41 +252178,49 @@ const r12s_triggerSet = {
     outputStrings: {
       nearOnYouDarkDN: {
         en: 'Near on YOU: Be on Hitbox N',
+        de: 'Nah auf DIR: Sei auf der Hitbox im Norden',
         cn: '近点名: 站上边判定圈',
         ko: '근거리 대상자: 히트박스 북쪽에 서기'
       },
       nearOnYouDarkZenith: {
         en: 'Near on YOU: Be on Middle Hitbox (Lean North)',
+        de: 'Nah auf DIR: Sei auf der Hitbox in der Mitte (etwas nördlich)',
         cn: '近点名: 站中间判定圈 (偏上)',
         ko: '근거리 대상자: 히트박스 중앙에 서기 (약간 북쪽)'
       },
       nearOnYouDarkNukemaru: {
         en: 'Near on YOU: Max Melee S (Near Outer Player)',
+        de: 'Nah auf DIR: Max Nahkampf im Süden (Nahe äußerem Spieler)',
         cn: '近点名: 下边最远近战距离 (靠近外侧玩家)',
         ko: '근거리 대상자: 남쪽 칼끝딜 (바깥 플레이어 가까이)'
       },
       nearOnYouDark: {
         en: 'Dark: Near on YOU',
+        de: 'Dunkel: Nah auf DIR',
         cn: '暗: 近点名',
         ko: '어둠: 근거리 대상자'
       },
       farOnYouWindDN: {
         en: 'Far on YOU: Be on Middle Hitbox',
+        de: 'Fern auf DIR: Sei auf der Mittleren Hitbox',
         cn: '远点名: 站中间判定圈',
         ko: '원거리 대상자: 히트박스 중앙에 서기'
       },
       farOnYouWindZenith: {
         en: 'Far on YOU: Max Melee N',
+        de: 'Fern auf DIR: Maximaler Nahkampf im Norden',
         cn: '远点名: 上边最远近战距离',
         ko: '원거리 대상자: 북쪽 칼끝딜'
       },
       farOnYouWindNukemaru: {
         en: 'Far on YOU: Be on Hitbox S',
+        de: 'Fern auf DIR: Auf der Hitbox im Süden',
         cn: '远点名: 站下边判定圈',
         ko: '원거리 대상자: 히트박스 남쪽에 서기'
       },
       farOnYouWind: {
         en: 'Wind: Far on YOU',
+        de: 'Wind: Fern auf DIR',
         cn: '风: 远点名',
         ko: '바람: 원거리 대상자'
       }
@@ -250816,41 +252261,49 @@ const r12s_triggerSet = {
     outputStrings: {
       baitFireDN: {
         en: 'Bait Cone N Center Below Dark/S Center',
+        de: 'Köder Kegel-AoE Norden Mitte Darunter Dunkel/Süden Mitte',
         cn: '诱导扇形: 北侧中心, 暗下方/南侧中心',
         ko: '부채꼴 유도 북쪽 어둠 밑/남쪽 중앙'
       },
       baitFireZenith: {
         en: 'Bait Cone S, Max Melee',
+        de: 'Köder Kegel-AoE S, Max Nahkampf',
         cn: '诱导扇形: 南侧, 最远近战距离',
         ko: '부채꼴 유도 남쪽, 칼끝딜'
       },
       baitFireNukemaru: {
         en: 'Bait Cone, N of Platform/S Max Melee',
+        de: 'Köder Kegel-AoE, Norden der Plattform/ Süden Max Nahkampf',
         cn: '诱导扇形: 平台北侧/南侧最远近战距离',
         ko: '부채꼴 유도, 플랫폼 북쪽/남쪽 칼끝딜'
       },
       baitFire: {
         en: 'Fire: Bait Cone',
+        de: 'Feuer: Köder Kegel-AoE',
         cn: '火: 诱导扇形',
         ko: '불: 부채꼴 유도'
       },
       baitEarthDN: {
         en: 'Bait Cone N Center Below Dark/S Center',
+        de: 'Köder Kegel-AoE Norden Mitte Darunter Dunkel/Süden Mitte',
         cn: '诱导扇形: 北侧中心, 暗下方/南侧中心',
         ko: '부채꼴 유도 북쪽 어둠 밑/남쪽 중앙'
       },
       baitEarthZenith: {
         en: 'Bait Cone Middle, Max Melee (Lean North)',
+        de: 'Köder Kegel-AoE Mitte, Max Nahkampf (etwas nördlich)',
         cn: '诱导扇形: 中间, 最远近战距离 (偏北)',
         ko: '부채꼴 유도 중앙, 칼끝딜 (약간 북쪽)'
       },
       baitEarthNukemaru: {
         en: 'Bait Cone, S Max Melee/N of Platform',
+        de: 'Köder Kegel-AoE, Süden Max Nahkampf/ Norden der Plattform',
         cn: '诱导扇形: 南侧最远近战距离/平台北侧',
         ko: '부채꼴 유도, 남쪽 칼끝딜/플랫폼 북쪽'
       },
       baitEarth: {
         en: 'Earth: Bait Cone',
+        de: 'Erde: Köder Kegel-AoE',
         cn: '土: 诱导扇形',
         ko: '땅: 부채꼴 유도'
       }
@@ -250893,11 +252346,13 @@ const r12s_triggerSet = {
     outputStrings: {
       frontBackLater: {
         en: 'Portal + Under Boss (later)',
+        de: 'Portal + Unter den Boss (später)',
         cn: '传送 + Boss脚下 (稍后)',
         ko: '포탈 + 앞/뒤 분신 (나중에)'
       },
       sidesLater: {
         en: 'Portal + E/W of Clone (later)',
+        de: 'Portal + O/W vom Klon (später)',
         cn: '传送 + 分身左/右 (稍后)',
         ko: '포탈 + 양 옆 분신 (나중에)'
       }
@@ -250946,21 +252401,25 @@ const r12s_triggerSet = {
     outputStrings: {
       frontBackWestLater: {
         en: 'West Platform => N/S of Clone (later)',
+        de: 'Westen Platform => N/S des Klones (später)',
         cn: '左平台 + 分身上/下 (稍后)',
         ko: '서쪽 플랫폼 => 앞/뒤 분신 (나중에)'
       },
       sidesWestLater: {
         en: 'West Platform => Under Boss (later)',
+        de: 'Westen Platform => Unter den Boss (später)',
         cn: '左平台 + Boss脚下 (稍后)',
         ko: '서쪽 플랫폼 => 양 옆 분신 (나중에)'
       },
       frontBackEastLater: {
         en: 'East Platform => N/S of Clone (later)',
+        de: 'Ost Platform => N/S des Klones (später)',
         cn: '右平台 + 分身上/下 (稍后)',
         ko: '동쪽 플랫폼 => 앞/뒤 분신 (나중에)'
       },
       sidesEastLater: {
         en: 'East Platform => Under Boss (later)',
+        de: 'Ost Platform => Unter den Boss (später)',
         cn: '右平台 + Boss脚下 (稍后)',
         ko: '동쪽 플랫폼 => 양 옆 분신 (나중에)'
       }
@@ -251011,6 +252470,7 @@ const r12s_triggerSet = {
       intercards: outputs/* default.intercards */.Z.intercards,
       stack: {
         en: 'Stack ${dir1}/${dir2} + Lean Middle Out',
+        de: 'Sammeln ${dir1}/${dir2} + Etwas Mittig Außen',
         cn: '${dir1}/${dir2}分摊 + 偏向中间外侧',
         ko: '${dir1}/${dir2} 쉐어 + 중앙 밖으로 약간 빼기'
       }
@@ -251039,26 +252499,31 @@ const r12s_triggerSet = {
     outputStrings: {
       safePlatform: {
         en: 'Move to Safe Platform Side => Dodge Cleaves',
+        de: 'Geh zur sicheren Platform-Seite => Cleave ausweichen',
         cn: '移动到安全平台侧 => 避开扇形',
         ko: '안전한 플랫폼 쪽으로 이동 => 부채꼴 피하기'
       },
       sidesWestPlatform: {
         en: 'West Platform => Under Boss',
+        de: 'Westen Platform => Unter den Boss',
         cn: '左平台 + Boss脚下',
         ko: '서쪽 플랫폼 => 보스 밑'
       },
       sidesEastPlatform: {
         en: 'East Platform => Under Boss',
+        de: 'Ost Platform => Unter den Boss',
         cn: '右平台 + Boss脚下',
         ko: '동쪽 플랫폼 => 보스 밑'
       },
       frontBackEastPlatform: {
         en: 'East Platform => N/S of Clone',
+        de: 'Ost Platform => N/S des Klones',
         cn: '右平台 + 分身上/下',
         ko: '동쪽 플랫폼 => 분신 남/북'
       },
       frontBackWestPlatform: {
         en: 'West Platform => N/S of Clone',
+        de: 'Westen Platform => N/S des Klones',
         cn: '左平台 + 分身上/下',
         ko: '서쪽 플랫폼 => 분신 남/북'
       }
@@ -251109,6 +252574,7 @@ const r12s_triggerSet = {
       intercards: outputs/* default.intercards */.Z.intercards,
       stack: {
         en: 'Stack ${dir1}/${dir2} + Lean Middle Out',
+        de: 'Sammeln ${dir1}/${dir2} + Etwas Mittig Außen',
         cn: '${dir1}/${dir2}分摊 + 偏向中间外侧',
         ko: '${dir1}/${dir2} 쉐어 + 중앙 바깥쪽으로 빼기'
       }
@@ -251134,11 +252600,13 @@ const r12s_triggerSet = {
     outputStrings: {
       sides: {
         en: 'E/W of Clone',
+        de: 'O/W des Klones',
         cn: '分身东/西',
         ko: '분신 동/서'
       },
       frontBack: {
         en: 'Under Boss',
+        de: 'Unter den Boss',
         cn: 'Boss脚下',
         ko: '보스 밑'
       }
@@ -251173,6 +252641,284 @@ const r12s_triggerSet = {
     'replaceText': {
       'Netherwrath Near/Netherwrath Far': 'Netherwrath Near/Far',
       'Netherworld Near/Netherwworld Far': 'Netherworld Near/Far'
+    }
+  }, {
+    'locale': 'de',
+    'replaceSync': {
+      'Blood Vessel': 'Gliederzelle',
+      'Lindschrat': 'abgespalten(?:e|er|es|en) Körper',
+      'Lindwurm': 'Lindwurm',
+      'Mana Sphere': 'Manasphäre',
+      'Understudy': 'Mimikry-Zelle'
+    },
+    'replaceText': {
+      '--bind--': '--fesseln--',
+      '--boss clones': '--Boss Klone',
+      '--clone takes portal--': '--Klon nimmt Portal--',
+      '--clones(?! move)': '--Klone',
+      '--clones move ': '--Klone bewegen sich',
+      '--close shapes eaten--': '--nahe Formen absorbiert--',
+      '--Doom x2--': '--Verhängnis x2--',
+      '--e/w clones--': '--O/W Klone--',
+      '--far shapes eaten--': '--ferne Formen absorbiert--',
+      '--Hot-blooded x2--': '--Hitze des Kampfes x2--',
+      '--locked tethers--': '--Verbindungen fest--',
+      '--n/s clones--': '--N/S Klone--',
+      '--ne/sw clones--': '--NO/SW Klone--',
+      '--se/nw clones--': '--SO/NW Klone--',
+      '--shapes--': '--Formen--',
+      '--soaked shapes eaten--': '--genommene Formen absorbiert--',
+      '--tether': '--Verbindung',
+      '--untargetable\\?--': '--nicht anvisierbar?--',
+      '\\(boss\\)': '(Boss)',
+      '\\(cast\\)': '(wirken)',
+      '\\(castbar\\)': '(vorbereiten)',
+      '\\(clones\\)': '(Klone)',
+      'Arcadia Aflame': 'Arkadische Flammen',
+      'Arcadian Arcanum': 'Arkadion Arcanum',
+      'Arcadian Hell': 'Arkadische Hölle',
+      'Black Hole': 'schwarz(?:e|er|es|en) Loch',
+      'Blood Mana': 'Manasphären',
+      'Blood Wakening': 'Manasphären-Erweckung',
+      'Bloody Burst': 'Ätherentfesselung',
+      'Bring Down the House': 'Hals- und Bühnenbruch',
+      '(?<! )Burst': 'Detonation',
+      'Cell Shedding': 'Zelleliminierung',
+      'Constrictor': 'Riesenschlangen-Würgegriff',
+      'Cosmic Kiss': 'Einschlag',
+      'Cruel Coil': 'Wurmwickel',
+      'Double Sobat': 'Doppel-Sobat',
+      'Down for the Count': 'Am Boden',
+      'Downfall': 'Vollkommener Ruin',
+      'Dramatic Lysis': 'Zellexplosion',
+      'Esoteric Finisher': 'Mana-Kombi',
+      'Feral Fission': 'Wildes Wurmgewühl',
+      'Firefall Splash': 'Feuerfall-Schmetterer',
+      'Fourth-wall Fusion': 'Zelldetonation',
+      'Grand Entrance': 'Großer Auftritt',
+      'Grotesquerie(?!: (Act|Curtain))': 'Zellbefall',
+      'Grotesquerie: Act 1': 'Zellbefall: Prophase',
+      'Grotesquerie: Act 2': 'Zellbefall: Metaphase',
+      'Grotesquerie: Act 3': 'Zellbefall: Anaphase',
+      'Grotesquerie: Curtain Call': 'Zellbefall: Telophase',
+      'Heavy Slam': 'Heftiger Knall',
+      'Hemorrhagic Projection': 'Gelenkte Schockwelle',
+      'Idyllic Dream': 'Arkadischer Traum',
+      'Lindwurm\'s Aero III': 'Lindwurm-Windga',
+      'Lindwurm\'s Dark II': 'Lindwurm-Negra',
+      'Lindwurm\'s Glare': 'Lindwurm-Blendung',
+      'Lindwurm\'s Meteor': 'Lindwurm-Meteo',
+      'Lindwurm\'s Stone III': 'Lindwurm-Steinga',
+      'Lindwurm\'s Thunder II': 'Lindwurm-Blitzra',
+      'Lindwurm\'s Water III': 'Lindwurm-Aquaga',
+      'Mana Burst': 'Mana-Knall',
+      'Metamitosis': 'Zellstreuung',
+      'Mighty Magic': 'Macht der Magie',
+      'Mortal Slayer': 'Tödliche Plage',
+      'Mutating Cells': 'Mutationszellen',
+      'Netherworld Far': 'Ferne Unterwelt',
+      'Netherworld Near': 'Nahe Unterwelt',
+      'Netherwrath Far': 'Ferner Zorn der Unterwelt',
+      'Netherwrath Near': 'Naher Zorn der Unterwelt',
+      'Phagocyte Spotlight': 'Zellabfall',
+      'Power Gusher': 'Düsterer Dunkelquell',
+      'Raptor Knuckles': 'Berstender Knöchel',
+      'Ravenous Reach': 'Zellulärstreckung',
+      'Reenactment': 'Memento Mimikry',
+      'Refreshing Overkill': 'Übertödliche Überheilung',
+      'Replication': 'Zellteilung',
+      'Roiling Mass': 'Zellmutation',
+      'Scalding Waves': 'Siedende Wogen',
+      'Serpentine Scourge': 'Geißelatem',
+      'Sideways Fire II': 'Horizontales Feura',
+      'Skinsplitter': 'Hautteiler',
+      'Slaughtershed': 'Zellenriss',
+      'Snaking Kick': 'Natterntritt',
+      'Splattershed': 'Venenriss',
+      'Split Scourge': 'Streuplage',
+      'Staging': 'Mimikry-Zellen',
+      'Straightforward Thunder II': 'Vertikales Blitzra',
+      'Temporal Curtain': 'Raumspalt',
+      'The Fixer': 'Retter des Arkadions',
+      'Timeless Spite': 'Zorneswelle der Unterwelt',
+      'Top-tier Slam': 'Elite-Faustschlag',
+      'Twisted Vision': 'Raumverschiebung',
+      'Venomous Scourge': 'Tropfplage',
+      'Visceral Burst': 'Eingeweideriss',
+      'Wailing Wave': 'Welle der Unterwelt',
+      'Winged Scourge': 'Geflügelte Plage'
+    }
+  }, {
+    'locale': 'fr',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Blood Vessel': 'cellule enchaînée',
+      'Lindschrat': 'clone humanoïde',
+      'Lindwurm': 'Lindwurm',
+      'Mana Sphere': 'sphère de mana',
+      'Understudy': 'cellule mimétique'
+    },
+    'replaceText': {
+      'Arcadia Aflame': 'Enfer arcadien',
+      'Arcadian Arcanum': 'Merveilles de l\'inconnu',
+      'Arcadian Hell': 'Enfer arcadien',
+      'Black Hole': 'trou noir',
+      'Blood Mana': 'Sphère de mana',
+      'Blood Wakening': 'Sphère de mana éveillée',
+      'Bloody Burst': 'Dissipation magique',
+      'Bring Down the House': 'Effondrement brutal',
+      '(?<! )Burst': 'Grosse explosion',
+      'Cell Shedding': 'Oblitération cellulaire',
+      'Constrictor': 'Étreinte mortelle',
+      'Cosmic Kiss': 'Impact',
+      'Cruel Coil': 'Spirale cruelle',
+      'Double Sobat': 'Double coup de pied',
+      'Down for the Count': 'Au tapis',
+      'Downfall': 'Effondrement absolu',
+      'Dramatic Lysis': 'Explosion cellulaire',
+      'Esoteric Finisher': 'Combinaison de mana',
+      'Feral Fission': 'Fission sauvage',
+      'Firefall Splash': 'Écrasement embrasé',
+      'Fourth-wall Fusion': 'Déflagration cellulaire',
+      'Grand Entrance': 'Entrée triomphale',
+      'Grotesquerie(?!: (Act|Curtain))': 'Cellules parasites',
+      'Grotesquerie:(?! )': 'Cellules parasites',
+      'Grotesquerie: Act 1': 'Cellules parasites : premier acte',
+      'Grotesquerie: Act 2': 'Cellules parasites : deuxième acte',
+      'Grotesquerie: Act 3': 'Cellules parasites : troisième acte',
+      'Grotesquerie: Curtain Call': 'Cellules parasites : rappel',
+      'Heavy Slam': 'Claque puissante',
+      'Hemorrhagic Projection': 'Onde de choc directionnelle',
+      'Idyllic Dream': 'Rêve arcadien',
+      'Lindwurm\'s Aero III': 'Méga Vent du Lindwurm',
+      'Lindwurm\'s Dark II': 'Fusion du Lindwurm',
+      'Lindwurm\'s Glare': 'Obscurité du Lindwurm',
+      'Lindwurm\'s Meteor': 'Météores du Lindwurm',
+      'Lindwurm\'s Stone III': 'Méga Terre du Lindwurm',
+      'Lindwurm\'s Thunder II': 'Extra Foudre du Lindwurm',
+      'Lindwurm\'s Water III': 'Méga Eau du Lindwurm',
+      'Mana Burst': 'Explosion de mana',
+      'Metamitosis': 'Dissémination cellulaire',
+      'Mighty Magic': 'Magie suprême',
+      'Mortal Slayer': 'Pestilence mortelle',
+      'Mutating Cells': 'Cellules mutantes',
+      'Netherworld Far': 'Outre-monde : éloigné',
+      'Netherworld Near': 'Outre-monde : proche',
+      'Netherwrath Far': 'Rage d\'outre-monde : éloignée',
+      'Netherwrath Near': 'Rage d\'outre-monde : proche',
+      'Phagocyte Spotlight': 'Chute cellulaire',
+      'Power Gusher': 'Déferlement de puissance',
+      'Raptor Knuckles': 'Poing du prédateur',
+      'Ravenous Reach': 'Voracité putride',
+      'Reenactment': 'Reconstitution',
+      'Refreshing Overkill': 'Soin extrême et frappe suprême',
+      'Replication': 'Réplication',
+      'Roiling Mass': 'Mutation cellulaire',
+      'Scalding Waves': 'Ondes enflammées',
+      'Serpentine Scourge': 'Souffle pestilentiel',
+      'Sideways Fire II': 'Extra Feu horizontal',
+      'Skinsplitter': 'Fendeur de chair',
+      'Slaughtershed': 'Abattoir',
+      'Snaking Kick': 'Coup de pied du serpent',
+      'Splattershed': 'Pulvérisation de chair',
+      'Split Scourge': 'Pestilence fractionnée',
+      'Staging': 'Cellules mimétiques',
+      'Straightforward Thunder II': 'Extra Foudre verticale',
+      'Temporal Curtain': 'Rupture spatiale',
+      'The Fixer': 'Sauveur de l\'Arcadion',
+      'Timeless Spite': 'Rage d\'outre-monde : vague',
+      'Top-tier Slam': 'Charge de haut rang',
+      'Twisted Vision': 'Projection mentale',
+      'Venomous Scourge': 'Pestilence larguée',
+      'Visceral Burst': 'Explosion viscérale',
+      'Wailing Wave': 'Outre-monde : vague',
+      'Winged Scourge': 'Pestilence volante'
+    }
+  }, {
+    'locale': 'ja',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Blood Vessel': '連環細胞',
+      'Lindschrat': '人型分体',
+      'Lindwurm': 'リンドブルム',
+      'Mana Sphere': 'マナスフィア',
+      'Understudy': '模倣細胞'
+    },
+    'replaceText': {
+      'Arcadia Aflame': 'アルカディアン・フレイム',
+      'Arcadian Arcanum': 'アルカディアン・アルケイナム',
+      'Arcadian Hell': 'アルカディアン・ヘル',
+      'Black Hole': 'ブラックホール',
+      'Blood Mana': 'マナスフィア',
+      'Blood Wakening': 'マナスフィア・アウェイク',
+      'Bloody Burst': '魔力放散',
+      'Bring Down the House': 'ブリングダウン・ハウス',
+      '(?<! )Burst': '大爆発',
+      'Cell Shedding': '細胞消失',
+      'Constrictor': 'コンストリクター',
+      'Cosmic Kiss': '着弾',
+      'Cruel Coil': 'クルエルコイル',
+      'Double Sobat': 'ダブルソバット',
+      'Down for the Count': 'ノックダウン',
+      'Downfall': 'ダウンフォール',
+      'Dramatic Lysis': '細胞爆発',
+      'Esoteric Finisher': 'マナコンビネーション',
+      'Feral Fission': 'フェラルフィッション',
+      'Firefall Splash': 'ファイアフォール・スプラッシュ',
+      'Fourth-wall Fusion': '細胞重爆',
+      'Grand Entrance': 'グランドエントランス',
+      'Grotesquerie(?!: (Act|Curtain))': '細胞付着',
+      'Grotesquerie:(?! )': '細胞付着',
+      'Grotesquerie: Act 1': '細胞付着・前期',
+      'Grotesquerie: Act 2': '細胞付着・中期',
+      'Grotesquerie: Act 3': '細胞付着・後期',
+      'Grotesquerie: Curtain Call': '細胞付着・終期',
+      'Heavy Slam': 'ヘビースラム',
+      'Hemorrhagic Projection': '指向性衝撃波',
+      'Idyllic Dream': 'アルカディアン・ドリーム',
+      'Lindwurm\'s Aero III': 'リンドブルム・エアロガ',
+      'Lindwurm\'s Dark II': 'リンドブルム・ダーラ',
+      'Lindwurm\'s Glare': 'リンドブルム・グレア',
+      'Lindwurm\'s Meteor': 'リンドブルム・メテオ',
+      'Lindwurm\'s Stone III': 'リンドブルム・ストンガ',
+      'Lindwurm\'s Thunder II': 'リンドブルム・サンダラ',
+      'Lindwurm\'s Water III': 'リンドブルム・ウォタガ',
+      'Mana Burst': 'マナバースト',
+      'Metamitosis': '細胞飛散',
+      'Mighty Magic': 'マイティマジック',
+      'Mortal Slayer': 'リーサルスカージ',
+      'Mutating Cells': '変異細胞',
+      'Netherworld Far': 'ネザーワールド・ファー',
+      'Netherworld Near': 'ネザーワールド・ニア',
+      'Netherwrath Far': 'ネザーレイジ・ファー',
+      'Netherwrath Near': 'ネザーレイジ・ニア',
+      'Phagocyte Spotlight': '細胞落着',
+      'Power Gusher': 'パワーガッシャー',
+      'Raptor Knuckles': 'ラプターナックル',
+      'Ravenous Reach': 'ラヴェナスリーチ',
+      'Reenactment': 'リエナクトメント',
+      'Refreshing Overkill': 'オーバーキュア・オーバーキル',
+      'Replication': 'レプリケーション',
+      'Roiling Mass': '細胞変異',
+      'Scalding Waves': '炎波',
+      'Serpentine Scourge': 'スカージブレス',
+      'Sideways Fire II': 'ホリゾンタルファイラ',
+      'Skinsplitter': 'スキンスプリッター',
+      'Slaughtershed': 'スローターシェッド',
+      'Snaking Kick': 'スネークキック',
+      'Splattershed': 'スプラッターシェッド',
+      'Split Scourge': 'スプリットスカージ',
+      'Staging': '模倣細胞',
+      'Straightforward Thunder II': 'バーチカルサンダラ',
+      'Temporal Curtain': '空間裂断',
+      'The Fixer': 'フィクサー・オブ・アルカディア',
+      'Timeless Spite': 'ネザーレイジ・ウェーブ',
+      'Top-tier Slam': 'トップティアスラム',
+      'Twisted Vision': '心象投影',
+      'Venomous Scourge': 'ドロップスカージ',
+      'Visceral Burst': 'ヴィセラルバースト',
+      'Wailing Wave': 'ネザーワールド・ウェーブ',
+      'Winged Scourge': 'ウィングドスカージ'
     }
   }, {
     'locale': 'cn',
@@ -255596,7 +257342,7 @@ const raid_r3s_namespaceObject = "### Arcadion (R3S): AAC Light-heavyweight M3 S
 // TODO: Better triggers for Bewitching Flight, collector for the loop to combine trigger with clone
 // and better wording for safe spot callout
 // TODO: Might be able to use `npcYellData` to detect phase push, I didn't look into it very much
-const r4n_effectB9AMap = {
+const effectB9AMap = {
   orangeDiamondFront: '2D3',
   blueCircleBack: '2D4'
 };
@@ -255651,16 +257397,16 @@ const directionOutputStrings = {
   }
 };
 const b9aValueToNorthSouth = searchValue => {
-  if (searchValue === r4n_effectB9AMap.blueCircleBack) {
+  if (searchValue === effectB9AMap.blueCircleBack) {
     return 'dirN';
-  } else if (searchValue === r4n_effectB9AMap.orangeDiamondFront) {
+  } else if (searchValue === effectB9AMap.orangeDiamondFront) {
     return 'dirS';
   }
   return 'unknown';
 };
-const r4n_isEffectB9AValue = value => {
+const isEffectB9AValue = value => {
   if (value === undefined) return false;
-  return Object.values(r4n_effectB9AMap).includes(value);
+  return Object.values(effectB9AMap).includes(value);
 };
 const getCleaveDirs = (actors, storedCleaves) => {
   const dirs = storedCleaves.map(entry => {
@@ -255962,13 +257708,13 @@ const r4n_triggerSet = {
     type: 'GainsEffect',
     netRegex: {
       effectId: 'B9A',
-      count: Object.values(r4n_effectB9AMap),
+      count: Object.values(effectB9AMap),
       capture: true
     },
     condition: (data, matches) => {
       const count = matches.count;
       if (data.expectedBlasts === 0) return false;
-      if (!r4n_isEffectB9AValue(count)) return false;
+      if (!isEffectB9AValue(count)) return false;
       data.storedBlasts.push(count);
       return data.storedBlasts.length >= data.expectedBlasts;
     },
@@ -267607,7 +269353,6 @@ const r9n_triggerSet = {
   }],
   timelineReplace: [{
     'locale': 'de',
-    'missingTranslations': true,
     'replaceSync': {
       'Coffinmaker': 'fatal(?:e|er|es|en) Säge',
       'Fatal Flail': 'fatal(?:e|er|es|en) Stachelbombe',
@@ -271426,13 +273171,33 @@ const enuo_ex_triggerSet = {
   config: [{
     id: 'gazeOrbStrat',
     name: {
-      en: 'Gaze of the Void Strategy'
+      en: 'Gaze of the Void Strategy',
+      de: 'Chaotischer Strom Strategie',
+      fr: 'Stratégie pour les Torrents chaotiques',
+      cn: '混沌激流策略',
+      ko: '혼돈의 격류 전략'
     },
     comment: {
       en: `Strategy for resolving Gaze of the Void orbs.
 
              Tank: Call the tank direction only.
-             <number>: Call the specified number's priority, treating tank orb as north clockwise`
+             <number>: Call the specified number's priority, treating tank orb as north clockwise`,
+      de: `Strategie zur Lösung der „Chaotischer Strom“-Kugeln.
+
+             Tank: Nenne nur die Richtung des Tanks.
+             <Nummer>: Nenne die Priorität der angegebenen Zahl, wobei die Kugel des Tanks als „Norden im Uhrzeigersinn“ gilt.`,
+      fr: `Stratégie pour résoudre les Torrent Chaotiques.
+
+             Tank: Indique la direction Tank seulement.
+             <nombre>: Indique la priorité du nombre spécifié, l'orbe des tank étant le nord (sens horaire)`,
+      cn: `处理混沌激流撞球的策略。
+
+             坦克: 仅播报坦克方向。
+             <数字>: 播报指定数字编号的优先级, 以坦克球为北顺时针排列`,
+      ko: `혼돈의 격류 구슬 처리 전략.
+
+             탱커: 탱커 방향만 호출.
+             <숫자>: 탱커 구슬을 북쪽으로 보고 시계 방향으로 번호를 매겼을 때, 해당 번호의 우선순위로 호출.`
     },
     type: 'select',
     options: {
@@ -271444,21 +273209,78 @@ const enuo_ex_triggerSet = {
         '2 (healer)': '2',
         '3 (melee)': '3',
         '4 (ranged)': '4'
+      },
+      de: {
+        'Tank': 'tank',
+        '1 (Tank)': '1',
+        '2 (Heiler)': '2',
+        '3 (Nahkämpfer)': '3',
+        '4 (Fernkämpfer)': '4'
+      },
+      fr: {
+        'Tank': 'tank',
+        '1 (Tank)': '1',
+        '2 (Soigneur)': '2',
+        '3 (Mêlée)': '3',
+        '4 (Distant)': '4'
+      },
+      cn: {
+        '坦克': 'tank',
+        '1 (坦克)': '1',
+        '2 (治疗)': '2',
+        '3 (近战)': '3',
+        '4 (远程)': '4'
+      },
+      ko: {
+        '탱커': 'tank',
+        '1 (탱커)': '1',
+        '2 (힐러)': '2',
+        '3 (근딜)': '3',
+        '4 (원딜)': '4'
       }
     },
     default: 'tank'
   }, {
     id: 'addPhaseStrat',
     name: {
-      en: 'Add Phase Strategy'
+      en: 'Add Phase Strategy',
+      de: 'Add Phase Strategie',
+      fr: 'Stratégie pour les adds',
+      cn: '小怪阶段策略',
+      ko: '쫄 페이즈 전략'
     },
     comment: {
       en: `Strategy for resolving towers and spreads in add phase.
 
              None: Call tower or spread only.
              <number>: Call the specified partner number's position. For example:
-             If following the "modified" raidplan (kgH6GJydOCbUs1L_), H1 should select "3" for S CW priority, T1 should select "4" for N CCW priority.
-             If following the "original" raidplan (z6hesq84t7ewujw9), H1 should select "2" as they are 2nd fill clockwise from N, T1 should select "1" as they are 1st fill clockwise from N.`
+             If following the "modified" raidplan (<a href="https://raidplan.io/plan/kgH6GJydOCbUs1L_" target="_blank">kgH6GJydOCbUs1L_</a>), H1 should select "3" for S CW priority, T1 should select "4" for N CCW priority.
+             If following the "original" raidplan (<a href="https://raidplan.io/plan/z6hesq84t7ewujw9" target="_blank">z6hesq84t7ewujw9</a>), H1 should select "2" as they are 2nd fill clockwise from N, T1 should select "1" as they are 1st fill clockwise from N.`,
+      de: `Strategie zur Lösung der Türmen und Verteilens in der Add-Phase.
+
+             Keine: Nur den Turm oder das Verteilen aufrufen.
+             <Nummer>: Die Position der angegebenen Partnernummer aufrufen. Beispiel:
+             Wenn man dem „modifizierten“ Raidplan (<a href="https://raidplan.io/plan/kgH6GJydOCbUs1L_" target="_blank">kgH6GJydOCbUs1L_</a>) folgt, sollte H1 „3“ für die S-Uhrzeigersinn-Priorität wählen, T1 sollte „4“ für die N-GegenUhrzeigersinn-Priorität wählen.
+             Wenn man dem „ursprünglichen“ Raidplan (<a href="https://raidplan.io/plan/z6hesq84t7ewujw9" target="_blank">z6hesq84t7ewujw9</a>) folgt, sollte H1 „2“ wählen (zweite Position im Uhrzeigersinn von N), T1 sollte „1“ wählen (zweiteerste Position im Uhrzeigersinn von N)`,
+      fr: `Strategy for resolving towers and spreads in add phase.
+
+             Aucun: Indique seulement les tours et les spread.
+             <nombre>: la position du numéro du partenaire spécifié. Par exemple :
+             Utilisation du raidplan "Modifié" (<a href="https://raidplan.io/plan/kgH6GJydOCbUs1L_" target="_blank">kgH6GJydOCbUs1L_</a>), H1 séléctionne "3" pour une priorité Sud horaire, T1 sélectionne "4" pour une priorité Nord anti-horaire.
+             Utilisation du raidplan "Original" (<a href="https://raidplan.io/plan/z6hesq84t7ewujw9" target="_blank">z6hesq84t7ewujw9</a>), H1 sélectionne "2", 2ème emplacement (sens horaire) à partir du Nord, T1 sélectionne "1", 1er emplacement (sens horaire) depuis le nord.`,
+      cn: `小怪阶段处理踩塔与扇形分散的策略。
+
+             无: 仅播报踩塔或扇形分散。
+             <数字>: 播报指定搭档编号的位置。例如:
+             若遵循 "修改版" 攻略 (<a href="https://raidplan.io/plan/kgH6GJydOCbUs1L_" target="_blank">kgH6GJydOCbUs1L_</a>), H1应选择 "3" 因为是从南开始顺时针第一顺位, MT应选择 "4" 因为是从北开始逆时针第一顺位。
+             若遵循 "初始版" 攻略 (<a href="https://raidplan.io/plan/z6hesq84t7ewujw9" target="_blank">z6hesq84t7ewujw9</a>), H1应选择 "2" 因为是从北开始顺时针第二顺位, MT应选择 "1" 因为是从北开始顺时针第一顺位。`,
+      ko: `쫄 페이즈의 탑과 산개 처리 전략.
+
+             없음: 탑 또는 산개만 호출.
+             <숫자>: 지정한 번호의 파트너 위치를 호출. 예시:
+             "수정된" 공략 (<a href="https://raidplan.io/plan/kgH6GJydOCbUs1L_" target="_blank">kgH6GJydOCbUs1L_</a>)을 따를 경우, H1은 남쪽 시계 방향 우선순위인 "3"을, T1은 북쪽 반시계 방향 우선순위인 "4"를 담당합니다.
+             "원래" 공략 (<a href="https://raidplan.io/plan/z6hesq84t7ewujw9" target="_blank">z6hesq84t7ewujw9</a>)을 따를 경우, H1은 북쪽에서 시계 방향으로 2번째 채우기인 "2"를, T1은 북쪽에서 시계 방향으로 1번째 채우기인 "1"을 담당합니다.
+        `
     },
     type: 'select',
     options: {
@@ -271468,6 +273290,34 @@ const enuo_ex_triggerSet = {
         '2 (SE)': '2',
         '3 (SW)': '3',
         '4 (NW)': '4'
+      },
+      de: {
+        'Keine': 'none',
+        '1 (NO)': '1',
+        '2 (SO)': '2',
+        '3 (SW)': '3',
+        '4 (NW)': '4'
+      },
+      fr: {
+        'Aucun': 'none',
+        '1 (NE)': '1',
+        '2 (SE)': '2',
+        '3 (SO)': '3',
+        '4 (NO)': '4'
+      },
+      cn: {
+        '无': 'none',
+        '1 (右上)': '1',
+        '2 (右下)': '2',
+        '3 (左下)': '3',
+        '4 (左上)': '4'
+      },
+      ko: {
+        '없음': 'none',
+        '1 (북동)': '1',
+        '2 (남동)': '2',
+        '3 (남서)': '3',
+        '4 (북서)': '4'
       }
     },
     default: 'none'
@@ -271587,16 +273437,32 @@ const enuo_ex_triggerSet = {
       healerStacks: outputs/* default.healerGroups */.Z.healerGroups,
       stack: outputs/* default.stackMarker */.Z.stackMarker,
       awayFrom: {
-        en: 'Away from ${dir} + ${mech}'
+        en: 'Away from ${dir} + ${mech}',
+        de: 'Weg von ${dir} + ${mech}',
+        fr: 'Loin de ${dir} + ${mech}',
+        cn: '远离 ${dir} + ${mech}',
+        ko: '${dir} 멀어지기 + ${mech}'
       },
       under: {
-        en: '${dir} + ${mech}'
+        en: '${dir} + ${mech}',
+        de: '${dir} + ${mech}',
+        fr: '${dir} + ${mech}',
+        cn: '${dir} + ${mech}',
+        ko: '${dir} + ${mech}'
       },
       underBossAndAway: {
-        en: 'Under Boss + Away from ${dir} + ${mech}'
+        en: 'Under Boss + Away from ${dir} + ${mech}',
+        de: 'Unter den Boss + Weg von ${dir} + ${mech}',
+        fr: 'Sous le boss + loin de ${dir} + ${mech}',
+        cn: 'Boss 脚下 + 远离 ${dir} + ${mech}',
+        ko: '보스 아래 + ${dir} 멀어지기 + ${mech}'
       },
       underPortalAndAway: {
-        en: '${dir} + Away from Boss + ${mech}'
+        en: '${dir} + Away from Boss + ${mech}',
+        de: '${dir} + Weg vom Boss + ${mech}',
+        fr: '${dir} + Loin du boss + ${mech}',
+        cn: '${dir} + 远离 Boss + ${mech}',
+        ko: '${dir} + 보스 멀어지기 + ${mech}'
       }
     }
   }, {
@@ -271626,7 +273492,11 @@ const enuo_ex_triggerSet = {
     infoText: (_data, _matches, output) => output.text(),
     outputStrings: {
       text: {
-        en: 'Bait Puddles => Stop Moving => Spread'
+        en: 'Bait Puddles => Stop Moving => Spread',
+        de: 'Köder Flächen => Nicht Bewegen => Verteilen',
+        fr: 'Déposez les flaques => Ne bougez plus => Écartez-vous',
+        cn: '引诱黄圈 => 停止移动 => 分散',
+        ko: '장판 유도 => 이동 멈추기 => 산개'
       }
     }
   }, {
@@ -271644,7 +273514,11 @@ const enuo_ex_triggerSet = {
     alertText: (_data, _matches, output) => output.text(),
     outputStrings: {
       text: {
-        en: 'Stop Moving => Spread'
+        en: 'Stop Moving => Spread',
+        de: 'Nicht Bewegen => Verteilen',
+        fr: 'Ne bougez plus => Écartez-vous',
+        cn: '停止移动 => 分散',
+        ko: '이동 멈추기 => 산개'
       }
     }
   }, {
@@ -271727,7 +273601,11 @@ const enuo_ex_triggerSet = {
       CW: outputs/* default.clockwise */.Z.clockwise,
       CCW: outputs/* default.counterclockwise */.Z.counterclockwise,
       text: {
-        en: '${dir1} ${rotation} => ${dir2}'
+        en: '${dir1} ${rotation} => ${dir2}',
+        de: '${dir1} ${rotation} => ${dir2}',
+        fr: '${dir1} ${rotation} => ${dir2}',
+        cn: '${dir1} ${rotation} => ${dir2} ',
+        ko: '${dir1} ${rotation} => ${dir2}'
       }
     }
   }, {
@@ -271764,51 +273642,44 @@ const enuo_ex_triggerSet = {
           dir: output[util/* Directions.output16Dir */.Ns.output16Dir[firstTankOrb * 2 + 1] ?? 'unknown']()
         });
       }
-      let trimmedOrbs = orbs.slice(firstTankOrb, firstTankOrb + 8);
-      const orb1Light = trimmedOrbs.findIndex(orb => orb.color === 'light');
-      const orb1Dark = trimmedOrbs.findIndex(orb => orb.color === 'dark');
-      trimmedOrbs = trimmedOrbs.filter((_orb, index) => index !== orb1Light && index !== orb1Dark);
-      const orb2Light = trimmedOrbs.findIndex(orb => orb.color === 'light');
-      const orb2Dark = trimmedOrbs.findIndex(orb => orb.color === 'dark');
-      trimmedOrbs = trimmedOrbs.filter((_orb, index) => index !== orb2Light && index !== orb2Dark);
-      const orb3Light = trimmedOrbs.findIndex(orb => orb.color === 'light');
-      const orb3Dark = trimmedOrbs.findIndex(orb => orb.color === 'dark');
-      trimmedOrbs = trimmedOrbs.filter((_orb, index) => index !== orb3Light && index !== orb3Dark);
-      const orb4Light = trimmedOrbs.findIndex(orb => orb.color === 'light');
-      const orb4Dark = trimmedOrbs.findIndex(orb => orb.color === 'dark');
-      switch (strategy) {
-        case '1':
-          return output.orbSoaks({
-            dir1: output[util/* Directions.output8Dir */.Ns.output8Dir[(firstTankOrb + orb1Light) % 8] ?? 'unknown'](),
-            dir2: output[util/* Directions.output8Dir */.Ns.output8Dir[(firstTankOrb + orb1Dark) % 8] ?? 'unknown']()
-          });
-        case '2':
-          return output.orbSoaks({
-            dir1: output[util/* Directions.output8Dir */.Ns.output8Dir[(firstTankOrb + orb2Light + 2) % 8] ?? 'unknown'](),
-            dir2: output[util/* Directions.output8Dir */.Ns.output8Dir[(firstTankOrb + orb2Dark + 2) % 8] ?? 'unknown']()
-          });
-        case '3':
-          return output.orbSoaks({
-            dir1: output[util/* Directions.output8Dir */.Ns.output8Dir[(firstTankOrb + orb3Light + 4) % 8] ?? 'unknown'](),
-            dir2: output[util/* Directions.output8Dir */.Ns.output8Dir[(firstTankOrb + orb3Dark + 4) % 8] ?? 'unknown']()
-          });
-        case '4':
-          return output.orbSoaks({
-            dir1: output[util/* Directions.output8Dir */.Ns.output8Dir[(firstTankOrb + orb4Light + 6) % 8] ?? 'unknown'](),
-            dir2: output[util/* Directions.output8Dir */.Ns.output8Dir[(firstTankOrb + orb4Dark + 6) % 8] ?? 'unknown']()
-          });
-        default:
-          return output.unknown();
+      const indexes = {
+        light: 0,
+        dark: 0
+      };
+      const dirs = {
+        light: -1,
+        dark: -1
+      };
+      for (let dir = firstTankOrb; dir < firstTankOrb + 8; dir++) {
+        const {
+          color
+        } = orbs[dir];
+        indexes[color]++;
+        if (indexes[color].toString() === strategy) {
+          dirs[color] = dir % 8;
+        }
       }
+      return output.orbSoaks({
+        dir1: output[util/* Directions.output8Dir */.Ns.output8Dir[dirs.light] ?? 'unknown'](),
+        dir2: output[util/* Directions.output8Dir */.Ns.output8Dir[dirs.dark] ?? 'unknown']()
+      });
     },
     outputStrings: {
       ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       unknown: outputs/* default.unknown */.Z.unknown,
       tankOrbsDir: {
-        en: 'Tank orbs ${dir}'
+        en: 'Tank orbs ${dir}',
+        de: 'Tank Kugeln ${dir}',
+        fr: 'Orbes Tank : ${dir}',
+        cn: '坦克球在${dir} ',
+        ko: '탱커 구슬 ${dir}'
       },
       orbSoaks: {
-        en: '${dir1} => ${dir2}'
+        en: '${dir1} => ${dir2}',
+        de: '${dir1} => ${dir2}',
+        fr: '${dir1} => ${dir2}',
+        cn: '${dir1} => ${dir2} ',
+        ko: '${dir1} => ${dir2}'
       }
     }
   }, {
@@ -271841,7 +273712,11 @@ const enuo_ex_triggerSet = {
       ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
       ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       text: {
-        en: '${dir3} Close'
+        en: '${dir3} Close',
+        de: '${dir3} Nahe',
+        fr: '${dir3} proche',
+        cn: '${dir3}靠近',
+        ko: '${dir3} 가까이'
       }
     }
   }, {
@@ -271867,10 +273742,18 @@ const enuo_ex_triggerSet = {
     },
     outputStrings: {
       tankFlareOnYou: {
-        en: 'Tank Flare on YOU => Keep Moving'
+        en: 'Tank Flare on YOU => Keep Moving',
+        de: 'Tank Flare auf DIR => Bewegen',
+        fr: 'Brasier sur VOUS => Bougez !',
+        cn: '坦克核爆 => 保持移动',
+        ko: '탱커 플레어 대상자 => 계속 움직이기'
       },
       awayFromFlares: {
-        en: 'Away from tank flares => Keep Moving'
+        en: 'Away from tank flares => Keep Moving',
+        de: 'Weg von den Tank Flares => Bewegen',
+        fr: 'Loin des brasiers (Tanks) => Bougez !',
+        cn: '远离坦克核爆 => 保持移动',
+        ko: '탱커 플레어에서 멀어지기 => 계속 움직이기'
       }
     }
   }, {
@@ -271987,16 +273870,32 @@ const enuo_ex_triggerSet = {
       ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       unknown: outputs/* default.unknown */.Z.unknown,
       cone: {
-        en: 'Cone on YOU'
+        en: 'Cone on YOU',
+        de: 'Kegel auf DIR',
+        fr: 'Cône sur VOUS',
+        cn: '扇形点名',
+        ko: '부채꼴 대상자'
       },
       tower: {
-        en: 'Soak Tower'
+        en: 'Soak Tower',
+        de: 'Turm nehmen',
+        fr: 'Prenez une tour',
+        cn: '踩塔',
+        ko: '탑 밟기'
       },
       conePos: {
-        en: 'Aim Cone ${dir}'
+        en: 'Aim Cone ${dir}',
+        de: 'Kegel nach ${dir} zeigen',
+        fr: 'Pointez le cône : ${dir}',
+        cn: '扇形指向 ${dir}',
+        ko: '부채꼴 조준 ${dir}'
       },
       towerPos: {
-        en: 'Soak Tower ${dir}'
+        en: 'Soak Tower ${dir}',
+        de: 'Turm nehmen ${dir}',
+        fr: 'Prenez la tour : ${dir}',
+        cn: '前往 ${dir} 踩塔',
+        ko: '${dir} 탑 밟기'
       }
     }
   }, {
@@ -272011,7 +273910,11 @@ const enuo_ex_triggerSet = {
     infoText: (_data, _matches, output) => output.cleanse(),
     outputStrings: {
       cleanse: {
-        en: 'Cleanse Debuff'
+        en: 'Cleanse Debuff',
+        de: 'Debuff Reinigen',
+        fr: 'Guérissez le débuff',
+        cn: '驱散 Debuff',
+        ko: '디버프 해제'
       }
     }
   }, {
@@ -272047,7 +273950,11 @@ const enuo_ex_triggerSet = {
     infoText: (_data, _matches, output) => output.lookMiddle(),
     outputStrings: {
       lookMiddle: {
-        en: 'Look Middle'
+        en: 'Look Middle',
+        de: 'Schau in die Mitte',
+        fr: 'Regardez au milieu',
+        cn: '看向场中',
+        ko: '중앙 보기'
       }
     }
   }, {
@@ -272112,7 +274019,11 @@ const enuo_ex_triggerSet = {
       cardinals: outputs/* default.cardinals */.Z.cardinals,
       under: outputs/* default.getUnder */.Z.getUnder,
       go: {
-        en: 'Go ${dir1}/${dir2} Max Melee'
+        en: 'Go ${dir1}/${dir2} Max Melee',
+        de: 'Geh ${dir1}/${dir2} Max Nahkampf',
+        fr: 'Allez ${dir1}/${dir2} Max mêlée',
+        cn: '前往 ${dir1}/${dir2} 最大近战距离',
+        ko: '${dir1}/${dir2} 칼끝딜'
       }
     }
   }, {
@@ -272147,8 +274058,235 @@ const enuo_ex_triggerSet = {
     infoText: (_data, _matches, output) => output.chasingPuddle(),
     outputStrings: {
       chasingPuddle: {
-        en: 'Chasing puddle on you'
+        en: 'Chasing puddle on you',
+        de: 'Verfolgende Fläche auf DIR',
+        fr: 'Flaque chassante sur VOUS',
+        cn: '追踪地火点名',
+        ko: '추적 장판 대상자'
       }
+    }
+  }],
+  timelineReplace: [{
+    'locale': 'de',
+    'replaceSync': {
+      'Aggressive Shadow': 'strafend(?:e|er|es|en) Hand',
+      'Enuo': 'Enuo',
+      'Looming Shadow': 'groß(?:e|er|es|en) Nichts-Silhouette',
+      'Protective Shadow': 'beschützend(?:e|er|es|en) Hand',
+      'Soothing Shadow': 'heilend(?:e|er|es|en) Hand',
+      '(?<! )Void': 'Nichtswirbel',
+      'Yawning Void': 'groß(?:e|er|es|en) Nichtswirbel'
+    },
+    'replaceText': {
+      '--Add': '--Add',
+      '--Tower adds': '--Turm Add',
+      '(?<= )targetable--': 'anvisierbar--',
+      '\\(active\\)': '(aktiv)',
+      '\\(big\\)': '(groß)',
+      '\\(lines\\)': '(Linien)',
+      '\\(puddles\\)': '(Flächen)',
+      '\\(puddle baits \\+ pyretic\\)': '(Flächen ködern + Pyretisch)',
+      '\\(puddle explodes\\)': '(Flächen explodieren)',
+      '\\(spread\\)': '(verteilen)',
+      'Airy Emptiness': 'Streuende Welle',
+      'All for Naught': 'Nichts-Territorium',
+      'Almagest': 'Almagest',
+      'Curse of the Flesh': 'Miasma-Fluch',
+      'Deep Freeze': 'Tiefenfrost',
+      'Demon Eye': 'Dämonenauge',
+      'Dense Emptiness': 'Sammelnde Welle',
+      'Dimension Zero': 'Dimension Null',
+      'Empty Shadow': 'Last der Leere',
+      'Endless Chase': 'Suchende Welle',
+      'Gaze of the Void': 'Chaotischer Strom',
+      'Great Return to Nothing': 'Große Welle der Wiederkehr',
+      'Lightless World': 'Lichtlose Welt',
+      'Looming Emptiness': 'Schwere Last der Leere',
+      'Meltdown': 'Komplettschmelze',
+      'Meteorain': 'Meteorregen',
+      'Naught Grows': 'Anschwellen des Nichts',
+      'Naught Hunts': 'Verfolgung des Nichts',
+      'Nothingness': 'Welle der Leere',
+      'Passage of Naught': 'Sammelwelle',
+      '(?<! )Return to Nothing': 'Welle der Wiederkehr',
+      'Shrouded Holy': 'Schattenheiligtum',
+      'Silent Torrent': 'Reißender Strom',
+      'Voidal Turbulence': 'Nichtsstrudel',
+      'Weight of Nothing': 'Hochdruckwelle'
+    }
+  }, {
+    'locale': 'fr',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Aggressive Shadow': 'main assaillante de l\'ombre insondable',
+      'Enuo': 'Énuo',
+      'Looming Shadow': 'grande ombre insondable',
+      'Protective Shadow': 'main protectrice de l\'ombre insondable',
+      'Soothing Shadow': 'main guérisseuse de l\'ombre insondable',
+      '(?<! )Void': 'vortex de néant',
+      'Yawning Void': 'grand vortex de néant'
+    },
+    'replaceText': {
+      'Airy Emptiness': 'Onde diffusée',
+      'All for Naught': 'Domaine du néant',
+      'Almagest': 'Almageste',
+      'Curse of the Flesh': 'Malédiction pathogène',
+      'Deep Freeze': 'Congélation ancestrale',
+      'Demon Eye': 'Œil diabolique',
+      'Dense Emptiness': 'Onde concentrée',
+      'Dimension Zero': 'Dimension zéro',
+      'Empty Shadow': 'Impact de vacuité',
+      'Endless Chase': 'Néant traqueur',
+      'Gaze of the Void': 'Torrents chaotiques',
+      'Great Return to Nothing': 'Grande onde régressive',
+      'Lightless World': 'Monde sans Lumière',
+      'Looming Emptiness': 'Grand impact de vacuité',
+      'Meltdown': 'Fusion ancestrale',
+      'Meteorain': 'Pluie de météorites',
+      'Naught Grows': 'Abcès du néant',
+      'Naught Hunts': 'Poursuite du néant',
+      'Nothingness': 'Rayon du néant',
+      'Passage of Naught': 'Onde accumulatrice',
+      '(?<! )Return to Nothing': 'Onde régressive',
+      'Shrouded Holy': 'Miracle d\'ombre',
+      'Silent Torrent': 'Flot d\'énergie',
+      'Voidal Turbulence': 'Maelström du néant',
+      'Weight of Nothing': 'Onde de particules haute tension'
+    }
+  }, {
+    'locale': 'ja',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Aggressive Shadow': '虚ろなる影の攻め手',
+      'Enuo': 'エヌオー',
+      'Looming Shadow': '虚ろなる巨影',
+      'Protective Shadow': '虚ろなる影の護り手',
+      'Soothing Shadow': '虚ろなる影の癒し手',
+      '(?<! )Void': '無の渦',
+      'Yawning Void': '無の大渦'
+    },
+    'replaceText': {
+      'Airy Emptiness': '拡散波動',
+      'All for Naught': '無の領域',
+      'Almagest': 'アルマゲスト',
+      'Curse of the Flesh': '病の呪詛',
+      'Deep Freeze': 'ディープフリーズ',
+      'Demon Eye': '悪魔の瞳',
+      'Dense Emptiness': '集束波動',
+      'Dimension Zero': 'ディメンションゼロ',
+      'Empty Shadow': '虚ろなる衝撃',
+      'Endless Chase': '追尾波動',
+      'Gaze of the Void': '混沌の激流',
+      'Great Return to Nothing': '回帰の重波動',
+      'Lightless World': 'ライトレス・ワールド',
+      'Looming Emptiness': '虚ろなる大衝撃',
+      'Meltdown': 'メルトダウン',
+      'Meteorain': 'メテオレイン',
+      'Naught Grows': '無の肥大',
+      'Naught Hunts': '無の追跡',
+      'Nothingness': '無の波動',
+      'Passage of Naught': '集積波動',
+      '(?<! )Return to Nothing': '回帰の波動',
+      'Shrouded Holy': 'シャドウホーリー',
+      'Silent Torrent': '奔流',
+      'Voidal Turbulence': '無の渦流',
+      'Weight of Nothing': '高圧波動'
+    }
+  }, {
+    'locale': 'cn',
+    'replaceSync': {
+      'Aggressive Shadow': '虚无之攻影',
+      'Enuo': '恩欧',
+      'Looming Shadow': '虚无巨影',
+      'Protective Shadow': '虚无之防影',
+      'Soothing Shadow': '虚无之疗影',
+      '(?<! )Void': '无之漩涡',
+      'Yawning Void': '无之巨漩涡'
+    },
+    'replaceText': {
+      '--Add': '--小怪',
+      '--Tower adds': '--塔小怪',
+      '(?<= )targetable--': '可选中--',
+      '\\(active\\)': '(激活)',
+      '\\(big\\)': '(大)',
+      '\\(lines\\)': '(直线)',
+      '\\(puddles\\)': '(黄圈)',
+      '\\(puddle baits \\+ pyretic\\)': '(诱导黄圈 + 热病)',
+      '\\(puddle explodes\\)': '(黄圈爆炸)',
+      '\\(spread\\)': '(分散)',
+      'Airy Emptiness': '扩散波动',
+      'Almagest': '至高无上',
+      'All for Naught': '无之领域',
+      'Curse of the Flesh': '疫病诅咒',
+      'Deep Freeze': '深度冻结',
+      'Demon Eye': '恶魔之瞳',
+      'Dense Emptiness': '集束波动',
+      'Dimension Zero': '零次元',
+      'Empty Shadow': '虚无冲击',
+      'Endless Chase': '追尾波动',
+      'Gaze of the Void': '混沌激流',
+      'Great Return to Nothing': '回归重波动',
+      'Lightless World': '无光的世界',
+      'Looming Emptiness': '虚无大冲击',
+      'Meltdown': '核心熔毁',
+      'Meteorain': '流星雨',
+      'Naught Grows': '无之膨胀',
+      'Naught Hunts': '无之追踪',
+      'Nothingness': '无之波动',
+      'Passage of Naught': '聚能波动',
+      '(?<!Great )Return to Nothing': '回归波动',
+      'Shrouded Holy': '暗影神圣',
+      'Silent Torrent': '奔流',
+      'Voidal Turbulence': '无之涡流',
+      'Weight of Nothing': '高压波动'
+    }
+  }, {
+    'locale': 'ko',
+    'replaceSync': {
+      'Aggressive Shadow': '공허한 그림자의 공격수',
+      'Enuo': '에누오',
+      'Looming Shadow': '공허한 큰 그림자',
+      'Protective Shadow': '공허한 그림자의 수호자',
+      'Soothing Shadow': '공허한 그림자의 치유사',
+      '(?<! )Void': '무의 소용돌이',
+      'Yawning Void': '무의 큰 소용돌이'
+    },
+    'replaceText': {
+      '--Add': '--쫄',
+      '--Tower adds': '--탑 쫄',
+      '(?<= )targetable--': '타겟가능--',
+      '\\(puddle baits \\+ pyretic\\)': '(장판 유도 + 열병)',
+      '\\(puddle explodes\\)': '(장판 폭발)',
+      '\\(spread\\)': '(산개)',
+      '\\(lines\\)': '(선)',
+      '\\(puddles\\)': '(장판)',
+      '\\(big\\)': '(강력)',
+      '\\(active\\)': '(활성)',
+      'Airy Emptiness': '확산 파동',
+      'All for Naught': '무의 영역',
+      'Almagest': '알마게스트',
+      'Curse of the Flesh': '질병의 저주',
+      'Deep Freeze': '극한 동결',
+      'Demon Eye': '악마의 눈동자',
+      'Dense Emptiness': '집속 파동',
+      'Dimension Zero': '0차원',
+      'Empty Shadow': '공허한 충격',
+      'Endless Chase': '추적 파동',
+      'Gaze of the Void': '혼돈의 격류',
+      'Great Return to Nothing': '회귀의 대파동',
+      'Lightless World': '빛이 없는 세계',
+      'Looming Emptiness': '공허한 대충격',
+      'Meltdown': '용융',
+      'Meteorain': '메테오 레인',
+      'Naught Grows': '무의 비대',
+      'Naught Hunts': '무의 추적',
+      'Nothingness': '무의 파동',
+      'Passage of Naught': '집적 파동',
+      '(?<! )Return to Nothing': '회귀의 파동',
+      'Shrouded Holy': '섀도우 홀리',
+      'Silent Torrent': '급류',
+      'Voidal Turbulence': '무의 맴돌이',
+      'Weight of Nothing': '고압 파동'
     }
   }]
 };
@@ -272274,16 +274412,24 @@ const enuo_triggerSet = {
       ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
       middle: outputs/* default.middle */.Z.middle,
       awayFrom: {
-        en: 'Away from ${dir}'
+        en: 'Away from ${dir}',
+        cn: '远离 ${dir}',
+        ko: '${dir} 멀어지기'
       },
       awayFromAndOut: {
-        en: 'Away from ${dir} + Out'
+        en: 'Away from ${dir} + Out',
+        cn: '远离 ${dir} + 出去',
+        ko: '${dir} 멀어지기 + 밖으로'
       },
       goDirections: {
-        en: 'Go ${dir1}/${dir2} + Max Melee'
+        en: 'Go ${dir1}/${dir2} + Max Melee',
+        cn: '前往 ${dir1}/${dir2} + 最大近战距离',
+        ko: '${dir1}/${dir2} + 칼끝딜'
       },
       goDir: {
-        en: 'Go ${dir} + Max Melee'
+        en: 'Go ${dir} + Max Melee',
+        cn: '前往 ${dir} + 最大近战距离',
+        ko: '${dir} + 칼끝딜'
       }
     }
   }, {
@@ -272336,7 +274482,9 @@ const enuo_triggerSet = {
       CW: outputs/* default.clockwise */.Z.clockwise,
       CCW: outputs/* default.counterclockwise */.Z.counterclockwise,
       text: {
-        en: '${dir1} ${rotation} => ${dir2}'
+        en: '${dir1} ${rotation} => ${dir2}',
+        cn: '${dir1} ${rotation} => ${dir2}',
+        ko: '${dir1} ${rotation} => ${dir2}'
       }
     }
   }, {
@@ -272362,10 +274510,14 @@ const enuo_triggerSet = {
     },
     outputStrings: {
       tankFlareOnYou: {
-        en: 'Tank Flare on YOU'
+        en: 'Tank Flare on YOU',
+        cn: '坦克核爆点名',
+        ko: '탱커 플레어 대상자'
       },
       awayFromFlares: {
-        en: 'Away from tank flares'
+        en: 'Away from tank flares',
+        cn: '远离坦克核爆',
+        ko: '탱커 플레어에서 멀어지기'
       }
     }
   }, {
@@ -272379,15 +274531,23 @@ const enuo_triggerSet = {
     durationSeconds: 5,
     response: responses/* Responses.stackMarkerOn */.n3.stackMarkerOn()
   }, {
-    id: 'Enuo Dimension Zero',
-    type: 'StartsUsing',
+    id: 'Enuo Dimension Zero Headmarker',
+    type: 'HeadMarker',
     netRegex: {
-      id: 'C331',
-      source: 'Enuo',
+      id: '02CF',
+      data0: '1[0-9A-F]{7}',
       capture: true
     },
     durationSeconds: 7.7,
-    response: responses/* Responses.stackMarkerOn */.n3.stackMarkerOn()
+    infoText: (data, matches, output) => {
+      const member = data.party.nameFromId(matches.data0);
+      return output.stackMarkerOn({
+        player: data.party.member(member)
+      });
+    },
+    outputStrings: {
+      stackMarkerOn: outputs/* default.stackOnPlayer */.Z.stackOnPlayer
+    }
   }, {
     id: 'Enuo Naught Hunts Tether',
     type: 'Tether',
@@ -272401,7 +274561,9 @@ const enuo_triggerSet = {
     infoText: (_data, _matches, output) => output.chasingPuddle(),
     outputStrings: {
       chasingPuddle: {
-        en: 'Chasing puddle on you'
+        en: 'Chasing puddle on you',
+        cn: '追踪地火点名',
+        ko: '추적 장판 대상자'
       }
     }
   }, {
@@ -272417,7 +274579,9 @@ const enuo_triggerSet = {
     infoText: (_data, _matches, output) => output.chasingPuddle(),
     outputStrings: {
       chasingPuddle: {
-        en: 'Chasing puddle on you'
+        en: 'Chasing puddle on you',
+        cn: '追踪地火点名',
+        ko: '추적 장판 대상자'
       }
     }
   }, {
@@ -272431,7 +274595,9 @@ const enuo_triggerSet = {
     infoText: (_data, _matches, output) => output.text(),
     outputStrings: {
       text: {
-        en: 'Bait puddles => spread'
+        en: 'Bait puddles => spread',
+        cn: '诱导黄圈 => 分散',
+        ko: '장판 유도 => 산개'
       }
     }
   }, {
@@ -272439,36 +274605,18 @@ const enuo_triggerSet = {
     type: 'StartsUsingExtra',
     netRegex: {
       id: 'C317',
-      capture: true
+      capture: false
     },
-    infoText: (_data, matches, output) => {
-      // C317 is the short line. Safe spots are (clockwise):
-      // +6 far
-      // +7 medium
-      // +8 short
-      // +9 short
-      // +10 short
-      // +11 medium
-      // +12 far
-
-      // For brevity, call +6/+12 far and +9 short only
-      const x = parseFloat(matches.x);
-      const y = parseFloat(matches.y);
-      const dangerDirNum = util/* Directions.xyTo16DirNum */.Ns.xyTo16DirNum(x, y, enuo_center.x, enuo_center.y);
-      const safeFar1DirNum = util/* Directions.output16Dir */.Ns.output16Dir[(dangerDirNum + 6) % 16] ?? 'unknown';
-      const safeFar2DirNum = util/* Directions.output16Dir */.Ns.output16Dir[(dangerDirNum + 12) % 16] ?? 'unknown';
-      const closeDirNum = util/* Directions.output16Dir */.Ns.output16Dir[(dangerDirNum + 9) % 16] ?? 'unknown';
-      return output.text({
-        dir1: output[safeFar1DirNum](),
-        dir2: output[safeFar2DirNum](),
-        dir3: output[closeDirNum]()
-      });
-    },
+    alertText: (_data, _matches, output) => output.avoid(),
     outputStrings: {
-      ...util/* Directions.outputStrings8Dir */.Ns.outputStrings8Dir,
-      ...util/* Directions.outputStrings16Dir */.Ns.outputStrings16Dir,
-      text: {
-        en: '${dir1}/${dir2} Far / ${dir3} Close'
+      avoid: {
+        en: 'Avoid Line Ends',
+        de: 'Weiche den Enden der Linien aus',
+        fr: 'Évitez les fins de lignes',
+        ja: '線の端から離れる',
+        cn: '远离线末端',
+        ko: '선의 끝부분 피하기',
+        tc: '遠離線末端'
       }
     }
   }, {
@@ -272482,7 +274630,9 @@ const enuo_triggerSet = {
     infoText: (_data, _matches, output) => output.away(),
     outputStrings: {
       away: {
-        en: 'Away from proximity marker'
+        en: 'Away from proximity marker',
+        cn: '远离距离衰减标记',
+        ko: '거리감쇠 징에서 멀어지기'
       }
     }
   }, {
@@ -272494,12 +274644,7 @@ const enuo_triggerSet = {
       capture: false
     },
     suppressSeconds: 9999,
-    infoText: (_data, _matches, output) => output.text(),
-    outputStrings: {
-      text: {
-        en: 'Kill adds'
-      }
-    }
+    response: responses/* Responses.killAdds */.n3.killAdds()
   }, {
     id: 'Enuo Beacon Spawn',
     type: 'MapEffect',
@@ -272512,14 +274657,189 @@ const enuo_triggerSet = {
     infoText: (_data, _matches, output) => output.text(),
     outputStrings: {
       text: {
-        en: 'Kill light beacon'
+        en: 'Kill light beacon',
+        cn: '击杀光之征兆',
+        ko: '빛의 징조 부수기'
       }
+    }
+  }],
+  timelineReplace: [{
+    'locale': 'de',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Enuo': 'Enuo',
+      'Looming Shadow': 'groß(?:e|er|es|en) Nichts-Silhouette',
+      'Uncast Shadow': 'Nichts-Silhouette',
+      '(?<! )Void': 'Nichtswirbel',
+      'Yawning Void': 'groß(?:e|er|es|en) Nichtswirbel'
+    },
+    'replaceText': {
+      'All for Naught': 'Nichts-Territorium',
+      'Almagest': 'Almagest',
+      'Deep Freeze': 'Tiefenfrost',
+      'Dimension Zero': 'Dimension Null',
+      'Empty Shadow': 'Last der Leere',
+      'Endless Chase': 'Suchende Welle',
+      'Gaze of the Void': 'Chaotischer Strom',
+      'Lightless World': 'Lichtlose Welt',
+      'Looming Emptiness': 'Schwere Last der Leere',
+      'Meltdown': 'Komplettschmelze',
+      'Meteorain': 'Meteorregen',
+      'Naught Grows': 'Anschwellen des Nichts',
+      'Naught Hunts(?! )': 'Verfolgung des Nichts',
+      'Naught Hunts Another': 'Erneute Verfolgung des Nichts',
+      'Naught Wakes': 'Auftreten des Nichts',
+      'Nothingness': 'Welle der Leere',
+      'Shrouded Holy': 'Schattenheiligtum',
+      'Silent Torrent': 'Reißender Strom',
+      'Vacuum': 'Nichtswirbel'
+    }
+  }, {
+    'locale': 'fr',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Enuo': 'Énuo',
+      'Looming Shadow': 'grande ombre insondable',
+      'Uncast Shadow': 'ombre insondable',
+      '(?<! )Void': 'vortex de néant',
+      'Yawning Void': 'grand vortex de néant'
+    },
+    'replaceText': {
+      'All for Naught': 'Domaine du néant',
+      'Almagest': 'Almageste',
+      'Deep Freeze': 'Congélation ancestrale',
+      'Dimension Zero': 'Dimension zéro',
+      'Empty Shadow': 'Impact de vacuité',
+      'Endless Chase': 'Néant traqueur',
+      'Gaze of the Void': 'Torrents chaotiques',
+      'Lightless World': 'Monde sans Lumière',
+      'Looming Emptiness': 'Grand impact de vacuité',
+      'Meltdown': 'Fusion ancestrale',
+      'Meteorain': 'Pluie de météorites',
+      'Naught Grows': 'Abcès du néant',
+      'Naught Hunts(?! )': 'Poursuite du néant',
+      'Naught Hunts Another': 'Poursuite renouvelée du néant',
+      'Naught Wakes': 'Vitalisation du néant',
+      'Nothingness': 'Rayon du néant',
+      'Shrouded Holy': 'Miracle d\'ombre',
+      'Silent Torrent': 'Flot d\'énergie',
+      'Vacuum': 'Vortex du néant'
+    }
+  }, {
+    'locale': 'ja',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Enuo': 'エヌオー',
+      'Looming Shadow': '虚ろなる巨影',
+      'Uncast Shadow': '虚ろなる影',
+      '(?<! )Void': '無の渦',
+      'Yawning Void': '無の大渦'
+    },
+    'replaceText': {
+      'All for Naught': '無の領域',
+      'Almagest': 'アルマゲスト',
+      'Deep Freeze': 'ディープフリーズ',
+      'Dimension Zero': 'ディメンションゼロ',
+      'Empty Shadow': '虚ろなる衝撃',
+      'Endless Chase': '追尾波動',
+      'Gaze of the Void': '混沌の激流',
+      'Lightless World': 'ライトレス・ワールド',
+      'Looming Emptiness': '虚ろなる大衝撃',
+      'Meltdown': 'メルトダウン',
+      'Meteorain': 'メテオレイン',
+      'Naught Grows': '無の肥大',
+      'Naught Hunts(?! )': '無の追跡',
+      'Naught Hunts Another': '無の再追跡',
+      'Naught Wakes': '無の活性',
+      'Nothingness': '無の波動',
+      'Shrouded Holy': 'シャドウホーリー',
+      'Silent Torrent': '奔流',
+      'Vacuum': '無の渦'
+    }
+  }, {
+    'locale': 'cn',
+    'replaceSync': {
+      'Enuo': '恩欧',
+      'Looming Shadow': '虚无巨影',
+      'Uncast Shadow': '虚无之影',
+      '(?<! )Void': '无之漩涡',
+      'Yawning Void': '无之巨漩涡'
+    },
+    'replaceText': {
+      '--beacon targetable--': '--光之征兆可选中--',
+      '\\(active\\)': '(激活)',
+      '\\(big\\)': '(大)',
+      '\\(castbar\\)': '(咏唱栏)',
+      '\\(lines\\)': '(直线)',
+      '\\(puddles\\)': '(黄圈)',
+      '\\(puddle baits\\)': '(诱导黄圈)',
+      '\\(spreads\\)': '(分散)',
+      '\\(Tether\\)': '(连线)',
+      'All for Naught': '无之领域',
+      'Almagest': '至高无上',
+      'Deep Freeze': '深度冻结',
+      'Dimension Zero': '零次元',
+      'Empty Shadow': '虚无冲击',
+      'Endless Chase': '追尾波动',
+      'Gaze of the Void': '混沌激流',
+      'Lightless World': '无光的世界',
+      'Looming Emptiness': '虚无大冲击',
+      'Meltdown': '核心熔毁',
+      'Meteorain': '流星雨',
+      'Naught Grows': '无之膨胀',
+      'Naught Hunts(?! )': '无之追踪',
+      'Naught Hunts Another': '无之再追踪',
+      'Naught Wakes': '无之活性',
+      'Nothingness': '无之波动',
+      'Shrouded Holy': '暗影神圣',
+      'Silent Torrent': '奔流',
+      'Vacuum': '无之漩涡'
+    }
+  }, {
+    'locale': 'ko',
+    'replaceSync': {
+      'Enuo': '에누오',
+      'Looming Shadow': '공허한 큰 그림자',
+      'Uncast Shadow': '공허한 그림자',
+      '(?<! )Void': '무의 소용돌이',
+      'Yawning Void': '무의 큰 소용돌이'
+    },
+    'replaceText': {
+      '--beacon targetable--': '--징조 타겟가능--',
+      '\\(Tether\\)': '(선)',
+      '\\(AoE\\)': '(장판)',
+      '\\(active\\)': '(활성)',
+      '\\(puddle baits\\)': '(장판 유도)',
+      '\\(puddles\\)': '(장판)',
+      '\\(spreads\\)': '(산개)',
+      '\\(lines\\)': '(선)',
+      '\\(castbar\\)': '(시전바)',
+      '\\(big\\)': '(강력)',
+      'All for Naught': '무의 영역',
+      'Almagest': '알마게스트',
+      'Deep Freeze': '극한 동결',
+      'Dimension Zero': '0차원',
+      'Empty Shadow': '공허한 충격',
+      'Endless Chase': '추적 파동',
+      'Gaze of the Void': '혼돈의 격류',
+      'Lightless World': '빛이 없는 세계',
+      'Looming Emptiness': '공허한 대충격',
+      'Meltdown': '용융',
+      'Meteorain': '메테오 레인',
+      'Naught Grows': '무의 비대',
+      'Naught Hunts(?! )': '무의 추적',
+      'Naught Hunts Another': '무의 재추적',
+      'Naught Wakes': '무의 활성',
+      'Nothingness': '무의 파동',
+      'Shrouded Holy': '섀도우 홀리',
+      'Silent Torrent': '급류',
+      'Vacuum': '무의 소용돌이'
     }
   }]
 };
 /* harmony default export */ const enuo = (enuo_triggerSet);
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/trial/enuo.txt
-const trial_enuo_namespaceObject = "### THE UNMAKING\r\n# ZoneId: 1361\r\n\r\n# -ii C30A C310 C312 C31E C31F C320 C323 C32D C32F C5EB\r\n# -ic \"Golbez\"\r\n# -it \"Enuo\" \"Uncast Shadow\" \"Beacon in the Dark\"\r\n# -p C327:500\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n0.0 \"--Reset--\" ActorControl { command: \"4000000F\" } window 0,100000 jump 0\r\n\r\n0.0 \"--sync--\" InCombat { inGameCombat: \"1\" } window 0,1\r\n9.4 \"--sync--\" StartsUsing { id: \"C333\", source: \"Enuo\" } window 9.4,5\r\n14.4 \"Meteorain\" Ability { id: \"C333\", source: \"Enuo\" }\r\n\r\n16.5 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n24.8 \"Naught Grows (Tether)\" Ability { id: \"C30B\", source: \"Enuo\" }\r\n25.8 \"Naught Grows (AoE)\" Ability { id: \"C30D\", source: \"Yawning Void\" }\r\n31.8 \"Naught Wakes\" Ability { id: \"C309\", source: \"Enuo\" }\r\n\r\n36.9 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n45.2 \"Naught Grows (Tether)\" Ability { id: \"C30B\", source: \"Enuo\" }\r\n46.2 \"Naught Grows (AoE)\" Ability { id: \"C30D\", source: \"Yawning Void\" }\r\n60.3 \"Gaze of the Void x10\" duration 3.6 #Ability { id: \"C321\", source: \"Enuo\" }\r\n74.5 \"Deep Freeze\" Ability { id: \"C32E\", source: \"Enuo\" }\r\n\r\n78.6 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n86.9 \"Naught Hunts\" Ability { id: \"C313\", source: \"Enuo\" }\r\n88.0 \"Endless Chase (active)\" duration 7.8 #Ability { id: \"BD5A\", source: \"Void\" }\r\n96.2 \"Naught Hunts Another\" Ability { id: \"C315\", source: \"Enuo\" }\r\n96.3 \"Endless Chase (active)\" duration 8.4\r\n\r\n111.2 \"Shrouded Holy\" Ability { id: \"C330\", source: \"Enuo\" }\r\n120.3 \"Meltdown (puddle baits)\" Ability { id: \"C32A\", source: \"Enuo\" }\r\n126.3 \"Meltdown (puddles)\" Ability { id: \"C32B\", source: \"Enuo\" }\r\n127.3 \"Meltdown (spreads)\" #Ability { id: \"C32C\", source: \"Enuo\" }\r\n132.3 \"Vacuum\" Ability { id: \"C316\", source: \"Enuo\" }\r\n138.0 \"Silent Torrent x7 (lines)\" Ability { id: \"C318\", source: \"Void\" }\r\n138.6 \"Silent Torrent x7 (puddles)\" Ability { id: \"C31B\", source: \"Enuo\" }\r\n140.6 \"Vacuum\" Ability { id: \"C31D\", source: \"Void\" }\r\n148.6 \"Meteorain\" Ability { id: \"C333\", source: \"Enuo\" }\r\n150.7 \"--north--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n158.1 \"All for Naught\" Ability { id: \"C322\", source: \"Enuo\" }\r\n158.2 \"--untargetable--\"\r\n\r\n# Add Phase\r\n179.2 \"Empty Shadow\" #Ability { id: \"C324\", source: \"Uncast Shadow\" }\r\n179.2 \"Looming Emptiness\" Ability { id: \"C33D\", source: \"Looming Shadow\" }\r\n180.2 \"--adds targetable--\"\r\n185.2 label \"adds-loop\"\r\n185.2 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n188.2 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n191.2 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n194.2 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n197.2 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n200.2 \"Nothingness\" Ability { id: \"C326\", source: \"Uncast Shadow\" } window 1,1 forcejump \"adds-loop\"\r\n\r\n# Add line attacks pause momentarily for the beacon to spawn\r\n\r\n# MapEffect for the white ring pulse animation\r\n299.6 \"--beacon targetable--\" MapEffect { flags: \"00020001\", location: \"0[^09]\" } window 200,0\r\n306.0 label \"beacon-loop\"\r\n306.0 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n309.1 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n312.0 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n315.0 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n318.0 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n321.0 \"Nothingness\" Ability { id: \"C326\", source: \"Uncast Shadow\" } window 1,1 forcejump \"beacon-loop\"\r\n\r\n# Phase 2\r\n# Sync based on MapEffect for the cracking animation of the portal breaking\r\n441.2 \"--sync--\" MapEffect { flags: \"02000100\", location: \"0[^09]\" } window 400,0\r\n499.6 \"Lightless World (castbar)\" Ability { id: \"C327\", source: \"Enuo\" }\r\n500.6 \"Lightless World x5\" duration 1.8 #Ability { id: \"C328\", source: \"Enuo\" }\r\n503.0 \"Lightless World (big)\" Ability { id: \"C329\", source: \"Enuo\" }\r\n505.4 \"--targetable--\"\r\n\r\n509.5 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n517.9 \"Naught Grows (Tether)\" Ability { id: \"C30C\", source: \"Enuo\" }\r\n518.9 \"Naught Grows (AoE)\" Ability { id: \"C30E\", source: \"Enuo\" }\r\n526.0 \"Almagest\" Ability { id: \"C308\", source: \"Enuo\" }\r\n\r\n532.1 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n540.3 \"Naught Grows (Tether)\" Ability { id: \"C30C\", source: \"Enuo\" }\r\n541.3 \"Naught Grows x2 (AoE)\" Ability { id: \"C30E\", source: \"Enuo\" }\r\n545.3 \"Naught Wakes\" Ability { id: \"C309\", source: \"Enuo\" }\r\n553.7 \"Naught Grows (Tether)\" Ability { id: \"C30C\", source: \"Enuo\" }\r\n554.7 \"Naught Grows x2 (AoE)\" Ability { id: \"C30D\", source: \"Yawning Void\" }\r\n561.7 \"Dimension Zero (castbar)\" Ability { id: \"C331\", source: \"Enuo\" }\r\n562.0 \"Dimension Zero x3\" duration 2.6 #Ability { id: \"C332\", source: \"Enuo\" }\r\n575.3 \"Almagest\" Ability { id: \"C308\", source: \"Enuo\" }\r\n\r\n578.7 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n586.7 \"Naught Hunts\" Ability { id: \"C313\", source: \"Enuo\" }\r\n587.8 \"Endless Chase (active)\" duration 7.8 #Ability { id: \"BD5A\", source: \"Void\" }\r\n596.0 \"Naught Hunts Another\" Ability { id: \"C315\", source: \"Enuo\" }\r\n596.1 \"Endless Chase (active)\" duration 8.4 #Ability { id: \"C314\", source: \"Void\" }\r\n609.5 \"Naught Grows (Tether)\" Ability { id: \"C30C\", source: \"Enuo\" }\r\n610.5 \"Naught Grows x2 (AoE)\" Ability { id: \"C30E\", source: \"Enuo\" }\r\n617.5 \"Naught Wakes\" Ability { id: \"C309\", source: \"Enuo\" }\r\n\r\n621.5 label \"p2-loop\"\r\n621.5 \"Vacuum\" Ability { id: \"C316\", source: \"Enuo\" }\r\n623.6 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n627.0 \"Silent Torrent x7 (lines)\" Ability { id: \"C318\", source: \"Void\" }\r\n627.6 \"Silent Torrent x7 (puddles)\" Ability { id: \"C31B\", source: \"Enuo\" }\r\n629.6 \"Vacuum\" Ability { id: \"C31D\", source: \"Void\" }\r\n633.6 \"Gaze of the Void x10\" duration 3.6 #Ability { id: \"C321\", source: \"Enuo\" }\r\n\r\n641.7 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n647.7 \"Meltdown (puddle baits)\" Ability { id: \"C32A\", source: \"Enuo\" }\r\n653.7 \"Meltdown (puddles)\" Ability { id: \"C32B\", source: \"Enuo\" }\r\n654.7 \"Meltdown (spreads)\" Ability { id: \"C32C\", source: \"Enuo\" }\r\n658.1 \"Naught Grows\" Ability { id: \"C30C\", source: \"Enuo\" }\r\n659.1 \"Naught Grows\" Ability { id: \"C30D\", source: \"Yawning Void\" }\r\n666.1 \"Meteorain\" Ability { id: \"C333\", source: \"Enuo\" }\r\n\r\n674.2 \"Vacuum\" Ability { id: \"C316\", source: \"Enuo\" }\r\n679.9 \"Silent Torrent x7 (lines)\" Ability { id: \"C319\", source: \"Void\" }\r\n680.3 \"Meltdown (puddle baits)\" Ability { id: \"C32A\", source: \"Enuo\" }\r\n680.3 \"Silent Torrent (puddles)\" Ability { id: \"C31B\", source: \"Enuo\" }\r\n682.3 \"Vacuum\" Ability { id: \"C31D\", source: \"Void\" }\r\n686.3 \"Meltdown (puddles)\" Ability { id: \"C32B\", source: \"Enuo\" }\r\n687.3 \"Meltdown (spreads)\" Ability { id: \"C32C\", source: \"Enuo\" }\r\n\r\n691.4 \"Gaze of the Void x10\" duration 3.6 #Ability { id: \"C321\", source: \"Enuo\" }\r\n702.6 \"Deep Freeze\" Ability { id: \"C32E\", source: \"Enuo\" }\r\n708.7 \"Dimension Zero (castbar)\" Ability { id: \"C331\", source: \"Enuo\" }\r\n709.1 \"Dimension Zero x3\" duration 2.6 #Ability { id: \"C332\", source: \"Enuo\" }\r\n723.3 \"Almagest\" Ability { id: \"C308\", source: \"Enuo\" }\r\n\r\n# maybe loop to 621.5?\r\n731.4 \"Vacuum\" Ability { id: \"C316\", source: \"Enuo\" } forcejump \"p2-loop\"\r\n# 733.5 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n# 736.9 \"Silent Torrent x7 (lines)\" Ability { id: \"C318\", source: \"Void\" }\r\n# 737.5 \"Silent Torrent x7 (puddles)\" Ability { id: \"C31B\", source: \"Enuo\" }\r\n# 739.5 \"Vacuum\" Ability { id: \"C31D\", source: \"Void\" }\r\n\r\n\r\n\r\n# IGNORED ABILITIES\r\n# C30A --sync--: Void teleports/jumps\r\n# C310 --sync--: Enuo Autoattack\r\n# C312 --sync--: Add teleport on death\r\n# C31E Gaze of the Void: Cast bar\r\n# C31F Gaze of the Void: CW rotation\r\n# C320 Gaze of the Void: CCW rotation\r\n# C323 Looming Emptiness: VFX\r\n# C32D Deep Freeze: Tank Flare castbar\r\n# C32F Shrouded Holy: Party stack castbar\r\n# C5EB Empty Shadow: VFX?\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# BD5A Endless Chase: Initial cast/telegraphed puddle?\r\n# C307 --sync--: Enuo teleport/jump\r\n# C308 Almagest: Raidwide\r\n# C309 Naught Wakes: Enuo castbar to indicate void teleport/jump\r\n# C30A --sync--: Void teleports/jumps\r\n# C30B Naught Grows: Tether animation to indicate what's exploding\r\n# C30C Naught Grows: Tether animation to indicate what's exploding\r\n# C30D Naught Grows: point blank aoe\r\n# C30E Naught Grows: point blank aoe\r\n# C310 --sync--: Enuo Autoattack\r\n# C312 --sync--: Add teleport on death\r\n# C313 Naught Hunts: Cast bar for chasing puddle, initial aoe marker\r\n# C314 Endless Chase: Chasing puddle\r\n# C315 Naught Hunts Another: Cast bar to change chasing puddle target\r\n# C316 Vacuum: VFX for silent torrent lines prep\r\n# C317 Silent Torrent: Short line?\r\n# C318 Silent Torrent: Medium line?\r\n# C319 Silent Torrent: Long line?\r\n# C31A Silent Torrent: Small/close puddle?\r\n# C31B Silent Torrent: Medium puddle?\r\n# C31C Silent Torrent: Big/far puddle?\r\n# C31D Vacuum: VFX for silent torrent lines end\r\n# C31E Gaze of the Void: Cast bar\r\n# C31F Gaze of the Void: CW rotation\r\n# C320 Gaze of the Void: CCW rotation\r\n# C321 Gaze of the Void: Cone\r\n# C322 All for Naught: Transition cast\r\n# C323 Looming Emptiness: Proximity marker VFX\r\n# C324 Empty Shadow: Damage?\r\n# C325 --sync--\r\n# C326 Nothingness: Add line attack\r\n# C327 Lightless World: castbar\r\n# C328 Lightless World: small hits\r\n# C329 Lightless World: big hit\r\n# C32A Meltdown: Castbar/puddle bait\r\n# C32B Meltdown: Puddle explosions\r\n# C32C Meltdown: Spreads\r\n# C32D Deep Freeze: Tank flare castbar\r\n# C32E Deep Freeze: Tank flare actual damage snapshot\r\n# C32F Shrouded Holy: Party stack castbar\r\n# C330 Shrouded Holy: Party stack actual damage snapshot\r\n# C331 Dimension Zero: cast bar\r\n# C332 Dimension Zero: line stack, 3 hits\r\n# C333 Meteorain: Raidwide\r\n# C33D Looming Emptiness: Proximity marker snapshot/damage\r\n# C5EB Empty Shadow: VFX?\r\n# C657 --sync--: Golbez Autoattack?\r\n# C658 Warlock's Tide: NPC attack\r\n# C66C Spell Flame: NPC attack\r\n";
+const trial_enuo_namespaceObject = "### THE UNMAKING\r\n# ZoneId: 1361\r\n\r\n# -ii C30A C310 C312 C31E C31F C320 C323 C32D C5EB\r\n# -ic \"Golbez\"\r\n# -it \"Enuo\" \"Uncast Shadow\" \"Beacon in the Dark\"\r\n# -p C327:500\r\n\r\n# \"Shrouded Holy\" entry corresponds to the actual damage casts, which can be cancelled if the target dies\r\n# As such, the enemy castbar is included before as a sync\r\n\r\n# \"Naught Hunts\" and \"Naught Hunts Another\" can be cancelled early if both targets die, so\r\n# after every instance of the mechanic, the next timeline entry has an early sync with a window covering\r\n# the \"Naught Hunts\" mechanic\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n0.0 \"--Reset--\" ActorControl { command: \"4000000F\" } window 0,100000 jump 0\r\n\r\n0.0 \"--sync--\" InCombat { inGameCombat: \"1\" } window 0,1\r\n9.4 \"--sync--\" StartsUsing { id: \"C333\", source: \"Enuo\" } window 9.4,5\r\n14.4 \"Meteorain\" Ability { id: \"C333\", source: \"Enuo\" }\r\n\r\n16.5 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n24.8 \"Naught Grows (Tether)\" Ability { id: [\"C30B\", \"C30C\"], source: \"Enuo\" }\r\n25.8 \"Naught Grows (AoE)\" #Ability { id: \"C30D\", source: \"Yawning Void\" }\r\n31.8 \"Naught Wakes\" Ability { id: \"C309\", source: \"Enuo\" }\r\n\r\n36.9 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n45.2 \"Naught Grows (Tether)\" Ability { id: [\"C30B\", \"C30C\"], source: \"Enuo\" }\r\n46.2 \"Naught Grows (AoE)\" #Ability { id: \"C30D\", source: \"Yawning Void\" }\r\n60.3 \"Gaze of the Void x10\" duration 3.6 #Ability { id: \"C321\", source: \"Enuo\" }\r\n74.5 \"Deep Freeze\" Ability { id: \"C32E\", source: \"Enuo\" }\r\n\r\n78.6 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n86.9 \"Naught Hunts\" Ability { id: \"C313\", source: \"Enuo\" }\r\n88.0 \"Endless Chase (active)\" duration 7.8 #Ability { id: \"BD5A\", source: \"Void\" }\r\n96.2 \"Naught Hunts Another\" Ability { id: \"C315\", source: \"Enuo\" }\r\n96.3 \"Endless Chase (active)\" duration 8.4\r\n\r\n# This \"Shrouded Holy\" cast has a large window to cover the Naught Hunts potential skip\r\n106.2 \"--sync--\" StartsUsing { id: \"C32F\", source: \"Enuo\" } window 20,2.5\r\n111.2 \"Shrouded Holy\" Ability { id: \"C330\", source: \"Enuo\" }\r\n120.3 \"Meltdown (puddle baits)\" Ability { id: \"C32A\", source: \"Enuo\" }\r\n126.3 \"Meltdown (puddles)\" Ability { id: \"C32B\", source: \"Enuo\" }\r\n127.3 \"Meltdown (spreads)\" #Ability { id: \"C32C\", source: \"Enuo\" }\r\n132.3 \"Vacuum\" Ability { id: \"C316\", source: \"Enuo\" }\r\n138.0 \"Silent Torrent x7 (lines)\" Ability { id: \"C318\", source: \"Void\" }\r\n138.6 \"Silent Torrent x7 (puddles)\" Ability { id: \"C31B\", source: \"Enuo\" }\r\n140.6 \"Vacuum\" Ability { id: \"C31D\", source: \"Void\" }\r\n148.6 \"Meteorain\" Ability { id: \"C333\", source: \"Enuo\" }\r\n150.7 \"--north--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n158.1 \"All for Naught\" Ability { id: \"C322\", source: \"Enuo\" }\r\n158.2 \"--untargetable--\"\r\n\r\n# Add Phase\r\n179.2 \"Empty Shadow\" #Ability { id: \"C324\", source: \"Uncast Shadow\" }\r\n179.2 \"Looming Emptiness\" Ability { id: \"C33D\", source: \"Looming Shadow\" }\r\n180.2 \"--adds targetable--\"\r\n185.2 label \"adds-loop\"\r\n185.2 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n188.2 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n191.2 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n194.2 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n197.2 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n200.2 \"Nothingness\" Ability { id: \"C326\", source: \"Uncast Shadow\" } window 1,1 forcejump \"adds-loop\"\r\n\r\n# Add line attacks pause momentarily for the beacon to spawn\r\n\r\n# MapEffect for the white ring pulse animation\r\n299.6 \"--beacon targetable--\" MapEffect { flags: \"00020001\", location: \"0[^09]\" } window 200,0\r\n306.0 label \"beacon-loop\"\r\n306.0 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n309.1 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n312.0 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n315.0 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n318.0 \"Nothingness\" #Ability { id: \"C326\", source: \"Uncast Shadow\" }\r\n321.0 \"Nothingness\" Ability { id: \"C326\", source: \"Uncast Shadow\" } window 1,1 forcejump \"beacon-loop\"\r\n\r\n# Phase 2\r\n# Sync based on MapEffect for the cracking animation of the portal breaking\r\n441.2 \"--sync--\" MapEffect { flags: \"02000100\", location: \"0[^09]\" } window 400,0\r\n# Backup sync to match phase change for FFLogs report testing\r\n494.6 \"--sync--\" StartsUsing { id: \"C327\", source: \"Enuo\" } window 400,0\r\n499.6 \"Lightless World (castbar)\" Ability { id: \"C327\", source: \"Enuo\" }\r\n500.6 \"Lightless World x5\" duration 1.8 #Ability { id: \"C328\", source: \"Enuo\" }\r\n503.0 \"Lightless World (big)\" Ability { id: \"C329\", source: \"Enuo\" }\r\n505.4 \"--targetable--\"\r\n\r\n509.5 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n517.9 \"Naught Grows (Tether)\" Ability { id: [\"C30B\", \"C30C\"], source: \"Enuo\" }\r\n518.9 \"Naught Grows (AoE)\" #Ability { id: \"C30E\", source: \"Enuo\" }\r\n526.0 \"Almagest\" Ability { id: \"C308\", source: \"Enuo\" }\r\n\r\n532.1 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n540.3 \"Naught Grows (Tether)\" Ability { id: [\"C30B\", \"C30C\"], source: \"Enuo\" }\r\n541.3 \"Naught Grows x2 (AoE)\" #Ability { id: \"C30E\", source: \"Enuo\" }\r\n545.3 \"Naught Wakes\" Ability { id: \"C309\", source: \"Enuo\" }\r\n553.7 \"Naught Grows (Tether)\" Ability { id: [\"C30B\", \"C30C\"], source: \"Enuo\" }\r\n554.7 \"Naught Grows x2 (AoE)\" #Ability { id: \"C30D\", source: \"Yawning Void\" }\r\n561.7 \"Dimension Zero (castbar)\" Ability { id: \"C331\", source: \"Enuo\" }\r\n562.0 \"Dimension Zero x3\" duration 2.6 #Ability { id: \"C332\", source: \"Enuo\" }\r\n575.3 \"Almagest\" Ability { id: \"C308\", source: \"Enuo\" }\r\n\r\n575.3 label \"p2-loop\"\r\n\r\n578.7 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n586.7 \"Naught Hunts\" Ability { id: \"C313\", source: \"Enuo\" }\r\n587.8 \"Endless Chase (active)\" duration 7.8 #Ability { id: \"BD5A\", source: \"Void\" }\r\n596.0 \"Naught Hunts Another\" Ability { id: \"C315\", source: \"Enuo\" }\r\n596.1 \"Endless Chase (active)\" duration 8.4 #Ability { id: \"C314\", source: \"Void\" }\r\n# Big window to cover Naught Hunts potential timeline skip\r\n603.5 \"--sync--\" StartsUsing { id: [\"C30B\", \"C30C\"], source: \"Enuo\" } window 20,2.5\r\n609.5 \"Naught Grows (Tether)\" Ability { id: [\"C30B\", \"C30C\"], source: \"Enuo\" }\r\n610.5 \"Naught Grows x2 (AoE)\" #Ability { id: \"C30E\", source: \"Enuo\" }\r\n617.5 \"Naught Wakes\" Ability { id: \"C309\", source: \"Enuo\" }\r\n\r\n621.5 \"Vacuum\" Ability { id: \"C316\", source: \"Enuo\" }\r\n623.6 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n627.0 \"Silent Torrent x7 (lines)\" Ability { id: \"C318\", source: \"Void\" }\r\n627.6 \"Silent Torrent x7 (puddles)\" Ability { id: \"C31B\", source: \"Enuo\" }\r\n629.6 \"Vacuum\" Ability { id: \"C31D\", source: \"Void\" }\r\n633.6 \"Gaze of the Void x10\" duration 3.6 #Ability { id: \"C321\", source: \"Enuo\" }\r\n\r\n641.7 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n647.7 \"Meltdown (puddle baits)\" Ability { id: \"C32A\", source: \"Enuo\" }\r\n653.7 \"Meltdown (puddles)\" Ability { id: \"C32B\", source: \"Enuo\" }\r\n654.7 \"Meltdown (spreads)\" Ability { id: \"C32C\", source: \"Enuo\" }\r\n658.1 \"Naught Grows (Tether)\" Ability { id: [\"C30B\", \"C30C\"], source: \"Enuo\" }\r\n659.1 \"Naught Grows x2 (AoE)\" #Ability { id: \"C30D\", source: \"Yawning Void\" }\r\n666.1 \"Meteorain\" Ability { id: \"C333\", source: \"Enuo\" }\r\n\r\n674.2 \"Vacuum\" Ability { id: \"C316\", source: \"Enuo\" }\r\n679.9 \"Silent Torrent x7 (lines)\" Ability { id: \"C319\", source: \"Void\" }\r\n680.3 \"Meltdown (puddle baits)\" Ability { id: \"C32A\", source: \"Enuo\" }\r\n680.3 \"Silent Torrent (puddles)\" Ability { id: \"C31B\", source: \"Enuo\" }\r\n682.3 \"Vacuum\" Ability { id: \"C31D\", source: \"Void\" }\r\n686.3 \"Meltdown (puddles)\" Ability { id: \"C32B\", source: \"Enuo\" }\r\n687.3 \"Meltdown (spreads)\" Ability { id: \"C32C\", source: \"Enuo\" }\r\n\r\n691.4 \"Gaze of the Void x10\" duration 3.6 #Ability { id: \"C321\", source: \"Enuo\" }\r\n702.6 \"Deep Freeze\" Ability { id: \"C32E\", source: \"Enuo\" }\r\n708.7 \"Dimension Zero (castbar)\" Ability { id: \"C331\", source: \"Enuo\" }\r\n709.1 \"Dimension Zero x3\" duration 2.6 #Ability { id: \"C332\", source: \"Enuo\" }\r\n723.3 \"Almagest\" Ability { id: \"C308\", source: \"Enuo\" }\r\n\r\n731.4 \"Vacuum\" Ability { id: \"C316\", source: \"Enuo\" }\r\n734.5 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n736.9 \"Silent Torrent x7 (lines)\" Ability { id: \"C319\", source: \"Void\" }\r\n737.3 \"Silent Torrent (puddles)\" Ability { id: \"C31C\", source: \"Enuo\" }\r\n739.3 \"Vacuum\" #Ability { id: \"C31D\", source: \"Void\" }\r\n742.4 \"Naught Grows (Tether)\" Ability { id: [\"C30B\", \"C30C\"], source: \"Enuo\" }\r\n743.4 \"Naught Grows x2 (AoE)\" #Ability { id: \"C30E\", source: \"Enuo\" }\r\n750.4 \"Naught Wakes\" Ability { id: \"C309\", source: \"Enuo\" }\r\n\r\n754.4 \"Vacuum\" Ability { id: \"C316\", source: \"Enuo\" }\r\n757.5 \"--middle--\" Ability { id: \"C307\", source: \"Enuo\" }\r\n759.9 \"Silent Torrent x7 (lines)\" Ability { id: \"C318\", source: \"Void\" }\r\n760.3 \"Silent Torrent (puddles)\" Ability { id: \"C31B\", source: \"Enuo\" }\r\n762.3 \"Vacuum\" Ability { id: \"C31D\", source: \"Void\" }\r\n765.4 \"Naught Grows (Tether)\" Ability { id: [\"C30B\", \"C30C\"], source: \"Enuo\" }\r\n766.4 \"Naught Grows x2 (AoE)\" #Ability { id: \"C30E\", source: \"Enuo\" }\r\n773.4 \"Meteorain\" Ability { id: \"C333\", source: \"Enuo\" }\r\n784.5 \"Almagest\" Ability { id: \"C308\", source: \"Enuo\" } forcejump \"p2-loop\"\r\n\r\n\r\n# IGNORED ABILITIES\r\n# C30A --sync--: Void teleports/jumps\r\n# C310 --sync--: Enuo Autoattack\r\n# C312 --sync--: Add teleport on death\r\n# C31E Gaze of the Void: Cast bar\r\n# C31F Gaze of the Void: CW rotation\r\n# C320 Gaze of the Void: CCW rotation\r\n# C323 Looming Emptiness: VFX\r\n# C32D Deep Freeze: Tank Flare castbar\r\n# C5EB Empty Shadow: VFX?\r\n\r\n# ALL ENCOUNTER ABILITIES\r\n# BD5A Endless Chase: Initial cast/telegraphed puddle?\r\n# C307 --sync--: Enuo teleport/jump\r\n# C308 Almagest: Raidwide\r\n# C309 Naught Wakes: Enuo castbar to indicate void teleport/jump\r\n# C30A --sync--: Void teleports/jumps\r\n# C30B Naught Grows: Tether animation to indicate what's exploding\r\n# C30C Naught Grows: Tether animation to indicate what's exploding\r\n# C30D Naught Grows: point blank aoe\r\n# C30E Naught Grows: point blank aoe\r\n# C310 --sync--: Enuo Autoattack\r\n# C312 --sync--: Add teleport on death\r\n# C313 Naught Hunts: Cast bar for chasing puddle, initial aoe marker\r\n# C314 Endless Chase: Chasing puddle\r\n# C315 Naught Hunts Another: Cast bar to change chasing puddle target\r\n# C316 Vacuum: VFX for silent torrent lines prep\r\n# C317 Silent Torrent: Short line?\r\n# C318 Silent Torrent: Medium line?\r\n# C319 Silent Torrent: Long line?\r\n# C31A Silent Torrent: Small/close puddle?\r\n# C31B Silent Torrent: Medium puddle?\r\n# C31C Silent Torrent: Big/far puddle?\r\n# C31D Vacuum: VFX for silent torrent lines end\r\n# C31E Gaze of the Void: Cast bar\r\n# C31F Gaze of the Void: CW rotation\r\n# C320 Gaze of the Void: CCW rotation\r\n# C321 Gaze of the Void: Cone\r\n# C322 All for Naught: Transition cast\r\n# C323 Looming Emptiness: Proximity marker VFX\r\n# C324 Empty Shadow: Damage?\r\n# C325 --sync--\r\n# C326 Nothingness: Add line attack\r\n# C327 Lightless World: castbar\r\n# C328 Lightless World: small hits\r\n# C329 Lightless World: big hit\r\n# C32A Meltdown: Castbar/puddle bait\r\n# C32B Meltdown: Puddle explosions\r\n# C32C Meltdown: Spreads\r\n# C32D Deep Freeze: Tank flare castbar\r\n# C32E Deep Freeze: Tank flare actual damage snapshot\r\n# C32F Shrouded Holy: Party stack castbar\r\n# C330 Shrouded Holy: Party stack actual damage snapshot\r\n# C331 Dimension Zero: cast bar\r\n# C332 Dimension Zero: line stack, 3 hits\r\n# C333 Meteorain: Raidwide\r\n# C33D Looming Emptiness: Proximity marker snapshot/damage\r\n# C5EB Empty Shadow: VFX?\r\n# C657 --sync--: Golbez Autoattack?\r\n# C658 Warlock's Tide: NPC attack\r\n# C66C Spell Flame: NPC attack\r\n";
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/trial/necron-ex.ts
 
 
@@ -273224,7 +275544,6 @@ const necron_ex_triggerSet = {
     }
   }, {
     'locale': 'de',
-    'missingTranslations': true,
     'replaceSync': {
       'Azure Aether': 'azur(?:e|er|es|en) Äther',
       'Beckoning Hands': 'lockend(?:e|er|es|en) Hand',
@@ -273232,6 +275551,16 @@ const necron_ex_triggerSet = {
       'Necron': 'Ewig(?:e|er|es|en) Dunkel'
     },
     'replaceText': {
+      '\\(cast\\)': '(wirken)',
+      '\\(damage\\)': '(Schaden)',
+      '\\(intercards\\)': '(Interkardinal)',
+      '\\(line\\)': '(Linie)',
+      '\\(lines\\)': '(Linien)',
+      '\\(puddle\\)': '(Fläche)',
+      '\\(puddles\\)': '(Flächen)',
+      '\\(spread\\)': '(verteilen)',
+      '\\(tower\\)': '(Turm)',
+      'Add Spawn': 'Add erscheint',
       'Aetherblight': 'Ätherische Verderbnis',
       'Blue Shockwave': 'Blaue Schockwelle',
       'Chilling Fingers': 'Klauen des Todes',
@@ -275930,6 +278259,927 @@ const seiryu_un_triggerSet = {
 /* harmony default export */ const seiryu_un = (seiryu_un_triggerSet);
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/trial/seiryu-un.txt
 const trial_seiryu_un_namespaceObject = "# This file was autogenerated from running npm run sync-files.\r\n# DO NOT EDIT THIS FILE DIRECTLY.\r\n# Edit the source file below and then run `npm run sync-files`\r\n# Source: ui/raidboss/data/04-sb/trial/seiryu-ex.txt\r\n\r\n# Seiryu Unreal\r\n# -ii ABEA ABEE ABDE ABF2 ABCA ABCB ABF4 ABE9 ABEF ABF1 ABF0 ABC6 ABE1 ABBC ABE3 ABD4 ABC1 ABD9 ABDA -p ABC0:400\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n# Phase 1\r\n0.0 \"--sync--\" InCombat { inGameCombat: \"1\" } window 0,1\r\n12.5 \"Fifth Element\" Ability { id: \"ABBA\", source: \"Seiryu\" } window 13,5\r\n#18.5 \"Serpent Ascending\" Ability { id: \"ABD3\", source: \"Seiryu\" } # towers later, but nothing here\r\n20.5 \"--middle--\" Ability { id: \"ABBB\", source: \"Seiryu\" }\r\n27.0 \"Kuji-kiri\" Ability { id: \"ABD8\", source: \"Seiryu\" }\r\n30.0 \"--jump--\" Ability { id: \"ABCC\", source: \"Seiryu\" }\r\n#33.5 \"Onmyo Sigil\" Ability { id: \"ABCD\", source: \"Seiryu\" }\r\n36.5 \"Onmyo Sigil\" Ability { id: \"ABF8\", source: \"Seiryu\" }\r\n46.5 \"Cursekeeper\" Ability { id: \"ABC9\", source: \"Seiryu\" }\r\n62.8 \"Summon Shiki\" Ability { id: \"ABC5\", source: \"Seiryu\" }\r\n#64.8 \"--rotate--\" Ability { id: \"ABBB\", source: \"Seiryu\" }\r\n64.8 \"--untargetable--\"\r\n69.8 \"--sync--\" Ability { id: \"ABE6\", source: \"Seiryu\" }\r\n75.8 \"Red Rush\" Ability { id: \"ABE8\", source: \"Aka-no-shiki\" }\r\n75.8 \"Blue Bolt\" Ability { id: \"ABE7\", source: \"Ao-no-shiki\" }\r\n80.5 \"100-tonze Swing\" Ability { id: \"ABE4\", source: \"Iwa-no-shiki\" }\r\n87.2 \"Yama-kagura\" Ability { id: \"ABFE\", source: \"Ten-no-shiki\" }\r\n89.5 \"Kanabo\" Ability { id: \"ABE5\", source: \"Iwa-no-shiki\" }\r\n\r\n# Times listed are the latest possible if the previous group is still alive.\r\n# The next group spawns immediately if the current one is killed.\r\n91.4 \"--small adds spawn--\"\r\n91.4 \"--large add spawns--\"\r\n108.4 \"--small adds spawn--\"\r\n116.6 \"--large add spawns--\"\r\n125.4 \"--small adds spawn--\"\r\n\r\n# Phase 2\r\n160.0 \"Enrage\"\r\n\r\n# Phase 3\r\n400.0 \"Strength of Spirit\" Ability { id: \"ABC0\", source: \"Seiryu\" } window 400,0\r\n427.0 \"Dragon's Wake\" Ability { id: \"ABC2\", source: \"Seiryu\" }\r\n#429.5 \"--rotate--\" Ability { id: \"ABBB\", source: \"Seiryu\" }\r\n429.5 \"--targetable--\"\r\n437.5 \"Summon Shiki\" Ability { id: \"ABC7\", source: \"Seiryu\" }\r\n448.0 \"Coursing River\" Ability { id: \"ABED\", source: \"Blue Orochi\" }\r\n462.0 \"Handprint\" Ability { id: \"ABDF\", source: \"Yama-no-shiki\" }\r\n466.5 \"Fifth Element\" Ability { id: \"ABBA\", source: \"Seiryu\" }\r\n470.0 \"Handprint\" Ability { id: \"ABDF\", source: \"Yama-no-shiki\" }\r\n478.0 \"Summon Shiki\" Ability { id: \"ABC7\", source: \"Seiryu\" }\r\n478.0 \"Handprint\" Ability { id: \"ABDF\", source: \"Yama-no-shiki\" }\r\n486.5 \"Force of Nature\" Ability { id: \"ABE2\", source: \"Yama-no-shiki\" }\r\n488.5 \"Coursing River\" Ability { id: \"ABED\", source: \"Blue Orochi\" }\r\n494.3 \"Forbidden Arts\" Ability { id: \"ABBE\", source: \"Seiryu\" }\r\n496.3 \"Forbidden Arts\" Ability { id: \"ABBF\", source: \"Seiryu\" }\r\n504.3 \"--north--\" Ability { id: \"ABBB\", source: \"Seiryu\" }\r\n511.9 \"Blazing Aramitama\" Ability { id: \"ABDB\", source: \"Seiryu\" }\r\n515.9 \"--jump--\" Ability { id: \"ABCC\", source: \"Seiryu\" }\r\n#519.4 \"In/Out\" Ability { id: [\"ABD1\", \"ABCF\"], source: \"Seiryu\" }\r\n522.4 \"In/Out\" Ability { id: [\"ABFC\", \"ABFA\"], source: \"Seiryu\" }\r\n#524.9 \"Out/In\" Ability { id: [\"ABD2\", \"ABD0\"], source: \"Seiryu\" }\r\n525.4 \"Out/In\" Ability { id: [\"ABFD\", \"ABFB\"], source: \"Seiryu\" }\r\n531.9 \"--middle--\" Ability { id: \"ABBB\", source: \"Seiryu\" }\r\n538.6 \"Kuji-kiri\" Ability { id: \"ABD8\", source: \"Seiryu\" }\r\n541.6 \"--jump--\" Ability { id: \"ABCC\", source: \"Seiryu\" }\r\n#545.1 \"In/Out\" Ability { id: [\"ABD1\", \"ABCF\"], source: \"Seiryu\" }\r\n548.1 \"In/Out\" Ability { id: [\"ABFC\", \"ABFA\"], source: \"Seiryu\" }\r\n#550.6 \"Out/In\" Ability { id: [\"ABD2\", \"ABD0\"], source: \"Seiryu\" }\r\n551.1 \"Out/In\" Ability { id: [\"ABFD\", \"ABFB\"], source: \"Seiryu\" }\r\n558.6 \"Fifth Element\" Ability { id: \"ABBA\", source: \"Seiryu\" }\r\n572.6 \"Serpent Ascending\" Ability { id: \"AC02\", source: \"Seiryu\" }\r\n578.6 \"Serpent Descending\" Ability { id: \"ABD5\", source: \"Seiryu\" }\r\n582.6 \"Serpent's Fang\" Ability { id: \"ABD6\", source: \"Seiryu\" }\r\n589.8 \"Forbidden Arts 1\" Ability { id: \"ABFF\", source: \"Seiryu\" }\r\n592.0 \"Forbidden Arts 2\" Ability { id: \"AC00\", source: \"Seiryu\" }\r\n599.0 \"Fifth Element\" Ability { id: \"ABBA\", source: \"Seiryu\" }\r\n611.0 \"Cursekeeper\" Ability { id: \"ABC9\", source: \"Seiryu\" }\r\n624.1 \"Cursekeeper\" Ability { id: \"ABC9\", source: \"Seiryu\" }\r\n633.3 \"Fifth Element\" Ability { id: \"ABBA\", source: \"Seiryu\" }\r\n646.3 \"Summon Shiki\" Ability { id: \"ABC4\", source: \"Seiryu\" }\r\n652.3 \"--jump--\" Ability { id: \"ABCC\", source: \"Seiryu\" }\r\n#655.8 \"In/Out\" Ability { id: [\"ABD1\", \"ABCF\"], source: \"Seiryu\" }\r\n658.4 \"100-tonze Swing\" Ability { id: \"ABE4\", source: \"Iwa-no-shiki\" }\r\n658.8 \"In/Out\" Ability { id: [\"ABFC\", \"ABFA\"], source: \"Seiryu\" }\r\n#661.3 \"Out/In\" Ability { id: [\"ABD2\", \"ABD0\"], source: \"Seiryu\" }\r\n661.8 \"Out/In\" Ability { id: [\"ABFD\", \"ABFB\"], source: \"Seiryu\" }\r\n667.5 \"Kanabo\" Ability { id: \"ABE5\", source: \"Iwa-no-shiki\" }\r\n671.3 \"--sync--\" Ability { id: \"ABE6\", source: \"Ao-no-shiki\" }\r\n676.3 \"Serpent Ascending\" Ability { id: \"ABD3\", source: \"Seiryu\" }\r\n677.3 \"Red Rush\" Ability { id: \"ABE8\", source: \"Aka-no-shiki\" }\r\n677.3 \"Blue Bolt\" Ability { id: \"ABE7\", source: \"Ao-no-shiki\" }\r\n678.3 \"--middle--\" Ability { id: \"ABBB\", source: \"Seiryu\" }\r\n685.0 \"Kuji-kiri\" Ability { id: \"ABD8\", source: \"Seiryu\" }\r\n691.9 \"Handprint\" Ability { id: \"ABDF\", source: \"Yama-no-shiki\" }\r\n697.1 \"Fifth Element\" Ability { id: \"ABBA\", source: \"Seiryu\" }\r\n700.0 \"Handprint\" Ability { id: \"ABDF\", source: \"Yama-no-shiki\" }\r\n708.0 \"Handprint\" Ability { id: \"ABDF\", source: \"Yama-no-shiki\" }\r\n708.6 \"Summon Shiki\" Ability { id: \"ABC7\", source: \"Seiryu\" }\r\n716.5 \"Force of Nature\" Ability { id: \"ABE2\", source: \"Yama-no-shiki\" }\r\n719.1 \"Coursing River\" Ability { id: \"ABED\", source: \"Blue Orochi\" }\r\n721.6 \"--jump--\" Ability { id: \"ABCC\", source: \"Seiryu\" }\r\n#725.1 \"In/Out\" Ability { id: [\"ABD1\", \"ABCF\"], source: \"Seiryu\" }\r\n728.1 \"In/Out\" Ability { id: [\"ABFC\", \"ABFA\"], source: \"Seiryu\" }\r\n#730.6 \"Out/In\" Ability { id: [\"ABD2\", \"ABD0\"], source: \"Seiryu\" }\r\n731.1 \"Out/In\" Ability { id: [\"ABFD\", \"ABFB\"], source: \"Seiryu\" }\r\n733.9 \"Handprint\" Ability { id: \"ABDF\", source: \"Yama-no-shiki\" }\r\n741.9 \"Handprint\" Ability { id: \"ABDF\", source: \"Yama-no-shiki\" }\r\n749.9 \"Handprint\" Ability { id: \"ABDF\", source: \"Yama-no-shiki\" }\r\n751.0 \"Summon Shiki\" Ability { id: \"ABC7\", source: \"Seiryu\" }\r\n758.4 \"Force of Nature\" Ability { id: \"ABE2\", source: \"Yama-no-shiki\" }\r\n761.5 \"Coursing River\" Ability { id: \"ABED\", source: \"Blue Orochi\" }\r\n768.6 \"Forbidden Arts 1\" Ability { id: \"ABFF\", source: \"Seiryu\" }\r\n770.6 \"Forbidden Arts 2\" Ability { id: \"AC00\", source: \"Seiryu\" }\r\n777.6 \"Fifth Element\" Ability { id: \"ABBA\", source: \"Seiryu\" }\r\n794.6 \"Cursekeeper\" Ability { id: \"ABC9\", source: \"Seiryu\" }\r\n807.8 \"Cursekeeper\" Ability { id: \"ABC9\", source: \"Seiryu\" }\r\n817.0 \"Fifth Element\" Ability { id: \"ABBA\", source: \"Seiryu\" }\r\n823.0 \"--jump--\" Ability { id: \"ABCC\", source: \"Seiryu\" }\r\n#826.5 \"In/Out\" Ability { id: [\"ABD1\", \"ABCF\"], source: \"Seiryu\" }\r\n829.5 \"In/Out\" Ability { id: [\"ABFC\", \"ABFA\"], source: \"Seiryu\" }\r\n#832.0 \"Out/In\" Ability { id: [\"ABD2\", \"ABD0\"], source: \"Seiryu\" }\r\n832.5 \"Out/In\" Ability { id: [\"ABFD\", \"ABFB\"], source: \"Seiryu\" }\r\n839.0 \"Serpent Ascending\" Ability { id: \"AC02\", source: \"Seiryu\" }\r\n842.5 \"--middle--\" Ability { id: \"ABBB\", source: \"Seiryu\" }\r\n845.0 \"Serpent Descending\" Ability { id: \"ABD5\", source: \"Seiryu\" }\r\n849.0 \"Serpent's Fang\" Ability { id: \"ABD6\", source: \"Seiryu\" }\r\n849.0 \"Kuji-kiri\" Ability { id: \"ABD8\", source: \"Seiryu\" }\r\n857.6 \"Fifth Element\" Ability { id: \"ABBA\", source: \"Seiryu\" }\r\n869.6 \"--middle--\" Ability { id: \"ABBB\", source: \"Seiryu\" }\r\n876.9 \"Fifth Element\" Ability { id: \"ABBA\", source: \"Seiryu\" }\r\n883.9 \"Fifth Element\" Ability { id: \"ABBA\", source: \"Seiryu\" }\r\n906.0 \"Enrage\" Ability { id: \"AC03\", source: \"Seiryu\" }\r\n";
+;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/trial/shinryu-un.ts
+// This file was autogenerated from running npm run sync-files.
+// DO NOT EDIT THIS FILE DIRECTLY.
+// Edit the source file below and then run `npm run sync-files`
+// Source: ui/raidboss/data/04-sb/trial/shinryu-ex.ts
+
+
+
+
+
+// Shinryu Unreal
+const shinryu_un_triggerSet = {
+  id: 'ShinryusDomainUnreal',
+  zoneId: zone_id/* default.ShinryusDomainUnreal */.Z.ShinryusDomainUnreal,
+  timelineFile: 'shinryu-un.txt',
+  triggers: [{
+    // Earthen Fury
+    id: 'ShinryuUn Phase 1',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C43A',
+      source: 'Shinryu',
+      capture: false
+    },
+    run: data => data.phase = 1
+  }, {
+    // Dark Matter
+    id: 'ShinryuUn Phase 2',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C443',
+      source: 'Shinryu',
+      capture: false
+    },
+    run: data => data.phase = 2
+  }, {
+    // Protostar
+    id: 'ShinryuUn Phase 3',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C440',
+      source: 'Shinryu',
+      capture: false
+    },
+    run: data => data.phase = 3
+  }, {
+    // Tidal Wave enrage
+    id: 'ShinryuUn Phase 4',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C47B',
+      source: 'Shinryu',
+      capture: false
+    },
+    run: data => data.phase = 4
+  }, {
+    id: 'ShinryuUn Akh Morn',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C44F',
+      source: 'Shinryu',
+      capture: true
+    },
+    alertText: (data, matches, output) => {
+      if (matches.target === data.me) return output.akhMornOnYou();else if (data.role === 'tank') return output.akhMornOn({
+        player: data.party.member(matches.target)
+      });
+    },
+    infoText: (data, matches, output) => {
+      if (matches.target === data.me || data.role === 'tank') return;
+      return output.akhRhaiSpreadAndMove();
+    },
+    outputStrings: {
+      akhRhaiSpreadAndMove: {
+        en: 'Akh Rhai: spread and move',
+        de: 'Akh Rhai: Verteilen und bewegen',
+        fr: 'Akh Rhai : Dispersion et bougez',
+        ja: 'アク・ラーイ: 散開 動け',
+        cn: '天光轮回：散开保持移动',
+        ko: '아크 라이: 산개, 이동',
+        tc: '天光輪迴：散開保持移動'
+      },
+      akhMornOnYou: {
+        en: 'Akh Morn on YOU',
+        de: 'Akh Morn auf DIR',
+        fr: 'Akh Morn sur VOUS',
+        ja: '自分にアク・モーン',
+        cn: '死亡轮回点名',
+        ko: '아크몬 대상자',
+        tc: '死亡輪迴點名'
+      },
+      akhMornOn: {
+        en: 'Akh Morn on ${player}',
+        de: 'Akh Morn auf ${player}',
+        fr: 'Akh Morn sur ${player}',
+        ja: '${player}にアク・モーン',
+        cn: '死亡轮回点${player}',
+        ko: '"${player}" 아크몬',
+        tc: '死亡輪迴點 ${player}'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Diamond Dust',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C439',
+      source: 'Shinryu',
+      capture: false
+    },
+    infoText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Ice: Stack + don\'t move',
+        de: 'Eis: Sammeln + nicht bewegen',
+        cn: '冰: 集合 + 不要动',
+        ko: '얼음: 모이기 + 이동 멈추기'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Dragonfist',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C46D',
+      source: 'Shinryu',
+      capture: false
+    },
+    infoText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Out of middle',
+        de: 'Raus aus der Mitte',
+        fr: 'Sortez du milieu',
+        ja: '中央から離れ',
+        cn: '离开中间',
+        ko: '중앙 피하기',
+        tc: '離開中間'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Hellfire',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C437',
+      source: 'Shinryu',
+      capture: false
+    },
+    durationSeconds: 7,
+    alertText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Get in water',
+        de: 'In\'s Wasser',
+        fr: 'Allez dans l\'eau',
+        ja: '水に入る',
+        cn: '进水圈',
+        ko: '물 장판에 들어가기',
+        tc: '進水圈'
+      }
+    }
+  }, {
+    // TODO: the original trigger didn't differentiate the two ability ids.
+    // Probably the phase conditional could get removed if it did.
+    id: 'ShinryuUn Hypernova',
+    type: 'StartsUsing',
+    netRegex: {
+      id: ['C481', 'C444'],
+      source: 'Right Wing',
+      capture: false
+    },
+    durationSeconds: 7,
+    alertText: (data, _matches, output) => {
+      if (data.phase === 3) return output.stopToGetFrozen();
+      return output.stackInWater();
+    },
+    outputStrings: {
+      stopToGetFrozen: {
+        en: 'Stop + Get frozen',
+        de: 'Stopp! Einfrieren lassen',
+        fr: 'Arrêtez, laissez-vous geler',
+        ja: '止まれ、凍結',
+        cn: '停止移动 + 吃冻结',
+        ko: '멈춰서 얼기',
+        tc: '停止移動吃凍結'
+      },
+      stackInWater: {
+        en: 'Stack in water',
+        de: 'In Wasser stacken',
+        fr: 'Packez-vous dans l\'eau',
+        ja: '水に集合',
+        cn: '在水圈分摊',
+        ko: '물 장판에 모이기',
+        tc: '在水圈分攤'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Judgement Bolt',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C438',
+      source: 'Shinryu',
+      capture: false
+    },
+    durationSeconds: 7,
+    alertText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Out of water',
+        de: 'Raus aus dem Wasser',
+        fr: 'Sortez de l\'eau',
+        ja: '水から離れ',
+        cn: '离开水圈',
+        ko: '물 장판 밖으로',
+        tc: '離開水圈'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Levinbolt',
+    type: 'StartsUsing',
+    netRegex: {
+      id: ['C446', 'C482', 'C486'],
+      source: 'Right Wing',
+      target: 'Right Wing',
+      capture: false
+    },
+    durationSeconds: 7,
+    alertText: (data, _matches, output) => {
+      if (data.phase === 3) return output.baitBoltKeepMoving();
+      return output.spreadOutNoWater();
+    },
+    outputStrings: {
+      baitBoltKeepMoving: {
+        en: 'Bait bolt + keep moving',
+        de: 'Blitz ködern, weiterbewegen',
+        fr: 'Attirez la foudre, continuez à bouger',
+        ja: '稲妻: 動き続ける',
+        cn: '诱导闪电 + 保持移动',
+        ko: '번개 공격 산개, 계속 움직이기',
+        tc: '誘導閃電，保持移動'
+      },
+      spreadOutNoWater: {
+        en: 'Spread out, no water',
+        de: 'Verteilen und nicht in\'s Wasser',
+        fr: 'Dispersez-vous en dehors de l\'eau',
+        ja: '散開、水に入らない',
+        cn: '散开，离开水圈',
+        ko: '산개, 물장판 X',
+        tc: '散開，離開水圈'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Levinbolt Phase 3',
+    type: 'StartsUsing',
+    netRegex: {
+      id: ['C446', 'C482', 'C486'],
+      source: 'Right Wing',
+      target: 'Right Wing',
+      capture: false
+    },
+    condition: data => data.phase === 3,
+    delaySeconds: 9.5,
+    response: responses/* Responses.moveAway */.n3.moveAway('alarm')
+  }, {
+    id: 'ShinryuUn Icicle Left',
+    type: 'Ability',
+    netRegex: {
+      id: 'C44B',
+      source: 'Icicle',
+      capture: true
+    },
+    condition: (_data, matches) => {
+      return Math.round(parseFloat(matches.x)) === -30 && Math.round(parseFloat(matches.y)) === -15;
+    },
+    alarmText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Icicle, lean west',
+        de: 'Eiszapfen, nach westen',
+        fr: 'Stalactite, penchez vers l\'ouest',
+        ja: 'アイシクル: 西へ',
+        cn: '冰柱, 偏左站',
+        ko: '고드름, 왼쪽 먼저',
+        tc: '冰柱，去西邊'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Icicle Right',
+    type: 'Ability',
+    netRegex: {
+      id: 'C44B',
+      source: 'Icicle'
+    },
+    condition: (_data, matches) => {
+      return Math.round(parseFloat(matches.x)) === -30 && Math.round(parseFloat(matches.y)) === -25;
+    },
+    alarmText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Icicle, lean east',
+        de: 'Eiszapfen, nach Osten',
+        fr: 'Stalactite, penchez vers l\'est',
+        ja: 'アイシクル: 東へ',
+        cn: '冰柱, 偏右站',
+        ko: '고드름, 오른쪽 먼저',
+        tc: '冰柱，去東邊'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Tidal Wave',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C436',
+      source: 'Shinryu',
+      capture: false
+    },
+    delaySeconds: 3,
+    durationSeconds: 5,
+    response: responses/* Responses.knockback */.n3.knockback()
+  }, {
+    id: 'ShinryuUn Final Tidal Wave',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C47B',
+      source: 'Shinryu',
+      capture: false
+    },
+    condition: data => data.role === 'healer',
+    infoText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'no more heals needed',
+        de: 'keine Heilung mehr nötig',
+        fr: 'Plus besoin de soigner',
+        ja: 'ヒールはもう要らない',
+        cn: '狂暴读条，不用奶了',
+        ko: '힐 그만',
+        tc: '狂暴讀條，不用補了'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Tail Slap',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C43E',
+      source: 'Tail',
+      capture: false
+    },
+    delaySeconds: 2,
+    infoText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Tail: Switch targets',
+        de: 'Schweif: Zielwechsel',
+        fr: 'Queue : Changez de cible',
+        ja: '尾: タゲチェンジ',
+        cn: '打尾巴',
+        ko: '꼬리 공격',
+        tc: '打尾巴'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Heart',
+    type: 'AddedCombatant',
+    netRegex: {
+      name: 'The Worm\'s Heart',
+      capture: false
+    },
+    condition: data => {
+      // Prevent ugly heart message on wipe.
+      return data.phase === 1;
+    },
+    // TODO: If tail is alive, delay this message?
+    infoText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Heart: Switch targets',
+        de: 'Herz: Ziel wechseln',
+        fr: 'Cœur : Changez de cible',
+        ja: '心核: タゲチェンジ',
+        cn: '打核心',
+        ko: '심핵 공격',
+        tc: '打核心'
+      }
+    }
+  }, {
+    // TODO: math out locations and call directions if we get a log containing any of these IDs.
+    id: 'ShinryuUn Gyre Charge',
+    type: 'StartsUsing',
+    netRegex: {
+      id: ['BFEB', 'BFEC', 'C45F'],
+      source: 'Shinryu',
+      capture: false
+    },
+    alarmText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Avoid divebomb',
+        de: 'Divebomb ausweichen',
+        fr: 'Évitez la bombe plongeante',
+        ja: 'ダイブボムに避け',
+        cn: '躲避俯冲',
+        ko: '회전 돌진 피하기',
+        tc: '躲避俯衝'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Death Sentence',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C466',
+      source: 'Hakkinryu'
+    },
+    alertText: (data, matches, output) => {
+      if (matches.target === data.me) return output.deathSentenceOnYou();else if (data.role === 'healer') return output.deathSentenceOn({
+        player: data.party.member(matches.target)
+      });
+    },
+    infoText: (data, matches, output) => {
+      if (matches.target !== data.me && data.role !== 'healer') return output.deathSentenceOn({
+        player: data.party.member(matches.target)
+      });
+    },
+    outputStrings: {
+      deathSentenceOn: {
+        en: 'Death Sentence on ${player}',
+        de: 'Todesurteil auf ${player}',
+        fr: 'Peine de mort sur ${player}',
+        ja: '${player}にデスセンテンス',
+        cn: '死刑点 ${player}',
+        ko: '"${player}" 사형 선고',
+        tc: '死刑點 ${player}'
+      },
+      deathSentenceOnYou: {
+        en: 'Death Sentence on YOU',
+        de: 'Todesurteil auf DIR',
+        fr: 'Peine de mort sur VOUS',
+        ja: '自分にデスセンテンス',
+        cn: '死刑点名',
+        ko: '사형 선고 대상자',
+        tc: '死刑點名'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Tera Slash',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C478',
+      source: 'Shinryu'
+    },
+    response: responses/* Responses.tankBusterSwap */.n3.tankBusterSwap()
+  }, {
+    id: 'ShinryuUn Wormwail',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C475',
+      source: 'Shinryu',
+      capture: false
+    },
+    response: responses/* Responses.getUnder */.n3.getUnder('alert')
+  }, {
+    id: 'ShinryuUn Breath',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C477',
+      source: 'Shinryu',
+      capture: false
+    },
+    response: responses/* Responses.awayFromFront */.n3.awayFromFront()
+  }, {
+    id: 'ShinryuUn Final Left Wing',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C47D',
+      source: 'Left Wing',
+      capture: false
+    },
+    condition: data => !data.finalWing,
+    alertText: (_data, _matches, output) => output.text(),
+    run: data => data.finalWing = true,
+    outputStrings: {
+      text: {
+        en: 'Kill left first',
+        de: 'linken Flügel zuerst',
+        fr: 'Tuez l\'aile gauche d\'abord',
+        ja: 'レフトウィングに攻撃',
+        cn: '优先击杀左翼',
+        ko: '왼쪽 날개 먼저',
+        tc: '擊殺左翼'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Final Right Wing',
+    type: 'StartsUsing',
+    netRegex: {
+      id: 'C47E',
+      source: 'Right Wing',
+      capture: false
+    },
+    condition: data => !data.finalWing,
+    alertText: (_data, _matches, output) => output.text(),
+    run: data => data.finalWing = true,
+    outputStrings: {
+      text: {
+        en: 'Kill right first',
+        de: 'rechten Flügel zuerst',
+        fr: 'Tuez l\'aile droite d\'abord',
+        ja: 'ライトウィングに攻撃',
+        cn: '优先击杀右翼',
+        ko: '오른쪽 날개 먼저',
+        tc: '擊殺右翼'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Tethers',
+    type: 'HeadMarker',
+    netRegex: {
+      id: '0061'
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    delaySeconds: 3.8,
+    infoText: (data, _matches, output) => {
+      if (data.phase === 3) return output.breakTethersThenStack();
+      return output.breakTethers();
+    },
+    outputStrings: {
+      breakTethersThenStack: {
+        en: 'Break tethers => stack',
+        de: 'Kette zerreissen, dann stack',
+        fr: 'Cassez les liens, puis packez-vous',
+        ja: '鎖を引き、集合',
+        cn: '拉断连线 => 分摊',
+        ko: '선 끊고 모이기',
+        tc: '拉斷連線然後分攤'
+      },
+      breakTethers: {
+        en: 'break tethers',
+        de: 'Ketten zerreissen',
+        fr: 'Cassez les liens',
+        ja: '鎖',
+        cn: '拉断连线',
+        ko: '선 끊기',
+        tc: '拉斷連線'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Tail Marker',
+    type: 'HeadMarker',
+    netRegex: {
+      id: '007E'
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    alarmText: (_data, _matches, output) => output.text(),
+    outputStrings: {
+      text: {
+        en: 'Tail marker on YOU',
+        de: 'Schweifmarker auf dir',
+        fr: 'Marqueur Queue sur VOUS',
+        ja: '自分にテイル',
+        cn: '龙尾点名',
+        ko: '꼬리 징 대상자',
+        tc: '龍尾點名'
+      }
+    }
+  }, {
+    id: 'ShinryuUn Shakers',
+    type: 'HeadMarker',
+    netRegex: {
+      id: '0028'
+    },
+    condition: (data, matches) => {
+      data.shakerTargets ??= [];
+      data.shakerTargets.push(matches.target);
+      return data.shakerTargets.length === 2;
+    },
+    alarmText: (data, _matches, output) => {
+      if (data.shakerTargets?.includes(data.me)) return output.earthshakerOnYou();
+    },
+    alertText: (data, _matches, output) => {
+      if (!data.shakerTargets || !data.shakerTargets.includes(data.me)) return output.avoidEarthshakers();
+    },
+    run: data => delete data.shakerTargets,
+    outputStrings: {
+      avoidEarthshakers: {
+        en: 'avoid earthshakers',
+        de: 'Stöße ausweichen',
+        fr: 'Évitez les secousses',
+        ja: 'アースシェーカーに避け',
+        cn: '躲避大地动摇',
+        ko: '어스 피하기',
+        tc: '遠離大地動搖'
+      },
+      earthshakerOnYou: outputs/* default.earthshakerOnYou */.Z.earthshakerOnYou
+    }
+  }, {
+    id: 'ShinryuUn Cocoon Marker',
+    type: 'HeadMarker',
+    netRegex: {
+      id: '0039'
+    },
+    condition: conditions/* default.targetIsYou */.Z.targetIsYou(),
+    response: responses/* Responses.spread */.n3.spread()
+  }],
+  timelineReplace: [{
+    'locale': 'de',
+    'replaceSync': {
+      'Hakkinryu': 'Hakkinryu',
+      'Left Wing': 'link(?:e|er|es|en) Schwinge',
+      'Right Wing': 'recht(?:e|er|es|en) Schwinge',
+      'Shinryu': 'Shinryu',
+      'Tail': 'Schwanz',
+      'The Worm\'s Heart': 'Shinryus Herz',
+      'Icicle': 'Eiszapfen',
+      'Cocoon': 'Lichtsphäre'
+    },
+    'replaceText': {
+      '--Reiryu Adds--': '--Reiryu Adds--',
+      'Aerial Blast': 'Windschlag',
+      'Akh Morn': 'Akh Morn',
+      'Akh Rhai': 'Akh Rhai',
+      'Atomic Ray': 'Atomstrahlung',
+      'Benighting Breath': 'Dunkelhauch',
+      'Cocoon Markers': 'Kokon Marker',
+      'Dark Matter': 'Dunkelmaterie',
+      'Diamond Dust': 'Diamantenstaub',
+      'Dragonfist': 'Drachenfaust',
+      'Earth Breath': 'Erdatem',
+      'Earthen Fury': 'Gaias Zorn',
+      'First Wing': 'Erster Flügel',
+      'Gyre Charge': 'Wirbel-Aufladung',
+      'Hellfire': 'Höllenfeuer',
+      'Hypernova': 'Supernova',
+      'Ice Storm': 'Eissturm',
+      'Icicle Impact': 'Eiszapfen-Schlag',
+      'Judgment Bolt': 'Ionenschlag',
+      'Levinbolt': 'Keraunisches Feld',
+      'Meteor Impact': 'Meteoreinschlag',
+      'Phase': 'Phase',
+      'Protostar': 'Protostern',
+      'Reiyu Adds': 'Reiyu Adds',
+      'Second Wing': 'Zweiter Flügel',
+      'Spikesicle': 'Eislanze',
+      'Super Cyclone': 'Superzyklon',
+      'Shatter': 'Zerfallen',
+      'Summon Icicle': 'Flugeis',
+      'TAP BUTTON OR ELSE': 'DRÜCKE TASTEN ETC',
+      'Tail Marker': 'Schweifmarker',
+      'Tail Slap': 'Schweifklapser',
+      'Tail Spit': 'Schweifspieß',
+      'Tera Slash': 'Tera-Schlag',
+      'Tethers': 'Verbindungen',
+      'Tidal Wave': 'Flutwelle',
+      'Touchdown': 'Himmelssturz',
+      'Wormwail': 'Shinryus Ruf'
+    }
+  }, {
+    'locale': 'fr',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Hakkinryu': 'Hakkinryu',
+      'Icicle': 'stalactite',
+      'Left Wing': 'aile gauche',
+      'Right Wing': 'aile droite',
+      'Shinryu': 'Shinryu',
+      'The Worm\'s Heart': 'cœur du dragon',
+      'Tail': 'queue',
+      'Cocoon': 'cocon de lumière'
+    },
+    'replaceText': {
+      '--Phase': '--Phase',
+      '--Reiryu Adds--': '--Adds Reiryu--',
+      'Aerial Blast': 'Rafale aérienne',
+      'Atomic Ray': 'Rayon atomique',
+      'Cocoon Markers': 'Marqueurs Cocon',
+      'Dark Matter': 'Matière sombre',
+      'Diamond Dust': 'Poussière de diamant',
+      'Dragonfist': 'Poing dragon',
+      'Earth Breath': 'Souffle de terre',
+      'Earthen Fury': 'Fureur tellurique',
+      'First Wing': 'Première aile',
+      'Gyre Charge': 'Gyrocharge',
+      'Hellfire': 'Flammes de l\'enfer',
+      'Hypernova': 'Hypernova',
+      'Ice Storm': 'Tempête de glace',
+      'Judgment Bolt': 'Éclair du jugement',
+      'Levinbolt': 'Fulguration',
+      'Meteor Impact': 'Impact de météore',
+      'Protostar': 'Proto-étoile',
+      'Reiyu Adds': 'Adds Ryu',
+      'Second Wing': 'Seconde aile',
+      'Summon Icicle': 'Appel de stalactite',
+      'Tail Marker': 'Marqueur Queue',
+      'Tail Slap': 'Gifle caudale',
+      'Tail Spit': 'Broche caudale',
+      'TAP BUTTON OR ELSE': 'CLIQUEZ SUR LE BOUTON OU AUTRE',
+      'Tera Slash': 'TéraTaillade',
+      'Tethers': 'Liens',
+      'Tidal Wave': 'Raz-de-marée',
+      'Touchdown': 'Atterrissage',
+      'Akh Morn': 'Akh Morn',
+      'Icicle Impact': 'Impact de stalactite',
+      'Spikesicle': 'Stalactopointe',
+      'Akh Rhai': 'Akh Rhai',
+      'Super Cyclone': 'Super cyclone',
+      'Shatter': 'Éclatement',
+      'Wormwail': 'Gémissement draconique',
+      'Benighting Breath': 'Souffle enténébrant'
+    }
+  }, {
+    'locale': 'ja',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Left Wing': 'レフトウィング',
+      'Right Wing': 'ライトウィング',
+      'Shinryu': '神龍',
+      'Tail': '神龍の尾',
+      'The Worm\'s Heart': '神龍の心核',
+      'Icicle': 'アイシクル',
+      'Cocoon': '光の繭',
+      'Hakkinryu': '白金龍'
+    },
+    'replaceText': {
+      'Aerial Blast': 'エリアルブラスト',
+      'Akh Morn': 'アク・モーン',
+      'Atomic Ray': 'アトミックレイ',
+      'Cocoon Markers': 'マユ マーク',
+      'Dark Matter': 'ダークマター',
+      'Diamond Dust': 'ダイアモンドダスト',
+      'Dragonfist': '龍掌',
+      'Earth Breath': 'アースブレス',
+      'Earthen Fury': '大地の怒り',
+      'First Wing': '翼一つ目',
+      'Gyre Charge': 'ジャイヤチャージ',
+      'Hellfire': '地獄の火炎',
+      'Hypernova': 'スーパーノヴァ',
+      'Ice Storm': '吹雪',
+      'Judgment Bolt': '裁きの雷',
+      'Levinbolt': '稲妻',
+      'Meteor Impact': 'メテオインパクト',
+      'Phase': 'フェイス',
+      'Protostar': 'プロトスター',
+      'Reiyu Adds': '雑魚',
+      'Second Wing': '翼二つ目',
+      'Summon Icicle': 'サモン・アイシクル',
+      'TAP BUTTON OR ELSE': 'ボタンを押せ！',
+      'Tail Marker': 'テイル マーク',
+      'Tail Slap': 'テールスラップ',
+      'Tail Spit': 'テールスピット',
+      'Tera Slash': 'テラスラッシュ',
+      'Tethers': '線',
+      'Tidal Wave': 'タイダルウェイブ',
+      'Touchdown': 'タッチダウン',
+      'Icicle Impact': 'アイシクルインパクト',
+      'Spikesicle': 'アイシクルスパイク',
+      'Akh Rhai': 'アク・ラーイ',
+      'Super Cyclone': 'スーパーサイクロン',
+      'Shatter': '破砕',
+      'Wormwail': '神龍の咆哮',
+      'Benighting Breath': 'ダークネスブレス'
+    }
+  }, {
+    'locale': 'cn',
+    'replaceSync': {
+      'Cocoon': '光茧',
+      'Icicle': '冰柱',
+      'Left Wing': '左翼',
+      'Right Wing': '右翼',
+      'Shinryu': '神龙',
+      'Tail': '龙尾',
+      'The Worm\'s Heart': '神龙的核心',
+      'Hakkinryu': '白金龙'
+    },
+    'replaceText': {
+      'Aerial Blast': '大气爆发',
+      'Akh Morn': '死亡轮回',
+      'Akh Rhai': '天光轮回',
+      'Atomic Ray': '原子射线',
+      'Benighting Breath': '黑暗吐息',
+      'Cocoon Markers': '光茧点名',
+      'Dark Matter': '暗物质',
+      'Diamond Dust': '钻石星尘',
+      'Dragonfist': '龙掌',
+      'Earth Breath': '大地吐息',
+      'Earthen Fury': '大地之怒',
+      'First Wing': '第一只翅膀',
+      'Gyre Charge': '螺旋冲锋',
+      'Hellfire': '地狱之火炎',
+      'Hypernova': '超新星',
+      'Icicle Impact': '冰柱冲击',
+      'Ice Storm': '吹雪',
+      'Judgment Bolt': '制裁之雷',
+      'Levinbolt': '闪电',
+      'Meteor Impact': '陨石冲击',
+      'Phase': '阶段',
+      'Protostar': '原恒星',
+      'Reiryu Adds': '灵龙出现',
+      'Second Wing': '第二只翅膀',
+      'Shatter': '破碎',
+      'Spikesicle': '冰柱突刺',
+      'Summon Icicle': '召唤冰柱',
+      'Super Cyclone': '超级气旋',
+      'TAP BUTTON OR ELSE': 'XJB按',
+      'Tail Marker': '尾巴点名',
+      'Tail Slap': '尾部猛击',
+      'Tail Spit': '尾部重击',
+      'Tera Slash': '万亿斩击',
+      'Tethers': '连线',
+      'Tidal Wave': '巨浪',
+      'Touchdown': '空降',
+      'Wormwail': '神龙啸'
+    }
+  }, {
+    'locale': 'tc',
+    'missingTranslations': true,
+    'replaceSync': {
+      'Cocoon': '光繭',
+      'Icicle': '冰柱',
+      'Left Wing': '左翼',
+      'Right Wing': '右翼',
+      'Shinryu': '神龍',
+      'Tail': '龍尾',
+      'The Worm\'s Heart': '神龍的核心',
+      'Hakkinryu': '白金龍'
+    },
+    'replaceText': {
+      'Aerial Blast': '大氣爆發',
+      'Akh Morn': '死亡輪迴',
+      'Akh Rhai': '天光輪迴',
+      'Atomic Ray': '原子射線',
+      'Benighting Breath': '黑暗吐息',
+      'Cocoon Markers': '光繭點名',
+      'Dark Matter': '黑暗物質',
+      'Diamond Dust': '鑽石星塵',
+      'Dragonfist': '龍掌',
+      'Earth Breath': '大地吐息',
+      'Earthen Fury': '大地之怒',
+      'First Wing': '第一隻翅膀',
+      'Gyre Charge': '螺旋衝鋒',
+      'Hellfire': '地獄之火炎',
+      'Hypernova': '超新星',
+      'Icicle Impact': '冰柱衝擊',
+      'Ice Storm': '吹雪',
+      'Judgment Bolt': '制裁之雷',
+      'Levinbolt': '閃電',
+      'Meteor Impact': '隕石衝擊',
+      'Phase': '階段',
+      'Protostar': '原恆星',
+      'Reiryu Adds': '靈龍出現',
+      'Second Wing': '第二隻翅膀',
+      'Shatter': '破碎',
+      'Spikesicle': '冰柱突刺',
+      'Summon Icicle': '召喚冰柱',
+      'Super Cyclone': '超級颶風',
+      'TAP BUTTON OR ELSE': '按按鈕！',
+      'Tail Marker': '尾巴點名',
+      'Tail Slap': '尾部猛擊',
+      'Tail Spit': '尾部重擊',
+      'Tera Slash': '萬億斬擊',
+      'Tethers': '連線',
+      'Tidal Wave': '巨浪',
+      'Touchdown': '空降',
+      'Wormwail': '神龍嘯'
+    }
+  }, {
+    'locale': 'ko',
+    'replaceSync': {
+      'Hakkinryu': '백금룡',
+      'Left Wing': '왼쪽 날개',
+      'Right Wing': '오른쪽 날개',
+      'Shinryu': '신룡',
+      'Tail(?! )': '신룡의 꼬리',
+      'The Worm\'s Heart': '신룡의 심핵',
+      'Icicle': '고드름',
+      'Cocoon': '빛의 고치'
+    },
+    'replaceText': {
+      'T\\/H': '탱/힐',
+      'healer[s]*': '힐러',
+      'dps': '딜러',
+      'tank': '탱커',
+      'Aerial Blast': '대기 폭발',
+      'Akh Morn': '아크 몬',
+      'Atomic Ray': '원자 파동',
+      'Cocoon Markers': '빛의 고체 징',
+      'Dark Matter': '암흑물질',
+      'Diamond Dust': '다이아몬드 더스트',
+      'Dragonfist': '용의 손바닥',
+      'Earth Breath': '대지의 숨결',
+      'Earthen Fury': '대지의 분노',
+      'First Wing': '첫번째 날개',
+      'Gyre Charge': '회전 돌진',
+      'Hellfire': '지옥의 화염',
+      'Hypernova': '초신성',
+      'Ice Storm': '눈보라',
+      'Judgment Bolt': '심판의 벼락',
+      'Levinbolt': '우레',
+      'Meteor Impact': '운석 낙하',
+      'Phase': '페이즈',
+      'Protostar': '원시별',
+      'Reiryu Adds': '영룡 등장',
+      'Second Wing': '두번째 날개',
+      'Summon Icicle': '고드름 소환',
+      'TAP BUTTON OR ELSE': '긴 급 조 작',
+      'Tail Marker': '꼬리 징',
+      'Tail Slap': '꼬리치기',
+      'Tail Spit': '꼬리 찌르기',
+      'Tera Slash': '테라 슬래시',
+      'Tethers': '선',
+      'Tidal Wave': '해일',
+      'Touchdown': '착지',
+      'Icicle Impact': '고드름 낙하',
+      'Spikesicle': '고드름 돌진',
+      'Akh Rhai': '아크 라이',
+      'Super Cyclone': '대형 돌개바람',
+      'Shatter': '파쇄',
+      'Wormwail': '신룡의 포효',
+      'Benighting Breath': '어둠의 숨결'
+    }
+  }]
+};
+/* harmony default export */ const shinryu_un = (shinryu_un_triggerSet);
+;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/trial/shinryu-un.txt
+const trial_shinryu_un_namespaceObject = "# This file was autogenerated from running npm run sync-files.\r\n# DO NOT EDIT THIS FILE DIRECTLY.\r\n# Edit the source file below and then run `npm run sync-files`\r\n# Source: ui/raidboss/data/04-sb/trial/shinryu-ex.txt\r\n\r\n# Shinryu Ex\r\n# Text Guide: http://clees.me/guides/shinryu-ex/\r\n#\r\n# -p C43A:21.3 C443:503 C440:806 C478:859.5\r\n# -it Shinryu\r\n# -ii C459 C436 C445 C447 C46D C45B C472 BC2D C470 C437 C452 C450 C44E C43B C449 C46A C439 C46B C464 C465 C466 C467 C442 C43F C474 C438 BC2F C47A C46E C486 C43C C43D C45C C45D\r\n\r\nhideall \"--Reset--\"\r\nhideall \"--sync--\"\r\n\r\n# Heart add not listed here. Seems to be on an independent respawn timer.\r\n\r\n### PHASE 1: Elemental carousel\r\n###\r\n0.0 \"--sync--\" InCombat { inGameCombat: \"1\" } window 0,1\r\n11.3 \"--sync--\" StartsUsing { id: \"C459\", source: \"Shinryu\" } window 20,20\r\n21.3 \"Earthen Fury\" Ability { id: \"C43A\", source: \"Shinryu\" }\r\n36.4 \"--Tethers--\" # Burning Chains (301) effect\r\n44.5 \"Tidal Wave\" Ability { id: \"C455\", source: \"Shinryu\" }\r\n49.7 \"--Tail Marker (healer)--\" # 007E headmarker\r\n61.7 \"Summon Icicle\" Ability { id: \"C44A\", source: \"Left Wing\" }\r\n62.4 \"Icicle Impact\" Ability { id: \"C44B\", source: \"Icicle\" }\r\n67.0 \"Spikesicle\" Ability { id: \"C44C\", source: \"Icicle\" }\r\n67.9 \"Tail Slap\" Ability { id: \"C43E\", source: \"Tail\" }\r\n79.8 \"Hypernova / Levinbolt\" Ability { id: [\"C444\", \"C446\"], source: \"Right Wing\" }\r\n90.9 \"Dragonfist\" Ability { id: \"C46C\", source: \"Shinryu\" }\r\n94.8 \"Ice Storm\" Ability { id: \"C44D\", source: \"Left Wing\" }\r\n108.0 \"Akh Morn 1\" Ability { id: \"C44F\", source: \"Shinryu\" } duration 3.2\r\n110.1 \"Akh Rhai\" Ability { id: \"C451\", source: \"Shinryu\" } duration 5.3\r\n116.3 \"Summon Icicle\" Ability { id: \"C44A\", source: \"Left Wing\" }\r\n116.9 \"Icicle Impact\" Ability { id: \"C44B\", source: \"Icicle\" }\r\n121.4 \"Spikesicle\" Ability { id: \"C44C\", source: \"Icicle\" }\r\n123.3 \"Judgment Bolt / Hellfire\" Ability { id: [\"C456\", \"C438\"], source: \"Shinryu\" }\r\n\r\n138.4 \"--Tail Marker (dps)--\"\r\n149.5 \"Levinbolt\" Ability { id: \"C446\", source: \"Right Wing\" }\r\n156.6 \"Tail Slap\" Ability { id: \"C43E\", source: \"Tail\" }\r\n164.5 \"Ice Storm\" Ability { id: \"C44D\", source: \"Left Wing\" }\r\n171.8 \"--Tethers (T/H)--\"\r\n180.6 \"Earth Breath\" Ability { id: \"C448\", source: \"Shinryu\" }\r\n188.0 \"Akh Morn 2\" Ability { id: \"C44F\", source: \"Shinryu\" } duration 3.2\r\n190.1 \"Akh Rhai\" Ability { id: \"C451\", source: \"Shinryu\" } duration 5.3\r\n194.0 \"Ice Storm\" Ability { id: \"C44D\", source: \"Left Wing\" }\r\n206.6 \"--Tethers (healers)--\"\r\n208.2 \"Diamond Dust\" Ability { id: \"C458\", source: \"Shinryu\" }\r\n224.9 \"--Reiryu Adds--\"\r\n\r\n# The timing on the Icicle here appears to be here or 3s later.\r\n# We leave the earlier visual in place to let players anticipate it.\r\n233.3 \"--Tail Marker (tank)--\"\r\n251.5 \"Tail Slap\" Ability { id: \"C43E\", source: \"Tail\" }\r\n268.5 \"Summon Icicle\" #Ability { id: \"C44A\", source: \"Left Wing\" }\r\n269.1 \"Icicle Impact\" #Ability { id: \"C44B\", source: \"Icicle\" }\r\n272.4 \"Akh Morn 3\" Ability { id: \"C44F\", source: \"Shinryu\" } duration 3.2\r\n273.6 \"Spikesicle\" #Ability { id: \"C44C\", source: \"Icicle\" }\r\n274.5 \"Akh Rhai\" Ability { id: \"C451\", source: \"Shinryu\" } duration 5.3\r\n285.3 \"Super Cyclone 1\" #Ability { id: \"C468\", source: \"Shinryu\" }\r\n287.4 \"Super Cyclone 2\" #Ability { id: \"C468\", source: \"Shinryu\" }\r\n289.5 \"Super Cyclone 3\" #Ability { id: \"C468\", source: \"Shinryu\" }\r\n291.7 \"Aerial Blast\" Ability { id: \"C45A\", source: \"Shinryu\" }\r\n292.7 \"--Tethers (dps)--\"\r\n318.9 \"Earth Breath\" Ability { id: \"C448\", source: \"Shinryu\" }\r\n321.9 \"Ice Storm\" Ability { id: \"C44D\", source: \"Left Wing\" }\r\n\r\n325.3 \"--untargetable--\"\r\n334.7 \"--sync--\" Ability { id: \"C453\", source: \"Shinryu\" }\r\n335.9 \"Gyre Charge\" Ability { id: \"C45F\", source: \"Shinryu\" }\r\n341.8 \"--targetable--\"\r\n\r\n350.9 \"Hypernova\" Ability { id: \"C444\", source: \"Right Wing\" }\r\n363.0 \"Akh Morn 4\" Ability { id: \"C44F\", source: \"Shinryu\" } duration 4.3\r\n365.1 \"Akh Rhai\" Ability { id: \"C451\", source: \"Shinryu\" } duration 5.3\r\n378.3 \"Hypernova / Levinbolt\" Ability { id: [\"C444\", \"C446\"], source: \"Right Wing\" }\r\n384.3 \"Tidal Wave\" Ability { id: \"C455\", source: \"Shinryu\" }\r\n387.4 \"--untargetable--\"\r\n394.8 \"Dark Matter\" #Ability { id: \"C443\", source: \"Shinryu\" }\r\n\r\n\r\n### PHASE 2: Adds, explosions, dramatic tail climbing\r\n###\r\n500.0 \"--Phase 2--\" StartsUsing { id: \"C443\", source: \"Shinryu\" } window 500,500\r\n503.0 \"Dark Matter\" Ability { id: \"C443\", source: \"Shinryu\" }\r\n513.0 \"TAP BUTTON OR ELSE\" duration 5\r\n540.7 \"Touchdown\" Ability { id: \"C46F\", source: \"Shinryu\" }\r\n545.2 \"--sync--\" Ability { id: \"C435\", source: \"Shinryu\" }\r\n552.3 \"Meteor Impact 1\" Ability { id: \"C441\", source: \"Cocoon\" }\r\n553.9 \"--sync--\" Ability { id: \"C461\", source: \"Cocoon\" }\r\n571.1 \"Meteor Impact 2\" Ability { id: \"C441\", source: \"Cocoon\" }\r\n572.7 \"--sync--\" Ability { id: \"C461\", source: \"Cocoon\" }\r\n588.0 \"--Cocoon Markers--\"\r\n601.0 \"Meteor Impact 3\" Ability { id: \"C441\", source: \"Cocoon\" }\r\n602.6 \"--sync--\" Ability { id: \"C461\", source: \"Cocoon\" }\r\n\r\n### PHASE 3: Anticlimax\r\n###\r\n800.0 \"--Phase 3--\" StartsUsing { id: \"C440\", source: \"Shinryu\" } window 500,500\r\n806.0 \"Protostar\" Ability { id: \"C440\", source: \"Shinryu\" }\r\n813.1 \"Tail Spit\" Ability { id: \"C471\", source: \"Shinryu\" }\r\n837.4 \"Shatter\" Ability { id: \"C473\", source: \"Shinryu\" } window 50,50\r\n843.4 \"--targetable--\"\r\n\r\n# Loop 1\r\n855.5 \"--sync--\" StartsUsing { id: \"C478\", source: \"Shinryu\" } window 20,20\r\n859.5 \"Tera Slash\" Ability { id: \"C478\", source: \"Shinryu\" }\r\n868.2 \"Atomic Ray\" Ability { id: \"C479\", source: \"Shinryu\" }\r\n885.9 \"Ice Storm\" Ability { id: \"C484\", source: \"Left Wing\" }\r\n889.9 \"Levinbolt / Hypernova\" Ability { id: [\"C482\", \"C481\"], source: \"Right Wing\" }\r\n897.9 \"Wormwail / Benighting Breath\" Ability { id: [\"C475\", \"C476\"], source: \"Shinryu\" }\r\n907.1 \"Tera Slash\" Ability { id: \"C478\", source: \"Shinryu\" }\r\n910.8 \"--Reiryu Adds--\"\r\n\r\n# Loop 2\r\n957.4 \"Tera Slash\" Ability { id: \"C478\", source: \"Shinryu\" } window 20,20\r\n966.1 \"Atomic Ray\" Ability { id: \"C479\", source: \"Shinryu\" }\r\n983.8 \"Ice Storm\" Ability { id: \"C484\", source: \"Left Wing\" }\r\n987.8 \"Levinbolt / Hypernova\" Ability { id: [\"C482\", \"C481\"], source: \"Right Wing\" }\r\n995.9 \"Wormwail / Benighting Breath\" Ability { id: [\"C475\", \"C476\"], source: \"Shinryu\" }\r\n1005.1 \"Tera Slash\" Ability { id: \"C478\", source: \"Shinryu\" }\r\n1009.1 \"--Reiryu Adds--\"\r\n\r\n### PHASE 4: Race to the finish!\r\n###\r\n1046.0 \"--sync--\" StartsUsing { id: \"C47B\", source: \"Shinryu\" } window 300,300\r\n1085.0 \"First Wing\" # 35 second cast, starts 4 seconds later, C47D/C47E\r\n1090.0 \"Second Wing\" # 35 second cast, starts 9 seconds later, C47E/C47D\r\n1116.0 \"Tidal Wave\" Ability { id: \"C47B\", source: \"Shinryu\" } # 70 second cast\r\n";
 ;// CONCATENATED MODULE: ./ui/raidboss/data/07-dt/trial/suzaku-un.ts
 // This file was autogenerated from running npm run sync-files.
 // DO NOT EDIT THIS FILE DIRECTLY.
@@ -286920,7 +290170,9 @@ const ultimate_futures_rewritten_namespaceObject = "### FUTURES REWRITTEN (ULTIM
 
 
 
-/* harmony default export */ const raidboss_manifest = ({'00-misc/general.ts': general,'00-misc/test.ts': test,'00-misc/test.txt': _00_misc_test_namespaceObject,'00-misc/the_masked_carnivale.ts': the_masked_carnivale,'02-arr/alliance/the_world_of_darkness.ts': the_world_of_darkness,'02-arr/dungeon/amdapor_keep.ts': amdapor_keep,'02-arr/dungeon/amdapor_keep_hard.ts': amdapor_keep_hard,'02-arr/dungeon/aurum_vale.ts': aurum_vale,'02-arr/dungeon/aurum_vale73.ts': aurum_vale73,'02-arr/dungeon/brayfloxs_longstop.ts': brayfloxs_longstop,'02-arr/dungeon/cutters_cry.ts': cutters_cry,'02-arr/dungeon/cutters_cry72.ts': cutters_cry72,'02-arr/dungeon/halatali_hard.ts': halatali_hard,'02-arr/dungeon/haukke_manor.ts': haukke_manor,'02-arr/dungeon/haukke_manor_hard.ts': haukke_manor_hard,'02-arr/dungeon/hullbreaker_isle.ts': hullbreaker_isle,'02-arr/dungeon/pharos_sirius.ts': pharos_sirius,'02-arr/dungeon/sastasha_hard.ts': sastasha_hard,'02-arr/dungeon/snowcloak.ts': snowcloak,'02-arr/dungeon/the_lost_city_of_amdapor.ts': the_lost_city_of_amdapor,'02-arr/dungeon/the_stone_vigil.ts': the_stone_vigil,'02-arr/dungeon/the_stone_vigil_hard.ts': the_stone_vigil_hard,'02-arr/dungeon/the_sunken_temple_of_quarn.ts': the_sunken_temple_of_quarn,'02-arr/dungeon/the_sunken_temple_of_quarn71.ts': the_sunken_temple_of_quarn71,'02-arr/dungeon/the_sunken_temple_of_quarn_hard.ts': the_sunken_temple_of_quarn_hard,'02-arr/dungeon/the_tam_tara_depocraft_hard.ts': the_tam_tara_depocraft_hard,'02-arr/dungeon/the_wanderers_palace_hard.ts': the_wanderers_palace_hard,'02-arr/raid/t1.ts': t1,'02-arr/raid/t10.ts': t10,'02-arr/raid/t10.txt': raid_t10_namespaceObject,'02-arr/raid/t11.ts': t11,'02-arr/raid/t11.txt': raid_t11_namespaceObject,'02-arr/raid/t12.ts': t12,'02-arr/raid/t12.txt': raid_t12_namespaceObject,'02-arr/raid/t13.ts': t13,'02-arr/raid/t13.txt': raid_t13_namespaceObject,'02-arr/raid/t2.ts': t2,'02-arr/raid/t4.ts': t4,'02-arr/raid/t4.txt': raid_t4_namespaceObject,'02-arr/raid/t5.ts': t5,'02-arr/raid/t5.txt': raid_t5_namespaceObject,'02-arr/raid/t6.ts': t6,'02-arr/raid/t6.txt': raid_t6_namespaceObject,'02-arr/raid/t7.ts': t7,'02-arr/raid/t7.txt': raid_t7_namespaceObject,'02-arr/raid/t8.ts': t8,'02-arr/raid/t8.txt': raid_t8_namespaceObject,'02-arr/raid/t9.ts': t9,'02-arr/raid/t9.txt': raid_t9_namespaceObject,'02-arr/trial/ifrit-nm.ts': ifrit_nm,'02-arr/trial/ifrit-nm.txt': trial_ifrit_nm_namespaceObject,'02-arr/trial/levi-ex.ts': levi_ex,'02-arr/trial/levi-ex.txt': trial_levi_ex_namespaceObject,'02-arr/trial/shiva-ex.ts': shiva_ex,'02-arr/trial/shiva-ex.txt': trial_shiva_ex_namespaceObject,'02-arr/trial/shiva-hm.ts': shiva_hm,'02-arr/trial/shiva-hm.txt': trial_shiva_hm_namespaceObject,'02-arr/trial/titan-ex.ts': titan_ex,'02-arr/trial/titan-ex.txt': trial_titan_ex_namespaceObject,'02-arr/trial/titan-hm.ts': titan_hm,'02-arr/trial/titan-hm.txt': trial_titan_hm_namespaceObject,'02-arr/trial/titan-nm.ts': titan_nm,'02-arr/trial/titan-nm.txt': trial_titan_nm_namespaceObject,'02-arr/trial/ultima-ex.ts': ultima_ex,'02-arr/trial/ultima-ex.txt': trial_ultima_ex_namespaceObject,'03-hw/alliance/dun_scaith.ts': dun_scaith,'03-hw/alliance/dun_scaith.txt': alliance_dun_scaith_namespaceObject,'03-hw/alliance/weeping_city.ts': weeping_city,'03-hw/alliance/weeping_city.txt': alliance_weeping_city_namespaceObject,'03-hw/deepdungeon/the_palace_of_the_dead_floors_001-010.ts': the_palace_of_the_dead_floors_001_010,'03-hw/deepdungeon/the_palace_of_the_dead_floors_011-020.ts': the_palace_of_the_dead_floors_011_020,'03-hw/deepdungeon/the_palace_of_the_dead_floors_021-030.ts': the_palace_of_the_dead_floors_021_030,'03-hw/deepdungeon/the_palace_of_the_dead_floors_031-040.ts': the_palace_of_the_dead_floors_031_040,'03-hw/deepdungeon/the_palace_of_the_dead_floors_041-050.ts': the_palace_of_the_dead_floors_041_050,'03-hw/deepdungeon/the_palace_of_the_dead_floors_051-060.ts': the_palace_of_the_dead_floors_051_060,'03-hw/deepdungeon/the_palace_of_the_dead_floors_061-070.ts': the_palace_of_the_dead_floors_061_070,'03-hw/deepdungeon/the_palace_of_the_dead_floors_071-080.ts': the_palace_of_the_dead_floors_071_080,'03-hw/deepdungeon/the_palace_of_the_dead_floors_081-090.ts': the_palace_of_the_dead_floors_081_090,'03-hw/deepdungeon/the_palace_of_the_dead_floors_091-100.ts': the_palace_of_the_dead_floors_091_100,'03-hw/deepdungeon/the_palace_of_the_dead_floors_101-110.ts': the_palace_of_the_dead_floors_101_110,'03-hw/deepdungeon/the_palace_of_the_dead_floors_111-120.ts': the_palace_of_the_dead_floors_111_120,'03-hw/deepdungeon/the_palace_of_the_dead_floors_121-130.ts': the_palace_of_the_dead_floors_121_130,'03-hw/deepdungeon/the_palace_of_the_dead_floors_131-140.ts': the_palace_of_the_dead_floors_131_140,'03-hw/deepdungeon/the_palace_of_the_dead_floors_141-150.ts': the_palace_of_the_dead_floors_141_150,'03-hw/deepdungeon/the_palace_of_the_dead_floors_151-160.ts': the_palace_of_the_dead_floors_151_160,'03-hw/deepdungeon/the_palace_of_the_dead_floors_161-170.ts': the_palace_of_the_dead_floors_161_170,'03-hw/deepdungeon/the_palace_of_the_dead_floors_171-180.ts': the_palace_of_the_dead_floors_171_180,'03-hw/deepdungeon/the_palace_of_the_dead_floors_181-190.ts': the_palace_of_the_dead_floors_181_190,'03-hw/deepdungeon/the_palace_of_the_dead_floors_191-200.ts': the_palace_of_the_dead_floors_191_200,'03-hw/deepdungeon/the_palace_of_the_dead_general.ts': the_palace_of_the_dead_general,'03-hw/dungeon/aetherochemical_research_facility.ts': aetherochemical_research_facility,'03-hw/dungeon/aetherochemical_research_facility.txt': dungeon_aetherochemical_research_facility_namespaceObject,'03-hw/dungeon/baelsars_wall.ts': baelsars_wall,'03-hw/dungeon/baelsars_wall.txt': dungeon_baelsars_wall_namespaceObject,'03-hw/dungeon/fractal_continuum.ts': fractal_continuum,'03-hw/dungeon/fractal_continuum.txt': dungeon_fractal_continuum_namespaceObject,'03-hw/dungeon/gubal_library_hard.ts': gubal_library_hard,'03-hw/dungeon/gubal_library_hard.txt': dungeon_gubal_library_hard_namespaceObject,'03-hw/dungeon/sohm_al.ts': sohm_al,'03-hw/dungeon/sohm_al.txt': dungeon_sohm_al_namespaceObject,'03-hw/dungeon/sohm_al_hard.ts': sohm_al_hard,'03-hw/dungeon/sohm_al_hard.txt': dungeon_sohm_al_hard_namespaceObject,'03-hw/dungeon/the_lost_city_of_amdapor_hard.ts': the_lost_city_of_amdapor_hard,'03-hw/dungeon/the_lost_city_of_amdapor_hard.txt': dungeon_the_lost_city_of_amdapor_hard_namespaceObject,'03-hw/dungeon/the_vault.ts': the_vault,'03-hw/dungeon/the_vault.txt': dungeon_the_vault_namespaceObject,'03-hw/dungeon/xelphatol.ts': xelphatol,'03-hw/dungeon/xelphatol.txt': dungeon_xelphatol_namespaceObject,'03-hw/map/the_aquapolis.ts': the_aquapolis,'03-hw/pvp/shatter.ts': shatter,'03-hw/raid/a10n.ts': a10n,'03-hw/raid/a10n.txt': raid_a10n_namespaceObject,'03-hw/raid/a10s.ts': a10s,'03-hw/raid/a10s.txt': raid_a10s_namespaceObject,'03-hw/raid/a11s.ts': a11s,'03-hw/raid/a11s.txt': raid_a11s_namespaceObject,'03-hw/raid/a12n.ts': a12n,'03-hw/raid/a12n.txt': raid_a12n_namespaceObject,'03-hw/raid/a12s.ts': a12s,'03-hw/raid/a12s.txt': raid_a12s_namespaceObject,'03-hw/raid/a1s.ts': a1s,'03-hw/raid/a1s.txt': raid_a1s_namespaceObject,'03-hw/raid/a2s.ts': a2s,'03-hw/raid/a2s.txt': raid_a2s_namespaceObject,'03-hw/raid/a3n.ts': a3n,'03-hw/raid/a3n.txt': raid_a3n_namespaceObject,'03-hw/raid/a3s.ts': a3s,'03-hw/raid/a3s.txt': raid_a3s_namespaceObject,'03-hw/raid/a4s.ts': a4s,'03-hw/raid/a4s.txt': raid_a4s_namespaceObject,'03-hw/raid/a5s.ts': a5s,'03-hw/raid/a5s.txt': raid_a5s_namespaceObject,'03-hw/raid/a6n.ts': a6n,'03-hw/raid/a6n.txt': raid_a6n_namespaceObject,'03-hw/raid/a6s.ts': a6s,'03-hw/raid/a6s.txt': raid_a6s_namespaceObject,'03-hw/raid/a7s.ts': a7s,'03-hw/raid/a7s.txt': raid_a7s_namespaceObject,'03-hw/raid/a8n.ts': a8n,'03-hw/raid/a8n.txt': raid_a8n_namespaceObject,'03-hw/raid/a8s.ts': a8s,'03-hw/raid/a8s.txt': raid_a8s_namespaceObject,'03-hw/raid/a9s.ts': a9s,'03-hw/raid/a9s.txt': raid_a9s_namespaceObject,'03-hw/trial/bismarck-ex.ts': bismarck_ex,'03-hw/trial/ravana-ex.ts': ravana_ex,'03-hw/trial/ravana-ex.txt': trial_ravana_ex_namespaceObject,'03-hw/trial/sephirot-ex.ts': sephirot_ex,'03-hw/trial/sephirot-ex.txt': trial_sephirot_ex_namespaceObject,'03-hw/trial/sephirot.ts': sephirot,'03-hw/trial/sophia-ex.ts': sophia_ex,'03-hw/trial/sophia-ex.txt': trial_sophia_ex_namespaceObject,'03-hw/trial/thordan-ex.ts': thordan_ex,'03-hw/trial/thordan-ex.txt': trial_thordan_ex_namespaceObject,'03-hw/trial/zurvan-ex.ts': zurvan_ex,'03-hw/trial/zurvan-ex.txt': trial_zurvan_ex_namespaceObject,'04-sb/alliance/orbonne_monastery.ts': orbonne_monastery,'04-sb/alliance/orbonne_monastery.txt': alliance_orbonne_monastery_namespaceObject,'04-sb/alliance/ridorana_lighthouse.ts': ridorana_lighthouse,'04-sb/alliance/ridorana_lighthouse.txt': alliance_ridorana_lighthouse_namespaceObject,'04-sb/alliance/royal_city_of_rabanastre.ts': royal_city_of_rabanastre,'04-sb/alliance/royal_city_of_rabanastre.txt': alliance_royal_city_of_rabanastre_namespaceObject,'04-sb/deepdungeon/heaven-on-high_floors_01-10.ts': heaven_on_high_floors_01_10,'04-sb/deepdungeon/heaven-on-high_floors_11-20.ts': heaven_on_high_floors_11_20,'04-sb/deepdungeon/heaven-on-high_floors_21-30.ts': heaven_on_high_floors_21_30,'04-sb/deepdungeon/heaven-on-high_floors_31-40.ts': heaven_on_high_floors_31_40,'04-sb/deepdungeon/heaven-on-high_floors_41-50.ts': heaven_on_high_floors_41_50,'04-sb/deepdungeon/heaven-on-high_floors_51-60.ts': heaven_on_high_floors_51_60,'04-sb/deepdungeon/heaven-on-high_floors_61-70.ts': heaven_on_high_floors_61_70,'04-sb/deepdungeon/heaven-on-high_floors_71-80.ts': heaven_on_high_floors_71_80,'04-sb/deepdungeon/heaven-on-high_floors_81-90.ts': heaven_on_high_floors_81_90,'04-sb/deepdungeon/heaven-on-high_floors_91-100.ts': heaven_on_high_floors_91_100,'04-sb/deepdungeon/heaven-on-high_general.ts': heaven_on_high_general,'04-sb/dungeon/ala_mhigo.ts': ala_mhigo,'04-sb/dungeon/ala_mhigo.txt': dungeon_ala_mhigo_namespaceObject,'04-sb/dungeon/bardams_mettle.ts': bardams_mettle,'04-sb/dungeon/bardams_mettle.txt': dungeon_bardams_mettle_namespaceObject,'04-sb/dungeon/castrum_abania.ts': castrum_abania,'04-sb/dungeon/castrum_abania.txt': dungeon_castrum_abania_namespaceObject,'04-sb/dungeon/doma_castle.ts': doma_castle,'04-sb/dungeon/doma_castle.txt': dungeon_doma_castle_namespaceObject,'04-sb/dungeon/drowned_city_of_skalla.ts': drowned_city_of_skalla,'04-sb/dungeon/drowned_city_of_skalla.txt': dungeon_drowned_city_of_skalla_namespaceObject,'04-sb/dungeon/fractal_continuum_hard.ts': fractal_continuum_hard,'04-sb/dungeon/fractal_continuum_hard.txt': dungeon_fractal_continuum_hard_namespaceObject,'04-sb/dungeon/ghimlyt_dark.ts': ghimlyt_dark,'04-sb/dungeon/ghimlyt_dark.txt': dungeon_ghimlyt_dark_namespaceObject,'04-sb/dungeon/hells_lid.ts': hells_lid,'04-sb/dungeon/hells_lid.txt': dungeon_hells_lid_namespaceObject,'04-sb/dungeon/kugane_castle.ts': kugane_castle,'04-sb/dungeon/kugane_castle.txt': dungeon_kugane_castle_namespaceObject,'04-sb/dungeon/shisui_of_the_violet_tides.ts': shisui_of_the_violet_tides,'04-sb/dungeon/shisui_of_the_violet_tides.txt': dungeon_shisui_of_the_violet_tides_namespaceObject,'04-sb/dungeon/shisui_of_the_violet_tides74.ts': shisui_of_the_violet_tides74,'04-sb/dungeon/shisui_of_the_violet_tides74.txt': dungeon_shisui_of_the_violet_tides74_namespaceObject,'04-sb/dungeon/sirensong_sea.ts': sirensong_sea,'04-sb/dungeon/sirensong_sea.txt': dungeon_sirensong_sea_namespaceObject,'04-sb/dungeon/st_mocianne_hard.ts': st_mocianne_hard,'04-sb/dungeon/st_mocianne_hard.txt': dungeon_st_mocianne_hard_namespaceObject,'04-sb/dungeon/swallows_compass.ts': swallows_compass,'04-sb/dungeon/swallows_compass.txt': dungeon_swallows_compass_namespaceObject,'04-sb/dungeon/temple_of_the_fist.ts': temple_of_the_fist,'04-sb/dungeon/temple_of_the_fist.txt': dungeon_temple_of_the_fist_namespaceObject,'04-sb/dungeon/the_burn.ts': the_burn,'04-sb/dungeon/the_burn.txt': dungeon_the_burn_namespaceObject,'04-sb/eureka/eureka_anemos.ts': eureka_anemos,'04-sb/eureka/eureka_hydatos.ts': eureka_hydatos,'04-sb/eureka/eureka_hydatos.txt': eureka_eureka_hydatos_namespaceObject,'04-sb/eureka/eureka_pyros.ts': eureka_pyros,'04-sb/hunts/yanxia.ts': yanxia,'04-sb/map/the_hidden_canals_of_uznair.ts': the_hidden_canals_of_uznair,'04-sb/map/the_lost_canals_of_uznair.ts': the_lost_canals_of_uznair,'04-sb/map/the_shifting_altars_of_uznair.ts': the_shifting_altars_of_uznair,'04-sb/raid/o10n.ts': o10n,'04-sb/raid/o10n.txt': raid_o10n_namespaceObject,'04-sb/raid/o10s.ts': o10s,'04-sb/raid/o10s.txt': raid_o10s_namespaceObject,'04-sb/raid/o11n.ts': o11n,'04-sb/raid/o11n.txt': raid_o11n_namespaceObject,'04-sb/raid/o11s.ts': o11s,'04-sb/raid/o11s.txt': raid_o11s_namespaceObject,'04-sb/raid/o12n.ts': o12n,'04-sb/raid/o12n.txt': raid_o12n_namespaceObject,'04-sb/raid/o12s.ts': o12s,'04-sb/raid/o12s.txt': raid_o12s_namespaceObject,'04-sb/raid/o1n.ts': o1n,'04-sb/raid/o1n.txt': raid_o1n_namespaceObject,'04-sb/raid/o1s.ts': o1s,'04-sb/raid/o1s.txt': raid_o1s_namespaceObject,'04-sb/raid/o2n.ts': o2n,'04-sb/raid/o2n.txt': raid_o2n_namespaceObject,'04-sb/raid/o2s.ts': o2s,'04-sb/raid/o2s.txt': raid_o2s_namespaceObject,'04-sb/raid/o3n.ts': o3n,'04-sb/raid/o3n.txt': raid_o3n_namespaceObject,'04-sb/raid/o3s.ts': o3s,'04-sb/raid/o3s.txt': raid_o3s_namespaceObject,'04-sb/raid/o4n.ts': o4n,'04-sb/raid/o4n.txt': raid_o4n_namespaceObject,'04-sb/raid/o4s.ts': o4s,'04-sb/raid/o4s.txt': raid_o4s_namespaceObject,'04-sb/raid/o5n.ts': o5n,'04-sb/raid/o5n.txt': raid_o5n_namespaceObject,'04-sb/raid/o5s.ts': o5s,'04-sb/raid/o5s.txt': raid_o5s_namespaceObject,'04-sb/raid/o6n.ts': o6n,'04-sb/raid/o6n.txt': raid_o6n_namespaceObject,'04-sb/raid/o6s.ts': o6s,'04-sb/raid/o6s.txt': raid_o6s_namespaceObject,'04-sb/raid/o7n.ts': o7n,'04-sb/raid/o7n.txt': raid_o7n_namespaceObject,'04-sb/raid/o7s.ts': o7s,'04-sb/raid/o7s.txt': raid_o7s_namespaceObject,'04-sb/raid/o8n.ts': o8n,'04-sb/raid/o8n.txt': raid_o8n_namespaceObject,'04-sb/raid/o8s.ts': o8s,'04-sb/raid/o8s.txt': raid_o8s_namespaceObject,'04-sb/raid/o9n.ts': o9n,'04-sb/raid/o9n.txt': raid_o9n_namespaceObject,'04-sb/raid/o9s.ts': o9s,'04-sb/raid/o9s.txt': raid_o9s_namespaceObject,'04-sb/trial/byakko-ex.ts': byakko_ex,'04-sb/trial/byakko-ex.txt': trial_byakko_ex_namespaceObject,'04-sb/trial/byakko.ts': byakko,'04-sb/trial/byakko.txt': trial_byakko_namespaceObject,'04-sb/trial/lakshmi-ex.ts': lakshmi_ex,'04-sb/trial/lakshmi-ex.txt': trial_lakshmi_ex_namespaceObject,'04-sb/trial/lakshmi.ts': lakshmi,'04-sb/trial/lakshmi.txt': trial_lakshmi_namespaceObject,'04-sb/trial/rathalos-ex.ts': rathalos_ex,'04-sb/trial/rathalos.ts': rathalos,'04-sb/trial/seiryu-ex.ts': seiryu_ex,'04-sb/trial/seiryu-ex.txt': trial_seiryu_ex_namespaceObject,'04-sb/trial/seiryu.ts': seiryu,'04-sb/trial/seiryu.txt': trial_seiryu_namespaceObject,'04-sb/trial/shinryu-ex.ts': shinryu_ex,'04-sb/trial/shinryu-ex.txt': trial_shinryu_ex_namespaceObject,'04-sb/trial/shinryu.ts': shinryu,'04-sb/trial/shinryu.txt': trial_shinryu_namespaceObject,'04-sb/trial/susano-ex.ts': susano_ex,'04-sb/trial/susano-ex.txt': trial_susano_ex_namespaceObject,'04-sb/trial/susano.ts': susano,'04-sb/trial/susano.txt': trial_susano_namespaceObject,'04-sb/trial/suzaku-ex.ts': suzaku_ex,'04-sb/trial/suzaku-ex.txt': trial_suzaku_ex_namespaceObject,'04-sb/trial/suzaku.ts': suzaku,'04-sb/trial/suzaku.txt': trial_suzaku_namespaceObject,'04-sb/trial/tsukuyomi-ex.ts': tsukuyomi_ex,'04-sb/trial/tsukuyomi-ex.txt': trial_tsukuyomi_ex_namespaceObject,'04-sb/trial/tsukuyomi.ts': tsukuyomi,'04-sb/trial/tsukuyomi.txt': trial_tsukuyomi_namespaceObject,'04-sb/trial/yojimbo.ts': yojimbo,'04-sb/trial/yojimbo.txt': trial_yojimbo_namespaceObject,'04-sb/ultimate/ultima_weapon_ultimate.ts': ultima_weapon_ultimate,'04-sb/ultimate/ultima_weapon_ultimate.txt': ultimate_ultima_weapon_ultimate_namespaceObject,'04-sb/ultimate/unending_coil_ultimate.ts': unending_coil_ultimate,'04-sb/ultimate/unending_coil_ultimate.txt': ultimate_unending_coil_ultimate_namespaceObject,'05-shb/alliance/the_copied_factory.ts': the_copied_factory,'05-shb/alliance/the_copied_factory.txt': alliance_the_copied_factory_namespaceObject,'05-shb/alliance/the_puppets_bunker.ts': the_puppets_bunker,'05-shb/alliance/the_puppets_bunker.txt': alliance_the_puppets_bunker_namespaceObject,'05-shb/alliance/the_tower_at_paradigms_breach.ts': the_tower_at_paradigms_breach,'05-shb/alliance/the_tower_at_paradigms_breach.txt': alliance_the_tower_at_paradigms_breach_namespaceObject,'05-shb/dungeon/akadaemia_anyder.ts': akadaemia_anyder,'05-shb/dungeon/akadaemia_anyder.txt': dungeon_akadaemia_anyder_namespaceObject,'05-shb/dungeon/amaurot.ts': amaurot,'05-shb/dungeon/amaurot.txt': dungeon_amaurot_namespaceObject,'05-shb/dungeon/anamnesis_anyder.ts': anamnesis_anyder,'05-shb/dungeon/anamnesis_anyder.txt': dungeon_anamnesis_anyder_namespaceObject,'05-shb/dungeon/dohn_mheg.ts': dohn_mheg,'05-shb/dungeon/dohn_mheg.txt': dungeon_dohn_mheg_namespaceObject,'05-shb/dungeon/heroes_gauntlet.ts': heroes_gauntlet,'05-shb/dungeon/heroes_gauntlet.txt': dungeon_heroes_gauntlet_namespaceObject,'05-shb/dungeon/holminster_switch.ts': holminster_switch,'05-shb/dungeon/holminster_switch.txt': dungeon_holminster_switch_namespaceObject,'05-shb/dungeon/malikahs_well.ts': malikahs_well,'05-shb/dungeon/malikahs_well.txt': dungeon_malikahs_well_namespaceObject,'05-shb/dungeon/matoyas_relict.ts': matoyas_relict,'05-shb/dungeon/matoyas_relict.txt': dungeon_matoyas_relict_namespaceObject,'05-shb/dungeon/mt_gulg.ts': mt_gulg,'05-shb/dungeon/mt_gulg.txt': dungeon_mt_gulg_namespaceObject,'05-shb/dungeon/paglthan.ts': paglthan,'05-shb/dungeon/paglthan.txt': dungeon_paglthan_namespaceObject,'05-shb/dungeon/qitana_ravel.ts': qitana_ravel,'05-shb/dungeon/qitana_ravel.txt': dungeon_qitana_ravel_namespaceObject,'05-shb/dungeon/the_grand_cosmos.ts': the_grand_cosmos,'05-shb/dungeon/the_grand_cosmos.txt': dungeon_the_grand_cosmos_namespaceObject,'05-shb/dungeon/twinning.ts': twinning,'05-shb/dungeon/twinning.txt': dungeon_twinning_namespaceObject,'05-shb/etc/the_diadem.ts': the_diadem,'05-shb/eureka/bozjan_southern_front.ts': bozjan_southern_front,'05-shb/eureka/bozjan_southern_front.txt': eureka_bozjan_southern_front_namespaceObject,'05-shb/eureka/delubrum_reginae.ts': delubrum_reginae,'05-shb/eureka/delubrum_reginae.txt': eureka_delubrum_reginae_namespaceObject,'05-shb/eureka/delubrum_reginae_savage.ts': delubrum_reginae_savage,'05-shb/eureka/delubrum_reginae_savage.txt': eureka_delubrum_reginae_savage_namespaceObject,'05-shb/eureka/zadnor.ts': zadnor,'05-shb/eureka/zadnor.txt': eureka_zadnor_namespaceObject,'05-shb/hunts/amh_araeng.ts': amh_araeng,'05-shb/hunts/il_mheg.ts': il_mheg,'05-shb/hunts/kholusia.ts': kholusia,'05-shb/hunts/lakeland.ts': lakeland,'05-shb/hunts/ss_rank.ts': ss_rank,'05-shb/hunts/the_raktika_greatwood.ts': the_raktika_greatwood,'05-shb/hunts/the_tempest.ts': the_tempest,'05-shb/map/the_dungeons_of_lyhe_ghiah.ts': the_dungeons_of_lyhe_ghiah,'05-shb/map/the_shifting_oubliettes_of_lyhe_ghiah.ts': the_shifting_oubliettes_of_lyhe_ghiah,'05-shb/raid/e10n.ts': e10n,'05-shb/raid/e10n.txt': raid_e10n_namespaceObject,'05-shb/raid/e10s.ts': e10s,'05-shb/raid/e10s.txt': raid_e10s_namespaceObject,'05-shb/raid/e11n.ts': e11n,'05-shb/raid/e11n.txt': raid_e11n_namespaceObject,'05-shb/raid/e11s.ts': e11s,'05-shb/raid/e11s.txt': raid_e11s_namespaceObject,'05-shb/raid/e12n.ts': e12n,'05-shb/raid/e12n.txt': raid_e12n_namespaceObject,'05-shb/raid/e12s.ts': e12s,'05-shb/raid/e12s.txt': raid_e12s_namespaceObject,'05-shb/raid/e1n.ts': e1n,'05-shb/raid/e1n.txt': raid_e1n_namespaceObject,'05-shb/raid/e1s.ts': e1s,'05-shb/raid/e1s.txt': raid_e1s_namespaceObject,'05-shb/raid/e2n.ts': e2n,'05-shb/raid/e2n.txt': raid_e2n_namespaceObject,'05-shb/raid/e2s.ts': e2s,'05-shb/raid/e2s.txt': raid_e2s_namespaceObject,'05-shb/raid/e3n.ts': e3n,'05-shb/raid/e3n.txt': raid_e3n_namespaceObject,'05-shb/raid/e3s.ts': e3s,'05-shb/raid/e3s.txt': raid_e3s_namespaceObject,'05-shb/raid/e4n.ts': e4n,'05-shb/raid/e4n.txt': raid_e4n_namespaceObject,'05-shb/raid/e4s.ts': e4s,'05-shb/raid/e4s.txt': raid_e4s_namespaceObject,'05-shb/raid/e5n.ts': e5n,'05-shb/raid/e5n.txt': raid_e5n_namespaceObject,'05-shb/raid/e5s.ts': e5s,'05-shb/raid/e5s.txt': raid_e5s_namespaceObject,'05-shb/raid/e6n.ts': e6n,'05-shb/raid/e6n.txt': raid_e6n_namespaceObject,'05-shb/raid/e6s.ts': e6s,'05-shb/raid/e6s.txt': raid_e6s_namespaceObject,'05-shb/raid/e7n.ts': e7n,'05-shb/raid/e7n.txt': raid_e7n_namespaceObject,'05-shb/raid/e7s.ts': e7s,'05-shb/raid/e7s.txt': raid_e7s_namespaceObject,'05-shb/raid/e8n.ts': e8n,'05-shb/raid/e8n.txt': raid_e8n_namespaceObject,'05-shb/raid/e8s.ts': e8s,'05-shb/raid/e8s.txt': raid_e8s_namespaceObject,'05-shb/raid/e9n.ts': e9n,'05-shb/raid/e9n.txt': raid_e9n_namespaceObject,'05-shb/raid/e9s.ts': e9s,'05-shb/raid/e9s.txt': raid_e9s_namespaceObject,'05-shb/trial/diamond_weapon-ex.ts': diamond_weapon_ex,'05-shb/trial/diamond_weapon-ex.txt': trial_diamond_weapon_ex_namespaceObject,'05-shb/trial/diamond_weapon.ts': diamond_weapon,'05-shb/trial/diamond_weapon.txt': trial_diamond_weapon_namespaceObject,'05-shb/trial/emerald_weapon-ex.ts': emerald_weapon_ex,'05-shb/trial/emerald_weapon-ex.txt': trial_emerald_weapon_ex_namespaceObject,'05-shb/trial/emerald_weapon.ts': emerald_weapon,'05-shb/trial/emerald_weapon.txt': trial_emerald_weapon_namespaceObject,'05-shb/trial/hades-ex.ts': hades_ex,'05-shb/trial/hades-ex.txt': trial_hades_ex_namespaceObject,'05-shb/trial/hades.ts': hades,'05-shb/trial/hades.txt': trial_hades_namespaceObject,'05-shb/trial/innocence-ex.ts': innocence_ex,'05-shb/trial/innocence-ex.txt': trial_innocence_ex_namespaceObject,'05-shb/trial/innocence.ts': innocence,'05-shb/trial/innocence.txt': trial_innocence_namespaceObject,'05-shb/trial/levi-un.ts': levi_un,'05-shb/trial/levi-un.txt': trial_levi_un_namespaceObject,'05-shb/trial/ruby_weapon-ex.ts': ruby_weapon_ex,'05-shb/trial/ruby_weapon-ex.txt': trial_ruby_weapon_ex_namespaceObject,'05-shb/trial/ruby_weapon.ts': ruby_weapon,'05-shb/trial/ruby_weapon.txt': trial_ruby_weapon_namespaceObject,'05-shb/trial/shiva-un.ts': shiva_un,'05-shb/trial/shiva-un.txt': trial_shiva_un_namespaceObject,'05-shb/trial/titan-un.ts': titan_un,'05-shb/trial/titan-un.txt': trial_titan_un_namespaceObject,'05-shb/trial/titania-ex.ts': titania_ex,'05-shb/trial/titania-ex.txt': trial_titania_ex_namespaceObject,'05-shb/trial/titania.ts': titania,'05-shb/trial/titania.txt': trial_titania_namespaceObject,'05-shb/trial/varis-ex.ts': varis_ex,'05-shb/trial/varis-ex.txt': trial_varis_ex_namespaceObject,'05-shb/trial/wol-ex.ts': wol_ex,'05-shb/trial/wol-ex.txt': trial_wol_ex_namespaceObject,'05-shb/trial/wol.ts': wol,'05-shb/trial/wol.txt': trial_wol_namespaceObject,'05-shb/ultimate/the_epic_of_alexander.ts': the_epic_of_alexander,'05-shb/ultimate/the_epic_of_alexander.txt': ultimate_the_epic_of_alexander_namespaceObject,'06-ew/alliance/aglaia.ts': aglaia,'06-ew/alliance/aglaia.txt': alliance_aglaia_namespaceObject,'06-ew/alliance/euphrosyne.ts': euphrosyne,'06-ew/alliance/euphrosyne.txt': alliance_euphrosyne_namespaceObject,'06-ew/alliance/thaleia.ts': thaleia,'06-ew/alliance/thaleia.txt': alliance_thaleia_namespaceObject,'06-ew/deepdungeon/eureka_orthos_floors_01-10.ts': eureka_orthos_floors_01_10,'06-ew/deepdungeon/eureka_orthos_floors_11-20.ts': eureka_orthos_floors_11_20,'06-ew/deepdungeon/eureka_orthos_floors_21-30.ts': eureka_orthos_floors_21_30,'06-ew/deepdungeon/eureka_orthos_floors_31-40.ts': eureka_orthos_floors_31_40,'06-ew/deepdungeon/eureka_orthos_floors_41-50.ts': eureka_orthos_floors_41_50,'06-ew/deepdungeon/eureka_orthos_floors_51-60.ts': eureka_orthos_floors_51_60,'06-ew/deepdungeon/eureka_orthos_floors_61-70.ts': eureka_orthos_floors_61_70,'06-ew/deepdungeon/eureka_orthos_floors_71-80.ts': eureka_orthos_floors_71_80,'06-ew/deepdungeon/eureka_orthos_floors_81-90.ts': eureka_orthos_floors_81_90,'06-ew/deepdungeon/eureka_orthos_floors_91-100.ts': eureka_orthos_floors_91_100,'06-ew/deepdungeon/eureka_orthos_general.ts': eureka_orthos_general,'06-ew/dungeon/aetherfont.ts': aetherfont,'06-ew/dungeon/aetherfont.txt': dungeon_aetherfont_namespaceObject,'06-ew/dungeon/aloalo_island.ts': aloalo_island,'06-ew/dungeon/aloalo_island.txt': dungeon_aloalo_island_namespaceObject,'06-ew/dungeon/alzadaals_legacy.ts': alzadaals_legacy,'06-ew/dungeon/alzadaals_legacy.txt': dungeon_alzadaals_legacy_namespaceObject,'06-ew/dungeon/another_aloalo_island-savage.ts': another_aloalo_island_savage,'06-ew/dungeon/another_aloalo_island-savage.txt': dungeon_another_aloalo_island_savage_namespaceObject,'06-ew/dungeon/another_aloalo_island.ts': another_aloalo_island,'06-ew/dungeon/another_aloalo_island.txt': dungeon_another_aloalo_island_namespaceObject,'06-ew/dungeon/another_mount_rokkon-savage.ts': another_mount_rokkon_savage,'06-ew/dungeon/another_mount_rokkon-savage.txt': dungeon_another_mount_rokkon_savage_namespaceObject,'06-ew/dungeon/another_mount_rokkon.ts': another_mount_rokkon,'06-ew/dungeon/another_mount_rokkon.txt': dungeon_another_mount_rokkon_namespaceObject,'06-ew/dungeon/another_sildihn_subterrane-savage.ts': another_sildihn_subterrane_savage,'06-ew/dungeon/another_sildihn_subterrane-savage.txt': dungeon_another_sildihn_subterrane_savage_namespaceObject,'06-ew/dungeon/another_sildihn_subterrane.ts': another_sildihn_subterrane,'06-ew/dungeon/another_sildihn_subterrane.txt': dungeon_another_sildihn_subterrane_namespaceObject,'06-ew/dungeon/ktisis_hyperboreia.ts': ktisis_hyperboreia,'06-ew/dungeon/ktisis_hyperboreia.txt': dungeon_ktisis_hyperboreia_namespaceObject,'06-ew/dungeon/lapis_manalis.ts': lapis_manalis,'06-ew/dungeon/lapis_manalis.txt': dungeon_lapis_manalis_namespaceObject,'06-ew/dungeon/mount_rokkon.ts': mount_rokkon,'06-ew/dungeon/mount_rokkon.txt': dungeon_mount_rokkon_namespaceObject,'06-ew/dungeon/smileton.ts': smileton,'06-ew/dungeon/smileton.txt': dungeon_smileton_namespaceObject,'06-ew/dungeon/stigma_dreamscape.ts': stigma_dreamscape,'06-ew/dungeon/stigma_dreamscape.txt': dungeon_stigma_dreamscape_namespaceObject,'06-ew/dungeon/the_aitiascope.ts': the_aitiascope,'06-ew/dungeon/the_aitiascope.txt': dungeon_the_aitiascope_namespaceObject,'06-ew/dungeon/the_dead_ends.ts': the_dead_ends,'06-ew/dungeon/the_dead_ends.txt': dungeon_the_dead_ends_namespaceObject,'06-ew/dungeon/the_fell_court_of_troia.ts': the_fell_court_of_troia,'06-ew/dungeon/the_fell_court_of_troia.txt': dungeon_the_fell_court_of_troia_namespaceObject,'06-ew/dungeon/the_lunar_subterrane.ts': the_lunar_subterrane,'06-ew/dungeon/the_lunar_subterrane.txt': dungeon_the_lunar_subterrane_namespaceObject,'06-ew/dungeon/the_sildihn_subterrane.ts': the_sildihn_subterrane,'06-ew/dungeon/the_sildihn_subterrane.txt': dungeon_the_sildihn_subterrane_namespaceObject,'06-ew/dungeon/the_tower_of_babil.ts': the_tower_of_babil,'06-ew/dungeon/the_tower_of_babil.txt': dungeon_the_tower_of_babil_namespaceObject,'06-ew/dungeon/the_tower_of_zot.ts': the_tower_of_zot,'06-ew/dungeon/the_tower_of_zot.txt': dungeon_the_tower_of_zot_namespaceObject,'06-ew/dungeon/vanaspati.ts': vanaspati,'06-ew/dungeon/vanaspati.txt': dungeon_vanaspati_namespaceObject,'06-ew/hunts/elpis.ts': elpis,'06-ew/hunts/garlemald.ts': garlemald,'06-ew/hunts/labyrinthos.ts': labyrinthos,'06-ew/hunts/mare_lamentorum.ts': mare_lamentorum,'06-ew/hunts/ss_rank.ts': hunts_ss_rank,'06-ew/hunts/thavnair.ts': thavnair,'06-ew/hunts/ultima_thule.ts': ultima_thule,'06-ew/map/the_excitatron_6000.ts': the_excitatron_6000,'06-ew/map/the_shifting_gymnasion_agonon.ts': the_shifting_gymnasion_agonon,'06-ew/raid/p10n.ts': p10n,'06-ew/raid/p10n.txt': raid_p10n_namespaceObject,'06-ew/raid/p10s.ts': p10s,'06-ew/raid/p10s.txt': raid_p10s_namespaceObject,'06-ew/raid/p11n.ts': p11n,'06-ew/raid/p11n.txt': raid_p11n_namespaceObject,'06-ew/raid/p11s.ts': p11s,'06-ew/raid/p11s.txt': raid_p11s_namespaceObject,'06-ew/raid/p12n.ts': p12n,'06-ew/raid/p12n.txt': raid_p12n_namespaceObject,'06-ew/raid/p12s.ts': p12s,'06-ew/raid/p12s.txt': raid_p12s_namespaceObject,'06-ew/raid/p1n.ts': p1n,'06-ew/raid/p1n.txt': raid_p1n_namespaceObject,'06-ew/raid/p1s.ts': p1s,'06-ew/raid/p1s.txt': raid_p1s_namespaceObject,'06-ew/raid/p2n.ts': p2n,'06-ew/raid/p2n.txt': raid_p2n_namespaceObject,'06-ew/raid/p2s.ts': p2s,'06-ew/raid/p2s.txt': raid_p2s_namespaceObject,'06-ew/raid/p3n.ts': p3n,'06-ew/raid/p3n.txt': raid_p3n_namespaceObject,'06-ew/raid/p3s.ts': p3s,'06-ew/raid/p3s.txt': raid_p3s_namespaceObject,'06-ew/raid/p4n.ts': p4n,'06-ew/raid/p4n.txt': raid_p4n_namespaceObject,'06-ew/raid/p4s.ts': p4s,'06-ew/raid/p4s.txt': raid_p4s_namespaceObject,'06-ew/raid/p5n.ts': p5n,'06-ew/raid/p5n.txt': raid_p5n_namespaceObject,'06-ew/raid/p5s.ts': p5s,'06-ew/raid/p5s.txt': raid_p5s_namespaceObject,'06-ew/raid/p6n.ts': p6n,'06-ew/raid/p6n.txt': raid_p6n_namespaceObject,'06-ew/raid/p6s.ts': p6s,'06-ew/raid/p6s.txt': raid_p6s_namespaceObject,'06-ew/raid/p7n.ts': p7n,'06-ew/raid/p7n.txt': raid_p7n_namespaceObject,'06-ew/raid/p7s.ts': p7s,'06-ew/raid/p7s.txt': raid_p7s_namespaceObject,'06-ew/raid/p8n.ts': p8n,'06-ew/raid/p8n.txt': raid_p8n_namespaceObject,'06-ew/raid/p8s.ts': p8s,'06-ew/raid/p8s.txt': raid_p8s_namespaceObject,'06-ew/raid/p9n.ts': p9n,'06-ew/raid/p9n.txt': raid_p9n_namespaceObject,'06-ew/raid/p9s.ts': p9s,'06-ew/raid/p9s.txt': raid_p9s_namespaceObject,'06-ew/trial/asura.ts': asura,'06-ew/trial/asura.txt': trial_asura_namespaceObject,'06-ew/trial/barbariccia-ex.ts': barbariccia_ex,'06-ew/trial/barbariccia-ex.txt': trial_barbariccia_ex_namespaceObject,'06-ew/trial/barbariccia.ts': barbariccia,'06-ew/trial/barbariccia.txt': trial_barbariccia_namespaceObject,'06-ew/trial/endsinger-ex.ts': endsinger_ex,'06-ew/trial/endsinger-ex.txt': trial_endsinger_ex_namespaceObject,'06-ew/trial/endsinger.ts': endsinger,'06-ew/trial/endsinger.txt': trial_endsinger_namespaceObject,'06-ew/trial/golbez-ex.ts': golbez_ex,'06-ew/trial/golbez-ex.txt': trial_golbez_ex_namespaceObject,'06-ew/trial/golbez.ts': golbez,'06-ew/trial/golbez.txt': trial_golbez_namespaceObject,'06-ew/trial/hydaelyn-ex.ts': hydaelyn_ex,'06-ew/trial/hydaelyn-ex.txt': trial_hydaelyn_ex_namespaceObject,'06-ew/trial/hydaelyn.ts': hydaelyn,'06-ew/trial/hydaelyn.txt': trial_hydaelyn_namespaceObject,'06-ew/trial/rubicante-ex.ts': rubicante_ex,'06-ew/trial/rubicante-ex.txt': trial_rubicante_ex_namespaceObject,'06-ew/trial/rubicante.ts': rubicante,'06-ew/trial/rubicante.txt': trial_rubicante_namespaceObject,'06-ew/trial/sephirot-un.ts': sephirot_un,'06-ew/trial/sephirot-un.txt': trial_sephirot_un_namespaceObject,'06-ew/trial/sophia-un.ts': sophia_un,'06-ew/trial/sophia-un.txt': trial_sophia_un_namespaceObject,'06-ew/trial/thordan-un.ts': thordan_un,'06-ew/trial/thordan-un.txt': trial_thordan_un_namespaceObject,'06-ew/trial/ultima-un.ts': ultima_un,'06-ew/trial/ultima-un.txt': trial_ultima_un_namespaceObject,'06-ew/trial/zeromus-ex.ts': zeromus_ex,'06-ew/trial/zeromus-ex.txt': trial_zeromus_ex_namespaceObject,'06-ew/trial/zeromus.ts': zeromus,'06-ew/trial/zeromus.txt': trial_zeromus_namespaceObject,'06-ew/trial/zodiark-ex.ts': zodiark_ex,'06-ew/trial/zodiark-ex.txt': trial_zodiark_ex_namespaceObject,'06-ew/trial/zodiark.ts': zodiark,'06-ew/trial/zodiark.txt': trial_zodiark_namespaceObject,'06-ew/trial/zurvan-un.ts': zurvan_un,'06-ew/trial/zurvan-un.txt': trial_zurvan_un_namespaceObject,'06-ew/ultimate/dragonsongs_reprise_ultimate.ts': dragonsongs_reprise_ultimate,'06-ew/ultimate/dragonsongs_reprise_ultimate.txt': ultimate_dragonsongs_reprise_ultimate_namespaceObject,'06-ew/ultimate/the_omega_protocol.ts': the_omega_protocol,'06-ew/ultimate/the_omega_protocol.txt': ultimate_the_omega_protocol_namespaceObject,'07-dt/alliance/cloud_of_darkness_chaotic.ts': cloud_of_darkness_chaotic,'07-dt/alliance/cloud_of_darkness_chaotic.txt': alliance_cloud_of_darkness_chaotic_namespaceObject,'07-dt/alliance/jeuno-first-walk.ts': jeuno_first_walk,'07-dt/alliance/jeuno-first-walk.txt': alliance_jeuno_first_walk_namespaceObject,'07-dt/alliance/san-doria-second-walk.ts': san_doria_second_walk,'07-dt/alliance/san-doria-second-walk.txt': alliance_san_doria_second_walk_namespaceObject,'07-dt/deepdungeon/pilgrims_traverse_general.ts': pilgrims_traverse_general,'07-dt/deepdungeon/pilgrims_traverse_stones_01-10.ts': pilgrims_traverse_stones_01_10,'07-dt/deepdungeon/pilgrims_traverse_stones_11-20.ts': pilgrims_traverse_stones_11_20,'07-dt/deepdungeon/pilgrims_traverse_stones_21-30.ts': pilgrims_traverse_stones_21_30,'07-dt/deepdungeon/pilgrims_traverse_stones_31-40.ts': pilgrims_traverse_stones_31_40,'07-dt/deepdungeon/pilgrims_traverse_stones_41-50.ts': pilgrims_traverse_stones_41_50,'07-dt/deepdungeon/pilgrims_traverse_stones_51-60.ts': pilgrims_traverse_stones_51_60,'07-dt/deepdungeon/pilgrims_traverse_stones_61-70.ts': pilgrims_traverse_stones_61_70,'07-dt/deepdungeon/pilgrims_traverse_stones_71-80.ts': pilgrims_traverse_stones_71_80,'07-dt/deepdungeon/pilgrims_traverse_stones_81-90.ts': pilgrims_traverse_stones_81_90,'07-dt/deepdungeon/pilgrims_traverse_stones_91-100.ts': pilgrims_traverse_stones_91_100,'07-dt/deepdungeon/pilgrims_traverse_the_final_verse.ts': pilgrims_traverse_the_final_verse,'07-dt/deepdungeon/the_final_verse_quantum.ts': the_final_verse_quantum,'07-dt/deepdungeon/the_final_verse_quantum.txt': deepdungeon_the_final_verse_quantum_namespaceObject,'07-dt/dungeon/alexandria.ts': alexandria,'07-dt/dungeon/alexandria.txt': dungeon_alexandria_namespaceObject,'07-dt/dungeon/ihuykatumu.ts': ihuykatumu,'07-dt/dungeon/ihuykatumu.txt': dungeon_ihuykatumu_namespaceObject,'07-dt/dungeon/meso-terminal.ts': meso_terminal,'07-dt/dungeon/meso-terminal.txt': dungeon_meso_terminal_namespaceObject,'07-dt/dungeon/mistwake.ts': mistwake,'07-dt/dungeon/mistwake.txt': dungeon_mistwake_namespaceObject,'07-dt/dungeon/origenics.ts': origenics,'07-dt/dungeon/origenics.txt': dungeon_origenics_namespaceObject,'07-dt/dungeon/skydeep-cenote.ts': skydeep_cenote,'07-dt/dungeon/skydeep-cenote.txt': dungeon_skydeep_cenote_namespaceObject,'07-dt/dungeon/strayborough-deadwalk.ts': strayborough_deadwalk,'07-dt/dungeon/strayborough-deadwalk.txt': dungeon_strayborough_deadwalk_namespaceObject,'07-dt/dungeon/the_underkeep.ts': the_underkeep,'07-dt/dungeon/the_underkeep.txt': dungeon_the_underkeep_namespaceObject,'07-dt/dungeon/vanguard.ts': vanguard,'07-dt/dungeon/vanguard.txt': dungeon_vanguard_namespaceObject,'07-dt/dungeon/worqor-zormor.ts': worqor_zormor,'07-dt/dungeon/worqor-zormor.txt': dungeon_worqor_zormor_namespaceObject,'07-dt/dungeon/yuweyawata.ts': yuweyawata,'07-dt/dungeon/yuweyawata.txt': dungeon_yuweyawata_namespaceObject,'07-dt/eureka/occult_crescent_south_horn.ts': occult_crescent_south_horn,'07-dt/eureka/occult_crescent_south_horn.txt': eureka_occult_crescent_south_horn_namespaceObject,'07-dt/hunts/heritage_found.ts': heritage_found,'07-dt/hunts/kozamauka.ts': kozamauka,'07-dt/hunts/living_memory.ts': living_memory,'07-dt/hunts/shaaloani.ts': shaaloani,'07-dt/hunts/ss_rank.ts': _07_dt_hunts_ss_rank,'07-dt/hunts/urqopacha.ts': urqopacha,'07-dt/hunts/yaktel.ts': yaktel,'07-dt/map/cenote_ja_ja_gural.ts': cenote_ja_ja_gural,'07-dt/raid/r10n.ts': r10n,'07-dt/raid/r10n.txt': raid_r10n_namespaceObject,'07-dt/raid/r10s.ts': r10s,'07-dt/raid/r10s.txt': raid_r10s_namespaceObject,'07-dt/raid/r11n.ts': r11n,'07-dt/raid/r11n.txt': raid_r11n_namespaceObject,'07-dt/raid/r11s.ts': r11s,'07-dt/raid/r11s.txt': raid_r11s_namespaceObject,'07-dt/raid/r12n.ts': r12n,'07-dt/raid/r12n.txt': raid_r12n_namespaceObject,'07-dt/raid/r12s.ts': r12s,'07-dt/raid/r12s.txt': raid_r12s_namespaceObject,'07-dt/raid/r1n.ts': r1n,'07-dt/raid/r1n.txt': raid_r1n_namespaceObject,'07-dt/raid/r1s.ts': r1s,'07-dt/raid/r1s.txt': raid_r1s_namespaceObject,'07-dt/raid/r2n.ts': r2n,'07-dt/raid/r2n.txt': raid_r2n_namespaceObject,'07-dt/raid/r2s.ts': r2s,'07-dt/raid/r2s.txt': raid_r2s_namespaceObject,'07-dt/raid/r3n.ts': r3n,'07-dt/raid/r3n.txt': raid_r3n_namespaceObject,'07-dt/raid/r3s.ts': r3s,'07-dt/raid/r3s.txt': raid_r3s_namespaceObject,'07-dt/raid/r4n.ts': r4n,'07-dt/raid/r4n.txt': raid_r4n_namespaceObject,'07-dt/raid/r4s.ts': r4s,'07-dt/raid/r4s.txt': raid_r4s_namespaceObject,'07-dt/raid/r5n.ts': r5n,'07-dt/raid/r5n.txt': raid_r5n_namespaceObject,'07-dt/raid/r5s.ts': r5s,'07-dt/raid/r5s.txt': raid_r5s_namespaceObject,'07-dt/raid/r6n.ts': r6n,'07-dt/raid/r6n.txt': raid_r6n_namespaceObject,'07-dt/raid/r6s.ts': r6s,'07-dt/raid/r6s.txt': raid_r6s_namespaceObject,'07-dt/raid/r7n.ts': r7n,'07-dt/raid/r7n.txt': raid_r7n_namespaceObject,'07-dt/raid/r7s.ts': r7s,'07-dt/raid/r7s.txt': raid_r7s_namespaceObject,'07-dt/raid/r8n.ts': r8n,'07-dt/raid/r8n.txt': raid_r8n_namespaceObject,'07-dt/raid/r8s.ts': r8s,'07-dt/raid/r8s.txt': raid_r8s_namespaceObject,'07-dt/raid/r9n.ts': r9n,'07-dt/raid/r9n.txt': raid_r9n_namespaceObject,'07-dt/raid/r9s.ts': r9s,'07-dt/raid/r9s.txt': raid_r9s_namespaceObject,'07-dt/trial/arkveld-ex.ts': arkveld_ex,'07-dt/trial/arkveld-ex.txt': trial_arkveld_ex_namespaceObject,'07-dt/trial/arkveld.ts': arkveld,'07-dt/trial/arkveld.txt': trial_arkveld_namespaceObject,'07-dt/trial/byakko-un.ts': byakko_un,'07-dt/trial/byakko-un.txt': trial_byakko_un_namespaceObject,'07-dt/trial/doomtrain-ex.ts': doomtrain_ex,'07-dt/trial/doomtrain-ex.txt': trial_doomtrain_ex_namespaceObject,'07-dt/trial/doomtrain.ts': doomtrain,'07-dt/trial/doomtrain.txt': trial_doomtrain_namespaceObject,'07-dt/trial/enuo-ex.ts': enuo_ex,'07-dt/trial/enuo-ex.txt': trial_enuo_ex_namespaceObject,'07-dt/trial/enuo.ts': enuo,'07-dt/trial/enuo.txt': trial_enuo_namespaceObject,'07-dt/trial/necron-ex.ts': necron_ex,'07-dt/trial/necron-ex.txt': trial_necron_ex_namespaceObject,'07-dt/trial/queen-eternal-ex.ts': queen_eternal_ex,'07-dt/trial/queen-eternal-ex.txt': trial_queen_eternal_ex_namespaceObject,'07-dt/trial/queen-eternal.ts': queen_eternal,'07-dt/trial/queen-eternal.txt': trial_queen_eternal_namespaceObject,'07-dt/trial/seiryu-un.ts': seiryu_un,'07-dt/trial/seiryu-un.txt': trial_seiryu_un_namespaceObject,'07-dt/trial/suzaku-un.ts': suzaku_un,'07-dt/trial/suzaku-un.txt': trial_suzaku_un_namespaceObject,'07-dt/trial/tsukuyomi-un.ts': tsukuyomi_un,'07-dt/trial/tsukuyomi-un.txt': trial_tsukuyomi_un_namespaceObject,'07-dt/trial/valigarmanda-ex.ts': valigarmanda_ex,'07-dt/trial/valigarmanda-ex.txt': trial_valigarmanda_ex_namespaceObject,'07-dt/trial/valigarmanda.ts': valigarmanda,'07-dt/trial/valigarmanda.txt': trial_valigarmanda_namespaceObject,'07-dt/trial/zelenia-ex.ts': zelenia_ex,'07-dt/trial/zelenia-ex.txt': trial_zelenia_ex_namespaceObject,'07-dt/trial/zelenia.ts': zelenia,'07-dt/trial/zelenia.txt': trial_zelenia_namespaceObject,'07-dt/trial/zoraal-ja-ex.ts': zoraal_ja_ex,'07-dt/trial/zoraal-ja-ex.txt': trial_zoraal_ja_ex_namespaceObject,'07-dt/trial/zoraal-ja.ts': zoraal_ja,'07-dt/trial/zoraal-ja.txt': trial_zoraal_ja_namespaceObject,'07-dt/ultimate/futures_rewritten.ts': futures_rewritten,'07-dt/ultimate/futures_rewritten.txt': ultimate_futures_rewritten_namespaceObject,});
+
+
+/* harmony default export */ const raidboss_manifest = ({'00-misc/general.ts': general,'00-misc/test.ts': test,'00-misc/test.txt': _00_misc_test_namespaceObject,'00-misc/the_masked_carnivale.ts': the_masked_carnivale,'02-arr/alliance/the_world_of_darkness.ts': the_world_of_darkness,'02-arr/dungeon/amdapor_keep.ts': amdapor_keep,'02-arr/dungeon/amdapor_keep_hard.ts': amdapor_keep_hard,'02-arr/dungeon/aurum_vale.ts': aurum_vale,'02-arr/dungeon/aurum_vale73.ts': aurum_vale73,'02-arr/dungeon/brayfloxs_longstop.ts': brayfloxs_longstop,'02-arr/dungeon/cutters_cry.ts': cutters_cry,'02-arr/dungeon/cutters_cry72.ts': cutters_cry72,'02-arr/dungeon/halatali_hard.ts': halatali_hard,'02-arr/dungeon/haukke_manor.ts': haukke_manor,'02-arr/dungeon/haukke_manor_hard.ts': haukke_manor_hard,'02-arr/dungeon/hullbreaker_isle.ts': hullbreaker_isle,'02-arr/dungeon/pharos_sirius.ts': pharos_sirius,'02-arr/dungeon/sastasha_hard.ts': sastasha_hard,'02-arr/dungeon/snowcloak.ts': snowcloak,'02-arr/dungeon/the_lost_city_of_amdapor.ts': the_lost_city_of_amdapor,'02-arr/dungeon/the_stone_vigil.ts': the_stone_vigil,'02-arr/dungeon/the_stone_vigil_hard.ts': the_stone_vigil_hard,'02-arr/dungeon/the_sunken_temple_of_quarn.ts': the_sunken_temple_of_quarn,'02-arr/dungeon/the_sunken_temple_of_quarn71.ts': the_sunken_temple_of_quarn71,'02-arr/dungeon/the_sunken_temple_of_quarn_hard.ts': the_sunken_temple_of_quarn_hard,'02-arr/dungeon/the_tam_tara_depocraft_hard.ts': the_tam_tara_depocraft_hard,'02-arr/dungeon/the_wanderers_palace_hard.ts': the_wanderers_palace_hard,'02-arr/raid/t1.ts': t1,'02-arr/raid/t10.ts': t10,'02-arr/raid/t10.txt': raid_t10_namespaceObject,'02-arr/raid/t11.ts': t11,'02-arr/raid/t11.txt': raid_t11_namespaceObject,'02-arr/raid/t12.ts': t12,'02-arr/raid/t12.txt': raid_t12_namespaceObject,'02-arr/raid/t13.ts': t13,'02-arr/raid/t13.txt': raid_t13_namespaceObject,'02-arr/raid/t2.ts': t2,'02-arr/raid/t4.ts': t4,'02-arr/raid/t4.txt': raid_t4_namespaceObject,'02-arr/raid/t5.ts': t5,'02-arr/raid/t5.txt': raid_t5_namespaceObject,'02-arr/raid/t6.ts': t6,'02-arr/raid/t6.txt': raid_t6_namespaceObject,'02-arr/raid/t7.ts': t7,'02-arr/raid/t7.txt': raid_t7_namespaceObject,'02-arr/raid/t8.ts': t8,'02-arr/raid/t8.txt': raid_t8_namespaceObject,'02-arr/raid/t9.ts': t9,'02-arr/raid/t9.txt': raid_t9_namespaceObject,'02-arr/trial/ifrit-nm.ts': ifrit_nm,'02-arr/trial/ifrit-nm.txt': trial_ifrit_nm_namespaceObject,'02-arr/trial/levi-ex.ts': levi_ex,'02-arr/trial/levi-ex.txt': trial_levi_ex_namespaceObject,'02-arr/trial/shiva-ex.ts': shiva_ex,'02-arr/trial/shiva-ex.txt': trial_shiva_ex_namespaceObject,'02-arr/trial/shiva-hm.ts': shiva_hm,'02-arr/trial/shiva-hm.txt': trial_shiva_hm_namespaceObject,'02-arr/trial/titan-ex.ts': titan_ex,'02-arr/trial/titan-ex.txt': trial_titan_ex_namespaceObject,'02-arr/trial/titan-hm.ts': titan_hm,'02-arr/trial/titan-hm.txt': trial_titan_hm_namespaceObject,'02-arr/trial/titan-nm.ts': titan_nm,'02-arr/trial/titan-nm.txt': trial_titan_nm_namespaceObject,'02-arr/trial/ultima-ex.ts': ultima_ex,'02-arr/trial/ultima-ex.txt': trial_ultima_ex_namespaceObject,'03-hw/alliance/dun_scaith.ts': dun_scaith,'03-hw/alliance/dun_scaith.txt': alliance_dun_scaith_namespaceObject,'03-hw/alliance/weeping_city.ts': weeping_city,'03-hw/alliance/weeping_city.txt': alliance_weeping_city_namespaceObject,'03-hw/deepdungeon/the_palace_of_the_dead_floors_001-010.ts': the_palace_of_the_dead_floors_001_010,'03-hw/deepdungeon/the_palace_of_the_dead_floors_011-020.ts': the_palace_of_the_dead_floors_011_020,'03-hw/deepdungeon/the_palace_of_the_dead_floors_021-030.ts': the_palace_of_the_dead_floors_021_030,'03-hw/deepdungeon/the_palace_of_the_dead_floors_031-040.ts': the_palace_of_the_dead_floors_031_040,'03-hw/deepdungeon/the_palace_of_the_dead_floors_041-050.ts': the_palace_of_the_dead_floors_041_050,'03-hw/deepdungeon/the_palace_of_the_dead_floors_051-060.ts': the_palace_of_the_dead_floors_051_060,'03-hw/deepdungeon/the_palace_of_the_dead_floors_061-070.ts': the_palace_of_the_dead_floors_061_070,'03-hw/deepdungeon/the_palace_of_the_dead_floors_071-080.ts': the_palace_of_the_dead_floors_071_080,'03-hw/deepdungeon/the_palace_of_the_dead_floors_081-090.ts': the_palace_of_the_dead_floors_081_090,'03-hw/deepdungeon/the_palace_of_the_dead_floors_091-100.ts': the_palace_of_the_dead_floors_091_100,'03-hw/deepdungeon/the_palace_of_the_dead_floors_101-110.ts': the_palace_of_the_dead_floors_101_110,'03-hw/deepdungeon/the_palace_of_the_dead_floors_111-120.ts': the_palace_of_the_dead_floors_111_120,'03-hw/deepdungeon/the_palace_of_the_dead_floors_121-130.ts': the_palace_of_the_dead_floors_121_130,'03-hw/deepdungeon/the_palace_of_the_dead_floors_131-140.ts': the_palace_of_the_dead_floors_131_140,'03-hw/deepdungeon/the_palace_of_the_dead_floors_141-150.ts': the_palace_of_the_dead_floors_141_150,'03-hw/deepdungeon/the_palace_of_the_dead_floors_151-160.ts': the_palace_of_the_dead_floors_151_160,'03-hw/deepdungeon/the_palace_of_the_dead_floors_161-170.ts': the_palace_of_the_dead_floors_161_170,'03-hw/deepdungeon/the_palace_of_the_dead_floors_171-180.ts': the_palace_of_the_dead_floors_171_180,'03-hw/deepdungeon/the_palace_of_the_dead_floors_181-190.ts': the_palace_of_the_dead_floors_181_190,'03-hw/deepdungeon/the_palace_of_the_dead_floors_191-200.ts': the_palace_of_the_dead_floors_191_200,'03-hw/deepdungeon/the_palace_of_the_dead_general.ts': the_palace_of_the_dead_general,'03-hw/dungeon/aetherochemical_research_facility.ts': aetherochemical_research_facility,'03-hw/dungeon/aetherochemical_research_facility.txt': dungeon_aetherochemical_research_facility_namespaceObject,'03-hw/dungeon/baelsars_wall.ts': baelsars_wall,'03-hw/dungeon/baelsars_wall.txt': dungeon_baelsars_wall_namespaceObject,'03-hw/dungeon/fractal_continuum.ts': fractal_continuum,'03-hw/dungeon/fractal_continuum.txt': dungeon_fractal_continuum_namespaceObject,'03-hw/dungeon/gubal_library_hard.ts': gubal_library_hard,'03-hw/dungeon/gubal_library_hard.txt': dungeon_gubal_library_hard_namespaceObject,'03-hw/dungeon/sohm_al.ts': sohm_al,'03-hw/dungeon/sohm_al.txt': dungeon_sohm_al_namespaceObject,'03-hw/dungeon/sohm_al_hard.ts': sohm_al_hard,'03-hw/dungeon/sohm_al_hard.txt': dungeon_sohm_al_hard_namespaceObject,'03-hw/dungeon/the_lost_city_of_amdapor_hard.ts': the_lost_city_of_amdapor_hard,'03-hw/dungeon/the_lost_city_of_amdapor_hard.txt': dungeon_the_lost_city_of_amdapor_hard_namespaceObject,'03-hw/dungeon/the_vault.ts': the_vault,'03-hw/dungeon/the_vault.txt': dungeon_the_vault_namespaceObject,'03-hw/dungeon/xelphatol.ts': xelphatol,'03-hw/dungeon/xelphatol.txt': dungeon_xelphatol_namespaceObject,'03-hw/map/the_aquapolis.ts': the_aquapolis,'03-hw/pvp/shatter.ts': shatter,'03-hw/raid/a10n.ts': a10n,'03-hw/raid/a10n.txt': raid_a10n_namespaceObject,'03-hw/raid/a10s.ts': a10s,'03-hw/raid/a10s.txt': raid_a10s_namespaceObject,'03-hw/raid/a11s.ts': a11s,'03-hw/raid/a11s.txt': raid_a11s_namespaceObject,'03-hw/raid/a12n.ts': a12n,'03-hw/raid/a12n.txt': raid_a12n_namespaceObject,'03-hw/raid/a12s.ts': a12s,'03-hw/raid/a12s.txt': raid_a12s_namespaceObject,'03-hw/raid/a1s.ts': a1s,'03-hw/raid/a1s.txt': raid_a1s_namespaceObject,'03-hw/raid/a2s.ts': a2s,'03-hw/raid/a2s.txt': raid_a2s_namespaceObject,'03-hw/raid/a3n.ts': a3n,'03-hw/raid/a3n.txt': raid_a3n_namespaceObject,'03-hw/raid/a3s.ts': a3s,'03-hw/raid/a3s.txt': raid_a3s_namespaceObject,'03-hw/raid/a4s.ts': a4s,'03-hw/raid/a4s.txt': raid_a4s_namespaceObject,'03-hw/raid/a5s.ts': a5s,'03-hw/raid/a5s.txt': raid_a5s_namespaceObject,'03-hw/raid/a6n.ts': a6n,'03-hw/raid/a6n.txt': raid_a6n_namespaceObject,'03-hw/raid/a6s.ts': a6s,'03-hw/raid/a6s.txt': raid_a6s_namespaceObject,'03-hw/raid/a7s.ts': a7s,'03-hw/raid/a7s.txt': raid_a7s_namespaceObject,'03-hw/raid/a8n.ts': a8n,'03-hw/raid/a8n.txt': raid_a8n_namespaceObject,'03-hw/raid/a8s.ts': a8s,'03-hw/raid/a8s.txt': raid_a8s_namespaceObject,'03-hw/raid/a9s.ts': a9s,'03-hw/raid/a9s.txt': raid_a9s_namespaceObject,'03-hw/trial/bismarck-ex.ts': bismarck_ex,'03-hw/trial/ravana-ex.ts': ravana_ex,'03-hw/trial/ravana-ex.txt': trial_ravana_ex_namespaceObject,'03-hw/trial/sephirot-ex.ts': sephirot_ex,'03-hw/trial/sephirot-ex.txt': trial_sephirot_ex_namespaceObject,'03-hw/trial/sephirot.ts': sephirot,'03-hw/trial/sophia-ex.ts': sophia_ex,'03-hw/trial/sophia-ex.txt': trial_sophia_ex_namespaceObject,'03-hw/trial/thordan-ex.ts': thordan_ex,'03-hw/trial/thordan-ex.txt': trial_thordan_ex_namespaceObject,'03-hw/trial/zurvan-ex.ts': zurvan_ex,'03-hw/trial/zurvan-ex.txt': trial_zurvan_ex_namespaceObject,'04-sb/alliance/orbonne_monastery.ts': orbonne_monastery,'04-sb/alliance/orbonne_monastery.txt': alliance_orbonne_monastery_namespaceObject,'04-sb/alliance/ridorana_lighthouse.ts': ridorana_lighthouse,'04-sb/alliance/ridorana_lighthouse.txt': alliance_ridorana_lighthouse_namespaceObject,'04-sb/alliance/royal_city_of_rabanastre.ts': royal_city_of_rabanastre,'04-sb/alliance/royal_city_of_rabanastre.txt': alliance_royal_city_of_rabanastre_namespaceObject,'04-sb/deepdungeon/heaven-on-high_floors_01-10.ts': heaven_on_high_floors_01_10,'04-sb/deepdungeon/heaven-on-high_floors_11-20.ts': heaven_on_high_floors_11_20,'04-sb/deepdungeon/heaven-on-high_floors_21-30.ts': heaven_on_high_floors_21_30,'04-sb/deepdungeon/heaven-on-high_floors_31-40.ts': heaven_on_high_floors_31_40,'04-sb/deepdungeon/heaven-on-high_floors_41-50.ts': heaven_on_high_floors_41_50,'04-sb/deepdungeon/heaven-on-high_floors_51-60.ts': heaven_on_high_floors_51_60,'04-sb/deepdungeon/heaven-on-high_floors_61-70.ts': heaven_on_high_floors_61_70,'04-sb/deepdungeon/heaven-on-high_floors_71-80.ts': heaven_on_high_floors_71_80,'04-sb/deepdungeon/heaven-on-high_floors_81-90.ts': heaven_on_high_floors_81_90,'04-sb/deepdungeon/heaven-on-high_floors_91-100.ts': heaven_on_high_floors_91_100,'04-sb/deepdungeon/heaven-on-high_general.ts': heaven_on_high_general,'04-sb/dungeon/ala_mhigo.ts': ala_mhigo,'04-sb/dungeon/ala_mhigo.txt': dungeon_ala_mhigo_namespaceObject,'04-sb/dungeon/bardams_mettle.ts': bardams_mettle,'04-sb/dungeon/bardams_mettle.txt': dungeon_bardams_mettle_namespaceObject,'04-sb/dungeon/castrum_abania.ts': castrum_abania,'04-sb/dungeon/castrum_abania.txt': dungeon_castrum_abania_namespaceObject,'04-sb/dungeon/doma_castle.ts': doma_castle,'04-sb/dungeon/doma_castle.txt': dungeon_doma_castle_namespaceObject,'04-sb/dungeon/drowned_city_of_skalla.ts': drowned_city_of_skalla,'04-sb/dungeon/drowned_city_of_skalla.txt': dungeon_drowned_city_of_skalla_namespaceObject,'04-sb/dungeon/fractal_continuum_hard.ts': fractal_continuum_hard,'04-sb/dungeon/fractal_continuum_hard.txt': dungeon_fractal_continuum_hard_namespaceObject,'04-sb/dungeon/ghimlyt_dark.ts': ghimlyt_dark,'04-sb/dungeon/ghimlyt_dark.txt': dungeon_ghimlyt_dark_namespaceObject,'04-sb/dungeon/hells_lid.ts': hells_lid,'04-sb/dungeon/hells_lid.txt': dungeon_hells_lid_namespaceObject,'04-sb/dungeon/kugane_castle.ts': kugane_castle,'04-sb/dungeon/kugane_castle.txt': dungeon_kugane_castle_namespaceObject,'04-sb/dungeon/shisui_of_the_violet_tides.ts': shisui_of_the_violet_tides,'04-sb/dungeon/shisui_of_the_violet_tides.txt': dungeon_shisui_of_the_violet_tides_namespaceObject,'04-sb/dungeon/shisui_of_the_violet_tides74.ts': shisui_of_the_violet_tides74,'04-sb/dungeon/shisui_of_the_violet_tides74.txt': dungeon_shisui_of_the_violet_tides74_namespaceObject,'04-sb/dungeon/sirensong_sea.ts': sirensong_sea,'04-sb/dungeon/sirensong_sea.txt': dungeon_sirensong_sea_namespaceObject,'04-sb/dungeon/st_mocianne_hard.ts': st_mocianne_hard,'04-sb/dungeon/st_mocianne_hard.txt': dungeon_st_mocianne_hard_namespaceObject,'04-sb/dungeon/swallows_compass.ts': swallows_compass,'04-sb/dungeon/swallows_compass.txt': dungeon_swallows_compass_namespaceObject,'04-sb/dungeon/temple_of_the_fist.ts': temple_of_the_fist,'04-sb/dungeon/temple_of_the_fist.txt': dungeon_temple_of_the_fist_namespaceObject,'04-sb/dungeon/the_burn.ts': the_burn,'04-sb/dungeon/the_burn.txt': dungeon_the_burn_namespaceObject,'04-sb/eureka/eureka_anemos.ts': eureka_anemos,'04-sb/eureka/eureka_hydatos.ts': eureka_hydatos,'04-sb/eureka/eureka_hydatos.txt': eureka_eureka_hydatos_namespaceObject,'04-sb/eureka/eureka_pyros.ts': eureka_pyros,'04-sb/hunts/yanxia.ts': yanxia,'04-sb/map/the_hidden_canals_of_uznair.ts': the_hidden_canals_of_uznair,'04-sb/map/the_lost_canals_of_uznair.ts': the_lost_canals_of_uznair,'04-sb/map/the_shifting_altars_of_uznair.ts': the_shifting_altars_of_uznair,'04-sb/raid/o10n.ts': o10n,'04-sb/raid/o10n.txt': raid_o10n_namespaceObject,'04-sb/raid/o10s.ts': o10s,'04-sb/raid/o10s.txt': raid_o10s_namespaceObject,'04-sb/raid/o11n.ts': o11n,'04-sb/raid/o11n.txt': raid_o11n_namespaceObject,'04-sb/raid/o11s.ts': o11s,'04-sb/raid/o11s.txt': raid_o11s_namespaceObject,'04-sb/raid/o12n.ts': o12n,'04-sb/raid/o12n.txt': raid_o12n_namespaceObject,'04-sb/raid/o12s.ts': o12s,'04-sb/raid/o12s.txt': raid_o12s_namespaceObject,'04-sb/raid/o1n.ts': o1n,'04-sb/raid/o1n.txt': raid_o1n_namespaceObject,'04-sb/raid/o1s.ts': o1s,'04-sb/raid/o1s.txt': raid_o1s_namespaceObject,'04-sb/raid/o2n.ts': o2n,'04-sb/raid/o2n.txt': raid_o2n_namespaceObject,'04-sb/raid/o2s.ts': o2s,'04-sb/raid/o2s.txt': raid_o2s_namespaceObject,'04-sb/raid/o3n.ts': o3n,'04-sb/raid/o3n.txt': raid_o3n_namespaceObject,'04-sb/raid/o3s.ts': o3s,'04-sb/raid/o3s.txt': raid_o3s_namespaceObject,'04-sb/raid/o4n.ts': o4n,'04-sb/raid/o4n.txt': raid_o4n_namespaceObject,'04-sb/raid/o4s.ts': o4s,'04-sb/raid/o4s.txt': raid_o4s_namespaceObject,'04-sb/raid/o5n.ts': o5n,'04-sb/raid/o5n.txt': raid_o5n_namespaceObject,'04-sb/raid/o5s.ts': o5s,'04-sb/raid/o5s.txt': raid_o5s_namespaceObject,'04-sb/raid/o6n.ts': o6n,'04-sb/raid/o6n.txt': raid_o6n_namespaceObject,'04-sb/raid/o6s.ts': o6s,'04-sb/raid/o6s.txt': raid_o6s_namespaceObject,'04-sb/raid/o7n.ts': o7n,'04-sb/raid/o7n.txt': raid_o7n_namespaceObject,'04-sb/raid/o7s.ts': o7s,'04-sb/raid/o7s.txt': raid_o7s_namespaceObject,'04-sb/raid/o8n.ts': o8n,'04-sb/raid/o8n.txt': raid_o8n_namespaceObject,'04-sb/raid/o8s.ts': o8s,'04-sb/raid/o8s.txt': raid_o8s_namespaceObject,'04-sb/raid/o9n.ts': o9n,'04-sb/raid/o9n.txt': raid_o9n_namespaceObject,'04-sb/raid/o9s.ts': o9s,'04-sb/raid/o9s.txt': raid_o9s_namespaceObject,'04-sb/trial/byakko-ex.ts': byakko_ex,'04-sb/trial/byakko-ex.txt': trial_byakko_ex_namespaceObject,'04-sb/trial/byakko.ts': byakko,'04-sb/trial/byakko.txt': trial_byakko_namespaceObject,'04-sb/trial/lakshmi-ex.ts': lakshmi_ex,'04-sb/trial/lakshmi-ex.txt': trial_lakshmi_ex_namespaceObject,'04-sb/trial/lakshmi.ts': lakshmi,'04-sb/trial/lakshmi.txt': trial_lakshmi_namespaceObject,'04-sb/trial/rathalos-ex.ts': rathalos_ex,'04-sb/trial/rathalos.ts': rathalos,'04-sb/trial/seiryu-ex.ts': seiryu_ex,'04-sb/trial/seiryu-ex.txt': trial_seiryu_ex_namespaceObject,'04-sb/trial/seiryu.ts': seiryu,'04-sb/trial/seiryu.txt': trial_seiryu_namespaceObject,'04-sb/trial/shinryu-ex.ts': shinryu_ex,'04-sb/trial/shinryu-ex.txt': trial_shinryu_ex_namespaceObject,'04-sb/trial/shinryu.ts': shinryu,'04-sb/trial/shinryu.txt': trial_shinryu_namespaceObject,'04-sb/trial/susano-ex.ts': susano_ex,'04-sb/trial/susano-ex.txt': trial_susano_ex_namespaceObject,'04-sb/trial/susano.ts': susano,'04-sb/trial/susano.txt': trial_susano_namespaceObject,'04-sb/trial/suzaku-ex.ts': suzaku_ex,'04-sb/trial/suzaku-ex.txt': trial_suzaku_ex_namespaceObject,'04-sb/trial/suzaku.ts': suzaku,'04-sb/trial/suzaku.txt': trial_suzaku_namespaceObject,'04-sb/trial/tsukuyomi-ex.ts': tsukuyomi_ex,'04-sb/trial/tsukuyomi-ex.txt': trial_tsukuyomi_ex_namespaceObject,'04-sb/trial/tsukuyomi.ts': tsukuyomi,'04-sb/trial/tsukuyomi.txt': trial_tsukuyomi_namespaceObject,'04-sb/trial/yojimbo.ts': yojimbo,'04-sb/trial/yojimbo.txt': trial_yojimbo_namespaceObject,'04-sb/ultimate/ultima_weapon_ultimate.ts': ultima_weapon_ultimate,'04-sb/ultimate/ultima_weapon_ultimate.txt': ultimate_ultima_weapon_ultimate_namespaceObject,'04-sb/ultimate/unending_coil_ultimate.ts': unending_coil_ultimate,'04-sb/ultimate/unending_coil_ultimate.txt': ultimate_unending_coil_ultimate_namespaceObject,'05-shb/alliance/the_copied_factory.ts': the_copied_factory,'05-shb/alliance/the_copied_factory.txt': alliance_the_copied_factory_namespaceObject,'05-shb/alliance/the_puppets_bunker.ts': the_puppets_bunker,'05-shb/alliance/the_puppets_bunker.txt': alliance_the_puppets_bunker_namespaceObject,'05-shb/alliance/the_tower_at_paradigms_breach.ts': the_tower_at_paradigms_breach,'05-shb/alliance/the_tower_at_paradigms_breach.txt': alliance_the_tower_at_paradigms_breach_namespaceObject,'05-shb/dungeon/akadaemia_anyder.ts': akadaemia_anyder,'05-shb/dungeon/akadaemia_anyder.txt': dungeon_akadaemia_anyder_namespaceObject,'05-shb/dungeon/amaurot.ts': amaurot,'05-shb/dungeon/amaurot.txt': dungeon_amaurot_namespaceObject,'05-shb/dungeon/anamnesis_anyder.ts': anamnesis_anyder,'05-shb/dungeon/anamnesis_anyder.txt': dungeon_anamnesis_anyder_namespaceObject,'05-shb/dungeon/dohn_mheg.ts': dohn_mheg,'05-shb/dungeon/dohn_mheg.txt': dungeon_dohn_mheg_namespaceObject,'05-shb/dungeon/heroes_gauntlet.ts': heroes_gauntlet,'05-shb/dungeon/heroes_gauntlet.txt': dungeon_heroes_gauntlet_namespaceObject,'05-shb/dungeon/holminster_switch.ts': holminster_switch,'05-shb/dungeon/holminster_switch.txt': dungeon_holminster_switch_namespaceObject,'05-shb/dungeon/malikahs_well.ts': malikahs_well,'05-shb/dungeon/malikahs_well.txt': dungeon_malikahs_well_namespaceObject,'05-shb/dungeon/matoyas_relict.ts': matoyas_relict,'05-shb/dungeon/matoyas_relict.txt': dungeon_matoyas_relict_namespaceObject,'05-shb/dungeon/mt_gulg.ts': mt_gulg,'05-shb/dungeon/mt_gulg.txt': dungeon_mt_gulg_namespaceObject,'05-shb/dungeon/paglthan.ts': paglthan,'05-shb/dungeon/paglthan.txt': dungeon_paglthan_namespaceObject,'05-shb/dungeon/qitana_ravel.ts': qitana_ravel,'05-shb/dungeon/qitana_ravel.txt': dungeon_qitana_ravel_namespaceObject,'05-shb/dungeon/the_grand_cosmos.ts': the_grand_cosmos,'05-shb/dungeon/the_grand_cosmos.txt': dungeon_the_grand_cosmos_namespaceObject,'05-shb/dungeon/twinning.ts': twinning,'05-shb/dungeon/twinning.txt': dungeon_twinning_namespaceObject,'05-shb/etc/the_diadem.ts': the_diadem,'05-shb/eureka/bozjan_southern_front.ts': bozjan_southern_front,'05-shb/eureka/bozjan_southern_front.txt': eureka_bozjan_southern_front_namespaceObject,'05-shb/eureka/delubrum_reginae.ts': delubrum_reginae,'05-shb/eureka/delubrum_reginae.txt': eureka_delubrum_reginae_namespaceObject,'05-shb/eureka/delubrum_reginae_savage.ts': delubrum_reginae_savage,'05-shb/eureka/delubrum_reginae_savage.txt': eureka_delubrum_reginae_savage_namespaceObject,'05-shb/eureka/zadnor.ts': zadnor,'05-shb/eureka/zadnor.txt': eureka_zadnor_namespaceObject,'05-shb/hunts/amh_araeng.ts': amh_araeng,'05-shb/hunts/il_mheg.ts': il_mheg,'05-shb/hunts/kholusia.ts': kholusia,'05-shb/hunts/lakeland.ts': lakeland,'05-shb/hunts/ss_rank.ts': ss_rank,'05-shb/hunts/the_raktika_greatwood.ts': the_raktika_greatwood,'05-shb/hunts/the_tempest.ts': the_tempest,'05-shb/map/the_dungeons_of_lyhe_ghiah.ts': the_dungeons_of_lyhe_ghiah,'05-shb/map/the_shifting_oubliettes_of_lyhe_ghiah.ts': the_shifting_oubliettes_of_lyhe_ghiah,'05-shb/raid/e10n.ts': e10n,'05-shb/raid/e10n.txt': raid_e10n_namespaceObject,'05-shb/raid/e10s.ts': e10s,'05-shb/raid/e10s.txt': raid_e10s_namespaceObject,'05-shb/raid/e11n.ts': e11n,'05-shb/raid/e11n.txt': raid_e11n_namespaceObject,'05-shb/raid/e11s.ts': e11s,'05-shb/raid/e11s.txt': raid_e11s_namespaceObject,'05-shb/raid/e12n.ts': e12n,'05-shb/raid/e12n.txt': raid_e12n_namespaceObject,'05-shb/raid/e12s.ts': e12s,'05-shb/raid/e12s.txt': raid_e12s_namespaceObject,'05-shb/raid/e1n.ts': e1n,'05-shb/raid/e1n.txt': raid_e1n_namespaceObject,'05-shb/raid/e1s.ts': e1s,'05-shb/raid/e1s.txt': raid_e1s_namespaceObject,'05-shb/raid/e2n.ts': e2n,'05-shb/raid/e2n.txt': raid_e2n_namespaceObject,'05-shb/raid/e2s.ts': e2s,'05-shb/raid/e2s.txt': raid_e2s_namespaceObject,'05-shb/raid/e3n.ts': e3n,'05-shb/raid/e3n.txt': raid_e3n_namespaceObject,'05-shb/raid/e3s.ts': e3s,'05-shb/raid/e3s.txt': raid_e3s_namespaceObject,'05-shb/raid/e4n.ts': e4n,'05-shb/raid/e4n.txt': raid_e4n_namespaceObject,'05-shb/raid/e4s.ts': e4s,'05-shb/raid/e4s.txt': raid_e4s_namespaceObject,'05-shb/raid/e5n.ts': e5n,'05-shb/raid/e5n.txt': raid_e5n_namespaceObject,'05-shb/raid/e5s.ts': e5s,'05-shb/raid/e5s.txt': raid_e5s_namespaceObject,'05-shb/raid/e6n.ts': e6n,'05-shb/raid/e6n.txt': raid_e6n_namespaceObject,'05-shb/raid/e6s.ts': e6s,'05-shb/raid/e6s.txt': raid_e6s_namespaceObject,'05-shb/raid/e7n.ts': e7n,'05-shb/raid/e7n.txt': raid_e7n_namespaceObject,'05-shb/raid/e7s.ts': e7s,'05-shb/raid/e7s.txt': raid_e7s_namespaceObject,'05-shb/raid/e8n.ts': e8n,'05-shb/raid/e8n.txt': raid_e8n_namespaceObject,'05-shb/raid/e8s.ts': e8s,'05-shb/raid/e8s.txt': raid_e8s_namespaceObject,'05-shb/raid/e9n.ts': e9n,'05-shb/raid/e9n.txt': raid_e9n_namespaceObject,'05-shb/raid/e9s.ts': e9s,'05-shb/raid/e9s.txt': raid_e9s_namespaceObject,'05-shb/trial/diamond_weapon-ex.ts': diamond_weapon_ex,'05-shb/trial/diamond_weapon-ex.txt': trial_diamond_weapon_ex_namespaceObject,'05-shb/trial/diamond_weapon.ts': diamond_weapon,'05-shb/trial/diamond_weapon.txt': trial_diamond_weapon_namespaceObject,'05-shb/trial/emerald_weapon-ex.ts': emerald_weapon_ex,'05-shb/trial/emerald_weapon-ex.txt': trial_emerald_weapon_ex_namespaceObject,'05-shb/trial/emerald_weapon.ts': emerald_weapon,'05-shb/trial/emerald_weapon.txt': trial_emerald_weapon_namespaceObject,'05-shb/trial/hades-ex.ts': hades_ex,'05-shb/trial/hades-ex.txt': trial_hades_ex_namespaceObject,'05-shb/trial/hades.ts': hades,'05-shb/trial/hades.txt': trial_hades_namespaceObject,'05-shb/trial/innocence-ex.ts': innocence_ex,'05-shb/trial/innocence-ex.txt': trial_innocence_ex_namespaceObject,'05-shb/trial/innocence.ts': innocence,'05-shb/trial/innocence.txt': trial_innocence_namespaceObject,'05-shb/trial/levi-un.ts': levi_un,'05-shb/trial/levi-un.txt': trial_levi_un_namespaceObject,'05-shb/trial/ruby_weapon-ex.ts': ruby_weapon_ex,'05-shb/trial/ruby_weapon-ex.txt': trial_ruby_weapon_ex_namespaceObject,'05-shb/trial/ruby_weapon.ts': ruby_weapon,'05-shb/trial/ruby_weapon.txt': trial_ruby_weapon_namespaceObject,'05-shb/trial/shiva-un.ts': shiva_un,'05-shb/trial/shiva-un.txt': trial_shiva_un_namespaceObject,'05-shb/trial/titan-un.ts': titan_un,'05-shb/trial/titan-un.txt': trial_titan_un_namespaceObject,'05-shb/trial/titania-ex.ts': titania_ex,'05-shb/trial/titania-ex.txt': trial_titania_ex_namespaceObject,'05-shb/trial/titania.ts': titania,'05-shb/trial/titania.txt': trial_titania_namespaceObject,'05-shb/trial/varis-ex.ts': varis_ex,'05-shb/trial/varis-ex.txt': trial_varis_ex_namespaceObject,'05-shb/trial/wol-ex.ts': wol_ex,'05-shb/trial/wol-ex.txt': trial_wol_ex_namespaceObject,'05-shb/trial/wol.ts': wol,'05-shb/trial/wol.txt': trial_wol_namespaceObject,'05-shb/ultimate/the_epic_of_alexander.ts': the_epic_of_alexander,'05-shb/ultimate/the_epic_of_alexander.txt': ultimate_the_epic_of_alexander_namespaceObject,'06-ew/alliance/aglaia.ts': aglaia,'06-ew/alliance/aglaia.txt': alliance_aglaia_namespaceObject,'06-ew/alliance/euphrosyne.ts': euphrosyne,'06-ew/alliance/euphrosyne.txt': alliance_euphrosyne_namespaceObject,'06-ew/alliance/thaleia.ts': thaleia,'06-ew/alliance/thaleia.txt': alliance_thaleia_namespaceObject,'06-ew/deepdungeon/eureka_orthos_floors_01-10.ts': eureka_orthos_floors_01_10,'06-ew/deepdungeon/eureka_orthos_floors_11-20.ts': eureka_orthos_floors_11_20,'06-ew/deepdungeon/eureka_orthos_floors_21-30.ts': eureka_orthos_floors_21_30,'06-ew/deepdungeon/eureka_orthos_floors_31-40.ts': eureka_orthos_floors_31_40,'06-ew/deepdungeon/eureka_orthos_floors_41-50.ts': eureka_orthos_floors_41_50,'06-ew/deepdungeon/eureka_orthos_floors_51-60.ts': eureka_orthos_floors_51_60,'06-ew/deepdungeon/eureka_orthos_floors_61-70.ts': eureka_orthos_floors_61_70,'06-ew/deepdungeon/eureka_orthos_floors_71-80.ts': eureka_orthos_floors_71_80,'06-ew/deepdungeon/eureka_orthos_floors_81-90.ts': eureka_orthos_floors_81_90,'06-ew/deepdungeon/eureka_orthos_floors_91-100.ts': eureka_orthos_floors_91_100,'06-ew/deepdungeon/eureka_orthos_general.ts': eureka_orthos_general,'06-ew/dungeon/aetherfont.ts': aetherfont,'06-ew/dungeon/aetherfont.txt': dungeon_aetherfont_namespaceObject,'06-ew/dungeon/aloalo_island.ts': aloalo_island,'06-ew/dungeon/aloalo_island.txt': dungeon_aloalo_island_namespaceObject,'06-ew/dungeon/alzadaals_legacy.ts': alzadaals_legacy,'06-ew/dungeon/alzadaals_legacy.txt': dungeon_alzadaals_legacy_namespaceObject,'06-ew/dungeon/another_aloalo_island-savage.ts': another_aloalo_island_savage,'06-ew/dungeon/another_aloalo_island-savage.txt': dungeon_another_aloalo_island_savage_namespaceObject,'06-ew/dungeon/another_aloalo_island.ts': another_aloalo_island,'06-ew/dungeon/another_aloalo_island.txt': dungeon_another_aloalo_island_namespaceObject,'06-ew/dungeon/another_mount_rokkon-savage.ts': another_mount_rokkon_savage,'06-ew/dungeon/another_mount_rokkon-savage.txt': dungeon_another_mount_rokkon_savage_namespaceObject,'06-ew/dungeon/another_mount_rokkon.ts': another_mount_rokkon,'06-ew/dungeon/another_mount_rokkon.txt': dungeon_another_mount_rokkon_namespaceObject,'06-ew/dungeon/another_sildihn_subterrane-savage.ts': another_sildihn_subterrane_savage,'06-ew/dungeon/another_sildihn_subterrane-savage.txt': dungeon_another_sildihn_subterrane_savage_namespaceObject,'06-ew/dungeon/another_sildihn_subterrane.ts': another_sildihn_subterrane,'06-ew/dungeon/another_sildihn_subterrane.txt': dungeon_another_sildihn_subterrane_namespaceObject,'06-ew/dungeon/ktisis_hyperboreia.ts': ktisis_hyperboreia,'06-ew/dungeon/ktisis_hyperboreia.txt': dungeon_ktisis_hyperboreia_namespaceObject,'06-ew/dungeon/lapis_manalis.ts': lapis_manalis,'06-ew/dungeon/lapis_manalis.txt': dungeon_lapis_manalis_namespaceObject,'06-ew/dungeon/mount_rokkon.ts': mount_rokkon,'06-ew/dungeon/mount_rokkon.txt': dungeon_mount_rokkon_namespaceObject,'06-ew/dungeon/smileton.ts': smileton,'06-ew/dungeon/smileton.txt': dungeon_smileton_namespaceObject,'06-ew/dungeon/stigma_dreamscape.ts': stigma_dreamscape,'06-ew/dungeon/stigma_dreamscape.txt': dungeon_stigma_dreamscape_namespaceObject,'06-ew/dungeon/the_aitiascope.ts': the_aitiascope,'06-ew/dungeon/the_aitiascope.txt': dungeon_the_aitiascope_namespaceObject,'06-ew/dungeon/the_dead_ends.ts': the_dead_ends,'06-ew/dungeon/the_dead_ends.txt': dungeon_the_dead_ends_namespaceObject,'06-ew/dungeon/the_fell_court_of_troia.ts': the_fell_court_of_troia,'06-ew/dungeon/the_fell_court_of_troia.txt': dungeon_the_fell_court_of_troia_namespaceObject,'06-ew/dungeon/the_lunar_subterrane.ts': the_lunar_subterrane,'06-ew/dungeon/the_lunar_subterrane.txt': dungeon_the_lunar_subterrane_namespaceObject,'06-ew/dungeon/the_sildihn_subterrane.ts': the_sildihn_subterrane,'06-ew/dungeon/the_sildihn_subterrane.txt': dungeon_the_sildihn_subterrane_namespaceObject,'06-ew/dungeon/the_tower_of_babil.ts': the_tower_of_babil,'06-ew/dungeon/the_tower_of_babil.txt': dungeon_the_tower_of_babil_namespaceObject,'06-ew/dungeon/the_tower_of_zot.ts': the_tower_of_zot,'06-ew/dungeon/the_tower_of_zot.txt': dungeon_the_tower_of_zot_namespaceObject,'06-ew/dungeon/vanaspati.ts': vanaspati,'06-ew/dungeon/vanaspati.txt': dungeon_vanaspati_namespaceObject,'06-ew/hunts/elpis.ts': elpis,'06-ew/hunts/garlemald.ts': garlemald,'06-ew/hunts/labyrinthos.ts': labyrinthos,'06-ew/hunts/mare_lamentorum.ts': mare_lamentorum,'06-ew/hunts/ss_rank.ts': hunts_ss_rank,'06-ew/hunts/thavnair.ts': thavnair,'06-ew/hunts/ultima_thule.ts': ultima_thule,'06-ew/map/the_excitatron_6000.ts': the_excitatron_6000,'06-ew/map/the_shifting_gymnasion_agonon.ts': the_shifting_gymnasion_agonon,'06-ew/raid/p10n.ts': p10n,'06-ew/raid/p10n.txt': raid_p10n_namespaceObject,'06-ew/raid/p10s.ts': p10s,'06-ew/raid/p10s.txt': raid_p10s_namespaceObject,'06-ew/raid/p11n.ts': p11n,'06-ew/raid/p11n.txt': raid_p11n_namespaceObject,'06-ew/raid/p11s.ts': p11s,'06-ew/raid/p11s.txt': raid_p11s_namespaceObject,'06-ew/raid/p12n.ts': p12n,'06-ew/raid/p12n.txt': raid_p12n_namespaceObject,'06-ew/raid/p12s.ts': p12s,'06-ew/raid/p12s.txt': raid_p12s_namespaceObject,'06-ew/raid/p1n.ts': p1n,'06-ew/raid/p1n.txt': raid_p1n_namespaceObject,'06-ew/raid/p1s.ts': p1s,'06-ew/raid/p1s.txt': raid_p1s_namespaceObject,'06-ew/raid/p2n.ts': p2n,'06-ew/raid/p2n.txt': raid_p2n_namespaceObject,'06-ew/raid/p2s.ts': p2s,'06-ew/raid/p2s.txt': raid_p2s_namespaceObject,'06-ew/raid/p3n.ts': p3n,'06-ew/raid/p3n.txt': raid_p3n_namespaceObject,'06-ew/raid/p3s.ts': p3s,'06-ew/raid/p3s.txt': raid_p3s_namespaceObject,'06-ew/raid/p4n.ts': p4n,'06-ew/raid/p4n.txt': raid_p4n_namespaceObject,'06-ew/raid/p4s.ts': p4s,'06-ew/raid/p4s.txt': raid_p4s_namespaceObject,'06-ew/raid/p5n.ts': p5n,'06-ew/raid/p5n.txt': raid_p5n_namespaceObject,'06-ew/raid/p5s.ts': p5s,'06-ew/raid/p5s.txt': raid_p5s_namespaceObject,'06-ew/raid/p6n.ts': p6n,'06-ew/raid/p6n.txt': raid_p6n_namespaceObject,'06-ew/raid/p6s.ts': p6s,'06-ew/raid/p6s.txt': raid_p6s_namespaceObject,'06-ew/raid/p7n.ts': p7n,'06-ew/raid/p7n.txt': raid_p7n_namespaceObject,'06-ew/raid/p7s.ts': p7s,'06-ew/raid/p7s.txt': raid_p7s_namespaceObject,'06-ew/raid/p8n.ts': p8n,'06-ew/raid/p8n.txt': raid_p8n_namespaceObject,'06-ew/raid/p8s.ts': p8s,'06-ew/raid/p8s.txt': raid_p8s_namespaceObject,'06-ew/raid/p9n.ts': p9n,'06-ew/raid/p9n.txt': raid_p9n_namespaceObject,'06-ew/raid/p9s.ts': p9s,'06-ew/raid/p9s.txt': raid_p9s_namespaceObject,'06-ew/trial/asura.ts': asura,'06-ew/trial/asura.txt': trial_asura_namespaceObject,'06-ew/trial/barbariccia-ex.ts': barbariccia_ex,'06-ew/trial/barbariccia-ex.txt': trial_barbariccia_ex_namespaceObject,'06-ew/trial/barbariccia.ts': barbariccia,'06-ew/trial/barbariccia.txt': trial_barbariccia_namespaceObject,'06-ew/trial/endsinger-ex.ts': endsinger_ex,'06-ew/trial/endsinger-ex.txt': trial_endsinger_ex_namespaceObject,'06-ew/trial/endsinger.ts': endsinger,'06-ew/trial/endsinger.txt': trial_endsinger_namespaceObject,'06-ew/trial/golbez-ex.ts': golbez_ex,'06-ew/trial/golbez-ex.txt': trial_golbez_ex_namespaceObject,'06-ew/trial/golbez.ts': golbez,'06-ew/trial/golbez.txt': trial_golbez_namespaceObject,'06-ew/trial/hydaelyn-ex.ts': hydaelyn_ex,'06-ew/trial/hydaelyn-ex.txt': trial_hydaelyn_ex_namespaceObject,'06-ew/trial/hydaelyn.ts': hydaelyn,'06-ew/trial/hydaelyn.txt': trial_hydaelyn_namespaceObject,'06-ew/trial/rubicante-ex.ts': rubicante_ex,'06-ew/trial/rubicante-ex.txt': trial_rubicante_ex_namespaceObject,'06-ew/trial/rubicante.ts': rubicante,'06-ew/trial/rubicante.txt': trial_rubicante_namespaceObject,'06-ew/trial/sephirot-un.ts': sephirot_un,'06-ew/trial/sephirot-un.txt': trial_sephirot_un_namespaceObject,'06-ew/trial/sophia-un.ts': sophia_un,'06-ew/trial/sophia-un.txt': trial_sophia_un_namespaceObject,'06-ew/trial/thordan-un.ts': thordan_un,'06-ew/trial/thordan-un.txt': trial_thordan_un_namespaceObject,'06-ew/trial/ultima-un.ts': ultima_un,'06-ew/trial/ultima-un.txt': trial_ultima_un_namespaceObject,'06-ew/trial/zeromus-ex.ts': zeromus_ex,'06-ew/trial/zeromus-ex.txt': trial_zeromus_ex_namespaceObject,'06-ew/trial/zeromus.ts': zeromus,'06-ew/trial/zeromus.txt': trial_zeromus_namespaceObject,'06-ew/trial/zodiark-ex.ts': zodiark_ex,'06-ew/trial/zodiark-ex.txt': trial_zodiark_ex_namespaceObject,'06-ew/trial/zodiark.ts': zodiark,'06-ew/trial/zodiark.txt': trial_zodiark_namespaceObject,'06-ew/trial/zurvan-un.ts': zurvan_un,'06-ew/trial/zurvan-un.txt': trial_zurvan_un_namespaceObject,'06-ew/ultimate/dragonsongs_reprise_ultimate.ts': dragonsongs_reprise_ultimate,'06-ew/ultimate/dragonsongs_reprise_ultimate.txt': ultimate_dragonsongs_reprise_ultimate_namespaceObject,'06-ew/ultimate/the_omega_protocol.ts': the_omega_protocol,'06-ew/ultimate/the_omega_protocol.txt': ultimate_the_omega_protocol_namespaceObject,'07-dt/alliance/cloud_of_darkness_chaotic.ts': cloud_of_darkness_chaotic,'07-dt/alliance/cloud_of_darkness_chaotic.txt': alliance_cloud_of_darkness_chaotic_namespaceObject,'07-dt/alliance/jeuno-first-walk.ts': jeuno_first_walk,'07-dt/alliance/jeuno-first-walk.txt': alliance_jeuno_first_walk_namespaceObject,'07-dt/alliance/san-doria-second-walk.ts': san_doria_second_walk,'07-dt/alliance/san-doria-second-walk.txt': alliance_san_doria_second_walk_namespaceObject,'07-dt/deepdungeon/pilgrims_traverse_general.ts': pilgrims_traverse_general,'07-dt/deepdungeon/pilgrims_traverse_stones_01-10.ts': pilgrims_traverse_stones_01_10,'07-dt/deepdungeon/pilgrims_traverse_stones_11-20.ts': pilgrims_traverse_stones_11_20,'07-dt/deepdungeon/pilgrims_traverse_stones_21-30.ts': pilgrims_traverse_stones_21_30,'07-dt/deepdungeon/pilgrims_traverse_stones_31-40.ts': pilgrims_traverse_stones_31_40,'07-dt/deepdungeon/pilgrims_traverse_stones_41-50.ts': pilgrims_traverse_stones_41_50,'07-dt/deepdungeon/pilgrims_traverse_stones_51-60.ts': pilgrims_traverse_stones_51_60,'07-dt/deepdungeon/pilgrims_traverse_stones_61-70.ts': pilgrims_traverse_stones_61_70,'07-dt/deepdungeon/pilgrims_traverse_stones_71-80.ts': pilgrims_traverse_stones_71_80,'07-dt/deepdungeon/pilgrims_traverse_stones_81-90.ts': pilgrims_traverse_stones_81_90,'07-dt/deepdungeon/pilgrims_traverse_stones_91-100.ts': pilgrims_traverse_stones_91_100,'07-dt/deepdungeon/pilgrims_traverse_the_final_verse.ts': pilgrims_traverse_the_final_verse,'07-dt/deepdungeon/the_final_verse_quantum.ts': the_final_verse_quantum,'07-dt/deepdungeon/the_final_verse_quantum.txt': deepdungeon_the_final_verse_quantum_namespaceObject,'07-dt/dungeon/alexandria.ts': alexandria,'07-dt/dungeon/alexandria.txt': dungeon_alexandria_namespaceObject,'07-dt/dungeon/ihuykatumu.ts': ihuykatumu,'07-dt/dungeon/ihuykatumu.txt': dungeon_ihuykatumu_namespaceObject,'07-dt/dungeon/meso-terminal.ts': meso_terminal,'07-dt/dungeon/meso-terminal.txt': dungeon_meso_terminal_namespaceObject,'07-dt/dungeon/mistwake.ts': mistwake,'07-dt/dungeon/mistwake.txt': dungeon_mistwake_namespaceObject,'07-dt/dungeon/origenics.ts': origenics,'07-dt/dungeon/origenics.txt': dungeon_origenics_namespaceObject,'07-dt/dungeon/skydeep-cenote.ts': skydeep_cenote,'07-dt/dungeon/skydeep-cenote.txt': dungeon_skydeep_cenote_namespaceObject,'07-dt/dungeon/strayborough-deadwalk.ts': strayborough_deadwalk,'07-dt/dungeon/strayborough-deadwalk.txt': dungeon_strayborough_deadwalk_namespaceObject,'07-dt/dungeon/the_underkeep.ts': the_underkeep,'07-dt/dungeon/the_underkeep.txt': dungeon_the_underkeep_namespaceObject,'07-dt/dungeon/vanguard.ts': vanguard,'07-dt/dungeon/vanguard.txt': dungeon_vanguard_namespaceObject,'07-dt/dungeon/worqor-zormor.ts': worqor_zormor,'07-dt/dungeon/worqor-zormor.txt': dungeon_worqor_zormor_namespaceObject,'07-dt/dungeon/yuweyawata.ts': yuweyawata,'07-dt/dungeon/yuweyawata.txt': dungeon_yuweyawata_namespaceObject,'07-dt/eureka/occult_crescent_south_horn.ts': occult_crescent_south_horn,'07-dt/eureka/occult_crescent_south_horn.txt': eureka_occult_crescent_south_horn_namespaceObject,'07-dt/hunts/heritage_found.ts': heritage_found,'07-dt/hunts/kozamauka.ts': kozamauka,'07-dt/hunts/living_memory.ts': living_memory,'07-dt/hunts/shaaloani.ts': shaaloani,'07-dt/hunts/ss_rank.ts': _07_dt_hunts_ss_rank,'07-dt/hunts/urqopacha.ts': urqopacha,'07-dt/hunts/yaktel.ts': yaktel,'07-dt/map/cenote_ja_ja_gural.ts': cenote_ja_ja_gural,'07-dt/raid/r10n.ts': r10n,'07-dt/raid/r10n.txt': raid_r10n_namespaceObject,'07-dt/raid/r10s.ts': r10s,'07-dt/raid/r10s.txt': raid_r10s_namespaceObject,'07-dt/raid/r11n.ts': r11n,'07-dt/raid/r11n.txt': raid_r11n_namespaceObject,'07-dt/raid/r11s.ts': r11s,'07-dt/raid/r11s.txt': raid_r11s_namespaceObject,'07-dt/raid/r12n.ts': r12n,'07-dt/raid/r12n.txt': raid_r12n_namespaceObject,'07-dt/raid/r12s.ts': r12s,'07-dt/raid/r12s.txt': raid_r12s_namespaceObject,'07-dt/raid/r1n.ts': r1n,'07-dt/raid/r1n.txt': raid_r1n_namespaceObject,'07-dt/raid/r1s.ts': r1s,'07-dt/raid/r1s.txt': raid_r1s_namespaceObject,'07-dt/raid/r2n.ts': r2n,'07-dt/raid/r2n.txt': raid_r2n_namespaceObject,'07-dt/raid/r2s.ts': r2s,'07-dt/raid/r2s.txt': raid_r2s_namespaceObject,'07-dt/raid/r3n.ts': r3n,'07-dt/raid/r3n.txt': raid_r3n_namespaceObject,'07-dt/raid/r3s.ts': r3s,'07-dt/raid/r3s.txt': raid_r3s_namespaceObject,'07-dt/raid/r4n.ts': r4n,'07-dt/raid/r4n.txt': raid_r4n_namespaceObject,'07-dt/raid/r4s.ts': r4s,'07-dt/raid/r4s.txt': raid_r4s_namespaceObject,'07-dt/raid/r5n.ts': r5n,'07-dt/raid/r5n.txt': raid_r5n_namespaceObject,'07-dt/raid/r5s.ts': r5s,'07-dt/raid/r5s.txt': raid_r5s_namespaceObject,'07-dt/raid/r6n.ts': r6n,'07-dt/raid/r6n.txt': raid_r6n_namespaceObject,'07-dt/raid/r6s.ts': r6s,'07-dt/raid/r6s.txt': raid_r6s_namespaceObject,'07-dt/raid/r7n.ts': r7n,'07-dt/raid/r7n.txt': raid_r7n_namespaceObject,'07-dt/raid/r7s.ts': r7s,'07-dt/raid/r7s.txt': raid_r7s_namespaceObject,'07-dt/raid/r8n.ts': r8n,'07-dt/raid/r8n.txt': raid_r8n_namespaceObject,'07-dt/raid/r8s.ts': r8s,'07-dt/raid/r8s.txt': raid_r8s_namespaceObject,'07-dt/raid/r9n.ts': r9n,'07-dt/raid/r9n.txt': raid_r9n_namespaceObject,'07-dt/raid/r9s.ts': r9s,'07-dt/raid/r9s.txt': raid_r9s_namespaceObject,'07-dt/trial/arkveld-ex.ts': arkveld_ex,'07-dt/trial/arkveld-ex.txt': trial_arkveld_ex_namespaceObject,'07-dt/trial/arkveld.ts': arkveld,'07-dt/trial/arkveld.txt': trial_arkveld_namespaceObject,'07-dt/trial/byakko-un.ts': byakko_un,'07-dt/trial/byakko-un.txt': trial_byakko_un_namespaceObject,'07-dt/trial/doomtrain-ex.ts': doomtrain_ex,'07-dt/trial/doomtrain-ex.txt': trial_doomtrain_ex_namespaceObject,'07-dt/trial/doomtrain.ts': doomtrain,'07-dt/trial/doomtrain.txt': trial_doomtrain_namespaceObject,'07-dt/trial/enuo-ex.ts': enuo_ex,'07-dt/trial/enuo-ex.txt': trial_enuo_ex_namespaceObject,'07-dt/trial/enuo.ts': enuo,'07-dt/trial/enuo.txt': trial_enuo_namespaceObject,'07-dt/trial/necron-ex.ts': necron_ex,'07-dt/trial/necron-ex.txt': trial_necron_ex_namespaceObject,'07-dt/trial/queen-eternal-ex.ts': queen_eternal_ex,'07-dt/trial/queen-eternal-ex.txt': trial_queen_eternal_ex_namespaceObject,'07-dt/trial/queen-eternal.ts': queen_eternal,'07-dt/trial/queen-eternal.txt': trial_queen_eternal_namespaceObject,'07-dt/trial/seiryu-un.ts': seiryu_un,'07-dt/trial/seiryu-un.txt': trial_seiryu_un_namespaceObject,'07-dt/trial/shinryu-un.ts': shinryu_un,'07-dt/trial/shinryu-un.txt': trial_shinryu_un_namespaceObject,'07-dt/trial/suzaku-un.ts': suzaku_un,'07-dt/trial/suzaku-un.txt': trial_suzaku_un_namespaceObject,'07-dt/trial/tsukuyomi-un.ts': tsukuyomi_un,'07-dt/trial/tsukuyomi-un.txt': trial_tsukuyomi_un_namespaceObject,'07-dt/trial/valigarmanda-ex.ts': valigarmanda_ex,'07-dt/trial/valigarmanda-ex.txt': trial_valigarmanda_ex_namespaceObject,'07-dt/trial/valigarmanda.ts': valigarmanda,'07-dt/trial/valigarmanda.txt': trial_valigarmanda_namespaceObject,'07-dt/trial/zelenia-ex.ts': zelenia_ex,'07-dt/trial/zelenia-ex.txt': trial_zelenia_ex_namespaceObject,'07-dt/trial/zelenia.ts': zelenia,'07-dt/trial/zelenia.txt': trial_zelenia_namespaceObject,'07-dt/trial/zoraal-ja-ex.ts': zoraal_ja_ex,'07-dt/trial/zoraal-ja-ex.txt': trial_zoraal_ja_ex_namespaceObject,'07-dt/trial/zoraal-ja.ts': zoraal_ja,'07-dt/trial/zoraal-ja.txt': trial_zoraal_ja_namespaceObject,'07-dt/ultimate/futures_rewritten.ts': futures_rewritten,'07-dt/ultimate/futures_rewritten.txt': ultimate_futures_rewritten_namespaceObject,});
 
 /***/ })
 
